@@ -23,13 +23,12 @@ class Sinodos implements ISinodos
     public function insert($nome, $sigla)
     {
         // TODO: Implement insert() method.
-
         try {
-
             $query = "INSERT INTO sinodos (nome, sigla) VALUES ( :nome, :sigla )";
             $sql = $this->pdo->prepare($query);
             $sql->bindValue(":nome",$nome);
             $sql->bindValue(":sigla",$sigla);
+            return $sql->execute();
         } catch (\Exception $exception){
             echo $exception->getMessage();
         }

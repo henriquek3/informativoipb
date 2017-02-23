@@ -9,6 +9,7 @@
 namespace Controllers;
 require_once "../IControllers/ISinodos.php";
 require_once "../Models/Sinodos.php";
+
 use IControllers\ISinodos;
 use Models\Sinodos as Sino;
 
