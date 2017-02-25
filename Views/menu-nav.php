@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="vendor/semantic/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.8/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/ionic/css/ionic.css">
     <title>MenuTest</title>
     <style>
         #footer {
@@ -97,25 +98,68 @@
         </div>
 </div>
 
-    <div class="ui left demo vertical inverted sidebar labeled icon menu">
-        <a class="item">
-            <i class="home icon"></i>
-            Home
-        </a>
-        <a class="item">
-            <i class="block layout icon"></i>
-            Topics
-        </a>
-        <a class="item">
-            <i class="smile icon"></i>
-            Friends
-        </a>
+    <div class="ui left demo vertical sidebar menu">
+            <div class="item">
+                <i class="edit icon"></i>
+                <div class="header">Cadastros</div>
+                <div class="menu">
+                    <a class="item">Sínodos</a>
+                    <a class="item">Presbitérios</a>
+                    <a class="item">Igrejas</a>
+                    <a class="item">Membros</a>
+                </div>
+            </div>
+            <div class="item">
+                <i class="browser icon"></i>
+                <div class="header">Relatórios</div>
+                <div class="menu">
+                    <a class="item">Estatisticas</a>
+                    <a class="item">Financeiros</a>
+                    <a class="item">Ministerial</a>
+                </div>
+            </div>
+            <div class="item">
+                <i class="bar chart icon"></i>
+                <div class="header">Consultas</div>
+                <div class="menu">
+                    <a class="item">Estatisticas</a>
+                    <a class="item">Financeiros</a>
+                    <a class="item">Ministerial</a>
+                </div>
+            </div>
+            <div class="item">
+                <i class="settings icon"></i>
+                <div class="header">Configurações</div>
+                <div class="menu">
+                    <a class="item">Usuários</a>
+                    <a class="item">Trocar Senha</a>
+                    <a class="item">Solicitar Suporte</a>
+                </div>
+            </div>
+        <div class="item">
+            <i class="sign out icon"></i>
+            <div class="header">Desconectar</div>
+        </div>
     </div>
 
-    <div class="tablet only mobile only eight wide column">
-        <div class="ui button">
-            Open Sidebar
+    <div class="tablet only mobile only sixteen wide column">
+        <div class="three big ui icon buttons blue">
+            <button class="ui button open">
+                <i class="inverted list layout icon"></i>
+            </button>
+            <button class="ui button">
+                <i class="inverted large home icon"></i>
+            </button>
+            <button class="ui button">
+                <i class="inverted window close icon"></i>
+            </button>
         </div>
+        <div class="ui grid">
+            <div class="sixteen wide column">
+
+            </div>
+        </div>
+        <div class="ui basic disabled bottom attached button" id="footer">Rodapé</div>
     </div>
 </div>
 
@@ -124,6 +168,7 @@
     crossorigin="anonymous"></script>
 <script src="vendor/semantic/semantic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.8/semantic.min.js"></script>
+<script src="vendor/ionic/js/ionic.js"></script>
 <!--- Example Javascript -->
 <script>
     $(document)
@@ -143,7 +188,7 @@
         })
     ;
     $('.left.demo.sidebar').first()
-        .sidebar('attach events', '.button', 'show')
+        .sidebar('attach events', '.open.button', 'show')
     ;
     $('.open.button')
         .removeClass('disabled')
