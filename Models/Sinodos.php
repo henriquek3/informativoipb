@@ -7,11 +7,10 @@
  */
 
 namespace Models;
-require_once "../IModels/ISinodos.php";
 require_once "Connect.php";
-use IModels\ISinodos;
 
-class Sinodos implements ISinodos
+
+class Sinodos
 {
     private $pdo;
 

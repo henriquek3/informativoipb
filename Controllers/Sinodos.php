@@ -7,13 +7,11 @@
  */
 
 namespace Controllers;
-require_once "../IControllers/ISinodos.php";
 require_once "../Models/Sinodos.php";
 
-use IControllers\ISinodos;
-use Models\Sinodos as Sino;
+use Models\Sinodos as mdlSinodos;
 
-class Sinodos implements ISinodos
+class Sinodos
 {
     private $id;
     private $sigla;
@@ -66,7 +64,7 @@ class Sinodos implements ISinodos
     }
 }
 
-$modelSinodo = new Sino();
+$mdlSinodos = new mdlSinodos();
 $sinodos = new Sinodos();
 
 if (isset($_POST['sigla']) && isset($_POST['nome']))
@@ -74,9 +72,8 @@ if (isset($_POST['sigla']) && isset($_POST['nome']))
         $sinodos->setSigla($_POST['sigla']);
         $sinodos->setNome($_POST['nome']);
     }
-
 echo $sinodos->getNome();
 echo "</br>";
 echo $sinodos->getSigla();
 
-$modelSinodo->insert($sinodos->getNome(),$sinodos->getSigla());
+$mdlSinodos->insert($sinodos->getNome(), $sinodos->getSigla());

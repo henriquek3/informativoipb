@@ -5,6 +5,19 @@
  * Date: 24/02/17
  * Time: 13:52
  */
+$dektop = "../Views/home/home-desktop.php";
+$mobile = "../Views/home/home-mobile.php";
+$modal = "../Views/home/home-modal.php";
+if (!empty($_GET['cadastros'])) {
+    $url = $_GET['cadastros'];
+    switch ($url) {
+        case $url:
+            $dektop = "../Views/cadastros/sinodos/cadastro-sinodo-desktop.php";
+            $mobile = "../Views/cadastros/sinodos/cadastro-sinodo-mobile.php";
+            $modal = "../Views/cadastros/sinodos/cadastro-sinodo-modal.php";
+            break;
+    }
+}
 ?>
 <html>
 <head>
@@ -19,7 +32,7 @@
         /* estilo para fixar o footer no rodapé */
         #footer {
             position: fixed;
-            height: 50px;
+            /* height: 0px; */
             bottom: 0;
             left: 0;
             right: 0;
@@ -28,19 +41,22 @@
     </style>
 </head>
 <body>
+
 <!-- tags para alinhamento responsivo -->
 <div class="ui column grid">
+
     <!-- menu visivel somente por computadores ou dispositivos com resulução acima de 768p -->
     <div class="computer only column row">
+
         <!-- menu-nav desktop mode -->
-        <div class="ui attached stackable menu">
+        <div class="ui fixed stackable menu">
             <div class="ui container">
                 <div class="ui simple dropdown item">
                     <i class="big edit icon"></i>
                     Cadastros
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item"><i class="edit icon"></i> Sinodos </a>
+                        <a class="item" href="menu-nav.php?cadastros=sinodos"><i class="edit icon"></i> Sinodos </a>
                         <a class="item"><i class="edit icon"></i> Presbitérios </a>
                         <a class="item"><i class="edit icon"></i> Igrejas </a>
                         <a class="item"><i class="edit icon"></i> Oficiais </a>
@@ -76,6 +92,7 @@
                         <a class="item"><i class="heartbeat icon"></i> Solicitar Suporte </a>
                     </div>
                 </div>
+
                 <!-- Menu lado direito -->
                 <div class="right menu">
                     <div class="right menu">
@@ -91,151 +108,14 @@
                 </div>
             </div>
         </div>
-        <!-- body desktop mode -->
-        <div class="ui container">
-            <div class="ui segment">
-                <!-- fieldset -->
-                <h2 class="ui floated header">Cadastro de Sínodos</h2>
-                <div class="ui clearing divider"></div>
-                <p></p>
-                <div class="ui segment">
-                    <!-- Tabela -->
-                    <div class="ui top attached tabular menu">
-                        <a class="item active" data-tab="first">Sínodos</a>
-                        <a class="item" data-tab="second">Cadastrar</a>
-                    </div>
-                    <div class="ui bottom attached tab segment active" data-tab="first">
-                        <table class="ui selectable celled green table">
-                            <thead>
-                            <tr>
-                                <th class="ten wide">Nome</th>
-                                <th class="four wide center aligned">Sigla</th>
-                                <th class="two wide"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>John</td>
-                                <td class="center aligned">No Action</td>
-                                <td>
-                                    <button class="mini ui green button"><i class="edit icon"></i> Editar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jamie</td>
-                                <td class="center aligned">Approved</td>
-                                <td>
-                                    <button class="mini ui green button"><i class="edit icon"></i> Editar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jill</td>
-                                <td class="center aligned">Denied</td>
-                                <td>
-                                    <button class="mini ui green button"><i class="edit icon"></i> Editar</button>
-                                </td>
-                            </tr>
-                            <tr class="">
-                                <td>John</td>
-                                <td class="center aligned">No Action</td>
-                                <td>
-                                    <button class="mini ui green button"><i class="edit icon"></i> Editar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jamie</td>
-                                <td class="center aligned">Approved</td>
-                                <td class="">
-                                    <button class="mini ui green button"><i class="edit icon"></i> Editar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jill</td>
-                                <td class="center aligned">Denied</td>
-                                <td>
-                                    <button class="mini ui green button"><i class="edit icon"></i> Editar</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="ui bottom attached tab segment" data-tab="second">
-                        <div class="ui segment" style="height: 250px">
-                            <div class="ui form">
-                                <div class="fields">
-                                    <div class="ten wide field">
-                                        <label>Nome</label>
-                                        <input type="text" placeholder="First Name">
-                                    </div>
-                                    <div class="four wide field">
-                                        <label>Sigla</label>
-                                        <input type="text" placeholder="Middle Name">
-                                    </div>
-                                    <div class="two wide field"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="text-align: right; margin-top: 100px">
-                            <button class="ui labeled icon button" type="reset"><i class="erase icon"></i> Limpar
-                            </button>
-                            <button class="ui green right labeled icon button" type="submit"><i class="plus icon"></i>
-                                Gravar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- corpo modais -->
-            <div class="ui first coupled modal">
-                <div class="header">
-                    Cadastro de Sínodos
-                </div>
-                <div class="content">
-                    <div class="">
-                    </div>
-                    <div class="description">
-                        <div class="ui segment">
-                            <div class="ui form">
-                                <div class="fields">
-                                    <i class="huge right green arrow icon"></i>
-                                    <div class="eight wide field">
-                                        <label>Sínodo</label>
-                                        <input type="text" value="Nome do Sínodo">
-                                    </div>
-                                    <div class="one wide field"></div>
-                                    <div class="four wide field">
-                                        <label>Sigla</label>
-                                        <input type="text" value="Sigla do Sínodo">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="actions">
-                    <div class="ui right labeled icon primary button"><i class="write icon"></i>Alterar</div>
-                </div>
-            </div>
-            <div class="ui small second coupled modal">
-                <div class="header">
-                    Resposta do Servidor
-                </div>
-                <div class="content">
-                    <div class="description">
-                        <p><i class="checkmark box icon"></i>Informações alteradas com sucesso!</p>
-                    </div>
-                </div>
-                <div class="actions">
-                    <div class="ui positive right labeled icon button">
-                        <i class="checkmark icon"></i>
-                        Sucesso!
-                    </div>
-                </div>
-            </div>
+
+        <!-- body -->
+        <div class="ui container" style="padding-top: 70px">
+            <?php include $dektop; ?>
         </div>
 
         <!-- Rodapé visualizado em 768p -->
-        <div class="ui container" id="footer">
+        <div class="ui container fluid" id="footer">
             <div class="ui mini segments">
                 <div class="ui segment">
                     <div class="ui four column centered grid">
@@ -256,13 +136,14 @@
             </div>
         </div>
     </div>
+
     <!-- Menu Vertical em resolução abaixo de 768p -->
     <div class="ui left demo vertical sidebar menu">
         <div class="item">
             <i class="green edit icon"></i>
             <div class="header">Cadastros</div>
             <div class="menu">
-                <a class="item">Sínodos</a>
+                <a class="item" href="menu-nav.php?cadastros=sinodos">Sínodos</a>
                 <a class="item">Presbitérios</a>
                 <a class="item">Igrejas</a>
                 <a class="item">Membros</a>
@@ -300,32 +181,40 @@
             <div class="header">Desconectar</div>
         </div>
     </div>
-    <!-- Menu visivel somente por computador ou dispositivos com resolução abaixo de 768p -->
+
+    <!-- tablets and smartphones -->
     <div class="tablet only mobile only sixteen wide column">
+
         <!-- Botões superiores -->
-        <div class="three big ui icon buttons green">
-            <button class="ui button open"><!-- tag .open é o disparador do js do menu -->
-                <i class="inverted list layout icon"></i>
-            </button>
-            <button class="ui button"><!-- Botão Home -->
-                <i class="inverted large home icon"></i>
-            </button>
-            <button class="ui button"><!-- Botão wait/sem função -->
-                <i class="inverted wait icon"></i>
-            </button>
-        </div>
-        <!-- Body -->
-        <div class="ui grid">
-            <div class="sixteen wide column">
-                <!-- body -->
+        <div class="ui fixed menu">
+            <div class="three big ui icon buttons green">
+                <button class="ui button open"><!-- tag .open é o disparador do js do menu -->
+                    <i class="inverted list layout icon"></i>
+                </button>
+                <button class="ui button" onclick='location.href="../Views/menu-nav.php"'><!-- Botão Home -->
+                    <i class="inverted large home icon"></i>
+                </button>
+                <button class="ui button"><!-- Botão wait/sem função -->
+                    <i class="inverted wait icon"></i>
+                </button>
             </div>
+        </div>
+
+        <!-- Body -->
+        <div class="ui grid" style="padding-top: 65px">
+            <?php include $mobile; ?>
         </div>
         <div class="ui basic disabled bottom attached button" id="footer">Rodapé</div>
     </div>
 </div>
+
+<!-- Modal -->
+<?php include $modal; ?>
+
 <!-- lib jquery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
 <!-- lib js semantic -->
 <script src="vendor/semantic/semantic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.8/semantic.min.js"></script>
@@ -370,8 +259,10 @@
     ;
     // show first now
     $('.first.modal')
-        .modal('attach events', '.mini.ui.green.button')
+        .modal('attach events', '.ui.green.button')
     ;
+    $('.first.modal')
+        .modal('attach events', '.hidemodal', 'hide')
 </script>
 </body>
 </html>
