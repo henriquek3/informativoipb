@@ -5,16 +5,16 @@
  * Date: 24/02/17
  * Time: 13:52
  */
-$dektop = "../Views/home/home-desktop.php";
-$mobile = "../Views/home/home-mobile.php";
-$modal = "../Views/home/home-modal.php";
+$dektop = "../views/home/home-desktop.php";
+$mobile = "../views/home/home-mobile.php";
+$modal = "../views/home/home-modal.php";
 if (!empty($_GET['cadastros'])) {
     $url = $_GET['cadastros'];
     switch ($url) {
         case $url:
-            $dektop = "../Views/cadastros/sinodos/cadastro-sinodo-desktop.php";
-            $mobile = "../Views/cadastros/sinodos/cadastro-sinodo-mobile.php";
-            $modal = "../Views/cadastros/sinodos/cadastro-sinodo-modal.php";
+            $dektop = "../views/cadastros/sinodos/cadastro-sinodo-desktop.php";
+            $mobile = "../views/cadastros/sinodos/cadastro-sinodo-mobile.php";
+            $modal = "../views/cadastros/sinodos/cadastro-sinodo-modal.php";
             break;
     }
 }
@@ -191,7 +191,7 @@ if (!empty($_GET['cadastros'])) {
                 <button class="ui button open"><!-- tag .open é o disparador do js do menu -->
                     <i class="inverted list layout icon"></i>
                 </button>
-                <button class="ui button" onclick='location.href="../Views/menu-nav.php"'><!-- Botão Home -->
+                <button class="ui button" onclick='location.href="menu-nav.php"'><!-- Botão Home -->
                     <i class="inverted large home icon"></i>
                 </button>
                 <button class="ui button"><!-- Botão wait/sem função -->
