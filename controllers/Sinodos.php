@@ -7,7 +7,7 @@
  */
 
 namespace Controllers;
-require_once "../Models/Sinodos.php";
+require_once "../models/Sinodos.php";
 
 use Models\Sinodos as mdlSinodos;
 

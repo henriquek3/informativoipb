@@ -110,7 +110,7 @@ if (!empty($_GET['cadastros'])) {
         </div>
 
         <!-- body -->
-        <div class="ui container" style="padding-top: 70px">
+        <div class="ui container desktop" style="padding-top: 70px">
             <?php include $dektop; ?>
         </div>
 
@@ -263,6 +263,14 @@ if (!empty($_GET['cadastros'])) {
     ;
     $('.first.modal')
         .modal('attach events', '.hidemodal', 'hide')
+    ;
+    //js para transição do menu
+    $('.ui.container.desktop')
+        .hide() //.fadeIn(5000)
+        .transition('fade down', '2000ms')
+    //.hide()
+    //.transition()
+    ;
 </script>
 </body>
 </html>

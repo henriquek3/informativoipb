@@ -6,4 +6,5 @@
  * Time: 15:52
  */
 ?>
-<h1>Home desktop, welcome!</h1>
+
+<h1 class="ui hidden">Home desktop, welcome!</h1>
