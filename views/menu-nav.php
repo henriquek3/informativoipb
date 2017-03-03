@@ -105,7 +105,7 @@
         </div>
 
         <!-- body -->
-        <div class="ui container desktop" style="padding-top: 70px">
+        <div class="ui container desktop" style="padding-bottom: 50px ;padding-top: 70px; display: none">
             <?php $index->renderDesktop(); ?>
         </div>
 
@@ -198,7 +198,7 @@
 
         <!-- Body -->
         <div class="ui grid" style="padding-top: 65px">
-            <?php $index->renderMobile();; ?>
+            <?php $index->renderMobile(); ?>
         </div>
         <div class="ui basic disabled bottom attached button" id="footer">Rodapé</div>
     </div>
@@ -261,7 +261,7 @@
         .modal('attach events', '.hidemodal', 'hide')
     ;
     $('.ui.container.desktop')
-        .hide()
+    //.hide()
         .transition('fade down', '1000ms')
     ;
 </script>

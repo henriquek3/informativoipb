@@ -6,5 +6,3 @@
  * Time: 09:22
  */
 ?>
-
-<h1>Relatório conselho view mobile</h1>
