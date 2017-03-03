@@ -10,7 +10,7 @@
 <div class="ui segment">
     <!-- fieldset -->
     <h2 class="ui floated header">Cadastro de Sínodos</h2>
-    <button class="ui compact right floated icon basic button" onclick='location.href="menu-nav.php"'>
+    <button class="ui compact right floated icon basic button" onclick='location.href="?home/home"'>
         <i class="remove icon"></i>
     </button>
     <div class="ui clearing divider"></div>
