@@ -6,107 +6,134 @@
  * Date: 02/03/17
  * Time: 14:37
  */
-class Diretorios
+class DiretoriosController
 {
-    private $folder;
-    private $files;
-    private $tipo;
 
-    public function cadastroSinodos()
+    public static function cadastroSinodos()
     {
-        $desktop = "../views/cadastros/sinodos/cadastro-sinodo-desktop.php";
-        $mobile = "../views/cadastros/sinodos/cadastro-sinodo-mobile.php";
-        $modal = "../views/cadastros/sinodos/cadastro-sinodo-modal.php";
+        $diretorio[0] = "views/cadastros/sinodos/cadastro-sinodo-desktop.php";
+        $diretorio[1] = "views/cadastros/sinodos/cadastro-sinodo-mobile.php";
+        $diretorio[2] = "views/cadastros/sinodos/cadastro-sinodo-modal.php";
+        return $diretorio;
     }
 
-    public function cadastroPresbiterios()
+    public static function cadastroPresbiterios()
     {
-        $desktop = "../views/cadastros/presbiterios/cadastro-presbiterios-desktop.php";
-        $mobile = "../views/cadastros/presbiterios/cadastro-presbiterios-mobile.php";
-        $modal = "../views/cadastros/presbiterios/cadastro-presbiterios-modal.php";
+        $diretorio[0] = "views/cadastros/presbiterios/cadastro-presbiterios-desktop.php";
+        $diretorio[1] = "views/cadastros/presbiterios/cadastro-presbiterios-mobile.php";
+        $diretorio[2] = "views/cadastros/presbiterios/cadastro-presbiterios-modal.php";
+        return $diretorio;
     }
 
-    public function cadastroIgrejas()
+    public static function cadastroIgrejas()
     {
-        $desktop = "../views/cadastros/igrejas/cadastro-igrejas-desktop.php";
-        $mobile = "../views/cadastros/igrejas/cadastro-igrejas-mobile.php";
-        $modal = "../views/cadastros/igrejas/cadastro-igrejas-modal.php";
+        $diretorio[0] = "views/cadastros/igrejas/cadastro-igrejas-desktop.php";
+        $diretorio[1] = "views/cadastros/igrejas/cadastro-igrejas-mobile.php";
+        $diretorio[2] = "views/cadastros/igrejas/cadastro-igrejas-modal.php";
+        return $diretorio;
     }
 
-    public function cadastroOficiais()
+    public static function cadastroOficiais()
     {
-        $desktop = "../views/cadastros/oficiais/cadastro-oficiais-desktop.php";
-        $mobile = "../views/cadastros/oficiais/cadastro-oficiais-mobile.php";
-        $modal = "../views/cadastros/oficiais/cadastro-oficiais-modal.php";
+        $diretorio[0] = "views/cadastros/oficiais/cadastro-oficiais-desktop.php";
+        $diretorio[1] = "views/cadastros/oficiais/cadastro-oficiais-mobile.php";
+        $diretorio[2] = "views/cadastros/oficiais/cadastro-oficiais-modal.php";
+        return $diretorio;
     }
 
-    public function cadastroSecretarios()
+    public static function cadastroSecretarios()
     {
-        $desktop = "../views/cadastros/secretarios/cadastro-secretarios-desktop.php";
-        $mobile = "../views/cadastros/secretarios/cadastro-secretarios-mobile.php";
-        $modal = "../views/cadastros/secretarios/cadastro-secretarios-modal.php";
+        $diretorio[0] = "views/cadastros/secretarios/cadastro-secretarios-desktop.php";
+        $diretorio[1] = "views/cadastros/secretarios/cadastro-secretarios-mobile.php";
+        $diretorio[2] = "views/cadastros/secretarios/cadastro-secretarios-modal.php";
+        return $diretorio;
     }
 
-    public function relatorioConselho()
+    public static function relatorioConselho()
     {
-        $desktop = "../views/relatorio/conselho/relatorio-conselho-desktop.php";
-        $mobile = "../views/relatorio/conselho/relatorio-conselho-mobile.php";
-        $modal = "../views/relatorio/conselho/relatorio-conselho-modal.php";
+        $diretorio[0] = "views/relatorios/conselho/relatorio-conselho-desktop.php";
+        $diretorio[1] = "views/relatorios/conselho/relatorio-conselho-mobile.php";
+        $diretorio[2] = "views/relatorios/conselho/relatorio-conselho-modal.php";
+        return $diretorio;
     }
 
-    public function relatorioMinisterial()
+    public static function relatorioMinisterial()
     {
-        $desktop = "../views/relatorio/ministerial/relatorio-ministerial-desktop.php";
-        $mobile = "../views/relatorio/ministerial/relatorio-ministerial-mobile.php";
-        $modal = "../views/relatorio/ministerial/relatorio-ministerial-modal.php";
+        $diretorio[0] = "views/relatorios/ministerial/relatorio-ministerial-desktop.php";
+        $diretorio[1] = "views/relatorios/ministerial/relatorio-ministerial-mobile.php";
+        $diretorio[2] = "views/relatorios/ministerial/relatorio-ministerial-modal.php";
+        return $diretorio;
     }
 
-    public function relatorioEstatistica()
+    public static function relatorioEstatistica()
     {
-        $desktop = "../views/relatorio/estatistica/relatorio-estatistica-desktop.php";
-        $mobile = "../views/relatorio/estatistica/relatorio-estatistica-mobile.php";
-        $modal = "../views/relatorio/estatistica/relatorio-estatistica-modal.php";
+        $diretorio[0] = "views/relatorios/estatistica/relatorio-estatistica-desktop.php";
+        $diretorio[1] = "views/relatorios/estatistica/relatorio-estatistica-mobile.php";
+        $diretorio[2] = "views/relatorios/estatistica/relatorio-estatistica-modal.php";
+        return $diretorio;
     }
 
-    public function consultaConselho()
+    public static function consultaConselho()
     {
-        $desktop = "../views/consulta/conselho/consulta-conselho-desktop.php";
-        $mobile = "../views/consulta/conselho/consulta-conselho-mobile.php";
-        $modal = "../views/consulta/conselho/consulta-conselho-modal.php";
+        $diretorio[0] = "views/consultas/conselho/consulta-conselho-desktop.php";
+        $diretorio[1] = "views/consultas/conselho/consulta-conselho-mobile.php";
+        $diretorio[2] = "views/consultas/conselho/consulta-conselho-modal.php";
+        return $diretorio;
     }
 
-    public function consultaMinisterial()
+    public static function consultaMinisterial()
     {
-        $desktop = "../views/consulta/ministerial/consulta-ministerial-desktop.php";
-        $mobile = "../views/consulta/ministerial/consulta-ministerial-mobile.php";
-        $modal = "../views/consulta/ministerial/consulta-ministerial-modal.php";
+        $diretorio[0] = "views/consultas/ministerial/consulta-ministerial-desktop.php";
+        $diretorio[1] = "views/consultas/ministerial/consulta-ministerial-mobile.php";
+        $diretorio[2] = "views/consultas/ministerial/consulta-ministerial-modal.php";
+        return $diretorio;
     }
 
-    public function consultaEstatistica()
+    public static function consultaEstatistica()
     {
-        $desktop = "../views/consulta/estatistica/consulta-estatistica-desktop.php";
-        $mobile = "../views/consulta/estatistica/consulta-estatistica-mobile.php";
-        $modal = "../views/consulta/estatistica/consulta-estatistica-modal.php";
+        $diretorio[0] = "views/consultas/estatistica/consulta-estatistica-desktop.php";
+        $diretorio[1] = "views/consultas/estatistica/consulta-estatistica-mobile.php";
+        $diretorio[2] = "views/consultas/estatistica/consulta-estatistica-modal.php";
+        return $diretorio;
     }
 
-    public function configuracoesUsuarios()
+    public static function configuracoesUsuarios()
     {
-        $desktop = "../views/configuracoes/usuarios/configuracoes-usuarios-desktop.php";
-        $mobile = "../views/configuracoes/usuarios/configuracoes-usuarios-mobile.php";
-        $modal = "../views/configuracoes/usuarios/configuracoes-usuarios-modal.php";
+        $diretorio[0] = "views/configuracoes/usuarios/configuracoes-usuarios-desktop.php";
+        $diretorio[1] = "views/configuracoes/usuarios/configuracoes-usuarios-mobile.php";
+        $diretorio[2] = "views/configuracoes/usuarios/configuracoes-usuarios-modal.php";
+        return $diretorio;
     }
 
-    public function configuracoesTrocarSenha()
+    public static function configuracoesTrocarSenha()
     {
-        $desktop = "../views/configuracoes/trocarsenha/configuracoes-trocarsenha-desktop.php";
-        $mobile = "../views/configuracoes/trocarsenha/configuracoes-trocarsenha-mobile.php";
-        $modal = "../views/configuracoes/trocarsenha/configuracoes-trocarsenha-modal.php";
+        $diretorio[0] = "views/configuracoes/trocarsenha/configuracoes-trocarsenha-desktop.php";
+        $diretorio[1] = "views/configuracoes/trocarsenha/configuracoes-trocarsenha-mobile.php";
+        $diretorio[2] = "views/configuracoes/trocarsenha/configuracoes-trocarsenha-modal.php";
+        return $diretorio;
     }
 
-    public function configuracoesSolicitarSuporte()
+    public static function configuracoesSolicitarSuporte()
     {
-        $desktop = "../views/configuracoes/solicitarsuporte/configuracoes-solicitarsuporte-desktop.php";
-        $mobile = "../views/configuracoes/solicitarsuporte/configuracoes-solicitarsuporte-mobile.php";
-        $modal = "../views/configuracoes/solicitarsuporte/configuracoes-solicitarsuporte-modal.php";
+        $diretorio[0] = "views/configuracoes/solicitarsuporte/configuracoes-solicitarsuporte-desktop.php";
+        $diretorio[1] = "views/configuracoes/solicitarsuporte/configuracoes-solicitarsuporte-mobile.php";
+        $diretorio[2] = "views/configuracoes/solicitarsuporte/configuracoes-solicitarsuporte-modal.php";
+        return $diretorio;
+    }
+
+    public static function home()
+    {
+        $diretorio[0] = "views/home/home-desktop.php";
+        $diretorio[1] = "views/home/home-mobile.php";
+        $diretorio[2] = "views/home/home-modal.php";
+        return $diretorio;
+    }
+
+    public static function login()
+    {
+        $diretorio[0] = "";
+        $diretorio[1] = "";
+        $diretorio[2] = "";
+        return $diretorio;
     }
 }

@@ -5,19 +5,6 @@
  * Date: 24/02/17
  * Time: 13:52
  */
-$dektop = "../views/home/home-desktop.php";
-$mobile = "../views/home/home-mobile.php";
-$modal = "../views/home/home-modal.php";
-if (!empty($_GET['cadastros'])) {
-    $url = $_GET['cadastros'];
-    switch ($url) {
-        case $url:
-            $dektop = "../views/cadastros/sinodos/cadastro-sinodo-desktop.php";
-            $mobile = "../views/cadastros/sinodos/cadastro-sinodo-mobile.php";
-            $modal = "../views/cadastros/sinodos/cadastro-sinodo-modal.php";
-            break;
-    }
-}
 ?>
 <html>
 <head>
@@ -56,10 +43,11 @@ if (!empty($_GET['cadastros'])) {
                     Cadastros
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item" href="menu-nav.php?cadastros=sinodos"><i class="edit icon"></i> Sinodos </a>
-                        <a class="item"><i class="edit icon"></i> Presbitérios </a>
-                        <a class="item"><i class="edit icon"></i> Igrejas </a>
-                        <a class="item"><i class="edit icon"></i> Oficiais </a>
+                        <a class="item" href="?cadastros/sinodos"><i class="edit icon"></i> Sinodos </a>
+                        <a class="item" href="?cadastros/presbiterios"><i class="edit icon"></i> Presbitérios </a>
+                        <a class="item" href="?cadastros/igrejas"><i class="edit icon"></i> Igrejas </a>
+                        <a class="item" href="?cadastros/oficiais"><i class="edit icon"></i> Oficiais </a>
+                        <a class="item" href="?cadastros/secretarios"><i class="edit icon"></i> Secretarios </a>
                     </div>
                 </div>
                 <div class="ui simple dropdown item">
@@ -67,9 +55,9 @@ if (!empty($_GET['cadastros'])) {
                     Relatórios
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item"><i class="browser icon"></i> Conselho </a>
-                        <a class="item"><i class="browser icon"></i> Ministerial </a>
-                        <a class="item"><i class="browser icon"></i> Estatística </a>
+                        <a class="item" href="?relatorios/conselho"><i class="browser icon"></i> Conselho </a>
+                        <a class="item" href="?relatorios/ministerial"><i class="browser icon"></i> Ministerial </a>
+                        <a class="item" href="?relatorios/estatistica"><i class="browser icon"></i> Estatística </a>
                     </div>
                 </div>
                 <div class="ui simple dropdown item">
@@ -77,9 +65,9 @@ if (!empty($_GET['cadastros'])) {
                     Consultas
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item"><i class="bar chart icon"></i> Conselho </a>
-                        <a class="item"><i class="bar chart icon"></i> Ministerial </a>
-                        <a class="item"><i class="bar chart icon"></i> Estatística </a>
+                        <a class="item" href="?consultas/conselho"><i class="bar chart icon"></i> Conselho </a>
+                        <a class="item" href="?consultas/ministerial"><i class="bar chart icon"></i> Ministerial </a>
+                        <a class="item" href="?consultas/estatistica"><i class="bar chart icon"></i> Estatística </a>
                     </div>
                 </div>
                 <div class="ui simple dropdown item">
@@ -87,9 +75,10 @@ if (!empty($_GET['cadastros'])) {
                     Configurações
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item"><i class="users icon"></i> Usuários </a>
-                        <a class="item"><i class="lock icon"></i> Trocar senha </a>
-                        <a class="item"><i class="heartbeat icon"></i> Solicitar Suporte </a>
+                        <a class="item" href="?configuracoes/usuarios"><i class="users icon"></i> Usuários </a>
+                        <a class="item" href="?configuracoes/trocarsenha"><i class="lock icon"></i> Trocar senha </a>
+                        <a class="item" href="?configuracoes/solicitarsuporte"><i class="heartbeat icon"></i> Solicitar
+                            Suporte </a>
                     </div>
                 </div>
 
@@ -111,7 +100,7 @@ if (!empty($_GET['cadastros'])) {
 
         <!-- body -->
         <div class="ui container desktop" style="padding-top: 70px">
-            <?php include $dektop; ?>
+            <?php $index->renderDesktop(); ?>
         </div>
 
         <!-- Rodapé visualizado em 768p -->
@@ -143,37 +132,38 @@ if (!empty($_GET['cadastros'])) {
             <i class="green edit icon"></i>
             <div class="header">Cadastros</div>
             <div class="menu">
-                <a class="item" href="menu-nav.php?cadastros=sinodos">Sínodos</a>
-                <a class="item">Presbitérios</a>
-                <a class="item">Igrejas</a>
-                <a class="item">Membros</a>
+                <a class="item" href="?cadastros/sinodos">Sínodos</a>
+                <a class="item" href="?cadastros/presbiterios">Presbitérios</a>
+                <a class="item" href="?cadastros/igrejas">Igrejas</a>
+                <a class="item" href="?cadastros/oficiais">Oficiais </a>
+                <a class="item" href="?cadastros/secretarios">Secretarios </a>
             </div>
         </div>
         <div class="item">
             <i class="green browser icon"></i>
             <div class="header">Relatórios</div>
             <div class="menu">
-                <a class="item">Estatisticas</a>
-                <a class="item">Financeiros</a>
-                <a class="item">Ministerial</a>
+                <a class="item" href="?relatorios/conselho">Conselho</a>
+                <a class="item" href="?relatorios/ministerial">Ministerial</a>
+                <a class="item" href="?relatorios/estatistica">Estatística</a>
             </div>
         </div>
         <div class="item">
             <i class="green bar chart icon"></i>
             <div class="header">Consultas</div>
             <div class="menu">
-                <a class="item">Estatisticas</a>
-                <a class="item">Financeiros</a>
-                <a class="item">Ministerial</a>
+                <a class="item" href="?consultas/conselho">Conselho</a>
+                <a class="item" href="?consultas/ministerial">Ministerial</a>
+                <a class="item" href="?consultas/estatistica">Estatística</a>
             </div>
         </div>
         <div class="item">
             <i class="green settings icon"></i>
             <div class="header">Configurações</div>
             <div class="menu">
-                <a class="item">Usuários</a>
-                <a class="item">Trocar Senha</a>
-                <a class="item">Solicitar Suporte</a>
+                <a class="item" href="?configuracoes/usuarios">Usuários </a>
+                <a class="item" href="?configuracoes/trocarsenha">Trocar senha </a>
+                <a class="item" href="?configuracoes/solicitarsuporte">Solicitar Suporte </a>
             </div>
         </div>
         <div class="item">
@@ -191,7 +181,7 @@ if (!empty($_GET['cadastros'])) {
                 <button class="ui button open"><!-- tag .open é o disparador do js do menu -->
                     <i class="inverted list layout icon"></i>
                 </button>
-                <button class="ui button" onclick='location.href="menu-nav.php"'><!-- Botão Home -->
+                <button class="ui button" onclick='location.href="?home/home"'><!-- Botão Home -->
                     <i class="inverted large home icon"></i>
                 </button>
                 <button class="ui button"><!-- Botão wait/sem função -->
@@ -202,14 +192,14 @@ if (!empty($_GET['cadastros'])) {
 
         <!-- Body -->
         <div class="ui grid" style="padding-top: 65px">
-            <?php include $mobile; ?>
+            <?php $index->renderMobile();; ?>
         </div>
         <div class="ui basic disabled bottom attached button" id="footer">Rodapé</div>
     </div>
 </div>
 
 <!-- Modal -->
-<?php include $modal; ?>
+<?php $index->renderModal(); ?>
 
 <!-- lib jquery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -264,12 +254,9 @@ if (!empty($_GET['cadastros'])) {
     $('.first.modal')
         .modal('attach events', '.hidemodal', 'hide')
     ;
-    //js para transição do menu
     $('.ui.container.desktop')
-        .hide() //.fadeIn(5000)
-        .transition('fade down', '2000ms')
-    //.hide()
-    //.transition()
+        .hide()
+        .transition('fade down', '1000ms')
     ;
 </script>
 </body>
