@@ -111,11 +111,11 @@ class IndexController
             }
         } elseif ($folder == "relatorios") {
             if ($file == "conselho") {
-                $this->path = DiretoriosController::consultaConselho();
+                $this->path = DiretoriosController::relatorioConselho();
             } elseif ($file == "ministerial") {
-                $this->path = DiretoriosController::consultaMinisterial();
+                $this->path = DiretoriosController::relatorioMinisterial();
             } elseif ($file == "estatistica") {
-                $this->path = DiretoriosController::consultaEstatistica();
+                $this->path = DiretoriosController::relatorioEstatistica();
             }
         } elseif ($folder == "configuracoes") {
             if ($file == "usuario") {

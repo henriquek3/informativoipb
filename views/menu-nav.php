@@ -14,7 +14,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="vendor/semantic/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.8/semantic.min.css">
-    <title>MenuTest</title>
+    <meta name="author" content="Jean Freitas, Kallew Cesar"/>
+    <meta name="description"
+          content="Sistema projeto para atender ao sistema de estatistica da Igreja Presbiteriana do Brasil"/>
+    <meta content="estatistica, relatorios, consultas, ministerio, presbiteriano" name="keywords">
+    <link rel="icon" href="views/img/favicon.ico"/>
+    <link rel="apple-touch-icon" href="views/img/favicon.ico"/>
+    <title>InformativoIPB</title>
     <style>
         /* estilo para fixar o footer no rodapé */
         #footer {
