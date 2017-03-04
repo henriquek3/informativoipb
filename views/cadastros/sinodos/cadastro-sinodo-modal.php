@@ -29,9 +29,10 @@
                         </div>
                         <div class="four wide field">
                             <label>Região</label>
-                            <select>
+                            <select class="ui fluid search dropdown">
+                                <option value=""></option>
                                 <option>Sul</option>
-                                <option selected>Centro-Oeste</option>
+                                <option>Centro-Oeste</option>
                                 <option>Nordeste</option>
                                 <option>Norte</option>
                                 <option>Sudeste</option>

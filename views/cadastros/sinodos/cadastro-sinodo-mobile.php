@@ -40,10 +40,10 @@
                 </table>
             </div>
             <div class="ui bottom attached tab segment" data-tab="second">
-                <div class="ui segment" style="height: 250px">
+                <div class="ui segment" style="/*height: 250px */">
                     <div class="ui form">
                         <div class="fields">
-                            <div class="ten wide field">
+                            <div class="eight wide field">
                                 <label>Nome</label>
                                 <input type="text" placeholder="First Name">
                             </div>
@@ -51,11 +51,21 @@
                                 <label>Sigla</label>
                                 <input type="text" placeholder="Middle Name">
                             </div>
-                            <div class="two wide field"></div>
+                            <div class="four wide field">
+                                <label>Região</label>
+                                <select class="ui fluid search dropdown">
+                                    <option value=""></option>
+                                    <option>Sul</option>
+                                    <option>Centro-Oeste</option>
+                                    <option>Nordeste</option>
+                                    <option>Norte</option>
+                                    <option>Sudeste</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div style="text-align: right; margin-top: 100px">
+                <div style="text-align: right; /* margin-top: 100px*/ ">
                     <button class="ui labeled icon button" type="reset"><i class="erase icon"></i> Limpar
                     </button>
                     <button class="ui green right labeled icon button" type="submit"><i class="plus icon"></i>

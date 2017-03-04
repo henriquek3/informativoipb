@@ -12,8 +12,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Reset CSS -->
+    <link rel="stylesheet" type="text/css" href="vendor/reset-css/reset.css">
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" type="text/css" href="vendor/normalize-css/normalize.css">
+
+    <!-- CSS Styles -->
     <link rel="stylesheet" type="text/css" href="vendor/semantic/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.8/semantic.min.css">
+
+    <!-- Informaçoes sobre o sistema -->
     <meta name="author" content="Jean Freitas, Kallew Cesar"/>
     <meta name="description"
           content="Sistema projeto para atender ao sistema de estatistica da Igreja Presbiteriana do Brasil"/>
@@ -216,20 +226,9 @@
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.8/semantic.min.js"></script>
 <script>
     //function do dropdown
-    $(document)
-        .ready(function () {
-            $('.ui.menu .ui.dropdown').dropdown({
-                on: 'hover'
-            });
-            $('.ui.menu a.item')
-                .on('click', function () {
-                    $(this)
-                        .addClass('active')
-                        .siblings()
-                        .removeClass('active')
-                    ;
-                })
-            ;
+    $('.ui.menu .ui.dropdown')
+        .dropdown({
+            //on: 'hover'
         })
     ;
     //function para acionar o menu lateral em resoluções abaixo de 768p
@@ -260,9 +259,13 @@
     $('.first.modal')
         .modal('attach events', '.hidemodal', 'hide')
     ;
+    // efeito de fade down do body
     $('.ui.container.desktop')
-    //.hide()
         .transition('fade down', '1000ms')
+    ;
+    // function para deixar fluido os selects
+    $('select.dropdown')
+        .dropdown()
     ;
 </script>
 </body>
