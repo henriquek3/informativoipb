@@ -1,2 +1,2 @@
-# informativoipb
+# informativoIPB
 InformativoIPB
