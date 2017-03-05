@@ -63,7 +63,7 @@
                         <a class="item" href="?cadastros/presbiterios"><i class="edit icon"></i> Presbitérios </a>
                         <a class="item" href="?cadastros/igrejas"><i class="edit icon"></i> Igrejas </a>
                         <a class="item" href="?cadastros/oficiais"><i class="edit icon"></i> Oficiais </a>
-                        <a class="item" href="?cadastros/secretarios"><i class="edit icon"></i> Secretarios </a>
+                        <a class="item" href="?cadastros/secretarios"><i class="edit icon"></i> Secretários </a>
                     </div>
                 </div>
                 <div class="ui simple dropdown item">
@@ -153,7 +153,7 @@
                 <a class="item" href="?cadastros/presbiterios">Presbitérios</a>
                 <a class="item" href="?cadastros/igrejas">Igrejas</a>
                 <a class="item" href="?cadastros/oficiais">Oficiais </a>
-                <a class="item" href="?cadastros/secretarios">Secretarios </a>
+                <a class="item" href="?cadastros/secretarios">Secretários </a>
             </div>
         </div>
         <div class="item">
