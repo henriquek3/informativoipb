@@ -85,6 +85,7 @@
                         <a class="item" href="?consultas/conselho"><i class="bar chart icon"></i> Conselho </a>
                         <a class="item" href="?consultas/ministerial"><i class="bar chart icon"></i> Ministerial </a>
                         <a class="item" href="?consultas/estatistica"><i class="bar chart icon"></i> Estatística </a>
+                        <a class="item" href="?consultas/financeiro"><i class="bar chart icon"></i> Financeiro </a>
                     </div>
                 </div>
                 <div class="ui simple dropdown item">

@@ -110,6 +110,8 @@ class IndexController
                 $this->path = DiretoriosController::consultaMinisterial();
             } elseif ($file == "estatistica") {
                 $this->path = DiretoriosController::consultaEstatistica();
+            } elseif ($file == "financeiro") {
+                $this->path = DiretoriosController::consultaFinanceiro();
             }
         } elseif ($folder == "relatorios") {
             if ($file == "conselho") {
@@ -118,6 +120,8 @@ class IndexController
                 $this->path = DiretoriosController::relatorioMinisterial();
             } elseif ($file == "estatistica") {
                 $this->path = DiretoriosController::relatorioEstatistica();
+            } elseif ($file == "financeiro") {
+                $this->path = DiretoriosController::relatorioFinanceiro();
             }
             # incrementar aqui a comparação para saber se foi digitado /financeiro,
             # caso seja verdadeiro, o $this->path deve receber o array $diretorios pela função
