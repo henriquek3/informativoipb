@@ -13,8 +13,8 @@
                         </div>
                         <div class="three wide field">
                             <label>Sinodo</label>
-                            <select>
-                                <option selected>- escolha -</option>
+                            <select class="ui fluid search dropdown">
+                                <option value=""></option>
                                 <option>Sínodos</option>
                                 <option>Sínodos</option>
                                 <option>Sínodos</option>
@@ -32,8 +32,8 @@
                         </div>
                         <div class="three wide field">
                             <label>Região</label>
-                            <select>
-                                <option selected>- escolha -</option>
+                            <select class="ui fluid search dropdown">
+                                <option value=""></option>
                                 <option>Sul</option>
                                 <option>Centro-Oeste</option>
                                 <option>Nordeste</option>

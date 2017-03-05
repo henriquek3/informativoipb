@@ -36,7 +36,7 @@
             </table>
         </div>
         <div class="ui bottom attached tab segment" data-tab="second">
-            <div class="ui segment" style="height: 250px">
+            <div class="ui segment" style="/*height: 250px*/">
                 <div class="ui form">
                     <div class="fields">
                         <div class="four wide field">
@@ -87,7 +87,7 @@
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Nome</label>
-                            <input type="text" autofocus>
+                            <input type="text">
                         </div>
                         <div class="three wide field">
                             <label>CNPJ</label>
@@ -97,14 +97,58 @@
                             <label>Complemento</label>
                             <input type="text">
                         </div>
-                        <div class="two wide field">
+                        <div class="three wide field">
                             <label>Data Organização</label>
                             <input type="date">
                         </div>
                     </div>
+                    <div class="fields">
+                        <div class="six wide field">
+                            <label>Endereço</label>
+                            <input type="text">
+                        </div>
+                        <div class="two wide field">
+                            <label>Numero</label>
+                            <input type="text">
+                        </div>
+                        <div class="four wide field">
+                            <label>Complemento</label>
+                            <input type="text">
+                        </div>
+                        <div class="four wide field">
+                            <label>Bairro</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="four wide field">
+                            <label>CEP</label>
+                            <input type="text">
+                        </div>
+                        <div class="two wide filed"></div>
+                        <div class="four wide field">
+                            <label>Telefone</label>
+                            <input type="tel">
+                        </div>
+                        <div class="two wide filed"></div>
+                        <div class="four wide field">
+                            <label>Celular</label>
+                            <input type="tel">
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label>E-mail</label>
+                            <input type="email">
+                        </div>
+                        <div class="eight wide field">
+                            <label>Homepage</label>
+                            <input type="url">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div style="text-align: right; margin-top: 100px">
+            <div style="text-align: right; /*margin-top: 100px*/">
                 <button class="ui labeled icon button" type="reset"><i class="erase icon"></i> Limpar
                 </button>
                 <button class="ui green right labeled icon button" type="submit"><i class="plus icon"></i>
