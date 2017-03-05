@@ -2,7 +2,7 @@
     <!-- body -->
     <div class="ui segment">
         <!-- fieldset -->
-        <h2 class="ui floated header">Cadastro de Presbitérios</h2>
+        <h2 class="ui floated header">Cadastro de Igrejas</h2>
         <div class="ui clearing divider"></div>
         <p></p>
         <div class="ui segment">
@@ -144,7 +144,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="text-align: right; /* margin-top: 100px */">
+                <div style="text-align: center; /* margin-top: 100px */">
                     <button class="ui labeled icon button" type="reset"><i class="erase icon"></i> Limpar
                     </button>
                     <button class="ui green right labeled icon button" type="submit"><i class="plus icon"></i>

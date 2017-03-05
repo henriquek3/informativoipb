@@ -15,17 +15,15 @@
                 <table class="ui compact unstackable selectable celled green table">
                     <thead>
                     <tr>
-                        <th class="eight wide">Nome</th>
+                        <th class="ten wide">Nome</th>
                         <th class="two wide center aligned">Sigla</th>
-                        <th class="two wide center aligned">Sínodo</th>
-                        <th class="two wide"></th>
+                        <th class="one wide"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Rondonópolis</td>
+                        <td>Rontonópolis</td>
                         <td class="center aligned">PRON</td>
-                        <td class="center aligned">SCA</td>
                         <td class="center aligned">
                             <button class="ui icon green button"><i class="edit icon"></i></button>
                         </td>
@@ -70,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="text-align: right; /* margin-top: 100px */">
+                <div style="text-align: center; /* margin-top: 100px */">
                     <button class="ui labeled icon button" type="reset"><i class="erase icon"></i> Limpar
                     </button>
                     <button class="ui green right labeled icon button" type="submit"><i class="plus icon"></i>
