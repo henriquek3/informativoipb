@@ -68,7 +68,7 @@
                 </div>
                 <div class="ui simple dropdown item">
                     <i class="big browser icon"></i>
-                    Relatórios
+                    Formulários
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <a class="item" href="?relatorios/conselho"><i class="browser icon"></i> Conselho </a>
