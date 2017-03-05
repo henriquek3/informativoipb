@@ -89,6 +89,8 @@ class IndexController
     public function render($folder, $file)
     {
         # varifica o diretório e o arquivo digitado e redireciona
+        # /?cadastros/sinodos -> caso $folder seja igual a cadastros,
+        # ele compara a segunda palavra, $file ( sinodos).
         if ($folder == "cadastros") {
             if ($file == "sinodos") {
                 $this->path = DiretoriosController::cadastroSinodos();
@@ -117,6 +119,9 @@ class IndexController
             } elseif ($file == "estatistica") {
                 $this->path = DiretoriosController::relatorioEstatistica();
             }
+            # incrementar aqui a comparação para saber se foi digitado /financeiro,
+            # caso seja verdadeiro, o $this->path deve receber o array $diretorios pela função
+            # DiretoriosController::relatoriosFinanceiro();
         } elseif ($folder == "configuracoes") {
             if ($file == "usuario") {
                 $this->path = DiretoriosController::configuracoesUsuarios();
