@@ -73,6 +73,14 @@ class DiretoriosController
         return $diretorio;
     }
 
+    public static function relatorioFinanceiro()
+    {
+        $diretorio[0] = "views/relatorios/financeiro/relatorio-financeiro-desktop.php";
+        $diretorio[1] = "views/relatorios/financeiro/relatorio-financeiro-mobile.php";
+        $diretorio[2] = "views/relatorios/financeiro/relatorio-financeiro-modal.php";
+        return $diretorio;
+    }
+
     public static function consultaConselho()
     {
         $diretorio[0] = "views/consultas/conselho/consulta-conselho-desktop.php";

@@ -74,6 +74,7 @@
                         <a class="item" href="?relatorios/conselho"><i class="browser icon"></i> Conselho </a>
                         <a class="item" href="?relatorios/ministerial"><i class="browser icon"></i> Ministerial </a>
                         <a class="item" href="?relatorios/estatistica"><i class="browser icon"></i> Estatística </a>
+                        <a class="item" href="?relatorios/financeiro"><i class="browser icon"></i> Financeiro </a>
                     </div>
                 </div>
                 <div class="ui simple dropdown item">
