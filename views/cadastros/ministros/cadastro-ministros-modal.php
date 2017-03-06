@@ -1,14 +1,14 @@
 <!-- corpo modais -->
 <div class="ui first coupled modal">
     <div class="header">
-        Cadastro de Sínodos
+        Cadastro de Ministros
     </div>
     <div class="content">
         <div class="description">
             <div class="ui segment">
                 <div class="ui form">
                     <div class="fields">
-                        <div class="four wide field">
+                        <div class="six wide field">
                             <label>Sínodo</label>
                             <select class="ui fluid search dropdown">
                                 <option value=""></option>
@@ -19,7 +19,7 @@
                                 <option>Sínodo</option>
                             </select>
                         </div>
-                        <div class="four wide field">
+                        <div class="six wide field">
                             <label>Presbitério</label>
                             <select class="ui fluid search dropdown">
                                 <option value=""></option>
@@ -30,7 +30,7 @@
                                 <option>Presbitério</option>
                             </select>
                         </div>
-                        <div class="four wide field">
+                        <div class="six wide field">
                             <label>Igreja</label>
                             <select class="ui fluid search dropdown">
                                 <option value=""></option>
@@ -39,15 +39,6 @@
                                 <option>Igreja</option>
                                 <option>Igreja</option>
                                 <option>Igreja</option>
-                            </select>
-                        </div>
-                        <div class="four wide field">
-                            <label>Ofício</label>
-                            <select class="ui fluid search dropdown">
-                                <option value=""></option>
-                                <option>Presbítero</option>
-                                <option>Pastor</option>
-                                <option>Membro</option>
                             </select>
                         </div>
                     </div>

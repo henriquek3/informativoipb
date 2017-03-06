@@ -1,6 +1,6 @@
 <div class="ui segment">
     <!-- fieldset -->
-    <h2 class="ui floated header">Cadastro de Oficiais</h2>
+    <h2 class="ui floated header">Cadastro de Ministros</h2>
     <button class="ui compact right floated icon basic button" onclick='location.href="?home/home"'>
         <i class="remove icon"></i>
     </button>
@@ -9,7 +9,7 @@
     <div class="ui segment">
         <!-- Tabela -->
         <div class="ui top attached tabular menu">
-            <a class="item active" data-tab="first">Oficiais</a>
+            <a class="item active" data-tab="first">Ministros</a>
             <a class="item" data-tab="second">Cadastrar</a>
         </div>
         <div class="ui bottom attached tab segment active" data-tab="first">
@@ -38,7 +38,7 @@
             <div class="ui segment" style="/*height: 250px*/">
                 <div class="ui form">
                     <div class="fields">
-                        <div class="four wide field">
+                        <div class="six wide field">
                             <label>Sínodo</label>
                             <select class="ui fluid search dropdown">
                                 <option value=""></option>
@@ -49,7 +49,7 @@
                                 <option>Sínodo</option>
                             </select>
                         </div>
-                        <div class="four wide field">
+                        <div class="six wide field">
                             <label>Presbitério</label>
                             <select class="ui fluid search dropdown">
                                 <option value=""></option>
@@ -60,7 +60,7 @@
                                 <option>Presbitério</option>
                             </select>
                         </div>
-                        <div class="four wide field">
+                        <div class="six wide field">
                             <label>Igreja</label>
                             <select class="ui fluid search dropdown">
                                 <option value=""></option>
@@ -69,15 +69,6 @@
                                 <option>Igreja</option>
                                 <option>Igreja</option>
                                 <option>Igreja</option>
-                            </select>
-                        </div>
-                        <div class="four wide field">
-                            <label>Ofício</label>
-                            <select class="ui fluid search dropdown">
-                                <option value=""></option>
-                                <option>Presbítero</option>
-                                <option>Pastor</option>
-                                <option>Membro</option>
                             </select>
                         </div>
                     </div>

@@ -98,8 +98,8 @@ class IndexController
                 $this->path = DiretoriosController::cadastroPresbiterios();
             } elseif ($file == "igrejas") {
                 $this->path = DiretoriosController::cadastroIgrejas();
-            } elseif ($file == "oficiais") {
-                $this->path = DiretoriosController::cadastroOficiais();
+            } elseif ($file == "ministros") {
+                $this->path = DiretoriosController::cadastroMinistros();
             } elseif ($file == "secretarios") {
                 $this->path = DiretoriosController::cadastroSecretarios();
             }

@@ -33,11 +33,11 @@ class DiretoriosController
         return $diretorio;
     }
 
-    public static function cadastroOficiais()
+    public static function cadastroMinistros()
     {
-        $diretorio[0] = "views/cadastros/oficiais/cadastro-oficiais-desktop.php";
-        $diretorio[1] = "views/cadastros/oficiais/cadastro-oficiais-mobile.php";
-        $diretorio[2] = "views/cadastros/oficiais/cadastro-oficiais-modal.php";
+        $diretorio[0] = "views/cadastros/ministros/cadastro-ministros-desktop.php";
+        $diretorio[1] = "views/cadastros/ministros/cadastro-ministros-mobile.php";
+        $diretorio[2] = "views/cadastros/ministros/cadastro-ministros-modal.php";
         return $diretorio;
     }
 

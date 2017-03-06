@@ -62,7 +62,7 @@
                         <a class="item" href="?cadastros/sinodos"><i class="edit icon"></i> Sinodos </a>
                         <a class="item" href="?cadastros/presbiterios"><i class="edit icon"></i> Presbitérios </a>
                         <a class="item" href="?cadastros/igrejas"><i class="edit icon"></i> Igrejas </a>
-                        <a class="item" href="?cadastros/oficiais"><i class="edit icon"></i> Oficiais </a>
+                        <a class="item" href="?cadastros/ministros"><i class="edit icon"></i> Ministros </a>
                         <a class="item" href="?cadastros/secretarios"><i class="edit icon"></i> Secretários </a>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                 <a class="item" href="?cadastros/sinodos">Sínodos</a>
                 <a class="item" href="?cadastros/presbiterios">Presbitérios</a>
                 <a class="item" href="?cadastros/igrejas">Igrejas</a>
-                <a class="item" href="?cadastros/oficiais">Oficiais </a>
+                <a class="item" href="?cadastros/ministros">Ministros </a>
                 <a class="item" href="?cadastros/secretarios">Secretários </a>
             </div>
         </div>
