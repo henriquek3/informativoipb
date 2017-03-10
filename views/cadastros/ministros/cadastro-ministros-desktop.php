@@ -72,80 +72,86 @@
                             </select>
                         </div>
                     </div>
-                    <div class="fields">
-                        <div class="eight wide field">
-                            <label>Nome</label>
-                            <input type="text">
+                    <div class="inline fields">
+                        <div class="two wide field"><label>Nome</label></div>
+                        <div class="fourteen wide field"><input type="text"></div>
                         </div>
-                        <div class="four wide field">
-                            <label>Telefone</label>
-                            <input type="tel">
+                    <div class="inline fields">
+                        <div class="two wide field"><label>Data de Nascimento</label></div>
+                        <div class="two wide field"><input type="text"></div>
+                        <div class="two wide field"><label>Estado</label></div>
+                        <div class="four wide field"><select>
+                                <option>Selecione o Estado</option>
+                            </select></div>
+                        <div class="two wide field"><label>Cidade</label></div>
+                        <div class="four wide field"><select>
+                                <option>Selecione a Cidade</option>
+                            </select></div>
                         </div>
-                        <div class="four wide field">
-                            <label>Celular</label>
-                            <input type="tel">
+                    <div class="inline fields">
+                        <div class="two wide field"><label>RG</label></div>
+                        <div class="two wide field"><input type="number"></div>
+                        <div class="two wide field"><label>Orgão Emissor</label></div>
+                        <div class="two wide field"><input type="text"></div>
+                        <div class="one wide field"><label>CPF</label></div>
+                        <div class="three wide field"><input type="number"></div>
+                        <div class="two wide field"><label>Estado Civil</label></div>
+                        <div class="two wide field"><select>
+                                <option>Solteiro</option>
+                                <option>Casado</option>
+                                <option>Viúvo</option>
+                            </select></div>
                         </div>
+                    <div class="ui divider"></div>
+                    <div class="inline fields">
+                        <div class="two wide field"><label>Cônjuge</label></div>
+                        <div class="six wide field"><input type="text"></div>
+                        <div class="two wide field"><label>Data de Nascimento</label></div>
+                        <div class="two wide field"><input type="number"></div>
+                        <div class="two wide field"><label>N&deg; de Dependentes</label></div>
+                        <div class="two wide field"><input type="text"></div>
                     </div>
-                    <div class="fields">
-                        <div class="six wide field">
-                            <label>Endereço</label>
-                            <input type="text">
+                    <div class="inline fields">
+                        <div class="two wide field"><label>Nome dos Filhos</label></div>
+                        <div class="fourteen wide field"><input type="text" placeholder="Separe cada nome por ;"></div>
                         </div>
-                        <div class="two wide field">
-                            <label>Número</label>
-                            <input type="text">
+                    <div class="inline fields">
+                        <div class="two wide field"><label>Filiação</label></div>
+                        <div class="seven wide field"><input type="text"></div>
+                        <div class="one wide field"><label>e</label></div>
+                        <div class="six wide field"><input type="text"></div>
                         </div>
-                        <div class="four wide field">
-                            <label>Complemento</label>
-                            <input type="text">
+                    <div class="ui divider"></div>
+                    <div class="inline fields">
+                        <div class="two wide field"><label>Endereço</label></div>
+                        <div class="four wide field"><input type="text"></div>
+                        <div class="one wide field"><label>Número</label></div>
+                        <div class="two wide field"><input type="text"></div>
+                        <div class="two wide field"><label>Complemento</label></div>
+                        <div class="five wide field"><input type="text"></div>
                         </div>
-                        <div class="four wide field">
-                            <label>Bairro</label>
-                            <input type="text">
+                    <div class="inline fields">
+                        <div class="two wide field"><label>Bairro</label></div>
+                        <div class="three wide field"><input type="text"></div>
+                        <div class="one wide field"><label>Estado</label></div>
+                        <div class="three wide field"><select>
+                                <option>Selecione o Estado</option>
+                            </select></div>
+                        <div class="one wide field"><label>Cidade</label></div>
+                        <div class="three wide field"><select>
+                                <option>Selecione a Cidade</option>
+                            </select></div>
+                        <div class="one wide field"><label>CEP</label></div>
+                        <div class="two wide field"><input type="text"></div>
                         </div>
-                    </div>
-                    <div class="fields">
-                        <div class="four wide field">
-                            <label>Estados</label>
-                            <select class="ui fluid search dropdown">
-                                <option value=""></option>
-                                <option>Estados</option>
-                                <option>Estados</option>
-                                <option>Estados</option>
-                                <option>Estados</option>
-                                <option>Estados</option>
-                            </select>
+                    <div class="inline fields">
+                        <div class="two wide field"><label>Telefone - Residencial</label></div>
+                        <div class="two wide field"><input type="text"></div>
+                        <div class="two wide field"><label>Telefone - Igreja</label></div>
+                        <div class="two wide field"><input type="text"></div>
+                        <div class="one wide field"><label>E-mail</label></div>
+                        <div class="seven wide field"><input type="text"></div>
                         </div>
-                        <div class="four wide field">
-                            <label>Cidades</label>
-                            <select class="ui fluid search dropdown">
-                                <option value=""></option>
-                                <option>Cidades</option>
-                                <option>Cidades</option>
-                                <option>Cidades</option>
-                                <option>Cidades</option>
-                                <option>Cidades</option>
-                            </select>
-                        </div>
-                        <div class="four wide field">
-                            <label>CEP</label>
-                            <input type="text">
-                        </div>
-                        <div class="four wide field">
-                            <label>Caixa Postal</label>
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="fields">
-                        <div class="eight wide field">
-                            <label>E-mail</label>
-                            <input type="email">
-                        </div>
-                        <div class="eight wide field">
-                            <label>Website</label>
-                            <input type="text">
-                        </div>
-                    </div>
                 </div>
             </div>
             <div style="text-align: right; /*margin-top: 100px*/">
