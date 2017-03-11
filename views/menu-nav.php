@@ -164,6 +164,7 @@
                 <a class="item" href="?relatorios/conselho">Conselho</a>
                 <a class="item" href="?relatorios/ministerial">Ministerial</a>
                 <a class="item" href="?relatorios/estatistica">Estatística</a>
+                <a class="item" href="?relatorios/financeiro">Financeiro</a>
             </div>
         </div>
         <div class="item">

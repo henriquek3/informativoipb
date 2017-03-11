@@ -75,22 +75,33 @@
                     <div class="inline fields">
                         <div class="two wide field"><label>Nome</label></div>
                         <div class="fourteen wide field"><input type="text"></div>
-                        </div>
+                    </div>
                     <div class="inline fields">
-                        <div class="two wide field"><label>Data de Nascimento</label></div>
-                        <div class="two wide field"><input type="text"></div>
-                        <div class="two wide field"><label>Estado</label></div>
-                        <div class="four wide field"><select>
+                        <div class="two wide field">
+                            <label>Data de Nascimento</label>
+                        </div>
+                        <div class="three wide field">
+                            <input type="date">
+                        </div>
+                        <div class="one wide field">
+                            <label>Estado</label>
+                        </div>
+                        <div class="four wide field">
+                            <select class="ui fluid search dropdown">
                                 <option>Selecione o Estado</option>
-                            </select></div>
-                        <div class="two wide field"><label>Cidade</label></div>
-                        <div class="four wide field"><select>
+                            </select>
+                        </div>
+                        <div class="one wide field">
+                            <label>Cidade</label>
+                        </div>
+                        <div class="four wide field">
+                            <select class="ui fluid search dropdown">
                                 <option>Selecione a Cidade</option>
                             </select></div>
-                        </div>
+                    </div>
                     <div class="inline fields">
                         <div class="two wide field"><label>RG</label></div>
-                        <div class="two wide field"><input type="number"></div>
+                        <div class="two wide field"><input type="text"></div>
                         <div class="two wide field"><label>Orgão Emissor</label></div>
                         <div class="two wide field"><input type="text"></div>
                         <div class="one wide field"><label>CPF</label></div>
@@ -101,26 +112,44 @@
                                 <option>Casado</option>
                                 <option>Viúvo</option>
                             </select></div>
-                        </div>
+                    </div>
                     <div class="ui divider"></div>
                     <div class="inline fields">
-                        <div class="two wide field"><label>Cônjuge</label></div>
-                        <div class="six wide field"><input type="text"></div>
-                        <div class="two wide field"><label>Data de Nascimento</label></div>
-                        <div class="two wide field"><input type="number"></div>
+                        <div class="two wide field">
+                            <label>Cônjuge</label>
+                        </div>
+                        <div class="six wide field">
+                            <input type="text">
+                        </div>
+                        <div class="two wide field">
+                            <label>Data de Nascimento</label>
+                        </div>
+                        <div class="two wide field">
+                            <input type="number">
+                        </div>
                         <div class="two wide field"><label>N&deg; de Dependentes</label></div>
                         <div class="two wide field"><input type="text"></div>
                     </div>
                     <div class="inline fields">
                         <div class="two wide field"><label>Nome dos Filhos</label></div>
                         <div class="fourteen wide field"><input type="text" placeholder="Separe cada nome por ;"></div>
-                        </div>
+                    </div>
                     <div class="inline fields">
-                        <div class="two wide field"><label>Filiação</label></div>
-                        <div class="seven wide field"><input type="text"></div>
-                        <div class="one wide field"><label>e</label></div>
-                        <div class="six wide field"><input type="text"></div>
+                        <div class="two wide field">
+                            <label>Filiação</label>
                         </div>
+                        <div class="seven wide field">
+                            <input type="text" placeholder=" Filiação Materna">
+                        </div>
+                        <!--
+                        <div class="field" style="-webkit-margin-start: 10px; -webkit-margin-end: 15px">
+                            <label>e</label>
+                        </div>
+                        -->
+                        <div class="seven wide field">
+                            <input type="text" placeholder=" Filiação Paterna">
+                        </div>
+                    </div>
                     <div class="ui divider"></div>
                     <div class="inline fields">
                         <div class="two wide field"><label>Endereço</label></div>
@@ -129,7 +158,7 @@
                         <div class="two wide field"><input type="text"></div>
                         <div class="two wide field"><label>Complemento</label></div>
                         <div class="five wide field"><input type="text"></div>
-                        </div>
+                    </div>
                     <div class="inline fields">
                         <div class="two wide field"><label>Bairro</label></div>
                         <div class="three wide field"><input type="text"></div>
@@ -143,7 +172,7 @@
                             </select></div>
                         <div class="one wide field"><label>CEP</label></div>
                         <div class="two wide field"><input type="text"></div>
-                        </div>
+                    </div>
                     <div class="inline fields">
                         <div class="two wide field"><label>Telefone - Residencial</label></div>
                         <div class="two wide field"><input type="text"></div>
@@ -151,7 +180,7 @@
                         <div class="two wide field"><input type="text"></div>
                         <div class="one wide field"><label>E-mail</label></div>
                         <div class="seven wide field"><input type="text"></div>
-                        </div>
+                    </div>
                 </div>
             </div>
             <div style="text-align: right; /*margin-top: 100px*/">
