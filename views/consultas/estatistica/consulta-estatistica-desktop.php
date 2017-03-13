@@ -33,5 +33,13 @@
         <p></p>
         <iframe class="iframe" frameborder="0" src="views/consultas/estatistica/iframe-1.php"></iframe>
     </div>
+    <div class="ui segment">
+        <h2 class="ui header ">Amostra Crescimento do Rol de Membros</h2>
+        <div class="ui clearing divider"></div>
+        <p></p>
+        <div style="height: 400px; width: 400px" class="">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+    </div>
 </div>
 
