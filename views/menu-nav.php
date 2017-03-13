@@ -41,6 +41,11 @@
             right: 0;
             margin-bottom: 0;
         }
+
+        .iframe {
+            height: 30%;
+            width: 100%;
+        }
     </style>
 </head>
 <body>

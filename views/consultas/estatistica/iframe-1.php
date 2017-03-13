@@ -13,136 +13,242 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="../../vendor/semantic/components/table.css"> -->
+    <!-- <link rel="stylesheet" href="../../vendor/semantic/components/table.css">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
     <style>
-
+        .thgreen {
+            border-top: 0.2em solid #21BA45;
+        }
     </style>
 </head>
 <body>
 <table class="ui definition celled table">
     <thead>
     <tr>
-        <th class="two wide field"></th>
-        <th class="one wide field">Pastores</th>
-        <th class="one wide field">Licenciados</th>
-        <th class="one wide field">Presbíteros</th>
-        <th class="one wide field">Diáconos</th>
-        <th class="one wide field">Evangelistas</th>
-        <th class="one wide field">Missionários</th>
-        <th class="one wide field">Candidatos</th>
-        <th class="one wide field">Igrejas</th>
-        <th class="three wide field">Congreg. de Igrejas</th>
-        <th class="one wide field">Pontos de Pregação</th>
-        <th class="one wide field">N.º Escolas Dom.</th>
-        <th class="one wide field">N.º Prof. da ED</th>
-        <th class="one wide field">N.º Alunos ED - Atual</th>
-        <th class="one wide field">N.º Alunos ED - Anter.</th>
-        <th class="one wide field">Variação Percentual</th>
-        <th class="one wide field">Congreg. Presbiteriais</th>
-        <th class="one wide field">N.º de Educandários</th>
-        <th class="one wide field">N.º de Alunos Educ.</th>
-        <th class="one wide field">N.º de Creches</th>
-        <th class="one wide field">N.º de Crianças</th>
-        <th class="one wide field">N.º Outros</th>
-        <th class="one wide field">N.º de Pessoas</th>
-        <th class="one wide field">N.º UCPs</th>
-        <th class="one wide field">Sócios UCP</th>
-        <th class="one wide field">N.º UPA</th>
-        <th class="one wide field">Sócios UPA</th>
-        <th class="one wide field">N.º UMP</th>
-        <th class="one wide field">Sócios UMP</th>
-        <th class="one wide field">N.º SAF</th>
-        <th class="one wide field">Sócias SAF</th>
-        <th class="one wide field">UPH</th>
-        <th class="one wide field">Sócios UPH</th>
-        <th class="one wide field">N.º Outros</th>
-        <th class="one wide field">Sócios Outros</th>
-        <th class="one wide field">Total de Sociedades</th>
-        <th class="one wide field">Total de Sócios</th>
+        <th></th>
+        <th class="center aligned thgreen"> Igreja Presbiteriana do brasil</th>
+        <th class="center aligned thgreen"> Igreja Presbiteriana do brasil</th>
+        <th class="center aligned thgreen"> Igreja Presbiteriana do brasil</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td>Igreja 1</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>Igreja 1</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
+        <td>Pastores</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
     </tr>
     <tr>
-        <td>Igreja 1</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>Igreja 1</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
-        <td>200</td>
-        <td>0g</td>
+        <td>Licenciados</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Presbíteros</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Diáconos</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Evangelistas</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Missionários</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Candidatos</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Igrejas</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Congr. Igrejas</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Pontos Pregação</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>E.D.</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Prof. E.D.</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Alunos E.D.</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Alunos E.D. - Anter.</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Variação %</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Congr. Presbiteriais</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Educandários</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Alunos Educ.</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Creches</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Crianças</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Outros</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Pessoas</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>UCPs</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Sócios UCP</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>UPA</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Sócios UPA</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>UMP</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Sócios UMP</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>SAF</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Sócias SAF</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>UPH</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Sócios UPH</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Outros</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Sócios Outros</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Total de Sociedades</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
+    </tr>
+    <tr>
+        <td>Total de Sócios</td>
+        <td class="center aligned">10</td>
+        <td class="center aligned">15</td>
+        <td class="center aligned">20</td>
     </tr>
     </tbody>
 </table>
-
 </body>
 </html>

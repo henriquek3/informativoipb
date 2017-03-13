@@ -6,65 +6,32 @@
  * Time: 11:53
  */
 ?>
-
-
 <div class="ui segment">
-    <table class="ui green definition celled table">
-        <thead>
-        <tr>
-            <th class="two wide field"></th>
-            <th class="one wide field">Valor1</th>
-            <th class="one wide field">Valor2</th>
-            <th class="one wide field">Valor1</th>
-            <th class="one wide field">Valor2</th>
-            <th class="one wide field">Valor1</th>
-            <th class="one wide field">Valor2</th>
-            <th class="one wide field">Valor1</th>
-            <th class="one wide field">Valor2</th>
-            <th class="one wide field">Valor1</th>
-            <th class="one wide field">Valor2</th>
-            <th class="one wide field">Valor1</th>
-            <th class="one wide field">Valor2</th>
-            <th class="one wide field">Valor1</th>
-            <th class="one wide field">Valor2</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Igreja 1</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-        </tr>
-        <tr>
-            <td>Igreja 1</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-            <td>200</td>
-            <td>0g</td>
-        </tr>
-        </tbody>
-    </table>
+    <h1 class="ui center aligned header">Demonstrativo de Estatística do Presbitério: PSRO - 2017</h1>
+    <div class="ui clearing divider" style="padding-bottom: 50px"></div>
+    <div class="ui segment">
+        <h2 class="ui header ">Estatísticas</h2>
+        <div class="ui clearing divider"></div>
+        <p></p>
+        <iframe class="iframe" frameborder="0" src="views/consultas/estatistica/iframe-1.php"></iframe>
+    </div>
+    <div class="ui segment">
+        <h2 class="ui header ">Rol de Membros Comungantes</h2>
+        <div class="ui clearing divider"></div>
+        <p></p>
+        <iframe class="iframe" frameborder="0" src="views/consultas/estatistica/iframe-1.php"></iframe>
+    </div>
+    <div class="ui segment">
+        <h2 class="ui header ">Resultado Analítico</h2>
+        <div class="ui clearing divider"></div>
+        <p></p>
+        <iframe class="iframe" frameborder="0" src="views/consultas/estatistica/iframe-1.php"></iframe>
+    </div>
+    <div class="ui segment">
+        <h2 class="ui header ">Rol de Membros Não Comungantes</h2>
+        <div class="ui clearing divider"></div>
+        <p></p>
+        <iframe class="iframe" frameborder="0" src="views/consultas/estatistica/iframe-1.php"></iframe>
+    </div>
 </div>
 

@@ -24,26 +24,19 @@
     <title>InformativoIPB</title>
 
     <style>
-        .diframe {
-            height: auto;
-        }
-
         .iframe {
+            height: 30%;
             width: 100%;
-
         }
     </style>
 </head>
 <body>
-<div class="ui" style="padding-bottom: 50px ;padding-top: 70px;">
-    <div class="ui segment iframe">
+<div class="ui" style="padding-top: 70px;">
+    <div class="ui segment">
         <h2 class="ui center aligned header ">Consulta Estatistica do Presbitério: PSRO - 2017</h2>
         <div class="ui clearing divider"></div>
         <p></p>
-        <!-- All you need is a defined width & height https://www.youtube.com/watch?v=WsFWhL4Y84Y -->
-        <div class="diframe">
-            <iframe class="iframe" frameborder="0" src="iframe-1.php"></iframe>
-        </div>
+        <iframe class="iframe" frameborder="0" src="iframe-1.php"></iframe>
     </div>
 </div>
 
@@ -59,6 +52,3 @@
 </script>
 </body>
 </html>
-
-
-
