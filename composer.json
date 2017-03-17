@@ -1,5 +1,7 @@
 {
   "require": {
-    "semantic/ui": "^2.2"
+    "semantic/ui": "^2.2",
+    "league/csv": "9.x-dev",
+    "guzzlehttp/guzzle": "6.2.3"
   }
 }
