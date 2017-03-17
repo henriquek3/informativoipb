@@ -1,0 +1,5 @@
+{
+  "require": {
+    "semantic/ui": "^2.2"
+  }
+}
