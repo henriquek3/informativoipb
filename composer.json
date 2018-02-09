@@ -1,7 +1,17 @@
 {
+  "name": "JKSISTEMAS/informativoipb",
+  "description": "Desenvolvimento de Web Erp.",
+  "type": "project",
+  "require-dev": {
+    "symfony/var-dumper": "^4.0"
+  },
   "require": {
-    "semantic/ui": "^2.2",
-    "league/csv": "9.x-dev",
-    "guzzlehttp/guzzle": "6.2.3"
+    "silex/silex": "~2.0",
+    "doctrine/dbal": "~2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "JKSISTEMAS\\": "src"
+    }
   }
 }
