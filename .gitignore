@@ -4,3 +4,4 @@ vendor/
 templates/
 !templates/index.html
 .idea/
+composer.lock
