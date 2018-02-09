@@ -25,12 +25,9 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver' => 'pdo_mysql',
         'host' => 'localhost',
-        /*'dbname' => 'servidor_tecman',
-        'user' => 'servidor_tecman',
-        'password' => 'AdjXr]C4x0k@', */
-        'dbname' => 'servidor_tecman',
-        'user' => 'root',
-        'password' => '',
+        'dbname' => 'jksistem_informativoipb',
+        'user' => 'jksistem_ipbsys',
+        'password' => 'azfRm9ps]9M&',
         'charset' => 'utf8mb4',
     ),
 ));
