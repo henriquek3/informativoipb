@@ -24,3 +24,5 @@ public/
 templates/
 .phpintel/
 .vs/
+/src/app.php
+src/
