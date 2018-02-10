@@ -53,3 +53,4 @@ public/
 composer.lock
 vendor/
 teste/
+/package-lock.json

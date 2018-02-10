@@ -58,6 +58,20 @@ module.exports = function (grunt) {
                 src: ['dist/css/*.css']
             }
         },
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'dist',
+                    src: ['*.html'],
+                    dest: 'templates'
+                }]
+            }
+        },
         connect: {
             server: {
                 options: {
@@ -75,10 +89,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-pug');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
 
     // Set task aliases
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['pug', 'sass', 'postcss']);
+    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'htmlmin']);
     grunt.registerTask('serve', ['connect', 'watch']);
 };
