@@ -7005,8 +7005,8 @@ h5.ui.header .sub.header {
 }
 
 .ui.inverted.attached.header {
-    background: #545454 -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: #545454 -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+    background: #545454 -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: #545454 linear-gradient(transparent, rgba(0, 0, 0, 0.05));
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -7014,8 +7014,8 @@ h5.ui.header .sub.header {
 }
 
 .ui.inverted.block.header {
-    background: #545454 -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: #545454 -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+    background: #545454 -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: #545454 linear-gradient(transparent, rgba(0, 0, 0, 0.05));
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -16870,8 +16870,8 @@ ol.ui.horizontal.list li:before,
 }
 
 .ui.secondary.inverted.segment {
-    background: #4c4f52 -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0.2)));
     background: #4c4f52 -o-linear-gradient(rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
+    background: #4c4f52 -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0.2)));
     background: #4c4f52 linear-gradient(rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
     color: rgba(255, 255, 255, 0.8);
 }
@@ -16884,8 +16884,8 @@ ol.ui.horizontal.list li:before,
 }
 
 .ui.tertiary.inverted.segment {
-    background: #717579 -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.35)), to(rgba(255, 255, 255, 0.35)));
     background: #717579 -o-linear-gradient(rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 100%);
+    background: #717579 -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.35)), to(rgba(255, 255, 255, 0.35)));
     background: #717579 linear-gradient(rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 100%);
     color: rgba(255, 255, 255, 0.8);
 }
@@ -25238,15 +25238,15 @@ Floated Menu / Item
 /* Inverted */
 
 .ui.inverted.sortable.table thead th.sorted {
-    background: rgba(255, 255, 255, 0.15) -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: rgba(255, 255, 255, 0.15) -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+    background: rgba(255, 255, 255, 0.15) -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: rgba(255, 255, 255, 0.15) linear-gradient(transparent, rgba(0, 0, 0, 0.05));
     color: #ffffff;
 }
 
 .ui.inverted.sortable.table thead th:hover {
-    background: rgba(255, 255, 255, 0.08) -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: rgba(255, 255, 255, 0.08) -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+    background: rgba(255, 255, 255, 0.08) -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: rgba(255, 255, 255, 0.08) linear-gradient(transparent, rgba(0, 0, 0, 0.05));
     color: #ffffff;
 }
@@ -29315,8 +29315,8 @@ a.ui.card:hover,
 
 .ui.slider.checkbox .box:after,
 .ui.slider.checkbox label:after {
-    background: #FFFFFF -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: #FFFFFF -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+    background: #FFFFFF -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: #FFFFFF linear-gradient(transparent, rgba(0, 0, 0, 0.05));
     position: absolute;
     content: '' !important;
@@ -29440,8 +29440,8 @@ a.ui.card:hover,
 
 .ui.toggle.checkbox .box:after,
 .ui.toggle.checkbox label:after {
-    background: #FFFFFF -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: #FFFFFF -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+    background: #FFFFFF -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05)));
     background: #FFFFFF linear-gradient(transparent, rgba(0, 0, 0, 0.05));
     position: absolute;
     content: '' !important;

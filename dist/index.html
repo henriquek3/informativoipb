@@ -77,128 +77,63 @@
   </div>
 </header>
 <!-- Sidebar menu-->
-<!--.app-sidebar__overlay(data-toggle="sidebar")-->
-<!--aside.app-sidebar
-.app-sidebar__user
-    img.app-sidebar__user-avatar(src='https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg', alt='User Image')
-    div
-        p.app-sidebar__user-name John Doe
-        p.app-sidebar__user-designation Frontend Developer
-
-ul.app-menu
-    li
-        a.app-menu__item(href='index.html' class={'active': activePage == 'dashboard'})
-            i.app-menu__icon.fa.fa-dashboard
-            span.app-menu__label Dashboard
-
-    li.treeview(class={'is-expanded': activeGroup == 'ui-elements'})
-        a.app-menu__item(href='#', data-toggle='treeview')
-            i.app-menu__icon.fa.fa-laptop
-            span.app-menu__label UI Elements
-            i.treeview-indicator.fa.fa-angle-right
-        ul.treeview-menu
-            li
-                a.treeview-item(href='bootstrap-components.html' class={'active': activePage == 'ui-bootstrap'})
-                    i.icon.fa.fa-circle-o
-                    |  Bootstrap Elements
-            li
-                a.treeview-item(href='http://fontawesome.io/icons/', target="_blank")
-                    i.icon.fa.fa-circle-o
-                    |  Font Icons
-            li
-                a.treeview-item(href='ui-cards.html' class={'active': activePage == 'ui-cards'})
-                    i.icon.fa.fa-circle-o
-                    |  Cards
-            li
-                a.treeview-item(href='widgets.html' class={'active': activePage == 'ui-widgets'})
-                    i.icon.fa.fa-circle-o
-                    |  Widgets
-
-    li
-        a.app-menu__item(href='charts.html' class={'active': activePage == 'charts'})
-            i.app-menu__icon.fa.fa-pie-chart
-            span.app-menu__label Charts
-
-    li.treeview(class={'is-expanded': activeGroup == 'forms'})
-        a.app-menu__item(href='#' data-toggle='treeview')
-            i.app-menu__icon.fa.fa-edit
-            span.app-menu__label Forms
-            i.treeview-indicator.fa.fa-angle-right
-        ul.treeview-menu
-            li
-                a.treeview-item(href='form-components.html' class={'active': activePage == 'form-components'})
-                    i.icon.fa.fa-circle-o
-                    |  Form Components
-            li
-                a.treeview-item(href='form-custom.html' class={'active': activePage == 'form-custom'})
-                    i.icon.fa.fa-circle-o
-                    |  Custom Components
-            li
-                a.treeview-item(href='form-samples.html' class={'active': activePage == 'form-samples'})
-                    i.icon.fa.fa-circle-o
-                    |  Form Samples
-            li
-                a.treeview-item(href='form-notifications.html' class={'active': activePage == 'form-notifications'})
-                    i.icon.fa.fa-circle-o
-                    |  Form Notifications
-
-    li.treeview(class={'is-expanded': activeGroup == 'tables'})
-        a.app-menu__item(href='#' data-toggle='treeview')
-            i.app-menu__icon.fa.fa-th-list
-            span.app-menu__label Tables
-            i.treeview-indicator.fa.fa-angle-right
-        ul.treeview-menu
-            li
-                a.treeview-item(href='table-basic.html' class={'active': activePage == 'basic-table'})
-                    i.icon.fa.fa-circle-o
-                    |  Basic Tables
-            li
-                a.treeview-item(href='table-data-table.html' class={'active': activePage == 'data-table'})
-                    i.icon.fa.fa-circle-o
-                    |  Data Tables
-
-    li.treeview(class={'is-expanded': activeGroup == 'pages'})
-        a.app-menu__item(href='#' data-toggle='treeview')
-            i.app-menu__icon.fa.fa-file-text
-            span.app-menu__label Pages
-            i.treeview-indicator.fa.fa-angle-right
-        ul.treeview-menu
-            li
-                a.treeview-item(href='blank-page.html' class={'active': activePage == 'blank-page'})
-                    i.icon.fa.fa-circle-o
-                    |  Blank Page
-            li
-                a.treeview-item(href='page-login.html')
-                    i.icon.fa.fa-circle-o
-                    |  Login Page
-            li
-                a.treeview-item(href='page-lockscreen.html')
-                    i.icon.fa.fa-circle-o
-                    |  Lockscreen Page
-            li
-                a.treeview-item(href='page-user.html' class={'active': activePage == 'user-page'})
-                    i.icon.fa.fa-circle-o
-                    |  User Page
-            li
-                a.treeview-item(href='page-invoice.html' class={'active': activePage == 'invoice-page'})
-                    i.icon.fa.fa-circle-o
-                    |  Invoice Page
-            li
-                a.treeview-item(href='page-calendar.html' class={'active': activePage == 'calendar-page'})
-                    i.icon.fa.fa-circle-o
-                    |  Calendar Page
-            li
-                a.treeview-item(href='page-mailbox.html' class={'active': activePage == 'mailbox-page'})
-                    i.icon.fa.fa-circle-o
-                    |  Mailbox
-            li
-                a.treeview-item(href='page-error.html')
-                    i.icon.fa.fa-circle-o
-                    |  Error Page
--->
-<main><br><br><br><br><br><br><br><br><br><br>
-  <div>
-    <h1>Hello World!</h1>
+<div class="ui sidebar vertical menu"><a class="active item"><i class="home icon"></i>HOME</a><a class="item"><i
+        class="edit icon"></i>CADASTROS</a><a class="item"><i class="browser icon"></i>FORMULARIOS</a><a class="item"><i
+        class="bar chart icon"></i>CONSULTAS</a><a class="item"><i class="settings icon"></i>CONFIGURAÇÕES</a><a
+        class="item"><i class="edit icon"></i>SINODOS</a></div>
+<main class="pusher">
+  <div class="ui column grid">
+    <div class="tablet only mobile only column row">
+      <div class="ui green top fixed three item menu"><a class="toc item"><i class="large sidebar icon"></i></a><a
+              class="item button"><i class="large home icon"></i></a><a class="item button"><i
+              class="large bar chart icon"></i></a></div>
+    </div>
+  </div>
+  <div class="ui container" style="float: none;">
+    <div class="ui column stackable grid">
+      <div class="eight wide column">
+        <div class="ui green segment">
+          <h3 class="ui header">Frequência dos Membros</h3>
+          <p></p>
+          <canvas id="lineChartDemo"></canvas>
+        </div>
+      </div>
+      <div class="eight wide column">
+        <div class="ui green segment">
+          <h3 class="ui header">Arrecadação Dizímos</h3>
+          <p></p>
+          <canvas id="barChartDemo"></canvas>
+        </div>
+      </div>
+      <div class="eight wide column">
+        <div class="ui green segment">
+          <h3 class="ui header">Batismos X Discipulados</h3>
+          <p></p>
+          <canvas id="radarChartDemo"></canvas>
+        </div>
+      </div>
+      <div class="eight wide column">
+        <div class="ui green segment">
+          <h3 class="ui header">Despesas Instituição</h3>
+          <p></p>
+          <canvas id="polarChartDemo"></canvas>
+        </div>
+      </div>
+      <div class="eight wide column">
+        <div class="ui green segment">
+          <h3 class="ui header">Folha de Pagamento Ministros</h3>
+          <p></p>
+          <canvas id="doughnutChartDemo"></canvas>
+        </div>
+      </div>
+      <div class="eight wide column">
+        <div class="ui green segment">
+          <h3 class="ui header">Membros por Presbitérios</h3>
+          <p></p>
+          <canvas id="pieChartDemo"></canvas>
+        </div>
+      </div>
+    </div>
   </div>
 </main>
 <!-- Essential javascripts for application to work-->
@@ -210,8 +145,19 @@ ul.app-menu
 <script src="js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script type="text/javascript" src="js/plugins/chart.js"></script>
-<!--script(type='text/javascript').console.log("ok");
--->
+<script src="js/app/index-app.js"></script>
+<script type="text/javascript">
+    console.log("ok");
+    $(document)
+        .ready(function () {
+            // create sidebar and attach to menu open
+            $('.ui.sidebar')
+                .sidebar('attach events', '.toc.item')
+            ;
+
+        })
+    ;
+</script>
 <!-- Google analytics script-->
 <!--script(type="text/javascript").
 if (document.location.hostname == 'pratikborsadiya.in') {

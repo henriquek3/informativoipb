@@ -16,6 +16,13 @@ module.exports = function (grunt) {
                 options: {
                     interrupt: true
                 }
+            },
+            babel: {
+                files: ['src/js/**/*.jsx'],
+                tasks: ['babel'],
+                options: {
+                    interrupt: false
+                }
             }
         },
         pug: {
@@ -58,6 +65,20 @@ module.exports = function (grunt) {
                 src: ['dist/css/*.css']
             }
         },
+        babel: {
+            options: {
+                "sourceMap": true
+            },
+            dist: {
+                files: [{
+                    "expand": true,
+                    "cwd": "src/js",
+                    "src": ["**/*.jsx"],
+                    "dest": "dist/js/app",
+                    "ext": "-app.js"
+                }]
+            }
+        },
         htmlmin: {
             dist: {
                 options: {
@@ -91,9 +112,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-babel');
 
     // Set task aliases
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'htmlmin']);
+    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel', 'htmlmin']);
     grunt.registerTask('serve', ['connect', 'watch']);
 };
