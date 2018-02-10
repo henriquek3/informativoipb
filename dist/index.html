@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description"
+          content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description"
+          content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <!--link(rel='stylesheet', type='text/css', href='css/main.css')-->
+    <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Vali Admin</title>
+</head>
+<body>
+<!-- Navbar-->
+<header>
+    <div class="ui column grid">
+        <div class="computer only column row">
+            <div class="ui fixed stackable menu">
+                <div class="ui container">
+                    <div class="ui simple dropdown item"><i class="big edit icon"></i>Cadastros<i
+                            class="dropdown icon"></i>
+                        <div class="menu"><a class="item" href="#"><i class="edit icon"></i>Sinodos</a><a class="item"
+                                                                                                          href="#"><i
+                                class="edit icon"></i>Presbitérios</a><a class="item" href="#"><i class="edit icon"></i>Igrejas</a><a
+                                class="item" href="#"><i class="edit icon"></i>Ministros</a><a class="item" href="#"><i
+                                class="edit icon"></i>Secretários</a></div>
+                    </div>
+                    <div class="ui simple dropdown item"><i class="big browser icon"></i>Formulários<i
+                            class="dropdown icon"></i>
+                        <div class="menu"><a class="item" href="#"><i class="browser icon"></i>Conselho</a><a
+                                class="item" href="#"><i class="browser icon"></i>Ministerial</a><a class="item"
+                                                                                                    href="#"><i
+                                class="browser icon"></i>Estatistica</a><a class="item" href="#"><i
+                                class="browser icon"></i>Financeiro</a></div>
+                    </div>
+                    <div class="ui simple dropdown item"><i class="big bar chart icon"></i>Consultas<i
+                            class="dropdown icon"></i>
+                        <div class="menu"><a class="item" href="#"><i class="bar chart icon"></i>Conselho</a><a
+                                class="item" href="#"><i class="bar chart icon"></i>Ministerial</a><a class="item"
+                                                                                                      href="#"><i
+                                class="bar chart icon"></i>Estatistica</a><a class="item" href="#"><i
+                                class="bar chart icon"></i>Financeiro</a></div>
+                    </div>
+                    <div class="ui simple dropdown item"><i class="big settings icon"></i>Configurações<i
+                            class="dropdown icon"></i>
+                        <div class="menu"><a class="item" href="#"><i class="settings icon"></i>Conselho</a><a
+                                class="item" href="#"><i class="settings icon"></i>Ministerial</a><a class="item"
+                                                                                                     href="#"><i
+                                class="settings icon"></i>Estatistica</a><a class="item" href="#"><i
+                                class="settings icon"></i>Financeiro</a></div>
+                    </div>
+                    <div class="right menu">
+                        <div class="right menu">
+                            <div class="item">
+                                <div class="ui green animated button" tabindex="0">
+                                    <div class="visible content"><i class="large arrow right icon"></i></div>
+                                    <div class="hidden content">Sair</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Sidebar menu-->
+<!--.app-sidebar__overlay(data-toggle="sidebar")-->
+<!--aside.app-sidebar
+.app-sidebar__user
+    img.app-sidebar__user-avatar(src='https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg', alt='User Image')
+    div
+        p.app-sidebar__user-name John Doe
+        p.app-sidebar__user-designation Frontend Developer
+
+ul.app-menu
+    li
+        a.app-menu__item(href='index.html' class={'active': activePage == 'dashboard'})
+            i.app-menu__icon.fa.fa-dashboard
+            span.app-menu__label Dashboard
+
+    li.treeview(class={'is-expanded': activeGroup == 'ui-elements'})
+        a.app-menu__item(href='#', data-toggle='treeview')
+            i.app-menu__icon.fa.fa-laptop
+            span.app-menu__label UI Elements
+            i.treeview-indicator.fa.fa-angle-right
+        ul.treeview-menu
+            li
+                a.treeview-item(href='bootstrap-components.html' class={'active': activePage == 'ui-bootstrap'})
+                    i.icon.fa.fa-circle-o
+                    |  Bootstrap Elements
+            li
+                a.treeview-item(href='http://fontawesome.io/icons/', target="_blank")
+                    i.icon.fa.fa-circle-o
+                    |  Font Icons
+            li
+                a.treeview-item(href='ui-cards.html' class={'active': activePage == 'ui-cards'})
+                    i.icon.fa.fa-circle-o
+                    |  Cards
+            li
+                a.treeview-item(href='widgets.html' class={'active': activePage == 'ui-widgets'})
+                    i.icon.fa.fa-circle-o
+                    |  Widgets
+
+    li
+        a.app-menu__item(href='charts.html' class={'active': activePage == 'charts'})
+            i.app-menu__icon.fa.fa-pie-chart
+            span.app-menu__label Charts
+
+    li.treeview(class={'is-expanded': activeGroup == 'forms'})
+        a.app-menu__item(href='#' data-toggle='treeview')
+            i.app-menu__icon.fa.fa-edit
+            span.app-menu__label Forms
+            i.treeview-indicator.fa.fa-angle-right
+        ul.treeview-menu
+            li
+                a.treeview-item(href='form-components.html' class={'active': activePage == 'form-components'})
+                    i.icon.fa.fa-circle-o
+                    |  Form Components
+            li
+                a.treeview-item(href='form-custom.html' class={'active': activePage == 'form-custom'})
+                    i.icon.fa.fa-circle-o
+                    |  Custom Components
+            li
+                a.treeview-item(href='form-samples.html' class={'active': activePage == 'form-samples'})
+                    i.icon.fa.fa-circle-o
+                    |  Form Samples
+            li
+                a.treeview-item(href='form-notifications.html' class={'active': activePage == 'form-notifications'})
+                    i.icon.fa.fa-circle-o
+                    |  Form Notifications
+
+    li.treeview(class={'is-expanded': activeGroup == 'tables'})
+        a.app-menu__item(href='#' data-toggle='treeview')
+            i.app-menu__icon.fa.fa-th-list
+            span.app-menu__label Tables
+            i.treeview-indicator.fa.fa-angle-right
+        ul.treeview-menu
+            li
+                a.treeview-item(href='table-basic.html' class={'active': activePage == 'basic-table'})
+                    i.icon.fa.fa-circle-o
+                    |  Basic Tables
+            li
+                a.treeview-item(href='table-data-table.html' class={'active': activePage == 'data-table'})
+                    i.icon.fa.fa-circle-o
+                    |  Data Tables
+
+    li.treeview(class={'is-expanded': activeGroup == 'pages'})
+        a.app-menu__item(href='#' data-toggle='treeview')
+            i.app-menu__icon.fa.fa-file-text
+            span.app-menu__label Pages
+            i.treeview-indicator.fa.fa-angle-right
+        ul.treeview-menu
+            li
+                a.treeview-item(href='blank-page.html' class={'active': activePage == 'blank-page'})
+                    i.icon.fa.fa-circle-o
+                    |  Blank Page
+            li
+                a.treeview-item(href='page-login.html')
+                    i.icon.fa.fa-circle-o
+                    |  Login Page
+            li
+                a.treeview-item(href='page-lockscreen.html')
+                    i.icon.fa.fa-circle-o
+                    |  Lockscreen Page
+            li
+                a.treeview-item(href='page-user.html' class={'active': activePage == 'user-page'})
+                    i.icon.fa.fa-circle-o
+                    |  User Page
+            li
+                a.treeview-item(href='page-invoice.html' class={'active': activePage == 'invoice-page'})
+                    i.icon.fa.fa-circle-o
+                    |  Invoice Page
+            li
+                a.treeview-item(href='page-calendar.html' class={'active': activePage == 'calendar-page'})
+                    i.icon.fa.fa-circle-o
+                    |  Calendar Page
+            li
+                a.treeview-item(href='page-mailbox.html' class={'active': activePage == 'mailbox-page'})
+                    i.icon.fa.fa-circle-o
+                    |  Mailbox
+            li
+                a.treeview-item(href='page-error.html')
+                    i.icon.fa.fa-circle-o
+                    |  Error Page
+-->
+<main>
+    <div>
+        <h1>Ola Mundo!</h1>
+    </div>
+</main>
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!--script(src='js/popper.min.js')-->
+<script src="js/semantic.js"></script>
+<!--script(src='js/main.js')-->
+<!-- The javascript plugin to display page loading on top-->
+<script src="js/plugins/pace.min.js"></script>
+<!-- Page specific javascripts-->
+<script type="text/javascript" src="js/plugins/chart.js"></script>
+<!--script(type='text/javascript').console.log("ok");
+-->
+<!-- Google analytics script-->
+<script type="text/javascript">
+    if (document.location.hostname == 'pratikborsadiya.in') {
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-72504830-1', 'auto');
+        ga('send', 'pageview');
+    }
+</script>
+</body>
+</html>

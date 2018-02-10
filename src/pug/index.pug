@@ -1,0 +1,14 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'dashboard'
+    - var activeGroup = 'none'
+
+block content
+    div
+        h1 Ola Mundo!
+
+block specific-js
+    script(type='text/javascript', src="js/plugins/chart.js")
+    //script(type='text/javascript').
+        console.log("ok");
