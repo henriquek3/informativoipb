@@ -1,9 +1,5 @@
 extends layouts/_layout.pug
 
-block variables
-    - var activePage = 'dashboard'
-    - var activeGroup = 'none'
-
 block content
     div.ui.column.grid
         div.tablet.only.mobile.only.column.row
@@ -16,8 +12,9 @@ block content
                 a.item.button
                     i.large.bar.chart.icon
 
-    div.ui.container(style="float: none;")
-        div.ui.column.stackable.grid
+
+    div.ui.container(style="margin-top: 80px; margin-bottom: 20px")
+        div.ui.one.column.stackable.grid
             div.eight.wide.column
                 div.ui.green.segment
                     h3.ui.header Frequência dos Membros
@@ -61,10 +58,9 @@ block specific-js
         console.log("ok");
         $(document)
             .ready(function () {
-                // create sidebar and attach to menu open
+                // cria o sidebar e adiciona um evento ao botão
                 $('.ui.sidebar')
                     .sidebar('attach events', '.toc.item')
                 ;
-
             })
         ;

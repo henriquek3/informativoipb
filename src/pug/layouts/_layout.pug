@@ -1,13 +1,8 @@
 doctype html
-html(lang="en")
-
-    //- Variables to set active page in sidebar
-    block variables
-        - var activePage = 'dashboard'
-        - var activeGroup = 'none'
+html(lang="pt-BR")
 
     head
-        meta(name="description", content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.")
+        meta(name="description", content="InformativoIPB é um micro S.A.D. desenvolvido para Igreja Presbiteriana do Brasil")
 
         // Twitter meta
         meta(property="twitter:card", content="summary_large_image")
@@ -40,20 +35,5 @@ html(lang="en")
         // Page specific javascripts
         block specific-js
 
-        // Google analytics script
-        //script(type="text/javascript").
-            if (document.location.hostname == 'pratikborsadiya.in') {
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-                ga('create', 'UA-72504830-1', 'auto');
-                ga('send', 'pageview');
-            }
+        script(type="text/javascript").
+            console.log("mensagem gerado pelo src/pug/layouts/_layout.pug");

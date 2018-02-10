@@ -23,6 +23,13 @@ module.exports = function (grunt) {
                 options: {
                     interrupt: false
                 }
+            },
+            htmlmin: {
+                files: ['dist/**/*.html'],
+                tasks: ['htmlmin'],
+                options: {
+                    interrupt: true
+                }
             }
         },
         pug: {
