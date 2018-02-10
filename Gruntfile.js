@@ -28,7 +28,7 @@ module.exports = function (grunt) {
                 files: ['dist/**/*.html'],
                 tasks: ['htmlmin'],
                 options: {
-                    interrupt: true
+                    interrupt: false
                 }
             }
         },

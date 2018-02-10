@@ -28,7 +28,12 @@ html(lang="pt-BR")
         include ../includes/_sidebar.pug
 
         main.pusher
-            block content
+
+            // Header Mobile
+            include ../includes/_header-mobile
+
+            div.ui.container(style="margin-top: 80px; margin-bottom: 20px")
+                block content
 
         //- Javascripts
         include ../includes/_javascript.pug
@@ -36,4 +41,11 @@ html(lang="pt-BR")
         block specific-js
 
         script(type="text/javascript").
-            console.log("mensagem gerado pelo src/pug/layouts/_layout.pug");
+            $(document)
+                .ready(function () {
+                    // cria o sidebar e adiciona um evento ao botão
+                    $('.ui.sidebar')
+                        .sidebar('attach events', '.toc.item')
+                    ;
+                })
+            ;
