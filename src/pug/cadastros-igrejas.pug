@@ -11,6 +11,7 @@ block content
         div.ui.top.attached.tabular.menu
             a.item.active(data-tab="first") Igrejas
             a.item(data-tab="second") Cadastrar
+            a.item(data-tab="third") Congregação
         div.ui.bottom.attached.tab.segment.active(data-tab="first")
             table.ui.compact.selectable.celled.green.table
                 thead
@@ -25,7 +26,7 @@ block content
                         td.center.aligned SCA
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
-            form(id="cadastro_igrejas", name="cadastro_igrejas")
+            form(id="cadastros_igrejas", name="cadastros_igrejas")
                 div.ui.form
                     div.fields
                         div.six.wide.field
@@ -83,6 +84,72 @@ block content
                             label Homepage
                             input(type="url")
 
+                div(style="text-align: right")
+                    button.ui.labeled.icon.button(type="reset")
+                        i.erase.icon
+                        | Limpar
+
+                    button.ui.green.right.labeled.icon.button(type="subimit")
+                        i.plus.icon
+                        | Gravar
+        div.ui.bottom.attached.tab.segment(data-tab="third")
+            form(id="cadastros_congregacoes", name="cadastros_congregacoes")
+                div.ui.form
+                    div.fields
+                        div.six.wide.field
+                            label Sínodo
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Sinodo
+                                option Sinodo
+                                option Sinodo
+                        div.four.wide.field
+                            label Estado
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Estado
+                                option Estado
+                                option Estado
+                        div.six.wide.field
+                            label Cidade
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Cidade
+                                option Cidade
+                                option Cidade
+                    div.fields
+                        div.eight.wide.field
+                            label Nome
+                            input(type="text",name="nome")
+                        div.three.wide.field
+                            label CNPJ
+                            input(type="text")
+                        div.two.wide.field
+                            label Complemento
+                            input(type="text")
+                        div.ui.calendar.bottom.left.three.wide.field
+                            label Organização
+                            input(type="text")
+                    div.fields
+                        div.six.wide.field
+                            label Endereço
+                            input(type="text")
+                        div.two.wide.field
+                            label Número
+                            input(type="text")
+                        div.four.wide.field
+                            label Complemento
+                            input(type="text")
+                        div.four.wide.field
+                            label Bairro
+                            input(type="text")
+                    div.fields
+                        div.eight.wide.field
+                            label E-mail
+                            input(type="email")
+                        div.eight.wide.field
+                            label Homepage
+                            input(type="url")
                 div(style="text-align: right")
                     button.ui.labeled.icon.button(type="reset")
                         i.erase.icon

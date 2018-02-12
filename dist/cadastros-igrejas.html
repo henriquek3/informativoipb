@@ -107,8 +107,8 @@
             <div class="ui clearing divider"></div>
             <p></p>
             <div class="ui top attached tabular menu"><a class="item active" data-tab="first">Igrejas</a><a class="item"
-                                                                                                            data-tab="second">Cadastrar</a>
-            </div>
+                                                                                                            data-tab="second">Cadastrar</a><a
+                    class="item" data-tab="third">Congregação</a></div>
             <div class="ui bottom attached tab segment active" data-tab="first">
                 <table class="ui compact selectable celled green table">
                     <thead>
@@ -128,7 +128,93 @@
                 </table>
             </div>
             <div class="ui bottom attached tab segment" data-tab="second">
-                <form id="cadastro_igrejas" name="cadastro_igrejas">
+                <form id="cadastros_igrejas" name="cadastros_igrejas">
+                    <div class="ui form">
+                        <div class="fields">
+                            <div class="six wide field">
+                                <label>Sínodo</label>
+                                <select class="ui fluid search dropdown">
+                                    <option></option>
+                                    <option>Sinodo</option>
+                                    <option>Sinodo</option>
+                                    <option>Sinodo</option>
+                                </select>
+                            </div>
+                            <div class="four wide field">
+                                <label>Estado</label>
+                                <select class="ui fluid search dropdown">
+                                    <option></option>
+                                    <option>Estado</option>
+                                    <option>Estado</option>
+                                    <option>Estado</option>
+                                </select>
+                            </div>
+                            <div class="six wide field">
+                                <label>Cidade</label>
+                                <select class="ui fluid search dropdown">
+                                    <option></option>
+                                    <option>Cidade</option>
+                                    <option>Cidade</option>
+                                    <option>Cidade</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="eight wide field">
+                                <label>Nome</label>
+                                <input type="text" name="nome">
+                            </div>
+                            <div class="three wide field">
+                                <label>CNPJ</label>
+                                <input type="text">
+                            </div>
+                            <div class="two wide field">
+                                <label>Complemento</label>
+                                <input type="text">
+                            </div>
+                            <div class="ui calendar bottom left three wide field">
+                                <label>Organização</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="six wide field">
+                                <label>Endereço</label>
+                                <input type="text">
+                            </div>
+                            <div class="two wide field">
+                                <label>Número</label>
+                                <input type="text">
+                            </div>
+                            <div class="four wide field">
+                                <label>Complemento</label>
+                                <input type="text">
+                            </div>
+                            <div class="four wide field">
+                                <label>Bairro</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="eight wide field">
+                                <label>E-mail</label>
+                                <input type="email">
+                            </div>
+                            <div class="eight wide field">
+                                <label>Homepage</label>
+                                <input type="url">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <button class="ui labeled icon button" type="reset"><i class="erase icon"></i>Limpar</button>
+                        <button class="ui green right labeled icon button" type="subimit"><i class="plus icon"></i>Gravar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="third">
+                <form id="cadastros_congregacoes" name="cadastros_congregacoes">
                     <div class="ui form">
                         <div class="fields">
                             <div class="six wide field">
