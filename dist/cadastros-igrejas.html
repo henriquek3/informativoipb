@@ -24,6 +24,8 @@
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="/bower_components/semantic-ui-calendar/dist/calendar.min.css" />-->
+    <link rel="stylesheet" href="css/calendar.min.css">
     <title>Vali Admin</title>
 </head>
 <body>
@@ -170,9 +172,9 @@
                                 <label>Complemento</label>
                                 <input type="text">
                             </div>
-                            <div class="three wide field">
+                            <div class="ui calendar bottom left three wide field">
                                 <label>Organização</label>
-                                <input class="datepicker" type="text">
+                                <input type="text">
                             </div>
                         </div>
                         <div class="fields">
@@ -220,6 +222,8 @@
 <script src="js/semantic.js"></script>
 <!--script(src='js/main.js')-->
 <script src="js/plugins/select2.min.js"></script>
+<!--script(type="text/javascript" src="js/plugins/calendar.min.js")-->
+<script type="text/javascript" src="js/plugins/calendar.js"></script>
 <!-- The javascript plugin to display page loading on top-->
 <script src="js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
@@ -231,6 +235,18 @@
             $('.menu .item')
                 .tab()
             ;
+            $('.calendar').calendar({
+                type: 'date',
+                text: {
+                    days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                    months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    today: 'Today',
+                    now: 'Now',
+                    am: 'AM',
+                    pm: 'PM'
+                }
+            });
             ;
         })
     ;

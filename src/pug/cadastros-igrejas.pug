@@ -59,9 +59,9 @@ block content
                         div.two.wide.field
                             label Complemento
                             input(type="text")
-                        div.three.wide.field
+                        div.ui.calendar.bottom.left.three.wide.field
                             label Organização
-                            input.datepicker(type="text")
+                            input(type="text")
                     div.fields
                         div.six.wide.field
                             label Endereço
@@ -101,6 +101,18 @@ block specific-js
                 $('.menu .item')
                     .tab()
                 ;
+                $('.calendar').calendar({
+                    type: 'date',
+                    text: {
+                        days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                        months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        today: 'Today',
+                        now: 'Now',
+                        am: 'AM',
+                        pm: 'PM'
+                    }
+                });
                 ;
             })
         ;
