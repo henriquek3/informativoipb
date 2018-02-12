@@ -8,75 +8,74 @@ block content
             i.remove.icon
         div.ui.clearing.divider
         p
-        div.ui.segment
-            div.ui.top.attached.tabular.menu
-                a.item(data-tab="first") Igrejas
-                a.item.active(data-tab="second") Cadastrar
-            div.ui.bottom.attached.tab.segment(data-tab="first")
-                table.ui.compact.selectable.celled.green.table
-                    thead
-                        tr
-                            th.ten.wide Nome
-                            th.two.wide.center.aligned Presbitério
-                            th.two.wide.center.aligned Sínodo
-                            th.two.wide
-                    tbody
-                        tr
-                            td Presbiteriana Luz e Vida
-                            td.center.aligned PRON
-                            td.center.aligned SCA
-                            td.center.aligned
-                                button.ui.icon.green.button
-                                    i.edit.icon
-                                    | Editar
-            div.ui.bottom.attached.tab.segment.active(data-tab="second")
-                div.ui.segment
-                    div.ui.form
-                        div.fields
-                            div.six.wide.field
-                                label Sínodo
-                                    select.ui.fluid.search.dropdown
-                                        option
-                                        option Sinodo
-                                        option Sinodo
-                                        option Sinodo
-                            div.four.wide.field
-                                label Estado
-                                    select.ui.fluid.search.dropdown
-                                        option
-                                        option Estado
-                                        option Estado
-                                        option Estado
-                            div.six.wide.field
-                                label Cidade
-                                    select.ui.fluid.search.dropdown
-                                        option
-                                        option Cidade
-                                        option Cidade
-                                        option Cidade
-                        div.fields
-                            div.eight.wide.field
-                                label Nome
-                                    input(type="text")
-                            div.three.wide.field
-                                label CNPJ
-                                    input(type="text")
-                            div.three.wide.field
-                                label Complemento
-                                    input(type="text")
-                            div.two.wide.field
-                                label Data Organização
-                                    input(type="date")
-                        div.fields
-                            div.six.wide.field
-                                label Endereço
-                                    input(type="text")
-                            div.two.wide.field
-                                label Número
-                                    input(type="text")
-                            div.four.wide.field
-                                label Complemento
-                                    input(type="text")
-                            div.four.wide.field
-                                label Bairro
-                                    input(type="text")
+        div.ui.top.attached.tabular.menu
+            a.item(data-tab="first") Igrejas
+            a.item.active(data-tab="second") Cadastrar
+        div.ui.bottom.attached.tab.segment(data-tab="first")
+            table.ui.compact.selectable.celled.green.table
+                thead
+                    tr
+                        th.ten.wide Nome
+                        th.two.wide.center.aligned Presbitério
+                        th.two.wide.center.aligned Sínodo
+                        th.two.wide
+                tbody
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                        td.center.aligned
+                            button.ui.icon.green.button
+                                i.edit.icon
+                                | Editar
+
+        div.ui.bottom.attached.tab.segment.active(data-tab="second")
+            div.ui.form
+                div.fields
+                    div.six.wide.field
+                        label Sínodo
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Sinodo
+                                option Sinodo
+                                option Sinodo
+                    div.four.wide.field
+                        label Estado
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Estado
+                                option Estado
+                                option Estado
+                    div.six.wide.field
+                        label Cidade
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Cidade
+                                option Cidade
+                                option Cidade
+                div.fields
+                    div.eight.wide.field
+                        label Nome
+                            input(type="text")
+                    div.three.wide.field
+                        label CNPJ
+                            input(type="text")
+                    div.three.wide.field
+                        label Complemento
+                            input(type="text")
+                    div.two.wide.field
+                        label Data Organização
+                            input(type="date")
+                div.fields
+                    div.six.wide.field
+                        label Endereço
+                            input(type="text")
+                    div.two.wide.field
+                        label Número
+                            input(type="text")
+                    div.four.wide.field
+                        label Complemento
+                            input(type="text")
+                    div.four.wide.field
+                        label Bairro
+                            input(type="text")
