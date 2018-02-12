@@ -31,11 +31,11 @@ block content
                     div.fields
                         div.six.wide.field
                             label Sínodo
-                            select.ui.fluid.search.dropdown
+                            select.ui.fluid.search.selection.dropdown
                                 option
                                 option Sinodo
-                                option Sinodo
-                                option Sinodo
+                                option Binodo
+                                option Cinodo
                         div.four.wide.field
                             label Estado
                             select.ui.fluid.search.dropdown
@@ -180,6 +180,8 @@ block specific-js
                         pm: 'PM'
                     }
                 });
-                ;
+
+                $('.ui.dropdown').dropdown();
+
             })
         ;
