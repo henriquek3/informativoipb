@@ -19,10 +19,9 @@ $RECYCLE.BIN/
 vendor/
 node_modules/
 vali/
-dist/
+dist/*.html
 public/
-templates/
+templates/*.html
 .phpintel/
 .vs/
-/src/app.php
-src/
+
