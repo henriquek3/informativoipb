@@ -53,5 +53,8 @@
   "bugs": {
     "url": "https://github.com/henriquek3/jhrf-web/issues",
     "email": "henriquek3@gmail.com"
+  },
+  "dependencies": {
+    "semantic-ui-calendar": "0.0.8"
   }
 }

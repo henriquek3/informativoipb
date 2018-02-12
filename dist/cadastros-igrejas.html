@@ -37,7 +37,7 @@
                             class="dropdown icon"></i>
                         <div class="menu"><a class="item" href="cadastro-opcao-tela.html"><i class="radio icon"></i>Sinodos</a><a
                                 class="item" href="#"><i class="radio icon"></i>Presbitérios</a><a class="item"
-                                                                                                   href="#"><i
+                                                                                                   href="cadastros-igrejas.html"><i
                                 class="radio icon"></i>Igrejas</a><a class="item" href="#"><i class="radio icon"></i>Ministros</a><a
                                 class="item" href="#"><i class="radio icon"></i>Secretários</a></div>
                     </div>
@@ -98,120 +98,118 @@
                     class="large bar chart icon"></i></a></div>
         </div>
     </div>
-    <div class="ui container" style="margin-top: 80px; margin-bottom: 20px;">
+    <div class="ui container" style="margin-top: 100px; margin-bottom: 20px;">
         <div class="ui segment">
-            <h2 class="ui floated header">Cadastro de Igrejas</h2>
-            <button class="ui compact right floated icon basic button" onclick="Location.href=&quot;#&quot;"><i
-                    class="remove icon"></i></button>
+            <h2 class="ui floated header">Cadastro de Igrejas</h2><a class="ui compact right floated icon basic button"
+                                                                     href="index.html"><i class="remove icon"></i></a>
             <div class="ui clearing divider"></div>
             <p></p>
-            <div class="ui segment">
-                <div class="ui top attached tabular menu"><a class="item" data-tab="first">Igrejas</a><a
-                        class="item active" data-tab="second">Cadastrar</a></div>
-                <div class="ui bottom attached tab segment" data-tab="first">
-                    <table class="ui compact selectable celled green table">
-                        <thead>
-                        <tr>
-                            <th class="ten wide">Nome</th>
-                            <th class="two wide center aligned">Presbitério</th>
-                            <th class="two wide center aligned">Sínodo</th>
-                            <th class="two wide"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Presbiteriana Luz e Vida</td>
-                            <td class="center aligned">PRON</td>
-                            <td class="center aligned">SCA</td>
-                            <td class="center aligned">
-                                <button class="ui icon green button"><i class="edit icon"></i>Editar</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="ui bottom attached tab segment active" data-tab="second">
-                    <div class="ui segment">
-                        <div class="ui form">
-                            <div class="fields">
-                                <div class="six wide field">
-                                    <label>Sínodo
-                                        <select class="ui fluid search dropdown">
-                                            <option></option>
-                                            <option>Sinodo</option>
-                                            <option>Sinodo</option>
-                                            <option>Sinodo</option>
-                                        </select>
-                                    </label>
-                                </div>
-                                <div class="four wide field">
-                                    <label>Estado
-                                        <select class="ui fluid search dropdown">
-                                            <option></option>
-                                            <option>Estado</option>
-                                            <option>Estado</option>
-                                            <option>Estado</option>
-                                        </select>
-                                    </label>
-                                </div>
-                                <div class="six wide field">
-                                    <label>Cidade
-                                        <select class="ui fluid search dropdown">
-                                            <option></option>
-                                            <option>Cidade</option>
-                                            <option>Cidade</option>
-                                            <option>Cidade</option>
-                                        </select>
-                                    </label>
-                                </div>
+            <div class="ui top attached tabular menu"><a class="item active" data-tab="first">Igrejas</a><a class="item"
+                                                                                                            data-tab="second">Cadastrar</a>
+            </div>
+            <div class="ui bottom attached tab segment active" data-tab="first">
+                <table class="ui compact selectable celled green table">
+                    <thead>
+                    <tr>
+                        <th class="ten wide">Nome</th>
+                        <th class="two wide center aligned">Presbitério</th>
+                        <th class="two wide center aligned">Sínodo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Presbiteriana Luz e Vida</td>
+                        <td class="center aligned">PRON</td>
+                        <td class="center aligned">SCA</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="second">
+                <form id="cadastro_igrejas" name="cadastro_igrejas">
+                    <div class="ui form">
+                        <div class="fields">
+                            <div class="six wide field">
+                                <label>Sínodo</label>
+                                <select class="ui fluid search dropdown">
+                                    <option></option>
+                                    <option>Sinodo</option>
+                                    <option>Sinodo</option>
+                                    <option>Sinodo</option>
+                                </select>
                             </div>
-                            <div class="fields">
-                                <div class="eight wide field">
-                                    <label>Nome
-                                        <input type="text">
-                                    </label>
-                                </div>
-                                <div class="three wide field">
-                                    <label>CNPJ
-                                        <input type="text">
-                                    </label>
-                                </div>
-                                <div class="three wide field">
-                                    <label>Complemento
-                                        <input type="text">
-                                    </label>
-                                </div>
-                                <div class="two wide field">
-                                    <label>Data Organização
-                                        <input type="date">
-                                    </label>
-                                </div>
+                            <div class="four wide field">
+                                <label>Estado</label>
+                                <select class="ui fluid search dropdown">
+                                    <option></option>
+                                    <option>Estado</option>
+                                    <option>Estado</option>
+                                    <option>Estado</option>
+                                </select>
                             </div>
-                            <div class="fields">
-                                <div class="six wide field">
-                                    <label>Endereço
-                                        <input type="text">
-                                    </label>
-                                </div>
-                                <div class="two wide field">
-                                    <label>Número
-                                        <input type="text">
-                                    </label>
-                                </div>
-                                <div class="four wide field">
-                                    <label>Complemento
-                                        <input type="text">
-                                    </label>
-                                </div>
-                                <div class="four wide field">
-                                    <label>Bairro
-                                        <input type="text">
-                                    </label>
-                                </div>
+                            <div class="six wide field">
+                                <label>Cidade</label>
+                                <select class="ui fluid search dropdown">
+                                    <option></option>
+                                    <option>Cidade</option>
+                                    <option>Cidade</option>
+                                    <option>Cidade</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
+                        <div class="fields">
+                            <div class="eight wide field">
+                                <label>Nome</label>
+                                <input type="text" name="nome">
+                            </div>
+                            <div class="three wide field">
+                                <label>CNPJ</label>
+                                <input type="text">
+                            </div>
+                            <div class="two wide field">
+                                <label>Complemento</label>
+                                <input type="text">
+                            </div>
+                            <div class="three wide field">
+                                <label>Organização</label>
+                                <input class="datepicker" type="text">
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="six wide field">
+                                <label>Endereço</label>
+                                <input type="text">
+                            </div>
+                            <div class="two wide field">
+                                <label>Número</label>
+                                <input type="text">
+                            </div>
+                            <div class="four wide field">
+                                <label>Complemento</label>
+                                <input type="text">
+                            </div>
+                            <div class="four wide field">
+                                <label>Bairro</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="eight wide field">
+                                <label>E-mail</label>
+                                <input type="email">
+                            </div>
+                            <div class="eight wide field">
+                                <label>Homepage</label>
+                                <input type="url">
+                            </div>
                 </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <button class="ui labeled icon button" type="reset"><i class="erase icon"></i>Limpar</button>
+                        <button class="ui green right labeled icon button" type="subimit"><i class="plus icon"></i>Gravar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -221,15 +219,18 @@
 <!--script(src='js/popper.min.js')-->
 <script src="js/semantic.js"></script>
 <!--script(src='js/main.js')-->
+<script src="js/plugins/select2.min.js"></script>
 <!-- The javascript plugin to display page loading on top-->
 <script src="js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
+<script src="js/plugins/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
     $(document)
         .ready(function () {
             // cria o sidebar e adiciona um evento ao botão
-            $('.ui.sidebar')
-                .sidebar('attach events', '.toc.item')
+            $('.menu .item')
+                .tab()
+            ;
             ;
         })
     ;
