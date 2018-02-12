@@ -1,0 +1,57 @@
+extends layouts/_layout.pug
+
+block content
+    div.ui.column.grid
+        div.tablet.only.mobile.only.column.row
+
+            div.ui.green.top.fixed.three.item.menu
+                a.toc.item
+                    i.large.sidebar.icon
+                a.item.button
+                    i.large.home.icon
+                a.item.button
+                    i.large.bar.chart.icon
+
+    div.ui.container
+        div.ui.one.column.stackable.grid
+            div.eight.wide.column
+                div.ui.green.segment
+                    h3.ui.header Frequência dos Membros
+                    p
+                    canvas#lineChartDemo
+
+            div.eight.wide.column
+                div.ui.green.segment
+                    h3.ui.header Arrecadação Dizímos
+                    p
+                    canvas#barChartDemo
+
+            div.eight.wide.column
+                div.ui.green.segment
+                    h3.ui.header Batismos X Discipulados
+                    p
+                    canvas#radarChartDemo
+
+            div.eight.wide.column
+                div.ui.green.segment
+                    h3.ui.header Despesas Instituição
+                    p
+                    canvas#polarChartDemo
+
+            div.eight.wide.column
+                div.ui.green.segment
+                    h3.ui.header Folha de Pagamento Ministros
+                    p
+                    canvas#doughnutChartDemo
+
+            div.eight.wide.column
+                div.ui.green.segment
+                    h3.ui.header Membros por Presbitérios
+                    p
+                    canvas#pieChartDemo
+
+block specific-js
+    script(type='text/javascript', src="js/plugins/chart.js")
+    script(src='js/app/index-app.js')
+    script(type='text/javascript').
+        console.log("ok");

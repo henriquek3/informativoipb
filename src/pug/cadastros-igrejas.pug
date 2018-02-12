@@ -1,0 +1,118 @@
+extends layouts/_layout.pug
+
+block content
+    div.ui.segment
+        h2.ui.floated.header
+            | Cadastro de Igrejas
+        a.ui.compact.right.floated.icon.basic.button(href="index.html")
+            i.remove.icon
+        div.ui.clearing.divider
+        p
+        div.ui.top.attached.tabular.menu
+            a.item.active(data-tab="first") Igrejas
+            a.item(data-tab="second") Cadastrar
+        div.ui.bottom.attached.tab.segment.active(data-tab="first")
+            table.ui.compact.selectable.celled.green.table
+                thead
+                    tr
+                        th.ten.wide Nome
+                        th.two.wide.center.aligned Presbitério
+                        th.two.wide.center.aligned Sínodo
+                tbody
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+
+        div.ui.bottom.attached.tab.segment(data-tab="second")
+            form(id="cadastro_igrejas", name="cadastro_igrejas")
+                div.ui.form
+                    div.fields
+                        div.six.wide.field
+                            label Sínodo
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Sinodo
+                                option Sinodo
+                                option Sinodo
+                        div.four.wide.field
+                            label Estado
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Estado
+                                option Estado
+                                option Estado
+                        div.six.wide.field
+                            label Cidade
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Cidade
+                                option Cidade
+                                option Cidade
+                    div.fields
+                        div.eight.wide.field
+                            label Nome
+                            input(type="text",name="nome")
+                        div.three.wide.field
+                            label CNPJ
+                            input(type="text")
+                        div.two.wide.field
+                            label Complemento
+                            input(type="text")
+                        div.ui.calendar.bottom.left.three.wide.field
+                            label Organização
+                            input(type="text")
+                    div.fields
+                        div.six.wide.field
+                            label Endereço
+                            input(type="text")
+                        div.two.wide.field
+                            label Número
+                            input(type="text")
+                        div.four.wide.field
+                            label Complemento
+                            input(type="text")
+                        div.four.wide.field
+                            label Bairro
+                            input(type="text")
+                    div.fields
+                        div.eight.wide.field
+                            label E-mail
+                            input(type="email")
+                        div.eight.wide.field
+                            label Homepage
+                            input(type="url")
+
+                div(style="text-align: right")
+                    button.ui.labeled.icon.button(type="reset")
+                        i.erase.icon
+                        | Limpar
+
+                    button.ui.green.right.labeled.icon.button(type="subimit")
+                        i.plus.icon
+                        | Gravar
+
+block specific-js
+    script(src="js/plugins/bootstrap-datepicker.min.js")
+    script(type="text/javascript").
+        $(document)
+            .ready(function () {
+                // cria o sidebar e adiciona um evento ao botão
+                $('.menu .item')
+                    .tab()
+                ;
+                $('.calendar').calendar({
+                    type: 'date',
+                    text: {
+                        days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                        months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        today: 'Today',
+                        now: 'Now',
+                        am: 'AM',
+                        pm: 'PM'
+                    }
+                });
+                ;
+            })
+        ;
