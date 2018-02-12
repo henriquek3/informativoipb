@@ -47,10 +47,34 @@
 node_modules/
 
 # interface api
-src/app.php
-templates/
-public/
 composer.lock
 vendor/
 teste/
 /package-lock.json
+=======
+
+*.log
+*.tmp
+*.tmp.*
+*.sublime-project
+*.sublime-workspace
+npm-debug.log*
+log.txt
+Thumbs.db
+.DS_Store
+composer.lock
+package-lock.json
+.sourcemaps/
+.sass-cache/
+.tmp/
+.versions/
+$RECYCLE.BIN/
+.vscode/
+.idea/
+vendor/
+node_modules/
+dist/*.html
+public/*.html
+templates/*.html
+.phpintel/
+.vs/
