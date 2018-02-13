@@ -19,5 +19,4 @@ function setEvent() {
         $(document.body).text('Mouse idle for 3 sec'); //Teu evento após terminar o timer
     }, 3000);
 }
-
 //# sourceMappingURL=protetor-tela-app.js.map
