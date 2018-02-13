@@ -5,16 +5,27 @@ html
 
     body.ui.container(style="background-color: #DADADA;")
         div.ui.middle.aligned.center.aligned.grid
-            div.column
-                div.ui.error.massive.message
-                    div.header
-                        h1
-                            i.fa.fa-exclamation-circle
-                            |  Erro 404
-                    p A página que você requisitou não existe.
-                    p
-                    div(style="align:center")
-                        button.circular.ui.green.icon.massive.button(onclick="javascript:window.history.back();")
-                            i.big.history.icon
+            div.row(style="margin-top:10%")
+                div.column
+                    img.ui.centered.image(src="images/ipb_logo.png")
+            div.row
+                div.eight.wide.column
+                    div.ui.error.big.message
+                        br
+                        br
+                        div.header
+                            h1
+                                i.fa.fa-exclamation-circle
+                                |  Erro 404
+                        br
+                        br
+                        p A página que você requisitou não existe.
+                        br
+                        br
+                        div(style="align:center")
+                            button.circular.ui.green.icon.massive.button(onclick="javascript:window.history.back();")
+                                i.big.history.icon
+                            br
+                            br
 
     include includes/_javascript.pug

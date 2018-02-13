@@ -51,8 +51,6 @@ composer.lock
 vendor/
 teste/
 /package-lock.json
-=======
-
 *.log
 *.tmp
 *.tmp.*
@@ -74,8 +72,8 @@ $RECYCLE.BIN/
 vendor/
 node_modules/
 dist/*.html
-dist/js/app
+dist/js/app/
 public/*.html
-templates/*.html
+templates/
 .phpintel/
 .vs/

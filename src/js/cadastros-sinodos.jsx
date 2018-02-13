@@ -207,7 +207,7 @@ $(document).ready(function () {
                                 cadastros_sinodos.reset();
                             })
                             .fail(function (response) {
-                                console.log(response.responseText);
+                                console.log(response);
                                 swal("Erro!", response.responseText, "error");
                             })
                         ;
