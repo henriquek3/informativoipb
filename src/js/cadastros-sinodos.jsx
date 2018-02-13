@@ -179,38 +179,44 @@ $(document).ready(function () {
      * @returns {boolean}
      */
     function deleteData() {
-        swal({
+        if ( id_row > 0 ) {
+            swal({
                 title: "Você tem certeza disso?",
                 text: "Uma vez deletado, não há como desfazer!",
                 icon: "warning",
+                dangerMode: true,
                 buttons: {
                     cancel: {
                         text: "Cancelar",
                         visible: true,
-                        value: true,
+                        value: false,
                         closeModal: true,
                     },
                     confirm: true
-
                 },
                 closeModal: false,
                 closeOnClickOutside: false,
             })
-            .then(() => {
-                $.post('/api/sinodos/delete', {id: id_row})
-                    .done(function () {
-                        tbl_api.row('.active').remove().draw(false);
-                        swal("Deletado!", "Seu registro foi deletado.", "success");
-                        id_row = null;
-                        cadastros_sinodos.reset();
-                    })
-                    .fail(function (response) {
-                        console.log(response.responseText);
-                        swal("Erro!", response.responseText, "error");
-                    })
-                ;
-            })
-        ;
+                .then((resolve) => {
+                    if (resolve) {
+                        $.post('/api/sinodos/delete', {id: id_row})
+                            .done(function () {
+                                tbl_api.row('.active').remove().draw(false);
+                                swal("Deletado!", "Seu registro foi deletado.", "success");
+                                id_row = null;
+                                cadastros_sinodos.reset();
+                            })
+                            .fail(function (response) {
+                                console.log(response.responseText);
+                                swal("Erro!", response.responseText, "error");
+                            })
+                        ;
+                    } else {
+                        swal.close();
+                    }
+                })
+            ;
+        }
     }
 
     /**
