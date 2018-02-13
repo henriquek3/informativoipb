@@ -28,8 +28,8 @@ $(document).ready(function () {
     $('.ui.dropdown').dropdown();
 
     // Popular a Tabela com infos do banco
-    function populaTableAfastamentos() {
-        $.get('/api/afastamentos')
+    function getDataTable() {
+        $.get('/api/sinodos')
             .done(function (response) {
                 for (let key in response) {
                     let tr, row, id, tipo, inicio, fim;
@@ -79,10 +79,8 @@ $(document).ready(function () {
         ;
     }
 
-    //populaTableAfastamentos();
-
     // Instancia DataTables() e organiza os eventos do click
-    function instanciaDataTablesAfastamentos() {
+    function instanciaDataTables() {
         setTimeout(function () {
             tbl_api = tbl_sinodos.DataTable({
                 language: {
@@ -115,24 +113,25 @@ $(document).ready(function () {
 
             tbl_api.page('next').draw(false);
             $('#tbody_sinodos').off("click", "**").on('click', 'tr', function () {
-                if ($(this).hasClass('info')) {
-                    $(this).removeClass('info');
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
                     id_row = null;
                 } else {
-                    tbl_api.$('tr.info').removeClass('info');
-                    $(this).addClass('info');
+                    tbl_api.$('tr.active').removeClass('active');
+                    $(this).addClass('active');
                     id_row = $(this).find('td:first').html();
                     tr_row = $(this);
                 }
+                console.log(id_row);
             });
         }, 1000);
     }
 
-    instanciaDataTablesAfastamentos();
+    instanciaDataTables();
 
     // Traz as informações para edição
-    function loadDataAfastamentos() {
-        $.get('api/afastamentos?id=' + id_row)
+    function getDataForm() {
+        $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
                 cadastros_sinodos.tipo_afastamento.value = data.tipo_afastamento;
@@ -144,11 +143,11 @@ $(document).ready(function () {
                     $(cadastros_sinodos.tipo_afastamento).trigger("change");
                 }, 500);
 
-                $("#lista-afastamentos").removeClass('active in');
-                $("#tab_afastamentos_lista").parent().removeClass('active');
+                $("#lista-sinodos").removeClass('active in');
+                $("#tab_sinodos_lista").parent().removeClass('active');
 
-                $("#tab_afastamentos_cadastrar").parent().addClass('active');
-                $("#cadastrar-afastamentos").addClass('active in');
+                $("#tab_sinodos_cadastrar").parent().addClass('active');
+                $("#cadastrar-sinodos").addClass('active in');
             })
             .fail(function (response) {
                 console.log(response);
@@ -157,7 +156,7 @@ $(document).ready(function () {
     }
 
     // Exclui as informações do banco de dados
-    function deleteDataAfastamentos() {
+    function deleteData() {
         if (id_row > 0) {
             swal({
                     title: "Você tem certeza disso?",
@@ -170,13 +169,13 @@ $(document).ready(function () {
                     closeOnConfirm: false
                 },
                 function () {
-                    $.post('/api/afastamentos/delete', {id: id_row})
+                    $.post('/api/sinodos/delete', {id: id_row})
                         .done(function () {
                             tbl_api.row('.info').remove().draw(false);
                             swal("Deletado!", "Seu registro foi deletado.", "success");
                             id_row = null;
                             cadastros_sinodos.reset();
-                            $("#tab_afastamentos_lista").click();
+                            $("#tab_sinodos_lista").click();
                         })
                         .fail(function (response) {
                             console.log(response.responseText);
