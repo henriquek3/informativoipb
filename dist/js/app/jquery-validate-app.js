@@ -1,10 +1,6 @@
 "use strict";
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-    return typeof obj;
-} : function (obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*! jQuery Validation Plugin - v1.17.0 - 7/29/2017
  * https://jqueryvalidation.org/
@@ -49,7 +45,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                             i[b] = f[b], delete f[b];
                         }), i) : (delete e[j.name], f);
                 }
-                return g = a.validator.normalizeRules(a.extend({}, a.validator.classRules(j), a.validator.attributeRules(j), a.validator.dataRules(j), a.validator.staticRules(j)), j), g.required && (h = g.required, delete g.required, g = a.extend({required: h}, g)), g.remote && (h = g.remote, delete g.remote, g = a.extend(g, {remote: h})), g;
+                return g = a.validator.normalizeRules(a.extend({}, a.validator.classRules(j), a.validator.attributeRules(j), a.validator.dataRules(j), a.validator.staticRules(j)), j), g.required && (h = g.required, delete g.required, g = a.extend({ required: h }, g)), g.remote && (h = g.remote, delete g.remote, g = a.extend(g, { remote: h })), g;
             }
         }
     }), a.extend(a.expr.pseudos || a.expr[":"], {
@@ -205,8 +201,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 this.prepareForm();
                 for (var a = 0, b = this.currentElements = this.elements(); b[a]; a++) {
                     this.check(b[a]);
-                }
-                return this.valid();
+                }return this.valid();
             }, element: function element(b) {
                 var c,
                     d,
@@ -221,7 +216,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 if (b) {
                     var c = this;
                     a.extend(this.errorMap, b), this.errorList = a.map(this.errorMap, function (a, b) {
-                        return {message: a, element: c.findByName(b)[0]};
+                        return { message: a, element: c.findByName(b)[0] };
                     }), this.successList = a.grep(this.successList, function (a) {
                         return !(a.name in b);
                     });
@@ -243,8 +238,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     c = 0;
                 for (b in a) {
                     void 0 !== a[b] && null !== a[b] && a[b] !== !1 && c++;
-                }
-                return c;
+                }return c;
             }, hideErrors: function hideErrors() {
                 this.hideThese(this.toHide);
             }, hideThese: function hideThese(a) {
@@ -256,8 +250,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }, focusInvalid: function focusInvalid() {
                 if (this.settings.focusInvalid) try {
                     a(this.findLastActive() || this.errorList.length && this.errorList[0].element || []).filter(":visible").focus().trigger("focusin");
-                } catch (b) {
-                }
+                } catch (b) {}
             }, findLastActive: function findLastActive() {
                 var b = this.lastActive;
                 return b && 1 === a.grep(this.errorList, function (a) {
@@ -297,8 +290,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     f,
                     g = a(b).rules(),
                     h = a.map(g, function (a, b) {
-                        return b;
-                    }).length,
+                    return b;
+                }).length,
                     i = !1,
                     j = this.elementValue(b);
                 if ("function" == typeof g.normalizer ? f = g.normalizer : "function" == typeof this.settings.normalizer && (f = this.settings.normalizer), f) {
@@ -306,7 +299,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     delete g.normalizer;
                 }
                 for (d in g) {
-                    e = {method: d, parameters: g[d]};
+                    e = { method: d, parameters: g[d] };
                     try {
                         if (c = a.validator.methods[d].call(this, j, b, e.parameters), "dependency-mismatch" === c && 1 === h) {
                             i = !0;
@@ -329,7 +322,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     if (void 0 !== arguments[a]) return arguments[a];
                 }
             }, defaultMessage: function defaultMessage(b, c) {
-                "string" == typeof c && (c = {method: c});
+                "string" == typeof c && (c = { method: c });
                 var d = this.findDefined(this.customMessage(b.name, c.method), this.customDataMessage(b, c.method), !this.settings.ignoreTitle && b.title || void 0, a.validator.messages[c.method], "<strong>Warning: No message defined for " + b.name + "</strong>"),
                     e = /\$?\{(\d+)\}/g;
                 return "function" == typeof d ? d = d.call(this, c.parameters, b) : e.test(d) && (d = a.validator.format(d.replace(e, "{$1}"), c.parameters)), d;
@@ -346,14 +339,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 var a, b, c;
                 for (a = 0; this.errorList[a]; a++) {
                     c = this.errorList[a], this.settings.highlight && this.settings.highlight.call(this, c.element, this.settings.errorClass, this.settings.validClass), this.showLabel(c.element, c.message);
-                }
-                if (this.errorList.length && (this.toShow = this.toShow.add(this.containers)), this.settings.success) for (a = 0; this.successList[a]; a++) {
+                }if (this.errorList.length && (this.toShow = this.toShow.add(this.containers)), this.settings.success) for (a = 0; this.successList[a]; a++) {
                     this.showLabel(this.successList[a]);
-                }
-                if (this.settings.unhighlight) for (a = 0, b = this.validElements(); b[a]; a++) {
+                }if (this.settings.unhighlight) for (a = 0, b = this.validElements(); b[a]; a++) {
                     this.settings.unhighlight.call(this, b[a], this.settings.errorClass, this.settings.validClass);
-                }
-                this.toHide = this.toHide.not(this.toShow), this.hideErrors(), this.addWrapper(this.toShow).show();
+                }this.toHide = this.toHide.not(this.toShow), this.hideErrors(), this.addWrapper(this.toShow).show();
             }, validElements: function validElements() {
                 return this.currentElements.not(this.invalidElements());
             }, invalidElements: function invalidElements() {
@@ -416,21 +406,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 return c = "string" == typeof c && c || "remote", a.data(b, "previousValue") || a.data(b, "previousValue", {
                     old: null,
                     valid: !0,
-                    message: this.defaultMessage(b, {method: c})
+                    message: this.defaultMessage(b, { method: c })
                 });
             }, destroy: function destroy() {
                 this.resetForm(), a(this.currentForm).off(".validate").removeData("validator").find(".validate-equalTo-blur").off(".validate-equalTo").removeClass("validate-equalTo-blur");
             }
         },
         classRuleSettings: {
-            required: {required: !0},
-            email: {email: !0},
-            url: {url: !0},
-            date: {date: !0},
-            dateISO: {dateISO: !0},
-            number: {number: !0},
-            digits: {digits: !0},
-            creditcard: {creditcard: !0}
+            required: { required: !0 },
+            email: { email: !0 },
+            url: { url: !0 },
+            date: { date: !0 },
+            dateISO: { dateISO: !0 },
+            number: { number: !0 },
+            digits: { digits: !0 },
+            creditcard: { creditcard: !0 }
         },
         addClassRules: function addClassRules(b, c) {
             b.constructor === String ? this.classRuleSettings[b] = c : a.extend(this.classRuleSettings, b);
@@ -453,8 +443,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 g = b.getAttribute("type");
             for (c in a.validator.methods) {
                 "required" === c ? (d = b.getAttribute(c), "" === d && (d = !0), d = !!d) : d = f.attr(c), this.normalizeAttributeRule(e, g, c, d);
-            }
-            return e.maxlength && /-1|2147483647|524288/.test(e.maxlength) && delete e.maxlength, e;
+            }return e.maxlength && /-1|2147483647|524288/.test(e.maxlength) && delete e.maxlength, e;
         },
         dataRules: function dataRules(b) {
             var c,
@@ -464,8 +453,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 g = b.getAttribute("type");
             for (c in a.validator.methods) {
                 d = f.data("rule" + c.charAt(0).toUpperCase() + c.substring(1).toLowerCase()), this.normalizeAttributeRule(e, g, c, d);
-            }
-            return e;
+            }return e;
         },
         staticRules: function staticRules(b) {
             var c = {},
@@ -550,12 +538,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     i = new RegExp("\\b" + f + "\\b"),
                     j = f && !i.test(h.join()),
                     k = function k(a) {
-                        var b = ("" + a).match(/(?:\.(\d+))?$/);
-                        return b && b[1] ? b[1].length : 0;
-                    },
+                    var b = ("" + a).match(/(?:\.(\d+))?$/);
+                    return b && b[1] ? b[1].length : 0;
+                },
                     l = function l(a) {
-                        return Math.round(a * Math.pow(10, e));
-                    },
+                    return Math.round(a * Math.pow(10, e));
+                },
                     m = !0;
                 if (j) throw new Error(g);
                 return e = k(d), (k(b) > e || l(b) % l(d) !== 0) && (m = !1), this.optional(c) || m;
@@ -571,7 +559,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     g,
                     h,
                     i = this.previousValue(c, e);
-                return this.settings.messages[c.name] || (this.settings.messages[c.name] = {}), i.originalMessage = i.originalMessage || this.settings.messages[c.name][e], this.settings.messages[c.name][e] = i.message, d = "string" == typeof d && {url: d} || d, h = a.param(a.extend({data: b}, d.data)), i.old === h ? i.valid : (i.old = h, f = this, this.startRequest(c), g = {}, g[c.name] = b, a.ajax(a.extend(!0, {
+                return this.settings.messages[c.name] || (this.settings.messages[c.name] = {}), i.originalMessage = i.originalMessage || this.settings.messages[c.name][e], this.settings.messages[c.name][e] = i.message, d = "string" == typeof d && { url: d } || d, h = a.param(a.extend({ data: b }, d.data)), i.old === h ? i.valid : (i.old = h, f = this, this.startRequest(c), g = {}, g[c.name] = b, a.ajax(a.extend(!0, {
                     mode: "abort",
                     port: "validate" + c.name,
                     dataType: "json",

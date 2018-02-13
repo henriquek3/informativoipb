@@ -74,6 +74,7 @@ $RECYCLE.BIN/
 vendor/
 node_modules/
 dist/*.html
+dist/js/app
 public/*.html
 templates/*.html
 .phpintel/
