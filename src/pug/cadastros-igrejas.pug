@@ -1,0 +1,273 @@
+extends layouts/_layout.pug
+
+block content
+    div.ui.segment
+        h2.ui.floated.header
+            | Cadastro de Igrejas
+        a.ui.compact.right.floated.icon.basic.button(href="index.html")
+            i.remove.icon
+        div.ui.clearing.divider
+        p
+        div.ui.top.attached.tabular.menu
+            a.item.active(data-tab="first") Igrejas
+            a.item(data-tab="second") Cadastrar
+            a.item(data-tab="third") Congregação
+        div.ui.bottom.attached.tab.segment.active(data-tab="first")
+            table.ui.compact.selectable.celled.green.table(id="tbl_igrejas")
+                thead
+                    tr
+                        th.ten.wide Nome
+                        th.two.wide.center.aligned Presbitério
+                        th.two.wide.center.aligned Sínodo
+                tbody
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned ZPA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned IYN
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned QRW
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SBC
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned SCA
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned STS
+                    tr
+                        td Presbiteriana Luz e Vida
+                        td.center.aligned PRON
+                        td.center.aligned OAS
+
+        div.ui.bottom.attached.tab.segment(data-tab="second")
+            form(id="cadastros_igrejas", name="cadastros_igrejas")
+                div.ui.form
+                    div.fields
+                        div.six.wide.field
+                            label Sínodo
+                            select.ui.fluid.search.selection.dropdown
+                                option
+                                option Sinodo
+                                option Binodo
+                                option Cinodo
+                        div.four.wide.field
+                            label Estado
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Estado
+                                option Estado
+                                option Estado
+                        div.six.wide.field
+                            label Cidade
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Cidade
+                                option Cidade
+                                option Cidade
+                    div.fields
+                        div.eight.wide.field
+                            label Nome
+                            input(type="text", name="nome")
+                        div.three.wide.field
+                            label CNPJ
+                            input(type="text")
+                        div.two.wide.field
+                            label Complemento
+                            input(type="text")
+                        div.ui.calendar.bottom.left.three.wide.field
+                            label Organização
+                            input.datepicker2(type="text")
+                    div.fields
+                        div.six.wide.field
+                            label Endereço
+                            input(type="text")
+                        div.two.wide.field
+                            label Número
+                            input(type="text")
+                        div.four.wide.field
+                            label Complemento
+                            input(type="text")
+                        div.four.wide.field
+                            label Bairro
+                            input(type="text")
+                    div.fields
+                        div.eight.wide.field
+                            label E-mail
+                            input(type="email")
+                        div.eight.wide.field
+                            label Homepage
+                            input(type="url")
+
+                div(style="text-align: right")
+                    button.ui.labeled.icon.button(type="reset")
+                        i.erase.icon
+                        | Limpar
+
+                    button.ui.green.right.labeled.icon.button(type="subimit")
+                        i.plus.icon
+                        | Gravar
+        div.ui.bottom.attached.tab.segment(data-tab="third")
+            form(id="cadastros_congregacoes", name="cadastros_congregacoes")
+                div.ui.form
+                    div.fields
+                        div.six.wide.field
+                            label Sínodo
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Sinodo
+                                option Sinodo
+                                option Sinodo
+                        div.four.wide.field
+                            label Estado
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Estado
+                                option Estado
+                                option Estado
+                        div.six.wide.field
+                            label Cidade
+                            select.ui.fluid.search.dropdown
+                                option
+                                option Cidade
+                                option Cidade
+                                option Cidade
+                    div.fields
+                        div.eight.wide.field
+                            label Nome
+                            input(type="text", name="nome")
+                        div.three.wide.field
+                            label CNPJ
+                            input(type="text")
+                        div.two.wide.field
+                            label Complemento
+                            input(type="text")
+                        div.ui.calendar.bottom.left.three.wide.field
+                            label Organização
+                            input.datepicker2(type="text")
+                    div.fields
+                        div.six.wide.field
+                            label Endereço
+                            input(type="text")
+                        div.two.wide.field
+                            label Número
+                            input(type="text")
+                        div.four.wide.field
+                            label Complemento
+                            input(type="text")
+                        div.four.wide.field
+                            label Bairro
+                            input(type="text")
+                    div.fields
+                        div.eight.wide.field
+                            label E-mail
+                            input(type="email")
+                        div.eight.wide.field
+                            label Homepage
+                            input(type="url")
+                div(style="text-align: right")
+                    button.ui.labeled.icon.button(type="reset")
+                        i.erase.icon
+                        | Limpar
+
+                    button.ui.green.right.labeled.icon.button(type="subimit")
+                        i.plus.icon
+                        | Gravar
+
+block specific-js
+    script(src="js/plugins/bootstrap-datepicker.min.js")
+    script(src="js/plugins/bootstrap-datepicker.pt-BR.min.js")
+    script(src="js/plugins/dataTables.min.js")
+    script(type="text/javascript").
+        $(document)
+            .ready(function () {
+                // cria o sidebar e adiciona um evento ao botão
+                $('.menu .item')
+                    .tab()
+                ;
+
+                // Instancia o datepicker e atribui definições https://uxsolutions.github.io/bootstrap-datepicker/
+                $(".datepicker2").datepicker({
+                    todayBtn: "linked",
+                    daysOfWeekHighlighted: "0,6",
+                    autoclose: true,
+                    todayHighlight: true,
+                    language: "pt-BR"
+                });
+
+                // Instancia o search do dropdown semantic-ui
+                $('.ui.dropdown').dropdown();
+
+                // Instancia o DataTable
+                $("#tbl_igrejas").DataTable({
+                    language: {
+                        sEmptyTable: "Nenhum registro encontrado",
+                        sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                        sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+                        sInfoFiltered: "(Filtrados de _MAX_ registros)",
+                        sInfoPostFix: "",
+                        sInfoThousands: ".",
+                        sLengthMenu: "_MENU_  Resultados por página",
+                        sLoadingRecords: "Carregando...",
+                        sProcessing: "Processando...",
+                        sZeroRecords: "Nenhum registro encontrado",
+                        sSearch: "Pesquisar",
+                        select: {
+                            rows: "  |  %d linha selecionada"
+                        },
+                        oPaginate: {
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior",
+                            "sFirst": "Primeiro",
+                            "sLast": "Último"
+                        },
+                        oAria: {
+                            "sSortAscending": ": Ordenar colunas de forma ascendente",
+                            "sSortDescending": ": Ordenar colunas de forma descendente"
+                        }
+                    }
+                });
+
+            })
+        ;
