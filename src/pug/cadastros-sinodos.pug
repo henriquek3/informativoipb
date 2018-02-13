@@ -2,10 +2,23 @@ extends layouts/_layout.pug
 
 block content
     div.ui.segment
+        //
+        div(style="position: absolute;right: 20px;")
+            div.ui.breadcrumb
+                a.section(href="index.html")
+                    i.home.icon
+                div.divider /
+                a.section Cadastros
+                div.divider /
+                div.active.section Sínodos
+
+        div.ui.clearing
+
         h2.ui.floated.header
             | Cadastro de Sínodos
-        a.ui.compact.right.floated.icon.basic.button(href="index.html")
-            i.remove.icon
+            div.sub.header
+                | Sínodos são usados para agrupar presbitérios. -> breve explicação da tela
+
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
@@ -100,4 +113,5 @@ block specific-js
     script(src="js/plugins/bootstrap-datepicker.min.js")
     script(src="js/plugins/bootstrap-datepicker.pt-BR.min.js")
     script(src="js/plugins/dataTables.min.js")
+    script(src="js/plugins/sweetalert.min.js")
     script(src="js/app/cadastros-sinodos-app.js")

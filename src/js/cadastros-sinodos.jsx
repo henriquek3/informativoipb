@@ -2,20 +2,25 @@ let id_row, tr_row, tbl_sinodos, tbl_api;
 tbl_sinodos = $("#tbl_sinodos");
 
 $(document).ready(function () {
+    /**
+     * Função utilizada devido o select com ui.search.dropdown
+     */
     $.validator.setDefaults({
         debug: true,
-        //jquery-validator has a panic attack about the search element not having a name tag.
-        ignore: ".search",
+        ignore: ".search", // ignora validação onde estiver usando essa classe
         submitHandler: function () {
-            //$.blockUI({message: '<div id="parent"><div id="loaderIcon" class="loader"></div><div id="loaderText" >Working on it....</div></div>'});
             return false;
         }
     });
 
-    // cria o sidebar e adiciona um evento ao botão
+    /**
+     * cria o sidebar e adiciona um evento ao botão
+     */
     $('.menu .item').tab();
 
-    // Instancia o datepicker e atribui definições https://uxsolutions.github.io/bootstrap-datepicker/
+    /**
+     * Instancia o datepicker e atribui definições https://uxsolutions.github.io/bootstrap-datepicker/
+     */
     $(".datepicker2").datepicker({
         todayBtn: "linked",
         daysOfWeekHighlighted: "0,6",
@@ -24,52 +29,58 @@ $(document).ready(function () {
         language: "pt-BR"
     });
 
-    // Instancia o search do dropdown semantic-ui
+    /**
+     * Instancia o search do dropdown semantic-ui
+     */
     $('.ui.dropdown').dropdown();
 
-    // Popular a Tabela com infos do banco
+    /**
+     * Popular a Tabela com infos do banco
+     */
     function getDataTable() {
         $.get('/api/sinodos')
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, tipo, inicio, fim;
+                    let tr, row, id, regiao, nome, sigla;
                     tr = $('<tr/>');
                     row = response[key];
+                    /**
+                     * Adiciona células com as informações do banco de dados
+                     * @type {jQuery}
+                     */
                     id = $('<td/>').html(row.id);
-                    inicio = $('<td/>').html(row.inicio);
-                    fim = $('<td/>').html(row.fim);
-                    switch (row.tipo_afastamento) {
+                    nome = $('<td/>').html(row.nome);
+                    sigla = $('<td/>').html(row.sigla);
+                    switch (row.regiao) {
                         case '1':
-                            tipo = $('<td/>').html('AFASTAMENTO');
+                            regiao = $('<td/>').html("CENTRO-OESTE");
                             break;
                         case '2':
-                            tipo = $('<td/>').html('ADVERTÊNCIA');
+                            regiao = $('<td/>').html("NORDESTE");
                             break;
                         case '3':
-                            tipo = $('<td/>').html('FALTA');
+                            regiao = $('<td/>').html("NORTE");
                             break;
                         case '4':
-                            tipo = $('<td/>').html('AVISO PRÉVIO');
+                            regiao = $('<td/>').html("SUDESTE");
                             break;
                         case '5':
-                            tipo = $('<td/>').html('CONTRATO EXPERIÊNCIA');
-                            break;
-                        case '6':
-                            tipo = $('<td/>').html('INSS - AUXÍLIO DOENÇA');
-                            break;
-                        case '7':
-                            tipo = $('<td/>').html('INSS - ACIDENTE DE TRABALHO');
+                            regiao = $('<td/>').html("SUL");
                             break;
                         default:
-                            tipo = $('<td/>').html('Não identificado');
+                            regiao = $('<td/>').html('Não identificado');
                             break;
                     }
-
+                    /**
+                     * Adiciona as células nas linhas
+                     */
                     tr.append(id)
-                        .append(tipo)
-                        .append(inicio)
-                        .append(fim);
-
+                        .append(nome)
+                        .append(sigla)
+                        .append(regiao);
+                    /**
+                     * Adiciona linhas na tabela
+                     */
                     $('#tbody_sinodos').append(tr);
                 }
             })
@@ -79,7 +90,9 @@ $(document).ready(function () {
         ;
     }
 
-    // Instancia DataTables() e organiza os eventos do click
+    /**
+     * Instancia DataTables() e organiza os eventos do click
+     */
     function instanciaDataTables() {
         setTimeout(function () {
             tbl_api = tbl_sinodos.DataTable({
@@ -111,7 +124,11 @@ $(document).ready(function () {
                 }
             });
 
-            tbl_api.page('next').draw(false);
+            tbl_api.page('next').draw(false); // ? Ativa paginação !
+
+            /**
+             * Utilizado para selecionar as linhas da tabela
+             */
             $('#tbody_sinodos').off("click", "**").on('click', 'tr', function () {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
@@ -122,32 +139,34 @@ $(document).ready(function () {
                     id_row = $(this).find('td:first').html();
                     tr_row = $(this);
                 }
+                /**
+                 * exibe no console o nr da celula código da linha selecionada,
+                 * que vem do banco de dados como o id do registro
+                 */
                 console.log(id_row);
             });
         }, 1000);
     }
 
-    instanciaDataTables();
+    instanciaDataTables(); // init function instanciaDataTables() {};
 
-    // Traz as informações para edição
+    /**
+     * Traz as informações para edição
+     */
     function getDataForm() {
         $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_sinodos.tipo_afastamento.value = data.tipo_afastamento;
-                cadastros_sinodos.inicio.value = data.inicio;
-                cadastros_sinodos.fim.value = data.fim;
-                cadastros_sinodos.observacoes.value = data.observacoes;
+                cadastros_sinodos.nome.value = data.nome;
+                cadastros_sinodos.sigla.value = data.sigla;
+                cadastros_sinodos.regiao.value = data.regiao;
 
+                /**
+                 * espera um pouco depois de setar o valor para mudar o select para o valor
+                 */
                 setTimeout(() => {
-                    $(cadastros_sinodos.tipo_afastamento).trigger("change");
+                    $(cadastros_sinodos.regiao).trigger("change");
                 }, 500);
-
-                $("#lista-sinodos").removeClass('active in');
-                $("#tab_sinodos_lista").parent().removeClass('active');
-
-                $("#tab_sinodos_cadastrar").parent().addClass('active');
-                $("#cadastrar-sinodos").addClass('active in');
             })
             .fail(function (response) {
                 console.log(response);
@@ -155,42 +174,49 @@ $(document).ready(function () {
         ;
     }
 
-    // Exclui as informações do banco de dados
+    /**
+     * Exclui as informações do banco de dados
+     * @returns {boolean}
+     */
     function deleteData() {
-        if (id_row > 0) {
-            swal({
-                    title: "Você tem certeza disso?",
-                    text: "Uma vez deletado, não há como desfazer!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Sim, delete isto!",
-                    showLoaderOnConfirm: true,
-                    closeOnConfirm: false
+        swal({
+                title: "Você tem certeza disso?",
+                text: "Uma vez deletado, não há como desfazer!",
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "Cancelar",
+                        visible: true,
+                        value: true,
+                        closeModal: true,
+                    },
+                    confirm: true
+
                 },
-                function () {
-                    $.post('/api/sinodos/delete', {id: id_row})
-                        .done(function () {
-                            tbl_api.row('.info').remove().draw(false);
-                            swal("Deletado!", "Seu registro foi deletado.", "success");
-                            id_row = null;
-                            cadastros_sinodos.reset();
-                            $("#tab_sinodos_lista").click();
-                        })
-                        .fail(function (response) {
-                            console.log(response.responseText);
-                            swal("Erro!", response.responseText, "error");
-                        })
-                    ;
-                })
-            ;
-        } else {
-            tbl_sinodos.effect('shake');
-            return false;
-        }
+                closeModal: false,
+                closeOnClickOutside: false,
+            })
+            .then(() => {
+                $.post('/api/sinodos/delete', {id: id_row})
+                    .done(function () {
+                        tbl_api.row('.active').remove().draw(false);
+                        swal("Deletado!", "Seu registro foi deletado.", "success");
+                        id_row = null;
+                        cadastros_sinodos.reset();
+                    })
+                    .fail(function (response) {
+                        console.log(response.responseText);
+                        swal("Erro!", response.responseText, "error");
+                    })
+                ;
+            })
+        ;
     }
 
-    // Validador do Formulario, utilizado para incluir ou editar novos registros
+    /**
+     * Validador do Formulario, utilizado para incluir ou editar novos registros
+     * @type {*|jQuery}
+     */
     let validator = $("#cadastros_sinodos").validate({
         rules: {
             nome: {
@@ -218,7 +244,10 @@ $(document).ready(function () {
         }
     });
 
-    // Os campos select do semantic não são compativeis com o jquery validation, a msg fica bugada, usar desta forma para select.search.dropdown
+    /**
+     * Os campos select do semantic não são compativeis com o jquery validation,
+     * a msg fica bugada, usar desta forma para select.search.dropdown
+     */
     $("#cadastros_sinodos").form({
         inline: true,
         on: 'submit',
@@ -235,9 +264,18 @@ $(document).ready(function () {
         }
     });
 
-    // Ao clicar no botão limpar, reseta as classes de erro
+    /**
+     * Ao clicar no botão limpar, reseta as classes de erro
+     */
     $(".ui.reset.button").on("click", function () {
         validator.resetForm();
         $('form').form('reset')
     })
+
+    /**
+     * Adiciona evento de exclusão no botão Excluir
+     */
+    $("button[type='button']").on("click", function () {
+        deleteData();
+    });
 });
