@@ -204,7 +204,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator = $("#cadastros_igrejas").validate({
+    let validator_igrejas = $("#cadastros_igrejas").validate({
         rules: {
             nome: {
                 required: true,
