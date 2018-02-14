@@ -40,72 +40,72 @@ block content
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 02
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 03
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 04
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 05
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 06
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 07
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned ZPA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 08
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned IYN
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 09
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned QRW
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 10
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 11
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 12
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SBC
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 13
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 14
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned STS
                     tr
-                        td.center.aligned 01
+                        td.center.aligned 15
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned OAS
@@ -178,6 +178,7 @@ block content
                     button.ui.red.right.labeled.icon.button(type="button")
                         i.remove.icon
                         | Excluir
+
         div.ui.bottom.attached.tab.segment(data-tab="third")
             form(id="cadastros_congregacoes", name="cadastros_congregacoes")
                 div.ui.form
@@ -259,55 +260,3 @@ block specific-js
     script(src="js/plugins/dataTables.min.js")
     script(src="js/plugins/sweetalert.min.js")
     script(src="js/app/cadastros-igrejas-app.js")
-    script(type="text/javascript").
-        $(document)
-            .ready(function () {
-                // cria o sidebar e adiciona um evento ao botão
-                $('.menu .item')
-                    .tab()
-                ;
-
-                // Instancia o datepicker e atribui definições https://uxsolutions.github.io/bootstrap-datepicker/
-                $(".datepicker2").datepicker({
-                    todayBtn: "linked",
-                    daysOfWeekHighlighted: "0,6",
-                    autoclose: true,
-                    todayHighlight: true,
-                    language: "pt-BR"
-                });
-
-                // Instancia o search do dropdown semantic-ui
-                $('.ui.dropdown').dropdown();
-
-                // Instancia o DataTable
-                $("#tbl_igrejas").DataTable({
-                    language: {
-                        sEmptyTable: "Nenhum registro encontrado",
-                        sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                        sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
-                        sInfoFiltered: "(Filtrados de _MAX_ registros)",
-                        sInfoPostFix: "",
-                        sInfoThousands: ".",
-                        sLengthMenu: "_MENU_  Resultados por página",
-                        sLoadingRecords: "Carregando...",
-                        sProcessing: "Processando...",
-                        sZeroRecords: "Nenhum registro encontrado",
-                        sSearch: "Pesquisar",
-                        select: {
-                            rows: "  |  %d linha selecionada"
-                        },
-                        oPaginate: {
-                            "sNext": "Próximo",
-                            "sPrevious": "Anterior",
-                            "sFirst": "Primeiro",
-                            "sLast": "Último"
-                        },
-                        oAria: {
-                            "sSortAscending": ": Ordenar colunas de forma ascendente",
-                            "sSortDescending": ": Ordenar colunas de forma descendente"
-                        }
-                    }
-                });
-
-            })
-        ;
