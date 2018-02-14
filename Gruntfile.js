@@ -9,14 +9,14 @@ module.exports = function(grunt) {
                 files: ['src/sass/**/*.sass', 'src/sass/**/*.scss'],
                 tasks: ['sass', 'postcss'],
                 options: {
-                    interrupt: true
+                    interrupt: false
                 }
             },
             pug: {
                 files: ['src/pug/**/*.pug'],
                 tasks: ['pug'],
                 options: {
-                    interrupt: true
+                    interrupt: false
                 }
             },
             babel: {
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                 files: ['dist/css/main.css'],
                 tasks: ['cssmin'],
                 options: {
-                    interrupt: true
+                    interrupt: false
                 }
             }
         },
