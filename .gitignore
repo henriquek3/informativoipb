@@ -70,6 +70,7 @@ $RECYCLE.BIN/
 .vscode/
 dist/*.html
 dist/js/app/
+public/js/app/
 public/*.html
 templates/
 .phpintel/
