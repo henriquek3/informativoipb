@@ -285,7 +285,7 @@ $(document).ready(function () {
         }
     });
 
-    let validator = $("#cadastros_congregacoes").validate({
+    let validator_congregacoes = $("#cadastros_congregacoes").validate({
         rules: {
             nome: {
                 required: true,

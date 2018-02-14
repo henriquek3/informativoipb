@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                 options: {
                     interrupt: true
                 }
-            }
+            },
         },
         pug: {
             compile: {
@@ -178,6 +178,7 @@ module.exports = function(grunt) {
     // Set task aliases
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('css', ['cssmin']);
+    grunt.registerTask('ht', ['htmlmin']);
     grunt.registerTask('serve', ['connect', 'watch']);
     grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel', 'uglify', 'htmlmin', 'cssmin']);
 };
