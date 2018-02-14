@@ -69,7 +69,7 @@ package-lock.json
 $RECYCLE.BIN/
 .vscode/
 dist/*.html
-dist/js/app/
+dist/js/app/*.js
 public/*.html
 templates/
 .phpintel/
