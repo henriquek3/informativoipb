@@ -1,0 +1,1 @@
+"use strict";var regexNonWhiteSpace=function(args){for(var m,regex=/[a-zA-Z]+/g,str=args,arg="";null!==(m=regex.exec(str));)m.index===regex.lastIndex&&regex.lastIndex++,m.forEach(function(match,groupIndex){arg+=match});return arg};
