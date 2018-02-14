@@ -1,8 +1,10 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
-            options: {livereload: true},
+            options: {
+                livereload: true
+            },
             scss: {
                 files: ['src/sass/**/*.sass', 'src/sass/**/*.scss'],
                 tasks: ['sass', 'postcss'],
@@ -24,13 +26,27 @@ module.exports = function (grunt) {
                     interrupt: false
                 }
             },
+            uglify: {
+                files: ['dist/js/app/**/*.js'],
+                tasks: ['uglify'],
+                options: {
+                    interrupt: false
+                }
+            },
             htmlmin: {
                 files: ['dist/**/*.html'],
                 tasks: ['htmlmin'],
                 options: {
                     interrupt: false
                 }
-            }
+            },
+            cssmin: {
+                files: ['dist/css/main.css'],
+                tasks: ['cssmin'],
+                options: {
+                    interrupt: true
+                }
+            },
         },
         pug: {
             compile: {
@@ -50,14 +66,14 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     outputStyle: 'expanded',
-                    sourceMap: false
+                    sourceMap: true
                 },
                 files: [{
                     expand: true,
                     cwd: 'src/sass/',
-                    src: ['*.scss'],
+                    src: ['*.sass'],
                     dest: 'dist/css/',
-                    ext: '.css'
+                    ext: '.min.css'
                 }]
             }
         },
@@ -72,6 +88,7 @@ module.exports = function (grunt) {
                 src: ['dist/css/*.css']
             }
         },
+        //Transpiler
         babel: {
             options: {
                 "sourceMap": true
@@ -84,6 +101,37 @@ module.exports = function (grunt) {
                     "dest": "dist/js/app",
                     "ext": "-app.js"
                 }]
+            }
+        },
+        //CSS min
+        cssmin: {
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'dist/css',
+                    src: ['*.css'],
+                    dest: 'public/css'
+                }]
+            }
+        },
+        //grunt son
+        uglify: {
+            options: {
+                mangle: false
+            },
+            file_min_js: {
+                files: [{
+                    expand: true,
+                    cwd: 'dist/js/app',
+                    src: '**/*.js',
+                    dest: 'public/js/app'
+                }]
+            }
+        },
+        concat: {
+            js: {
+                src: 'dist/js/app/*.js',
+                dest: 'public/js/app/app-main.js'
             }
         },
         htmlmin: {
@@ -100,9 +148,9 @@ module.exports = function (grunt) {
                 }]
             }
         },
-        connect: {
-            server: {
-                options: {
+        connect:{
+            server:{
+                options:{
                     port: 9005,
                     hostname: '*',
                     base: 'dist/',
@@ -117,12 +165,20 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-pug');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    //Transpiler
+    grunt.loadNpmTasks('grunt-babel');
+    //CSSMin
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    //son
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-babel');
 
     // Set task aliases
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel', 'htmlmin']);
+    grunt.registerTask('css', ['cssmin']);
+    grunt.registerTask('ht', ['htmlmin']);
     grunt.registerTask('serve', ['connect', 'watch']);
+    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel', 'uglify', 'htmlmin', 'cssmin']);
 };

@@ -1,5 +1,5 @@
-let id_row, tr_row, tbl_sinodos, tbl_api;
-tbl_sinodos = $("#tbl_sinodos");
+let id_row, tr_row, tbl_presbiterios, tbl_api;
+tbl_presbiterios = $("#tbl_presbiterios");
 
 $(document).ready(function () {
     /**
@@ -38,7 +38,7 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/sinodos')
+        $.get('/api/presbiterios')
             .done(function (response) {
                 for (let key in response) {
                     let tr, row, id, regiao, nome, sigla;
@@ -81,21 +81,21 @@ $(document).ready(function () {
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_sinodos').append(tr);
+                    $('#tbody_presbiterios').append(tr);
                 }
             })
             .fail(function (response) {
                 console.log(response);
             })
         ;
-    } getDataTable();
+    }
 
     /**
      * Instancia DataTables() e organiza os eventos do click
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_sinodos.DataTable({
+            tbl_api = tbl_presbiterios.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -129,7 +129,7 @@ $(document).ready(function () {
             /**
              * Utilizado para selecionar as linhas da tabela
              */
-            $('#tbody_sinodos').off("click", "**").on('click', 'tr', function () {
+            $('#tbody_presbiterios').off("click", "**").on('click', 'tr', function () {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     id_row = null;
@@ -154,31 +154,22 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/sinodos?id=' + id_row)
+        $.get('api/presbiterios?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_sinodos.nome.value = data.nome;
-                cadastros_sinodos.sigla.value = data.sigla;
-                cadastros_sinodos.regiao.value = data.regiao;
+                cadastros_presbiterios.nome.value = data.nome;
+                cadastros_presbiterios.sigla.value = data.sigla;
+                cadastros_presbiterios.regiao.value = data.regiao;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_sinodos.regiao).trigger("change");
-                }, 100);
+                    $(cadastros_presbiterios.regiao).trigger("change");
+                }, 500);
             })
             .fail(function (response) {
                 console.log(response);
-                iziToast.error({
-                    title: 'Erro',
-                    message: 'Operação não realizada!',
-                    timeout: 10000,
-                    pauseOnHover: true,
-                    position: 'topRight',
-                    transitionIn: 'fadeInDown',
-                    transitionOut: 'fadeOutUp'
-                });
             })
         ;
     }
@@ -188,7 +179,7 @@ $(document).ready(function () {
      * @returns {boolean}
      */
     function deleteData() {
-        if ( id_row > 0 ) {
+        if (id_row > 0) {
             swal({
                 title: "Você tem certeza disso?",
                 text: "Uma vez deletado, não há como desfazer!",
@@ -208,14 +199,12 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/sinodos/delete', {id: id_row})
+                        $.post('/api/presbiterios/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
                                 id_row = null;
                                 cadastros_sinodos.reset();
-                                validator.resetForm();
-                                $('form').form('reset');
                             })
                             .fail(function (response) {
                                 console.log(response);
@@ -234,7 +223,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator = $("#cadastros_sinodos").validate({
+    let validator_presbiterios = $("#cadastros_presbiterios").validate({
         rules: {
             nome: {
                 required: true,
@@ -253,108 +242,67 @@ $(document).ready(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).parent().removeClass(errorClass);
         },
+        invalidHandler: function () {
+            alert("invelid handler");
+        },
         submitHandler: function () {
             if (id_row > 0) {
-                let form = $('#cadastros_sinodos').serializeArray();
+                let form = $('#cadastros_presbiterios').serializeArray();
                 form.unshift({name: 'id', value: id_row});
-                $.post('api/sinodos/update', form)
+                $.post('api/presbiterios/update', form)
                     .done(function (response) {
-                        console.log(response);
                         tbl_api.row(tr_row).remove();
-                        tbl_api.row.add([
-                            response.id,
-                            response.nome.toUpperCase(),
-                            response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
-                        ]).draw(false);
 
-                        iziToast.success({
-                            title: 'OK',
-                            message: 'Registro alterado com sucesso!',
-                            timeout: 10000,
-                            pauseOnHover: true,
-                            position: 'topRight',
-                            transitionIn: 'fadeInDown',
-                            transitionOut: 'fadeOutUp'
+                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
+                        $.notify({
+                            title: "Status OK!<br/>",
+                            message: 'Registro Alterado com sucesso!',
+                            icon: 'fa fa-check'
+                        }, {
+                            type: "success"
                         });
                     })
                     .fail(function (response) {
                         console.log(response);
-                        let str = response.responseText;
-                        let result = str.indexOf("SQLSTATE[23000]");
-                        if (result > 0 ) {
-                            $(cadastros_sinodos.sigla).parent().addClass("error");
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'center',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        } else {
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'Operação não realizada!',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'topRight',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        }
+                        $.notify({
+                            title: 'Operação não efetuada.<br/>',
+                            message: 'Erro: ' + response.status + ', ' + response.statusText
+                        }, {
+                            type: "danger",
+                            delay: 10000
+                        });
                     })
                 ;
             } else {
-                let form = $('#cadastros_sinodos').serializeArray();
-                $.post('api/sinodos/store', form)
+                let form = $('#cadastros_presbiterios').serializeArray();
+                $.post('api/presbiterios/store', form)
                     .done(function (response) {
                         console.log(response);
 
-                        tbl_api.row.add([
-                            response.id,
-                            response.nome.toUpperCase(),
-                            response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
-                        ]).draw(false);
+                        setTimeout(function () {
+                            $('input.error').parent().removeClass('has-error');
+                            $('input.valid').parent().removeClass('has-success');
+                        }, 600);
 
-                        iziToast.success({
-                            title: 'OK',
+                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
+
+                        $.notify({
+                            title: "Status OK!<br/>",
                             message: 'Registro inserido com sucesso!',
-                            timeout: 10000,
-                            pauseOnHover: true,
-                            position: 'topRight',
-                            transitionIn: 'fadeInDown',
-                            transitionOut: 'fadeOutUp'
+                            icon: 'fa fa-check'
+                        }, {
+                            type: "success"
                         });
                     })
                     .fail(function (response) {
                         console.log(response);
-                        let str = response.responseText;
-                        let result = str.indexOf("SQLSTATE[23000]");
-                        if (result > 0 ) {
-                            $(cadastros_sinodos.sigla).parent().addClass("error");
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'center',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        } else {
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'Operação não realizada!',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'topRight',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        }
+                        $.notify({
+                            title: 'Operação não efetuada.<br/>',
+                            message: 'Erro: ' + response.status + ', ' + response.statusText
+                        }, {
+                            type: "danger",
+                            delay: 10000
+                        });
                     })
                 ;
             }
@@ -365,7 +313,7 @@ $(document).ready(function () {
      * Os campos select do semantic não são compativeis com o jquery validation,
      * a msg fica bugada, usar desta forma para select.search.dropdown
      */
-    $("#cadastros_sinodos").form({
+    $("#cadastros_presbiterios").form({
         inline: true,
         on: 'submit',
         fields: {
@@ -385,8 +333,8 @@ $(document).ready(function () {
      * Ao clicar no botão limpar, reseta as classes de erro
      */
     $(".ui.reset.button").on("click", function () {
-        validator.resetForm();
-        $('form').form('reset');
+        validator_presbiterios.resetForm();
+        $('form').form('reset')
     });
 
     /**
@@ -394,35 +342,5 @@ $(document).ready(function () {
      */
     $("button[type='button']").on("click", function () {
         deleteData();
-    });
-
-    /**
-     *  Função para ativar o get
-     */
-    $("a[data-tab='second']").on("click",function (){
-        if ( id_row > 0 ) {
-            getDataForm();
-        } else {
-            /**
-             * reseta os campos do tipo input
-             */
-            cadastros_sinodos.reset();
-
-            /**
-             * retorna o select para a primera opção
-             * @type {number}
-             */
-            validator.resetForm();
-            $('form').form('reset');
-        }
-    });
-
-    /**
-     * Função para quando for na aba lista, zerar o id_row
-     */
-    $("a[data-tab='first']").on("click",function (){
-        if (id_row > 0 ){
-            id_row = null;
-        }
     });
 });

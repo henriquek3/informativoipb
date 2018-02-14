@@ -25,9 +25,11 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver' => 'pdo_mysql',
         'host' => 'localhost',
-        'dbname' => 'servidor_tecman',
-        'user' => 'servidor_tecman',
-        'password' => 'AdjXr]C4x0k@',   
+        'dbname' => 'jksistem_informativoipb',
+        /*'user' => 'jksistem_ipbsys',
+        'password' => 'azfRm9ps]9M&',*/
+        'user' => 'root',
+        'password' => '',
         'charset' => 'utf8mb4',
     ),
 ));
@@ -72,12 +74,13 @@ $app->get('/', function () {
     return ob_get_clean();
 });
 
-$app->get('/inicio', function () {
+$app->get('/index.html', function () {
     ob_start();
     include __DIR__ . '/../templates/index.html';
     return ob_get_clean();
 });
 
+/*
 $app->get('/login', function () {
     ob_start();
     include __DIR__ . '/../templates/page-login.html';
@@ -88,102 +91,22 @@ $app->get('/sistema-parametros', function () {
     ob_start();
     include __DIR__ . '/../templates/sistema-parametros.html';
     return ob_get_clean();
-});
-$app->get('/usuario', function () {
+});*/
+
+$app->get('/cadastros-sinodos.html', function () {
     ob_start();
-    include __DIR__ . '/../templates/page-user.html';
+    include __DIR__ . '/../templates/cadastros-sinodos.html';
     return ob_get_clean();
 });
 
-$app->get('/tipos-documentos', function () {
+$app->get('/cadastros-igrejas.html', function () {
     ob_start();
-    include __DIR__ . '/../templates/cadastros-financeiro-tipos-documentos.html';
-    return ob_get_clean();
-});
-
-$app->get('/historicos-financeiros', function () {
-    ob_start();
-    include __DIR__ . '/../templates/cadastros-financeiro-historicos-financeiro.html';
-    return ob_get_clean();
-});
-
-$app->get('/plano-gerencial', function () {
-    ob_start();
-    include __DIR__ . '/../templates/cadastros-financeiro-plano-gerencial.html';
-    return ob_get_clean();
-});
-
-$app->get('/plano-contabil', function () {
-    ob_start();
-    include __DIR__ . '/../templates/cadastros-financeiro-plano-contabil.html';
-    return ob_get_clean();
-});
-
-$app->get('/cadastros-pessoas', function () {
-    ob_start();
-    include __DIR__ . '/../templates/cadastros-pessoas-pessoas.html';
-    return ob_get_clean();
-});
-
-$app->get('/cadastros-empresas', function () {
-    ob_start();
-    include __DIR__ . '/../templates/cadastros-empresas-empresas.html';
-    return ob_get_clean();
-});
-
-$app->get('/cadastros-filiais', function () {
-    ob_start();
-    include __DIR__ . '/../templates/cadastros-empresas-filiais.html';
+    include __DIR__ . '/../templates/cadastros-igrejas.html';
     return ob_get_clean();
 });
 
 /***************************************************/
-// @todo Módulo RH
-/***************************************************/
-$app->get('/rh-emissao-advertencias', function () {
-    ob_start();
-    include __DIR__ . '/../templates/rh-emissao-advertencias.html';
-    return ob_get_clean();
-});
-$app->get('/rh-emissao-advertencias-print', function () {
-    ob_start();
-    include __DIR__ . '/../templates/rh-emissao-advertencias-print.html';
-    return ob_get_clean();
-});
-$app->get('/rh-emissao-aviso-ferias', function () {
-    ob_start();
-    include __DIR__ . '/../templates/rh-emissao-aviso-ferias.html';
-    return ob_get_clean();
-});
-$app->get('/rh-emissao-aviso-ferias-print', function () {
-    ob_start();
-    include __DIR__ . '/../templates/rh-emissao-aviso-ferias-print.html';
-    return ob_get_clean();
-});
-$app->get('/rh-emissao-aviso-previo', function () {
-    ob_start();
-    include __DIR__ . '/../templates/rh-emissao-aviso-previo.html';
-    return ob_get_clean();
-});
-$app->get('/rh-emissao-aviso-previo-print', function () {
-    ob_start();
-    include __DIR__ . '/../templates/rh-emissao-aviso-previo-print.html';
-    return ob_get_clean();
-});
-$app->get('/rh-emissao-holerites', function () {
-    ob_start();
-    include __DIR__ . '/../templates/rh-emissao-holerites.html';
-    return ob_get_clean();
-});
-$app->get('/rh-emissao-holerites-print', function () {
-    ob_start();
-    include __DIR__ . '/../templates/rh-emissao-holerites-print.html';
-    return ob_get_clean();
-});
-
-
-/***************************************************/
-// @todo CRUD
+// @Api CRUD
 /***************************************************/
 
 // Paises
@@ -237,34 +160,52 @@ $app->get('api/cidades', function (Request $request) use ($app) {
     return $app->json($result);
 });
 
-$app->post('api/pessoas/store', function (Request $request) use ($app) {
+
+/***************************************************/
+// @Api Sinodos
+/***************************************************/
+$app->get('api/sinodos', function (Request $request) use ($app) {
+    /** @var \Doctrine\DBAL\Connection $db */
+    $db = $app['db'];
+    $query = "SELECT * FROM sinodos";
+    $id = (int)$request->get('id');
+    $params = [];
+    if ($id > 0) {
+        $query .= " WHERE id = ?";
+        array_push($params, $id);
+    }
+    $result = $db->fetchAll($query, $params);
+    return $app->json($result);
+});
+
+$app->post('api/sinodos/store', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
     $data = $request->request->all();
-    $db->insert('pessoas', $data);
+    $db->insert('sinodos', $data);
     $id = $db->lastInsertId();
-    $row = $db->fetchAssoc("SELECT * FROM pessoas WHERE id = ?", [$id]);
+    $row = $db->fetchAssoc("SELECT * FROM sinodos WHERE id = ?", [$id]);
     return $app->json($row);
 
 });
 
-$app->post('api/pessoas/update', function (Request $request) use ($app) {
+$app->post('api/sinodos/update', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
     $data = $request->request->all();
     $id = $data['id'];
     unset($data['id']);
-    $db->update('pessoas', $data, ['id' => $id]);
-    $row = $db->fetchAssoc("SELECT * FROM pessoas WHERE id = ?", [$id]);
+    $db->update('sinodos', $data, ['id' => $id]);
+    $row = $db->fetchAssoc("SELECT * FROM sinodos WHERE id = ?", [$id]);
     return $app->json($row);
 });
 
-$app->post('api/pessoas/delete', function (Request $request) use ($app) {
+$app->post('api/sinodos/delete', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
     $data = $request->request->all();
     $id = $data['id'];
-    $result = $db->delete('pessoas', ['id' => $id]);
+    $result = $db->delete('sinodos', ['id' => $id]);
     return $app->json(['success' => $result != 0], $result != 0 ? 200 : 400);
 });
 
@@ -323,19 +264,6 @@ $app->get('api/connect', function (Request $request) use ($app) {
 
     return $app->json($result);
 });
-
-$app->get('/teste/login', function (Request $request) use ($app) {
-
-    $username = $request->server->get('PHP_AUTH_USER', false);
-    $password = $request->server->get('PHP_AUTH_PW');
-
-    if ('igor' === $username && '123' === $password) {
-        $app['session']->set('user', array('username' => $username));
-        return $app->redirect('/test/account');
-    }
-    return $app->redirect('/login');
-});
-
 
 /***************************************************/
 // @todo app-run();

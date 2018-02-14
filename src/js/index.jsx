@@ -92,4 +92,15 @@ $(document).ready(function () {
             sessionStorage.setItem("ZnItaG9tZQ==", btoa(2));
         }
     }, 1500);
+
+    iziToast.info({
+        title: 'Olá',
+        message: 'Seja bem vindo Fulano!',
+        timeout: 10000,
+        pauseOnHover: true,
+        position: 'topRight',
+        transitionIn: 'fadeInDown',
+        transitionOut: 'fadeOutUp'
+    });
+
 });
