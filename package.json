@@ -55,6 +55,7 @@
     "email": "henriquek3@gmail.com"
   },
   "dependencies": {
+    "izitoast": "^1.2.0",
     "semantic-ui-calendar": "0.0.8"
   }
 }
