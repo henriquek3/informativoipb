@@ -166,10 +166,19 @@ $(document).ready(function () {
                  */
                 setTimeout(() => {
                     $(cadastros_sinodos.regiao).trigger("change");
-                }, 500);
+                }, 100);
             })
             .fail(function (response) {
                 console.log(response);
+                iziToast.error({
+                    title: 'Erro',
+                    message: 'Operação não realizada!',
+                    timeout: 10000,
+                    pauseOnHover: true,
+                    position: 'topRight',
+                    transitionIn: 'fadeInDown',
+                    transitionOut: 'fadeOutUp'
+                });
             })
         ;
     }
@@ -205,6 +214,8 @@ $(document).ready(function () {
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
                                 id_row = null;
                                 cadastros_sinodos.reset();
+                                validator.resetForm();
+                                $('form').form('reset');
                             })
                             .fail(function (response) {
                                 console.log(response);
@@ -242,9 +253,6 @@ $(document).ready(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).parent().removeClass(errorClass);
         },
-        invalidHandler: function () {
-            alert("Submit inválido");
-        },
         submitHandler: function () {
             if (id_row > 0) {
                 let form = $('#cadastros_sinodos').serializeArray();
@@ -252,10 +260,14 @@ $(document).ready(function () {
                 $.post('api/sinodos/update', form)
                     .done(function (response) {
                         console.log(response);
-                        /*tbl_api.row(tr_row).remove();
+                        tbl_api.row(tr_row).remove();
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            response.regiao.toUpperCase()
+                        ]).draw(false);
 
-                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
-                        */
                         iziToast.success({
                             title: 'OK',
                             message: 'Registro alterado com sucesso!',
@@ -268,15 +280,30 @@ $(document).ready(function () {
                     })
                     .fail(function (response) {
                         console.log(response);
-                        iziToast.error({
-                            title: 'Erro',
-                            message: 'Operação não realizada!',
-                            timeout: 10000,
-                            pauseOnHover: true,
-                            position: 'topRight',
-                            transitionIn: 'fadeInDown',
-                            transitionOut: 'fadeOutUp'
-                        });
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0 ) {
+                            $(cadastros_sinodos.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
                     })
                 ;
             } else {
@@ -285,7 +312,12 @@ $(document).ready(function () {
                     .done(function (response) {
                         console.log(response);
 
-                        //tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            response.regiao.toUpperCase()
+                        ]).draw(false);
 
                         iziToast.success({
                             title: 'OK',
@@ -299,15 +331,30 @@ $(document).ready(function () {
                     })
                     .fail(function (response) {
                         console.log(response);
-                        iziToast.error({
-                            title: 'Erro',
-                            message: 'Operação não realizada!',
-                            timeout: 10000,
-                            pauseOnHover: true,
-                            position: 'topRight',
-                            transitionIn: 'fadeInDown',
-                            transitionOut: 'fadeOutUp'
-                        });
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0 ) {
+                            $(cadastros_sinodos.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
                     })
                 ;
             }
@@ -339,7 +386,7 @@ $(document).ready(function () {
      */
     $(".ui.reset.button").on("click", function () {
         validator.resetForm();
-        $('form').form('reset')
+        $('form').form('reset');
     });
 
     /**
@@ -347,5 +394,35 @@ $(document).ready(function () {
      */
     $("button[type='button']").on("click", function () {
         deleteData();
+    });
+
+    /**
+     *  Função para ativar o get
+     */
+    $("a[data-tab='second']").on("click",function (){
+        if ( id_row > 0 ) {
+            getDataForm();
+        } else {
+            /**
+             * reseta os campos do tipo input
+             */
+            cadastros_sinodos.reset();
+
+            /**
+             * retorna o select para a primera opção
+             * @type {number}
+             */
+            validator.resetForm();
+            $('form').form('reset');
+        }
+    });
+
+    /**
+     * Função para quando for na aba lista, zerar o id_row
+     */
+    $("a[data-tab='first']").on("click",function (){
+        if (id_row > 0 ){
+            id_row = null;
+        }
     });
 });
