@@ -41,7 +41,7 @@ $(document).ready(function () {
         $.get('/api/igrejas')
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, regiao, nome, sigla;
+                    let tr, row, id, nome, presbiterio, sinodo;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -50,34 +50,15 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome);
-                    sigla = $('<td/>').html(row.sigla);
-                    switch (row.regiao) {
-                        case '1':
-                            regiao = $('<td/>').html("CENTRO-OESTE");
-                            break;
-                        case '2':
-                            regiao = $('<td/>').html("NORDESTE");
-                            break;
-                        case '3':
-                            regiao = $('<td/>').html("NORTE");
-                            break;
-                        case '4':
-                            regiao = $('<td/>').html("SUDESTE");
-                            break;
-                        case '5':
-                            regiao = $('<td/>').html("SUL");
-                            break;
-                        default:
-                            regiao = $('<td/>').html('Não identificado');
-                            break;
-                    }
+                    presbiterio = $('<td/>').html(row.presbiterio);
+                    sinodo = $('<td/>').html(row.sinodo);
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
                         .append(nome)
-                        .append(sigla)
-                        .append(regiao);
+                        .append(presbiterio)
+                        .append(sinodo);
                     /**
                      * Adiciona linhas na tabela
                      */
@@ -95,7 +76,7 @@ $(document).ready(function () {
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_sinodos.DataTable({
+            tbl_api = tbl_igrejas.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -141,7 +122,7 @@ $(document).ready(function () {
                 }
                 /**
                  * exibe no console o nr da celula código da linha selecionada,
-                 * que vem do banco de dados como o id do registro
+                 * que vem do banco de dados como o id do registr
                  */
                 console.log(id_row);
             });
@@ -285,7 +266,7 @@ $(document).ready(function () {
         }
     });
 
-    let validator = $("#cadastros_congregacoes").validate({
+    let validator_congregacoes = $("#cadastros_congregacoes").validate({
         rules: {
             nome: {
                 required: true,
@@ -366,7 +347,6 @@ $(document).ready(function () {
             }
         }
     });
-
     /**
      * Ao clicar no botão limpar, reseta as classes de erro
      */
