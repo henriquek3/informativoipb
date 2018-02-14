@@ -2,10 +2,23 @@ extends layouts/_layout.pug
 
 block content
     div.ui.segment
+        div(style="position: absolute;right: 20px;")
+            div.ui.breadcrumb
+                a.section(href="index.html")
+                    i.home.icon
+                div.divider /
+                a.section Cadastros
+                div.divider /
+                div.active.section Igrejas
+
+        div.ui.clearing
+
         h2.ui.floated.header
             | Cadastro de Igrejas
-        a.ui.compact.right.floated.icon.basic.button(href="index.html")
-            i.remove.icon
+            div.sub.header
+                | Igrejas pertencentes aos presbitério. -> breve explicação da tela
+
+
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
@@ -16,67 +29,83 @@ block content
             table.ui.compact.selectable.celled.green.table(id="tbl_igrejas")
                 thead
                     tr
+                        th.one.wide Código
                         th.ten.wide Nome
                         th.two.wide.center.aligned Presbitério
                         th.two.wide.center.aligned Sínodo
-                tbody
+                tbody(id="tbody_igrejas")
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned ZPA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned IYN
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned QRW
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SBC
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned STS
                     tr
+                        td.center.aligned 01
                         td Presbiteriana Luz e Vida
                         td.center.aligned PRON
                         td.center.aligned OAS
@@ -107,47 +136,48 @@ block content
                                 option Cidade
                                 option Cidade
                     div.fields
-                        div.eight.wide.field
+                        div.ten.wide.field
                             label Nome
-                            input(type="text", name="nome")
+                            input(type="text", name="nome" placeholder="Digite seu Nome")
                         div.three.wide.field
                             label CNPJ
-                            input(type="text")
-                        div.two.wide.field
-                            label Complemento
-                            input(type="text")
+                            input(type="text" name="cnpj" placeholder="CNPJ")
                         div.ui.calendar.bottom.left.three.wide.field
                             label Organização
-                            input.datepicker2(type="text")
+                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
                     div.fields
                         div.six.wide.field
                             label Endereço
-                            input(type="text")
+                            input(type="text" name="endereco" placeholder="Endereço")
                         div.two.wide.field
                             label Número
-                            input(type="text")
+                            input(type="text" name="endereco_nr" placeholder="Número")
                         div.four.wide.field
                             label Complemento
-                            input(type="text")
+                            input(type="text" name="endereco_complemento" placeholder="Complemento")
                         div.four.wide.field
                             label Bairro
-                            input(type="text")
+                            input(type="text" name="endereco_bairro" placeholder="Bairro")
                     div.fields
                         div.eight.wide.field
                             label E-mail
-                            input(type="email")
+                            input(type="email" name="email" placeholder="E-Mail")
                         div.eight.wide.field
                             label Homepage
-                            input(type="url")
+                            input(type="url" name="website" placeholder="Web Site")
 
-                div(style="text-align: right")
-                    button.ui.labeled.icon.button(type="reset")
-                        i.erase.icon
-                        | Limpar
-
-                    button.ui.green.right.labeled.icon.button(type="subimit")
+                div(style="text-align: center")
+                    button.ui.green.labeled.icon.button(type="submit")
                         i.plus.icon
                         | Gravar
+
+                    button.ui.reset.button(type="reset")
+                        i.minus.icon
+                        | Limpar
+
+                    button.ui.red.right.labeled.icon.button(type="button")
+                        i.remove.icon
+                        | Excluir
         div.ui.bottom.attached.tab.segment(data-tab="third")
             form(id="cadastros_congregacoes", name="cadastros_congregacoes")
                 div.ui.form
@@ -180,51 +210,55 @@ block content
                                 option Cidade
                                 option Cidade
                     div.fields
-                        div.eight.wide.field
+                        div.ten.wide.field
                             label Nome
-                            input(type="text", name="nome")
+                            input(type="text", name="nome" placeholder="Digite seu Nome")
                         div.three.wide.field
                             label CNPJ
-                            input(type="text")
-                        div.two.wide.field
-                            label Complemento
-                            input(type="text")
+                            input(type="text" name="cnpj" placeholder="CNPJ")
                         div.ui.calendar.bottom.left.three.wide.field
                             label Organização
-                            input.datepicker2(type="text")
+                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
                     div.fields
                         div.six.wide.field
                             label Endereço
-                            input(type="text")
+                            input(type="text" name="endereco" placeholder="Endereço")
                         div.two.wide.field
                             label Número
-                            input(type="text")
+                            input(type="text" name="endereco_nr" placeholder="Número")
                         div.four.wide.field
                             label Complemento
-                            input(type="text")
+                            input(type="text" name="endereco_complemento" placeholder="Complemento")
                         div.four.wide.field
                             label Bairro
-                            input(type="text")
+                            input(type="text" name="endereco_bairro" placeholder="Bairro")
                     div.fields
                         div.eight.wide.field
                             label E-mail
-                            input(type="email")
+                            input(type="email" name="email" placeholder="E-Mail")
                         div.eight.wide.field
                             label Homepage
-                            input(type="url")
-                div(style="text-align: right")
-                    button.ui.labeled.icon.button(type="reset")
-                        i.erase.icon
-                        | Limpar
-
-                    button.ui.green.right.labeled.icon.button(type="subimit")
+                            input(type="url" name="website" placeholder="Web Site")
+                div(style="text-align: center")
+                    button.ui.green.labeled.icon.button(type="submit")
                         i.plus.icon
                         | Gravar
 
+                    button.ui.reset.button(type="reset")
+                        i.minus.icon
+                        | Limpar
+
+                    button.ui.red.right.labeled.icon.button(type="button")
+                        i.remove.icon
+                        | Excluir
+
 block specific-js
+    script(src='js/app/jquery-validate-app.js')
     script(src="js/plugins/bootstrap-datepicker.min.js")
     script(src="js/plugins/bootstrap-datepicker.pt-BR.min.js")
     script(src="js/plugins/dataTables.min.js")
+    script(src="js/plugins/sweetalert.min.js")
+    script(src="js/app/cadastros-igrejas-app.js")
     script(type="text/javascript").
         $(document)
             .ready(function () {
