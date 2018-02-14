@@ -1,5 +1,5 @@
-let id_row, tr_row, tbl_igrejas, tbl_api;
-tbl_igrejas = $("#tbl_igrejas");
+let id_row, tr_row, tbl_presbiterios, tbl_api;
+tbl_presbiterios = $("#tbl_presbiterios");
 
 $(document).ready(function () {
     /**
@@ -38,10 +38,10 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/igrejas')
+        $.get('/api/presbiterios')
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, nome, presbiterio, sinodo;
+                    let tr, row, id, regiao, nome, sigla;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -50,19 +50,38 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome);
-                    presbiterio = $('<td/>').html(row.presbiterio);
-                    sinodo = $('<td/>').html(row.sinodo);
+                    sigla = $('<td/>').html(row.sigla);
+                    switch (row.regiao) {
+                        case '1':
+                            regiao = $('<td/>').html("CENTRO-OESTE");
+                            break;
+                        case '2':
+                            regiao = $('<td/>').html("NORDESTE");
+                            break;
+                        case '3':
+                            regiao = $('<td/>').html("NORTE");
+                            break;
+                        case '4':
+                            regiao = $('<td/>').html("SUDESTE");
+                            break;
+                        case '5':
+                            regiao = $('<td/>').html("SUL");
+                            break;
+                        default:
+                            regiao = $('<td/>').html('Não identificado');
+                            break;
+                    }
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
                         .append(nome)
-                        .append(presbiterio)
-                        .append(sinodo);
+                        .append(sigla)
+                        .append(regiao);
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_igrejas').append(tr);
+                    $('#tbody_presbiterios').append(tr);
                 }
             })
             .fail(function (response) {
@@ -76,7 +95,7 @@ $(document).ready(function () {
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_igrejas.DataTable({
+            tbl_api = tbl_presbiterios.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -110,7 +129,7 @@ $(document).ready(function () {
             /**
              * Utilizado para selecionar as linhas da tabela
              */
-            $('#tbody_igrejas').off("click", "**").on('click', 'tr', function () {
+            $('#tbody_presbiterios').off("click", "**").on('click', 'tr', function () {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     id_row = null;
@@ -122,7 +141,7 @@ $(document).ready(function () {
                 }
                 /**
                  * exibe no console o nr da celula código da linha selecionada,
-                 * que vem do banco de dados como o id do registr
+                 * que vem do banco de dados como o id do registro
                  */
                 console.log(id_row);
             });
@@ -135,18 +154,18 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/igrejas?id=' + id_row)
+        $.get('api/presbiterios?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_igrejas.nome.value = data.nome;
-                cadastros_igrejas.sigla.value = data.sigla;
-                cadastros_igrejas.regiao.value = data.regiao;
+                cadastros_presbiterios.nome.value = data.nome;
+                cadastros_presbiterios.sigla.value = data.sigla;
+                cadastros_presbiterios.regiao.value = data.regiao;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_igrejas.regiao).trigger("change");
+                    $(cadastros_presbiterios.regiao).trigger("change");
                 }, 500);
             })
             .fail(function (response) {
@@ -180,7 +199,7 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/igrejas/delete', {id: id_row})
+                        $.post('/api/presbiterios/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -188,7 +207,7 @@ $(document).ready(function () {
                                 cadastros_sinodos.reset();
                             })
                             .fail(function (response) {
-                                console.log(response.responseText);
+                                console.log(response);
                                 swal("Erro!", response.responseText, "error");
                             })
                         ;
@@ -204,52 +223,17 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator_igrejas = $("#cadastros_igrejas").validate({
+    let validator_presbiterios = $("#cadastros_presbiterios").validate({
         rules: {
             nome: {
                 required: true,
                 minlength: 4,
                 maxlength: 255
             },
-            cnpj: {
-                required: true,
-                minlength: 14,
-                maxlength: 14
-            },
-            data_organizacao: {
-                required: true,
-                minlength: 1,
-                maxlength: 10
-            },
-            endereco: {
+            sigla: {
                 required: true,
                 minlength: 3,
-                maxlength: 255
-            },
-            endereco_nr: {
-                required: true,
-                minlength: 2,
-                maxlength: 7
-            },
-            endereco_complemento: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            endereco_bairro: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            email: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            website: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
+                maxlength: 5
             }
         },
         highlight: function (element, errorClass, validClass) {
@@ -262,69 +246,66 @@ $(document).ready(function () {
             alert("invelid handler");
         },
         submitHandler: function () {
-            alert("submit handler");
-        }
-    });
+            if (id_row > 0) {
+                let form = $('#cadastros_presbiterios').serializeArray();
+                form.unshift({name: 'id', value: id_row});
+                $.post('api/presbiterios/update', form)
+                    .done(function (response) {
+                        tbl_api.row(tr_row).remove();
 
-    let validator_congregacoes = $("#cadastros_congregacoes").validate({
-        rules: {
-            nome: {
-                required: true,
-                minlength: 4,
-                maxlength: 255
-            },
-            cnpj: {
-                required: true,
-                minlength: 14,
-                maxlength: 14
-            },
-            data_organizacao: {
-                required: true,
-                minlength: 1,
-                maxlength: 10
-            },
-            endereco: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            endereco_nr: {
-                required: true,
-                minlength: 2,
-                maxlength: 7
-            },
-            endereco_complemento: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            endereco_bairro: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            email: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            website: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
+                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
+                        $.notify({
+                            title: "Status OK!<br/>",
+                            message: 'Registro Alterado com sucesso!',
+                            icon: 'fa fa-check'
+                        }, {
+                            type: "success"
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        $.notify({
+                            title: 'Operação não efetuada.<br/>',
+                            message: 'Erro: ' + response.status + ', ' + response.statusText
+                        }, {
+                            type: "danger",
+                            delay: 10000
+                        });
+                    })
+                ;
+            } else {
+                let form = $('#cadastros_presbiterios').serializeArray();
+                $.post('api/presbiterios/store', form)
+                    .done(function (response) {
+                        console.log(response);
+
+                        setTimeout(function () {
+                            $('input.error').parent().removeClass('has-error');
+                            $('input.valid').parent().removeClass('has-success');
+                        }, 600);
+
+                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
+
+                        $.notify({
+                            title: "Status OK!<br/>",
+                            message: 'Registro inserido com sucesso!',
+                            icon: 'fa fa-check'
+                        }, {
+                            type: "success"
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        $.notify({
+                            title: 'Operação não efetuada.<br/>',
+                            message: 'Erro: ' + response.status + ', ' + response.statusText
+                        }, {
+                            type: "danger",
+                            delay: 10000
+                        });
+                    })
+                ;
             }
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).parent().addClass(errorClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).parent().removeClass(errorClass);
-        },
-        invalidHandler: function () {
-            alert("invelid handler");
-        },
-        submitHandler: function () {
-            alert("submit handler");
         }
     });
 
@@ -332,7 +313,7 @@ $(document).ready(function () {
      * Os campos select do semantic não são compativeis com o jquery validation,
      * a msg fica bugada, usar desta forma para select.search.dropdown
      */
-    $("#cadastros_igrejas").form({
+    $("#cadastros_presbiterios").form({
         inline: true,
         on: 'submit',
         fields: {
@@ -347,13 +328,14 @@ $(document).ready(function () {
             }
         }
     });
+
     /**
      * Ao clicar no botão limpar, reseta as classes de erro
      */
     $(".ui.reset.button").on("click", function () {
-        validator.resetForm();
+        validator_presbiterios.resetForm();
         $('form').form('reset')
-    })
+    });
 
     /**
      * Adiciona evento de exclusão no botão Excluir
