@@ -9,14 +9,14 @@ module.exports = function(grunt) {
                 files: ['src/sass/**/*.sass', 'src/sass/**/*.scss'],
                 tasks: ['sass', 'postcss'],
                 options: {
-                    interrupt: false
+                    interrupt: true
                 }
             },
             pug: {
                 files: ['src/pug/**/*.pug'],
                 tasks: ['pug'],
                 options: {
-                    interrupt: false
+                    interrupt: true
                 }
             },
             babel: {
@@ -44,9 +44,9 @@ module.exports = function(grunt) {
                 files: ['dist/css/main.css'],
                 tasks: ['cssmin'],
                 options: {
-                    interrupt: false
+                    interrupt: true
                 }
-            }
+            },
         },
         pug: {
             compile: {
@@ -178,6 +178,7 @@ module.exports = function(grunt) {
     // Set task aliases
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('css', ['cssmin']);
+    grunt.registerTask('ht', ['htmlmin']);
     grunt.registerTask('serve', ['connect', 'watch']);
     grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel', 'uglify', 'htmlmin', 'cssmin']);
 };
