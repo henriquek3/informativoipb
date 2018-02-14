@@ -246,7 +246,66 @@ $(document).ready(function () {
             alert("invelid handler");
         },
         submitHandler: function () {
-            alert("submit handler");
+            if (id_row > 0) {
+                let form = $('#cadastros_sinodos').serializeArray();
+                form.unshift({name: 'id', value: id_row});
+                $.post('api/sinodos/update', form)
+                    .done(function (response) {
+                        tbl_api.row(tr_row).remove();
+
+                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
+                        $.notify({
+                            title: "Status OK!<br/>",
+                            message: 'Registro Alterado com sucesso!',
+                            icon: 'fa fa-check'
+                        }, {
+                            type: "success"
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        $.notify({
+                            title: 'Operação não efetuada.<br/>',
+                            message: 'Erro: ' + response.status + ', ' + response.statusText
+                        }, {
+                            type: "danger",
+                            delay: 10000
+                        });
+                    })
+                ;
+            } else {
+                let form = $('#cadastros_sinodos').serializeArray();
+                $.post('api/sinodos/store', form)
+                    .done(function (response) {
+                        console.log(response);
+
+                        setTimeout(function () {
+                            $('input.error').parent().removeClass('has-error');
+                            $('input.valid').parent().removeClass('has-success');
+                        }, 600);
+
+                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
+
+                        $.notify({
+                            title: "Status OK!<br/>",
+                            message: 'Registro inserido com sucesso!',
+                            icon: 'fa fa-check'
+                        }, {
+                            type: "success"
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        $.notify({
+                            title: 'Operação não efetuada.<br/>',
+                            message: 'Erro: ' + response.status + ', ' + response.statusText
+                        }, {
+                            type: "danger",
+                            delay: 10000
+                        });
+                    })
+                ;
+            }
         }
     });
 
@@ -276,7 +335,7 @@ $(document).ready(function () {
     $(".ui.reset.button").on("click", function () {
         validator.resetForm();
         $('form').form('reset')
-    })
+    });
 
     /**
      * Adiciona evento de exclusão no botão Excluir

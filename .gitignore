@@ -68,9 +68,6 @@ package-lock.json
 .versions/
 $RECYCLE.BIN/
 .vscode/
-.idea/
-vendor/
-node_modules/
 dist/*.html
 dist/js/app/
 public/*.html
