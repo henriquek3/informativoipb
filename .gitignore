@@ -71,7 +71,6 @@ $RECYCLE.BIN/
 dist/*.html
 dist/js/app/
 public/js/app/
-public/*.html
 templates/
 .phpintel/
 .vs/

@@ -26,8 +26,8 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'driver' => 'pdo_mysql',
         'host' => 'localhost',
         'dbname' => 'jksistem_informativoipb',
-        //'user' => 'jksistem_ipbsys',
-        //'password' => 'azfRm9ps]9M&',
+        /*'user' => 'jksistem_ipbsys',
+        'password' => 'azfRm9ps]9M&',*/
         'user' => 'root',
         'password' => '',
         'charset' => 'utf8mb4',
@@ -99,6 +99,11 @@ $app->get('/cadastros-sinodos.html', function () {
     return ob_get_clean();
 });
 
+$app->get('/cadastros-igrejas.html', function () {
+    ob_start();
+    include __DIR__ . '/../templates/cadastros-igrejas.html';
+    return ob_get_clean();
+});
 
 /***************************************************/
 // @Api CRUD
