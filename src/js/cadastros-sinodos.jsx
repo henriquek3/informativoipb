@@ -423,6 +423,8 @@ $(document).ready(function () {
     $("a[data-tab='first']").on("click",function (){
         if (id_row > 0 ){
             id_row = null;
+            tbl_api.row().deselect();
+            tbl_api.$('tr.active').removeClass('active');
         }
     });
 });
