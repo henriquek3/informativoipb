@@ -343,4 +343,35 @@ $(document).ready(function () {
     $("button[type='button']").on("click", function () {
         deleteData();
     });
+
+    /**
+     *  Função para ativar o get
+     */
+    $("a[data-tab='second']").on("click", function () {
+        if (id_row > 0) {
+            getDataForm();
+        } else {
+            /**
+             * reseta os campos do tipo input
+             */
+            cadastros_sinodos.reset();
+
+            /**
+             * retorna o select para a primera opção
+             * @type {number}
+             */
+            validator.resetForm();
+            $('form').form('reset');
+        }
+    });
+
+    /**
+     * Função para quando for na aba lista, zerar o id_row
+     */
+    $("a[data-tab='first']").on("click", function () {
+        if (id_row > 0) {
+            id_row = null;
+        }
+    });
 });
+
