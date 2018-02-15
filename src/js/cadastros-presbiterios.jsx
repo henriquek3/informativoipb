@@ -90,6 +90,8 @@ $(document).ready(function () {
         ;
     }
 
+    getDataTable();
+
     /**
      * Instancia DataTables() e organiza os eventos do click
      */
@@ -166,10 +168,19 @@ $(document).ready(function () {
                  */
                 setTimeout(() => {
                     $(cadastros_presbiterios.regiao).trigger("change");
-                }, 500);
+                }, 100);
             })
             .fail(function (response) {
                 console.log(response);
+                iziToast.error({
+                    title: 'Erro',
+                    message: 'Operação não realizada!',
+                    timeout: 10000,
+                    pauseOnHover: true,
+                    position: 'topRight',
+                    transitionIn: 'fadeInDown',
+                    transitionOut: 'fadeOutUp'
+                });
             })
         ;
     }
@@ -251,26 +262,51 @@ $(document).ready(function () {
                 form.unshift({name: 'id', value: id_row});
                 $.post('api/presbiterios/update', form)
                     .done(function (response) {
+                        console.log(response);
                         tbl_api.row(tr_row).remove();
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            response.regiao.toUpperCase()
+                        ]).draw(false);
 
-                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
-                        $.notify({
-                            title: "Status OK!<br/>",
-                            message: 'Registro Alterado com sucesso!',
-                            icon: 'fa fa-check'
-                        }, {
-                            type: "success"
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro alterado com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
                         });
                     })
                     .fail(function (response) {
                         console.log(response);
-                        $.notify({
-                            title: 'Operação não efetuada.<br/>',
-                            message: 'Erro: ' + response.status + ', ' + response.statusText
-                        }, {
-                            type: "danger",
-                            delay: 10000
-                        });
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(cadastros_sinodos.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
                     })
                 ;
             } else {
@@ -279,30 +315,49 @@ $(document).ready(function () {
                     .done(function (response) {
                         console.log(response);
 
-                        setTimeout(function () {
-                            $('input.error').parent().removeClass('has-error');
-                            $('input.valid').parent().removeClass('has-success');
-                        }, 600);
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            response.regiao.toUpperCase()
+                        ]).draw(false);
 
-                        tbl_api.row.add([response.id, response.nome.toUpperCase(), response.id_empresa.toUpperCase(), response.cnpj.toUpperCase()]).draw(false);
-
-                        $.notify({
-                            title: "Status OK!<br/>",
+                        iziToast.success({
+                            title: 'OK',
                             message: 'Registro inserido com sucesso!',
-                            icon: 'fa fa-check'
-                        }, {
-                            type: "success"
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
                         });
                     })
                     .fail(function (response) {
                         console.log(response);
-                        $.notify({
-                            title: 'Operação não efetuada.<br/>',
-                            message: 'Erro: ' + response.status + ', ' + response.statusText
-                        }, {
-                            type: "danger",
-                            delay: 10000
-                        });
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(cadastros_sinodos.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
                     })
                 ;
             }
