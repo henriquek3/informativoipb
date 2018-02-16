@@ -215,7 +215,7 @@ $(document).ready(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
                                 id_row = null;
-                                cadastros_sinodos.reset();
+                                cadastros_presbiterios.reset();
                             })
                             .fail(function (response) {
                                 console.log(response);
@@ -256,6 +256,8 @@ $(document).ready(function () {
         invalidHandler: function () {
             alert("invelid handler");
         },
+    });
+
         submitHandler: function () {
             if (id_row > 0) {
                 let form = $('#cadastros_presbiterios').serializeArray();
@@ -286,7 +288,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_sinodos.sigla).parent().addClass("error");
+                            $(cadastros_presbiterios.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -337,7 +339,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_sinodos.sigla).parent().addClass("error");
+                            $(cadastros_presbiterios.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -409,7 +411,7 @@ $(document).ready(function () {
             /**
              * reseta os campos do tipo input
              */
-            cadastros_sinodos.reset();
+            cadastros_presbiterios.reset();
 
             /**
              * retorna o select para a primera opção
