@@ -111,6 +111,12 @@ $app->get('/cadastros-igrejas.html', function () {
     return ob_get_clean();
 });
 
+$app->get('/cadastros-presbiteros.html', function () {
+    ob_start();
+    include __DIR__ . '/../templates/cadastros-presbiteros.html';
+    return ob_get_clean();
+});
+
 /***************************************************/
 // @Api CRUD
 /***************************************************/
