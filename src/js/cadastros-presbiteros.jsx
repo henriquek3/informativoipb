@@ -1,4 +1,4 @@
-let id_row, tr_row, tbl_igrejas, tbl_api;
+let id_row, tr_row, tbl_presbiteros, tbl_api;
 tbl_presbiteros = $("#tbl_presbiteros");
 
 $(document).ready(function () {
@@ -204,7 +204,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator_igrejas = $("#cadastros_presbiteros").validate({
+    let validator_presbiteros = $("#cadastros_presbiteros").validate({
         rules: {
             nome: {
                 required: true,
@@ -266,67 +266,6 @@ $(document).ready(function () {
         }
     });
 
-    let validator_congregacoes = $("#cadastros_presbiteros").validate({
-        rules: {
-            nome: {
-                required: true,
-                minlength: 4,
-                maxlength: 255
-            },
-            cnpj: {
-                required: true,
-                minlength: 14,
-                maxlength: 14
-            },
-            data_organizacao: {
-                required: true,
-                minlength: 1,
-                maxlength: 10
-            },
-            endereco: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            endereco_nr: {
-                required: true,
-                minlength: 2,
-                maxlength: 7
-            },
-            endereco_complemento: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            endereco_bairro: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            email: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            website: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            }
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).parent().addClass(errorClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).parent().removeClass(errorClass);
-        },
-        invalidHandler: function () {
-            alert("invelid handler");
-        },
-        submitHandler: function () {
-            alert("submit handler");
-        }
-    });
 
     /**
      * Os campos select do semantic não são compativeis com o jquery validation,
