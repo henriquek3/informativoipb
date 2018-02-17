@@ -258,9 +258,6 @@ $(document).ready(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).parent().removeClass(errorClass);
         },
-        invalidHandler: function () {
-            alert("invelid handler");
-        },
         submitHandler: function () {
             alert("submit handler");
         }
@@ -290,9 +287,9 @@ $(document).ready(function () {
      * Ao clicar no botão limpar, reseta as classes de erro
      */
     $(".ui.reset.button").on("click", function () {
-        validator.resetForm();
+        validator_presbiteros.resetForm();
         $('form').form('reset')
-    })
+    });
 
     /**
      * Adiciona evento de exclusão no botão Excluir

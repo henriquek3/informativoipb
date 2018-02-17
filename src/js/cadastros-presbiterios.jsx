@@ -256,8 +256,6 @@ $(document).ready(function () {
         invalidHandler: function () {
             alert("invelid handler");
         },
-    });
-
         submitHandler: function () {
             if (id_row > 0) {
                 let form = $('#cadastros_presbiterios').serializeArray();
@@ -417,7 +415,7 @@ $(document).ready(function () {
              * retorna o select para a primera opção
              * @type {number}
              */
-            validator.resetForm();
+            validator_presbiterios.resetForm();
             $('form').form('reset');
         }
     });
