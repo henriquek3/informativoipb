@@ -111,58 +111,190 @@ block content
                 div.fields
                     div.two.wide.field
                         label.ui.ribbon.label 1. ORGANIZAÇÃO
-                div.fields
-                    div.five.wide.field.inline.ui.toggle.checkbox
-                        span 1.1 Os imóveis estão documentados?
-                        input(tabindex="0", class="hidden", type="checkbox")
-                    div.five.wide.field.inline
-                        span 1.2. Apresentou declarações do ano anterior?
-                    div.two.wide.field.inline.ui.checkbox
+                div.inline.fields
+                    div.four.wide.field
+                        label 1.1. Os imóveis estão documentados?
+                    div.two.wide.field
+                        label Sim
+                        input(name="radio1" type="radio")
+                        label Não
+                        input(name="radio1" type="radio" checked="checked")
+                    div.five.wide.field
+                        label 1.4. Apresentou declarações do ano anterior?
+                    div.five.wide.field
                         label IRenda
-                        input(tabindex="0", class="hidden", type="checkbox")
-                    div.two.wide.field.inline.ui.checkbox
+                        input(name="radio2" type="radio")
                         label RAIS
-                        input(tabindex="0", class="hidden", type="checkbox")
-                    div.two.wide.field.inline.ui.checkbox
+                        input(name="radio2" type="radio")
                         label DIRF
-                        input(tabindex="0", class="hidden", type="checkbox")
-                div.fields
-                    div.six.wide.field.inline.ui.toggle.checkbox
-                        span 1.3 Há inventário dos móveis e utensílios?
-                        input(tabindex="0", class="hidden", type="checkbox")
-                    div.six.wide.field.inline.ui.toggle.checkbox
-                        span 1.4 Os Róis de Membros estão atualizados?
-                        input(tabindex="0", class="hidden", type="checkbox")
-                    div.four.wide.field.inline.ui.toggle.checkbox
-                        span 1.5 Inventário atualizado?
-                        input(tabindex="0", class="hidden", type="checkbox")
-                div.fields
-                    div.five.wide.field.inline
-                        span 1.6 Quantas Congregações da Igreja?
-                        input.three.wide.field(type="text")
-            div.ui.form
+                        input(name="radio2" type="radio" checked="checked")
+                div.inline.fields
+                    div.four.wide.field
+                        label 1.2. Há inventário dos móveis e utensílios?
+                    div.two.wide.field
+                        label Sim
+                        input(name="radio3" type="radio")
+                        label Não
+                        input(name="radio3" type="radio" checked="checked")
+                    div.five.wide.field
+                        label 1.5. Inventário atualizado?
+                    div.two.wide.field
+                        label Sim
+                        input(name="radio4" type="radio")
+                        label Não
+                        input(name="radio4" type="radio" checked="checked")
+                div.inline.fields
+                    div.four.wide.field
+                        label 1.3. Os Róis de Membros estão atualizados
+                    div.two.wide.field
+                        label Sim
+                        input(name="radio5" type="radio")
+                        label Não
+                        input(name="radio5" type="radio" checked="checked")
+                    div.five.wide.field
+                        label 1.6. Quantas Congregações da Igreja?
+                    div.two.wide.field
+                        input(type="text" name="quantas_congregacoes")
                 div.fields
                     div.two.wide.field
                         label.ui.ribbon.label 2. SUPERVISÃO ESPIRITUAL
                 div.fields
-                    div.three.wide.field
-                        label 2.1 Adoração e Comunhão
-                div.fields
-                    div.seven.wide.field.inline
-                        span 2.1.1 Nº de celebrações da Santa Ceia em grupos:
-                        input.three.wide.field(type="text")
-                    div.five.wide.field.inline
-                        span Nº de Ministrações de Ceia a indivíduos:
-                        input.three.wide.field(type="text")
-                    div.four.wide.field.inline
-                        span Total
-                        input.three.wide.field(type="text")
+                    div.ui.red.header.horizontal.inverted.divider
+                        h4 2.1. Adoração e Comunhão
+                div.inline.fields
+                    div.five.wide.field
+                        label 2.1.1. Nº de celebrações da Santa Ceia em grupos:
+                    div.two.wide.field
+                        input(type="text")
+                    div.four.wide.field
+                        label Nº de Ministrações de Ceia à indivíduos:
+                    div.two.wide.field
+                        input(type="text")
+                    div.one.wide.field
+                        label Nº Total
+                    div.two.wide.field
+                        input(type="text")
                 div.fields
                     div.three.wide.field
                         label 2.2. Evangelização e Missões
-                div.fields
-                    div.five.wide.field.inline
-                        span 2.2.1.Nº de atividades  evangelísticas:*
-                        input.three.wide.field(type="text")
-                    div.eleven.wide.field.inline
-                        span * em templos e residências; recintos públicos e ao ar livre; pela imprensa escrita, rádio e TV etc
+                div.inline.fields
+                    div.five.wide.field
+                        label 2.2.1. Nº de atividades  evangelísticas:*
+                    div.two.wide.field
+                        input(type="text")
+                    div.ui.tiny.message
+                        label * em templos e residências; recintos públicos ou ar livre; imprensa escrita, rádio e TV, etc.
+                div.inline.fields
+                    div.four.wide.field
+                        label 2.2.2. Textos distribuídos:
+                    div.one.wide.field
+                        label Bíblias
+                    div.one.wide.field
+                        input(type="text")
+                    div.two.wide.field
+                        label Novo Testamento
+                    div.one.wide.field
+                        input(type="text")
+                    div.one.wide.field
+                        label Folhetos
+                    div.one.wide.field
+                        input(type="text")
+                    div.one.wide.field
+                        label Outros
+                    div.one.wide.field
+                        input(type="text")
+                    div.one.wide.field
+                        label Total
+                    div.two.wide.field
+                        input(type="text")
+                div.inline.fields
+                    div.five.wide.field
+                        label 2.2.3. Trabalho missionário com:
+                    div.one.wide.field.ui.checkbox
+                        label JMN
+                        input(name="check1" type="checkbox")
+                    div.one.wide.field.ui.checkbox
+                        label APMT
+                        input(name="check2" type="checkbox")
+                    div.three.wide.field.ui.checkbox
+                        label Parceria com o PMC
+                        input(name="check3" type="checkbox")
+                    div.three.wide.field.ui.checkbox
+                        label Plantação de Igrejas
+                        input(name="check4" type="checkbox")
+                div.inline.fields
+                    div.five.wide.field
+                        label 2.2.4.Outra participação missionária:
+                    div.eleven.wide.field
+                        input(type="text")
+                div.inline.fields
+                    div.ui.red.header.horizontal.inverted.divider
+                        h4 2.3 Educação e Aperfeiçoamento
+                div.inline.fields
+                    div.four.wide.field
+                        label 2.3.1. Para professores de Escola Dominical:
+                    div.two.wide.field
+                        label Sim
+                        input(name="radio6" type="radio")
+                        label Não
+                        input(name="radio6" type="radio" checked="checked")
+                    div.three.wide.field
+                        label 2.3.4. Para Liderança:
+                    div.two.wide.field
+                        label Sim
+                        input(name="radio9" type="radio")
+                        label Não
+                        input(name="radio9" type="radio" checked="checked")
+                div.inline.fields
+                    div.four.wide.field
+                        label 2.3.2. Para Equipe de Música:
+                    div.two.wide.field
+                        label Sim
+                        input(name="radio7" type="radio")
+                        label Não
+                        input(name="radio7" type="radio" checked="checked")
+                    div.three.wide.field
+                        label 2.3.5. Nº de Grupos Corais:
+                    div.two.wide.field
+                        input(type="text")
+                div.inline.fields
+                    div.four.wide.field
+                        label 2.3.3. Para Oficiais (Presbíteros e Diáconos)
+                    div.two.wide.field
+                        label Sim
+                        input(name="radio8" type="radio")
+                        label Não
+                        input(name="radio8" type="radio" checked="checked")
+                    div.three.wide.field
+                        label 2.3.6. Nº de Conjuntos Musicais:
+                    div.two.wide.field
+                        input(type="text")
+                div.inline.fields
+                    div.ui.red.header.horizontal.inverted.divider
+                        h4 2.4. Ação Social e Visitação
+                div.inline.fields
+                    div.six.wide.field
+                        label 2.4.1.Nº de atos beneficentes realizados pela Junta Diaconal:
+                    div.two.wide.field
+                        input(type="text")
+                    div.three.wide.field
+                        label Por outros departamentos:
+                    div.two.wide.field
+                        input(type="text")
+                    div.one.wide.field
+                        label Total
+                    div.two.wide.field
+                        input(type="text")
+                div.inline.fields
+                    div.six.wide.field
+                        label 2.4.2.Nº de visitas feitas por presbíteros e diáconos:
+                    div.two.wide.field
+                        input(type="text")
+                    div.three.wide.field
+                        label Por outros departamentos:
+                    div.two.wide.field
+                        input(type="text")
+                    div.one.wide.field
+                        label Total
+                    div.two.wide.field
+                        input(type="text")
