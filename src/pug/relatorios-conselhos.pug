@@ -1,0 +1,142 @@
+extends layouts/_layout.pug
+
+block content
+    div.ui.segment
+        //
+        div(style="position: absolute;right: 20px;")
+            div.ui.breadcrumb
+                a.section(href="index.html")
+                    i.home.icon
+                div.divider /
+                a.section Relatórios
+                div.divider /
+                div.active.section Conselho
+
+        div.ui.clearing
+
+        h2.ui.floated.header
+            | Relatórios do Conselho
+            div.sub.header
+                | Relatórios do conselho. -> breve explicação da tela
+
+        div.ui.clearing.divider
+        p
+        div.ui.top.attached.tabular.menu
+            a.item.active(data-tab="first") Relatórios
+        div.ui.bottom.attached.tab.segment.active(data-tab="first")
+            table.ui.compact.selectable.celled.red.table(id="tbl_relatorios_conselhos")
+                thead
+                    tr
+                        th.sexteen.wide.center.aligned Relatório do Conselho ou Mesa Adiministrativa
+                    tbody(id="tbody_relatorios_conselhos")
+            form(id="relatorios_conselhos", name="relatorios_conselhos")
+                div.ui.form
+                    div.fields
+                        div.two.wide.field
+                            label Ano
+                            input(type="text", disabled="")
+                        div.four.wide.field
+                            label Sínodo
+                            select.ui.fluid.search.selection.dropdown.disabled
+                        div.four.wide.field
+                            label Presbitério
+                            select.ui.fluid.search.selection.dropdown.disabled
+                        div.four.wide.field
+                            label Igreja
+                            select.ui.fluid.search.selection.dropdown.disabled
+                        div.two.wide.field
+                            label Sigla
+                            input(type="text", disabled="")
+            table.ui.compact.selectable.celled.red.table(id="tbl_relatorios_conselhos")
+                thead
+                    tr
+                        th.sexteen.wide.center.aligned I - Identificação da Igreja / Congregação Presbiterial
+                    tbody(id="tbody_relatorios_conselhos")
+            div.ui.form
+                div.fields
+                    div.sixteen.wide.field
+                        label Nome (Igreja/Congregação)
+                        input(type="text", disabled="")
+                div.fields
+                    div.eight.wide.field
+                        label Endereço
+                        input(type="text", disabled="")
+                    div.two.wide.field
+                        label Número
+                        input(type="text", disabled="")
+                    div.three.wide.field
+                        label Complemento
+                        input(type="text", disabled="")
+                    div.three.wide.field
+                        label Bairro
+                        input(type="text", disabled="")
+                div.fields
+                    div.four.wide.field
+                        label Estado
+                        select.ui.fluid.search.dropdown.disabled
+                    div.four.wide.field
+                        label Cidade
+                        select.ui.fluid.search.dropdown.disabled
+                    div.three.wide.field
+                        label CEP
+                        input(type="text", disabled="")
+                    div.two.wide.field
+                        label Cx. P
+                        input(type="text", disabled="")
+                    div.three.wide.field
+                        label CEP Cx. P
+                        input(type="text", disabled="")
+                div.fields
+                    div.two.wide.field
+                        label Telefone
+                        input(type="text", disabled="")
+                    div.four.wide.field
+                        label E-Mail
+                        input(type="text", disabled="")
+                    div.four.wide.field
+                        label HomePage
+                        input(type="text", disabled="")
+                    div.three.wide.field
+                        label CNPJ
+                        input(type="text", disabled="")
+                    div.three.wide.field
+                        label Data Organização
+                        input(type="text", disabled="")
+            table.ui.compact.selectable.called.red.table(id="tbl_relatorios_conselhos")
+                thead
+                    tr
+                        th.sexteen.wide.center.aligned II - Informações do Trabalho
+                    tbody(id="tbody_relatorios_conselhos")
+            div.ui.form
+                div.fields
+                    div.two.wide.field
+                        label.ui.ribbon.label 1. ORGANIZAÇÃO
+                div.fields
+                    div.five.wide.field.inline.ui.toggle.checkbox
+                        label 1.1 Os imóveis estão documentados?
+                        input(tabindex="0", class="hidden", type="checkbox")
+                    div.five.wide.field.inline
+                        label 1.2. Apresentou declarações do ano anterior?
+                    div.two.wide.field.inline.ui.checkbox
+                        label IRenda
+                        input(tabindex="0", class="hidden", type="checkbox")
+                    div.two.wide.field.inline.ui.checkbox
+                        label RAIS
+                        input(tabindex="0", class="hidden", type="checkbox")
+                    div.two.wide.field.inline.ui.checkbox
+                        label DIRF
+                        input(tabindex="0", class="hidden", type="checkbox")
+                div.fields
+                    div.five.wide.field.inline.ui.toggle.checkbox
+                        label 1.3 Há inventário dos móveis e utensílios?
+                        input(tabindex="0", class="hidden", type="checkbox")
+                    div.six.wide.field.inline.ui.toggle.checkbox
+                        label 1.4 Os Róis de Membros estão atualizados?
+                        input(tabindex="0", class="hidden", type="checkbox")
+                    div.five.wide.field.inline.ui.toggle.checkbox
+                        label 1.5 Inventário atualizado?
+                        input(tabindex="0", class="hidden", type="checkbox")
+                div.fields
+                    div.sixteen.wide.field.inline
+                        label 1.6 Quantas Congregações da Igreja?
+                        input(type="text")

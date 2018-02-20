@@ -117,6 +117,12 @@ $app->get('/cadastros-presbiteros.html', function () {
     return ob_get_clean();
 });
 
+$app->get('/relatorios-conselhos.html', function () {
+    ob_start();
+    include __DIR__ . '/../templates/relatorios-conselhos.html';
+    return ob_get_clean();
+});
+
 /***************************************************/
 // @Api CRUD
 /***************************************************/
