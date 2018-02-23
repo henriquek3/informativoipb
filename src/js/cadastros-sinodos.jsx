@@ -49,8 +49,8 @@ $(document).ready(function () {
                      * @type {jQuery}
                      */
                     id = $('<td/>').html(row.id);
-                    nome = $('<td/>').html(row.nome);
-                    sigla = $('<td/>').html(row.sigla);
+                    nome = $('<td/>').html(row.nome.toUpperCase());
+                    sigla = $('<td/>').html(row.sigla.toUpperCase());
                     switch (row.regiao) {
                         case '1':
                             regiao = $('<td/>').html("CENTRO-OESTE");
@@ -121,8 +121,13 @@ $(document).ready(function () {
                         "sSortAscending": ": Ordenar colunas de forma ascendente",
                         "sSortDescending": ": Ordenar colunas de forma descendente"
                     }
-                }
+                },
+                rowReorder: {
+                    selector: 'td:nth-child(2)'
+                },
+                responsive: true
             });
+
 
             tbl_api.page('next').draw(false); // ? Ativa paginação !
 
