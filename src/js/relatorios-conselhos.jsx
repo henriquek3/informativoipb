@@ -1,6 +1,6 @@
 let id_row, tr_row, tbl_presbiterios, tbl_api, validator_presbiterios;
 tbl_presbiterios = $("#tbl_presbiterios");
-
+let cadastros_presbiterios;
 $(document).ready(function () {
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -90,7 +90,7 @@ $(document).ready(function () {
         ;
     }
 
-    getDataTable();
+    //getDataTable();
 
     /**
      * Instancia DataTables() e organiza os eventos do click
@@ -150,7 +150,7 @@ $(document).ready(function () {
         }, 1000);
     }
 
-    instanciaDataTables(); // init function instanciaDataTables() {};
+    //instanciaDataTables(); // init function instanciaDataTables() {};
 
     /**
      * Traz as informações para edição
@@ -230,205 +230,204 @@ $(document).ready(function () {
         }
     }
 
-    /**
-     * Validador do Formulario, utilizado para incluir ou editar novos registros
-     * @type {*|jQuery}
-     */
-    let validator_presbiterios = $("#cadastros_presbiterios").validate({
-        rules: {
-            nome: {
-                required: true,
-                minlength: 4,
-                maxlength: 255
+    /*    /!**
+         * Validador do Formulario, utilizado para incluir ou editar novos registros
+         * @type {*|jQuery}
+         *!/
+        let validator_presbiterios = $("#cadastros_presbiterios").validate({
+            rules: {
+                nome: {
+                    required: true,
+                    minlength: 4,
+                    maxlength: 255
+                },
+                sigla: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 5
+                }
             },
-            sigla: {
-                required: true,
-                minlength: 3,
-                maxlength: 5
-            }
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).parent().addClass(errorClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).parent().removeClass(errorClass);
-        },
-        invalidHandler: function () {
-            alert("invelid handler");
-        },
-        submitHandler: function () {
-            if (id_row > 0) {
-                let form = $('#cadastros_presbiterios').serializeArray();
-                form.unshift({name: 'id', value: id_row});
-                $.post('api/presbiterios/update', form)
-                    .done(function (response) {
-                        console.log(response);
-                        tbl_api.row(tr_row).remove();
-                        tbl_api.row.add([
-                            response.id,
-                            response.nome.toUpperCase(),
-                            response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
-                        ]).draw(false);
+            highlight: function (element, errorClass, validClass) {
+                $(element).parent().addClass(errorClass);
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).parent().removeClass(errorClass);
+            },
+            invalidHandler: function () {
+                alert("invelid handler");
+            },
+            submitHandler: function () {
+                if (id_row > 0) {
+                    let form = $('#cadastros_presbiterios').serializeArray();
+                    form.unshift({name: 'id', value: id_row});
+                    $.post('api/presbiterios/update', form)
+                        .done(function (response) {
+                            console.log(response);
+                            tbl_api.row(tr_row).remove();
+                            tbl_api.row.add([
+                                response.id,
+                                response.nome.toUpperCase(),
+                                response.sigla.toUpperCase(),
+                                response.regiao.toUpperCase()
+                            ]).draw(false);
 
-                        iziToast.success({
-                            title: 'OK',
-                            message: 'Registro alterado com sucesso!',
-                            timeout: 10000,
-                            pauseOnHover: true,
-                            position: 'topRight',
-                            transitionIn: 'fadeInDown',
-                            transitionOut: 'fadeOutUp'
-                        });
-                    })
-                    .fail(function (response) {
-                        console.log(response);
-                        let str = response.responseText;
-                        let result = str.indexOf("SQLSTATE[23000]");
-                        if (result > 0) {
-                            $(cadastros_presbiterios.sigla).parent().addClass("error");
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'center',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        } else {
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'Operação não realizada!',
+                            iziToast.success({
+                                title: 'OK',
+                                message: 'Registro alterado com sucesso!',
                                 timeout: 10000,
                                 pauseOnHover: true,
                                 position: 'topRight',
                                 transitionIn: 'fadeInDown',
                                 transitionOut: 'fadeOutUp'
                             });
-                        }
-                    })
-                ;
-            } else {
-                let form = $('#cadastros_presbiterios').serializeArray();
-                $.post('api/presbiterios/store', form)
-                    .done(function (response) {
-                        console.log(response);
+                        })
+                        .fail(function (response) {
+                            console.log(response);
+                            let str = response.responseText;
+                            let result = str.indexOf("SQLSTATE[23000]");
+                            if (result > 0) {
+                                $(cadastros_presbiterios.sigla).parent().addClass("error");
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                    timeout: 10000,
+                                    pauseOnHover: true,
+                                    position: 'center',
+                                    transitionIn: 'fadeInDown',
+                                    transitionOut: 'fadeOutUp'
+                                });
+                            } else {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Operação não realizada!',
+                                    timeout: 10000,
+                                    pauseOnHover: true,
+                                    position: 'topRight',
+                                    transitionIn: 'fadeInDown',
+                                    transitionOut: 'fadeOutUp'
+                                });
+                            }
+                        })
+                    ;
+                } else {
+                    let form = $('#cadastros_presbiterios').serializeArray();
+                    $.post('api/presbiterios/store', form)
+                        .done(function (response) {
+                            console.log(response);
 
-                        tbl_api.row.add([
-                            response.id,
-                            response.nome.toUpperCase(),
-                            response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
-                        ]).draw(false);
+                            tbl_api.row.add([
+                                response.id,
+                                response.nome.toUpperCase(),
+                                response.sigla.toUpperCase(),
+                                response.regiao.toUpperCase()
+                            ]).draw(false);
 
-                        iziToast.success({
-                            title: 'OK',
-                            message: 'Registro inserido com sucesso!',
-                            timeout: 10000,
-                            pauseOnHover: true,
-                            position: 'topRight',
-                            transitionIn: 'fadeInDown',
-                            transitionOut: 'fadeOutUp'
-                        });
-                    })
-                    .fail(function (response) {
-                        console.log(response);
-                        let str = response.responseText;
-                        let result = str.indexOf("SQLSTATE[23000]");
-                        if (result > 0) {
-                            $(cadastros_presbiterios.sigla).parent().addClass("error");
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'center',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        } else {
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'Operação não realizada!',
+                            iziToast.success({
+                                title: 'OK',
+                                message: 'Registro inserido com sucesso!',
                                 timeout: 10000,
                                 pauseOnHover: true,
                                 position: 'topRight',
                                 transitionIn: 'fadeInDown',
                                 transitionOut: 'fadeOutUp'
                             });
+                        })
+                        .fail(function (response) {
+                            console.log(response);
+                            let str = response.responseText;
+                            let result = str.indexOf("SQLSTATE[23000]");
+                            if (result > 0) {
+                                $(cadastros_presbiterios.sigla).parent().addClass("error");
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                    timeout: 10000,
+                                    pauseOnHover: true,
+                                    position: 'center',
+                                    transitionIn: 'fadeInDown',
+                                    transitionOut: 'fadeOutUp'
+                                });
+                            } else {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Operação não realizada!',
+                                    timeout: 10000,
+                                    pauseOnHover: true,
+                                    position: 'topRight',
+                                    transitionIn: 'fadeInDown',
+                                    transitionOut: 'fadeOutUp'
+                                });
+                            }
+                        })
+                    ;
+                }
+            }
+        });
+
+        /!**
+         * Os campos select do semantic não são compativeis com o jquery validation,
+         * a msg fica bugada, usar desta forma para select.search.dropdown
+         *!/
+        $("#cadastros_presbiterios").form({
+            inline: true,
+            on: 'submit',
+            fields: {
+                dropdown: {
+                    identifier: 'regiao',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Este campo é requerido.'
                         }
-                    })
-                ;
+                    ]
+                }
             }
-        }
-    });
+        });
 
-    /**
-     * Os campos select do semantic não são compativeis com o jquery validation,
-     * a msg fica bugada, usar desta forma para select.search.dropdown
-     */
-    $("#cadastros_presbiterios").form({
-        inline: true,
-        on: 'submit',
-        fields: {
-            dropdown: {
-                identifier: 'regiao',
-                rules: [
-                    {
-                        type: 'empty',
-                        prompt: 'Este campo é requerido.'
-                    }
-                ]
-            }
-        }
-    });
-
-    /**
-     * Ao clicar no botão limpar, reseta as classes de erro
-     */
-    $(".ui.reset.button").on("click", function () {
-        validator_presbiterios.resetForm();
-        $('form').form('reset');
-    });
-
-    /**
-     * Adiciona evento de exclusão no botão Excluir
-     */
-    $("button[type='button']").on("click", function () {
-        deleteData();
-    });
-
-    /**
-     *  Função para ativar o get
-     */
-    $("a[data-tab='second']").on("click", function () {
-        if (id_row > 0) {
-            getDataForm();
-        } else {
-            /**
-             * reseta os campos do tipo input
-             */
-            cadastros_presbiterios.reset();
-
-            /**
-             * retorna o select para a primera opção
-             * @type {number}
-             */
+        /!**
+         * Ao clicar no botão limpar, reseta as classes de erro
+         *!/
+        $(".ui.reset.button").on("click", function () {
             validator_presbiterios.resetForm();
             $('form').form('reset');
-        }
-    });
+        });
 
-    /**
-     * Função para quando for na aba lista, zerar o id_row
-     */
-    $("a[data-tab='first']").on("click", function () {
-        if (id_row > 0) {
-            id_row = null;
-            tbl_api.row().deselect();
-            tbl_api.$('tr.active').removeClass('active');
-        }
-    });
+        /!**
+         * Adiciona evento de exclusão no botão Excluir
+         *!/
+        $("button[type='button']").on("click", function () {
+            deleteData();
+        });
+
+        /!**
+         *  Função para ativar o get
+         *!/
+        $("a[data-tab='second']").on("click", function () {
+            if (id_row > 0) {
+                getDataForm();
+            } else {
+                /!**
+                 * reseta os campos do tipo input
+                 *!/
+                cadastros_presbiterios.reset();
+
+                /!**
+                 * retorna o select para a primera opção
+                 * @type {number}
+                 *!/
+                validator_presbiterios.resetForm();
+                $('form').form('reset');
+            }
+        });
+
+        /!**
+         * Função para quando for na aba lista, zerar o id_row
+         *!/
+        $("a[data-tab='first']").on("click", function () {
+            if (id_row > 0) {
+                id_row = null;
+                tbl_api.row().deselect();
+                tbl_api.$('tr.active').removeClass('active');
+            }
+        });*/
 });
-

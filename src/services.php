@@ -26,10 +26,10 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'driver' => 'pdo_mysql',
         'host' => 'localhost',
         'dbname' => 'jksistem_informativoipb',
-        /*'user' => 'jksistem_ipbsys',
-        'password' => 'azfRm9ps]9M&',*/
-        'user' => 'root',
-        'password' => '',
+        'user' => 'jksistem_ipbsys',
+        'password' => 'r5758222rA+',
+        /*'user' => 'root',
+        'password' => '',*/
         'charset' => 'utf8mb4',
     ),
 ));
