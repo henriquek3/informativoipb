@@ -22,9 +22,7 @@ include __DIR__ . '/controllers/geografia.php';
 include __DIR__ . '/controllers/sinodos.php';
 include __DIR__ . '/controllers/presbiterios.php';
 
-
 /**
  * @todo Lançar uma instancia da api
  */
 $app->run();
-

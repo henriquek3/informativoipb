@@ -1,5 +1,5 @@
-let id_row, tr_row, tbl_igrejas, tbl_api;
-tbl_igrejas = $("#tbl_igrejas");
+let id_row, tr_row, tbl_presbiteros, tbl_api;
+tbl_presbiteros = $("#tbl_presbiteros");
 
 $(document).ready(function () {
     /**
@@ -38,7 +38,7 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/igrejas')
+        $.get('/api/presbiteros')
             .done(function (response) {
                 for (let key in response) {
                     let tr, row, id, nome, presbiterio, sinodo;
@@ -62,7 +62,7 @@ $(document).ready(function () {
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_igrejas').append(tr);
+                    $('#tbody_presbiteros').append(tr);
                 }
             })
             .fail(function (response) {
@@ -76,7 +76,7 @@ $(document).ready(function () {
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_igrejas.DataTable({
+            tbl_api = tbl_presbiteros.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -110,7 +110,7 @@ $(document).ready(function () {
             /**
              * Utilizado para selecionar as linhas da tabela
              */
-            $('#tbody_igrejas').off("click", "**").on('click', 'tr', function () {
+            $('#tbody_presbiteros').off("click", "**").on('click', 'tr', function () {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     id_row = null;
@@ -135,18 +135,18 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/igrejas?id=' + id_row)
+        $.get('api/presbiteros?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_igrejas.nome.value = data.nome;
-                cadastros_igrejas.sigla.value = data.sigla;
-                cadastros_igrejas.regiao.value = data.regiao;
+                cadastros_presbiteros.nome.value = data.nome;
+                cadastros_presbiteros.sigla.value = data.sigla;
+                cadastros_presbiteros.regiao.value = data.regiao;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_igrejas.regiao).trigger("change");
+                    $(cadastros_presbiteros.regiao).trigger("change");
                 }, 500);
             })
             .fail(function (response) {
@@ -180,7 +180,7 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/igrejas/delete', {id: id_row})
+                        $.post('/api/presbiteros/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -204,7 +204,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator_igrejas = $("#cadastros_igrejas").validate({
+    let validator_presbiteros = $("#cadastros_presbiteros").validate({
         rules: {
             nome: {
                 required: true,
@@ -257,76 +257,12 @@ $(document).ready(function () {
         },
         unhighlight: function (element, errorClass, validClass) {
             $(element).parent().removeClass(errorClass);
-        },
-        invalidHandler: function () {
-            alert("invelid handler");
         },
         submitHandler: function () {
             alert("submit handler");
         }
     });
 
-    let validator_congregacoes = $("#cadastros_congregacoes").validate({
-        rules: {
-            nome: {
-                required: true,
-                minlength: 4,
-                maxlength: 255
-            },
-            cnpj: {
-                required: true,
-                minlength: 14,
-                maxlength: 14
-            },
-            data_organizacao: {
-                required: true,
-                minlength: 1,
-                maxlength: 10
-            },
-            endereco: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            endereco_nr: {
-                required: true,
-                minlength: 2,
-                maxlength: 7
-            },
-            endereco_complemento: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            endereco_bairro: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            email: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-            website: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            }
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).parent().addClass(errorClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).parent().removeClass(errorClass);
-        },
-        invalidHandler: function () {
-            alert("invelid handler");
-        },
-        submitHandler: function () {
-            alert("submit handler");
-        }
-    });
 
     /**
      * Os campos select do semantic não são compativeis com o jquery validation,
@@ -351,9 +287,9 @@ $(document).ready(function () {
      * Ao clicar no botão limpar, reseta as classes de erro
      */
     $(".ui.reset.button").on("click", function () {
-        validator.resetForm();
+        validator_presbiteros.resetForm();
         $('form').form('reset')
-    })
+    });
 
     /**
      * Adiciona evento de exclusão no botão Excluir
@@ -361,79 +297,4 @@ $(document).ready(function () {
     $("button[type='button']").on("click", function () {
         deleteData();
     });
-
-
-    let estadosLoad;
-
-    function popularEstadosCidades() {
-
-        if (!estadosLoad) {
-            $.get('api/estados')
-                .done(function (response) {
-                    $(cadastros_igrejas.id_estado).append($('<option />').text('Selecione o Estado'));
-
-                    $.each(response, function () {
-                        $(cadastros_igrejas.id_estado).append(
-                            $('<option />').val(this.id).text(this.uf_nome + " / " + this.nome.toUpperCase())
-                        );
-                    });
-
-                    estadosLoad = true;
-                })
-                .fail(function (response) {
-                    $.notify({
-                        title: 'Operação não efetuada.<br/>',
-                        message: 'Erro: ' + response.status + ', ' + response.statusText
-                    }, {
-                        type: "danger",
-                        delay: 10000
-                    });
-                    estadosLoad = false;
-                })
-            ;
-        }
-
-        /**
-         * @description Popular a Aba Cadastrar, Naturalidade
-         */
-        $(cadastros_igrejas.id_estado).on('change', function () {
-            if ($(cadastros_igrejas.id_estado).val() > 0) {
-                $("#id_cidade").children().remove();
-                $("#div_cidade").find(".search").hide();
-                $(".loader").show();
-                $.get('api/cidades?uf=' + $(cadastros_igrejas.id_estado).val())
-                    .done(function (response) {
-
-                        $.each(response, function () {
-                            $(cadastros_igrejas.id_cidade).append(
-                                $('<option />').val(this.id).text(this.nome.toUpperCase())
-                            );
-                        });
-                        $("#div_cidade").find(".search").show();
-                        $(".loader").hide()
-                    })
-                    .fail(function (response) {
-                        $.notify({
-                            title: 'Operação não efetuada.<br/>',
-                            message: 'Erro: ' + response.status + ', ' + response.statusText
-                        }, {
-                            type: "danger",
-                            delay: 10000
-                        });
-                    })
-                ;
-            }
-        });
-    }
-
-    popularEstadosCidades();
-    setTimeout(function () {
-        cadastros_igrejas.id_estado.value = 11;
-        $(cadastros_igrejas.id_estado).trigger("change");
-    }, 500);
-
-    setTimeout(function () {
-        cadastros_igrejas.id_cidade.value = 4271;
-        $(cadastros_igrejas.id_cidade).trigger("change");
-    }, 1000);
 });

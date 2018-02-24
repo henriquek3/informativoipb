@@ -22,9 +22,9 @@ block content
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
-            a.item.active(data-tab="first") Igrejas
-            a.item(data-tab="second") Cadastrar
-            a.item(data-tab="third") Congregação
+            a.item.active(data-tab="first") Lista
+            a.item(data-tab="second") Cadastro
+            a.item(data-tab="third") Congregações
         div.ui.bottom.attached.tab.segment.active(data-tab="first")
             table.ui.compact.selectable.celled.green.table(id="tbl_igrejas")
                 thead
@@ -36,7 +36,7 @@ block content
                 tbody(id="tbody_igrejas")
                     tr
                         td.center.aligned 01
-                        td Presbiteriana Luz e Vida
+                        td PRESBITERIANA LUZ E VIDA
                         td.center.aligned PRON
                         td.center.aligned SCA
                     tr
@@ -116,55 +116,64 @@ block content
                     div.fields
                         div.six.wide.field
                             label Sínodo
-                            select.ui.fluid.search.selection.dropdown
+                            select.ui.fluid.search.selection.dropdown(disabled="true")
                                 option
-                                option Sinodo
-                                option Binodo
-                                option Cinodo
-                        div.four.wide.field
-                            label Estado
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
+                                option(value="1", selected="true") SCA / SÍNODO CENTRO AMÉRICA
+
                         div.six.wide.field
-                            label Cidade
-                            select.ui.fluid.search.dropdown
+                            label Sínodo
+                            select.ui.fluid.search.selection.dropdown(disabled="true")
                                 option
-                                option Cidade
-                                option Cidade
-                                option Cidade
+                                option(value="1", selected="true") PRON / PRESBITÉRIO DE RONDONÓPOLIS
+
+                        div.four.wide.field
+                            div.clearfix
+                                div.ui.checkbox(style="float: left; display: flex; margin-top: 32px; margin-left: 20px;")
+                                    input(type="checkbox", checked="")
+                                    label Congregação do Presbitério
+
                     div.fields
-                        div.ten.wide.field
-                            label Nome
-                            input(type="text", name="nome" placeholder="Digite seu Nome")
-                        div.three.wide.field
+                        div.six.wide.field
+                            label Estado
+                            select.ui.fluid.search.dropdown(name="id_estado")
+
+                        div.six.wide.field(id="div_cidade")
+                            label Cidade
+                            select.ui.fluid.search.dropdown(name="id_cidade", id="id_cidade")
+                            div.ui.active.inline.small.loader(style="display:none")
+
+                        div.four.wide.field
                             label CNPJ
-                            input(type="text" name="cnpj" placeholder="CNPJ")
+                            input(type="text" name="cnpj" placeholder="CNPJ", value="01265980/0001-56")
+
+                    div.fields
+                        div.thirteen.wide.field
+                            label Nome
+                            input(type="text", name="nome" placeholder="Digite o Nome", value="IGREJA PRESBITERIANA LUZ E VIDA")
+
                         div.ui.calendar.bottom.left.three.wide.field
                             label Organização
-                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
+                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização", value="27/12/2014")
                     div.fields
                         div.six.wide.field
                             label Endereço
-                            input(type="text" name="endereco" placeholder="Endereço")
+                            input(type="text" name="endereco" placeholder="Endereço", value="AVENIDA GUARAPUAVA")
                         div.two.wide.field
                             label Número
-                            input(type="text" name="endereco_nr" placeholder="Número")
+                            input(type="text" name="endereco_nr" placeholder="Número", value="659")
                         div.four.wide.field
                             label Complemento
-                            input(type="text" name="endereco_complemento" placeholder="Complemento")
+                            input(type="text" name="endereco_complemento" placeholder="Complemento", value="PRÓXIMO AO ESTÁDIO LUTHERO LOPES")
                         div.four.wide.field
                             label Bairro
-                            input(type="text" name="endereco_bairro" placeholder="Bairro")
+                            input(type="text" name="endereco_bairro" placeholder="Bairro", value="CIDADE ALTA")
                     div.fields
                         div.eight.wide.field
                             label E-mail
-                            input(type="email" name="email" placeholder="E-Mail")
+                            input(type="email" name="email" placeholder="E-Mail", value="ipbluzevida@gmail.com")
                         div.eight.wide.field
                             label Homepage
-                            input(type="url" name="website" placeholder="Web Site")
+                            input(type="url" name="website" placeholder="Web Site", value="https://www.ipbluzevida.com.br")
 
                 div(style="text-align: center")
                     button.ui.green.labeled.icon.button(type="submit")
