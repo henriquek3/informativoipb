@@ -35,6 +35,11 @@ block content
                         th.two.wide.center.aligned Região
 
                 tbody(id="tbody_presbiterios")
+                    tr
+                        td 01
+                        td PRESBITÉRIO DE RONDONÓPOLIS
+                        td PRON
+                        td CENTRO-OESTE
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             form(id="cadastros_presbiterios", name="cadastros_presbiterios")
@@ -42,17 +47,17 @@ block content
                     div.fields
                         div.eight.wide.field
                             label Nome
-                            input(type="text", name="nome", placeholder="Digite o Nome")
+                            input(type="text", name="nome", placeholder="Digite o Nome", value="PRESBITÉRIO DE RONDONÓPOLIS")
 
                         div.three.wide.field
                             label Sigla
-                            input(type="text", name="sigla", placeholder="Digite a Sigla")
+                            input(type="text", name="sigla", placeholder="Digite a Sigla", value="PRON")
 
                         div.six.wide.field
                             label Região
                             select.ui.fluid.search.dropdown(name="regiao")
                                 option(value="") Região
-                                option(value="1") Centro-Oeste
+                                option(value="1", selected="true") Centro-Oeste
                                 option(value="2") Nordeste
                                 option(value="3") Norte
                                 option(value="4") Sudeste

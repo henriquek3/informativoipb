@@ -35,6 +35,65 @@ $(document).ready(function () {
     $('.ui.dropdown').dropdown();
 
     /**
+     * Instancia DataTables() e organiza os eventos do click
+     */
+    function instanciaDataTables() {
+        setTimeout(function () {
+            tbl_api = tbl_sinodos.DataTable({
+                language: {
+                    sEmptyTable: "Nenhum registro encontrado",
+                    sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+                    sInfoFiltered: "(Filtrados de _MAX_ registros)",
+                    sInfoPostFix: "",
+                    sInfoThousands: ".",
+                    sLengthMenu: "_MENU_  Resultados por página",
+                    sLoadingRecords: "Carregando...",
+                    sProcessing: "Processando...",
+                    sZeroRecords: "Nenhum registro encontrado",
+                    sSearch: "Pesquisar",
+                    select: {
+                        rows: "  |  %d linha selecionada"
+                    },
+                    oPaginate: {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    oAria: {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                }
+            });
+
+
+            tbl_api.page('next').draw(false); // ? Ativa paginação !
+
+            /**
+             * Utilizado para selecionar as linhas da tabela
+             */
+            $('#tbody_sinodos').off("click", "**").on('click', 'tr', function () {
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    id_row = null;
+                } else {
+                    tbl_api.$('tr.active').removeClass('active');
+                    $(this).addClass('active');
+                    id_row = $(this).find('td:first').html();
+                    tr_row = $(this);
+                }
+                /**
+                 * exibe no console o nr da celula código da linha selecionada,
+                 * que vem do banco de dados como o id do registro
+                 */
+                console.log(id_row);
+            });
+        }, 1000);
+    }
+
+    /**
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
@@ -83,77 +142,15 @@ $(document).ready(function () {
                      */
                     $('#tbody_sinodos').append(tr);
                 }
+                instanciaDataTables(); // init function instanciaDataTables() {};
             })
             .fail(function (response) {
                 console.log(response);
             })
         ;
-    } getDataTable();
-
-    /**
-     * Instancia DataTables() e organiza os eventos do click
-     */
-    function instanciaDataTables() {
-        setTimeout(function () {
-            tbl_api = tbl_sinodos.DataTable({
-                language: {
-                    sEmptyTable: "Nenhum registro encontrado",
-                    sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
-                    sInfoFiltered: "(Filtrados de _MAX_ registros)",
-                    sInfoPostFix: "",
-                    sInfoThousands: ".",
-                    sLengthMenu: "_MENU_  Resultados por página",
-                    sLoadingRecords: "Carregando...",
-                    sProcessing: "Processando...",
-                    sZeroRecords: "Nenhum registro encontrado",
-                    sSearch: "Pesquisar",
-                    select: {
-                        rows: "  |  %d linha selecionada"
-                    },
-                    oPaginate: {
-                        "sNext": "Próximo",
-                        "sPrevious": "Anterior",
-                        "sFirst": "Primeiro",
-                        "sLast": "Último"
-                    },
-                    oAria: {
-                        "sSortAscending": ": Ordenar colunas de forma ascendente",
-                        "sSortDescending": ": Ordenar colunas de forma descendente"
-                    }
-                },
-                rowReorder: {
-                    selector: 'td:nth-child(2)'
-                },
-                responsive: true
-            });
-
-
-            tbl_api.page('next').draw(false); // ? Ativa paginação !
-
-            /**
-             * Utilizado para selecionar as linhas da tabela
-             */
-            $('#tbody_sinodos').off("click", "**").on('click', 'tr', function () {
-                if ($(this).hasClass('active')) {
-                    $(this).removeClass('active');
-                    id_row = null;
-                } else {
-                    tbl_api.$('tr.active').removeClass('active');
-                    $(this).addClass('active');
-                    id_row = $(this).find('td:first').html();
-                    tr_row = $(this);
-                }
-                /**
-                 * exibe no console o nr da celula código da linha selecionada,
-                 * que vem do banco de dados como o id do registro
-                 */
-                console.log(id_row);
-            });
-        }, 1000);
     }
 
-    instanciaDataTables(); // init function instanciaDataTables() {};
+    getDataTable();
 
     /**
      * Traz as informações para edição
@@ -266,11 +263,32 @@ $(document).ready(function () {
                     .done(function (response) {
                         console.log(response);
                         tbl_api.row(tr_row).remove();
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
+                            regiao
                         ]).draw(false);
 
                         iziToast.success({
@@ -316,12 +334,32 @@ $(document).ready(function () {
                 $.post('api/sinodos/store', form)
                     .done(function (response) {
                         console.log(response);
-
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
+                            regiao
                         ]).draw(false);
 
                         iziToast.success({

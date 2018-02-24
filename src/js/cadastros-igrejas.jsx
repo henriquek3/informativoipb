@@ -361,4 +361,79 @@ $(document).ready(function () {
     $("button[type='button']").on("click", function () {
         deleteData();
     });
+
+
+    let estadosLoad;
+
+    function popularEstadosCidades() {
+
+        if (!estadosLoad) {
+            $.get('api/estados')
+                .done(function (response) {
+                    $(cadastros_igrejas.id_estado).append($('<option />').text('Selecione o Estado'));
+
+                    $.each(response, function () {
+                        $(cadastros_igrejas.id_estado).append(
+                            $('<option />').val(this.id).text(this.uf_nome + " / " + this.nome.toUpperCase())
+                        );
+                    });
+
+                    estadosLoad = true;
+                })
+                .fail(function (response) {
+                    $.notify({
+                        title: 'Operação não efetuada.<br/>',
+                        message: 'Erro: ' + response.status + ', ' + response.statusText
+                    }, {
+                        type: "danger",
+                        delay: 10000
+                    });
+                    estadosLoad = false;
+                })
+            ;
+        }
+
+        /**
+         * @description Popular a Aba Cadastrar, Naturalidade
+         */
+        $(cadastros_igrejas.id_estado).on('change', function () {
+            if ($(cadastros_igrejas.id_estado).val() > 0) {
+                $("#id_cidade").children().remove();
+                $("#div_cidade").find(".search").hide();
+                $(".loader").show();
+                $.get('api/cidades?uf=' + $(cadastros_igrejas.id_estado).val())
+                    .done(function (response) {
+
+                        $.each(response, function () {
+                            $(cadastros_igrejas.id_cidade).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_cidade").find(".search").show();
+                        $(".loader").hide()
+                    })
+                    .fail(function (response) {
+                        $.notify({
+                            title: 'Operação não efetuada.<br/>',
+                            message: 'Erro: ' + response.status + ', ' + response.statusText
+                        }, {
+                            type: "danger",
+                            delay: 10000
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    popularEstadosCidades();
+    setTimeout(function () {
+        cadastros_igrejas.id_estado.value = 11;
+        $(cadastros_igrejas.id_estado).trigger("change");
+    }, 500);
+
+    setTimeout(function () {
+        cadastros_igrejas.id_cidade.value = 4271;
+        $(cadastros_igrejas.id_cidade).trigger("change");
+    }, 1000);
 });
