@@ -60,6 +60,12 @@ $app->get('/relatorios-ministeriais.html', function () {
     return ob_get_clean();
 });
 
+$app->get('/relatorios-estatisticas.html', function () {
+    ob_start();
+    include __DIR__ . '/../templates/relatorios-estatisticas.html';
+    return ob_get_clean();
+});
+
 
 $app->get('/sistema-parametros', function () {
     ob_start();
