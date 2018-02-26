@@ -11,9 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 $app->get('api/presbiterios', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
-    $query = "SELECT p.*, s.nome AS sinodo
+    $query = "SELECT p.*, s.sigla AS sinodo
                 FROM presbiterios p, sinodos s
-                WHERE p.id_sinodo = s.id;";
+                WHERE p.id_sinodo = s.id";
     $id = (int)$request->get('id');
     $params = [];
     if ($id > 0) {
