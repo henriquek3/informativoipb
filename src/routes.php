@@ -6,6 +6,7 @@
  * Time: 08:02
  */
 
+/*
 $app->get('/', function () {
     ob_start();
     include __DIR__ . '/../templates/index.html';
@@ -76,5 +77,16 @@ $app->get('/sistema-parametros', function () {
 $app->get('/login', function () {
     ob_start();
     include __DIR__ . '/../templates/page-login.html';
+    return ob_get_clean();
+});
+*/
+
+$app->get('/{routes}', function ($routes) {
+    ob_start();
+    if ($routes !== 'inicio') {
+        include __DIR__ . "/../templates/{$routes}.html";
+    } else {
+        include __DIR__ . '/../templates/index.html';
+    }
     return ob_get_clean();
 });
