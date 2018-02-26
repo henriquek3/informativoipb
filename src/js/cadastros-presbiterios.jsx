@@ -35,13 +35,28 @@ $(document).ready(function () {
     $('.ui.dropdown').dropdown();
 
     /**
+     * Trazer os sinodos para o selec
+     */
+    $.get('api/sinodos')
+        .done(function (response) {
+            $.each(response, function () {
+                $(cadastros_presbiterios.id_sinodo).append(
+                    $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                );
+            })
+        })
+        .fail(function (response) {
+            console.log(response);
+        });
+
+    /**
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
         $.get('/api/presbiterios')
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, regiao, nome, sigla;
+                    let tr, row, id, regiao, nome, sigla, sinodo;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -49,8 +64,9 @@ $(document).ready(function () {
                      * @type {jQuery}
                      */
                     id = $('<td/>').html(row.id);
-                    nome = $('<td/>').html(row.nome);
-                    sigla = $('<td/>').html(row.sigla);
+                    nome = $('<td/>').html(row.nome.toUpperCase());
+                    sinodo = $('<td/>').html(row.sinodo.toUpperCase());
+                    sigla = $('<td/>').html(row.sigla.toUpperCase());
                     switch (row.regiao) {
                         case '1':
                             regiao = $('<td/>').html("CENTRO-OESTE");
@@ -77,6 +93,7 @@ $(document).ready(function () {
                     tr.append(id)
                         .append(nome)
                         .append(sigla)
+                        .append(sinodo)
                         .append(regiao);
                     /**
                      * Adiciona linhas na tabela
@@ -145,7 +162,7 @@ $(document).ready(function () {
                  * exibe no console o nr da celula código da linha selecionada,
                  * que vem do banco de dados como o id do registro
                  */
-                console.log(id_row);
+                //console.log(id_row);
             });
         }, 1000);
     }
@@ -162,12 +179,14 @@ $(document).ready(function () {
                 cadastros_presbiterios.nome.value = data.nome;
                 cadastros_presbiterios.sigla.value = data.sigla;
                 cadastros_presbiterios.regiao.value = data.regiao;
+                cadastros_presbiterios.id_sinodo.value = data.id_sinodo;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
                     $(cadastros_presbiterios.regiao).trigger("change");
+                    $(cadastros_presbiterios.id_sinodo).trigger("change");
                 }, 100);
             })
             .fail(function (response) {
@@ -234,7 +253,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator_presbiterios = $("#cadastros_presbiterios").validate({
+    validator_presbiterios = $("#cadastros_presbiterios").validate({
         rules: {
             nome: {
                 required: true,
@@ -253,22 +272,25 @@ $(document).ready(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).parent().removeClass(errorClass);
         },
-        invalidHandler: function () {
-            alert("invelid handler");
-        },
         submitHandler: function () {
+            /**
+             * Estes campos são para popular o dataTable pelo nome e não pelo id do response
+             * @type {jQuery}
+             */
+            let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
+            let regiao = $("select[name='regiao'] :selected").text();
             if (id_row > 0) {
                 let form = $('#cadastros_presbiterios').serializeArray();
                 form.unshift({name: 'id', value: id_row});
                 $.post('api/presbiterios/update', form)
                     .done(function (response) {
-                        console.log(response);
                         tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
+                            sinodo,
+                            regiao.toUpperCase()
                         ]).draw(false);
 
                         iziToast.success({
@@ -313,13 +335,13 @@ $(document).ready(function () {
                 let form = $('#cadastros_presbiterios').serializeArray();
                 $.post('api/presbiterios/store', form)
                     .done(function (response) {
-                        console.log(response);
-
+                        id_row = response.id;
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
+                            sinodo,
+                            regiao.toUpperCase()
                         ]).draw(false);
 
                         iziToast.success({
@@ -380,6 +402,15 @@ $(document).ready(function () {
                         prompt: 'Este campo é requerido.'
                     }
                 ]
+            },
+            sinodos: {
+                identifier: 'id_sinodo',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Este campo é requerido.'
+                    }
+                ]
             }
         }
     });
@@ -431,4 +462,3 @@ $(document).ready(function () {
         }
     });
 });
-

@@ -40,23 +40,23 @@ block content
             form(id="cadastros_sinodos", name="cadastros_sinodos")
                 div.ui.form
                     div.fields
-                        div.eight.wide.field
+                        div.eight.wide.required.field
                             label Nome
                             input(type="text", name="nome", placeholder="Digite o Nome")
 
-                        div.three.wide.field
+                        div.three.wide.required.field
                             label Sigla
                             input(type="text", name="sigla", placeholder="Digite a Sigla")
 
-                        div.six.wide.field
+                        div.six.wide.required.field
                             label Região
-                            select.ui.fluid.search.dropdown(name="regiao")
+                            select.ui.search.dropdown(name="regiao")
                                 option(value="") Região
-                                option(value="1") Centro-Oeste
-                                option(value="2") Nordeste
-                                option(value="3") Norte
-                                option(value="4") Sudeste
-                                option(value="5") Sul
+                                option(value="1") NORTE
+                                option(value="2") NORDESTE
+                                option(value="3") CENTRO-OESTE
+                                option(value="4") SUDESTE
+                                option(value="5") SUL
 
                 div.ui.clearing.divider
 
@@ -79,7 +79,5 @@ block specific-js
     script(src="js/plugins/bootstrap-datepicker.pt-BR.min.js")
     script(src="js/plugins/datatables.min.js")
     script(src="js/plugins/sweetalert.min.js")
-    //script(type="text/javascript", src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js")
-    //script(type="text/javascript", src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js")
     script(src="js/app/cadastros-sinodos-app.js")
 

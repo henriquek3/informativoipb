@@ -18,31 +18,31 @@ $app->get('/index.html', function () {
     return ob_get_clean();
 });
 
-$app->get('/cadastros-sinodos.html', function () {
+$app->get('/cadastros-sinodos', function () {
     ob_start();
     include __DIR__ . '/../templates/cadastros-sinodos.html';
     return ob_get_clean();
 });
 
-$app->get('/cadastros-igrejas.html', function () {
+$app->get('/cadastros-igrejas', function () {
     ob_start();
     include __DIR__ . '/../templates/cadastros-igrejas.html';
     return ob_get_clean();
 });
 
-$app->get('/cadastros-presbiterios.html', function () {
+$app->get('/cadastros-presbiterios', function () {
     ob_start();
     include __DIR__ . '/../templates/cadastros-presbiterios.html';
     return ob_get_clean();
 });
 
-$app->get('/cadastros-igrejas.html', function () {
+$app->get('/cadastros-igrejas', function () {
     ob_start();
     include __DIR__ . '/../templates/cadastros-igrejas.html';
     return ob_get_clean();
 });
 
-$app->get('/cadastros-presbiteros.html', function () {
+$app->get('/cadastros-presbiteros', function () {
     ob_start();
     include __DIR__ . '/../templates/cadastros-presbiteros.html';
     return ob_get_clean();

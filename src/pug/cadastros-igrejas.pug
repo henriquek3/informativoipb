@@ -116,13 +116,13 @@ block content
                     div.fields
                         div.six.wide.field
                             label Sínodo
-                            select.ui.fluid.search.selection.dropdown(disabled="true")
+                            select.ui.fluid.search.dropdown(disabled="true")
                                 option
                                 option(value="1", selected="true") SCA / SÍNODO CENTRO AMÉRICA
 
                         div.six.wide.field
-                            label Sínodo
-                            select.ui.fluid.search.selection.dropdown(disabled="true")
+                            label Presbitério
+                            select.ui.fluid.search.dropdown(disabled="true")
                                 option
                                 option(value="1", selected="true") PRON / PRESBITÉRIO DE RONDONÓPOLIS
 
@@ -175,6 +175,34 @@ block content
                             label Homepage
                             input(type="url" name="website" placeholder="Web Site", value="https://www.ipbluzevida.com.br")
 
+                div.ui.segments
+                    div.ui.horizontal.segments
+                        div.ui.segment
+                            span(style="color: lightslategray;")
+                                strong Usuário inclusão:
+                            span(style="color: lightslategray;")
+                                | &nbsp;
+                                | Kallew Pavão
+                                | &nbsp;
+                            span(style="float: right;color: lightslategray;")
+                                strong Data:
+                                | &nbsp;
+                                | 01/01/2018
+
+                        div.ui.segment
+                            span(style="color: lightslategray;")
+                                strong Última alteração:
+                            span(style="color: lightslategray;")
+                                | &nbsp;
+                                | Kallew Pavão
+                                | &nbsp;
+                            span(style="float: right;color: lightslategray;")
+                                strong Data:
+                                | &nbsp;
+                                | 01/01/2018
+
+                div.ui.clearing.divider
+
                 div(style="text-align: center")
                     button.ui.green.labeled.icon.button(type="submit")
                         i.plus.icon
@@ -189,78 +217,114 @@ block content
                         | Excluir
 
         div.ui.bottom.attached.tab.segment(data-tab="third")
-            form(id="cadastros_congregacoes", name="cadastros_congregacoes")
-                div.ui.form
-                    div.fields
-                        div.eight.wide.disabled.field
-                            label Sínodo
-                            select.ui.fluid.search.dropdown
-                                option Sinodo
-                                option Sinodo
-                                option Sinodo
-                        div.eight.wide.disabled.field
-                            label Igreja
-                            select.ui.fluid.search.dropdown
-                                option Sinodo
-                                option Sinodo
-                                option Sinodo
-                    div.fields
-                        div.eight.wide.field
-                            label Estado
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
-                        div.eight.wide.field
-                            label Cidade
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Cidade
-                                option Cidade
-                                option Cidade
-                    div.fields
-                        div.ten.wide.field
-                            label Nome
-                            input(type="text", name="nome" placeholder="Digite seu Nome")
-                        div.three.wide.field
-                            label CNPJ
-                            input(type="text" name="cnpj" placeholder="CNPJ")
-                        div.ui.calendar.bottom.left.three.wide.field
-                            label Organização
-                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
-                    div.fields
-                        div.six.wide.field
-                            label Endereço
-                            input(type="text" name="endereco" placeholder="Endereço")
-                        div.two.wide.field
-                            label Número
-                            input(type="text" name="endereco_nr" placeholder="Número")
-                        div.four.wide.field
-                            label Complemento
-                            input(type="text" name="endereco_complemento" placeholder="Complemento")
-                        div.four.wide.field
-                            label Bairro
-                            input(type="text" name="endereco_bairro" placeholder="Bairro")
-                    div.fields
-                        div.eight.wide.field
-                            label E-mail
-                            input(type="email" name="email" placeholder="E-Mail")
-                        div.eight.wide.field
-                            label Homepage
-                            input(type="url" name="website" placeholder="Web Site")
-                div(style="text-align: center")
-                    button.ui.green.labeled.icon.button(type="submit")
-                        i.plus.icon
-                        | Gravar
+            div.ui.top.attached.tabular.menu
+                a.item.active(data-tab="congreg-first") Lista
+                a.item(data-tab="congreg-second") Cadastro
 
-                    button.ui.reset.button(type="reset")
-                        i.minus.icon
-                        | Limpar
+            div.ui.bottom.attached.tab.segment.active(data-tab="congreg-first")
+                table.ui.compact.selectable.celled.blue.table()
+                    thead
+                        tr
+                            th.one.wide Código
+                            th.ten.wide Nome
+                            th.five.wide Bairro
 
-                    button.ui.red.right.labeled.icon.button(type="button")
-                        i.remove.icon
-                        | Excluir
+                    tbody
+                        tr
+                            td 01
+                            td Congregação luz e vida
+                            td Cidade Alta
+
+            div.ui.bottom.attached.tab.segment(data-tab="congreg-second")
+                form(id="cadastros_congregacoes", name="cadastros_congregacoes")
+                    div.ui.form
+                        div.fields
+                            // Trazer por padrão já selecionado o estado e cidade da igreja, porém permitir alterar.
+                            div.eight.wide.field
+                                label Estado
+                                select.ui.fluid.search.dropdown
+                                    option
+                                    option Estado
+                                    option Estado
+                                    option Estado
+                            div.eight.wide.field
+                                label Cidade
+                                select.ui.fluid.search.dropdown
+                                    option
+                                    option Cidade
+                                    option Cidade
+                                    option Cidade
+                        div.fields
+                            div.ten.wide.field
+                                label Nome
+                                input(type="text", name="nome" placeholder="Digite seu Nome")
+                            div.three.wide.field
+                                label CNPJ
+                                input(type="text" name="cnpj" placeholder="CNPJ")
+                            div.ui.calendar.bottom.left.three.wide.field
+                                label Organização
+                                input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
+                        div.fields
+                            div.six.wide.field
+                                label Endereço
+                                input(type="text" name="endereco" placeholder="Endereço")
+                            div.two.wide.field
+                                label Número
+                                input(type="text" name="endereco_nr" placeholder="Número")
+                            div.four.wide.field
+                                label Complemento
+                                input(type="text" name="endereco_complemento" placeholder="Complemento")
+                            div.four.wide.field
+                                label Bairro
+                                input(type="text" name="endereco_bairro" placeholder="Bairro")
+                        div.fields
+                            div.eight.wide.field
+                                label E-mail
+                                input(type="email" name="email" placeholder="E-Mail")
+                            div.eight.wide.field
+                                label Homepage
+                                input(type="url" name="website" placeholder="Web Site")
+
+                    div.ui.segments
+                        div.ui.horizontal.segments
+                            div.ui.segment
+                                span(style="color: lightslategray;")
+                                    strong Usuário inclusão:
+                                span(style="color: lightslategray;")
+                                    | &nbsp;
+                                    | Kallew Pavão
+                                    | &nbsp;
+                                span(style="float: right;color: lightslategray;")
+                                    strong Data:
+                                    | &nbsp;
+                                    | 01/01/2018
+
+                            div.ui.segment
+                                span(style="color: lightslategray;")
+                                    strong Última alteração:
+                                span(style="color: lightslategray;")
+                                    | &nbsp;
+                                    | Kallew Pavão
+                                    | &nbsp;
+                                span(style="float: right;color: lightslategray;")
+                                    strong Data:
+                                    | &nbsp;
+                                    | 01/01/2018
+
+                    div.ui.clearing.divider
+
+                    div(style="text-align: center")
+                        button.ui.green.labeled.icon.button(type="submit")
+                            i.plus.icon
+                            | Gravar
+
+                        button.ui.reset.button(type="reset")
+                            i.minus.icon
+                            | Limpar
+
+                        button.ui.red.right.labeled.icon.button(type="button")
+                            i.remove.icon
+                            | Excluir
 
 block specific-js
     script(src='js/app/jquery-validate-app.js')
