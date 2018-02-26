@@ -30,34 +30,38 @@ block content
                 thead
                     tr
                         th.one.wide Código
-                        th.ten.wide Nome
+                        th.eight.wide.center.aligned Nome
                         th.two.wide.center.aligned Sigla
-                        th.two.wide.center.aligned Região
+                        th.two.wide.center.aligned Sínodo
+                        th.three.wide.center.aligned Região
 
                 tbody(id="tbody_presbiterios")
-                    tr
-                        td 01
-                        td PRESBITÉRIO DE RONDONÓPOLIS
-                        td PRON
-                        td CENTRO-OESTE
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             form(id="cadastros_presbiterios", name="cadastros_presbiterios")
                 div.ui.form
                     div.fields
-                        div.eight.wide.field
+                        div.sixteen.wide.required.field
+                            label Sínodos
+                            select.ui.search.dropdown(name="id_sinodo")
+                                option
+                                option(value="") Selecione o Sínodo
+
+                    div.fields
+                        div.eight.wide.required.field
                             label Nome
-                            input(type="text", name="nome", placeholder="Digite o Nome", value="PRESBITÉRIO DE RONDONÓPOLIS")
+                            input(type="text", name="nome", placeholder="Digite o Nome")
 
-                        div.three.wide.field
+                        div.three.wide.required.field
                             label Sigla
-                            input(type="text", name="sigla", placeholder="Digite a Sigla", value="PRON")
+                            input(type="text", name="sigla", placeholder="Digite a Sigla")
 
-                        div.six.wide.field
+                        div.six.wide.required.field
                             label Região
-                            select.ui.fluid.search.dropdown(name="regiao")
+                            select.ui.search.dropdown(name="regiao")
+                                option
                                 option(value="") Região
-                                option(value="1", selected="true") Centro-Oeste
+                                option(value="1") Centro-Oeste
                                 option(value="2") Nordeste
                                 option(value="3") Norte
                                 option(value="4") Sudeste

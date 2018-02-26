@@ -35,6 +35,21 @@ $(document).ready(function () {
     $('.ui.dropdown').dropdown();
 
     /**
+     * Trazer os sinodos para o selec
+     */
+    $.get('api/sinodos')
+        .done(function (response) {
+            $.each(response, function () {
+                $(cadastros_presbiterios.id_sinodo).append(
+                    $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                );
+            })
+        })
+        .fail(function (response) {
+            console.log(response);
+        });
+
+    /**
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
@@ -253,9 +268,6 @@ $(document).ready(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).parent().removeClass(errorClass);
         },
-        invalidHandler: function () {
-            alert("invelid handler");
-        },
         submitHandler: function () {
             if (id_row > 0) {
                 let form = $('#cadastros_presbiterios').serializeArray();
@@ -319,6 +331,7 @@ $(document).ready(function () {
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
+                            response.sinodo,
                             response.regiao.toUpperCase()
                         ]).draw(false);
 
@@ -374,6 +387,15 @@ $(document).ready(function () {
         fields: {
             dropdown: {
                 identifier: 'regiao',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Este campo é requerido.'
+                    }
+                ]
+            },
+            sinodos: {
+                identifier: 'id_sinodo',
                 rules: [
                     {
                         type: 'empty',
