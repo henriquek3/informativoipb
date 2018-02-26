@@ -67,6 +67,10 @@ $(document).ready(function () {
             })
             .fail(function (response) {
                 console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
             })
         ;
     }
@@ -151,6 +155,10 @@ $(document).ready(function () {
             })
             .fail(function (response) {
                 console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
             })
         ;
     }
@@ -381,12 +389,9 @@ $(document).ready(function () {
                     estadosLoad = true;
                 })
                 .fail(function (response) {
-                    $.notify({
-                        title: 'Operação não efetuada.<br/>',
-                        message: 'Erro: ' + response.status + ', ' + response.statusText
-                    }, {
-                        type: "danger",
-                        delay: 10000
+                    iziToast.warning({
+                        title: 'Erro',
+                        message: 'Consulta não realizada, verifique sua conexão!',
                     });
                     estadosLoad = false;
                 })
@@ -413,12 +418,9 @@ $(document).ready(function () {
                         $(".loader").hide()
                     })
                     .fail(function (response) {
-                        $.notify({
-                            title: 'Operação não efetuada.<br/>',
-                            message: 'Erro: ' + response.status + ', ' + response.statusText
-                        }, {
-                            type: "danger",
-                            delay: 10000
+                       iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
                         });
                     })
                 ;
