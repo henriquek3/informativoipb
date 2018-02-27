@@ -9,17 +9,29 @@ html
                 div.ui.segments
                     div.ui.horizontal.segments            
                         div.ui.segment
-                            p Aqui é o login do Supremo
+                            div.ui.segment
+                                div.ui.form
+                                    button.ui.fluid.blue.button(name="supremo") SUPREMO
                     
                         div.ui.segment
-                            p Aqui é o login do Sínodo
+                            div.ui.segment
+                                div.ui.form
+                                    button.ui.fluid.yellow.button(name="supremo") SÍNODOS
 
                     div.ui.horizontal.segments            
                         div.ui.segment
-                            p Aqui é o login do Supremo
+                            div.ui.segment
+                                div.ui.form
+                                    button.ui.fluid.red.button(name="supremo") PRESBITÉRIOS
                     
                         div.ui.segment
-                            p Aqui é o login do Sínodo
+                            div.ui.segment
+                                div.ui.form
+                                    button.ui.fluid.teal.button(name="supremo") IGREJAS
 
 
     include includes/_javascript.pug
+        script(type="text/javascript").
+            $("button").click(function(){
+                document.location = "/login.html";
+            });

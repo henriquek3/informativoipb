@@ -1,0 +1,84 @@
+doctype html
+html
+    head
+        include includes/_head.pug
+    
+        style
+            | body {
+            |    background-color: #DADADA;
+            | }
+            | body > .grid {
+            |   height: 100%;
+            | }
+            | .image {
+            | margin-top: -100px;
+            | }
+            | .column {
+            |   max-width: 450px;
+            | }
+        
+
+    body.ui.container
+        div.ui.middle.aligned.center.aligned.grid
+            div.column
+                h2.ui.teal.image.header
+                    img.image(src="images/ipb_logo.png")
+                    div.content
+                        | InformativoIPB
+                form.ui.large.form
+                    div.ui.stacked.segment
+                        div.field
+                            div.ui.left.icon.input
+                                i.user.icon
+                                input(type="text", name="email", placeholder="Insira seu e-mail")
+                        div.field
+                            div.ui.left.icon.input
+                                i.lock.icon
+                                input(type="password", name="password", placeholder="Insira sua senha")
+                        div.ui.fluid.large.teal.submit.button
+                            | Conectar
+
+                    div.ui.error.message
+
+                div.ui.message
+                    | Esqueceu a senha? 
+                    a(href="#") Clique Aqui!
+
+    include includes/_javascript.pug
+        script(type="text/javascript").
+            $(document)
+                .ready(function() {
+                  $('.ui.form')
+                    .form({
+                      fields: {
+                        email: {
+                          identifier  : 'email',
+                          rules: [
+                            {
+                              type   : 'empty',
+                              prompt : 'Por favor, insira o seu e-mail'
+                            },
+                            {
+                              type   : 'email',
+                              prompt : 'Por favor, insira uma conta de e-mail válida'
+                            }
+                          ]
+                        },
+                        password: {
+                          identifier  : 'password',
+                          rules: [
+                            {
+                              type   : 'empty',
+                              prompt : 'Por favor, entre com sua senha'
+                            },
+                            {
+                              type   : 'length[6]',
+                              prompt : 'Sua senha deve ter até seis caracteres'
+                            }
+                          ]
+                        }
+                      }
+                    })
+                  ;
+                })
+              ;
