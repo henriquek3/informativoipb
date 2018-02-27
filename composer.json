@@ -3,7 +3,6 @@
   "description": "Desenvolvimento de Web Erp.",
   "type": "project",
   "require-dev": {
-    "symfony/var-dumper": "^4.0"
   },
   "require": {
     "silex/silex": "~2.0",

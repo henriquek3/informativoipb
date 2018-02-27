@@ -35,62 +35,6 @@ $(document).ready(function () {
     $('.ui.dropdown').dropdown();
 
     /**
-     * Popular a Tabela com infos do banco
-     */
-    function getDataTable() {
-        $.get('/api/sinodos')
-            .done(function (response) {
-                for (let key in response) {
-                    let tr, row, id, regiao, nome, sigla;
-                    tr = $('<tr/>');
-                    row = response[key];
-                    /**
-                     * Adiciona células com as informações do banco de dados
-                     * @type {jQuery}
-                     */
-                    id = $('<td/>').html(row.id);
-                    nome = $('<td/>').html(row.nome);
-                    sigla = $('<td/>').html(row.sigla);
-                    switch (row.regiao) {
-                        case '1':
-                            regiao = $('<td/>').html("CENTRO-OESTE");
-                            break;
-                        case '2':
-                            regiao = $('<td/>').html("NORDESTE");
-                            break;
-                        case '3':
-                            regiao = $('<td/>').html("NORTE");
-                            break;
-                        case '4':
-                            regiao = $('<td/>').html("SUDESTE");
-                            break;
-                        case '5':
-                            regiao = $('<td/>').html("SUL");
-                            break;
-                        default:
-                            regiao = $('<td/>').html('Não identificado');
-                            break;
-                    }
-                    /**
-                     * Adiciona as células nas linhas
-                     */
-                    tr.append(id)
-                        .append(nome)
-                        .append(sigla)
-                        .append(regiao);
-                    /**
-                     * Adiciona linhas na tabela
-                     */
-                    $('#tbody_sinodos').append(tr);
-                }
-            })
-            .fail(function (response) {
-                console.log(response);
-            })
-        ;
-    } getDataTable();
-
-    /**
      * Instancia DataTables() e organiza os eventos do click
      */
     function instanciaDataTables() {
@@ -124,6 +68,7 @@ $(document).ready(function () {
                 }
             });
 
+
             tbl_api.page('next').draw(false); // ? Ativa paginação !
 
             /**
@@ -148,7 +93,64 @@ $(document).ready(function () {
         }, 1000);
     }
 
-    instanciaDataTables(); // init function instanciaDataTables() {};
+    /**
+     * Popular a Tabela com infos do banco
+     */
+    function getDataTable() {
+        $.get('/api/sinodos')
+            .done(function (response) {
+                for (let key in response) {
+                    let tr, row, id, regiao, nome, sigla;
+                    tr = $('<tr/>');
+                    row = response[key];
+                    /**
+                     * Adiciona células com as informações do banco de dados
+                     * @type {jQuery}
+                     */
+                    id = $('<td/>').html(row.id);
+                    nome = $('<td/>').html(row.nome.toUpperCase());
+                    sigla = $('<td/>').html(row.sigla.toUpperCase());
+                    switch (row.regiao) {
+                        case '1':
+                            regiao = $('<td/>').html("CENTRO-OESTE");
+                            break;
+                        case '2':
+                            regiao = $('<td/>').html("NORDESTE");
+                            break;
+                        case '3':
+                            regiao = $('<td/>').html("NORTE");
+                            break;
+                        case '4':
+                            regiao = $('<td/>').html("SUDESTE");
+                            break;
+                        case '5':
+                            regiao = $('<td/>').html("SUL");
+                            break;
+                        default:
+                            regiao = $('<td/>').html('Não identificado');
+                            break;
+                    }
+                    /**
+                     * Adiciona as células nas linhas
+                     */
+                    tr.append(id)
+                        .append(nome)
+                        .append(sigla)
+                        .append(regiao);
+                    /**
+                     * Adiciona linhas na tabela
+                     */
+                    $('#tbody_sinodos').append(tr);
+                }
+                instanciaDataTables(); // init function instanciaDataTables() {};
+            })
+            .fail(function (response) {
+                console.log(response);
+            })
+        ;
+    }
+
+    getDataTable();
 
     /**
      * Traz as informações para edição
@@ -261,11 +263,32 @@ $(document).ready(function () {
                     .done(function (response) {
                         console.log(response);
                         tbl_api.row(tr_row).remove();
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
+                            regiao
                         ]).draw(false);
 
                         iziToast.success({
@@ -311,12 +334,32 @@ $(document).ready(function () {
                 $.post('api/sinodos/store', form)
                     .done(function (response) {
                         console.log(response);
-
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            response.regiao.toUpperCase()
+                            regiao
                         ]).draw(false);
 
                         iziToast.success({
@@ -423,6 +466,8 @@ $(document).ready(function () {
     $("a[data-tab='first']").on("click",function (){
         if (id_row > 0 ){
             id_row = null;
+            tbl_api.row().deselect();
+            tbl_api.$('tr.active').removeClass('active');
         }
     });
 });

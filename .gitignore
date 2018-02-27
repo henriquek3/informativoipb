@@ -74,3 +74,4 @@ public/js/app/
 templates/
 .phpintel/
 .vs/
+!/src/app.php

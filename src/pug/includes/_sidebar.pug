@@ -1,22 +1,70 @@
-div.ui.sidebar.vertical.menu
-    div.item(style="background-color: #16ab39;")
-        img.ui.tiny.avatar.image(src="https://www.w3schools.com/w3css/img_avatar3.png")
-        span(style="color: white;font-size: large") João Calvino
-    a.active.item
+div.ui.sidebar.vertical.accordion.menu
+    div.item(style="background-color: #16ab39;height: 150px")
+        img.ui.tiny.avatar.image(src="https://www.w3schools.com/w3css/img_avatar3.png", style="padding-top: 25px;")
+        span(style="color: white;font-size: large;padding-left: 10px;font-weight: bold;")
+            | João Calvino
+        span(style="display: flex;margin-top: -40px;margin-left: 93px;font-weight: 400;color: white;") Presbítero Docente
+        span(style="display: flex;margin-top: 6px;margin-left: 93px;font-weight: 400;color: white;") IPB Cacoal
+
+    a.item(href="index.html") INÍCIO
         i.home.icon
-        | HOME
-    a.item
-        i.edit.icon
-        | CADASTROS
-    a.item
-        i.browser.icon
-        | FORMULARIOS
-    a.item
-        i.bar.chart.icon
-        | CONSULTAS
-    a.item
-        i.settings.icon
-        | CONFIGURAÇÕES
-    a.item
-        i.edit.icon
-        | SINODOS
+
+    div.item
+        a.title
+            i.dropdown.icon
+            | CADASTROS
+        div.content
+            a.item(href="cadastros-sinodos.html") SÍNODOS
+            a.item(href="cadastros-presbiterios.html") PRESBITÉRIOS
+            a.item(href="cadastros-igrejas.html") IGREJAS
+            a.item(href="cadastros-presbiteros.html") PRESBÍTEROS
+
+    div.item
+        a.title
+            i.dropdown.icon
+            | RELATÓRIOS
+        div.content
+            a.item(href="relatorio-conselho.html") CONSELHO
+            a.item(href="relatorio-ministerial.html") MINSTÉRIAL
+            a.item(href="relatorio-estatistica.html") ESTATÍSTICA
+            a.item(href="relatorio-financeiro.html") FINANCEIRO
+
+    div.item
+        a.title
+            i.dropdown.icon
+            | PRESBITÉRIOS
+        div.content
+            a.item(href="presbiterio-reuniao.html") INCLUIR REUNIÃO
+            a.item(href="presbiterio-estatistica.html") CONSULTAR ESTATÍSTICA
+
+    div.item
+        a.title
+            i.dropdown.icon
+            | SÍNODOS
+        div.content
+            a.item(href="sinodo-reuniao.html") INCLUIR REUNIÃO
+            a.item(href="sinodo-estatistica.html") CONSULTAR ESTATÍSTICA
+
+    div.item
+        a.title
+            i.dropdown.icon
+            | CONSULTAS ESTATÍSTICAS
+        div.content
+            a.item(href="consultas-ministerial.html") REUNIÕES DE PRESBITÉRIOS
+            a.item(href="consultas-ministerial.html") REUNIÕES DE SÍNODOS
+            a.item(href="consultas-ministerial.html") GERAL DE MEMBROS
+            a.item(href="consultas-ministerial.html") GERAL FINANCEIRA
+            a.item(href="consultas-ministerial.html") CRESCIMENTO EBD
+
+    div.item
+        a.title
+            i.dropdown.icon
+            | CONFIGURAÇÕES
+        div.content
+            a.item(href="meu-usuario.html") MEU USUÁRIO
+            a.item(href="administrar-usuarios.html") ADMINISTRAR USUÁRIOS
+            a.item(href="parametros-sistema.html") PARÂMETROS DO SISTEMA
+            a.item(href="ajuda.html") SOLICITAR AJUDA
+
+    a.item(href="login.html") SAIR
+        i.sign.out.icon
