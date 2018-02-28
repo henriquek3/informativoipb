@@ -88,7 +88,9 @@ html
                             },
                             onSuccess: function () {
                                 let email = form_login.email.value;
-                                let senha = form_login.email.value;
+                                let senha = form_login.password.value;
+                                console.log("email: " + email);
+                                console.log("senha: " + senha);
                                 if (email === 'admin@jksistemas.com.br') {
                                     if (senha === 'adminadmin') {
                                         document.location.href = '/index.html';
@@ -100,6 +102,7 @@ html
                                     $("#msg_error").text("Por favor verifique seu login");
                                     $("#msg_login_error").show();
                                 }
+                                return false;
                             }
                         })
                     ;

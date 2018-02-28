@@ -31,4 +31,18 @@ script(type="text/javascript").
         .modal({
             approve: '.approve'
         })
-        .modal('attach events', '.envelope', 'show');
+        .modal(
+            'attach events', 
+            '.envelope', 
+            'show'
+        )
+    ;
+
+    $(".item.sinodos").on('click', function(){
+        iziToast.warning({
+            title: 'Acesso Negado',
+            message: 'Caso precise acessar essa opção consulte o seu usuário superior.',
+            timeout: 5000
+        });
+        return false;
+    })

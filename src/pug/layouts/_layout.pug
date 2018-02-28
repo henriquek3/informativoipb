@@ -17,6 +17,9 @@ html(lang="pt-BR")
         meta(property='og:image', content='http://pratikborsadiya.in/blog/vali-admin/hero-social.png')
         meta(property="og:description", content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.")
 
+        style
+            | .envelope {cursor: pointer;}
+
         include ../includes/_head.pug
 
     body
@@ -34,6 +37,8 @@ html(lang="pt-BR")
 
             div.ui.container(style="margin-top: 100px; margin-bottom: 20px; display:none;", id="windows")
                 block content
+
+            include ../modals/msg-relatorio-finalizado
 
         //- Javascripts
         include ../includes/_javascript.pug
