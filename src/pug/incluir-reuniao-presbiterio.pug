@@ -1,0 +1,179 @@
+extends layouts/_layout.pug
+
+block content
+    div.ui.segment
+        //
+        div(style="position: absolute;right: 20px;")
+            div.ui.breadcrumb
+                a.section(href="inicio")
+                    i.home.icon
+                div.divider /
+                a.section Presbitérios
+                div.divider /
+                div.active.section Incluir Reunião
+
+        div.ui.clearing
+
+        h2.ui.floated.header
+            | Reuniões do Presbitério
+            div.sub.header
+                | Utilizado para apresentar o resultado de todos os relatórios do presbitério.
+
+        div.ui.clearing.divider
+        p
+        div.ui.top.attached.tabular.menu
+            a.item.active(data-tab="first") Lista
+            a.item(data-tab="second") Cadastrar
+
+        div.ui.bottom.attached.tab.segment.active(data-tab="first")
+            table.ui.compact.selectable.celled.green.unstackable.table
+                thead
+                    tr
+                        th.one.wide Código
+                        th.ten.wide Presbitério
+                        th.two.wide.center.aligned Ano
+                        th.two.wide.center.aligned Data
+
+                tbody
+                    tr
+                        td 01
+                        td PRESBITÉRIO DE CACOAL
+                        td 2018
+                        td 08/08/2018
+                    tr
+                        td 02
+                        td PRESBITÉRIO DE CACOAL
+                        td 2017
+                        td 10/09/2017
+
+        div.ui.bottom.attached.tab.segment(data-tab="second")            
+            div.ui.segment
+                form(id="cadastros_sinodos", name="cadastros_sinodos")
+                    div.ui.form
+                        div.fields
+                            div.two.wide.field.disabled
+                                label Ano
+                                input(type="text", value="2018")
+
+                            div.three.wide.field.disabled
+                                label Sínodo
+                                input(type="text", value="Sinodo Norte Brasil")
+
+                            div.six.wide.field.disabled
+                                label Presbitério
+                                input(type="text", name="pr", value="Presbitério de Rondonia")
+
+                            div.two.wide.field.disabled
+                                label Data da Reunião
+                                input(type="text", value="25/02/2018")
+
+                        div.ui.clearing.divider
+
+                        div(style="text-align: center")
+                            button.ui.green.labeled.icon.button(type="submit")
+                                i.plus.icon
+                                | Incluir
+
+                            button.ui.red.right.labeled.icon.button(type="button")
+                                i.remove.icon
+                                | Excluir
+            
+            div.ui.red.segment
+                div.ui.top.attached.tabular.menu
+                    a.active.item(data-tab="first-reuniao") Lista
+                    a.item(data-tab="second-reuniao") Incluir
+
+                div.ui.bottom.attached.active.tab.segment(data-tab="first-reuniao")
+                    p Aqui são listadas as igrejas cujos relatórios foram importados para serem contabilizados na reunião.
+                    table.ui.compact.selectable.celled.green.unstackable.table
+                        thead
+                            tr
+                                th.one.wide Código
+                                th Igrejas                       
+
+                        tbody
+                            tr
+                                td 01
+                                td IGREJA PRESBITERIANA LUZ E VIDA
+                            tr
+                                td 02
+                                td IGREJA PRESBITERIANA CACOAL
+                
+                div.ui.bottom.attached.tab.segment(data-tab="second-reuniao")
+                    p Nesta aba são listadas as igrejas e seus relatórios para que seja possivel a importação para a reunião.
+                    div.ui.top.attached.tabular.menu
+                        a.active.item(data-tab="first-igrejas") Igrejas
+                        a.item(data-tab="second-igrejas") Relatórios
+
+                    div.ui.bottom.attached.active.tab.segment(data-tab="first-igrejas")
+                        table.ui.compact.selectable.celled.blue.unstackable.table
+                            thead
+                                tr
+                                    th.one.wide Código
+                                    th Igrejas
+                                    th Importação
+
+                            tbody
+                                tr
+                                    td 01
+                                    td IGREJA PRESBITERIANA LUZ E VIDA
+                                    td
+                                        i.large.file.alternate.outline.yellow.icon
+                                        | Parcial                                        
+                                tr
+                                    td 02
+                                    td IGREJA PRESBITERIANA CACOAL
+                                    td 
+                                        i.large.file.green.icon
+                                        | Completa                                        
+                                tr
+                                    td 03
+                                    td IGREJA PRESBITERIANA CACOAL
+                                    td 
+                                        i.large.file.outline.red.icon
+                                        | Pendente                                        
+                    
+                    div.ui.bottom.attached.tab.segment(data-tab="second-igrejas")                        
+                        table.ui.compact.selectable.celled.teal.unstackable.table
+                            thead
+                                tr
+                                    th Tipo
+                                    th.three.wide Inclusão
+                                    th.three.wide Ultima Alteração
+                                    th.center.aligned Importado                                    
+
+                            tbody
+                                tr
+                                    td RELATÓRIO DO CONSELHO
+                                    td 05/06/2018
+                                    td 08/07/2018
+                                    td.center.aligned
+                                        i.large.green.check.icon
+                                tr
+                                    td RELATÓRIO DO MINISTRO
+                                    td 05/06/2018
+                                    td 08/07/2018
+                                    td.center.aligned
+                                        i.large.red.minus.icon
+                                tr
+                                    td RELATÓRIO DE ESTATÍSTICAS
+                                    td 05/06/2018
+                                    td 08/07/2018
+                                    td.center.aligned
+                                        i.large.green.check.icon
+
+                            tfoot.full-width
+                                th(colspan="4")
+                                    div.ui.right.floated.small.primary.labeled.icon.button
+                                        i.plus.icon
+                                        | Importar Relatório                                        
+
+block specific-js
+    script(src='js/app/jquery-validate-app.js')
+    script(src="js/plugins/bootstrap-datepicker.min.js")
+    script(src="js/plugins/bootstrap-datepicker.pt-BR.min.js")
+    script(src="js/plugins/datatables.min.js")
+    script(src="js/plugins/sweetalert.min.js")
+    //script(src="js/app/cadastros-sinodos-app.js")
+    script(type="text/javascript").
+        $(document).ready(function(){ $('.menu .item').tab(); });
