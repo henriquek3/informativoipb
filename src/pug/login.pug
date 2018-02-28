@@ -25,7 +25,7 @@ html
                     img.image(src="images/ipb_logo.png")
                     div.content
                         | InformativoIPB
-                form.ui.large.form
+                form.ui.large.form(name="form_login", id="form_login")
                     div.ui.stacked.segment
                         div.field
                             div.ui.left.icon.input
@@ -40,45 +40,96 @@ html
 
                     div.ui.error.message
 
+                div.ui.error.message(style="text-align:left;display:none;", id="msg_login_error")
+                    i.close.icon
+                    div.header
+                        | Algo de errado não esta certo!
+                    ul.list
+                        li(id="msg_error")
+
                 div.ui.message
                     | Esqueceu a senha? 
-                    a(href="#") Clique Aqui!
+                    a(href="#", id="give_pass") Clique Aqui!
 
     include includes/_javascript.pug
+        script(type="text/javascript", src="js/plugins/sweetalert.min.js")
         script(type="text/javascript").
             $(document)
-                .ready(function() {
-                  $('.ui.form')
-                    .form({
-                      fields: {
-                        email: {
-                          identifier  : 'email',
-                          rules: [
-                            {
-                              type   : 'empty',
-                              prompt : 'Por favor, insira o seu e-mail'
+                .ready(function () {
+                    $('.ui.form')
+                        .form({
+                            fields: {
+                                email: {
+                                    identifier: 'email',
+                                    rules: [
+                                        {
+                                            type: 'empty',
+                                            prompt: 'Por favor, insira o seu e-mail'
+                                        },
+                                        {
+                                            type: 'email',
+                                            prompt: 'Por favor, insira uma conta de e-mail válida'
+                                        }
+                                    ]
+                                },
+                                password: {
+                                    identifier: 'password',
+                                    rules: [
+                                        {
+                                            type: 'empty',
+                                            prompt: 'Por favor, entre com sua senha'
+                                        },
+                                        {
+                                            type: 'length[6]',
+                                            prompt: 'Sua senha deve ter mais que 6 caracteres'
+                                        }
+                                    ]
+                                }
                             },
-                            {
-                              type   : 'email',
-                              prompt : 'Por favor, insira uma conta de e-mail válida'
+                            onSuccess: function () {
+                                let email = form_login.email.value;
+                                let senha = form_login.email.value;
+                                if (email === 'admin@jksistemas.com.br') {
+                                    if (senha === 'adminadmin') {
+                                        document.location.href = '/index.html';
+                                    } else {
+                                        $("#msg_error").text("Por favor verifique sua senha");
+                                        $("#msg_login_error").show();
+                                    }
+                                } else {
+                                    $("#msg_error").text("Por favor verifique seu login");
+                                    $("#msg_login_error").show();
+                                }
                             }
-                          ]
-                        },
-                        password: {
-                          identifier  : 'password',
-                          rules: [
-                            {
-                              type   : 'empty',
-                              prompt : 'Por favor, entre com sua senha'
+                        })
+                    ;
+                    $("#give_pass").click(function () {
+                        swal({
+                            title: "Esqueceu a senha?",
+                            text: "Informe o endereço de e-mail vinculado a conta para que seja enviado um link de redefinição de senha.",
+                            icon: "info",
+                            content: {
+                                element: "input",
+                                attributes: {
+                                    placeholder: "Digite aqui o seu e-mail!",
+                                    type: "email",
+                                    required: true
+                                }
                             },
-                            {
-                              type   : 'length[6]',
-                              prompt : 'Sua senha deve ter até seis caracteres'
-                            }
-                          ]
-                        }
-                      }
-                    })
-                  ;
+                            buttons: {
+                                cancel: true,
+                                confirm: true
+                            },
+                            closeOnClickOutside: false
+                        });
+                    });
+                    $('.message .close')
+                        .on('click', function () {
+                            $(this)
+                                .closest('.message')
+                                .transition('fade')
+                            ;
+                        })
+                    ;
                 })
-              ;
+            ;
