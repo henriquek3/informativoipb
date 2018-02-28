@@ -19,3 +19,16 @@ script(type="text/javascript").
     $('.accordion.menu')
         .accordion()
     ;
+    $('.envelope')
+        .transition({
+            animation: 'pulse',
+            duration: '3s',
+            allowRepeats: true,
+            looping    : 'looping',
+        })
+    ;
+    $(".ui.modal")
+        .modal({
+            approve: '.approve'
+        })
+        .modal('attach events', '.envelope', 'show');
