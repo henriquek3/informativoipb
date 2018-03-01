@@ -90,6 +90,12 @@ $(document).ready(function () {
                  */
                 console.log(id_row);
             });
+            setTimeout(function () {
+                $("input[type='search']").parent().addClass(" ui form");
+                $("input[type='search']").css("width", "220px");
+                $("input[type='search']").css("margin-left", "10px")
+                console.log("exec input search class ui form");
+            }, 1000);
         }, 1000);
     }
 
