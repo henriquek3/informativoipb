@@ -3,6 +3,24 @@ tbl_presbiteros = $("#tbl_presbiteros");
 
 $(document).ready(function () {
     /**
+     * Estilizar o input de pesquisar do
+     * @type {{first: first, second: second}}
+     */
+    let styleInputSearch = {
+        first: function() {
+            setTimeout(() => {
+                $("input[type='search']").parent().addClass("ui icon input");
+                $("input[type='search']").css("width", "220px");
+                $("input[type='search']").css("margin-left", "10px");
+            }, 500);
+            return styleInputSearch; },
+        second: function() {
+            setTimeout(() => {
+                $("input[type='search']").after("<i class='search icon'>");
+            }, 1000);
+            return styleInputSearch; }
+    };
+    /**
      * Função utilizada devido o select com ui.search.dropdown
      */
     $.validator.setDefaults({
@@ -126,6 +144,7 @@ $(document).ready(function () {
                  */
                 console.log(id_row);
             });
+            styleInputSearch.first().second();
         }, 1000);
     }
 

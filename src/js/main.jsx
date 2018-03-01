@@ -3,11 +3,11 @@
  *
  */
 $(document).ready(function () {
-    setTimeout(function () {
-        $("input[type='search']").parent().addClass(" ui form");
-        $("input[type='search']").css("width", "220px");
-        console.log("exec input search class ui form");
-    }, 1000);
+
+    // cria o sidebar e adiciona um evento ao botão
+    $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+    ;
 
     $('#windows')
         .transition('fade down', '500ms')
@@ -47,13 +47,11 @@ $(document).ready(function () {
             timeout: 5000
         });
         return false;
-    })
+    });
 
-
-
-
-
-
-
+    $("#logout").click(function () {
+        sessionStorage.clear();
+        document.location.href = "/pre-login";
+    });
 
 });
