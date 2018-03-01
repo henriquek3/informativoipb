@@ -1,0 +1,25 @@
+extends layouts/_layout.pug
+
+block content
+    div.ui.segment
+        div(style="position: absolute;right: 20px;")
+            div.ui.breadcrumb
+                a.section(href="inicio")
+                    i.home.icon
+                div.divider /
+                a.section Relatórios
+                div.divider /
+                div.active.section Conselho
+
+        div.ui.clearing
+
+        h2.ui.floated.header
+            | Relatórios do Conselho
+            div.sub.header
+                | Relatórios do conselho. -> breve explicação da tela
+
+        div.ui.clearing.divider
+        p
+        div.ui.top.attached.tabular.menu
+            a.item(data-tab="first") Relatórios
+            a.item.active(data-tab="second") Responder
