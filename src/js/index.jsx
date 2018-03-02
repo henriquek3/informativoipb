@@ -1,4 +1,5 @@
-let data = {
+$(document).ready(function(){
+    let data = {
     labels: ["January", "February", "March", "April", "May"],
     datasets: [
         {
@@ -62,8 +63,7 @@ let pieChart = new Chart(ctxp).Pie(pdata);
 let ctxd = $("#doughnutChartDemo").get(0).getContext("2d");
 let doughnutChart = new Chart(ctxd).Doughnut(pdata);
 
-$(document).ready(function () {
-    setTimeout(function () {
+setTimeout(function () {
         let frHome = sessionStorage.getItem("ZnItaG9tZQ==");
         frHome = atob(frHome);
         let nome = sessionStorage.getItem("c2Vzc2lvbi1uYW1l");
@@ -102,5 +102,6 @@ $(document).ready(function () {
         transitionIn: 'fadeInDown',
         transitionOut: 'fadeOutUp'
     });
+
 
 });

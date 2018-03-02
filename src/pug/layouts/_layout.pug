@@ -20,6 +20,16 @@ html(lang="pt-BR")
         style
             | .envelope {cursor: pointer;}
 
+        script(type="text/javascript").
+            let pathname = document.location.pathname;
+            let conectado = sessionStorage.getItem("user-login");
+
+            if ( conectado !== "conectado" ) {
+                if (pathname !== '/pre-login') {
+                    document.location.href = '/pre-login';
+                }
+            }
+
         include ../includes/_head.pug
 
     body
@@ -44,12 +54,3 @@ html(lang="pt-BR")
         include ../includes/_javascript.pug
         // Page specific javascripts
         block specific-js
-            script(type="text/javascript").
-                $(document)
-                    .ready(function () {
-                        // cria o sidebar e adiciona um evento ao botão
-                        $('.ui.sidebar')
-                            .sidebar('attach events', '.toc.item')
-                        ;
-                    })
-                ;
