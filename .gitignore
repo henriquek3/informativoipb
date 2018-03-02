@@ -72,7 +72,7 @@ dist/*.html
 dist/js/app/
 public/js/app/
 public/css/main.min.css
-#dist/css/main.min.css
+dist/css/main.min.css
 dist/css/main.min.css.map
 templates/
 .phpintel/
