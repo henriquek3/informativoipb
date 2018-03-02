@@ -34,81 +34,6 @@ block content
                         th.two.wide.center.aligned Presbitério
                         th.two.wide.center.aligned Sínodo
                 tbody(id="tbody_igrejas")
-                    tr
-                        td.center.aligned 01
-                        td PRESBITERIANA LUZ E VIDA
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 02
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 03
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 04
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 05
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 06
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 07
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned ZPA
-                    tr
-                        td.center.aligned 08
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned IYN
-                    tr
-                        td.center.aligned 09
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned QRW
-                    tr
-                        td.center.aligned 10
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 11
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 12
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SBC
-                    tr
-                        td.center.aligned 13
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned SCA
-                    tr
-                        td.center.aligned 14
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned STS
-                    tr
-                        td.center.aligned 15
-                        td Presbiteriana Luz e Vida
-                        td.center.aligned PRON
-                        td.center.aligned OAS
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             form(id="cadastros_igrejas", name="cadastros_igrejas")
@@ -116,20 +41,19 @@ block content
                     div.fields
                         div.six.wide.field
                             label Sínodo
-                            select.ui.fluid.search.dropdown(disabled="true")
+                            select.ui.fluid.search.dropdown(name="id_sinodo")
                                 option
-                                option(value="1", selected="true") SCA / SÍNODO CENTRO AMÉRICA
+                                option(value="") selecione..
 
-                        div.six.wide.field
+                        div.six.wide.field(id="div_presbiterio")
                             label Presbitério
-                            select.ui.fluid.search.dropdown(disabled="true")
-                                option
-                                option(value="1", selected="true") PRON / PRESBITÉRIO DE RONDONÓPOLIS
+                            select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
 
                         div.four.wide.field
                             div.clearfix
                                 div.ui.checkbox(style="float: left; display: flex; margin-top: 32px; margin-left: 20px;")
-                                    input(type="checkbox", checked="")
+                                    input(type="checkbox")
                                     label Congregação do Presbitério
 
                     div.fields
@@ -140,40 +64,40 @@ block content
                         div.six.wide.field(id="div_cidade")
                             label Cidade
                             select.ui.fluid.search.dropdown(name="id_cidade", id="id_cidade")
-                            div.ui.active.inline.small.loader(style="display:none")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_cidade")
 
                         div.four.wide.field
                             label CNPJ
-                            input(type="text" name="cnpj" placeholder="CNPJ", value="01265980/0001-56")
+                            input(type="text" name="cnpj" placeholder="CNPJ")
 
                     div.fields
                         div.thirteen.wide.field
                             label Nome
-                            input(type="text", name="nome" placeholder="Digite o Nome", value="IGREJA PRESBITERIANA LUZ E VIDA")
+                            input(type="text", name="nome" placeholder="Digite o Nome")
 
                         div.ui.calendar.bottom.left.three.wide.field
                             label Organização
-                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização", value="27/12/2014")
+                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
                     div.fields
                         div.six.wide.field
                             label Endereço
-                            input(type="text" name="endereco" placeholder="Endereço", value="AVENIDA GUARAPUAVA")
+                            input(type="text" name="endereco" placeholder="Endereço")
                         div.two.wide.field
                             label Número
-                            input(type="text" name="endereco_nr" placeholder="Número", value="659")
+                            input(type="text" name="endereco_nr" placeholder="Número")
                         div.four.wide.field
                             label Complemento
-                            input(type="text" name="endereco_complemento" placeholder="Complemento", value="PRÓXIMO AO ESTÁDIO LUTHERO LOPES")
+                            input(type="text" name="endereco_complemento" placeholder="Complemento")
                         div.four.wide.field
                             label Bairro
-                            input(type="text" name="endereco_bairro" placeholder="Bairro", value="CIDADE ALTA")
+                            input(type="text" name="endereco_bairro" placeholder="Bairro")
                     div.fields
                         div.eight.wide.field
                             label E-mail
-                            input(type="email" name="email" placeholder="E-Mail", value="ipbluzevida@gmail.com")
+                            input(type="email" name="email" placeholder="E-Mail")
                         div.eight.wide.field
                             label Homepage
-                            input(type="url" name="website" placeholder="Web Site", value="https://www.ipbluzevida.com.br")
+                            input(type="url" name="website" placeholder="Web Site")
 
                 div.ui.segments
                     div.ui.horizontal.segments
