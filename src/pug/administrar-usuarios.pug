@@ -21,10 +21,43 @@ block content
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
-            a.item.active(data-tab="first") Cadastrar Usuário
-            a.item(data-tab="second") Gerenciar Usuário
+            a.item.active(data-tab="first") Gerenciar Usuário
+            a.item(data-tab="second") Cadastrar Usuário
 
         div.ui.bottom.attached.tab.segment.active(data-tab="first")
+            table.ui.compact.selectable.celled.unstackable.table
+                thead
+                    tr
+                        th.one.wide Código
+                        th.five.wide Usuário
+                        th.four.wide E-Mail
+                        th.three.wide Perfil
+                        th.two.wide Nível
+                        th.one.wide Status
+
+                tbody
+                    tr
+                        td 01
+                        td Antônio José
+                        td antonio@jksistemas.com.br
+                        td Secretário Supremo
+                        td Supremo
+                        td(style="text-align: center;" data-tooltip="Status atual do usuário")
+                            i.ban.icon.red
+
+                    tr
+                        td 02
+                        td João Augusto da Silva
+                        td august@jksistemas.com.br
+                        td Secretário da Igreja
+                        td Comum
+                        td(style="text-align: center;" data-tooltip="Status atual do usuário")
+                            i.check.icon.green
+
+
+
+
+        div.ui.bottom.attached.tab.segment(data-tab="second")
             div.ui.form.segment
                 div.inline.fields
                     div.five.wide.field
@@ -52,12 +85,26 @@ block content
                 div.fields
                     div.ten.wide.field
                         label E-mail
-                        input(type="text")
+                        input(type="email")
                 div.fields
                     div.ten.wide.field
-                        label Presbitério Vinculado
-                        select.ui.fluid.search.dropdown
-                            option Presbitério Sul
+                        label Sínodo
+                        select.ui.fluid.search.dropdown.disabled
+                            option Sínodo Noroeste do Brasil
+                            option Norte Presbitério
+                            option Centro Presbitério
+                div.fields
+                    div.ten.wide.field
+                        label Presbitério
+                        select.ui.fluid.search.dropdown.disabled
+                            option Presbitério Sul de Rondônia
+                            option Norte Presbitério
+                            option Centro Presbitério
+                div.fields
+                    div.ten.wide.field
+                        label Igreja
+                        select.ui.fluid.search.dropdown.disabled
+                            option 1ª Igreja de Cacoal
                             option Norte Presbitério
                             option Centro Presbitério
                 div.fields
@@ -73,8 +120,42 @@ block content
                             option Secretário da Igreja
                             option Secretário do Presbitério
                             option Secretário do Sínodo
-                            option Secretário do Suprem
+                            option Secretário do Supremo
                             option Supervisão Geral
+
+
+
+                div.ui.segments
+                    div.ui.segment(style="text-align: center; background-color: #F9FAFB")
+                        p
+                            strong INFORMAÇÕES SOBRE O PREENCHIMENTO
+
+                    div.ui.horizontal.segments
+                        div.ui.segment
+                            span
+                                strong Usuário cadastrado por:
+                            span
+                                | &nbsp;
+                                | Kallew Pavão
+                                | &nbsp;
+                            span(style="float: right;")
+                                strong Data:
+                                | &nbsp;
+                                | 01/01/2018
+
+                        div.ui.segment
+                            span
+                                strong Última alteração:
+                            span
+                                | &nbsp;
+                                | Kallew Pavão
+                                | &nbsp;
+                            span(style="float: right;")
+                                strong Data:
+                                | &nbsp;
+                                | 09/01/2018
+
+
 
 
                 div.ui.clearing.divider
@@ -84,44 +165,14 @@ block content
                         i.plus.icon
                         | Gravar
 
-                    button.ui.reset.button(type="reset")
-                        i.minus.icon
-                        | Limpar
 
-                    button.ui.red.right.labeled.icon.button(type="button")
-                        i.remove.icon
-                        | Excluir
+                    button.ui.yellow.right.labeled.icon.button(type="button")
+                        i.redo.icon
+                        | Alterar Status
 
 
 
-        div.ui.bottom.attached.tab.segment(data-tab="second")
-            table.ui.compact.selectable.celled.green.unstackable.table
-                thead
-                    tr
-                        th.one.wide Código
-                        th.ten.wide Usuário
-                        th.two.wide.center.aligned Editar
-                        th.two.wide.center.aligned Excluir
 
-                tbody
-                    tr
-                        td 01
-                        td Antônio José
-                        td
-                            i.edit.icon.green
-                            | Alterar
-                        td
-                            i.ban.icon.red
-                            | Bloquear
-                    tr
-                        td 02
-                        td Pedro Lucas
-                        td
-                            i.edit.icon.green
-                            | Alterar
-                        td
-                            i.ban.icon.red
-                            | Bloquear
 
 
 
