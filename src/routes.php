@@ -14,6 +14,10 @@ $app->get('/{routes}',
             include $file;
         } elseif ($routes == 'inicio') {
             include __DIR__ . '/../templates/index.html';
+        } elseif (is_null($routes)) {
+            include __DIR__ . '/../templates/index.html';
+        } else {
+            include __DIR__ . '/../templates/page-error.html';
         }
         return ob_get_clean();
     }
@@ -23,6 +27,14 @@ $app->get("/",
     function () {
         ob_start();
         include __DIR__ . "/../templates/index.html";
+        return ob_get_clean();
+    }
+);
+
+$app->get("/plogin",
+    function () {
+        ob_start();
+        include __DIR__ . "/../templates/pre-login.html";
         return ob_get_clean();
     }
 );
