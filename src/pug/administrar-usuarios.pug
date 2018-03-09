@@ -60,22 +60,6 @@ block content
         div.ui.bottom.attached.tab.segment(data-tab="second")
             div.ui.form.segment
                 div.fields
-                    div.two.wide.field
-                        label Status do Usuário
-                        select.ui.fluid.search.dropdown
-                            option
-                            option Ativo
-                            option Inativo
-                    div.six.wide.field
-                        label Nome
-                        input(type="text")
-                    div.five.wide.field
-                        label E-Mail
-                        input(type="email")
-                    div.three.wide.field
-                        label CPF
-                        input(type="text")
-                div.fields
                     div.eight.wide.field
                         label Sínodo
                         select.ui.fluid.search.dropdown.disabled
@@ -89,12 +73,35 @@ block content
                             option Norte Presbitério
                             option Centro Presbitério
                 div.fields
-                    div.five.wide.field
+                    div.eight.wide.field
                         label Igreja
                         select.ui.fluid.search.dropdown.disabled
-                            option 1ª Igreja de Cacoal
+                            option 1ª Igreja Presbiteriana de Cacoal
                             option Norte Presbitério
                             option Centro Presbitério
+                    div.eight.wide.field
+                        label Presbítero
+                        select.ui.fluid.search.dropdown.disabled
+                            option Adilson Cesar Pavão
+                            option Norte Presbitério
+                            option Centro Presbitério
+                div.fields
+                    div.seven.wide.field.required
+                        label Nome
+                        input(type="text")
+                    div.six.wide.field.required
+                        label E-Mail
+                        input(type="email")
+                    div.three.wide.field.required
+                        label CPF
+                        input(type="text")
+                div.fields
+                    div.two.wide.field
+                        label Status do Usuário
+                        select.ui.fluid.search.dropdown
+                            option
+                            option Ativo
+                            option Inativo
                     div.two.wide.field
                         label Nível
                         select.ui.fluid.search.dropdown
@@ -108,9 +115,11 @@ block content
                             option Secretário do Sínodo
                             option Secretário do Supremo
                             option Supervisão Geral
-                    div.five.wide.field
-                        label Presbítero
-                        input(type="text")
+                div.fields
+                    div.sixteen.wide.field
+                        label Observações
+                        textarea(rows="3")
+
 
 
 
