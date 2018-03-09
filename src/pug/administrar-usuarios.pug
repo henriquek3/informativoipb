@@ -59,62 +59,48 @@ block content
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             div.ui.form.segment
-                div.inline.fields
-                    div.five.wide.field
-                        div.eight.wide.field
-                            label Status do Usuário
-                        div.eight.wide.field
-                            div.ui.radio.checkbox
-                                input(name="status" type="radio")
-                                label Ativo
-                            div.ui.radio.checkbox
-                                input(name="status" type="radio" checked="checked")
-                                label Inativo
                 div.fields
-                    div.ten.wide.field
+                    div.two.wide.field
+                        label Status do Usuário
+                        select.ui.fluid.search.dropdown
+                            option
+                            option Ativo
+                            option Inativo
+                    div.six.wide.field
                         label Nome
                         input(type="text")
-                div.fields
-                    div.ten.wide.field
-                        label Login
-                        input(type="text")
-                div.fields
-                    div.ten.wide.field
-                        label Senha
-                        input(type="text")
-                div.fields
-                    div.ten.wide.field
-                        label E-mail
+                    div.five.wide.field
+                        label E-Mail
                         input(type="email")
+                    div.three.wide.field
+                        label CPF
+                        input(type="text")
                 div.fields
-                    div.ten.wide.field
+                    div.eight.wide.field
                         label Sínodo
                         select.ui.fluid.search.dropdown.disabled
                             option Sínodo Noroeste do Brasil
                             option Norte Presbitério
                             option Centro Presbitério
-                div.fields
-                    div.ten.wide.field
+                    div.eight.wide.field
                         label Presbitério
                         select.ui.fluid.search.dropdown.disabled
                             option Presbitério Sul de Rondônia
                             option Norte Presbitério
                             option Centro Presbitério
                 div.fields
-                    div.ten.wide.field
+                    div.five.wide.field
                         label Igreja
                         select.ui.fluid.search.dropdown.disabled
                             option 1ª Igreja de Cacoal
                             option Norte Presbitério
                             option Centro Presbitério
-                div.fields
-                    div.ten.wide.field
+                    div.two.wide.field
                         label Nível
                         select.ui.fluid.search.dropdown
                             option Comum
                             option Superior
-                div.fields
-                    div.ten.wide.field
+                    div.four.wide.field
                         label Perfil
                         select.ui.fluid.search.dropdown
                             option Secretário da Igreja
@@ -122,6 +108,9 @@ block content
                             option Secretário do Sínodo
                             option Secretário do Supremo
                             option Supervisão Geral
+                    div.five.wide.field
+                        label Presbítero
+                        input(type="text")
 
 
 
