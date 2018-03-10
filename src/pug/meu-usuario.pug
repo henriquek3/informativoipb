@@ -9,20 +9,20 @@ block content
                 div.divider /
                 a.section Configurações
                 div.divider /
-                div.active.section Administrar Usuário
+                div.active.section Meu Usuário
 
         div.ui.clearing
 
         h2.ui.floated.header
-            | Administrar Usuário
+            | Meu Usuário
             div.sub.header
-                | Administre os usuários de nível inferior
+                | Visualize suas informações
 
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
-            a.item.active(data-tab="first") Gerenciar Usuário
-            a.item(data-tab="second") Cadastrar Usuário
+            a.item.active(data-tab="first") Meu Usuário
+            a.item(data-tab="second") Alterar Usuário
 
         div.ui.bottom.attached.tab.segment.active(data-tab="first")
             table.ui.compact.selectable.celled.unstackable.table
@@ -31,28 +31,17 @@ block content
                         th.one.wide Código
                         th.five.wide Usuário
                         th.four.wide E-Mail
-                        th.three.wide Perfil
-                        th.two.wide Nível
-                        th.one.wide Status
 
                 tbody
                     tr
                         td 01
                         td Antônio José
                         td antonio@jksistemas.com.br
-                        td Secretário Supremo
-                        td Supremo
-                        td(style="text-align: center;" data-tooltip="Status atual do usuário")
-                            i.ban.icon.red
 
                     tr
                         td 02
                         td João Augusto da Silva
                         td august@jksistemas.com.br
-                        td Secretário da Igreja
-                        td Comum
-                        td(style="text-align: center;" data-tooltip="Status atual do usuário")
-                            i.check.icon.green
 
 
 
@@ -92,33 +81,34 @@ block content
                     div.six.wide.field.required
                         label E-Mail
                         input(type="email")
-                    div.three.wide.field.required
+                    div.three.wide.field.required.disabled
                         label CPF
                         input(type="text")
                 div.fields
                     div.four.wide.field
                         label Status do Usuário
-                        select.ui.fluid.search.dropdown
+                        select.ui.fluid.search.dropdown.disabled
                             option
                             option Ativo
                             option Inativo
                     div.four.wide.field
                         label Nível
-                        select.ui.fluid.search.dropdown
+                        select.ui.fluid.search.dropdown.disabled
                             option Comum
                             option Superior
                     div.four.wide.field
                         label Perfil
-                        select.ui.fluid.search.dropdown
+                        select.ui.fluid.search.dropdown.disabled
                             option Secretário da Igreja
                             option Secretário do Presbitério
                             option Secretário do Sínodo
                             option Secretário do Supremo
                             option Supervisão Geral
                 div.fields
-                    div.sixteen.wide.field
+                    div.sixteen.wide.field.disabled
                         label Observações
                         textarea(rows="3")
+
 
 
 
@@ -187,4 +177,4 @@ block specific-js
     script(src="js/plugins/bootstrap-datepicker.pt-BR.min.js")
     script(src="js/plugins/dataTables.min.js")
     script(src="js/plugins/sweetalert.min.js")
-    script(src="js/app/administrar-usuarios-app.js")
+    script(src="js/app/meu-usuario-app.js")
