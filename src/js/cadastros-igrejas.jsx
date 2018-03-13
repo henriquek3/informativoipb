@@ -3,6 +3,24 @@ tbl_igrejas = $("#tbl_igrejas");
 
 $(document).ready(function () {
     /**
+     * Estilizar o input de pesquisar do
+     * @type {{first: first, second: second}}
+     */
+    let styleInputSearch = {
+        first: function() {
+            setTimeout(() => {
+                $("input[type='search']").parent().addClass("ui icon input");
+                $("input[type='search']").css("width", "220px");
+                $("input[type='search']").css("margin-left", "10px");
+            }, 500);
+            return styleInputSearch; },
+        second: function() {
+            setTimeout(() => {
+                $("input[type='search']").after("<i class='search icon'>");
+            }, 1000);
+            return styleInputSearch; }
+    };
+    /**
      * Função utilizada devido o select com ui.search.dropdown
      */
     $.validator.setDefaults({
@@ -67,6 +85,10 @@ $(document).ready(function () {
             })
             .fail(function (response) {
                 console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
             })
         ;
     }
@@ -126,6 +148,7 @@ $(document).ready(function () {
                  */
                 console.log(id_row);
             });
+            styleInputSearch.first().second();
         }, 1000);
     }
 
@@ -151,6 +174,10 @@ $(document).ready(function () {
             })
             .fail(function (response) {
                 console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
             })
         ;
     }
@@ -353,7 +380,7 @@ $(document).ready(function () {
     $(".ui.reset.button").on("click", function () {
         validator.resetForm();
         $('form').form('reset')
-    })
+    });
 
     /**
      * Adiciona evento de exclusão no botão Excluir
@@ -362,15 +389,16 @@ $(document).ready(function () {
         deleteData();
     });
 
-
+    /**
+     * Carregar Estados e Cidades
+     */
     let estadosLoad;
-
     function popularEstadosCidades() {
 
         if (!estadosLoad) {
             $.get('api/estados')
                 .done(function (response) {
-                    $(cadastros_igrejas.id_estado).append($('<option />').text('Selecione o Estado'));
+                    $(cadastros_igrejas.id_estado).append($('<option />').text('selecione..'));
 
                     $.each(response, function () {
                         $(cadastros_igrejas.id_estado).append(
@@ -380,13 +408,10 @@ $(document).ready(function () {
 
                     estadosLoad = true;
                 })
-                .fail(function (response) {
-                    $.notify({
-                        title: 'Operação não efetuada.<br/>',
-                        message: 'Erro: ' + response.status + ', ' + response.statusText
-                    }, {
-                        type: "danger",
-                        delay: 10000
+                .fail(function () {
+                    iziToast.warning({
+                        title: 'Erro',
+                        message: 'Consulta não realizada, verifique sua conexão!',
                     });
                     estadosLoad = false;
                 })
@@ -400,7 +425,7 @@ $(document).ready(function () {
             if ($(cadastros_igrejas.id_estado).val() > 0) {
                 $("#id_cidade").children().remove();
                 $("#div_cidade").find(".search").hide();
-                $(".loader").show();
+                $("#loader_cidade").show();
                 $.get('api/cidades?uf=' + $(cadastros_igrejas.id_estado).val())
                     .done(function (response) {
 
@@ -410,15 +435,62 @@ $(document).ready(function () {
                             );
                         });
                         $("#div_cidade").find(".search").show();
-                        $(".loader").hide()
+                        $("#loader_cidade").hide()
                     })
                     .fail(function (response) {
-                        $.notify({
-                            title: 'Operação não efetuada.<br/>',
-                            message: 'Erro: ' + response.status + ', ' + response.statusText
-                        }, {
-                            type: "danger",
-                            delay: 10000
+                       iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+    popularEstadosCidades();
+
+    /**
+     * Carregar Sínodos e Presbitérios
+     */
+    function loadSinodosPresbiterios() {
+        $.get('api/sinodos')
+            .done(function (response) {
+                console.log(response);
+                $.each(response, function () {
+                    $(cadastros_igrejas.id_sinodo).append(
+                        $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                    );
+                });
+            })
+            .fail(function (response) {
+                console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
+            })
+        ;
+
+        $(cadastros_igrejas.id_sinodo).on('change', function () {
+            if ($(cadastros_igrejas.id_sinodo).val() > 0) {
+                $("#id_presbiterio").children().remove();
+                $("#div_presbiterio").find(".search").hide();
+                $("#loader_presbiterio").show();
+                $.get('api/presbiterios?sinodo=' + $(cadastros_igrejas.id_sinodo).val())
+                    .done(function (response) {
+
+                        $.each(response, function () {
+                            $(cadastros_igrejas.id_presbiterio).append(
+                                $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_presbiterio").find(".search").show();
+                        $("#loader_presbiterio").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
                         });
                     })
                 ;
@@ -426,14 +498,5 @@ $(document).ready(function () {
         });
     }
 
-    popularEstadosCidades();
-    setTimeout(function () {
-        cadastros_igrejas.id_estado.value = 11;
-        $(cadastros_igrejas.id_estado).trigger("change");
-    }, 500);
-
-    setTimeout(function () {
-        cadastros_igrejas.id_cidade.value = 4271;
-        $(cadastros_igrejas.id_cidade).trigger("change");
-    }, 1000);
+    loadSinodosPresbiterios();
 });

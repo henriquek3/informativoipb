@@ -1,5 +1,5 @@
-let id_row, tr_row, tbl_presbiterios, tbl_api, validator_presbiterios;
-tbl_presbiterios = $("#tbl_presbiterios");
+let id_row, tr_row, tbl_sinodos, tbl_api;
+tbl_sinodos = $("#tbl_sinodos");
 
 $(document).ready(function () {
     /**
@@ -7,19 +7,22 @@ $(document).ready(function () {
      * @type {{first: first, second: second}}
      */
     let styleInputSearch = {
-        first: function() {
+        first: function () {
             setTimeout(() => {
                 $("input[type='search']").parent().addClass("ui icon input");
                 $("input[type='search']").css("width", "220px");
                 $("input[type='search']").css("margin-left", "10px");
             }, 500);
-            return styleInputSearch; },
-        second: function() {
+            return styleInputSearch;
+        },
+        second: function () {
             setTimeout(() => {
                 $("input[type='search']").after("<i class='search icon'>");
             }, 1000);
-            return styleInputSearch; }
+            return styleInputSearch;
+        }
     };
+
     /**
      * Função utilizada devido o select com ui.search.dropdown
      */
@@ -53,86 +56,11 @@ $(document).ready(function () {
     $('.ui.dropdown').dropdown();
 
     /**
-     * Trazer os sinodos para o selec
-     */
-    $.get('api/sinodos')
-        .done(function (response) {
-            $.each(response, function () {
-                $(cadastros_presbiterios.id_sinodo).append(
-                    $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
-                );
-            })
-        })
-        .fail(function (response) {
-            console.log(response);
-        });
-
-    /**
-     * Popular a Tabela com infos do banco
-     */
-    function getDataTable() {
-        $.get('/api/presbiterios')
-            .done(function (response) {
-                for (let key in response) {
-                    let tr, row, id, regiao, nome, sigla, sinodo;
-                    tr = $('<tr/>');
-                    row = response[key];
-                    /**
-                     * Adiciona células com as informações do banco de dados
-                     * @type {jQuery}
-                     */
-                    id = $('<td/>').html(row.id);
-                    nome = $('<td/>').html(row.nome.toUpperCase());
-                    sinodo = $('<td/>').html(row.sinodo.toUpperCase());
-                    sigla = $('<td/>').html(row.sigla.toUpperCase());
-                    switch (row.regiao) {
-                        case '1':
-                            regiao = $('<td/>').html("CENTRO-OESTE");
-                            break;
-                        case '2':
-                            regiao = $('<td/>').html("NORDESTE");
-                            break;
-                        case '3':
-                            regiao = $('<td/>').html("NORTE");
-                            break;
-                        case '4':
-                            regiao = $('<td/>').html("SUDESTE");
-                            break;
-                        case '5':
-                            regiao = $('<td/>').html("SUL");
-                            break;
-                        default:
-                            regiao = $('<td/>').html('Não identificado');
-                            break;
-                    }
-                    /**
-                     * Adiciona as células nas linhas
-                     */
-                    tr.append(id)
-                        .append(nome)
-                        .append(sigla)
-                        .append(sinodo)
-                        .append(regiao);
-                    /**
-                     * Adiciona linhas na tabela
-                     */
-                    $('#tbody_presbiterios').append(tr);
-                }
-            })
-            .fail(function (response) {
-                console.log(response);
-            })
-        ;
-    }
-
-    getDataTable();
-
-    /**
      * Instancia DataTables() e organiza os eventos do click
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_presbiterios.DataTable({
+            tbl_api = tbl_sinodos.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -166,7 +94,7 @@ $(document).ready(function () {
             /**
              * Utilizado para selecionar as linhas da tabela
              */
-            $('#tbody_presbiterios').off("click", "**").on('click', 'tr', function () {
+            $('#tbody_sinodos').off("click", "**").on('click', 'tr', function () {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     id_row = null;
@@ -180,32 +108,87 @@ $(document).ready(function () {
                  * exibe no console o nr da celula código da linha selecionada,
                  * que vem do banco de dados como o id do registro
                  */
-                //console.log(id_row);
+                console.log(id_row);
             });
             styleInputSearch.first().second();
         }, 1000);
     }
 
-    instanciaDataTables(); // init function instanciaDataTables() {};
+    /**
+     * Popular a Tabela com infos do banco
+     */
+    function getDataTable() {
+        $.get('/api/sinodos')
+            .done(function (response) {
+                for (let key in response) {
+                    let tr, row, id, regiao, nome, sigla;
+                    tr = $('<tr/>');
+                    row = response[key];
+                    /**
+                     * Adiciona células com as informações do banco de dados
+                     * @type {jQuery}
+                     */
+                    id = $('<td/>').html(row.id);
+                    nome = $('<td/>').html(row.nome.toUpperCase());
+                    sigla = $('<td/>').html(row.sigla.toUpperCase());
+                    switch (row.regiao) {
+                        case '1':
+                            regiao = $('<td/>').html("CENTRO-OESTE");
+                            break;
+                        case '2':
+                            regiao = $('<td/>').html("NORDESTE");
+                            break;
+                        case '3':
+                            regiao = $('<td/>').html("NORTE");
+                            break;
+                        case '4':
+                            regiao = $('<td/>').html("SUDESTE");
+                            break;
+                        case '5':
+                            regiao = $('<td/>').html("SUL");
+                            break;
+                        default:
+                            regiao = $('<td/>').html('Não identificado');
+                            break;
+                    }
+                    /**
+                     * Adiciona as células nas linhas
+                     */
+                    tr.append(id)
+                        .append(nome)
+                        .append(sigla)
+                        .append(regiao);
+                    /**
+                     * Adiciona linhas na tabela
+                     */
+                    $('#tbody_sinodos').append(tr);
+                }
+                instanciaDataTables(); // init function instanciaDataTables() {};
+            })
+            .fail(function (response) {
+                console.log(response);
+            })
+        ;
+    }
+
+    getDataTable();
 
     /**
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiterios?id=' + id_row)
+        $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_presbiterios.nome.value = data.nome;
-                cadastros_presbiterios.sigla.value = data.sigla;
-                cadastros_presbiterios.regiao.value = data.regiao;
-                cadastros_presbiterios.id_sinodo.value = data.id_sinodo;
+                cadastros_sinodos.nome.value = data.nome;
+                cadastros_sinodos.sigla.value = data.sigla;
+                cadastros_sinodos.regiao.value = data.regiao;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_presbiterios.regiao).trigger("change");
-                    $(cadastros_presbiterios.id_sinodo).trigger("change");
+                    $(cadastros_sinodos.regiao).trigger("change");
                 }, 100);
             })
             .fail(function (response) {
@@ -248,12 +231,14 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/presbiterios/delete', {id: id_row})
+                        $.post('/api/sinodos/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
                                 id_row = null;
-                                cadastros_presbiterios.reset();
+                                cadastros_sinodos.reset();
+                                validator.resetForm();
+                                $('form').form('reset');
                             })
                             .fail(function (response) {
                                 console.log(response);
@@ -272,7 +257,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    validator_presbiterios = $("#cadastros_presbiterios").validate({
+    let validator = $("#cadastros_sinodos").validate({
         rules: {
             nome: {
                 required: true,
@@ -292,24 +277,39 @@ $(document).ready(function () {
             $(element).parent().removeClass(errorClass);
         },
         submitHandler: function () {
-            /**
-             * Estes campos são para popular o dataTable pelo nome e não pelo id do response
-             * @type {jQuery}
-             */
-            let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
-            let regiao = $("select[name='regiao'] :selected").text();
             if (id_row > 0) {
-                let form = $('#cadastros_presbiterios').serializeArray();
+                let form = $('#cadastros_sinodos').serializeArray();
                 form.unshift({name: 'id', value: id_row});
-                $.post('api/presbiterios/update', form)
+                $.post('api/sinodos/update', form)
                     .done(function (response) {
+                        console.log(response);
                         tbl_api.row(tr_row).remove();
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            sinodo,
-                            regiao.toUpperCase()
+                            regiao
                         ]).draw(false);
 
                         iziToast.success({
@@ -327,7 +327,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_presbiterios.sigla).parent().addClass("error");
+                            $(cadastros_sinodos.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -351,16 +351,36 @@ $(document).ready(function () {
                     })
                 ;
             } else {
-                let form = $('#cadastros_presbiterios').serializeArray();
-                $.post('api/presbiterios/store', form)
+                let form = $('#cadastros_sinodos').serializeArray();
+                $.post('api/sinodos/store', form)
                     .done(function (response) {
-                        id_row = response.id;
+                        console.log(response);
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            sinodo,
-                            regiao.toUpperCase()
+                            regiao
                         ]).draw(false);
 
                         iziToast.success({
@@ -378,7 +398,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_presbiterios.sigla).parent().addClass("error");
+                            $(cadastros_sinodos.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -409,21 +429,12 @@ $(document).ready(function () {
      * Os campos select do semantic não são compativeis com o jquery validation,
      * a msg fica bugada, usar desta forma para select.search.dropdown
      */
-    $("#cadastros_presbiterios").form({
+    $("#cadastros_sinodos").form({
         inline: true,
         on: 'submit',
         fields: {
             dropdown: {
                 identifier: 'regiao',
-                rules: [
-                    {
-                        type: 'empty',
-                        prompt: 'Este campo é requerido.'
-                    }
-                ]
-            },
-            sinodos: {
-                identifier: 'id_sinodo',
                 rules: [
                     {
                         type: 'empty',
@@ -438,7 +449,7 @@ $(document).ready(function () {
      * Ao clicar no botão limpar, reseta as classes de erro
      */
     $(".ui.reset.button").on("click", function () {
-        validator_presbiterios.resetForm();
+        validator.resetForm();
         $('form').form('reset');
     });
 
@@ -459,13 +470,13 @@ $(document).ready(function () {
             /**
              * reseta os campos do tipo input
              */
-            cadastros_presbiterios.reset();
+            cadastros_sinodos.reset();
 
             /**
              * retorna o select para a primera opção
              * @type {number}
              */
-            validator_presbiterios.resetForm();
+            validator.resetForm();
             $('form').form('reset');
         }
     });

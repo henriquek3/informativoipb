@@ -1,0 +1,56 @@
+doctype html
+html
+    head
+        include includes/_head.pug
+    
+        style
+            | body {
+            |    background-color: #DADADA;
+            | }
+            | body > .grid {
+            |   height: 100%;
+            | }
+            | .image {
+            | margin-top: -100px;
+            | }
+            | .column {
+            |   max-width: 450px;
+            | }
+        
+
+    body.ui.container
+        div.ui.middle.aligned.center.aligned.grid
+            div.column
+                h2.ui.teal.image.header
+                    img.image(src="images/ipb_logo.png")
+                    div.content
+                        | InformativoIPB
+                form.ui.large.form(name="form_login", id="form_login")
+                    div.ui.stacked.segment
+                        div.field
+                            div.ui.left.icon.input
+                                i.user.icon
+                                input(type="text", name="email", placeholder="Insira seu e-mail")
+                        div.field
+                            div.ui.left.icon.input
+                                i.lock.icon
+                                input(type="password", name="password", placeholder="Insira sua senha")
+                        div.ui.fluid.large.teal.submit.button
+                            | Conectar
+
+                    div.ui.error.message
+
+                div.ui.error.message(style="text-align:left;display:none;", id="msg_login_error")
+                    i.close.icon
+                    div.header
+                        | Algo de errado não esta certo!
+                    ul.list
+                        li(id="msg_error")
+
+                div.ui.message
+                    | Esqueceu a senha? 
+                    a(href="#", id="give_pass") Clique Aqui!
+
+    include includes/_javascript.pug
+        script(type="text/javascript", src="js/plugins/sweetalert.min.js")
+        script(type="text/javascript", src="js/app/login-app.js")

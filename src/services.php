@@ -27,7 +27,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'host' => 'localhost',
         'dbname' => 'jksistem_informativoipb',
         /*'user' => 'jksistem_ipbsys',
-        'password' => 'azfRm9ps]9M&',*/
+        'password' => 'r5758222rA+',*/
         'user' => 'root',
         'password' => '',
         'charset' => 'utf8mb4',
