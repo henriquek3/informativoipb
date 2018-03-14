@@ -77,4 +77,4 @@ dist/css/main.min.css.map
 templates/
 .phpintel/
 .vs/
-/semantic/
+semantic/
