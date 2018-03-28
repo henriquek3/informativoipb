@@ -16,7 +16,7 @@ block content
         h2.ui.floated.header
             | Administrar Usuário
             div.sub.header
-                | Administre os usuários de nível inferior
+                | Criar novos usuários ou configurar os existentes.
 
         div.ui.clearing.divider
         p
@@ -25,161 +25,142 @@ block content
             a.item(data-tab="second") Cadastrar Usuário
 
         div.ui.bottom.attached.tab.segment.active(data-tab="first")
-            table.ui.compact.selectable.celled.unstackable.table
+            table.ui.compact.selectable.celled.unstackable.table(id="tableUsuarios")
                 thead
                     tr
                         th.one.wide Código
-                        th.five.wide Usuário
+                        th.five.wide Nome
                         th.four.wide E-Mail
                         th.three.wide Perfil
                         th.two.wide Nível
-                        th.one.wide Status
+                        th.one.wide(style="text-align: center;", data-tooltip="Representa se o usuário esta Ativo ou Inativo") Status
 
-                tbody
-                    tr
+                tbody(id="tbodyUsuarios")
+                    //tr
                         td 01
                         td Antônio José
                         td antonio@jksistemas.com.br
                         td Secretário Supremo
                         td Supremo
-                        td(style="text-align: center;" data-tooltip="Status atual do usuário")
+                        td
                             i.ban.icon.red
 
-                    tr
+                    //tr
                         td 02
                         td João Augusto da Silva
                         td august@jksistemas.com.br
                         td Secretário da Igreja
                         td Comum
-                        td(style="text-align: center;" data-tooltip="Status atual do usuário")
+                        td
                             i.check.icon.green
-
-
-
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             div.ui.form.segment
-                div.fields
-                    div.eight.wide.field
-                        label Sínodo
-                        select.ui.fluid.search.dropdown.disabled
-                            option Sínodo Noroeste do Brasil
-                            option Norte Presbitério
-                            option Centro Presbitério
-                    div.eight.wide.field
-                        label Presbitério
-                        select.ui.fluid.search.dropdown.disabled
-                            option Presbitério Sul de Rondônia
-                            option Norte Presbitério
-                            option Centro Presbitério
-                div.fields
-                    div.eight.wide.field
-                        label Igreja
-                        select.ui.fluid.search.dropdown.disabled
-                            option 1ª Igreja Presbiteriana de Cacoal
-                            option Norte Presbitério
-                            option Centro Presbitério
-                    div.eight.wide.field
-                        label Presbítero
-                        select.ui.fluid.search.dropdown.disabled
-                            option Adilson Cesar Pavão
-                            option Norte Presbitério
-                            option Centro Presbitério
-                div.fields
-                    div.seven.wide.field.required
-                        label Nome
-                        input(type="text")
-                    div.six.wide.field.required
-                        label E-Mail
-                        input(type="email")
-                    div.three.wide.field.required
-                        label CPF
-                        input(type="text")
-                div.fields
-                    div.four.wide.field
-                        label Status do Usuário
-                        select.ui.fluid.search.dropdown
-                            option
-                            option Ativo
-                            option Inativo
-                    div.four.wide.field
-                        label Nível
-                        select.ui.fluid.search.dropdown
-                            option Comum
-                            option Superior
-                    div.four.wide.field
-                        label Perfil
-                        select.ui.fluid.search.dropdown
-                            option Secretário da Igreja
-                            option Secretário do Presbitério
-                            option Secretário do Sínodo
-                            option Secretário do Supremo
-                            option Supervisão Geral
-                div.fields
-                    div.sixteen.wide.field
-                        label Observações
-                        textarea(rows="3")
+                form(id="formUsuarios", name="formUsuarios")
+                    div.fields
+                        div.eight.wide.field
+                            label Sínodo
+                            select.ui.fluid.search.dropdown(name="id_sinodo")
+                                option
 
+                        div.eight.wide.field(id="div_presbiterio")
+                            label Presbitério
+                            select.ui.fluid.search.dropdown(name="id_presbiterio")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
 
+                    div.fields
+                        div.eight.wide.field(id="div_igreja")
+                            label Igreja
+                            select.ui.fluid.search.dropdown(name="id_igreja")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
-                div.ui.segments
-                    div.ui.segment(style="text-align: center; background-color: #F9FAFB")
-                        p
-                            strong INFORMAÇÕES SOBRE O PREENCHIMENTO
+                        div.eight.wide.field(id="div_presbitero")
+                            label Presbítero
+                            select.ui.fluid.search.dropdown(name="id_presbitero")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_presbitero")
 
-                    div.ui.horizontal.segments
-                        div.ui.segment
-                            span
-                                strong Usuário cadastrado por:
-                            span
-                                | &nbsp;
-                                | Kallew Pavão
-                                | &nbsp;
-                            span(style="float: right;")
-                                strong Data:
-                                | &nbsp;
-                                | 01/01/2018
+                    div.fields
+                        div.seven.wide.field.required
+                            label Nome
+                            input(type="text", name="nome")
 
-                        div.ui.segment
-                            span
-                                strong Última alteração:
-                            span
-                                | &nbsp;
-                                | Kallew Pavão
-                                | &nbsp;
-                            span(style="float: right;")
-                                strong Data:
-                                | &nbsp;
-                                | 09/01/2018
+                        div.six.wide.field.required
+                            label E-Mail
+                            input(type="email", name="email")
 
+                        div.three.wide.field.required
+                            label CPF
+                            input(type="text", name="cpf")
 
+                    div.fields
+                        div.four.wide.field
+                            label Status do Usuário
+                            select.ui.fluid.search.dropdown(name="status")
+                                option
+                                option(value="1") Ativo
+                                option(value="0") Inativo
 
+                        div.four.wide.field
+                            label Nível
+                            select.ui.fluid.search.dropdown(name="nivel")
+                                option
+                                option(value="0") Comum
+                                option(value="1") Superior
 
-                div.ui.clearing.divider
+                        div.four.wide.field
+                            label Perfil
+                            select.ui.fluid.search.dropdown(name="perfil")
+                                option
+                                option(value="1") Secretário da Igreja
+                                option(value="2") Secretário do Presbitério
+                                option(value="3") Secretário do Sínodo
+                                option(value="4") Secretário do Supremo
+                                option(value="5") Supervisão Geral
 
-                div(style="text-align: center")
-                    button.ui.green.labeled.icon.button(type="submit")
-                        i.plus.icon
-                        | Gravar
+                    div.fields
+                        div.sixteen.wide.field
+                            label Observações
+                            textarea(rows="3", name="observacoes")
 
+                    div.ui.segments
+                        div.ui.segment(style="text-align: center; background-color: #F9FAFB")
+                            p
+                                strong INFORMAÇÕES SOBRE O PREENCHIMENTO
 
-                    button.ui.yellow.right.labeled.icon.button(type="button")
-                        i.redo.icon
-                        | Gerar Nova Senha
+                        div.ui.horizontal.segments
+                            div.ui.segment
+                                span
+                                    strong Usuário cadastrado por:
+                                span
+                                    | &nbsp;
+                                    span Kallew Pavão
+                                    | &nbsp;
+                                span(style="float: right;")
+                                    strong Data:
+                                    | &nbsp;
+                                    span 01/01/2018
 
+                            div.ui.segment
+                                span
+                                    strong Última alteração:
+                                span
+                                    | &nbsp;
+                                    span Kallew Pavão
+                                    | &nbsp;
+                                span(style="float: right;")
+                                    strong Data:
+                                    | &nbsp;
+                                    span 09/01/2018
 
+                    div.ui.clearing.divider
 
-
-
-
-
-
-
-
-
-
-
-
+                    div(style="text-align: center")
+                        button.ui.green.labeled.icon.button(type="submit")
+                            i.plus.icon
+                            | Gravar
+                        button.ui.yellow.right.labeled.icon.button(type="button")
+                            i.redo.icon
+                            | Gerar Nova Senha
 
 block specific-js
     script(src='js/app/jquery-validate-app.js')

@@ -20,13 +20,13 @@ html(lang="pt-BR")
         style
             | .envelope {cursor: pointer;}
 
-        script(type="text/javascript").
+        //script(type="text/javascript").
             let pathname = document.location.pathname;
             let conectado = sessionStorage.getItem("user-login");
 
             if ( conectado !== "conectado" ) {
                 if (pathname !== '/pre-login') {
-                    //document.location.href = '/pre-login';
+                    document.location.href = '/pre-login';
                 }
             }
 

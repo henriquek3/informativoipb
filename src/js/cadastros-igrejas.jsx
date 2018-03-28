@@ -398,7 +398,7 @@ $(document).ready(function () {
         if (!estadosLoad) {
             $.get('api/estados')
                 .done(function (response) {
-                    $(cadastros_igrejas.id_estado).append($('<option />').text('selecione..'));
+                    $(cadastros_igrejas.id_estado).append($('<option />').text('- -'));
 
                     $.each(response, function () {
                         $(cadastros_igrejas.id_estado).append(
