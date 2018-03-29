@@ -48,6 +48,7 @@ node_modules/
 
 # interface api
 composer.lock
+# Composer packages
 vendor/
 teste/
 *.log
@@ -66,6 +67,8 @@ package-lock.json
 .versions/
 $RECYCLE.BIN/
 .vscode/
+
+# Arquivos do Front-end
 dist/*.html
 dist/js/app/
 public/js/app/

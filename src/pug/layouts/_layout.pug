@@ -20,7 +20,15 @@ html(lang="pt-BR")
         style
             | .envelope {cursor: pointer;}
 
-        script(src="js/app/login-validator-app.js")
+        //script(type="text/javascript").
+            let pathname = document.location.pathname;
+            let conectado = sessionStorage.getItem("user-login");
+
+            if ( conectado !== "conectado" ) {
+                if (pathname !== '/pre-login') {
+                    document.location.href = '/pre-login';
+                }
+            }
 
         include ../includes/_head.pug
 
