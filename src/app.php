@@ -21,7 +21,9 @@ include __DIR__ . '/routes.php';
 include __DIR__ . '/controllers/geografia.php';
 include __DIR__ . '/controllers/sinodos.php';
 include __DIR__ . '/controllers/presbiterios.php';
+include __DIR__ . '/controllers/presbiteros.php';
 include __DIR__ . '/controllers/usuarios.php';
+include __DIR__ . '/controllers/igrejas.php';
 
 /**
  * @todo Lançar uma instancia da api

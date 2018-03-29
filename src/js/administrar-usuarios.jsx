@@ -85,7 +85,7 @@ $(document).ready(function () {
                 $("#loader_presbiterio").show();
                 $.get('api/presbiterios?sinodo=' + $(formUsuarios.id_sinodo).val())
                     .done(function (response) {
-
+                        $(formUsuarios.id_presbiterio).append($('<option />').text('- -'));
                         $.each(response, function () {
                             $(formUsuarios.id_presbiterio).append(
                                 $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
@@ -115,12 +115,14 @@ $(document).ready(function () {
                 $("#loader_igreja").show();
                 $.get('api/igrejas?presbiterio=' + $(formUsuarios.id_presbiterio).val())
                     .done(function (response) {
+                        $(formUsuarios.id_igreja).append($('<option />').text('- -'));
 
                         $.each(response, function () {
                             $(formUsuarios.id_igreja).append(
                                 $('<option />').val(this.id).text(this.nome.toUpperCase())
                             );
                         });
+
                         $("#div_igreja").find(".search").show();
                         $("#loader_igreja").hide()
                     })
@@ -135,8 +137,39 @@ $(document).ready(function () {
         });
     }
 
+    getDataIgreja();
+
     function getDataPresbitero() {
+        $(formUsuarios.id_presbiterio).on('change', function () {
+            if ($(formUsuarios.id_igreja).val() > 0) {
+                $("select[name='id_presbitero']").children().remove();
+                $("#div_presbitero").find(".search").hide();
+                $("#loader_presbitero").show();
+                $.get('api/presbiteros?igreja=' + $(formUsuarios.id_igreja).val())
+                    .done(function (response) {
+                        $(formUsuarios.id_presbitero).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(formUsuarios.id_presbitero).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_presbitero").find(".search").show();
+                        $("#loader_presbitero").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
     }
+
+    getDataPresbitero();
 
     /**
      * Instancia DataTables() e organiza os eventos do click
