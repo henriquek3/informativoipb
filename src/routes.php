@@ -6,6 +6,7 @@
  * Time: 08:02
  */
 
+
 $app->get('/{routes}', 
     function ($routes) {
         ob_start();        
@@ -31,10 +32,11 @@ $app->get("/",
     }
 );
 
-$app->get("/plogin",
+$app->get("/pre-login",
     function () {
         ob_start();
         include __DIR__ . "/../templates/pre-login.html";
         return ob_get_clean();
     }
 );
+

@@ -11,19 +11,19 @@ use Symfony\Component\HttpFoundation\Request;
 $app->get('api/usuarios', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
-    $query = "SELECT u.id,
-              u.nome,
-              u.email,
-              u.perfil,
-              u.nivel,
-              u.status,
-              u.cpf,
-              u.observacoes
-            FROM usuarios u ";
+    $query = "SELECT
+              uu.nome as user_inc,
+              uua.nome as user_alt,
+              u.*
+            FROM usuarios u,
+            (SELECT u.id, u.nome  FROM usuarios u) uu,
+            (SELECT u.id, u.nome  FROM usuarios u) uua
+            where u.usuario_lancamento = uu.id
+            and u.usuario_ultima_alteracao = uua.id";
     $id = (int)$request->get('id');
     $params = [];
     if ($id > 0) {
-        $query .= " WHERE u.id = ?";
+        $query .= " AND u.id = ?";
         array_push($params, $id);
     }
     $result = $db->fetchAll($query, $params);

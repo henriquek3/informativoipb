@@ -325,6 +325,10 @@ $(document).ready(function () {
                 formUsuarios.email.value = data.email;
                 formUsuarios.cpf.value = data.cpf;
                 formUsuarios.observacoes.value = data.observacoes;
+                $("#user_inc").text(data.user_inc);
+                $("#data_inc").text(data.data_lancamento);
+                $("#user_alt").text(data.user_inc);
+                $("#data_alt").text(data.data_ultima_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor

@@ -8,8 +8,12 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
+//$app['session']->start();
+
 /**
- * @return string JSON
+ * @return string JSON Web Token - JWT
+ * @url https://www.youtube.com/watch?v=k3KfK0ZS_FY
+ * @author Fabio Vedovelli
  */
 function generatorToken()
 {

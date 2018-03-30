@@ -8,18 +8,12 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use \Silex\Application;
 
 $app['debug'] = true;
 
-$app->before(function (Request $request) {
-    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-        $data = json_decode($request->getContent(), true);
-        $request->request->replace(is_array($data) ? $data : array());
-    }
-});
-
 $app->register(new Silex\Provider\SessionServiceProvider());
-//$app->register(new Silex\Provider\VarDumperServiceProvider());
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
@@ -59,4 +53,19 @@ $app->error(function (\Exception $e, Request $request, $code) {
             break;
     }
     return new Response($e->getMessage());
+});
+
+$app->before(function (Request $request, Application $app) {
+    if ($request->getPathInfo() != "/login" && $request->getPathInfo() != "/pre-login" && $request->getPathInfo() != "/api/connect") {
+        if ($app['session']->isStarted() === false) {
+            return RedirectResponse::create("/pre-login");
+        }
+    }
+});
+
+$app->before(function (Request $request) {
+    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+        $data = json_decode($request->getContent(), true);
+        $request->request->replace(is_array($data) ? $data : array());
+    }
 });
