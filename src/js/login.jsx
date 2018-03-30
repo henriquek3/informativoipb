@@ -31,22 +31,24 @@ $(document)
                     }
                 },
                 onSuccess: function () {
-                    let email = form_login.email.value;
-                    let senha = form_login.password.value;
-                    console.log("email: " + email);
-                    console.log("senha: " + senha);
-                    if (email === 'admin@jksistemas.com.br') {
-                        if (senha === 'adminadmin') {
-                            sessionStorage.setItem("user-login", 'conectado');
+                    let pass = form_login.password.value;
+                    let hashpass = btoa(pass);
+                    let form = [
+                        {name: 'email', value: form_login.email.value},
+                        {name: 'password', value: hashpass}
+                    ];
+                    $.post('api/connect', form)
+                        .done(function (response) {
+                            console.log(response);
+                            sessionStorage.setItem("usuario", 123);
                             document.location.href = '/inicio';
-                        } else {
-                            $("#msg_error").text("Por favor verifique sua senha");
+                        })
+                        .fail(function () {
+                            $("#msg_error").text("E-mail ou Senha incorretos!");
                             $("#msg_login_error").show();
-                        }
-                    } else {
-                        $("#msg_error").text("Por favor verifique seu login");
-                        $("#msg_login_error").show();
-                    }
+                        })
+                    ;
+
                     return false;
                 }
             })
