@@ -7,9 +7,13 @@
  */
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use \Silex\Application;
 
 /**
- * @return string JSON
+ * @return string JSON Web Token - JWT
+ * @url https://www.youtube.com/watch?v=k3KfK0ZS_FY
+ * @author Fabio Vedovelli
  */
 function generatorToken()
 {
@@ -21,9 +25,9 @@ function generatorToken()
     $header = json_encode($header);
     $header = base64_encode($header);
     $payload = [
-        'iss' => 'http://tecman.servidordiegorohden.com.br',
-        'desenvolvedor' => "Jean Henrique Rodrigues de Freitas",
-        'email' => "henriquek3@live.com"
+        'iss' => 'http://www.jksistemas.com.br',
+        'desenvolvedores' => "Jean Freitas e Kallew Pavão",
+        'email' => "atendimento@jksistemas.com.br"
     ];
     $payload = json_encode($payload);
     $payload = base64_encode($payload);
@@ -33,28 +37,34 @@ function generatorToken()
     return $token;
 }
 
-$app->get('api/connect', function (Request $request) use ($app) {
+$app->post('api/connect', function (Request $request, Application $app) {
     /** @var \Doctrine\DBAL\Connection $db */
-    $db = $app['db'];
-    $query = "SELECT * FROM usuarios";
-    $user = (string)$request->get('user');
-    $pass = (string)$request->get('password');
-    $params = [];
-    if (is_string($user) > 0) {
-        $query .= " WHERE login = ?";
-        array_push($params, $user);
+    if ($request->get('email')) {
+        $data = $request->request->all();
+        $user = (string)$data['email'];
+        $pass = (string)$data['password'];
+
+        $db = $app['db'];
+        $query = "SELECT * FROM usuarios";
+        $params = [];
+        if (is_string($user) > 0) {
+            $query .= " WHERE email = ?";
+            array_push($params, $user);
+        }
+        if (is_string($pass) > 0) {
+            $query .= " AND senha = ?";
+            array_push($params, $pass);
+        }
+        $result = $db->fetchAll($query, $params);
+        if (count($result) > 0) {
+            $result[0]['token'] = generatorToken();
+            $app['session']->start();
+        } else {
+            return new Response('login denied', 401);
+        }
+        return $app->json($result);
+
+    } else {
+        return new Response('<script type="application/javascript"> function getIP(json) {document.write("Seu Endereço IP foi registrado: ", json.ip);}</script><script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>', 404);
     }
-
-    if (is_string($pass) > 0) {
-        $query .= " AND password = ?";
-        array_push($params, $pass);
-    }
-
-    $result = $db->fetchAll($query, $params);
-
-    if (count($result) > 0) {
-        $result[0]['token'] = generatorToken();
-    }
-
-    return $app->json($result);
 });
