@@ -1,3 +1,4 @@
+
 /**
  * @description Aqui será implementado o javascript que será utilizado em todas as telas, por exemplo verificação de login.
  *
@@ -51,7 +52,15 @@ $(document).ready(function () {
 
     $("#logout").click(function () {
         sessionStorage.clear();
-        document.location.href = "/pre-login";
+        $.get('api/connect?desconnect=1')
+            .done(function (response) {
+                console.log(response);
+                document.location.href = '/pre-login';
+            })
+            .fail(function (response) {
+                console.log(response);
+            })
+        ;
     });
 
 });

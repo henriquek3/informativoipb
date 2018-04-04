@@ -403,7 +403,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    /*let validator = $("#formUsuarios").validate({
+    let validator = $("#formUsuarios").validate({
         rules: {
             nome: {
                 required: true,
@@ -429,7 +429,7 @@ $(document).ready(function () {
                 $.post('api/usuarios/update', form)
                     .done(function (response) {
                         console.log(response);
-                        tbl_api.row(tr_row).remove();
+                        /*tbl_api.row(tr_row).remove();
                         let regiao;
                         switch (response.regiao) {
                             case '1':
@@ -456,7 +456,7 @@ $(document).ready(function () {
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
                             regiao
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -501,33 +501,33 @@ $(document).ready(function () {
                 $.post('api/usuarios/store', form)
                     .done(function (response) {
                         console.log(response);
-                        let regiao;
-                        switch (response.regiao) {
-                            case '1':
-                                regiao = "CENTRO-OESTE";
-                                break;
-                            case '2':
-                                regiao = "NORDESTE";
-                                break;
-                            case '3':
-                                regiao = "NORTE";
-                                break;
-                            case '4':
-                                regiao = "SUDESTE";
-                                break;
-                            case '5':
-                                regiao = "SUL";
-                                break;
-                            default:
-                                regiao = 'Não identificado';
-                                break;
-                        }
-                        tbl_api.row.add([
-                            response.id,
-                            response.nome.toUpperCase(),
-                            response.sigla.toUpperCase(),
-                            regiao
-                        ]).draw(false);
+                        /* let regiao;
+                         switch (response.regiao) {
+                             case '1':
+                                 regiao = "CENTRO-OESTE";
+                                 break;
+                             case '2':
+                                 regiao = "NORDESTE";
+                                 break;
+                             case '3':
+                                 regiao = "NORTE";
+                                 break;
+                             case '4':
+                                 regiao = "SUDESTE";
+                                 break;
+                             case '5':
+                                 regiao = "SUL";
+                                 break;
+                             default:
+                                 regiao = 'Não identificado';
+                                 break;
+                         }
+                         tbl_api.row.add([
+                             response.id,
+                             response.nome.toUpperCase(),
+                             response.sigla.toUpperCase(),
+                             regiao
+                         ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -569,7 +569,7 @@ $(document).ready(function () {
                 ;
             }
         }
-    });*/
+    });
 
     /**
      * Os campos select do semantic não são compativeis com o jquery validation,
@@ -595,7 +595,7 @@ $(document).ready(function () {
      * Ao clicar no botão limpar, reseta as classes de erro
      */
     $(".ui.reset.button").on("click", function () {
-        //validator.resetForm();
+        validator.resetForm();
         $('form').form('reset');
     });
 
@@ -633,7 +633,7 @@ $(document).ready(function () {
              * retorna o select para a primera opção
              * @type {number}
              */
-            //validator.resetForm();
+            validator.resetForm();
             $('form').form('reset');
         }
     });
