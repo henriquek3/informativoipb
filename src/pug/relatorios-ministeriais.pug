@@ -181,74 +181,74 @@ block content
                     div.fields
                         div.three.wide.field
                             label Celular
-                            input(type="text", name="telefone" placeholder="Celular" disabled="")
+                            input(type="text", name="celular" placeholder="Celular" disabled="")
                         div.three.wide.field
                             label Telefone Fixo
                             input(type="text", name="telefone" placeholder="Telefone Fixo" disabled="")
                         div.three.wide.field
                             label Telefone da Igreja
-                            input(type="text", name="telefone" placeholder="Telefone da Igreja" disabled="")
+                            input(type="text", name="telefone_igreja" placeholder="Telefone da Igreja" disabled="")
                         div.seven.wide.field
                             label E-mail
                             input(type="email" name="email" placeholder="E-Mail" disabled="")
                     div.fields
                         div.five.wide.field
                             label Condições de Moradia:
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Casa/Apto Pastoral
-                                option Moradia Própria
-                                option Financiada
-                                option Moradia alugada paga pela Igreja
-                                option Moradia alugada e paga pelo Ministro
-                                option Moradia alugada Nos limites do campo
-                                option Moradia alugada Fora do campo
+                            select.ui.fluid.search.dropdown(name="condicao_moradia")
+                                option(value="")
+                                option(value="1") Casa/Apto Pastoral
+                                option(value="2") Moradia Própria
+                                option(value="3") Financiada
+                                option(value="4") Moradia alugada paga pela Igreja
+                                option(value="5") Moradia alugada e paga pelo Ministro
+                                option(value="6") Moradia alugada Nos limites do campo
+                                option(value="7") Moradia alugada Fora do campo
                         div.three.wide.field
                             label Data de Ordenação:
-                            input(type="text")
+                            input(type="text" name="ordenacao_data")
                         div.eight.wide.field(data-tooltip="Digite ou Selecione o Presbitério onde foi ordenado.")
                             label Presbitério
-                            select.ui.fluid.search.dropdown
+                            select.ui.fluid.search.dropdown(name="id_presbiterio")
                                 option
                                 option Sul de Rondônia
                                 option Vale do Rio Machado
                     div.fields
                         div.three.wide.field
                             label Dedicação ao Ministério:
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Integral
-                                option Parcial
+                            select.ui.fluid.search.dropdown(name="dedicacao_ministerio")
+                                option(value="")
+                                option(value="1") Integral
+                                option(value="2") Parcial
                         div.three.wide.field
                             label Férias
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Regulares
-                                option Parciais
-                                option Não teve
+                            select.ui.fluid.search.dropdown(name="ferias")
+                                option(value="")
+                                option(value="1") Regulares
+                                option(value="2") Parciais
+                                option(value="3") Não teve
                         div.three.wide.field
                             label Côngruas
                             div.ui.labeled.input
                                 div.ui.label R$
-                                input(type="text")
+                                input(type="text" name="congruas")
                     div.fields.inline
                         div.three.wide.field(data-tooltip="Possui aposentadoria pública?")
                             label Aposentadoria pública?
                         div.three.wide.field
                             div.ui.radio.checkbox
-                                input(name="aposentadoria_publica" type="radio")
+                                input(name="previdencia_publica" type="radio")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="aposentadoria_publica" type="radio" checked="checked")
+                                input(name="previdencia_publica" type="radio" checked="checked")
                                 label Não
                         div.three.wide.field(data-tooltip="Possui aposentadoria privada?")
                             label Aposentadoria privada?
                         div.three.wide.field
                             div.ui.radio.checkbox
-                                input(name="aposentadoria_privada" type="radio")
+                                input(name="previdencia_privada" type="radio")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="aposentadoria_privada" type="radio" checked="checked")
+                                input(name="previdencia_privada" type="radio" checked="checked")
                                 label Não
                         div.two.wide.field(data-tooltip="Possui plano de saúde?")
                             label Plano de saúde?
@@ -264,24 +264,24 @@ block content
                             label Contribui para o INSS sobre o valor das Côngruas??
                         div.two.wide.field
                             div.ui.radio.checkbox
-                                input(name="contribui_inss_congruas" type="radio")
+                                input(name="congruas_contribui_inss" type="radio")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="contribui_inss_congruas" type="radio" checked="checked")
+                                input(name="congruas_contribui_inss" type="radio" checked="checked")
                                 label Não
                         div.five.wide.field(data-tooltip="Qual o valor da contribuição para o INSS?")
                             label Contribuição INSS:
                             div.ui.labeled.input
                                 div.ui.label R$
-                                input(type="text")
+                                input(type="text" name="previdencia_publica_valor")
                         div.two.wide.field(data-tooltip="Contribui para Previdência Privada?")
                             label Previdência Privada?
                         div.two.wide.field
                             div.ui.radio.checkbox
-                                input(name="contribui_previdencia_privada" type="radio")
+                                input(name="contribui_prev_privada" type="radio")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="contribui_previdencia_privada" type="radio" checked="checked")
+                                input(name="contribui_prev_privada" type="radio" checked="checked")
                                 label Não
 
             div.ui.segments
@@ -311,29 +311,29 @@ block content
                     div.fields
                         div.four.wide.field
                             label Pregações
-                            input(type="text")
+                            input(type="text" name="pregacoes")
                         div.four.wide.field
                             label Aulas de Escola Dominical:
-                            input(type="text")
+                            input(type="text" name="ebd")
                         div.four.wide.field
                             label Trabalhos de Evangelização:
-                            input(type="text")
+                            input(type="text" name="evangelizacao")
                         div.four.wide.field
                             label Estudos Bíblicos:
-                            input(type="text")
+                            input(type="text" name="estudos_biblicos")
                     div.fields
                         div.four.wide.field
                             label Palestras, preleções especiais:
-                            input(type="text")
+                            input(type="text" name="palestras_prelecoes")
                         div.four.wide.field
                             label Mensagens - Rádio/TV:
-                            input(type="text")
+                            input(type="text" name="msg_radio")
                         div.four.wide.field
                             label Artigos-jornais, boletins, revistas:
-                            input(type="text")
+                            input(type="text" name="artigos_boletins_revistas")
                         div.four.wide.field
                             label Entrevistas:
-                            input(type="text")
+                            input(type="text" name="entrevistas")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 2. ATOS PASTORAIS
@@ -343,23 +343,23 @@ block content
                     div.fields
                         div.five.wide.field
                             label Santas Ceias:
-                            input(type="text")
+                            input(type="text" name="santa_ceia")
                         div.six.wide.field
                             label Bênçãos Nupciais (com ou sem efeito civil):
-                            input(type="text")
+                            input(type="text" name="bencaos_nupciais")
                         div.five.wide.field
                             label Funerais:
-                            input(type="text")
+                            input(type="text" name="funerais")
                     div.fields
                         div.five.wide.field
                             label Batismos Infantis:
-                            input(type="text")
+                            input(type="text" name="batismos")
                         div.six.wide.field
                             label Profissões de Fé:
-                            input(type="text")
+                            input(type="text" name="profissoes_fe")
                         div.five.wide.field
                             label Profissões de Fé & Batismos:
-                            input(type="text")
+                            input(type="text" name="profissoes_batismos")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 3. ASSISTÊNCIA PASTORAL
@@ -369,7 +369,7 @@ block content
                     div.fields
                         div.four.wide.field
                             label Aconselhamentos/Orientações:
-                            input(type="text")
+                            input(type="text" name="aconselhamentos")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 3. ASSISTÊNCIA PASTORAL
@@ -379,13 +379,13 @@ block content
                     div.fields
                         div.seven.wide.field
                             label Evangélicos ou não:(considerar as visitas feitas nos lares como uma visita.)
-                            input(type="text")
+                            input(type="text" name="visitas_lares")
                         div.six.wide.field
                             label Pontos de Pregação, Congregações ou Campos Missionários
-                            input(type="text")
+                            input(type="text" name="visitas_igrejas")
                         div.three.wide.field
                             label Departamentos Internos
-                            input(type="text")
+                            input(type="text" name="departamentos_internos")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 4. MINISTÉRIO DESIGNADO NOS TERMOS DO ARTIGO 37 DA CI/IPB
@@ -394,7 +394,7 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label Descrição das atividades:
-                            textarea(rows="5")
+                            textarea(rows="5" name="descricao_atividades")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -409,30 +409,30 @@ block content
                     div.fields
                         div.four.wide.field
                             label Reuniões do Conselho:
-                            input(type="text")
+                            input(type="text" name="reunioes_conselho")
                         div.four.wide.field
                             label Assembleias Gerais da Igreja:
-                            input(type="text")
+                            input(type="text" name="assembleias")
                         div.four.wide.field
                             label Diáconos Ordenados e/ou Investidos:
-                            input(type="text")
+                            input(type="text" name="diaconos_ordenados_investidos")
                         div.four.wide.field
                             label Presbíteros Ordenados e/ou Investidos:
-                            input(type="text")
+                            input(type="text" name="presbiteros_ordenados_investidos")
                     div.fields
                         div.three.wide.field
                             label Reuniões do Presbitério:
-                            input(type="text")
+                            input(type="text" name="reunioes_presbiterio")
                         div.three.wide.field
                             label Reuniões do Sínodo:
-                            input(type="text")
+                            input(type="text" name="reunioes_sinodo")
                         div.four.wide.field
                             label Reuniões do Supremo Concílio da IPB:
-                            input(type="text")
+                            input(type="text" name="reunioes_concilio")
                     div.fields
                         div.sixteen.wide.field
                             label Comentários:
-                            textarea(rows="3")
+                            textarea(rows="3" name="comentarios")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 2. CARGOS EM COMISSÕES EXECUTIVAS DOS CONCÍLIOS, SECRETARIAS DE CAUSAS, JUNTAS, COMISSÕES E AUTARQUIAS
@@ -445,23 +445,23 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label No Presbitério:
-                            textarea(rows="3")
+                            textarea(rows="3" name="cargos_presbiterio")
                     div.fields
                         div.sixteen.wide.field
                             label No Sínodo:
-                            textarea(rows="3")
+                            textarea(rows="3" name="cargos_sinodo")
                     div.fields
                         div.sixteen.wide.field
                             label No Supremo Concílio:
-                            textarea(rows="3")
+                            textarea(rows="3" name="cargos_concilio")
                     div.fields
                         div.sixteen.wide.field
                             label Em Juntas, Comissões e Autarquias da IPB:
-                            textarea(rows="3")
+                            textarea(rows="3" name="cargos_outros")
                     div.fields
                         div.sixteen.wide.field
                             label Texto complementar::
-                            textarea(rows="4")
+                            textarea(rows="4" name="texto_complementar")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -477,19 +477,19 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label 1. Atualização e Aperfeiçoamento:
-                            textarea(rows="3")
+                            textarea(rows="3" name="atualizacao_aperfeicoamento")
                     div.fields
                         div.sixteen.wide.field
                             label 2. Atividades em entidades para-eclesiásticas:
-                            textarea(rows="3")
+                            textarea(rows="3" name="atividades_para_eclesiasticas")
                     div.fields
                         div.sixteen.wide.field
                             label 3. Atividades Extra Ministeriais:
-                            textarea(rows="3")
+                            textarea(rows="3" name="atividades_extras_ministeriais")
                     div.fields
                         div.sixteen.wide.field
                             label Outras
-                            textarea(rows="3")
+                            textarea(rows="3" name="atividades_outros")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")

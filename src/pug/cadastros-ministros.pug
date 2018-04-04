@@ -104,11 +104,11 @@ block content
                             input(type="text", name="cpf" placeholder="CPF")
                         div.five.wide.field
                             label Estado Civil
-                            select.ui.fluid.search.dropdown
-                                option Casado
-                                option Solteiro
-                                option Viúvo
-                                option Separado
+                            select.ui.fluid.search.dropdown(name="estado_civil")
+                                option(value="1") Casado
+                                option(value="2") Solteiro
+                                option(value="3") Viúvo
+                                option(value="4") Separado
                     div.fields
                         div.ten.wide.field
                             label Cônjuge
@@ -165,13 +165,13 @@ block content
                     div.fields
                         div.three.wide.field
                             label Celular
-                            input(type="text", name="telefone" placeholder="Celular")
+                            input(type="text", name="celular" placeholder="Celular")
                         div.three.wide.field
                             label Telefone Fixo
                             input(type="text", name="telefone" placeholder="Telefone Fixo")
                         div.three.wide.field
                             label Telefone da Igreja
-                            input(type="text", name="telefone" placeholder="Telefone da Igreja")
+                            input(type="text", name="telefone_igreja" placeholder="Telefone da Igreja")
                         div.seven.wide.field
                             label E-mail
                             input(type="email" name="email" placeholder="E-Mail")

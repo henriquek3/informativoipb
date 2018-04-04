@@ -59,14 +59,14 @@ $app->error(function (\Exception $e, Request $request, $code) {
     return new Response($e->getMessage());
 });
 
-$app->before(function (Request $request, Application $app) {
+/*$app->before(function (Request $request, Application $app) {
     $path = $request->getPathInfo();
     if ($path != "/login" && $path != "/pre-login" && $path != "/api/connect") {
         if ($app['session']->isStarted() === false) {
             return RedirectResponse::create("/pre-login");
         }
     }
-});
+}); */
 
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
