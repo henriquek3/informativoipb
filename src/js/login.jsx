@@ -54,6 +54,7 @@ $(document)
             })
         ;
 
+
         $("#give_pass").click(function () {
             swal({
                 title: "Esqueceu a senha?",

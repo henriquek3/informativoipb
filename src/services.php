@@ -11,13 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use \Silex\Application;
 
+$app->register(new Silex\Provider\SessionServiceProvider());
+
 $app['debug'] = true;
 $app['token'] =
     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cuamtzaXN0ZW1hcy5jb20uYnIiLCJkZXNlbnZvbHZlZ"
     . "G9yZXMiOiJKZWFuIEZyZWl0YXMgZSBLYWxsZXcgUGF2XHUwMGUzbyIsImVtYWlsIjoiYXRlbmRpbWVudG9AamtzaXN0ZW1hcy5jb20uYnI"
     . "ifQ==./Xk6bBHtTa3SXr/YMwx4Yhpa0C/dmqOp2BE4r8oBGl4=";
 
-$app->register(new Silex\Provider\SessionServiceProvider());
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
@@ -62,7 +63,7 @@ $app->error(function (\Exception $e, Request $request, $code) {
 $app->before(function (Request $request, Application $app) {
     $path = $request->getPathInfo();
     if ($path != "/login" && $path != "/pre-login" && $path != "/api/connect") {
-        if ($app['session']->isStarted() === false) {
+        if (!$app['session']->has("token")) {
             return RedirectResponse::create("/pre-login");
         }
     }

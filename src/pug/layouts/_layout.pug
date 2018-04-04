@@ -6,8 +6,8 @@ html(lang="pt-BR")
 
         // Twitter meta
         meta(property="twitter:card", content="summary_large_image")
-        meta(property="twitter:site", content="@pratikborsadiya")
-        meta(property="twitter:creator", content="@pratikborsadiya")
+        meta(property="twitter:site", content="@jksistemas")
+        meta(property="twitter:creator", content="@jksistemas")
 
         // Open Graph Meta
         meta(property="og:type", content="website")
@@ -19,16 +19,6 @@ html(lang="pt-BR")
 
         style
             | .envelope {cursor: pointer;}
-
-        //script(type="text/javascript").
-            let pathname = document.location.pathname;
-            let conectado = sessionStorage.getItem("user-login");
-
-            if ( conectado !== "conectado" ) {
-                if (pathname !== '/pre-login') {
-                    document.location.href = '/pre-login';
-                }
-            }
 
         include ../includes/_head.pug
 
