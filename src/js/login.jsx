@@ -39,8 +39,10 @@ $(document)
                     ];
                     $.post('api/connect', form)
                         .done(function (response) {
-                            console.log(response);
-                            sessionStorage.setItem("usuario", 123);
+                            console.log(response[0]);
+                            let data = JSON.stringify(response[0]);
+                            sessionStorage.setItem("user-data", data);
+                            //let json = JSON.parse(sessionStorage.getItem("user-data"))
                             document.location.href = '/inicio';
                         })
                         .fail(function () {
