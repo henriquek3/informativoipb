@@ -181,6 +181,10 @@ $(document).ready(function () {
                 cadastros_sinodos.nome.value = data.nome;
                 cadastros_sinodos.sigla.value = data.sigla;
                 cadastros_sinodos.regiao.value = data.regiao;
+                $("#user_inc").text(data.user_inc);
+                $("#data_inc").text(data.data_lancamento);
+                $("#user_alt").text(data.user_inc);
+                $("#data_alt").text(data.data_ultima_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
