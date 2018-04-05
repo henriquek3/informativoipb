@@ -67,7 +67,7 @@ $(document).ready(function () {
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_relatorios_conselhos').append(tr);
+                    $('#tbl_relatorios_ministeriais').append(tr);
                 }
             })
             .fail(function (response) {

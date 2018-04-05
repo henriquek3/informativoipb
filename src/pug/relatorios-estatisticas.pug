@@ -25,7 +25,7 @@ block content
             a.item.active(data-tab="second") Responder
 
         div.ui.bottom.attached.tab.segment(data-tab="first")
-            table.ui.compact.selectable.celled.green.table
+            table.ui.compact.selectable.celled.blue.table(id="tbl_relatorios_estatisticas")
                 thead
                     tr
                         th.one.wide Código
@@ -35,7 +35,7 @@ block content
                         th.two.wide.center.aligned Status
                         th.two.wide.center.aligned Ano
 
-                tbody
+                tbody(id="tbody_relatorios_estatisticas")
                     tr
                         td 01
                         td RELATÓRIO ESTATÍSTICAS
@@ -51,7 +51,7 @@ block content
                         td Importado
                         td 2017
 
-        div.ui.bottom.attached.tab.segment.active(data-tab="second")
+        form.ui.bottom.attached.tab.segment.active(data-tab="second")
             div.ui.segments
                 div.ui.blue.segment(style="text-align: center; background-color: #F9FAFB")
                     p

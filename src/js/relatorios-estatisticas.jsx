@@ -1,6 +1,6 @@
-let id_row, tr_row, tbl_presbiterios, tbl_api, validator_presbiterios;
-tbl_presbiterios = $("#tbl_presbiterios");
-let cadastros_presbiterios;
+let id_row, tr_row, tbl_relatorios_estatisticas, tbl_api, validator;
+tbl_relatorios_estatisticas = $("#tbl_relatorios_estatisticas");
+let relatorios_estatisticas;
 $(document).ready(function () {
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -16,7 +16,7 @@ $(document).ready(function () {
     /**
      * cria o sidebar e adiciona um evento ao botão
      */
-    $('.menu .item').tab();
+    $('.menu.item').tab();
 
     /**
      * Instancia o datepicker e atribui definições https://uxsolutions.github.io/bootstrap-datepicker/
@@ -41,7 +41,7 @@ $(document).ready(function () {
         $.get('/api/presbiterios')
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, regiao, nome, sigla;
+                    let tr, row, id, tipo_relatorio, data_lancamento, data_ultima_alteracao, status, ano;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -49,39 +49,25 @@ $(document).ready(function () {
                      * @type {jQuery}
                      */
                     id = $('<td/>').html(row.id);
-                    nome = $('<td/>').html(row.nome);
-                    sigla = $('<td/>').html(row.sigla);
-                    switch (row.regiao) {
-                        case '1':
-                            regiao = $('<td/>').html("CENTRO-OESTE");
-                            break;
-                        case '2':
-                            regiao = $('<td/>').html("NORDESTE");
-                            break;
-                        case '3':
-                            regiao = $('<td/>').html("NORTE");
-                            break;
-                        case '4':
-                            regiao = $('<td/>').html("SUDESTE");
-                            break;
-                        case '5':
-                            regiao = $('<td/>').html("SUL");
-                            break;
-                        default:
-                            regiao = $('<td/>').html('Não identificado');
-                            break;
-                    }
+                    data_lancamento = $('<td/>').html(row.data_lancamento);
+                    data_ultima_alteracao = $('<td/>').html(row.data_ultima_alteracao);
+                    tipo_relatorio = $('<td/>').html("Relatório do Conselho");
+                    status = $('<td/>').html(row.status);
+                    ano = $('<td/>').html(row.ano);
+
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
-                        .append(nome)
-                        .append(sigla)
-                        .append(regiao);
+                        .append(data_lancamento)
+                        .append(data_ultima_alteracao)
+                        .append(tipo_relatorio)
+                        .append(ano)
+                        .append(status);
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_presbiterios').append(tr);
+                    $('#tbl_relatorios_estatisticas').append(tr);
                 }
             })
             .fail(function (response) {
@@ -97,7 +83,7 @@ $(document).ready(function () {
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_presbiterios.DataTable({
+            tbl_api = tbl_relatorios_estatisticas.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -159,15 +145,90 @@ $(document).ready(function () {
         $.get('api/presbiterios?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_presbiterios.nome.value = data.nome;
-                cadastros_presbiterios.sigla.value = data.sigla;
-                cadastros_presbiterios.regiao.value = data.regiao;
+                relatorios_estatisticas.nome.value = data.nome;
+                relatorios_estatisticas.sigla.value = data.sigla;
+                relatorios_estatisticas.regiao.value = data.regiao;
+                relatorios_estatisticas.ano.value = data.ano;
+                relatorios_estatisticas.id_igreja.value = data.id_igreja;
+                relatorios_estatisticas.ec_pastores.value = data.ec_pastores;
+                relatorios_estatisticas.ecl_licenciados.value = data.ecl_licenciados;
+                relatorios_estatisticas.ecl_presbiteros.value = data.ecl_presbiteros;
+                relatorios_estatisticas.ecl_diaconos.value = data.ecl_diaconos;
+                relatorios_estatisticas.ecl_evangelistas.value = data.ecl_evangelistas;
+                relatorios_estatisticas.ecl_missionarios.value = data.ecl_missionarios;
+                relatorios_estatisticas.ecl_candidatos.value = data.ecl_candidatos;
+                relatorios_estatisticas.ect_congregacoes.value = data.ect_congregacoes;
+                relatorios_estatisticas.ect_pontos_pregacao.value = data.ect_pontos_pregacao;
+                relatorios_estatisticas.ect_ebd.value = data.ect_ebd;
+                relatorios_estatisticas.ect_alunos_ebd.value = data.ect_alunos_ebd;
+                relatorios_estatisticas.ecd_departamentos.value = data.ecd_departamentos;
+                relatorios_estatisticas.ecd_ucp.value = data.ecd_ucp;
+                relatorios_estatisticas.ecd_upa.value = data.ecd_upa;
+                relatorios_estatisticas.ecd_ump.value = data.ecd_ump;
+                relatorios_estatisticas.ecd_saf.value = data.ecd_saf;
+                relatorios_estatisticas.ecd_uph.value = data.ecd_uph;
+                relatorios_estatisticas.ecd_outras.value = data.ecd_outras;
+                relatorios_estatisticas.rma_profissao_fe_masc.value = data.rma_profissao_fe_masc;
+                relatorios_estatisticas.rma_profissao_fe_fem.value = data.rma_profissao_fe_fem;
+                relatorios_estatisticas.rma_profissao_batismo_masc.value = data.rma_profissao_batismo_masc;
+                relatorios_estatisticas.rma_profissao_batismo_fem.value = data.rma_profissao_batismo_fem;
+                relatorios_estatisticas.rma_jurisdicao_masc.value = data.rma_jurisdicao_masc;
+                relatorios_estatisticas.rma_jurisdicao_fem.value = data.rma_jurisdicao_fem;
+                relatorios_estatisticas.rma_restauracao_masc.value = data.rma_restauracao_masc;
+                relatorios_estatisticas.rma_restauracao_fem.value = data.rma_restauracao_fem;
+                relatorios_estatisticas.rma_designacao_masc.value = data.rma_designacao_masc;
+                relatorios_estatisticas.rma_designacao_fem.value = data.rma_designacao_fem;
+                relatorios_estatisticas.rma_batismo_masc.value = data.rma_batismo_masc;
+                relatorios_estatisticas.rma_batismo_fem.value = data.rma_batismo_fem;
+                relatorios_estatisticas.rma_transferencia_masc.value = data.rma_transferencia_masc;
+                relatorios_estatisticas.rma_transferencia_fem.value = data.rma_transferencia_fem;
+                relatorios_estatisticas.rma_jurisdicao_ex_masc.value = data.rma_jurisdicao_ex_masc;
+                relatorios_estatisticas.rma_jurisdicao_ex_fem.value = data.rma_jurisdicao_ex_fem;
+                relatorios_estatisticas.rmd_transferencia_masc.value = data.rmd_transferencia_masc;
+                relatorios_estatisticas.rmd_transferencia_fem.value = data.rmd_transferencia_fem;
+                relatorios_estatisticas.rmd_falecimento_masc.value = data.rmd_falecimento_masc;
+                relatorios_estatisticas.rmd_falecimento_fem.value = data.rmd_falecimento_fem;
+                relatorios_estatisticas.rmd_exclucao_masc.value = data.rmd_exclucao_masc;
+                relatorios_estatisticas.rmd_exclucao_fem.value = data.rmd_exclucao_fem;
+                relatorios_estatisticas.rmd_ordenacao_masc.value = data.rmd_ordenacao_masc;
+                relatorios_estatisticas.rmd_ordenacao_fem.value = data.rmd_ordenacao_fem;
+                relatorios_estatisticas.rmd_profissao_masc.value = data.rmd_profissao_masc;
+                relatorios_estatisticas.rmd_profissao_fem.value = data.rmd_profissao_fem;
+                relatorios_estatisticas.rmd_transferencia_masc__ncomumg.value = data.rmd_transferencia_masc__ncomumg;
+                relatorios_estatisticas.rmd_transferencia_fem__ncomumg.value = data.rmd_transferencia_fem__ncomumg;
+                relatorios_estatisticas.rmd_falecimento_masc_ncomumg.value = data.rmd_falecimento_masc_ncomumg;
+                relatorios_estatisticas.rmd_falecimento_fem_ncomumg.value = data.rmd_falecimento_fem_ncomumg;
+                relatorios_estatisticas.rmd_exclusao_masc.value = data.rmd_exclusao_masc;
+                relatorios_estatisticas.rmd_exclusao_fem.value = data.rmd_exclusao_fem;
+                relatorios_estatisticas.fina_dizimos.value = data.fina_dizimos;
+                relatorios_estatisticas.fina_ofertas_especificas.value = data.fina_ofertas_especificas;
+                relatorios_estatisticas.fina_patrimonio.value = data.fina_patrimonio;
+                relatorios_estatisticas.fina_causas.value = data.fina_causas;
+                relatorios_estatisticas.fina_evangelismo.value = data.fina_evangelismo;
+                relatorios_estatisticas.fina_missoes.value = data.fina_missoes;
+                relatorios_estatisticas.fina_sustento_pastoral.value = data.fina_sustento_pastoral;
+                relatorios_estatisticas.fina_verba_presbiterial.value = data.fina_verba_presbiterial;
+                relatorios_estatisticas.fina_dizimo_supremo.value = data.fina_dizimo_supremo;
+                relatorios_estatisticas.finp_dizimos.value = data.finp_dizimos;
+                relatorios_estatisticas.finp_ofertas_especificas.value = data.finp_ofertas_especificas;
+                relatorios_estatisticas.finp_patrimonio.value = data.finp_patrimonio;
+                relatorios_estatisticas.finp_causas.value = data.finp_causas;
+                relatorios_estatisticas.finp_evangelismo.value = data.finp_evangelismo;
+                relatorios_estatisticas.finp_missoes.value = data.finp_missoes;
+                relatorios_estatisticas.finp_sustento_pastoral.value = data.finp_sustento_pastoral;
+                relatorios_estatisticas.finp_verba_presbiterial.value = data.finp_verba_presbiterial;
+                relatorios_estatisticas.finp_dizimo_supremo.value = data.finp_dizimo_supremo;
+                relatorios_estatisticas.id_presbitero_conselho.value = data.id_presbitero_conselho;
+                $("#user_inc").text(data.user_inc);
+                $("#data_inc").text(data.data_lancamento);
+                $("#user_alt").text(data.user_inc);
+                $("#data_alt").text(data.data_ultima_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_presbiterios.regiao).trigger("change");
+                    $(relatorios_estatisticas.regiao).trigger("change");
                 }, 100);
             })
             .fail(function (response) {
@@ -215,7 +276,7 @@ $(document).ready(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
                                 id_row = null;
-                                cadastros_presbiterios.reset();
+                                relatorios_estatisticas.reset();
                             })
                             .fail(function (response) {
                                 console.log(response);
@@ -234,7 +295,7 @@ $(document).ready(function () {
          * Validador do Formulario, utilizado para incluir ou editar novos registros
          * @type {*|jQuery}
          *!/
-        let validator_presbiterios = $("#cadastros_presbiterios").validate({
+        let validator = $("#relatorios_estatisticas").validate({
             rules: {
                 nome: {
                     required: true,
@@ -258,10 +319,10 @@ $(document).ready(function () {
             },
             submitHandler: function () {
                 if (id_row > 0) {
-                    let form = $('#cadastros_presbiterios').serializeArray();
+                    let form = $('#relatorios_estatisticas').serializeArray();
                     form.unshift({name: 'id', value: id_row});
                     $.post('api/presbiterios/update', form)
-                        .done(function (response) {
+                       .done(function (response) {
                             console.log(response);
                             tbl_api.row(tr_row).remove();
                             tbl_api.row.add([
@@ -281,12 +342,12 @@ $(document).ready(function () {
                                 transitionOut: 'fadeOutUp'
                             });
                         })
-                        .fail(function (response) {
+                       .fail(function (response) {
                             console.log(response);
                             let str = response.responseText;
                             let result = str.indexOf("SQLSTATE[23000]");
                             if (result > 0) {
-                                $(cadastros_presbiterios.sigla).parent().addClass("error");
+                                $(relatorios_estatisticas.sigla).parent().addClass("error");
                                 iziToast.error({
                                     title: 'Erro',
                                     message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -308,11 +369,11 @@ $(document).ready(function () {
                                 });
                             }
                         })
-                    ;
+                   ;
                 } else {
-                    let form = $('#cadastros_presbiterios').serializeArray();
+                    let form = $('#relatorios_estatisticas').serializeArray();
                     $.post('api/presbiterios/store', form)
-                        .done(function (response) {
+                       .done(function (response) {
                             console.log(response);
 
                             tbl_api.row.add([
@@ -332,12 +393,12 @@ $(document).ready(function () {
                                 transitionOut: 'fadeOutUp'
                             });
                         })
-                        .fail(function (response) {
+                       .fail(function (response) {
                             console.log(response);
                             let str = response.responseText;
                             let result = str.indexOf("SQLSTATE[23000]");
                             if (result > 0) {
-                                $(cadastros_presbiterios.sigla).parent().addClass("error");
+                                $(relatorios_estatisticas.sigla).parent().addClass("error");
                                 iziToast.error({
                                     title: 'Erro',
                                     message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -359,7 +420,7 @@ $(document).ready(function () {
                                 });
                             }
                         })
-                    ;
+                   ;
                 }
             }
         });
@@ -368,7 +429,7 @@ $(document).ready(function () {
          * Os campos select do semantic não são compativeis com o jquery validation,
          * a msg fica bugada, usar desta forma para select.search.dropdown
          *!/
-        $("#cadastros_presbiterios").form({
+        $("#relatorios_estatisticas").form({
             inline: true,
             on: 'submit',
             fields: {
@@ -388,7 +449,7 @@ $(document).ready(function () {
          * Ao clicar no botão limpar, reseta as classes de erro
          *!/
         $(".ui.reset.button").on("click", function () {
-            validator_presbiterios.resetForm();
+            validator.resetForm();
             $('form').form('reset');
         });
 
@@ -409,13 +470,13 @@ $(document).ready(function () {
                 /!**
                  * reseta os campos do tipo input
                  *!/
-                cadastros_presbiterios.reset();
+                relatorios_estatisticas.reset();
 
                 /!**
                  * retorna o select para a primera opção
                  * @type {number}
                  *!/
-                validator_presbiterios.resetForm();
+                validator.resetForm();
                 $('form').form('reset');
             }
         });
