@@ -139,6 +139,250 @@ $(document).ready(function () {
     //instanciaDataTables(); // init function instanciaDataTables() {};
 
     /**
+     * Validador do Formulario, utilizado para incluir ou editar novos registros
+     * @type {*|jQuery}
+     */
+    validator = $("#relatorios_conselhos").validate({
+        rules: {
+            nome: {
+                required: true,
+                minlength: 4,
+                maxlength: 255
+            },
+            sigla: {
+                required: true,
+                minlength: 3,
+                maxlength: 5
+            },
+            se_santaceia_grupos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_santaceia_individual: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_atividades_evangelisticas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_textos_distribuidos_biblia: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_textos_distribuidos_nt: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_textos_distribuidos_folhetos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_textos_distribuidos_outros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_trabalho_misisonario_outros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_grupos_corais: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_conjuntos_musicas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_beneficientes_jdiaconal: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_visitas_presbiteros_diaconos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            se_beneficientes_outros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            e_visitas_outros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            sa_officiais_venc_presbiteros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            sa_officiais_venc_diaconos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            sa_id_oficiais_vencimento: {
+                required: true,
+                minlength: 1,
+                maxlength: 255
+            },
+            sa_reforma_construcao_projeto: {
+                required: true,
+                minlength: 1,
+                maxlength: 255
+            },
+            sa_reforma_construcao_andamento: {
+                required: true,
+                minlength: 1,
+                maxlength: 255
+            },
+            pe_objetivos_sucesso: {
+                required: true,
+                minlength: 1,
+                maxlength: 255
+            },
+            pe_objetivos_falha_dificuldades: {
+                required: true,
+                minlength: 1,
+                maxlength: 255
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parent().addClass(errorClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parent().removeClass(errorClass);
+        },
+        submitHandler: function () {
+            /**
+             * Estes campos são para popular o dataTable pelo nome e não pelo id do response
+             * @type {jQuery}
+             */
+            let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
+            let regiao = $("select[name='regiao'] :selected").text();
+
+            if (id_row > 0) {
+                let form = $('#relatorios_conselhos').serializeArray();
+                form.unshift({name: 'id', value: id_row});
+                $.post('api/presbiterios/update', form)
+                    .done(function (response) {
+                        tbl_api.row(tr_row).remove();
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro alterado com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(relatorios_conselhos.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            } else {
+                let form = $('#relatorios_conselhos').serializeArray();
+                $.post('api/presbiterios/store', form)
+                    .done(function (response) {
+                        id_row = response.id;
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro inserido com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(relatorios_conselhos.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            }
+        }
+    });
+    
+
+    /**
      * Traz as informações para edição
      */
     function getDataForm() {
