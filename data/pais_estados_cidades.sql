@@ -1,3 +1,23 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: 08-Abr-2018 às 11:03
+-- Versão do servidor: 5.7.19
+-- PHP Version: 7.1.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Dropa e recria as tabelas antes de inserir
 --
@@ -8,7 +28,7 @@
 -- Estrutura da tabela `paises`
 --
 
-DROP TABLE IF EXISTS `paises`;
+/*DROP TABLE IF EXISTS `paises`;
 CREATE TABLE IF NOT EXISTS `paises` (
   `id`   int(11)                                 NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -18,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `paises` (
   ENGINE = InnoDB
   AUTO_INCREMENT = 253
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_unicode_ci;
+  COLLATE = utf8mb4_unicode_ci;*/
 
 --
 -- Extraindo dados da tabela `paises`
@@ -284,7 +304,7 @@ INSERT INTO `paises` (`id`, `nome`, `name`) VALUES
 -- Estrutura da tabela `estados`
 --
 
-DROP TABLE IF EXISTS `estados`;
+/*DROP TABLE IF EXISTS `estados`;
 CREATE TABLE IF NOT EXISTS `estados` (
   `id`        int(11)                                 NOT NULL AUTO_INCREMENT,
   `id_pais`   int(11)                                 NOT NULL,
@@ -300,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `estados` (
   ENGINE = InnoDB
   AUTO_INCREMENT = 28
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_unicode_ci;
+  COLLATE = utf8mb4_unicode_ci;*/
 
 --
 -- Extraindo dados da tabela `estados`
@@ -341,7 +361,7 @@ INSERT INTO `estados` (`id`, `id_pais`, `uf_codigo`, `nome`, `uf_nome`, `regiao`
 -- Estrutura da tabela `cidades`
 --
 
-DROP TABLE IF EXISTS `cidades`;
+/*DROP TABLE IF EXISTS `cidades`;
 CREATE TABLE IF NOT EXISTS `cidades` (
   `id`               int(11)                                 NOT NULL AUTO_INCREMENT,
   `id_estado`        int(11)                                 NOT NULL,
@@ -358,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `cidades` (
   AUTO_INCREMENT = 5566
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
-
+*/
 --
 -- Extraindo dados da tabela `cidades`
 --
@@ -5952,3 +5972,10 @@ ALTER TABLE `cidades`
 --
 ALTER TABLE `estados`
   ADD CONSTRAINT `estados_fk0` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`);
+
+
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;

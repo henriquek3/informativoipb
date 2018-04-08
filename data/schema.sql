@@ -148,7 +148,7 @@ CREATE TABLE `estados` (
 
 CREATE TABLE `cidades` (
   `id`               int          NOT NULL AUTO_INCREMENT,
-  `id_estados`       int          NOT NULL,
+  `id_estado`        int          NOT NULL,
   `cidade_codigo`    int          NOT NULL,
   `municipio_codigo` int          NOT NULL,
   `nome`             varchar(255) NOT NULL,
@@ -532,7 +532,7 @@ ALTER TABLE `estados`
   ADD CONSTRAINT `estados_fk0` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`);
 
 ALTER TABLE `cidades`
-  ADD CONSTRAINT `cidades_fk0` FOREIGN KEY (`id_estados`) REFERENCES `estados` (`id`);
+  ADD CONSTRAINT `cidades_fk0` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id`);
 
 ALTER TABLE `presbiteros_campos`
   ADD CONSTRAINT `presbiteros_campos_fk0` FOREIGN KEY (`id_presbitero`) REFERENCES `presbiteros` (`id`);
