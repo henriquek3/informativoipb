@@ -12,8 +12,8 @@ $app->get('api/usuarios', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
     $query = "SELECT
-              uu.nome as user_inc,
-              uua.nome as user_alt,
+              uu.nome as user_inclusao,
+              uua.nome as user_alteracao,
               u.*
             FROM usuarios u,
             (SELECT u.id, u.nome  FROM usuarios u) uu,

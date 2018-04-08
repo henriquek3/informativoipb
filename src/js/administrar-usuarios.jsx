@@ -325,9 +325,9 @@ $(document).ready(function () {
                 formUsuarios.email.value = data.email;
                 formUsuarios.cpf.value = data.cpf;
                 formUsuarios.observacoes.value = data.observacoes;
-                $("#user_inc").text(data.usuario_lancamento);
-                $("#data_inc").text(data.data_lancamento);
-                $("#user_alt").text(data.usuario_alteracao);
+                $("#user_inc").text(data.user_inclusao);
+                $("#data_inc").text(data.data_inclusao);
+                $("#user_alt").text(data.user_alteracao);
                 $("#data_alt").text(data.data_alteracao);
 
                 /**

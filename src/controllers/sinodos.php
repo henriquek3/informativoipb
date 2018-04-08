@@ -11,11 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 $app->get('api/sinodos', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
-    $query = "SELECT * FROM sinodos";
+    $query = "SELECT
+                  s.*,
+                  u.nome AS user_alteracao,
+                  uu.nome AS user_inclusao
+                FROM
+                  sinodos s
+                LEFT JOIN usuarios AS u ON u.id = s.usuario_alteracao
+                LEFT JOIN usuarios AS uu ON uu.id = s.usuario_inclusao";
     $id = (int)$request->get('id');
     $params = [];
     if ($id > 0) {
-        $query .= " WHERE id = ?";
+        $query .= " AND s.id = ?";
         array_push($params, $id);
     }
     $result = $db->fetchAll($query, $params);

@@ -6,6 +6,7 @@
  * Time: 09:28
  */
 
+include __DIR__ . '/controllers/database.php';
 include __DIR__ . '/controllers/geografia.php';
 include __DIR__ . '/controllers/sinodos.php';
 include __DIR__ . '/controllers/presbiterios.php';

@@ -64,4 +64,18 @@ $(document).ready(function () {
         ;*/
     });
 
+    window.getData = (function () {
+        let now = new Date();
+        let d = now.getDate() + "";
+        let m = now.getMonth() + "";
+        let y = now.getFullYear() + "";
+        if (d.length < 2) {
+            d = "0" + d;
+        }
+        if (m.length < 2) {
+            m = "0" + m;
+        }
+        return `${d}/${m}/${y}`;
+    })()
+
 });

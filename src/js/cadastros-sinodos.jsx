@@ -183,10 +183,14 @@ $(document).ready(function () {
                 cadastros_sinodos.nome.value = data.nome;
                 cadastros_sinodos.sigla.value = data.sigla;
                 cadastros_sinodos.regiao.value = data.regiao;
-                $("#user_inc").text(data.user_inc);
-                $("#data_inc").text(data.data_lancamento);
-                $("#user_alt").text(data.user_inc);
-                $("#data_alt").text(data.data_ultima_alteracao);
+
+                /**
+                 * Atribui o nome do usuario e a data no painel de registro de alterações
+                 */
+                $("#user_inc").text(data.user_inclusao);
+                $("#data_inc").text(data.data_inclusao);
+                $("#user_alt").text(data.user_alteracao);
+                $("#data_alt").text(data.data_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
@@ -285,7 +289,7 @@ $(document).ready(function () {
                 let form = $('#cadastros_sinodos').serializeArray();
                 form.unshift({name: 'id', value: id_row});
                 form.unshift({name: 'usuario_alteracao', value: user.id_usuario});
-                form.unshift({name: 'data_alteracao', value:});
+                form.unshift({name: 'data_alteracao', value: window.getData});
                 $.post('api/sinodos/update', form)
                     .done(function (response) {
                         console.log(response);
@@ -497,6 +501,11 @@ $(document).ready(function () {
             tbl_api.$('tr.active').removeClass('active');
         }
     });
+
+    /**
+     * Verifica Sessão do usuário
+     * @type {string}
+     */
     let user = btoa("user-data");
     user = sessionStorage.getItem(user);
     user = atob(user);
