@@ -52,7 +52,8 @@ $(document).ready(function () {
 
     $("#logout").click(function () {
         sessionStorage.clear();
-        $.get('api/connect?desconnect=1')
+        document.location.href = '/pre-login';
+        /*$.get('api/connect?desconnect=1')
             .done(function (response) {
                 console.log(response);
                 document.location.href = '/pre-login';
@@ -60,7 +61,7 @@ $(document).ready(function () {
             .fail(function (response) {
                 console.log(response);
             })
-        ;
+        ;*/
     });
 
 });

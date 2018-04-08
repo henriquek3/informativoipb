@@ -282,6 +282,8 @@ $(document).ready(function () {
             if (id_row > 0) {
                 let form = $('#cadastros_sinodos').serializeArray();
                 form.unshift({name: 'id', value: id_row});
+                form.unshift({name: 'usuario_alteracao', value: user.id_usuario});
+                form.unshift({name: 'data_alteracao', value:});
                 $.post('api/sinodos/update', form)
                     .done(function (response) {
                         console.log(response);
@@ -493,4 +495,8 @@ $(document).ready(function () {
             tbl_api.$('tr.active').removeClass('active');
         }
     });
+    let user = btoa("user-data");
+    user = sessionStorage.getItem(user);
+    user = atob(user);
+    user = JSON.parse(user);
 });

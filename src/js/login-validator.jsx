@@ -1,8 +1,11 @@
-/*
-let utoken;
-utoken = sessionStorage.getItem("user-login");
-if (!utoken) {
-    if (window.location.href !== "http://informativoipb.jksistemas.com.br/plogin") {
-        window.location.href = "http://informativoipb.jksistemas.com.br/plogin";
+let utoken = btoa("user-data");
+utoken = sessionStorage.getItem(utoken);
+let pagina = window.location.pathname;
+
+if (utoken === null) {
+    if (pagina != "/pre-login") {
+        if (pagina != "/login") {
+            document.location.href = '/pre-login';
+        }
     }
-}*/
+}

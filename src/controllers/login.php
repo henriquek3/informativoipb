@@ -6,10 +6,11 @@
  * Time: 08:13
  */
 
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use \Symfony\Component\HttpFoundation\RedirectResponse;
-use \Silex\Application;
+
+/*use \Symfony\Component\HttpFoundation\RedirectResponse;*/
 
 
 /**
@@ -46,21 +47,41 @@ $app->post('api/connect', function (Request $request, Application $app) {
         $user = (string)$data['email'];
         $pass = (string)$data['password'];
         $db = $app['db'];
-        $query = "SELECT * FROM usuarios";
+        $query = "select
+                      u.id as id_usuario,
+                      u.status,
+                      u.nivel,
+                      u.perfil,
+                      u.nome,
+                      u.email,
+                      p.id as id_presbitero,
+                      i.id as id_igreja,
+                      pi.id as id_presbiterio,
+                      s.id as id_sinodo
+                    from
+                      usuarios u,
+                      presbiteros p,
+                      igrejas i,
+                      presbiterios pi,
+                      sinodos s
+                    where
+                      s.id = pi.id_sinodo
+                    and pi.id = i.id_presbiterio
+                    and p.id_igreja = i.id";
         $params = [];
         if (is_string($user) > 0) {
-            $query .= " WHERE email = ?";
+            $query .= " AND u.email = ?";
             array_push($params, $user);
         }
         if (is_string($pass) > 0) {
-            $query .= " AND senha = ?";
+            $query .= " AND u.senha = ?";
             array_push($params, $pass);
         }
         $result = $db->fetchAll($query, $params);
         if (count($result) > 0) {
             $result[0]['token'] = generatorToken();
-            $app['session']->start();
-            $app['session']->set("token", $result[0]['token']);
+            /*$app['session']->start();
+            $app['session']->set("token", $result[0]['token']);*/
             return $app->json($result);
         } else {
             return new Response('login denied', 401);
@@ -72,7 +93,7 @@ $app->post('api/connect', function (Request $request, Application $app) {
     }
 });
 
-$app->get('api/connect', function (Request $request) use ($app) {
+/*$app->get('api/connect', function (Request $request) use ($app) {
     $desconnect = (int)$request->get('desconnect');
 
     if ($desconnect > 0) {
@@ -83,4 +104,4 @@ $app->get('api/connect', function (Request $request) use ($app) {
     }
     $result = '{ name: "resultado", value: "deu certo" }';
     return $app->json($result);
-});
+});*/

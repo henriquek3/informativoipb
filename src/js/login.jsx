@@ -41,7 +41,7 @@ $(document)
                         .done(function (response) {
                             console.log(response[0]);
                             let data = JSON.stringify(response[0]);
-                            sessionStorage.setItem("user-data", data);
+                            sessionStorage.setItem(btoa("user-data"), btoa(data));
                             //let json = JSON.parse(sessionStorage.getItem("user-data"))
                             document.location.href = '/inicio';
                         })
