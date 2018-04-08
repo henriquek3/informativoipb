@@ -426,6 +426,14 @@ $(document).ready(function () {
             if (id_row > 0) {
                 let form = $('#formUsuarios').serializeArray();
                 form.unshift({name: 'id', value: id_row});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_alteracao', value: user.id_usuario});
+                form.unshift({name: 'data_alteracao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
                 $.post('api/usuarios/update', form)
                     .done(function (response) {
                         console.log(response);
@@ -498,6 +506,14 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#formUsuarios').serializeArray();
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_inclusao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
                 $.post('api/usuarios/store', form)
                     .done(function (response) {
                         console.log(response);
@@ -638,4 +654,13 @@ $(document).ready(function () {
         }
     });
 
+    /**
+     * Verifica Sessão do usuário
+     *   para ser enviado junto ao array form
+     * @type {string}
+     */
+    let user = btoa("user-data");
+    user = sessionStorage.getItem(user);
+    user = atob(user);
+    user = JSON.parse(user);
 });

@@ -162,6 +162,14 @@ $(document).ready(function () {
                 cadastros_presbiteros.regiao.value = data.regiao;
 
                 /**
+                 * Atribui o nome do usuario e a data no painel de registro de alterações
+                 */
+                $("#user_inc").text(data.user_inclusao);
+                $("#data_inc").text(data.data_inclusao);
+                $("#user_alt").text(data.user_alteracao);
+                $("#data_alt").text(data.data_alteracao);
+
+                /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
@@ -278,7 +286,167 @@ $(document).ready(function () {
             $(element).parent().removeClass(errorClass);
         },
         submitHandler: function () {
-            alert("submit handler");
+            if (id_row > 0) {
+                let form = $('#formUsuarios').serializeArray();
+                form.unshift({name: 'id', value: id_row});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_alteracao', value: user.id_usuario});
+                form.unshift({name: 'data_alteracao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                $.post('api/usuarios/update', form)
+                    .done(function (response) {
+                        console.log(response);
+                        /*tbl_api.row(tr_row).remove();
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            regiao
+                        ]).draw(false);*/
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro alterado com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(formUsuarios.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            } else {
+                let form = $('#formUsuarios').serializeArray();
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_inclusao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                $.post('api/usuarios/store', form)
+                    .done(function (response) {
+                        console.log(response);
+                        /* let regiao;
+                         switch (response.regiao) {
+                             case '1':
+                                 regiao = "CENTRO-OESTE";
+                                 break;
+                             case '2':
+                                 regiao = "NORDESTE";
+                                 break;
+                             case '3':
+                                 regiao = "NORTE";
+                                 break;
+                             case '4':
+                                 regiao = "SUDESTE";
+                                 break;
+                             case '5':
+                                 regiao = "SUL";
+                                 break;
+                             default:
+                                 regiao = 'Não identificado';
+                                 break;
+                         }
+                         tbl_api.row.add([
+                             response.id,
+                             response.nome.toUpperCase(),
+                             response.sigla.toUpperCase(),
+                             regiao
+                         ]).draw(false);*/
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro inserido com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(formUsuarios.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            }
         }
     });
 
@@ -316,4 +484,14 @@ $(document).ready(function () {
     $("button[type='button']").on("click", function () {
         deleteData();
     });
+
+    /**
+     * Verifica Sessão do usuário
+     *   para ser enviado junto ao array form
+     * @type {string}
+     */
+    let user = btoa("user-data");
+    user = sessionStorage.getItem(user);
+    user = atob(user);
+    user = JSON.parse(user);
 });
