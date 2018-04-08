@@ -26,7 +26,16 @@ $app->get('/create-table', function (Silex\Application $app) {
 });
 
 $app->get('/insert-geo', function (Silex\Application $app) {
-    $file = fopen(__DIR__ . '/../data/pais_estados_cidades.sql', 'r');
+    $file = fopen(__DIR__ . '/../data/insert_pais_estados_cidades.sql', 'r');
+    while ($line = fread($file, 4096)) {
+        $app['db']->executeQuery($line);
+    }
+    fclose($file);
+    return "Re-create tables and insert data in paises, estados e cidades.";
+});
+
+$app->get('/insert-user', function (Silex\Application $app) {
+    $file = fopen(__DIR__ . '/../data/insert_user_jksistem.sql', 'r');
     while ($line = fread($file, 4096)) {
         $app['db']->executeQuery($line);
     }
