@@ -66,15 +66,15 @@ $app->post('api/connect', function (Request $request, Application $app) {
                       LEFT JOIN SINODOS S ON P2.ID_SINODO = S.ID";
         $params = [];
         if (is_string($user) > 0) {
-            $query .= " RIGHT JOIN USUARIOS AS USR ON USR.ID = ?";
+            $query .= " RIGHT JOIN USUARIOS AS USR ON USR.EMAIL = ?";
             array_push($params, $user);
         }
         if (is_string($pass) > 0) {
-            $query .= " AND u.senha = ?";
+            $query .= " RIGHT JOIN USUARIOS AS UR ON UR.SENHA = ?";
             array_push($params, $pass);
         }
         $result = $db->fetchAll($query, $params);
-        if (count($result) > 0) {
+        if (count($result[0]['ID_USUARIO']) > 0) {
             $result[0]['token'] = generatorToken();
             /*$app['session']->start();
             $app['session']->set("token", $result[0]['token']);*/
