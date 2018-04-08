@@ -138,6 +138,566 @@ $(document).ready(function () {
 
     //instanciaDataTables(); // init function instanciaDataTables() {};
 
+
+    /**
+     * Validador do Formulario, utilizado para incluir ou editar novos registros
+     * @type {*|jQuery}
+     */
+    validator = $("#relatorios_estatisticas").validate({
+        rules: {
+            ano: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            id_igreja: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ec_pastores: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecl_licenciados: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecl_presbiteros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecl_diaconos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecl_evangelistas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecl_missionarios: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecl_candidatos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ect_congregacoes: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ect_pontos_pregacao: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ect_ebd: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ect_alunos_ebd: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecd_departamentos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecd_ucp: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecd_upa: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecd_ump: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecd_saf: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecd_uph: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ecd_outras: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_profissao_fe_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_profissao_fe_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_profissao_batismo_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_profissao_batismo_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_jurisdicao_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_jurisdicao_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_restauracao_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_restauracao_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_designacao_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_designacao_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_batismo_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_batismo_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_transferencia_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_transferencia_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_jurisdicao_ex_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_jurisdicao_ex_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_transferencia_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_transferencia_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_falecimento_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_falecimento_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_exclucao_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_exclucao_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_ordenacao_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_ordenacao_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_profissao_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_profissao_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_transferencia_masc__ncomumg: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_transferencia_fem__ncomumg: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_falecimento_masc_ncomumg: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_falecimento_fem_ncomumg: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_exclusao_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_exclusao_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_separado_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_separado_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_diferenca_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_diferenca_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_comung_anterior_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_comung_anterior_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_comung_atual_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_comung_atual_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_dif_comung_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_dif_comung_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_nao_comung_anterior_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_nao_comung_anterior_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_nao_comung_atual_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_nao_comung_atual_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_rol_atual_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rmd_rol_atual_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_dizimos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_ofertas_especificas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_patrimonio: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_causas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_evangelismo: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_missoes: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_sustento_pastoral: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_verba_presbiterial: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            fina_dizimo_supremo: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_dizimos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_ofertas_especificas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_patrimonio: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_causas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_evangelismo: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_missoes: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_sustento_pastoral: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_verba_presbiterial: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            finp_dizimo_supremo: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parent().addClass(errorClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parent().removeClass(errorClass);
+        },
+        submitHandler: function () {
+            /**
+             * Estes campos são para popular o dataTable pelo nome e não pelo id do response
+             * @type {jQuery}
+             */
+            let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
+            let regiao = $("select[name='regiao'] :selected").text();
+
+            if (id_row > 0) {
+                let form = $('#relatorios_estatisticas').serializeArray();
+                form.unshift({name: 'id', value: id_row});
+                $.post('api/presbiterios/update', form)
+                    .done(function (response) {
+                        tbl_api.row(tr_row).remove();
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro alterado com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(relatorios_estatisticas.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            } else {
+                let form = $('#relatorios_estatisticas').serializeArray();
+                $.post('api/presbiterios/store', form)
+                    .done(function (response) {
+                        id_row = response.id;
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro inserido com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(relatorios_estatisticas.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            }
+        }
+    });
+    
+    
     /**
      * Traz as informações para edição
      */
