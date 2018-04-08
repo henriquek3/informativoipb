@@ -51,7 +51,7 @@ block content
                         td Importado
                         td 2017
 
-        form.ui.bottom.attached.tab.segment.active(data-tab="second")
+        form.ui.bottom.attached.tab.segment.active(data-tab="second" id="relatorios_ministeriais" name="relatorios_ministeriais")
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
                     p
@@ -216,17 +216,17 @@ block content
                         div.three.wide.field
                             label Dedicação ao Ministério:
                             select.ui.fluid.search.dropdown(name="dedicacao_ministerio")
-                                option(value="")
+                                option(value="0")
                                 option(value="1") Integral
                                 option(value="2") Parcial
                         div.three.wide.field
                             label Férias
                             select.ui.fluid.search.dropdown(name="ferias")
-                                option(value="")
+                                option(value="0")
                                 option(value="1") Regulares
                                 option(value="2") Parciais
                                 option(value="3") Não teve
-                        div.three.wide.field
+                        div.five.wide.field
                             label Côngruas
                             div.ui.labeled.input
                                 div.ui.label R$
@@ -273,7 +273,7 @@ block content
                             label Contribuição INSS:
                             div.ui.labeled.input
                                 div.ui.label R$
-                                input(type="text" name="previdencia_publica_valor")
+                                input(type="text" name="previdencia_publica_valor" value="0")
                         div.two.wide.field(data-tooltip="Contribui para Previdência Privada?")
                             label Previdência Privada?
                         div.two.wide.field
@@ -293,10 +293,10 @@ block content
                     div.fields
                         div.eight.wide.field
                             label Igreja(s):
-                            textarea(rows="2")
+                            textarea(rows="2" name="ct_igreja")
                         div.eight.wide.field
                             label Congregação(ões):
-                            textarea(rows="2")
+                            textarea(rows="2" name="ct_congregacoes")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")

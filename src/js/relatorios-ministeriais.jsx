@@ -139,6 +139,355 @@ $(document).ready(function () {
     //instanciaDataTables(); // init function instanciaDataTables() {};
 
     /**
+     * Validador do Formulario, utilizado para incluir ou editar novos registros
+     * @type {*|jQuery}
+     */
+    validator = $("#relatorios_ministeriais").validate({
+        rules: {
+            condicao_moradia: {
+                required: true,
+                minlength: 4,
+                maxlength: 255
+            },
+            ordenacao_data: {
+                required: true,
+                minlength: 3,
+                maxlength: 20
+            },
+            dedicacao_ministerio: {
+                required: true,
+                minlength: 4,
+                maxlength: 20
+            },
+            ferias: {
+                required: true,
+                minlength: 4,
+                maxlength: 10
+            },
+            congruas: {
+                required: true,
+                minlength: 1,
+                maxlength: 10
+            },
+            previdencia_publica_valor: {
+                required: true,
+                minlength: 4,
+                maxlength: 10
+            },
+            ct_igreja: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            ct_congregacoes: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            pregacoes: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ebd: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            evangelizacao: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            estudos_biblicos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            palestras_prelecoes: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            msg_radio: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            artigos_boletins_revistas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            entrevistas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            santa_ceia: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            bencaos_nupciais: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            funerais: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            batismos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            profissoes_fe: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            profissoes_batismos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            aconselhamentos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            visitas_lares: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            visitas_igrejas: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            departamentos_internos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            descricao_atividades: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            reunioes_conselho: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            assembleias: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            diaconos_ordenados_investidos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            presbiteros_ordenados_investidos: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            reunioes_presbiterio: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            reunioes_sinodo: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            reunioes_concilio: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            comentarios: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            cargos_presbiterio: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            cargos_sinodo: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            cargos_concilio: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            cargos_outros: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            texto_complementar: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            atualizacao_aperfeicoamento: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            atividades_para_eclesiasticas: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            atividades_extras_ministeriais: {
+                required: true,
+                minlength: 1,
+                maxlength: 1024
+            },
+            atividades_outros: {
+                required: true,
+                minlength: 1,
+                maxlength: 255
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parent().addClass(errorClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parent().removeClass(errorClass);
+        },
+        submitHandler: function () {
+            /**
+             * Estes campos são para popular o dataTable pelo nome e não pelo id do response
+             * @type {jQuery}
+             */
+            let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
+            let regiao = $("select[name='regiao'] :selected").text();
+
+            if (id_row > 0) {
+                let form = $('#relatorios_ministeriais').serializeArray();
+                form.unshift({name: 'id', value: id_row});
+                $.post('api/presbiterios/update', form)
+                    .done(function (response) {
+                        tbl_api.row(tr_row).remove();
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro alterado com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(relatorios_ministeriais.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            } else {
+                let form = $('#relatorios_ministeriais').serializeArray();
+                $.post('api/presbiterios/store', form)
+                    .done(function (response) {
+                        id_row = response.id;
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro inserido com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(relatorios_ministeriais.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            }
+        }
+    });    
+
+
+    /**
      * Traz as informações para edição
      */
     function getDataForm() {
@@ -224,6 +573,7 @@ $(document).ready(function () {
             })
         ;
     }
+
 
     /**
      * Exclui as informações do banco de dados

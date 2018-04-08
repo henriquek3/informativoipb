@@ -237,27 +237,27 @@ $(document).ready(function () {
             sa_id_oficiais_vencimento: {
                 required: true,
                 minlength: 1,
-                maxlength: 255
+                maxlength: 1024
             },
             sa_reforma_construcao_projeto: {
                 required: true,
                 minlength: 1,
-                maxlength: 255
+                maxlength: 1024
             },
             sa_reforma_construcao_andamento: {
                 required: true,
                 minlength: 1,
-                maxlength: 255
+                maxlength: 1024
             },
             pe_objetivos_sucesso: {
                 required: true,
                 minlength: 1,
-                maxlength: 255
+                maxlength: 1024
             },
             pe_objetivos_falha_dificuldades: {
                 required: true,
                 minlength: 1,
-                maxlength: 255
+                maxlength: 1024
             }
         },
         highlight: function (element, errorClass, validClass) {
