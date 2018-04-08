@@ -12,18 +12,16 @@ $app->get('api/usuarios', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
     $query = "SELECT
-              uu.nome as user_inclusao,
-              uua.nome as user_alteracao,
+              ui.nome as 'usuario_inclusao',
+              ua.nome as 'usuario_alteracao',
               u.*
-            FROM usuarios u,
-            (SELECT u.id, u.nome  FROM usuarios u) uu,
-            (SELECT u.id, u.nome  FROM usuarios u) uua
-            where u.usuario_lancamento = uu.id
-            and u.usuario_ultima_alteracao = uua.id";
+            FROM usuarios u
+              LEFT JOIN usuarios as ui ON ui.id = u.usuario_inclusao
+              LEFT JOIN usuarios as ua ON ua.id = u.usuario_alteracao;";
     $id = (int)$request->get('id');
     $params = [];
     if ($id > 0) {
-        $query .= " AND u.id = ?";
+        $query .= " RIGHT JOIN usuarios as usr on usr.id = ?";
         array_push($params, $id);
     }
     $result = $db->fetchAll($query, $params);

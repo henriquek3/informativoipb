@@ -5965,13 +5965,13 @@ INSERT INTO `cidades` (`id`, `id_estado`, `cidade_codigo`, `municipio_codigo`, `
 -- Limitadores para a tabela `cidades`
 --
 ALTER TABLE `cidades`
-  ADD CONSTRAINT `cidades_fk0` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id`);
+  ADD CONSTRAINT `cidades_fk1` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id`);
 
 --
 -- Limitadores para a tabela `estados`
 --
 ALTER TABLE `estados`
-  ADD CONSTRAINT `estados_fk0` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`);
+  ADD CONSTRAINT `estados_fk1` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`);
 
 
 COMMIT;

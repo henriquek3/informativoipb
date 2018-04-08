@@ -22,7 +22,7 @@ $app->get('api/sinodos', function (Request $request) use ($app) {
     $id = (int)$request->get('id');
     $params = [];
     if ($id > 0) {
-        $query .= " AND s.id = ?";
+        $query .= " RIGHT JOIN usuarios as usr on usr.id = ?";
         array_push($params, $id);
     }
     $result = $db->fetchAll($query, $params);

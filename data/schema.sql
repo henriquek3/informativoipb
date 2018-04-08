@@ -1,5 +1,3 @@
--- Exportado do dbdesigner.net dia 08/04/2018
-
 CREATE TABLE `igrejas` (
   `id`                      int          NOT NULL AUTO_INCREMENT,
   `id_presbiterio`          int          NOT NULL,
@@ -30,15 +28,15 @@ CREATE TABLE `igrejas` (
   COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE `presbiterios` (
-  `id`                 int          NOT NULL AUTO_INCREMENT,
-  `id_sinodo`          int          NOT NULL,
-  `nome`               varchar(255) NOT NULL,
-  `sigla`              varchar(10)  NOT NULL,
-  `regiao`             int          NOT NULL,
-  `usuario_lancamento` int          NOT NULL,
-  `data_lancamento`    varchar(10)  NOT NULL,
-  `usuario_alteracao`  int,
-  `data_alteracao`     varchar(10),
+  `id`                int          NOT NULL AUTO_INCREMENT,
+  `id_sinodo`         int          NOT NULL,
+  `nome`              varchar(255) NOT NULL,
+  `sigla`             varchar(10)  NOT NULL,
+  `regiao`            int          NOT NULL,
+  `usuario_inclusao`  int          NOT NULL,
+  `data_inclusao`     varchar(10)  NOT NULL,
+  `usuario_alteracao` int,
+  `data_alteracao`    varchar(10),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -46,14 +44,14 @@ CREATE TABLE `presbiterios` (
   COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE `sinodos` (
-  `id`                 int          NOT NULL AUTO_INCREMENT,
-  `nome`               varchar(255) NOT NULL,
-  `sigla`              varchar(10)  NOT NULL UNIQUE,
-  `regiao`             int          NOT NULL,
-  `usuario_lancamento` int          NOT NULL,
-  `data_lancamento`    varchar(10)  NOT NULL,
-  `usuario_alteracao`  int,
-  `data_alteracao`     varchar(10),
+  `id`                int          NOT NULL AUTO_INCREMENT,
+  `nome`              varchar(255) NOT NULL,
+  `sigla`             varchar(10)  NOT NULL UNIQUE,
+  `regiao`            int          NOT NULL,
+  `usuario_inclusao`  int          NOT NULL,
+  `data_inclusao`     varchar(10)  NOT NULL,
+  `usuario_alteracao` int,
+  `data_alteracao`    varchar(10),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -91,6 +89,10 @@ CREATE TABLE `presbiteros` (
   `ordenacao_presbiterio` int,
   `ativo`                 varchar(1),
   `tipo`                  int          NOT NULL,
+  `usuario_inclusao`      int          NOT NULL,
+  `data_inclusao`         varchar(10)  NOT NULL,
+  `usuario_alteracao`     int,
+  `data_alteracao`        varchar(10),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -221,10 +223,10 @@ CREATE TABLE `relatorios_ministros` (
   `atividades_para_eclesiasticas`    longtext,
   `atividades_extras_ministeriais`   longtext,
   `atividades_outros`                longtext,
-  `usuario_lancamento`               int         NOT NULL,
-  `data_lancamento`                  varchar(10) NOT NULL,
-  `usuario_alteracao`                int         NOT NULL,
-  `data_alteracao`                   varchar(10) NOT NULL,
+  `usuario_inclusao`                 int         NOT NULL,
+  `data_inclusao`                    varchar(10) NOT NULL,
+  `usuario_alteracao`                int,
+  `data_alteracao`                   varchar(10),
   `status_relatorio`                 int,
   `tipo_relatorio`                   int         NOT NULL DEFAULT '2',
   PRIMARY KEY (`id`)
@@ -288,8 +290,8 @@ CREATE TABLE `relatorios_conselhos` (
   `pa_licenca_bombeiros`            int,
   `pa_alvara`                       int,
   `pa_certificado_digital`          int,
-  `usuario_lancamento`              int         NOT NULL,
-  `data_lancamento`                 varchar(10) NOT NULL,
+  `usuario_inclusao`                int         NOT NULL,
+  `data_inclusao`                   varchar(10) NOT NULL,
   `usuario_alteracao`               int,
   `data_alteracao`                  varchar(10),
   `status_relatorio`                int,
@@ -301,20 +303,20 @@ CREATE TABLE `relatorios_conselhos` (
   COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE `usuarios` (
-  `id`                 int          NOT NULL AUTO_INCREMENT,
-  `id_presbitero`      int,
-  `nome`               varchar(255) NOT NULL,
-  `email`              varchar(255) NOT NULL,
-  `senha`              varchar(255) NOT NULL,
-  `cpf`                varchar(15)  NOT NULL,
-  `status`             int,
-  `nivel`              int,
-  `perfil`             int,
-  `observacoes`        longtext,
-  `usuario_lancamento` int          NOT NULL,
-  `data_lancamento`    varchar(10)  NOT NULL,
-  `usuario_alteracao`  int,
-  `data_alteracao`     varchar(10),
+  `id`                int          NOT NULL AUTO_INCREMENT,
+  `id_presbitero`     int,
+  `nome`              varchar(255) NOT NULL,
+  `email`             varchar(255) NOT NULL,
+  `senha`             varchar(255) NOT NULL,
+  `cpf`               varchar(15)  NOT NULL,
+  `status`            int,
+  `nivel`             int,
+  `perfil`            int,
+  `observacoes`       longtext,
+  `usuario_inclusao`  int          NOT NULL,
+  `data_inclusao`     varchar(10)  NOT NULL,
+  `usuario_alteracao` int,
+  `data_alteracao`    varchar(10),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -404,8 +406,8 @@ CREATE TABLE `relatorios_estatisticas` (
   `finp_verba_presbiterial`         varchar(20),
   `finp_dizimo_supremo`             varchar(20),
   `id_presbitero_conselho`          int         NOT NULL,
-  `usuario_lancamento`              int         NOT NULL,
-  `data_lancamento`                 varchar(10) NOT NULL,
+  `usuario_inclusao`                int         NOT NULL,
+  `data_inclusao`                   varchar(10) NOT NULL,
   `usuario_ultima_alteracao`        int         NOT NULL,
   `data_alteracao`                  varchar(10) NOT NULL,
   `status_relatorio`                int,
@@ -417,15 +419,16 @@ CREATE TABLE `relatorios_estatisticas` (
   COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE `reunioes_presbiterios` (
-  `id`                 int         NOT NULL AUTO_INCREMENT,
-  `id_presbiterio`     int         NOT NULL,
-  `data_reuniao`       varchar(10) NOT NULL,
-  `id_local_reuniao`   int         NOT NULL,
-  `ano`                varchar(10) NOT NULL,
-  `status`             int         NOT NULL,
-  `usuario_lancamento` int         NOT NULL,
-  `usuario_alteracao`  int         NOT NULL,
-  `data_alteracao`     varchar(10) NOT NULL,
+  `id`                int         NOT NULL AUTO_INCREMENT,
+  `id_presbiterio`    int         NOT NULL,
+  `data_reuniao`      varchar(10) NOT NULL,
+  `id_local_reuniao`  int         NOT NULL,
+  `ano`               varchar(10) NOT NULL,
+  `status`            int         NOT NULL,
+  `usuario_inclusao`  int         NOT NULL,
+  `data_inclusao`     int         NOT NULL,
+  `data_alteracao`    varchar(10),
+  `usuario_alteracao` int,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -445,16 +448,16 @@ CREATE TABLE `reunioes_presbiterios_relatorios` (
   COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE `reunioes_sinodos` (
-  `id`                 int         NOT NULL AUTO_INCREMENT,
-  `id_sinodo`          int         NOT NULL,
-  `data_reuniao`       varchar(10) NOT NULL,
-  `id_local_reuniao`   int         NOT NULL,
-  `ano`                varchar(10) NOT NULL,
-  `status`             int         NOT NULL,
-  `usuario_lancamento` int         NOT NULL,
-  `data_lancamento`    varchar(10) NOT NULL,
-  `usuario_alteracao`  int         NOT NULL,
-  `data_alteracao`     varchar(10) NOT NULL,
+  `id`                int         NOT NULL AUTO_INCREMENT,
+  `id_sinodo`         int         NOT NULL,
+  `data_reuniao`      varchar(10) NOT NULL,
+  `id_local_reuniao`  int         NOT NULL,
+  `ano`               varchar(10) NOT NULL,
+  `status`            int         NOT NULL,
+  `usuario_inclusao`  int         NOT NULL,
+  `data_inclusao`     varchar(10) NOT NULL,
+  `usuario_alteracao` int,
+  `data_alteracao`    varchar(10),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -487,13 +490,13 @@ ALTER TABLE `presbiterios`
   ADD CONSTRAINT `presbiterios_fk0` FOREIGN KEY (`id_sinodo`) REFERENCES `sinodos` (`id`);
 
 ALTER TABLE `presbiterios`
-  ADD CONSTRAINT `presbiterios_fk1` FOREIGN KEY (`usuario_lancamento`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `presbiterios_fk1` FOREIGN KEY (`usuario_inclusao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `presbiterios`
   ADD CONSTRAINT `presbiterios_fk2` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `sinodos`
-  ADD CONSTRAINT `sinodos_fk0` FOREIGN KEY (`usuario_lancamento`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `sinodos_fk0` FOREIGN KEY (`usuario_inclusao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `sinodos`
   ADD CONSTRAINT `sinodos_fk1` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
@@ -512,6 +515,12 @@ ALTER TABLE `presbiteros`
 
 ALTER TABLE `presbiteros`
   ADD CONSTRAINT `presbiteros_fk4` FOREIGN KEY (`ordenacao_presbiterio`) REFERENCES `presbiterios` (`id`);
+
+ALTER TABLE `presbiteros`
+  ADD CONSTRAINT `presbiteros_fk5` FOREIGN KEY (`usuario_inclusao`) REFERENCES `usuarios` (`id`);
+
+ALTER TABLE `presbiteros`
+  ADD CONSTRAINT `presbiteros_fk6` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `igrejas_congregacoes`
   ADD CONSTRAINT `igrejas_congregacoes_fk0` FOREIGN KEY (`id_igreja`) REFERENCES `igrejas` (`id`);
@@ -550,7 +559,7 @@ ALTER TABLE `relatorios_ministros`
   ADD CONSTRAINT `relatorios_ministros_fk2` FOREIGN KEY (`dedicacao_ministerio`) REFERENCES `presbiteros_campos` (`id`);
 
 ALTER TABLE `relatorios_ministros`
-  ADD CONSTRAINT `relatorios_ministros_fk3` FOREIGN KEY (`usuario_lancamento`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `relatorios_ministros_fk3` FOREIGN KEY (`usuario_inclusao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `relatorios_ministros`
   ADD CONSTRAINT `relatorios_ministros_fk4` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
@@ -562,19 +571,10 @@ ALTER TABLE `relatorios_conselhos`
   ADD CONSTRAINT `relatorios_conselhos_fk1` FOREIGN KEY (`sa_id_oficiais_vencimento`) REFERENCES `oficiais_vencimento` (`id`);
 
 ALTER TABLE `relatorios_conselhos`
-  ADD CONSTRAINT `relatorios_conselhos_fk2` FOREIGN KEY (`usuario_lancamento`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `relatorios_conselhos_fk2` FOREIGN KEY (`usuario_inclusao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `relatorios_conselhos`
   ADD CONSTRAINT `relatorios_conselhos_fk3` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
-
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_fk0` FOREIGN KEY (`id_presbitero`) REFERENCES `presbiteros` (`id`);
-
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_fk1` FOREIGN KEY (`usuario_lancamento`) REFERENCES `usuarios` (`id`);
-
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_fk2` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `oficiais_vencimento`
   ADD CONSTRAINT `oficiais_vencimento_fk0` FOREIGN KEY (`id_presbitero`) REFERENCES `presbiteros` (`id`);
@@ -589,7 +589,7 @@ ALTER TABLE `relatorios_estatisticas`
   ADD CONSTRAINT `relatorios_estatisticas_fk1` FOREIGN KEY (`id_presbitero_conselho`) REFERENCES `presbiteros` (`id`);
 
 ALTER TABLE `relatorios_estatisticas`
-  ADD CONSTRAINT `relatorios_estatisticas_fk2` FOREIGN KEY (`usuario_lancamento`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `relatorios_estatisticas_fk2` FOREIGN KEY (`usuario_inclusao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `relatorios_estatisticas`
   ADD CONSTRAINT `relatorios_estatisticas_fk3` FOREIGN KEY (`usuario_ultima_alteracao`) REFERENCES `usuarios` (`id`);
@@ -598,10 +598,13 @@ ALTER TABLE `reunioes_presbiterios`
   ADD CONSTRAINT `reunioes_presbiterios_fk0` FOREIGN KEY (`id_presbiterio`) REFERENCES `presbiterios` (`id`);
 
 ALTER TABLE `reunioes_presbiterios`
-  ADD CONSTRAINT `reunioes_presbiterios_fk1` FOREIGN KEY (`usuario_lancamento`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `reunioes_presbiterios_fk1` FOREIGN KEY (`usuario_inclusao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `reunioes_presbiterios`
-  ADD CONSTRAINT `reunioes_presbiterios_fk2` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `reunioes_presbiterios_fk2` FOREIGN KEY (`data_inclusao`) REFERENCES `usuarios` (`id`);
+
+ALTER TABLE `reunioes_presbiterios`
+  ADD CONSTRAINT `reunioes_presbiterios_fk3` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `reunioes_presbiterios_relatorios`
   ADD CONSTRAINT `reunioes_presbiterios_relatorios_fk0` FOREIGN KEY (`id_reuniao_presbiterio`) REFERENCES `reunioes_presbiterios` (`id`);
@@ -619,7 +622,7 @@ ALTER TABLE `reunioes_sinodos`
   ADD CONSTRAINT `reunioes_sinodos_fk0` FOREIGN KEY (`id_sinodo`) REFERENCES `sinodos` (`id`);
 
 ALTER TABLE `reunioes_sinodos`
-  ADD CONSTRAINT `reunioes_sinodos_fk1` FOREIGN KEY (`usuario_lancamento`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `reunioes_sinodos_fk1` FOREIGN KEY (`usuario_inclusao`) REFERENCES `usuarios` (`id`);
 
 ALTER TABLE `reunioes_sinodos`
   ADD CONSTRAINT `reunioes_sinodos_fk2` FOREIGN KEY (`usuario_alteracao`) REFERENCES `usuarios` (`id`);
