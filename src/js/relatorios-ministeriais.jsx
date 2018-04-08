@@ -1,6 +1,6 @@
-let id_row, tr_row, tbl_presbiterios, tbl_api, validator_presbiterios;
-tbl_presbiterios = $("#tbl_presbiterios");
-let cadastros_presbiterios;
+let id_row, tr_row, tbl_relatorios_ministeriais, tbl_api, validator;
+tbl_relatorios_ministeriais = $("#tbl_relatorios_ministeriais");
+let relatorios_ministeriais;
 $(document).ready(function () {
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -16,7 +16,7 @@ $(document).ready(function () {
     /**
      * cria o sidebar e adiciona um evento ao botão
      */
-    $('.menu .item').tab();
+    $('.menu.item').tab();
 
     /**
      * Instancia o datepicker e atribui definições https://uxsolutions.github.io/bootstrap-datepicker/
@@ -41,7 +41,7 @@ $(document).ready(function () {
         $.get('/api/presbiterios')
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, regiao, nome, sigla;
+                    let tr, row, id, tipo_relatorio, data_lancamento, data_ultima_alteracao, status, ano;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -49,39 +49,25 @@ $(document).ready(function () {
                      * @type {jQuery}
                      */
                     id = $('<td/>').html(row.id);
-                    nome = $('<td/>').html(row.nome);
-                    sigla = $('<td/>').html(row.sigla);
-                    switch (row.regiao) {
-                        case '1':
-                            regiao = $('<td/>').html("CENTRO-OESTE");
-                            break;
-                        case '2':
-                            regiao = $('<td/>').html("NORDESTE");
-                            break;
-                        case '3':
-                            regiao = $('<td/>').html("NORTE");
-                            break;
-                        case '4':
-                            regiao = $('<td/>').html("SUDESTE");
-                            break;
-                        case '5':
-                            regiao = $('<td/>').html("SUL");
-                            break;
-                        default:
-                            regiao = $('<td/>').html('Não identificado');
-                            break;
-                    }
+                    data_lancamento = $('<td/>').html(row.data_lancamento);
+                    data_ultima_alteracao = $('<td/>').html(row.data_ultima_alteracao);
+                    tipo_relatorio = $('<td/>').html("Relatório do Conselho");
+                    status = $('<td/>').html(row.status);
+                    ano = $('<td/>').html(row.ano);
+
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
-                        .append(nome)
-                        .append(sigla)
-                        .append(regiao);
+                        .append(data_lancamento)
+                        .append(data_ultima_alteracao)
+                        .append(tipo_relatorio)
+                        .append(ano)
+                        .append(status);
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_presbiterios').append(tr);
+                    $('#tbl_relatorios_ministeriais').append(tr);
                 }
             })
             .fail(function (response) {
@@ -97,7 +83,7 @@ $(document).ready(function () {
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_presbiterios.DataTable({
+            tbl_api = tbl_relatorios_ministeriais.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -159,15 +145,69 @@ $(document).ready(function () {
         $.get('api/presbiterios?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_presbiterios.nome.value = data.nome;
-                cadastros_presbiterios.sigla.value = data.sigla;
-                cadastros_presbiterios.regiao.value = data.regiao;
+                relatorios_ministeriais.nome.value = data.nome;
+                relatorios_ministeriais.sigla.value = data.sigla;
+                relatorios_ministeriais.regiao.value = data.regiao;
+                relatorios_ministeriais.id_presbitero.value = data.id_presbitero;
+                relatorios_ministeriais.ano.value = data.ano;
+                relatorios_ministeriais.id_igrej.value = data.id_igrej;
+                relatorios_ministeriais.nr_dependentes.value = data.nr_dependentes;
+                relatorios_ministeriais.condicao_moradia.value = data.condicao_moradia;
+                relatorios_ministeriais.ferias.value = data.ferias;
+                relatorios_ministeriais.congruas.value = data.congruas;
+                relatorios_ministeriais.previdencia_publica.value = data.previdencia_publica;
+                relatorios_ministeriais.previdencia_privada.value = data.previdencia_privada;
+                relatorios_ministeriais.plano_saude.value = data.plano_saude;
+                relatorios_ministeriais.congruas_contribui_inss.value = data.congruas_contribui_inss;
+                relatorios_ministeriais.previdencia_publica_valor.value = data.previdencia_publica_valor;
+                relatorios_ministeriais.contribui_prev_privada.value = data.contribui_prev_privada;
+                relatorios_ministeriais.dedicacao_ministerio.value = data.dedicacao_ministerio;
+                relatorios_ministeriais.pregacoes.value = data.pregacoes;
+                relatorios_ministeriais.palestras_prelecoes.value = data.palestras_prelecoes;
+                relatorios_ministeriais.ebd.value = data.ebd;
+                relatorios_ministeriais.msg_radio.value = data.msg_radio;
+                relatorios_ministeriais.evangelizacao.value = data.evangelizacao;
+                relatorios_ministeriais.artigos_boletins_revistas.value = data.artigos_boletins_revistas;
+                relatorios_ministeriais.estudos_biblicos.value = data.estudos_biblicos;
+                relatorios_ministeriais.entrevistas.value = data.entrevistas;
+                relatorios_ministeriais.santa_ceia.value = data.santa_ceia;
+                relatorios_ministeriais.batismos.value = data.batismos;
+                relatorios_ministeriais.bencaos_nupciais.value = data.bencaos_nupciais;
+                relatorios_ministeriais.profissoes_fe.value = data.profissoes_fe;
+                relatorios_ministeriais.funerais.value = data.funerais;
+                relatorios_ministeriais.profissoes_batismos.value = data.profissoes_batismos;
+                relatorios_ministeriais.aconselhamentos.value = data.aconselhamentos;
+                relatorios_ministeriais.visitas_lares.value = data.visitas_lares;
+                relatorios_ministeriais.visitas_igrejas.value = data.visitas_igrejas;
+                relatorios_ministeriais.departamentos_internos.value = data.departamentos_internos;
+                relatorios_ministeriais.descricao_atividades.value = data.descricao_atividades;
+                relatorios_ministeriais.reunioes_conselho.value = data.reunioes_conselho;
+                relatorios_ministeriais.diaconos_ordenados_investidos.value = data.diaconos_ordenados_investidos;
+                relatorios_ministeriais.presbiteros_ordenados_investidos.value = data.presbiteros_ordenados_investidos;
+                relatorios_ministeriais.assembleias.value = data.assembleias;
+                relatorios_ministeriais.reunioes_presbiterio.value = data.reunioes_presbiterio;
+                relatorios_ministeriais.reunioes_sinodo.value = data.reunioes_sinodo;
+                relatorios_ministeriais.reunioes_concilio.value = data.reunioes_concilio;
+                relatorios_ministeriais.comentarios.value = data.comentarios;
+                relatorios_ministeriais.cargos_presbiterio.value = data.cargos_presbiterio;
+                relatorios_ministeriais.cargos_sinodo.value = data.cargos_sinodo;
+                relatorios_ministeriais.cargos_concilio.value = data.cargos_concilio;
+                relatorios_ministeriais.cargos_outros.value = data.cargos_outros;
+                relatorios_ministeriais.texto_complementar.value = data.texto_complementar;
+                relatorios_ministeriais.atualizacao_aperfeicoamento.value = data.atualizacao_aperfeicoamento;
+                relatorios_ministeriais.atividades_para_eclesiasticas.value = data.atividades_para_eclesiasticas;
+                relatorios_ministeriais.atividades_extras_ministeriais.value = data.atividades_extras_ministeriais;
+                relatorios_ministeriais.atividades_outros.value = data.atividades_outros;
+                $("#user_inc").text(data.user_inc);
+                $("#data_inc").text(data.data_lancamento);
+                $("#user_alt").text(data.user_inc);
+                $("#data_alt").text(data.data_ultima_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_presbiterios.regiao).trigger("change");
+                    $(relatorios_ministeriais.regiao).trigger("change");
                 }, 100);
             })
             .fail(function (response) {
@@ -215,7 +255,7 @@ $(document).ready(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
                                 id_row = null;
-                                cadastros_presbiterios.reset();
+                                relatorios_ministeriais.reset();
                             })
                             .fail(function (response) {
                                 console.log(response);
@@ -234,7 +274,7 @@ $(document).ready(function () {
          * Validador do Formulario, utilizado para incluir ou editar novos registros
          * @type {*|jQuery}
          *!/
-        let validator_presbiterios = $("#cadastros_presbiterios").validate({
+        let validator = $("#relatorios_ministeriais").validate({
             rules: {
                 nome: {
                     required: true,
@@ -258,10 +298,10 @@ $(document).ready(function () {
             },
             submitHandler: function () {
                 if (id_row > 0) {
-                    let form = $('#cadastros_presbiterios').serializeArray();
+                    let form = $('#relatorios_ministeriais').serializeArray();
                     form.unshift({name: 'id', value: id_row});
                     $.post('api/presbiterios/update', form)
-                        .done(function (response) {
+                       .done(function (response) {
                             console.log(response);
                             tbl_api.row(tr_row).remove();
                             tbl_api.row.add([
@@ -281,12 +321,12 @@ $(document).ready(function () {
                                 transitionOut: 'fadeOutUp'
                             });
                         })
-                        .fail(function (response) {
+                       .fail(function (response) {
                             console.log(response);
                             let str = response.responseText;
                             let result = str.indexOf("SQLSTATE[23000]");
                             if (result > 0) {
-                                $(cadastros_presbiterios.sigla).parent().addClass("error");
+                                $(relatorios_ministeriais.sigla).parent().addClass("error");
                                 iziToast.error({
                                     title: 'Erro',
                                     message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -308,11 +348,11 @@ $(document).ready(function () {
                                 });
                             }
                         })
-                    ;
+                   ;
                 } else {
-                    let form = $('#cadastros_presbiterios').serializeArray();
+                    let form = $('#relatorios_ministeriais').serializeArray();
                     $.post('api/presbiterios/store', form)
-                        .done(function (response) {
+                       .done(function (response) {
                             console.log(response);
 
                             tbl_api.row.add([
@@ -332,12 +372,12 @@ $(document).ready(function () {
                                 transitionOut: 'fadeOutUp'
                             });
                         })
-                        .fail(function (response) {
+                       .fail(function (response) {
                             console.log(response);
                             let str = response.responseText;
                             let result = str.indexOf("SQLSTATE[23000]");
                             if (result > 0) {
-                                $(cadastros_presbiterios.sigla).parent().addClass("error");
+                                $(relatorios_ministeriais.sigla).parent().addClass("error");
                                 iziToast.error({
                                     title: 'Erro',
                                     message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -359,7 +399,7 @@ $(document).ready(function () {
                                 });
                             }
                         })
-                    ;
+                   ;
                 }
             }
         });
@@ -368,7 +408,7 @@ $(document).ready(function () {
          * Os campos select do semantic não são compativeis com o jquery validation,
          * a msg fica bugada, usar desta forma para select.search.dropdown
          *!/
-        $("#cadastros_presbiterios").form({
+        $("#relatorios_ministeriais").form({
             inline: true,
             on: 'submit',
             fields: {
@@ -388,7 +428,7 @@ $(document).ready(function () {
          * Ao clicar no botão limpar, reseta as classes de erro
          *!/
         $(".ui.reset.button").on("click", function () {
-            validator_presbiterios.resetForm();
+            validator.resetForm();
             $('form').form('reset');
         });
 
@@ -409,13 +449,13 @@ $(document).ready(function () {
                 /!**
                  * reseta os campos do tipo input
                  *!/
-                cadastros_presbiterios.reset();
+                relatorios_ministeriais.reset();
 
                 /!**
                  * retorna o select para a primera opção
                  * @type {number}
                  *!/
-                validator_presbiterios.resetForm();
+                validator.resetForm();
                 $('form').form('reset');
             }
         });

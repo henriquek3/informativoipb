@@ -7,18 +7,20 @@ $(document).ready(function () {
      * @type {{first: first, second: second}}
      */
     let styleInputSearch = {
-        first: function() {         
+        first: function () {
             setTimeout(() => {
                 $("input[type='search']").parent().addClass("ui icon input");
                 $("input[type='search']").css("width", "220px");
                 $("input[type='search']").css("margin-left", "10px");
             }, 500);
-        return styleInputSearch; },
-        second: function() {     
+            return styleInputSearch;
+        },
+        second: function () {
             setTimeout(() => {
-               $("input[type='search']").after("<i class='search icon'>");
+                $("input[type='search']").after("<i class='search icon'>");
             }, 1000);
-        return styleInputSearch; }
+            return styleInputSearch;
+        }
     };
 
     /**

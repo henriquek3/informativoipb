@@ -25,7 +25,7 @@ block content
             a.item.active(data-tab="second") Responder
 
         div.ui.bottom.attached.tab.segment(data-tab="first")
-            table.ui.compact.selectable.celled.green.table
+            table.ui.compact.selectable.celled.green.table(id="tbl_reletorios_conselhos")
                 thead
                     tr
                         th.one.wide Código
@@ -35,7 +35,7 @@ block content
                         th.two.wide.center.aligned Status
                         th.two.wide.center.aligned Ano
 
-                tbody
+                tbody(id="tbody_relatorios_conselhos")
                     tr
                         td 01
                         td RELATÓRIO DO CONSELHO
@@ -51,7 +51,7 @@ block content
                         td Importado
                         td 2017
 
-        div.ui.bottom.attached.tab.segment.active(data-tab="second")
+        form.ui.bottom.attached.tab.segment.active(data-tab="second" name="relatorios_conselhos" id="relatorios_conselhos")
             div.ui.segments
                 div.ui.red.segment(style="text-align: center; background-color: #F9FAFB")
                     p
@@ -442,7 +442,7 @@ block content
                             input(name="sa_balancete_tesouraria" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="sa_balancete_tesouraria" type="radio")
+                            input(name="sa_balancete_tesouraria" type="radio" checked="checked")
                     div.inline.fields
                         div.seven.wide.field
                             label 3.8. Há oficiais com mandato a vencer no ano a seguir?
@@ -451,7 +451,7 @@ block content
                             input(name="sa_officiais_venc" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="sa_officiais_venc" type="radio")
+                            input(name="sa_officiais_venc" type="radio" checked="checked")
                     div.inline.fields
                         div.two.wide.field(data-tooltip="Nº Presbíteros com mandato a vencer no próximo ano.")
                             label Nº Presbíteros:
@@ -475,7 +475,7 @@ block content
                             input(name="sa_fap" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="sa_fap" type="radio")
+                            input(name="sa_fap" type="radio" checked="checked")
                         div.one.wide.field
                         div.two.wide.field
                             label IPB-PREV?
@@ -484,7 +484,7 @@ block content
                             input(name="sa_ipb_prev" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="sa_ipb_prev" type="radio")
+                            input(name="sa_ipb_prev" type="radio" checked="checked")
                     div.inline.fields
                         div.six.wide.field
                             label 3.9. Idem, dos livros e relatórios das sociedades?
@@ -493,7 +493,7 @@ block content
                             input(name="sa_idem_livros_sociedades" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="sa_idem_livros_sociedades" type="radio")
+                            input(name="sa_idem_livros_sociedades" type="radio" checked="checked")
                         div.six.wide.field
                             label 3.11. Houve contribuição para causas extra-locais?
                         div.one.wide.field
@@ -501,7 +501,7 @@ block content
                             input(name="sa_contribuicao_extra" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="sa_contribuicao_extra" type="radio")
+                            input(name="sa_contribuicao_extra" type="radio" checked="checked")
                     div.inline.fields
                         div.six.wide.field
                             label 3.10. Houve nomeação de conselheiros às Sociedades?
@@ -510,7 +510,7 @@ block content
                             input(name="sa_nomeacao" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="sa_nomeacao" type="radio")
+                            input(name="sa_nomeacao" type="radio" checked="checked")
                         div.six.wide.field
                             label 3.12. Contribuiu com Previdência Social pastor(es)?
                         div.one.wide.field
@@ -518,7 +518,7 @@ block content
                             input(name="sa_contribuicao_previdencia" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="sa_contribuicao_previdencia" type="radio")
+                            input(name="sa_contribuicao_previdencia" type="radio" checked="checked")
                     div.inline.fields
                         div.eight.wide.field
                             label 3.13. Reforma e/ou Construção em projeto:
@@ -544,7 +544,7 @@ block content
                             input(name="pe_exite_pe" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="pe_exite_pe" type="radio")
+                            input(name="pe_exite_pe" type="radio" checked="checked")
                     div.inline.fields
                         div.eight.wide.field
                             label 4.2. Quais os objetivos propostos e alcançados?
@@ -569,7 +569,7 @@ block content
                             input(name="pa_seguro_patrimonial" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="pa_seguro_patrimonial" type="radio")
+                            input(name="pa_seguro_patrimonial" type="radio" checked="checked")
                         div.six.wide.field
                             label 5.2. Tem Alvará de Funcionamento?
                         div.one.wide.field
@@ -577,7 +577,7 @@ block content
                             input(name="pa_alvara" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="pa_alvara" type="radio")
+                            input(name="pa_alvara" type="radio" checked="checked")
                     div.inline.fields
                         div.six.wide.field
                             label 5.3. Tem Licença do Corpo de Bombeiros em dia?
@@ -586,7 +586,7 @@ block content
                             input(name="pa_licenca_bombeiros" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="pa_licenca_bombeiros" type="radio")
+                            input(name="pa_licenca_bombeiros" type="radio" checked="checked")
                         div.six.wide.field
                             label 5.4. Tem Certificado Digital?
                         div.one.wide.field
@@ -594,7 +594,7 @@ block content
                             input(name="pa_certificado_digital" type="radio")
                         div.one.wide.field
                             label Não
-                            input(name="pa_certificado_digital" type="radio")
+                            input(name="pa_certificado_digital" type="radio" checked="checked")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
