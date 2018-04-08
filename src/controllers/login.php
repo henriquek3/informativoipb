@@ -47,30 +47,26 @@ $app->post('api/connect', function (Request $request, Application $app) {
         $user = (string)$data['email'];
         $pass = (string)$data['password'];
         $db = $app['db'];
-        $query = "select
-                      u.id as id_usuario,
-                      u.status,
-                      u.nivel,
-                      u.perfil,
-                      u.nome,
-                      u.email,
-                      p.id as id_presbitero,
-                      i.id as id_igreja,
-                      pi.id as id_presbiterio,
-                      s.id as id_sinodo
-                    from
-                      usuarios u,
-                      presbiteros p,
-                      igrejas i,
-                      presbiterios pi,
-                      sinodos s
-                    where
-                      s.id = pi.id_sinodo
-                    and pi.id = i.id_presbiterio
-                    and p.id_igreja = i.id";
+        $query = "SELECT
+                      U.ID  AS ID_USUARIO,
+                      U.STATUS,
+                      U.NIVEL,
+                      U.PERFIL,
+                      U.NOME,
+                      U.EMAIL,
+                      P.ID  AS ID_PRESBITERO,
+                      I.ID  AS ID_IGREJA,
+                      P2.ID AS ID_PRESBITERIO,
+                      S.ID  AS ID_SINODO
+                    FROM
+                      USUARIOS U
+                      LEFT JOIN PRESBITEROS AS P ON P.ID = U.ID
+                      LEFT JOIN IGREJAS I ON P.ID_IGREJA = I.ID
+                      LEFT JOIN PRESBITERIOS P2 ON I.ID_PRESBITERIO = P2.ID
+                      LEFT JOIN SINODOS S ON P2.ID_SINODO = S.ID";
         $params = [];
         if (is_string($user) > 0) {
-            $query .= " AND u.email = ?";
+            $query .= " RIGHT JOIN USUARIOS AS USR ON USR.ID = ?";
             array_push($params, $user);
         }
         if (is_string($pass) > 0) {
