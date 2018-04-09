@@ -16,7 +16,7 @@ $(document).ready(function () {
     /**
      * cria o sidebar e adiciona um evento ao botão
      */
-    $('.menu.item').tab();
+    $('.menu .item').tab();
 
     /**
      * Instancia o datepicker e atribui definições https://uxsolutions.github.io/bootstrap-datepicker/
