@@ -781,8 +781,18 @@ $(document).ready(function () {
             }
         }
     });
-    
-    
+
+
+    /** Função de soma
+     *
+     */
+    $("#fem, #masc").on("focusout", function () {
+        $("#resultado").val(parseInt(document.relatorios_estatisticas.rma_profissao_fe_masc.value) + parseInt(document.relatorios_estatisticas.rma_profissao_fe_fem.value));
+    });
+
+
+
+
     /**
      * Traz as informações para edição
      */
