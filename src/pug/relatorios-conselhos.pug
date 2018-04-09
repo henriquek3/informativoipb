@@ -21,10 +21,10 @@ block content
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
-            a.item.active(data-tab="first") Relatórios
-            a.item(data-tab="second") Responder
+            a.item(data-tab="first") Relatórios
+            a.item.active(data-tab="second") Responder
 
-        div.ui.bottom.attached.tab.segment.active(data-tab="first")
+        div.ui.bottom.attached.tab.segment(data-tab="first")
             table.ui.compact.selectable.celled.green.table(id="tbl_reletorios_conselhos")
                 thead
                     tr
@@ -36,9 +36,22 @@ block content
                         th.two.wide.center.aligned Ano
 
                 tbody(id="tbody_relatorios_conselhos")
+                    tr
+                        td 01
+                        td RELATÓRIO DO CONSELHO
+                        td 01/02/2017
+                        td 20/02/2017
+                        td Em Edição
+                        td 2018
+                    tr
+                        td 02
+                        td RELATÓRIO DO CONSELHO
+                        td 01/05/2016
+                        td 20/08/2016
+                        td Importado
+                        td 2017
 
-
-        form.ui.bottom.attached.tab.segment(data-tab="second" name="relatorios_conselhos" id="relatorios_conselhos")
+        form.ui.bottom.attached.tab.segment.active(data-tab="second" name="relatorios_conselhos" id="relatorios_conselhos")
             div.ui.segments
                 div.ui.red.segment(style="text-align: center; background-color: #F9FAFB")
                     p

@@ -48,22 +48,25 @@ $app->post('api/connect', function (Request $request, Application $app) {
         $pass = (string)$data['password'];
         $db = $app['db'];
         $query = "SELECT
-                      U.ID  AS ID_USUARIO,
-                      U.STATUS,
-                      U.NIVEL,
-                      U.PERFIL,
-                      U.NOME,
-                      U.EMAIL,
-                      P.ID  AS ID_PRESBITERO,
-                      I.ID  AS ID_IGREJA,
-                      P2.ID AS ID_PRESBITERIO,
-                      S.ID  AS ID_SINODO
-                    FROM
-                      USUARIOS U
-                      LEFT JOIN PRESBITEROS AS P ON P.ID = U.ID
-                      LEFT JOIN IGREJAS I ON P.ID_IGREJA = I.ID
-                      LEFT JOIN PRESBITERIOS P2 ON I.ID_PRESBITERIO = P2.ID
-                      LEFT JOIN SINODOS S ON P2.ID_SINODO = S.ID";
+                  U.ID  AS ID_USUARIO,
+                  U.STATUS,
+                  U.NIVEL,
+                  U.PERFIL,
+                  U.NOME,
+                  U.EMAIL,
+                  P.ID  AS ID_PRESBITERO,
+                  I.ID  AS ID_IGREJA,
+                  I.NOME AS NOME_IGREJA,
+                  P2.ID AS ID_PRESBITERIO,
+                  P2.SIGLA AS SIGLA_PRESBITERIO,
+                  S.ID  AS ID_SINODO,
+                  S.SIGLA  AS SIGLA_SINODO
+                FROM
+                  USUARIOS U
+                  LEFT JOIN PRESBITEROS AS P ON P.ID = U.ID
+                  LEFT JOIN IGREJAS I ON P.ID_IGREJA = I.ID
+                  LEFT JOIN PRESBITERIOS P2 ON I.ID_PRESBITERIO = P2.ID
+                  LEFT JOIN SINODOS S ON P2.ID_SINODO = S.ID";
         $params = [];
         if (is_string($user) > 0) {
             $query .= " RIGHT JOIN USUARIOS AS USR ON USR.EMAIL = ?";

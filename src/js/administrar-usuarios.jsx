@@ -140,7 +140,7 @@ $(document).ready(function () {
     getDataIgreja();
 
     function getDataPresbitero() {
-        $(formUsuarios.id_presbiterio).on('change', function () {
+        $(formUsuarios.id_igreja).on('change', function () {
             if ($(formUsuarios.id_igreja).val() > 0) {
                 $("select[name='id_presbitero']").children().remove();
                 $("#div_presbitero").find(".search").hide();
@@ -158,7 +158,7 @@ $(document).ready(function () {
                         $("#div_presbitero").find(".search").show();
                         $("#loader_presbitero").hide()
                     })
-                    .fail(function (response) {
+                    .fail(function () {
                         iziToast.error({
                             title: 'Erro',
                             message: 'Consulta não realizada, verifique sua conexão',
@@ -321,10 +321,21 @@ $(document).ready(function () {
         $.get('api/usuarios?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
+                console.log(data);
                 formUsuarios.nome.value = data.nome;
                 formUsuarios.email.value = data.email;
                 formUsuarios.cpf.value = data.cpf;
+                formUsuarios.id_sinodo.value = data.id_sinodo;
+                $(formUsuarios.id_sinodo).trigger("change");
+                // - formUsuarios.id_presbiterio.value = data.id_presbiterio;
+                //formUsuarios.id_igreja.value = data.id_igreja;
+                //formUsuarios.id_presbitero.value = data.id_presbitero;
+                formUsuarios.status.value = data.status;
+                formUsuarios.nivel.value = data.nivel;
+                formUsuarios.perfil.value = data.perfil;
                 formUsuarios.observacoes.value = data.observacoes;
+
+
                 $("#user_inc").text(data.user_inclusao);
                 $("#data_inc").text(data.data_inclusao);
                 $("#user_alt").text(data.user_alteracao);
@@ -334,7 +345,19 @@ $(document).ready(function () {
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(formUsuarios.regiao).trigger("change");
+                    formUsuarios.id_presbiterio.value = data.id_presbiterio;
+                    $(formUsuarios.id_presbiterio).trigger("change");
+                    $(formUsuarios.status).trigger("change");
+                    $(formUsuarios.nivel).trigger("change");
+                    $(formUsuarios.perfil).trigger("change");
+                    setTimeout(() => {
+                        formUsuarios.id_igreja.value = data.id_igreja;
+                        $(formUsuarios.id_igreja).trigger("change");
+                        setTimeout(() => {
+                            formUsuarios.id_presbitero.value = data.id_igreja;
+                            $(formUsuarios.id_presbitero).trigger("change");
+                        }, 100)
+                    }, 100)
                 }, 100);
             })
             .fail(function (response) {
@@ -659,8 +682,8 @@ $(document).ready(function () {
      *   para ser enviado junto ao array form
      * @type {string}
      */
-    let user = btoa("user-data");
+    /*let user = btoa("user-data");
     user = sessionStorage.getItem(user);
     user = atob(user);
-    user = JSON.parse(user);
+    user = JSON.parse(user);*/
 });

@@ -50,7 +50,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#logout").click(function () {
+    $("#logout, #logout_m").click(function () {
         sessionStorage.clear();
         document.location.href = '/pre-login';
         /*$.get('api/connect?desconnect=1')
@@ -77,5 +77,20 @@ $(document).ready(function () {
         }
         return `${d}/${m}/${y}`;
     })()
+
+    /**
+     * Verifica Sessão do usuário
+     *   para ser enviado junto ao array form
+     * @type {string}
+     */
+    window.user = btoa("user-data");
+    window.user = sessionStorage.getItem(window.user);
+    window.user = atob(window.user);
+    window.user = JSON.parse(window.user);
+
+    $(".in-dev").on("click", function () {
+        swal("Em Desenvolvimento!", "Aguarde a liberação desta funcionalidade.", "info");
+        return false;
+    })
 
 });
