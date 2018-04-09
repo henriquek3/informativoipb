@@ -83,10 +83,10 @@ $(document).ready(function () {
      *   para ser enviado junto ao array form
      * @type {string}
      */
-    /*window.user = btoa("user-data");
+    window.user = btoa("user-data");
     window.user = sessionStorage.getItem(window.user);
     window.user = atob(window.user);
-    window.user = JSON.parse(window.user);*/
+    window.user = JSON.parse(window.user);
 
     $(".in-dev").on("click", function () {
         swal("Em Desenvolvimento!", "Aguarde a liberação desta funcionalidade.", "info");

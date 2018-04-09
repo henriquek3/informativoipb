@@ -490,8 +490,8 @@ $(document).ready(function () {
      *   para ser enviado junto ao array form
      * @type {string}
      */
-    let user = btoa("user-data");
+    /*let user = btoa("user-data");
     user = sessionStorage.getItem(user);
     user = atob(user);
-    user = JSON.parse(user);
+    user = JSON.parse(user);*/
 });
