@@ -76,14 +76,16 @@ block content
 
                         div.ui.calendar.bottom.left.three.wide.field
                             label Organização
-                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
+                            //input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
+                            input(type="date" name="data_organizacao" placeholder="Data de Organização")
+
                     div.fields
                         div.six.wide.field
                             label Endereço
                             input(type="text" name="endereco" placeholder="Endereço")
                         div.two.wide.field
                             label Número
-                            input(type="text" name="endereco_nr" placeholder="Número")
+                            input(type="text" name="endereco_numero" placeholder="Número")
                         div.four.wide.field
                             label Complemento
                             input(type="text" name="endereco_complemento" placeholder="Complemento")
@@ -96,7 +98,7 @@ block content
                             input(type="email" name="email" placeholder="E-Mail")
                         div.eight.wide.field
                             label Homepage
-                            input(type="url" name="website" placeholder="Web Site")
+                            input(type="url" name="homepage" placeholder="Web Site")
 
                 div.ui.segments
                     div.ui.horizontal.segments
@@ -105,24 +107,24 @@ block content
                                 strong Usuário inclusão:
                             span(style="color: lightslategray;")
                                 | &nbsp;
-                                | Kallew Pavão
+                                span(id="user_inc")
                                 | &nbsp;
                             span(style="float: right;color: lightslategray;")
                                 strong Data:
                                 | &nbsp;
-                                | 01/01/2018
+                                span(id="data_inc")
 
                         div.ui.segment
                             span(style="color: lightslategray;")
                                 strong Última alteração:
                             span(style="color: lightslategray;")
                                 | &nbsp;
-                                | Kallew Pavão
+                                span(id="user_alt")
                                 | &nbsp;
                             span(style="float: right;color: lightslategray;")
                                 strong Data:
                                 | &nbsp;
-                                | 01/01/2018
+                                span(id="data_alt")
 
                 div.ui.clearing.divider
 
@@ -141,10 +143,10 @@ block content
 
         div.ui.bottom.attached.tab.segment(data-tab="third")
             div.ui.top.attached.tabular.menu
-                a.item.active(data-tab="congreg-first") Lista
-                a.item(data-tab="congreg-second") Cadastro
+                a.item.active(data-tab="first-cong") Lista
+                a.item(data-tab="second-cong") Cadastro
 
-            div.ui.bottom.attached.tab.segment.active(data-tab="congreg-first")
+            div.ui.bottom.attached.tab.segment.active(data-tab="first-cong")
                 table.ui.compact.selectable.celled.blue.table()
                     thead
                         tr
@@ -158,7 +160,7 @@ block content
                             td Congregação luz e vida
                             td Cidade Alta
 
-            div.ui.bottom.attached.tab.segment(data-tab="congreg-second")
+            div.ui.bottom.attached.tab.segment(data-tab="second-cong")
                 form(id="cadastros_congregacoes", name="cadastros_congregacoes")
                     div.ui.form
                         div.fields
@@ -215,24 +217,23 @@ block content
                                     strong Usuário inclusão:
                                 span(style="color: lightslategray;")
                                     | &nbsp;
-                                    | Kallew Pavão
+                                    span(id="user_inc_congr")
                                     | &nbsp;
                                 span(style="float: right;color: lightslategray;")
                                     strong Data:
                                     | &nbsp;
-                                    | 01/01/2018
-
+                                    span(id="data_inc_congr")
                             div.ui.segment
                                 span(style="color: lightslategray;")
                                     strong Última alteração:
                                 span(style="color: lightslategray;")
                                     | &nbsp;
-                                    | Kallew Pavão
+                                    span(id="user_alt_congr")
                                     | &nbsp;
                                 span(style="float: right;color: lightslategray;")
                                     strong Data:
                                     | &nbsp;
-                                    | 01/01/2018
+                                    span(id="data_alt_congr")
 
                     div.ui.clearing.divider
 
