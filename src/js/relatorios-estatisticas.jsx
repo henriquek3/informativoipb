@@ -205,7 +205,82 @@ $(document).ready(function () {
                 minlength: 1,
                 maxlength: 5
             },
+            ect_professores: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ect_alunos_ebd_atual: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            ect_alunos_ebd_anterior: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
             ect_alunos_ebd: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_ucp_dep: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_ucp_membros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_upa_dep: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_upa_membros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_ump_dep: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_ump_membros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_saf_dep: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_saf_membros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_uph_dep: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_uph_membros: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_outras_dep: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            di_outras_membros: {
                 required: true,
                 minlength: 1,
                 maxlength: 5
@@ -261,6 +336,16 @@ $(document).ready(function () {
                 maxlength: 5
             },
             rma_profissao_batismo_fem: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_transf_masc: {
+                required: true,
+                minlength: 1,
+                maxlength: 5
+            },
+            rma_transf_fem: {
                 required: true,
                 minlength: 1,
                 maxlength: 5
@@ -696,8 +781,18 @@ $(document).ready(function () {
             }
         }
     });
-    
-    
+
+
+    /** Função de soma
+     *
+     */
+    $("#fem, #masc").on("focusout", function () {
+        $("#resultado").val(parseInt(document.relatorios_estatisticas.rma_profissao_fe_masc.value) + parseInt(document.relatorios_estatisticas.rma_profissao_fe_fem.value));
+    });
+
+
+
+
     /**
      * Traz as informações para edição
      */

@@ -61,19 +61,19 @@ block content
                     div.fields
                         div.two.wide.field
                             label Ano
-                            input(type="text", value="2018", disabled="")
+                            input(type="text" , value="2018", disabled="")
                         div.two.wide.field
                             label Sínodo
-                            input(type="text", value="SCA", disabled="")
+                            input(type="text" , value="SCA", disabled="")
                         div.two.wide.field
                             label Presbitério
-                            input(type="text", value="PRON", disabled="")
+                            input(type="text" , value="PRON", disabled="")
                         div.eight.wide.field
                             label Igreja
-                            input(type="text", value="IGREJA PRESBITERIANA LUZ E VIDA", disabled="")
+                            input(type="text" , value="IGREJA PRESBITERIANA LUZ E VIDA", disabled="")
                         div.two.wide.field
                             label Sigla
-                            input(type="text", value="?????", disabled="")
+                            input(type="text" , value="?????", disabled="")
 
             div.ui.segments
                 div.ui.red.segment(style="text-align: center; background-color: #F9FAFB")
@@ -84,21 +84,21 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label Nome (Igreja/Congregação)
-                            input(type="text", disabled="" name="")
+                            input(type="text" , disabled="" name="")
 
                     div.fields
                         div.eight.wide.field
                             label Endereço
-                            input(type="text", disabled="" name="endereco")
+                            input(type="text" , disabled="" name="endereco")
                         div.two.wide.field
                             label Número
-                            input(type="text", disabled="" name="endereco_numero")
+                            input(type="text" , disabled="" name="endereco_numero")
                         div.three.wide.field
                             label Complemento
-                            input(type="text", disabled="" name="endereco_complemento")
+                            input(type="text" , disabled="" name="endereco_complemento")
                         div.three.wide.field
                             label Bairro
-                            input(type="text", disabled="" name="endereco_bairro")
+                            input(type="text" , disabled="" name="endereco_bairro")
 
                     div.fields
                         div.four.wide.field
@@ -109,30 +109,30 @@ block content
                             select.ui.fluid.search.dropdown.disabled(name="")
                         div.three.wide.field
                             label CEP
-                            input(type="text", disabled="" name="endereco_cep")
+                            input(type="text" , disabled="" name="endereco_cep")
                         div.two.wide.field
                             label Cx. P
-                            input(type="text", disabled="" name="endereco_cx_postal")
+                            input(type="text" , disabled="" name="endereco_cx_postal")
                         div.three.wide.field
                             label CEP Cx. P
-                            input(type="text", disabled="" name="endereco_cx_cep")
+                            input(type="text" , disabled="" name="endereco_cx_cep")
 
                     div.fields
                         div.two.wide.field
                             label Telefone
-                            input(type="text", disabled="" name="telefone")
+                            input(type="text" , disabled="" name="telefone")
                         div.four.wide.field
                             label E-Mail
-                            input(type="text", disabled="" name="email")
+                            input(type="text" , disabled="" name="email")
                         div.four.wide.field
                             label HomePage
-                            input(type="text", disabled="" name="homepage")
+                            input(type="text" , disabled="" name="homepage")
                         div.three.wide.field
                             label CNPJ
-                            input(type="text", disabled="" name="cnpj")
+                            input(type="text" , disabled="" name="cnpj")
                         div.three.wide.field
                             label Data Organização
-                            input(type="text", disabled="" name="data_organizacao")
+                            input(type="text" , disabled="" name="data_organizacao")
 
             div.ui.segments
                 div.ui.red.segment(style="text-align: center; background-color: #F9FAFB")
@@ -216,7 +216,7 @@ block content
                                 span.ui.label 1.1.6.
                                 label Quantidade congregações?
                             div.six.wide.field
-                                input(type="text" name="or_nr_congregacoes")
+                                input(type="text" value="0" name="or_nr_congregacoes")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 2. SUPERVISÃO ESPIRITUAL
@@ -229,11 +229,11 @@ block content
                                 span.ui.label 2.1.1
                                 label Santa Ceia - Grupos
                             div.two.wide.field
-                                input(type="text" name="se_santaceia_grupos")
+                                input(type="text" value="0" name="se_santaceia_grupos")
                             div.four.wide.field
                                 label Santa Ceia - Individual
                             div.two.wide.field
-                                input(type="text" name="se_santaceia_individual")
+                                input(type="text" value="0" name="se_santaceia_individual")
 
                             div.four.wide.field.disabled
                                 div.ui.labeled.input
@@ -249,7 +249,7 @@ block content
                         div.five.wide.field(data-tooltip="Qual o número de atividades evangelísticas realizadas?")
                             label 2.2.1. Nº de atividades  evangelísticas:*
                         div.two.wide.field
-                            input(type="text" name="se_atividades_evangelisticas")
+                            input(type="text" value="0" name="se_atividades_evangelisticas")
                         div.ui.tiny.message
                             label * em templos e residências; recintos públicos ou ar livre; imprensa escrita, rádio e TV, etc.
                     div.inline.fields
@@ -258,23 +258,23 @@ block content
                         div.one.wide.field
                             label Bíblias
                         div.one.wide.field
-                            input(type="text" name="se_textos_distribuidos_biblia")
+                            input(type="text" value="0" name="se_textos_distribuidos_biblia")
+                        div.one.wide.field(data-tooltip="Novo Testamento")
+                            label N.T.
                         div.one.wide.field
-                            label Novo Testamento
-                        div.one.wide.field
-                            input(type="text" name="se_textos_distribuidos_nt")
+                            input(type="text" value="0" name="se_textos_distribuidos_nt")
                         div.one.wide.field
                             label Folhetos
                         div.one.wide.field
-                            input(type="text" name="se_textos_distribuidos_folhetos")
+                            input(type="text" value="0" name="se_textos_distribuidos_folhetos")
                         div.one.wide.field
                             label Outros
                         div.one.wide.field
-                            input(type="text" name="se_textos_distribuidos_outros")
+                            input(type="text" value="0" name="se_textos_distribuidos_outros")
                         div.one.wide.field
                             label Total
                         div.two.wide.field
-                            input(type="text")
+                            input(type="text" value="0")
                     div.inline.fields
                         div.five.wide.field(data-tooltip="Qual trabalho missionário realizado?")
                             label 2.2.3. Trabalho missionário com:
@@ -294,7 +294,7 @@ block content
                         div.five.wide.field
                             label 2.2.4.Outra participação missionária:
                         div.eleven.wide.field
-                            input(type="text" name="se_trabalho_misisonario_outros")
+                            input(type="text" value="0" name="se_trabalho_misisonario_outros")
 
 
                 div.ui.segment
@@ -328,7 +328,7 @@ block content
                         div.three.wide.field(data-tooltip="Número de Corais na Igreja")
                             label 2.3.5. Nº de Grupos Corais:
                         div.two.wide.field
-                            input(type="text" name="se_grupos_corais")
+                            input(type="text" value="0" name="se_grupos_corais")
                     div.inline.fields
                         div.four.wide.field(data-tooltip="Houve aperfeiçoamento para Presbíteros e Diáconos?")
                             label 2.3.3. Para Oficiais (Presbíteros e Diáconos)
@@ -340,7 +340,7 @@ block content
                         div.three.wide.field(data-tooltip="Quantas equipes musicais há na Igreja?")
                             label 2.3.6. Nº de Conjuntos Musicais:
                         div.two.wide.field
-                            input(type="text" name="se_conjuntos_musicas")
+                            input(type="text" value="0" name="se_conjuntos_musicas")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 2. SUPERVISÃO ESPIRITUAL
@@ -351,28 +351,28 @@ block content
                         div.six.wide.field(data-tooltip="Nº de atos benificientes realizados pela Junta Diaconal.")
                             label 2.4.1.Nº de atos beneficentes realizados pela Junta Diaconal:
                         div.two.wide.field
-                            input(type="text" name="se_beneficientes_jdiaconal")
+                            input(type="text" value="0" name="se_beneficientes_jdiaconal")
                         div.three.wide.field(data-tooltip="Nº de atos benificientes realizados por outro Departamento.")
                             label Por outros departamentos:
                         div.two.wide.field
-                            input(type="text" name="se_beneficientes_outros")
+                            input(type="text" value="0" name="se_beneficientes_outros")
                         div.one.wide.field
                             label Total
                         div.two.wide.field
-                            input(type="text")
+                            input(type="text" value="0")
                     div.inline.fields
                         div.six.wide.field(data-tooltip="Nº de visitas realizadas por Presbíteros e Diáconos.")
                             label 2.4.2.Nº de visitas feitas por presbíteros e diáconos:
                         div.two.wide.field
-                            input(type="text" name="se_visitas_presbiteros_diaconos")
+                            input(type="text" value="0" name="se_visitas_presbiteros_diaconos")
                         div.three.wide.field(data-tooltip="Nº de visitas realizadas por outro Departamento.")
                             label Por outros departamentos:
                         div.two.wide.field
-                            input(type="text" name="e_visitas_outros")
+                            input(type="text" value="0" name="e_visitas_outros")
                         div.one.wide.field
                             label Total
                         div.two.wide.field
-                            input(type="text")
+                            input(type="text" value="0")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 3. SUPERVISÃO ADMINISTRATIVA
@@ -456,17 +456,17 @@ block content
                         div.two.wide.field(data-tooltip="Nº Presbíteros com mandato a vencer no próximo ano.")
                             label Nº Presbíteros:
                         div.two.wide.field
-                            input(type="text" name="sa_officiais_venc_presbiteros")
+                            input(type="text" value="0" name="sa_officiais_venc_presbiteros")
                         div.two.wide.field(data-tooltip="Nº Diáconos com mandato a vencer no próximo ano.")
                             label Nº Diáconos
                         div.two.wide.field
-                            input(type="text" name="sa_officiais_venc_diaconos")
+                            input(type="text" value="0" name="sa_officiais_venc_diaconos")
                     div.inline.fields
                         div.three.wide.field
                             label Quais?
                     div.inline.fields
                         div.sixteen.wide.field
-                            textarea(rows="4" name="sa_id_oficiais_vencimento" placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer")
+                            textarea(rows="4" value="0" name="sa_id_oficiais_vencimento" placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer")
                     div.inline.fields
                         div.one.wide.field
                             label FAP?
@@ -526,9 +526,9 @@ block content
                             label 3.14. Reforma e/ou Construção em andamento:
                     div.inline.fields
                         div.eight.wide.field
-                            textarea(rows="4", name="sa_reforma_construcao_projeto" placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto.")
+                            textarea(rows="4" value="0", name="sa_reforma_construcao_projeto" placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto.")
                         div.eight.wide.field
-                            textarea(rows="4", name="sa_reforma_construcao_andamento" placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento.")
+                            textarea(rows="4" value="0", name="sa_reforma_construcao_andamento" placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento.")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 4. PLANEJAMENTO ESTRATÉGICO
@@ -552,9 +552,9 @@ block content
                             label 4.3. Quais os objetivos propostos e NÃO alcançados? Identificar as dificuldades.
                     div.inline.fields
                         div.eight.wide.field
-                            textarea(rows="4", name="pe_objetivos_sucesso" placeholder="Cite os objetivos que foram propostos e alcançados.")
+                            textarea(rows="4" value="0", name="pe_objetivos_sucesso" placeholder="Cite os objetivos que foram propostos e alcançados.")
                         div.eight.wide.field
-                            textarea(rows="4", name="pe_objetivos_falha_dificuldades" placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados.")
+                            textarea(rows="4" value="0", name="pe_objetivos_falha_dificuldades" placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados.")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 5. PATRIMÔNIO
