@@ -61,19 +61,19 @@ block content
                     div.fields
                         div.two.wide.field
                             label Ano
-                            input(type="text", value="2018", disabled="")
+                            input(type="text" , value="2018", disabled="")
                         div.two.wide.field
                             label Sínodo
-                            input(type="text", value="SCA", disabled="")
+                            input(type="text" , value="SCA", disabled="")
                         div.two.wide.field
                             label Presbitério
-                            input(type="text", value="PRON", disabled="")
+                            input(type="text" , value="PRON", disabled="")
                         div.eight.wide.field
                             label Igreja
-                            input(type="text", value="IGREJA PRESBITERIANA LUZ E VIDA", disabled="")
+                            input(type="text" , value="IGREJA PRESBITERIANA LUZ E VIDA", disabled="")
                         div.two.wide.field
                             label Sigla
-                            input(type="text", value="?????", disabled="")
+                            input(type="text" , value="?????", disabled="")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -84,18 +84,18 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label Nome
-                            input(type="text", name="nome" placeholder="Digite seu Nome" disabled="")
+                            input(type="text" , name="nome" placeholder="Digite seu Nome" disabled="")
                     div.fields
                         div.eight.wide.field
                             label Nome do Pai
-                            input(type="text", name="nome_pai" placeholder="Nome do Pai" disabled="")
+                            input(type="text" , name="nome_pai" placeholder="Nome do Pai" disabled="")
                         div.eight.wide.field
                             label Nome da Mãe
-                            input(type="text", name="nome_mae" placeholder="Nome da Mãe" disabled="")
+                            input(type="text" , name="nome_mae" placeholder="Nome da Mãe" disabled="")
                     div.fields
                         div.ui.calendar.bottom.left.three.wide.field
                             label Data de Nascimento
-                            input.datepicker2(type="text" name="nascimento_data" placeholder="Data de Nascimento" disabled="")
+                            input.datepicker2(type="text" value="0" name="nascimento_data" placeholder="Data de Nascimento" disabled="")
                         div.five.wide.field
                             label Estado Natal
                             select.ui.fluid.search.dropdown(disabled="")
@@ -113,13 +113,13 @@ block content
                     div.fields
                         div.four.wide.field
                             label RG
-                            input(type="text", name="rg" placeholder="RG" disabled="")
+                            input(type="text" , name="rg" placeholder="RG" disabled="")
                         div.four.wide.field
                             label Orgão Emissor
-                            input(type="text", name="rg_emissor" placeholder="Orgão Emissor" disabled="")
+                            input(type="text" , name="rg_emissor" placeholder="Orgão Emissor" disabled="")
                         div.four.wide.field
                             label CPF
-                            input(type="text", name="cpf" placeholder="CPF" disabled="")
+                            input(type="text" , name="cpf" placeholder="CPF" disabled="")
                         div.five.wide.field
                             label Estado Civil
                             select.ui.fluid.search.dropdown(disabled="")
@@ -130,30 +130,30 @@ block content
                     div.fields
                         div.ten.wide.field
                             label Cônjuge
-                            input(type="text", name="conjuge_nome" placeholder="Cônjuge" disabled="")
+                            input(type="text" , name="conjuge_nome" placeholder="Cônjuge" disabled="")
                         div.ui.calendar.bottom.left.four.wide.field
                             label Data de Nascimento
-                            input.datepicker2(type="text" name="conjuge_nascimento" placeholder="Data de Nascimento do Cônjuge" disabled="")
+                            input.datepicker2(type="text" value="0" name="conjuge_nascimento" placeholder="Data de Nascimento do Cônjuge" disabled="")
                         div.two.wide.field
                             label Nº de Dependentes
-                            input(type="text", name="dependentes" placeholder="Nº de Dependentes" disabled="")
+                            input(type="text" , name="dependentes" placeholder="Nº de Dependentes" disabled="")
                     div.fields
                         div.sixteen.wide.field
                             label Nome dos Dependentes
-                            input(type="text", name="nome_filhos" placeholder="Nome dos Dependentes. OSB. use ; para separar os nomes" disabled="")
+                            input(type="text" , name="nome_filhos" placeholder="Nome dos Dependentes. OSB. use ; para separar os nomes" disabled="")
                     div.fields
                         div.six.wide.field
                             label Endereço
-                            input(type="text" name="endereco" placeholder="Endereço" disabled="")
+                            input(type="text" value="0" name="endereco" placeholder="Endereço" disabled="")
                         div.two.wide.field
                             label Número
-                            input(type="text" name="endereco_nr" placeholder="Número" disabled="")
+                            input(type="text" value="0" name="endereco_nr" placeholder="Número" disabled="")
                         div.four.wide.field
                             label Complemento
-                            input(type="text" name="endereco_complemento" placeholder="Complemento" disabled="")
+                            input(type="text" value="0" name="endereco_complemento" placeholder="Complemento" disabled="")
                         div.four.wide.field
                             label Bairro
-                            input(type="text" name="endereco_bairro" placeholder="Bairro" disabled="")
+                            input(type="text" value="0" name="endereco_bairro" placeholder="Bairro" disabled="")
                     div.fields
                         div.four.wide.field
                             label Estado
@@ -171,23 +171,23 @@ block content
                                 option Cidade
                         div.two.wide.field
                             label CEP
-                            input(type="text", name="cep" placeholder="CEP" disabled="")
+                            input(type="text" , name="cep" placeholder="CEP" disabled="")
                         div.two.wide.field
                             label Cx. Postal
-                            input(type="text", name="cx_postal" placeholder="Caixa Postal" disabled="")
+                            input(type="text" , name="cx_postal" placeholder="Caixa Postal" disabled="")
                         div.three.wide.field
                             label CEP Cx. Postal
-                            input(type="text", name="cx_postal_cep" placeholder="CEP Cx. Postal" disabled="")
+                            input(type="text" , name="cx_postal_cep" placeholder="CEP Cx. Postal" disabled="")
                     div.fields
                         div.three.wide.field
                             label Celular
-                            input(type="text", name="celular" placeholder="Celular" disabled="")
+                            input(type="text" , name="celular" placeholder="Celular" disabled="")
                         div.three.wide.field
                             label Telefone Fixo
-                            input(type="text", name="telefone" placeholder="Telefone Fixo" disabled="")
+                            input(type="text" , name="telefone" placeholder="Telefone Fixo" disabled="")
                         div.three.wide.field
                             label Telefone da Igreja
-                            input(type="text", name="telefone_igreja" placeholder="Telefone da Igreja" disabled="")
+                            input(type="text" , name="telefone_igreja" placeholder="Telefone da Igreja" disabled="")
                         div.seven.wide.field
                             label E-mail
                             input(type="email" name="email" placeholder="E-Mail" disabled="")
@@ -205,7 +205,7 @@ block content
                                 option(value="7") Moradia alugada Fora do campo
                         div.three.wide.field
                             label Data de Ordenação:
-                            input(type="text" name="ordenacao_data")
+                            input(type="text" value="0" name="ordenacao_data")
                         div.eight.wide.field(data-tooltip="Digite ou Selecione o Presbitério onde foi ordenado.")
                             label Presbitério
                             select.ui.fluid.search.dropdown(name="id_presbiterio")
@@ -230,7 +230,7 @@ block content
                             label Côngruas
                             div.ui.labeled.input
                                 div.ui.label R$
-                                input(type="text" name="congruas")
+                                input(type="text" value="0" name="congruas")
                     div.fields.inline
                         div.three.wide.field(data-tooltip="Possui aposentadoria pública?")
                             label Aposentadoria pública?
@@ -293,10 +293,10 @@ block content
                     div.fields
                         div.eight.wide.field
                             label Igreja(s):
-                            textarea(rows="2" name="ct_igreja")
+                            textarea(rows="2" value="0" name="ct_igreja")
                         div.eight.wide.field
                             label Congregação(ões):
-                            textarea(rows="2" name="ct_congregacoes")
+                            textarea(rows="2" value="0" name="ct_congregacoes")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -311,29 +311,29 @@ block content
                     div.fields
                         div.four.wide.field
                             label Pregações
-                            input(type="text" name="pregacoes")
+                            input(type="text" value="0" name="pregacoes")
                         div.four.wide.field
                             label Aulas de Escola Dominical:
-                            input(type="text" name="ebd")
+                            input(type="text" value="0" name="ebd")
                         div.four.wide.field
                             label Trabalhos de Evangelização:
-                            input(type="text" name="evangelizacao")
+                            input(type="text" value="0" name="evangelizacao")
                         div.four.wide.field
                             label Estudos Bíblicos:
-                            input(type="text" name="estudos_biblicos")
+                            input(type="text" value="0" name="estudos_biblicos")
                     div.fields
                         div.four.wide.field
                             label Palestras, preleções especiais:
-                            input(type="text" name="palestras_prelecoes")
+                            input(type="text" value="0" name="palestras_prelecoes")
                         div.four.wide.field
                             label Mensagens - Rádio/TV:
-                            input(type="text" name="msg_radio")
+                            input(type="text" value="0" name="msg_radio")
                         div.four.wide.field
                             label Artigos-jornais, boletins, revistas:
-                            input(type="text" name="artigos_boletins_revistas")
+                            input(type="text" value="0" name="artigos_boletins_revistas")
                         div.four.wide.field
                             label Entrevistas:
-                            input(type="text" name="entrevistas")
+                            input(type="text" value="0" name="entrevistas")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 2. ATOS PASTORAIS
@@ -343,23 +343,23 @@ block content
                     div.fields
                         div.five.wide.field
                             label Santas Ceias:
-                            input(type="text" name="santa_ceia")
+                            input(type="text" value="0" name="santa_ceia")
                         div.six.wide.field
                             label Bênçãos Nupciais (com ou sem efeito civil):
-                            input(type="text" name="bencaos_nupciais")
+                            input(type="text" value="0" name="bencaos_nupciais")
                         div.five.wide.field
                             label Funerais:
-                            input(type="text" name="funerais")
+                            input(type="text" value="0" name="funerais")
                     div.fields
                         div.five.wide.field
                             label Batismos Infantis:
-                            input(type="text" name="batismos")
+                            input(type="text" value="0" name="batismos")
                         div.six.wide.field
                             label Profissões de Fé:
-                            input(type="text" name="profissoes_fe")
+                            input(type="text" value="0" name="profissoes_fe")
                         div.five.wide.field
                             label Profissões de Fé & Batismos:
-                            input(type="text" name="profissoes_batismos")
+                            input(type="text" value="0" name="profissoes_batismos")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 3. ASSISTÊNCIA PASTORAL
@@ -369,7 +369,7 @@ block content
                     div.fields
                         div.four.wide.field
                             label Aconselhamentos/Orientações:
-                            input(type="text" name="aconselhamentos")
+                            input(type="text" value="0" name="aconselhamentos")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 3. ASSISTÊNCIA PASTORAL
@@ -379,13 +379,13 @@ block content
                     div.fields
                         div.seven.wide.field
                             label Evangélicos ou não:(considerar as visitas feitas nos lares como uma visita.)
-                            input(type="text" name="visitas_lares")
+                            input(type="text" value="0" name="visitas_lares")
                         div.six.wide.field
                             label Pontos de Pregação, Congregações ou Campos Missionários
-                            input(type="text" name="visitas_igrejas")
+                            input(type="text" value="0" name="visitas_igrejas")
                         div.three.wide.field
                             label Departamentos Internos
-                            input(type="text" name="departamentos_internos")
+                            input(type="text" value="0" name="departamentos_internos")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 4. MINISTÉRIO DESIGNADO NOS TERMOS DO ARTIGO 37 DA CI/IPB
@@ -394,7 +394,7 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label Descrição das atividades:
-                            textarea(rows="5" name="descricao_atividades")
+                            textarea(rows="5" value="0" name="descricao_atividades")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -409,30 +409,30 @@ block content
                     div.fields
                         div.four.wide.field
                             label Reuniões do Conselho:
-                            input(type="text" name="reunioes_conselho")
+                            input(type="text" value="0" name="reunioes_conselho")
                         div.four.wide.field
                             label Assembleias Gerais da Igreja:
-                            input(type="text" name="assembleias")
+                            input(type="text" value="0" name="assembleias")
                         div.four.wide.field
                             label Diáconos Ordenados e/ou Investidos:
-                            input(type="text" name="diaconos_ordenados_investidos")
+                            input(type="text" value="0" name="diaconos_ordenados_investidos")
                         div.four.wide.field
                             label Presbíteros Ordenados e/ou Investidos:
-                            input(type="text" name="presbiteros_ordenados_investidos")
+                            input(type="text" value="0" name="presbiteros_ordenados_investidos")
                     div.fields
                         div.three.wide.field
                             label Reuniões do Presbitério:
-                            input(type="text" name="reunioes_presbiterio")
+                            input(type="text" value="0" name="reunioes_presbiterio")
                         div.three.wide.field
                             label Reuniões do Sínodo:
-                            input(type="text" name="reunioes_sinodo")
+                            input(type="text" value="0" name="reunioes_sinodo")
                         div.four.wide.field
                             label Reuniões do Supremo Concílio da IPB:
-                            input(type="text" name="reunioes_concilio")
+                            input(type="text" value="0" name="reunioes_concilio")
                     div.fields
                         div.sixteen.wide.field
                             label Comentários:
-                            textarea(rows="3" name="comentarios")
+                            textarea(rows="3" value="0" name="comentarios")
 
                 div.ui.form.segment
                     div.ui.green.ribbon.label(style="font-size:0.92857143em;") 2. CARGOS EM COMISSÕES EXECUTIVAS DOS CONCÍLIOS, SECRETARIAS DE CAUSAS, JUNTAS, COMISSÕES E AUTARQUIAS
@@ -445,19 +445,19 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label No Presbitério:
-                            textarea(rows="3" name="cargos_presbiterio")
+                            textarea(rows="3" value="0" name="cargos_presbiterio")
                     div.fields
                         div.sixteen.wide.field
                             label No Sínodo:
-                            textarea(rows="3" name="cargos_sinodo")
+                            textarea(rows="3" value="0" name="cargos_sinodo")
                     div.fields
                         div.sixteen.wide.field
                             label No Supremo Concílio:
-                            textarea(rows="3" name="cargos_concilio")
+                            textarea(rows="3" value="0" name="cargos_concilio")
                     div.fields
                         div.sixteen.wide.field
                             label Em Juntas, Comissões e Autarquias da IPB:
-                            textarea(rows="3" name="cargos_outros")
+                            textarea(rows="3" value="0" name="cargos_outros")
                     div.fields
                         div.sixteen.wide.field
                             label Texto complementar::
@@ -477,19 +477,19 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label 1. Atualização e Aperfeiçoamento:
-                            textarea(rows="3" name="atualizacao_aperfeicoamento")
+                            textarea(rows="3" value="0" name="atualizacao_aperfeicoamento")
                     div.fields
                         div.sixteen.wide.field
                             label 2. Atividades em entidades para-eclesiásticas:
-                            textarea(rows="3" name="atividades_para_eclesiasticas")
+                            textarea(rows="3" value="0" name="atividades_para_eclesiasticas")
                     div.fields
                         div.sixteen.wide.field
                             label 3. Atividades Extra Ministeriais:
-                            textarea(rows="3" name="atividades_extras_ministeriais")
+                            textarea(rows="3" value="0" name="atividades_extras_ministeriais")
                     div.fields
                         div.sixteen.wide.field
                             label Outras
-                            textarea(rows="3" name="atividades_outros")
+                            textarea(rows="3" value="0" name="atividades_outros")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
