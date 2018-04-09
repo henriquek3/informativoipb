@@ -429,7 +429,7 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_alteracao', value: user.id_usuario});
+                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
                 form.unshift({name: 'data_alteracao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
