@@ -74,8 +74,7 @@ dist/js/app/
 public/js/app/
 public/css/main.min.css
 public/css/main.min.css.map
-dist/css/main.min.css
-dist/css/main.min.css.map
+dist/css/
 dist/modals/
 templates/
 .phpintel/
