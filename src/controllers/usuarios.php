@@ -12,12 +12,20 @@ $app->get('api/usuarios', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
     $query = "SELECT
-              ui.nome as 'usuario_inclusao',
-              ua.nome as 'usuario_alteracao',
-              u.*
-            FROM usuarios u
-              LEFT JOIN usuarios as ui ON ui.id = u.usuario_inclusao
-              LEFT JOIN usuarios as ua ON ua.id = u.usuario_alteracao;";
+                ui.nome as 'user_inclusao',
+                  ua.nome as 'user_alteracao',
+                  u.*,
+                  -- p.id,
+                  i.id as 'id_igreja',
+                  p2.id as 'id_presbiterio',
+                  s.id as 'id_sinodo'
+                FROM USUARIOS U
+                  LEFT JOIN USUARIOS AS UI ON UI.ID = U.USUARIO_INCLUSAO
+                  LEFT JOIN USUARIOS AS UA ON UA.ID = U.USUARIO_ALTERACAO
+                  LEFT JOIN PRESBITEROS P ON U.ID_PRESBITERO = P.ID
+                  LEFT JOIN IGREJAS I ON P.ID_IGREJA = I.ID
+                  LEFT JOIN PRESBITERIOS P2 ON I.ID_PRESBITERIO = P2.ID
+                  LEFT JOIN SINODOS S ON P2.ID_SINODO = S.ID";
     $id = (int)$request->get('id');
     $params = [];
     if ($id > 0) {

@@ -231,7 +231,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator_presbiteros = $("#cadastros_presbiteros").validate({
+    let validator = $("#cadastros_presbiteros").validate({
         rules: {
             nome: {
                 required: true,
@@ -474,7 +474,7 @@ $(document).ready(function () {
      * Ao clicar no botão limpar, reseta as classes de erro
      */
     $(".ui.reset.button").on("click", function () {
-        validator_presbiteros.resetForm();
+        validator.resetForm();
         $('form').form('reset')
     });
 
