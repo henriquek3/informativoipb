@@ -29,8 +29,10 @@ html
                                 div.ui.form
                                     button.ui.fluid.teal.button(name="supremo") IGREJAS
 
-
-    include includes/_javascript.pug
+    block specific-js
+        // Essential javascripts for application to work
+        script(src='js/jquery-3.2.1.min.js')
+        script(src='js/semantic.min.js')
         script(type="text/javascript").
             $("button").click(function(){
                 document.location = "/login";

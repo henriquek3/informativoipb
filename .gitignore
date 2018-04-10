@@ -48,9 +48,9 @@ node_modules/
 
 # interface api
 composer.lock
+# Composer packages
 vendor/
 teste/
-/package-lock.json
 *.log
 *.tmp
 *.tmp.*
@@ -60,7 +60,6 @@ npm-debug.log*
 log.txt
 Thumbs.db
 .DS_Store
-composer.lock
 package-lock.json
 .sourcemaps/
 .sass-cache/
@@ -68,12 +67,15 @@ package-lock.json
 .versions/
 $RECYCLE.BIN/
 .vscode/
+
+# Arquivos do Front-end
 dist/*.html
 dist/js/app/
 public/js/app/
 public/css/main.min.css
-dist/css/main.min.css
-dist/css/main.min.css.map
+public/css/main.min.css.map
+dist/css/
+dist/modals/
 templates/
 .phpintel/
 .vs/

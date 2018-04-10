@@ -11,18 +11,25 @@ use Symfony\Component\HttpFoundation\Request;
 $app->get('api/presbiterios', function (Request $request) use ($app) {
     /** @var \Doctrine\DBAL\Connection $db */
     $db = $app['db'];
-    $query = "SELECT p.*, s.sigla AS sinodo
-                FROM presbiterios p, sinodos s
-                WHERE p.id_sinodo = s.id";
+    $query = "select
+              p.*,
+              s.sigla as sinodo,
+              u.nome as user_alteracao,
+              u2.nome as user_inclusao
+            
+            from presbiterios p
+            left join sinodos s on p.id_sinodo = s.id
+            left join usuarios u on p.usuario_alteracao = u.id
+            left join usuarios u2 on p.usuario_inclusao = u2.id";
     $id = (int)$request->get('id');
     $sinodo = (int)$request->get('sinodo');
     $params = [];
     if ($id > 0) {
-        $query .= " AND p.id = ?";
+        $query .= " WHERE P.ID = ?";
         array_push($params, $id);
     }
     if ($sinodo > 0) {
-        $query .= " AND p.id_sinodo = ?";
+        $query .= " WHERE p.id_sinodo = ?";
         array_push($params, $sinodo);
     }
     $result = $db->fetchAll($query, $params);

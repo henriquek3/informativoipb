@@ -7,18 +7,20 @@ $(document).ready(function () {
      * @type {{first: first, second: second}}
      */
     let styleInputSearch = {
-        first: function() {         
+        first: function () {
             setTimeout(() => {
                 $("input[type='search']").parent().addClass("ui icon input");
                 $("input[type='search']").css("width", "220px");
                 $("input[type='search']").css("margin-left", "10px");
             }, 500);
-        return styleInputSearch; },
-        second: function() {     
+            return styleInputSearch;
+        },
+        second: function () {
             setTimeout(() => {
-               $("input[type='search']").after("<i class='search icon'>");
+                $("input[type='search']").after("<i class='search icon'>");
             }, 1000);
-        return styleInputSearch; }
+            return styleInputSearch;
+        }
     };
 
     /**
@@ -183,6 +185,14 @@ $(document).ready(function () {
                 cadastros_sinodos.regiao.value = data.regiao;
 
                 /**
+                 * Atribui o nome do usuario e a data no painel de registro de alterações
+                 */
+                $("#user_inc").text(data.user_inclusao);
+                $("#data_inc").text(data.data_inclusao);
+                $("#user_alt").text(data.user_alteracao);
+                $("#data_alt").text(data.data_alteracao);
+
+                /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
@@ -278,6 +288,16 @@ $(document).ready(function () {
             if (id_row > 0) {
                 let form = $('#cadastros_sinodos').serializeArray();
                 form.unshift({name: 'id', value: id_row});
+
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_alteracao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+
                 $.post('api/sinodos/update', form)
                     .done(function (response) {
                         console.log(response);
@@ -350,6 +370,16 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#cadastros_sinodos').serializeArray();
+
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_inclusao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+
                 $.post('api/sinodos/store', form)
                     .done(function (response) {
                         console.log(response);
@@ -489,4 +519,14 @@ $(document).ready(function () {
             tbl_api.$('tr.active').removeClass('active');
         }
     });
+
+    /**
+     * Verifica Sessão do usuário
+     *   para ser enviado junto ao array form
+     * @type {string}
+     */
+    /*let user = btoa("user-data");
+    user = sessionStorage.getItem(user);
+    user = atob(user);
+    user = JSON.parse(user);*/
 });
