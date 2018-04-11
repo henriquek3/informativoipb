@@ -162,6 +162,7 @@ $(document).ready(function () {
         $.get('api/presbiteros?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
+                console.log(data);
                 cadastros_presbiteros.id_sinodo.value = data.id_sinodo;
                 cadastros_presbiteros.id_presbiterio.value = data.id_presbiterio;
                 cadastros_presbiteros.nome.value = data.nome;
