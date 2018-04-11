@@ -58,8 +58,9 @@ $(document).ready(function () {
     function getDataTable() {
         $.get('/api/presbiteros')
             .done(function (response) {
+                console.log(response);
                 for (let key in response) {
-                    let tr, row, id, regiao, nome, igreja, sinodo;
+                    let tr, row, id, sinodo, nome, igreja, presbiterio;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -68,9 +69,9 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    igreja = $('<td/>').html(row.nascimento_id_cidade.toUpperCase());
-                    sinodo = $('<td/>').html(row.nome_pai.toUpperCase());
-                    regiao = $('<td/>').html(row.nome.toUpperCase());
+                    igreja = $('<td/>').html(row.nome_igreja.toUpperCase());
+                    presbiterio = $('<td/>').html(row.presbiterio_sigla.toUpperCase());
+                    sinodo = $('<td/>').html(row.sigla_sinodo.toUpperCase());
 
                     /**
                      * Adiciona as células nas linhas
@@ -78,8 +79,8 @@ $(document).ready(function () {
                     tr.append(id)
                         .append(nome)
                         .append(igreja)
-                        .append(sinodo)
-                        .append(regiao);
+                        .append(presbiterio)
+                        .append(sinodo);
                     /**
                      * Adiciona linhas na tabela
                      */
