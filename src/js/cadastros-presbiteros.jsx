@@ -70,7 +70,7 @@ $(document).ready(function () {
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
                     igreja = $('<td/>').html(row.nome_igreja.toUpperCase());
-                    presbiterio = $('<td/>').html(row.presbiterio_sigla.toUpperCase());
+                    presbiterio = $('<td/>').html(row.sigla_presbiterio.toUpperCase());
                     sinodo = $('<td/>').html(row.sigla_sinodo.toUpperCase());
 
                     /**
@@ -160,9 +160,11 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiteros?id=' + id_row)
+        $.get('api/presbiteros?id2=' + id_row)
             .done(function (response) {
                 let data = response[0];
+                console.log('getdataForm');
+                console.log(id_row);
                 console.log(data);
                 cadastros_presbiteros.id_sinodo.value = data.id_sinodo;
                 cadastros_presbiteros.id_presbiterio.value = data.id_presbiterio;
@@ -191,13 +193,6 @@ $(document).ready(function () {
                 cadastros_presbiteros.telefone_igreja.value = data.telefone_igreja;
                 cadastros_presbiteros.email.value = data.email;
 
-                /**
-                 * Atribui o nome do usuario e a data no painel de registro de alterações
-                 */
-                $("#user_inc").text(data.user_inclusao);
-                $("#data_inc").text(data.data_inclusao);
-                $("#user_alt").text(data.user_alteracao);
-                $("#data_alt").text(data.data_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
@@ -217,6 +212,15 @@ $(document).ready(function () {
                         }, 500)
                     }, 500)
                 }, 500);
+
+                /**
+                 * Atribui o nome do usuario e a data no painel de registro de alterações
+                 */
+                $("#user_inc").text(data.user_inclusao);
+                $("#data_inc").text(data.data_inclusao);
+                $("#user_alt").text(data.user_alteracao);
+                $("#data_alt").text(data.data_alteracao);
+
             })
             .fail(function (response) {
                 console.log(response);
