@@ -16,7 +16,6 @@ html
             | .column {
             |   max-width: 450px;
             | }
-        
 
     body.ui.container
         div.ui.middle.aligned.center.aligned.grid
@@ -43,7 +42,7 @@ html
                 div.ui.error.message(style="text-align:left;display:none;", id="msg_login_error")
                     i.close.icon
                     div.header
-                        | Algo de errado não esta certo!
+                        | Atenção, verifique a mensagem abaixo!
                     ul.list
                         li(id="msg_error")
 
@@ -51,6 +50,9 @@ html
                     | Esqueceu a senha? 
                     a(href="#", id="give_pass") Clique Aqui!
 
-    include includes/_javascript.pug
+    block specific-js
+        // Essential javascripts for application to work
+        script(src='js/jquery-3.2.1.min.js')
+        script(src='js/semantic.min.js')
         script(type="text/javascript", src="js/plugins/sweetalert.min.js")
         script(type="text/javascript", src="js/app/login-app.js")

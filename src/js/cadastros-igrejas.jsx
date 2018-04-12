@@ -1,4 +1,4 @@
-let id_row, tr_row, tbl_igrejas, tbl_api;
+let id_row, id_row_cong, tr_row, tbl_igrejas, tbl_api;
 tbl_igrejas = $("#tbl_igrejas");
 
 $(document).ready(function () {
@@ -7,25 +7,27 @@ $(document).ready(function () {
      * @type {{first: first, second: second}}
      */
     let styleInputSearch = {
-        first: function() {
+        first: function () {
             setTimeout(() => {
                 $("input[type='search']").parent().addClass("ui icon input");
                 $("input[type='search']").css("width", "220px");
                 $("input[type='search']").css("margin-left", "10px");
             }, 500);
-            return styleInputSearch; },
-        second: function() {
+            return styleInputSearch;
+        },
+        second: function () {
             setTimeout(() => {
                 $("input[type='search']").after("<i class='search icon'>");
             }, 1000);
-            return styleInputSearch; }
+            return styleInputSearch;
+        }
     };
     /**
      * Função utilizada devido o select com ui.search.dropdown
      */
     $.validator.setDefaults({
         debug: true,
-        ignore: ".search", // ignora validação onde estiver usando essa classe
+        ignore: ".search, .hidden", // ignora validação onde estiver usando essa classe
         submitHandler: function () {
             return false;
         }
@@ -67,9 +69,9 @@ $(document).ready(function () {
                      * @type {jQuery}
                      */
                     id = $('<td/>').html(row.id);
-                    nome = $('<td/>').html(row.nome);
-                    presbiterio = $('<td/>').html(row.presbiterio);
-                    sinodo = $('<td/>').html(row.sinodo);
+                    nome = $('<td/>').html(row.nome.toUpperCase());
+                    presbiterio = $('<td/>').html(row.presbiterio.toUpperCase());
+                    sinodo = $('<td/>').html(row.sinodo.toUpperCase());
                     /**
                      * Adiciona as células nas linhas
                      */
@@ -92,6 +94,8 @@ $(document).ready(function () {
             })
         ;
     }
+
+    getDataTable();
 
     /**
      * Instancia DataTables() e organiza os eventos do click
@@ -161,16 +165,47 @@ $(document).ready(function () {
         $.get('api/igrejas?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
+                console.log('getdataForm');
+                console.log(id_row);
+                console.log(data);
+                cadastros_igrejas.id_sinodo.value = data.id_sinodo;
+                cadastros_igrejas.id_presbiterio.value = data.id_presbiterio;
+                cadastros_igrejas.id_estado.value = data.id_estado;
+                cadastros_igrejas.cnpj.value = data.cnpj;
                 cadastros_igrejas.nome.value = data.nome;
-                cadastros_igrejas.sigla.value = data.sigla;
-                cadastros_igrejas.regiao.value = data.regiao;
+                cadastros_igrejas.data_organizacao.value = data.data_organizacao;
+                cadastros_igrejas.endereco.value = data.endereco;
+                cadastros_igrejas.endereco_numero.value = data.endereco_numero;
+                cadastros_igrejas.endereco_complemento.value = data.endereco_complemento;
+                cadastros_igrejas.endereco_bairro.value = data.endereco_bairro;
+                cadastros_igrejas.email.value = data.email;
+                cadastros_igrejas.homepage.value = data.homepage;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_igrejas.regiao).trigger("change");
+                    $(cadastros_igrejas.id_sinodo).trigger("change");
+                    $(cadastros_igrejas.id_presbiterio).trigger("change");
+                    $(cadastros_igrejas.id_estado).trigger("change");
+                    setTimeout(() => {
+                        cadastros_igrejas.id_cidade.value = data.id_cidade;
+                        console.log("data.cidade");
+                        setTimeout(() => {
+                            $(cadastros_igrejas.id_cidade).trigger("change");
+                            console.log("trigg cidade")
+                        }, 500)
+                    }, 500)
                 }, 500);
+
+
+                /**
+                 * Atribui o nome do usuario e a data no painel de registro de alterações
+                 */
+                $("#user_inc").text(data.user_inclusao);
+                $("#data_inc").text(data.data_inclusao);
+                $("#user_alt").text(data.user_alteracao);
+                $("#data_alt").text(data.data_alteracao);
             })
             .fail(function (response) {
                 console.log(response);
@@ -240,8 +275,8 @@ $(document).ready(function () {
             },
             cnpj: {
                 required: true,
-                minlength: 14,
-                maxlength: 14
+                minlength: 10,
+                maxlength: 20
             },
             data_organizacao: {
                 required: true,
@@ -289,7 +324,147 @@ $(document).ready(function () {
             alert("invelid handler");
         },
         submitHandler: function () {
-            alert("submit handler");
+            if (id_row > 0) {
+                let form = $('#cadastros_igrejas').serializeArray();
+                form.unshift({name: 'id', value: id_row});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_alteracao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                $.post('api/igrejas/update', form)
+                    .done(function (response) {
+                        console.log(response);
+                        /*tbl_api.row(tr_row).remove();
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            regiao
+                        ]).draw(false);*/
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro alterado com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(cadastros_igrejas.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            } else {
+                let form = $('#cadastros_igrejas').serializeArray();
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_inclusao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                $.post('api/igrejas/store', form)
+                    .done(function (response) {
+                        console.log(response);
+
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.presbiterio.toUpperCase(),
+                            response.sinodo.toUpperCase()
+                        ]).draw(false);
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro inserido com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(cadastros_igrejas.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            }
         }
     });
 
@@ -302,8 +477,8 @@ $(document).ready(function () {
             },
             cnpj: {
                 required: true,
-                minlength: 14,
-                maxlength: 14
+                minlength: 10,
+                maxlength: 20
             },
             data_organizacao: {
                 required: true,
@@ -351,7 +526,167 @@ $(document).ready(function () {
             alert("invelid handler");
         },
         submitHandler: function () {
-            alert("submit handler");
+            if (id_row_cong > 0) {
+                let form = $('#cadastros_congregacoes').serializeArray();
+                form.unshift({name: 'id', value: id_row_cong});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_alteracao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                $.post('api/usuarios/update', form)
+                    .done(function (response) {
+                        console.log(response);
+                        /*tbl_api.row(tr_row).remove();
+                        let regiao;
+                        switch (response.regiao) {
+                            case '1':
+                                regiao = "CENTRO-OESTE";
+                                break;
+                            case '2':
+                                regiao = "NORDESTE";
+                                break;
+                            case '3':
+                                regiao = "NORTE";
+                                break;
+                            case '4':
+                                regiao = "SUDESTE";
+                                break;
+                            case '5':
+                                regiao = "SUL";
+                                break;
+                            default:
+                                regiao = 'Não identificado';
+                                break;
+                        }
+                        tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            regiao
+                        ]).draw(false);*/
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro alterado com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(cadastros_congregacoes.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            } else {
+                let form = $('#cadastros_congregacoes').serializeArray();
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_inclusao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                $.post('api/usuarios/store', form)
+                    .done(function (response) {
+                        console.log(response);
+                        /* let regiao;
+                         switch (response.regiao) {
+                             case '1':
+                                 regiao = "CENTRO-OESTE";
+                                 break;
+                             case '2':
+                                 regiao = "NORDESTE";
+                                 break;
+                             case '3':
+                                 regiao = "NORTE";
+                                 break;
+                             case '4':
+                                 regiao = "SUDESTE";
+                                 break;
+                             case '5':
+                                 regiao = "SUL";
+                                 break;
+                             default:
+                                 regiao = 'Não identificado';
+                                 break;
+                         }
+                         tbl_api.row.add([
+                             response.id,
+                             response.nome.toUpperCase(),
+                             response.sigla.toUpperCase(),
+                             regiao
+                         ]).draw(false);*/
+
+                        iziToast.success({
+                            title: 'OK',
+                            message: 'Registro inserido com sucesso!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
+                    })
+                    .fail(function (response) {
+                        console.log(response);
+                        let str = response.responseText;
+                        let result = str.indexOf("SQLSTATE[23000]");
+                        if (result > 0) {
+                            $(cadastros_congregacoes.sigla).parent().addClass("error");
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'center',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Erro',
+                                message: 'Operação não realizada!',
+                                timeout: 10000,
+                                pauseOnHover: true,
+                                position: 'topRight',
+                                transitionIn: 'fadeInDown',
+                                transitionOut: 'fadeOutUp'
+                            });
+                        }
+                    })
+                ;
+            }
         }
     });
 
@@ -393,12 +728,13 @@ $(document).ready(function () {
      * Carregar Estados e Cidades
      */
     let estadosLoad;
+
     function popularEstadosCidades() {
 
         if (!estadosLoad) {
             $.get('api/estados')
                 .done(function (response) {
-                    $(cadastros_igrejas.id_estado).append($('<option />').text('selecione..'));
+                    $(cadastros_igrejas.id_estado).append($('<option />').text('- -'));
 
                     $.each(response, function () {
                         $(cadastros_igrejas.id_estado).append(
@@ -438,7 +774,7 @@ $(document).ready(function () {
                         $("#loader_cidade").hide()
                     })
                     .fail(function (response) {
-                       iziToast.error({
+                        iziToast.error({
                             title: 'Erro',
                             message: 'Consulta não realizada, verifique sua conexão',
                         });
@@ -447,6 +783,7 @@ $(document).ready(function () {
             }
         });
     }
+
     popularEstadosCidades();
 
     /**
@@ -455,7 +792,6 @@ $(document).ready(function () {
     function loadSinodosPresbiterios() {
         $.get('api/sinodos')
             .done(function (response) {
-                console.log(response);
                 $.each(response, function () {
                     $(cadastros_igrejas.id_sinodo).append(
                         $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
@@ -499,4 +835,48 @@ $(document).ready(function () {
     }
 
     loadSinodosPresbiterios();
+
+    /**
+     * Função para quando for na aba lista, zerar o id_row
+     */
+    $("a[data-tab='first']").on("click", function () {
+        if (id_row > 0) {
+            id_row = null;
+            tbl_api.row().deselect();
+            tbl_api.$('tr.active').removeClass('active');
+        }
+    });
+
+    /**
+     *  Função para ativar o get
+     */
+    $("a[data-tab='second']").on("click", function () {
+        if (id_row > 0) {
+            getDataForm();
+        } else {
+            /**
+             * reseta os campos do tipo input
+             */
+            cadastros_igrejas.reset();
+            validator_congregacoes.reset();
+
+            /**
+             * retorna o select para a primera opção
+             * @type {number}
+             */
+            validator_igrejas.resetForm();
+            validator_congregacoes.resetForm();
+            $('form').form('reset');
+        }
+    });
+
+    /**
+     * Verifica Sessão do usuário
+     *   para ser enviado junto ao array form
+     * @type {string}
+     */
+    /*let user = btoa("user-data");
+    user = sessionStorage.getItem(user);
+    user = atob(user);
+    user = JSON.parse(user);*/
 });

@@ -201,6 +201,14 @@ $(document).ready(function () {
                 cadastros_presbiterios.id_sinodo.value = data.id_sinodo;
 
                 /**
+                 * Atribui o nome do usuario e a data no painel de registro de alterações
+                 */
+                $("#user_inc").text(data.user_inclusao);
+                $("#data_inc").text(data.data_inclusao);
+                $("#user_alt").text(data.user_alteracao);
+                $("#data_alt").text(data.data_alteracao);
+
+                /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
@@ -301,6 +309,14 @@ $(document).ready(function () {
             if (id_row > 0) {
                 let form = $('#cadastros_presbiterios').serializeArray();
                 form.unshift({name: 'id', value: id_row});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_alteracao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
                 $.post('api/presbiterios/update', form)
                     .done(function (response) {
                         tbl_api.row(tr_row).remove();
@@ -352,6 +368,14 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#cadastros_presbiterios').serializeArray();
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_inclusao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
                 $.post('api/presbiterios/store', form)
                     .done(function (response) {
                         id_row = response.id;
@@ -480,4 +504,14 @@ $(document).ready(function () {
             tbl_api.$('tr.active').removeClass('active');
         }
     });
+
+    /**
+     * Verifica Sessão do usuário
+     *   para ser enviado junto ao array form
+     * @type {string}
+     */
+    /*let user = btoa("user-data");
+    user = sessionStorage.getItem(user);
+    user = atob(user);
+    user = JSON.parse(user);*/
 });

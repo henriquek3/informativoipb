@@ -22,7 +22,7 @@ block content
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
-            a.item.active(data-tab="first") Igrejas
+            a.item.active(data-tab="first") Minístros
             a.item(data-tab="second") Cadastrar
         div.ui.bottom.attached.tab.segment.active(data-tab="first")
             table.ui.compact.selectable.celled.green.table(id="tbl_presbiteros")
@@ -34,28 +34,21 @@ block content
                         th.two.wide.center.aligned Presbitério
                         th.two.wide.center.aligned Sínodo
                 tbody(id="tbody_presbiteros")
-                    tr
-                        td.center.aligned 01
-                        td Alessandro Santareli
-                        td Primeira Igreja de Cacoal
-                        td.center.aligned PRON
-                        td.center.aligned SCA
+
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             form(id="cadastros_presbiteros", name="cadastros_presbiteros")
                 div.ui.form
                     div.fields
-                        div.five.wide.field
+                        div.six.wide.field
                             label Sínodo
-                            select.ui.search.dropdown
+                            select.ui.fluid.search.dropdown(name="id_sinodo")
                                 option
-                                option(value="1", selected="true") SCA / SÍNODO CENTRO AMÉRICA
 
-                        div.five.wide.field
+                        div.six.wide.field(id="div_presbiterio")
                             label Presbitério
-                            select.ui.search.dropdown
-                                option
-                                option(value="1", selected="true") PRON / PRESBITÉRIO DE RONDONÓPOLIS
+                            select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
 
                         div.six.wide.field
                             label Igreja
@@ -80,18 +73,13 @@ block content
                             input.datepicker2(type="text" name="nascimento_data" placeholder="Data de Nascimento")
                         div.five.wide.field
                             label Estado
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
-                        div.eight.wide.field
+                            select.ui.fluid.search.dropdown(name="nascimento_id_estado")
+
+                        div.eight.wide.field(id="div_cidade")
                             label Cidade
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Cidade
-                                option Cidade
-                                option Cidade
+                            select.ui.fluid.search.dropdown(name="nascimento_id_cidade", id="nascimento_id_cidade")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_cidade")
+
                     div.fields
                         div.four.wide.field
                             label RG
@@ -104,11 +92,11 @@ block content
                             input(type="text", name="cpf" placeholder="CPF")
                         div.five.wide.field
                             label Estado Civil
-                            select.ui.fluid.search.dropdown
-                                option Casado
-                                option Solteiro
-                                option Viúvo
-                                option Separado
+                            select.ui.fluid.search.dropdown(name="estado_civil")
+                                option(value="1") Casado
+                                option(value="2") Solteiro
+                                option(value="3") Viúvo
+                                option(value="4") Separado
                     div.fields
                         div.ten.wide.field
                             label Cônjuge
@@ -118,7 +106,7 @@ block content
                             input.datepicker2(type="text" name="conjuge_nascimento" placeholder="Data de Nascimento do Cônjuge")
                         div.two.wide.field
                             label Nº de Dependentes
-                            input(type="text", name="dependentes" placeholder="Nº de Dependentes")
+                            input(type="text", placeholder="Nº de Dependentes")
                     div.fields
                         div.sixteen.wide.field
                             label Nome dos Dependentes
@@ -140,18 +128,12 @@ block content
                     div.fields
                         div.four.wide.field
                             label Estado
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
-                        div.five.wide.field
+                            select.ui.fluid.search.dropdown(name="endereco_id_estado")
+
+                        div.five.wide.field(id="div_cidade")
                             label Cidade
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Cidade
-                                option Cidade
-                                option Cidade
+                            select.ui.fluid.search.dropdown(name="endereco_id_cidade", id="endereco_id_cidade")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_cidade")
 
                         div.two.wide.field
                             label CEP
@@ -165,16 +147,28 @@ block content
                     div.fields
                         div.three.wide.field
                             label Celular
-                            input(type="text", name="telefone" placeholder="Celular")
+                            input(type="text", name="celular" placeholder="Celular")
                         div.three.wide.field
                             label Telefone Fixo
                             input(type="text", name="telefone" placeholder="Telefone Fixo")
                         div.three.wide.field
                             label Telefone da Igreja
-                            input(type="text", name="telefone" placeholder="Telefone da Igreja")
+                            input(type="text", placeholder="Telefone da Igreja")
                         div.seven.wide.field
                             label E-mail
                             input(type="email" name="email" placeholder="E-Mail")
+
+
+                    div.fields
+                        div.two.wide.field
+                            label Teste
+                            input(type="text", name="id_igreja", value="1")
+                        div.two.wide.field
+                            label Teste
+                            input(type="text", name="nacionalidade", value="1")
+                        div.two.wide.field
+                            label Teste
+                            input(type="text", name="tipo", value="2")
 
                 div.ui.segments
                     div.ui.horizontal.segments
@@ -204,80 +198,6 @@ block content
 
                 div.ui.clearing.divider
 
-                div(style="text-align: center")
-                    button.ui.green.labeled.icon.button(type="submit")
-                        i.plus.icon
-                        | Gravar
-
-                    button.ui.reset.button(type="reset")
-                        i.minus.icon
-                        | Limpar
-
-                    button.ui.red.right.labeled.icon.button(type="button")
-                        i.remove.icon
-                        | Excluir
-
-        div.ui.bottom.attached.tab.segment(data-tab="third")
-            form(id="cadastros_congregacoes", name="cadastros_congregacoes")
-                div.ui.form
-                    div.fields
-                        div.eight.wide.disabled.field
-                            label Sínodo
-                            select.ui.fluid.search.dropdown
-                                option Sinodo
-                                option Sinodo
-                                option Sinodo
-                        div.eight.wide.disabled.field
-                            label Igreja
-                            select.ui.fluid.search.dropdown
-                                option Sinodo
-                                option Sinodo
-                                option Sinodo
-                    div.fields
-                        div.eight.wide.field
-                            label Estado
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
-                        div.eight.wide.field
-                            label Cidade
-                            select.ui.fluid.search.dropdown
-                                option
-                                option Cidade
-                                option Cidade
-                                option Cidade
-                    div.fields
-                        div.ten.wide.field
-                            label Nome
-                            input(type="text", name="nome" placeholder="Digite seu Nome")
-                        div.three.wide.field
-                            label CNPJ
-                            input(type="text" name="cnpj" placeholder="CNPJ")
-                        div.ui.calendar.bottom.left.three.wide.field
-                            label Organização
-                            input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
-                    div.fields
-                        div.six.wide.field
-                            label Endereço
-                            input(type="text" name="endereco" placeholder="Endereço")
-                        div.two.wide.field
-                            label Número
-                            input(type="text" name="endereco_nr" placeholder="Número")
-                        div.four.wide.field
-                            label Complemento
-                            input(type="text" name="endereco_complemento" placeholder="Complemento")
-                        div.four.wide.field
-                            label Bairro
-                            input(type="text" name="endereco_bairro" placeholder="Bairro")
-                    div.fields
-                        div.eight.wide.field
-                            label E-mail
-                            input(type="email" name="email" placeholder="E-Mail")
-                        div.eight.wide.field
-                            label Homepage
-                            input(type="url" name="website" placeholder="Web Site")
                 div(style="text-align: center")
                     button.ui.green.labeled.icon.button(type="submit")
                         i.plus.icon

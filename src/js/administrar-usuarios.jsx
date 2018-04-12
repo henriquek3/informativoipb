@@ -1,5 +1,5 @@
-let id_row, tr_row, tbl_sinodos, tbl_api;
-tbl_sinodos = $("#tbl_sinodos");
+let id_row, tr_row, tableUsuarios, tbl_api;
+tableUsuarios = $("#tableUsuarios");
 $(document).ready(function () {
     /**
      * Estilizar o input de pesquisar do
@@ -54,12 +54,129 @@ $(document).ready(function () {
      */
     $('.ui.dropdown').dropdown();
 
+    function getDataSinodos() {
+        $.get('api/sinodos')
+            .done(function (response) {
+                $(formUsuarios.id_sinodo).append($('<option />').text('- -'));
+
+                $.each(response, function () {
+                    $(formUsuarios.id_sinodo).append(
+                        $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                    );
+                });
+            })
+            .fail(function (response) {
+                console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
+            })
+        ;
+    }
+
+    getDataSinodos();
+
+    function getDataPresbiterio() {
+        $(formUsuarios.id_sinodo).on('change', function () {
+            if ($(formUsuarios.id_sinodo).val() > 0) {
+                $("select[name='id_presbiterio']").children().remove();
+                $("#div_presbiterio").find(".search").hide();
+                $("#loader_presbiterio").show();
+                $.get('api/presbiterios?sinodo=' + $(formUsuarios.id_sinodo).val())
+                    .done(function (response) {
+                        $(formUsuarios.id_presbiterio).append($('<option />').text('- -'));
+                        $.each(response, function () {
+                            $(formUsuarios.id_presbiterio).append(
+                                $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_presbiterio").find(".search").show();
+                        $("#loader_presbiterio").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataPresbiterio();
+
+    function getDataIgreja() {
+        $(formUsuarios.id_presbiterio).on('change', function () {
+            if ($(formUsuarios.id_presbiterio).val() > 0) {
+                $("select[name='id_igreja']").children().remove();
+                $("#div_igreja").find(".search").hide();
+                $("#loader_igreja").show();
+                $.get('api/igrejas?presbiterio=' + $(formUsuarios.id_presbiterio).val())
+                    .done(function (response) {
+                        $(formUsuarios.id_igreja).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(formUsuarios.id_igreja).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_igreja").find(".search").show();
+                        $("#loader_igreja").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataIgreja();
+
+    function getDataPresbitero() {
+        $(formUsuarios.id_igreja).on('change', function () {
+            if ($(formUsuarios.id_igreja).val() > 0) {
+                $("select[name='id_presbitero']").children().remove();
+                $("#div_presbitero").find(".search").hide();
+                $("#loader_presbitero").show();
+                $.get('api/presbiteros?igreja=' + $(formUsuarios.id_igreja).val())
+                    .done(function (response) {
+                        $(formUsuarios.id_presbitero).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(formUsuarios.id_presbitero).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_presbitero").find(".search").show();
+                        $("#loader_presbitero").hide()
+                    })
+                    .fail(function () {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataPresbitero();
+
     /**
      * Instancia DataTables() e organiza os eventos do click
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_sinodos.DataTable({
+            tbl_api = tableUsuarios.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -93,7 +210,7 @@ $(document).ready(function () {
             /**
              * Utilizado para selecionar as linhas da tabela
              */
-            $('#tbody_sinodos').off("click", "**").on('click', 'tr', function () {
+            $('#tbodyUsuarios').off("click", "**").on('click', 'tr', function () {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     id_row = null;
@@ -117,10 +234,10 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/sinodos')
+        $.get('/api/usuarios')
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, regiao, nome, sigla;
+                    let tr, row, id, nome, email, perfil, nivel, status;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -129,38 +246,63 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    sigla = $('<td/>').html(row.sigla.toUpperCase());
-                    switch (row.regiao) {
+                    email = $('<td/>').html(row.email.toUpperCase());
+                    switch (row.perfil) {
                         case '1':
-                            regiao = $('<td/>').html("CENTRO-OESTE");
+                            perfil = $('<td/>').html("SEC. IGREJA");
                             break;
                         case '2':
-                            regiao = $('<td/>').html("NORDESTE");
+                            perfil = $('<td/>').html("SEC. PRESBITÉRIO");
                             break;
                         case '3':
-                            regiao = $('<td/>').html("NORTE");
+                            perfil = $('<td/>').html("SEC. SÍNODO");
                             break;
                         case '4':
-                            regiao = $('<td/>').html("SUDESTE");
+                            perfil = $('<td/>').html("SEC. SUPREMO");
                             break;
                         case '5':
-                            regiao = $('<td/>').html("SUL");
+                            perfil = $('<td/>').html("SUPERV. GERAL");
                             break;
                         default:
-                            regiao = $('<td/>').html('Não identificado');
+                            perfil = $('<td/>').html('Não identificado');
                             break;
                     }
+                    switch (row.nivel) {
+                        case '0':
+                            nivel = $('<td/>').html("COMUM");
+                            break;
+                        case '1':
+                            nivel = $('<td/>').html("SUPERIOR");
+                            break;
+                        default:
+                            nivel = $('<td/>').html('Não identificado');
+                            break;
+                    }
+                    switch (row.status) {
+                        case '0':
+                            status = $('<td/>', {'class': 'center aligned'}).append($("<i/>", {'class': 'ban icon red '}));
+                            break;
+                        case '1':
+                            status = $('<td/>', {'class': 'center aligned'}).append($("<i/>", {'class': 'check icon green '}));
+                            break;
+                        default:
+                            status = $('<td/>').html('Não identificado');
+                            break;
+                    }
+
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
                         .append(nome)
-                        .append(sigla)
-                        .append(regiao);
+                        .append(email)
+                        .append(perfil)
+                        .append(nivel)
+                        .append(status);
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_sinodos').append(tr);
+                    $('#tbodyUsuarios').append(tr);
                 }
                 instanciaDataTables(); // init function instanciaDataTables() {};
             })
@@ -176,18 +318,46 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/sinodos?id=' + id_row)
+        $.get('api/usuarios?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_sinodos.nome.value = data.nome;
-                cadastros_sinodos.sigla.value = data.sigla;
-                cadastros_sinodos.regiao.value = data.regiao;
+                console.log(data);
+                formUsuarios.nome.value = data.nome;
+                formUsuarios.email.value = data.email;
+                formUsuarios.cpf.value = data.cpf;
+                formUsuarios.id_sinodo.value = data.id_sinodo;
+                $(formUsuarios.id_sinodo).trigger("change");
+                // - formUsuarios.id_presbiterio.value = data.id_presbiterio;
+                //formUsuarios.id_igreja.value = data.id_igreja;
+                //formUsuarios.id_presbitero.value = data.id_presbitero;
+                formUsuarios.status.value = data.status;
+                formUsuarios.nivel.value = data.nivel;
+                formUsuarios.perfil.value = data.perfil;
+                formUsuarios.observacoes.value = data.observacoes;
+
+
+                $("#user_inc").text(data.user_inclusao);
+                $("#data_inc").text(data.data_inclusao);
+                $("#user_alt").text(data.user_alteracao);
+                $("#data_alt").text(data.data_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_sinodos.regiao).trigger("change");
+                    formUsuarios.id_presbiterio.value = data.id_presbiterio;
+                    $(formUsuarios.id_presbiterio).trigger("change");
+                    $(formUsuarios.status).trigger("change");
+                    $(formUsuarios.nivel).trigger("change");
+                    $(formUsuarios.perfil).trigger("change");
+                    setTimeout(() => {
+                        formUsuarios.id_igreja.value = data.id_igreja;
+                        $(formUsuarios.id_igreja).trigger("change");
+                        setTimeout(() => {
+                            formUsuarios.id_presbitero.value = data.id_igreja;
+                            $(formUsuarios.id_presbitero).trigger("change");
+                        }, 100)
+                    }, 100)
                 }, 100);
             })
             .fail(function (response) {
@@ -230,12 +400,12 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/sinodos/delete', {id: id_row})
+                        $.post('/api/usuarios/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
                                 id_row = null;
-                                cadastros_sinodos.reset();
+                                formUsuarios.reset();
                                 validator.resetForm();
                                 $('form').form('reset');
                             })
@@ -256,7 +426,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator = $("#cadastros_sinodos").validate({
+    let validator = $("#formUsuarios").validate({
         rules: {
             nome: {
                 required: true,
@@ -277,12 +447,20 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
-                let form = $('#cadastros_sinodos').serializeArray();
+                let form = $('#formUsuarios').serializeArray();
                 form.unshift({name: 'id', value: id_row});
-                $.post('api/sinodos/update', form)
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_alteracao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                $.post('api/usuarios/update', form)
                     .done(function (response) {
                         console.log(response);
-                        tbl_api.row(tr_row).remove();
+                        /*tbl_api.row(tr_row).remove();
                         let regiao;
                         switch (response.regiao) {
                             case '1':
@@ -309,7 +487,7 @@ $(document).ready(function () {
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
                             regiao
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -326,7 +504,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_sinodos.sigla).parent().addClass("error");
+                            $(formUsuarios.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -350,37 +528,45 @@ $(document).ready(function () {
                     })
                 ;
             } else {
-                let form = $('#cadastros_sinodos').serializeArray();
-                $.post('api/sinodos/store', form)
+                let form = $('#formUsuarios').serializeArray();
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                form.unshift({name: 'data_inclusao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                $.post('api/usuarios/store', form)
                     .done(function (response) {
                         console.log(response);
-                        let regiao;
-                        switch (response.regiao) {
-                            case '1':
-                                regiao = "CENTRO-OESTE";
-                                break;
-                            case '2':
-                                regiao = "NORDESTE";
-                                break;
-                            case '3':
-                                regiao = "NORTE";
-                                break;
-                            case '4':
-                                regiao = "SUDESTE";
-                                break;
-                            case '5':
-                                regiao = "SUL";
-                                break;
-                            default:
-                                regiao = 'Não identificado';
-                                break;
-                        }
-                        tbl_api.row.add([
-                            response.id,
-                            response.nome.toUpperCase(),
-                            response.sigla.toUpperCase(),
-                            regiao
-                        ]).draw(false);
+                        /* let regiao;
+                         switch (response.regiao) {
+                             case '1':
+                                 regiao = "CENTRO-OESTE";
+                                 break;
+                             case '2':
+                                 regiao = "NORDESTE";
+                                 break;
+                             case '3':
+                                 regiao = "NORTE";
+                                 break;
+                             case '4':
+                                 regiao = "SUDESTE";
+                                 break;
+                             case '5':
+                                 regiao = "SUL";
+                                 break;
+                             default:
+                                 regiao = 'Não identificado';
+                                 break;
+                         }
+                         tbl_api.row.add([
+                             response.id,
+                             response.nome.toUpperCase(),
+                             response.sigla.toUpperCase(),
+                             regiao
+                         ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -397,7 +583,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_sinodos.sigla).parent().addClass("error");
+                            $(formUsuarios.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -428,7 +614,7 @@ $(document).ready(function () {
      * Os campos select do semantic não são compativeis com o jquery validation,
      * a msg fica bugada, usar desta forma para select.search.dropdown
      */
-    $("#cadastros_sinodos").form({
+    $("#formUsuarios").form({
         inline: true,
         on: 'submit',
         fields: {
@@ -456,28 +642,7 @@ $(document).ready(function () {
      * Adiciona evento de exclusão no botão Excluir
      */
     $("button[type='button']").on("click", function () {
-        deleteData();
-    });
-
-    /**
-     *  Função para ativar o get
-     */
-    $("a[data-tab='second']").on("click", function () {
-        if (id_row > 0) {
-            getDataForm();
-        } else {
-            /**
-             * reseta os campos do tipo input
-             */
-            cadastros_sinodos.reset();
-
-            /**
-             * retorna o select para a primera opção
-             * @type {number}
-             */
-            validator.resetForm();
-            $('form').form('reset');
-        }
+        //deleteData();
     });
 
     /**
@@ -490,4 +655,35 @@ $(document).ready(function () {
             tbl_api.$('tr.active').removeClass('active');
         }
     });
+
+    /**
+     *  Função para ativar o get
+     */
+    $("a[data-tab='second']").on("click", function () {
+        if (id_row > 0) {
+            getDataForm();
+        } else {
+            /**
+             * reseta os campos do tipo input
+             */
+            formUsuarios.reset();
+
+            /**
+             * retorna o select para a primera opção
+             * @type {number}
+             */
+            validator.resetForm();
+            $('form').form('reset');
+        }
+    });
+
+    /**
+     * Verifica Sessão do usuário
+     *   para ser enviado junto ao array form
+     * @type {string}
+     */
+    /*let user = btoa("user-data");
+    user = sessionStorage.getItem(user);
+    user = atob(user);
+    user = JSON.parse(user);*/
 });
