@@ -49,8 +49,6 @@ node_modules/
 # interface api
 composer.lock
 vendor/
-teste/
-/package-lock.json
 *.log
 *.tmp
 *.tmp.*
@@ -60,7 +58,6 @@ npm-debug.log*
 log.txt
 Thumbs.db
 .DS_Store
-composer.lock
 package-lock.json
 .sourcemaps/
 .sass-cache/
@@ -78,3 +75,4 @@ templates/
 .phpintel/
 .vs/
 semantic/
+.env
