@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Estados;
+use function MongoDB\BSON\toJSON;
 
 class UserController extends Controller
 {
@@ -14,9 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pages.front.cadastros-sinodos');
-        //return file_get_contents('/index.html');
-        //return file_get_contents(public_path().'/index.html');
+        return view('login');
     }
 
     /**
@@ -84,4 +84,18 @@ class UserController extends Controller
     {
         //
     }
+
+    public function prelogin()
+    {
+        return view("pre-login");
+    }
+
+    public function teste()
+    {
+        $estados = Estados::all();
+        return view("pages.teste", [
+            'estados' => $estados->toJson()
+        ]);
+    }
+
 }

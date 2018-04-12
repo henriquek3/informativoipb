@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('/cadastros-sinodos', 'UserController@index');
+Route::get('/pre-login', 'UserController@prelogin');
+
+Route::get('/login', 'UserController@index');
+Route::get('/teste', 'UserController@teste');
