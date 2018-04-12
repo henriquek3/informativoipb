@@ -58,8 +58,9 @@ $(document).ready(function () {
     function getDataTable() {
         $.get('/api/presbiteros')
             .done(function (response) {
+                console.log(response);
                 for (let key in response) {
-                    let tr, row, id, regiao, nome, igreja, sinodo;
+                    let tr, row, id, sinodo, nome, igreja, presbiterio;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -68,9 +69,9 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    igreja = $('<td/>').html(row.nascimento_id_cidade.toUpperCase());
-                    sinodo = $('<td/>').html(row.nome_pai.toUpperCase());
-                    regiao = $('<td/>').html(row.nome.toUpperCase());
+                    igreja = $('<td/>').html(row.nome_igreja.toUpperCase());
+                    presbiterio = $('<td/>').html(row.sigla_presbiterio.toUpperCase());
+                    sinodo = $('<td/>').html(row.sigla_sinodo.toUpperCase());
 
                     /**
                      * Adiciona as células nas linhas
@@ -78,8 +79,8 @@ $(document).ready(function () {
                     tr.append(id)
                         .append(nome)
                         .append(igreja)
-                        .append(sinodo)
-                        .append(regiao);
+                        .append(presbiterio)
+                        .append(sinodo);
                     /**
                      * Adiciona linhas na tabela
                      */
@@ -159,9 +160,12 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiteros?id=' + id_row)
+        $.get('api/presbiteros?id2=' + id_row)
             .done(function (response) {
                 let data = response[0];
+                console.log('getdataForm');
+                console.log(id_row);
+                console.log(data);
                 cadastros_presbiteros.id_sinodo.value = data.id_sinodo;
                 cadastros_presbiteros.id_presbiterio.value = data.id_presbiterio;
                 cadastros_presbiteros.nome.value = data.nome;
@@ -189,6 +193,24 @@ $(document).ready(function () {
                 cadastros_presbiteros.telefone_igreja.value = data.telefone_igreja;
                 cadastros_presbiteros.email.value = data.email;
 
+
+                /**
+                 * espera um pouco depois de setar o valor para mudar o select para o valor
+                 */
+                setTimeout(() => {
+                    $(cadastros_presbiteros.id_sinodo).trigger("change");
+                    $(cadastros_presbiteros.id_presbiterio).trigger("change");
+                    $(cadastros_presbiteros.id_estado).trigger("change");
+                    setTimeout(() => {
+                        cadastros_presbiteros.id_cidade.value = data.id_cidade;
+                        console.log("data.cidade");
+                        setTimeout(() => {
+                            $(cadastros_presbiteros.id_cidade).trigger("change");
+                            console.log("trigg cidade")
+                        }, 500)
+                    }, 500)
+                }, 500);
+
                 /**
                  * Atribui o nome do usuario e a data no painel de registro de alterações
                  */
@@ -197,24 +219,6 @@ $(document).ready(function () {
                 $("#user_alt").text(data.user_alteracao);
                 $("#data_alt").text(data.data_alteracao);
 
-                /**
-                 * espera um pouco depois de setar o valor para mudar o select para o valor
-                 */
-                setTimeout(() => {
-                    $(cadastros_presbiteros.id_sinodo).trigger("change");
-                    $(cadastros_presbiteros.id_presbiterio).trigger("change");
-                    $(cadastros_presbiteros.nascimento_id_estado).trigger("change");
-                    $(cadastros_presbiteros.endereco_id_estado).trigger("change");
-                    setTimeout(() => {
-                        cadastros_presbiteros.nascimento_id_cidade.value = data.nascimento_id_cidade;
-                        cadastros_presbiteros.endereco_id_cidade.value = data.endereco_id_cidade;
-                        console.log("data.cidade");
-                        setTimeout(() => {
-                            $(cadastros_igrejas.id_cidade).trigger("change");
-                            console.log("trigg cidade")
-                        }, 500)
-                    }, 500)
-                }, 500);
             })
             .fail(function (response) {
                 console.log(response);
