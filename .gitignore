@@ -65,12 +65,9 @@ package-lock.json
 .versions/
 $RECYCLE.BIN/
 .vscode/
-dist/*.html
-dist/js/app/
 public/js/app/
 public/css/main.min.css
-dist/css/main.min.css
-dist/css/main.min.css.map
+dist/
 templates/
 .phpintel/
 .vs/
