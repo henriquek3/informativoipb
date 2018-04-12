@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::defaultStringLength(255);
+        Schema::defaultStringLength(191);
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_presbitero')->nullable();
@@ -25,11 +25,6 @@ class CreateUsersTable extends Migration
             $table->integer('nivel');
             $table->integer('perfil');
             $table->longText('observacoes')->nullable();
-            $table->integer('id_user_insert');
-            $table->string('data_insert');
-            $table->integer('id_user_edit');
-            $table->string('data_edit');
-
 
             $table->softDeletes();
             $table->timestamps();

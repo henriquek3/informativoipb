@@ -26,13 +26,13 @@ module.exports = function (grunt) {
                     interrupt: false
                 }
             },
-            uglify: {
-                files: ['dist/js/app/**/*.js'],
+            /*uglify: {
+                files: ['dist/js/app/!**!/!*.js'],
                 tasks: ['uglify'],
                 options: {
                     interrupt: false
                 }
-            },
+            },*/
             htmlmin: {
                 files: ['dist/**/*.html'],
                 tasks: ['htmlmin'],
@@ -56,7 +56,7 @@ module.exports = function (grunt) {
                 files: [{
                     src: ['**/*.pug', '!**/_*.pug'],
                     dest: "dist/",
-                    ext: ".php",
+                    ext: ".blade.php",
                     cwd: "src/pug/",
                     expand: true
                 }]
@@ -98,7 +98,7 @@ module.exports = function (grunt) {
                     "expand": true,
                     "cwd": "src/js",
                     "src": ["**/*.jsx"],
-                    "dest": "dist/js/app",
+                    "dest": "public/js/app",
                     "ext": "-app.js"
                 }]
             }
@@ -117,7 +117,10 @@ module.exports = function (grunt) {
         //grunt son
         uglify: {
             options: {
-                mangle: false
+                mangle: {
+                    reserved: ['jQuery', 'Backbone']
+                },
+                sourceMap: true
             },
             file_min_js: {
                 files: [{
@@ -143,7 +146,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'dist',
-                    src: ['*.blade.php'],
+                    src: ['*.php'],
                     dest: 'resources/views/'
                 }]
             }
@@ -179,6 +182,8 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('css', ['cssmin']);
     grunt.registerTask('ht', ['htmlmin']);
+    grunt.registerTask('ug', ['uglify']);
+    grunt.registerTask('b', ['babel']);
     grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel', 'uglify', 'htmlmin', 'cssmin']);
+    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel', 'htmlmin', 'cssmin']);
 };

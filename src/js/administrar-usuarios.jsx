@@ -1,6 +1,5 @@
 let id_row, tr_row, tbl_sinodos, tbl_api;
 tbl_sinodos = $("#tbl_sinodos");
-
 $(document).ready(function () {
     /**
      * Estilizar o input de pesquisar do
