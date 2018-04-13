@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Estados;
-use function MongoDB\BSON\toJSON;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -37,7 +38,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $user = new User();
+        $user->fill($data);
+        $user->save();
+        $retrieve = User::findOrFail($user->id);
+        return response()->json($retrieve);
     }
 
     /**
@@ -96,6 +102,43 @@ class UserController extends Controller
         return view("pages.teste", [
             'estados' => $estados->toJson()
         ]);
+    }
+
+    public function connect(Request $request)
+    {
+        //dd($request->input('email'));
+        $credentials = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
+        if (Auth::attempt($credentials)) {
+            $id = Auth::user()->getAuthIdentifier();
+            $u = DB::table('usuarios')
+                ->leftJoin('presbiteros', 'usuarios.id_presbitero', '=', 'presbiteros.id')
+                ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
+                ->leftJoin('presbiterios', 'igrejas.id_presbiterio', '=', 'presbiterios.id')
+                ->leftJoin('sinodos', 'presbiterios.id_sinodo', '=', 'sinodos.id')
+                ->where('usuarios.id', '=', $id)
+                ->select(
+                    'usuarios.id',
+                    'usuarios.status',
+                    'usuarios.nivel',
+                    'usuarios.perfil',
+                    'usuarios.nome',
+                    'usuarios.email',
+                    'presbiteros.id as id_presbitero',
+                    'igrejas.id as id_igreja',
+                    'igrejas.nome as nome_igreja',
+                    'presbiterios.id as id_presbiterio',
+                    'presbiterios.sigla as sigla_presbiterio',
+                    'sinodos.id as id_sinodo',
+                    'sinodos.sigla as sigla_sinodo'
+                )->get();
+
+            return response()->json($u);
+        }
+
+        return response()->json($credentials);
     }
 
 }
