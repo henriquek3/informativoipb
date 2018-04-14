@@ -19,8 +19,8 @@ class AddForeignKeysToPresbiterosTable extends Migration
             $table->foreign('nacionalidade', 'presbiteros_fk2')->references('id')->on('paises')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('endereco_id_cidade', 'presbiteros_fk3')->references('id')->on('cidades')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('ordenacao_presbiterio', 'presbiteros_fk4')->references('id')->on('presbiterios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_inclusao', 'presbiteros_fk5')->references('id')->on('usuarios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_alteracao', 'presbiteros_fk6')->references('id')->on('usuarios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('usuario_inclusao', 'presbiteros_fk5')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('usuario_alteracao', 'presbiteros_fk6')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 

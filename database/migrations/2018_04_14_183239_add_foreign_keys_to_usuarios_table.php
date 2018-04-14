@@ -13,8 +13,8 @@ class AddForeignKeysToUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::table('usuarios', function (Blueprint $table) {
-            $table->foreign('id_presbitero', 'usuarios_fk0')->references('id')->on('presbiteros')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('id_presbitero', 'users_fk0')->references('id')->on('presbiteros')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -26,8 +26,8 @@ class AddForeignKeysToUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::table('usuarios', function (Blueprint $table) {
-            $table->dropForeign('usuarios_fk0');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_fk0');
         });
     }
 

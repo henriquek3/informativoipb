@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'administração jksistemas',
+            'nome' => 'administração jksistemas',
             'email' => 'atendimento@jksistemas.com.br',
             'password' => Hash::make('84089554'),
             'cpf' => '06762817882',

@@ -17,8 +17,8 @@ class AddForeignKeysToIgrejasCongregacoesTable extends Migration
             $table->foreign('id_igreja', 'igrejas_congregacoes_fk0')->references('id')->on('igrejas')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('id_estado', 'igrejas_congregacoes_fk1')->references('id')->on('estados')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('id_cidade', 'igrejas_congregacoes_fk2')->references('id')->on('cidades')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_inclusao', 'igrejas_congregacoes_fk3')->references('id')->on('usuarios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_alteracao', 'igrejas_congregacoes_fk4')->references('id')->on('usuarios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('usuario_inclusao', 'igrejas_congregacoes_fk3')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('usuario_alteracao', 'igrejas_congregacoes_fk4')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
