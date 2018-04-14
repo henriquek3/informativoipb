@@ -30,6 +30,7 @@ Route::post('/api/connect', 'UserController@connect');
 
 Route::get('/administrar-usuarios', 'UserController@adminuser');
 Route::post('/api/usuarios', 'UserController@store');
+Route::delete('/api/usuarios/{id}', 'UserController@destroy');
 
 Route::get('/api/usuarios', 'UserController@users');
 Route::get('/api/usuarios/{id}/edit', 'UserController@edit');

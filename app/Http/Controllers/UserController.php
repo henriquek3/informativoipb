@@ -59,7 +59,7 @@ class UserController extends Controller
         $data['usuario_inclusao'] = $request->user()->id;
         $user->fill($data);
         $user->save();
-        $retrieve = User::findOrFail($user->id);
+        $retrieve = User::findOrFail((int)$user->id);
         return response()->json($retrieve);
     }
 
@@ -82,7 +82,7 @@ class UserController extends Controller
      */
     public function edit(User $user, $id)
     {
-        $userEdit = $user->find($id);
+        $userEdit = $user->find((int)$id);
 
         return response()->json($userEdit);
     }
@@ -97,7 +97,7 @@ class UserController extends Controller
     public function update(Request $request, User $user, $id)
     {
         $data = $request->all();
-        $userUpdate = $user->findOrFail($id);
+        $userUpdate = $user->findOrFail((int)$id);
         $data['usuario_alteracao'] = $request->user()->id;
         $userUpdate->update($data);
         return response()->json($userUpdate);
@@ -109,9 +109,13 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, $id)
     {
-        //
+        $userToDestroy = $user->findOrFail((int)$id);
+        $userToDestroy->delete();
+        return response()->json([
+            'status' => 'com suceddo'
+        ]);
     }
 
     public function prelogin()
@@ -170,6 +174,7 @@ class UserController extends Controller
             ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
             ->leftJoin('presbiterios', 'igrejas.id_presbiterio', '=', 'presbiterios.id')
             ->leftJoin('sinodos', 'presbiterios.id_sinodo', '=', 'sinodos.id')
+            ->where('users.deleted_at', "=", null)
             ->select(
                 'users.*',
                 'presbiteros.id as id_presbitero',

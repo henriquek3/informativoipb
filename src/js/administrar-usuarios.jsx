@@ -663,4 +663,21 @@ $(document).ready(function () {
     user = sessionStorage.getItem(user);
     user = atob(user);
     user = JSON.parse(user);*/
+
+    $(formDelete).on("submit", function () {
+        let form = $(formDelete).serializeArray();
+        $.post('/api/usuarios/' + id_row, form)
+            .done(function (r) {
+                console.log("done");
+                console.log(r)
+            })
+            .fail(function (r) {
+                console.log("fail");
+                console.log(r)
+            })
+        ;
+        console.log("id :" + id_row);
+        return false;
+    })
+
 });

@@ -151,7 +151,7 @@ block content
 
                 form(id="formDelete", name="formDelete", method="post")
                     | @csrf
-                    input(type="hidden", name="_method", value="delete")
+                    | @method("delete")
 
 block specific-js
     script(src='js/app/jquery-validate-app.js')
