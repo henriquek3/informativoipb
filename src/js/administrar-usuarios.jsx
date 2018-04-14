@@ -249,19 +249,19 @@ $(document).ready(function () {
                     nome = $('<td/>').html(row.nome.toUpperCase());
                     email = $('<td/>').html(row.email.toUpperCase());
                     switch (row.perfil) {
-                        case '1':
+                        case 1:
                             perfil = $('<td/>').html("SEC. IGREJA");
                             break;
-                        case '2':
+                        case 2:
                             perfil = $('<td/>').html("SEC. PRESBITÉRIO");
                             break;
-                        case '3':
+                        case 3:
                             perfil = $('<td/>').html("SEC. SÍNODO");
                             break;
-                        case '4':
+                        case 4:
                             perfil = $('<td/>').html("SEC. SUPREMO");
                             break;
-                        case '5':
+                        case 5:
                             perfil = $('<td/>').html("SUPERV. GERAL");
                             break;
                         default:
@@ -269,10 +269,10 @@ $(document).ready(function () {
                             break;
                     }
                     switch (row.nivel) {
-                        case '0':
+                        case 0:
                             nivel = $('<td/>').html("COMUM");
                             break;
-                        case '1':
+                        case 1:
                             nivel = $('<td/>').html("SUPERIOR");
                             break;
                         default:
@@ -280,10 +280,10 @@ $(document).ready(function () {
                             break;
                     }
                     switch (row.status) {
-                        case '0':
+                        case 0:
                             status = $('<td/>', {'class': 'center aligned'}).append($("<i/>", {'class': 'ban icon red '}));
                             break;
-                        case '1':
+                        case 1:
                             status = $('<td/>', {'class': 'center aligned'}).append($("<i/>", {'class': 'check icon green '}));
                             break;
                         default:

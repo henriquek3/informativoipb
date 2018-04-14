@@ -14,7 +14,7 @@ class PresbiteroController extends Controller
      */
     public function index()
     {
-        //
+        return view("cadastros-ministros");
     }
 
     /**

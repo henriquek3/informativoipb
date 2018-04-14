@@ -82,7 +82,7 @@ class UserController extends Controller
     public function edit(User $user, $id)
     {
         $userEdit = $user->find($id);
-        //dd($userEdit);
+
         return response()->json($userEdit);
     }
 
@@ -127,26 +127,25 @@ class UserController extends Controller
 
     public function connect(Request $request)
     {
-        //dd($request->input('email'));
         $credentials = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ];
         if (Auth::attempt($credentials)) {
             $id = Auth::user()->getAuthIdentifier();
-            $u = DB::table('usuarios')
-                ->leftJoin('presbiteros', 'usuarios.id_presbitero', '=', 'presbiteros.id')
+            $u = DB::table('users')
+                ->leftJoin('presbiteros', 'users.id_presbitero', '=', 'presbiteros.id')
                 ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
                 ->leftJoin('presbiterios', 'igrejas.id_presbiterio', '=', 'presbiterios.id')
                 ->leftJoin('sinodos', 'presbiterios.id_sinodo', '=', 'sinodos.id')
-                ->where('usuarios.id', '=', $id)
+                ->where('users.id', '=', $id)
                 ->select(
-                    'usuarios.id',
-                    'usuarios.status',
-                    'usuarios.nivel',
-                    'usuarios.perfil',
-                    'usuarios.nome',
-                    'usuarios.email',
+                    'users.id',
+                    'users.status',
+                    'users.nivel',
+                    'users.perfil',
+                    'users.nome',
+                    'users.email',
                     'presbiteros.id as id_presbitero',
                     'igrejas.id as id_igreja',
                     'igrejas.nome as nome_igreja',
@@ -162,15 +161,15 @@ class UserController extends Controller
         return response()->json($credentials);
     }
 
-    public function usuarios()
+    public function users()
     {
-        $u = DB::table('usuarios')
-            ->leftJoin('presbiteros', 'usuarios.id_presbitero', '=', 'presbiteros.id')
+        $u = DB::table('users')
+            ->leftJoin('presbiteros', 'users.id_presbitero', '=', 'presbiteros.id')
             ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
             ->leftJoin('presbiterios', 'igrejas.id_presbiterio', '=', 'presbiterios.id')
             ->leftJoin('sinodos', 'presbiterios.id_sinodo', '=', 'sinodos.id')
             ->select(
-                'usuarios.*',
+                'users.*',
                 'presbiteros.id as id_presbitero',
                 'igrejas.id as id_igreja',
                 'igrejas.nome as nome_igreja',

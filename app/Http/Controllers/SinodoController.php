@@ -14,7 +14,7 @@ class SinodoController extends Controller
      */
     public function index()
     {
-        //
+        return view("cadastros-sinodos");
     }
 
     /**

@@ -14,7 +14,7 @@ class RelEstatisticaController extends Controller
      */
     public function index()
     {
-        //
+        return view("relatorios-estatisticas");
     }
 
     /**

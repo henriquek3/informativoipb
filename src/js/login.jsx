@@ -41,6 +41,7 @@ $(document)
                             document.location.href = '/inicio';
                         })
                         .fail(function () {
+                            console.log(response);
                             $("#msg_error").text("E-mail ou Senha incorretos!");
                             $("#msg_login_error").show();
                         })
