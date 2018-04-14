@@ -27,7 +27,10 @@ Route::get('/inicio', function () {
 Route::get('/pre-login', 'UserController@prelogin');
 Route::get('/login', 'UserController@index');
 Route::post('/api/connect', 'UserController@connect');
+
 Route::get('/administrar-usuarios', 'UserController@adminuser');
+Route::post('/api/usuarios', 'UserController@store');
+
 Route::get('/api/usuarios', 'UserController@users');
 Route::get('/api/usuarios/{id}/edit', 'UserController@edit');
 Route::put('/api/usuarios/{id}/edit', 'UserController@update');

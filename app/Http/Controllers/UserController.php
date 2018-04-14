@@ -56,6 +56,7 @@ class UserController extends Controller
     {
         $data = $request->all();
         $user = new User();
+        $data['usuario_inclusao'] = $request->user()->id;
         $user->fill($data);
         $user->save();
         $retrieve = User::findOrFail($user->id);
@@ -97,6 +98,7 @@ class UserController extends Controller
     {
         $data = $request->all();
         $userUpdate = $user->findOrFail($id);
+        $data['usuario_alteracao'] = $request->user()->id;
         $userUpdate->update($data);
         return response()->json($userUpdate);
     }

@@ -18,7 +18,7 @@ class CreateUsuariosTable extends Migration
             $table->integer('id_presbitero')->nullable()->index('usuarios_fk0');
             $table->string('nome');
             $table->string('email');
-            $table->string('password');
+            $table->string('password')->default(\Illuminate\Support\Facades\Hash::make("ipb@123"));;
             $table->string('cpf', 15);
             $table->integer('status')->nullable();
             $table->integer('nivel')->nullable();

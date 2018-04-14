@@ -539,7 +539,7 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                $.post('api/usuarios/store', form)
+                $.post('/api/usuarios', form)
                     .done(function (response) {
                         console.log(response);
                         /* let regiao;
@@ -569,7 +569,6 @@ $(document).ready(function () {
                              response.sigla.toUpperCase(),
                              regiao
                          ]).draw(false);*/
-
                         iziToast.success({
                             title: 'OK',
                             message: 'Registro inserido com sucesso!',
@@ -582,30 +581,6 @@ $(document).ready(function () {
                     })
                     .fail(function (response) {
                         console.log(response);
-                        let str = response.responseText;
-                        let result = str.indexOf("SQLSTATE[23000]");
-                        if (result > 0) {
-                            $(formUsuarios.sigla).parent().addClass("error");
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'center',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        } else {
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'Operação não realizada!',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'topRight',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        }
                     })
                 ;
             }

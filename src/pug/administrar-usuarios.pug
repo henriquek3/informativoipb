@@ -141,9 +141,17 @@ block content
                         button.ui.blue.right.labeled.icon.button(type="reset", style="min-width: 166px")
                             i.child.icon
                             | Novo
-                        button.ui.yellow.right.labeled.icon.button(type="button")
+                        button.ui.yellow.labeled.icon.button(type="button")
                             i.redo.icon
                             | Resetar senha
+
+                        button.ui.red.right.labeled.icon.button(type="submit", form="formDelete", style="min-width: 166px")
+                            i.remove.icon
+                            | Excluir
+
+                form(id="formDelete", name="formDelete", method="post")
+                    | @csrf
+                    input(type="hidden", name="_method", value="delete")
 
 block specific-js
     script(src='js/app/jquery-validate-app.js')
