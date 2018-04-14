@@ -24,7 +24,7 @@ Route::get('/inicio', function () {
 | Web Routes UserController
 |--------------------------------------------------------------------------
 */
-Route::get('/pre-login', 'UserController@prelogin');
+Route::get('/pre-login', 'UserController@prelogin')->name("login");
 Route::get('/login', 'UserController@index');
 Route::post('/api/connect', 'UserController@connect');
 
