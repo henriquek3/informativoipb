@@ -34,7 +34,7 @@ module.exports = function (grunt) {
                 }
             },*/
             htmlmin: {
-                files: ['dist/**/*.html'],
+                files: ['dist/**/*.php'],
                 tasks: ['htmlmin'],
                 options: {
                     interrupt: false
@@ -140,12 +140,12 @@ module.exports = function (grunt) {
         htmlmin: {
             dist: {
                 options: {
-                    removeComments: true,
+                    removeComments: false,
                     collapseWhitespace: true
                 },
                 files: [{
                     expand: true,
-                    cwd: 'dist',
+                    cwd: 'dist/',
                     src: ['*.php'],
                     dest: 'resources/views/'
                 }]
