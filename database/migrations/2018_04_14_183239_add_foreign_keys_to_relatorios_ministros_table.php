@@ -15,10 +15,9 @@ class AddForeignKeysToRelatoriosMinistrosTable extends Migration
     {
         Schema::table('relatorios_ministros', function (Blueprint $table) {
             $table->foreign('id_presbitero', 'relatorios_ministros_fk0')->references('id')->on('presbiteros')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('id_igrej', 'relatorios_ministros_fk1')->references('id')->on('igrejas')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('dedicacao_ministerio', 'relatorios_ministros_fk2')->references('id')->on('presbiteros_campos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_inclusao', 'relatorios_ministros_fk3')->references('id')->on('usuarios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_alteracao', 'relatorios_ministros_fk4')->references('id')->on('usuarios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('id_igreja', 'relatorios_ministros_fk1')->references('id')->on('igrejas')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('usuario_inclusao', 'relatorios_ministros_fk2')->references('id')->on('usuarios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('usuario_alteracao', 'relatorios_ministros_fk3')->references('id')->on('usuarios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -35,7 +34,6 @@ class AddForeignKeysToRelatoriosMinistrosTable extends Migration
             $table->dropForeign('relatorios_ministros_fk1');
             $table->dropForeign('relatorios_ministros_fk2');
             $table->dropForeign('relatorios_ministros_fk3');
-            $table->dropForeign('relatorios_ministros_fk4');
         });
     }
 

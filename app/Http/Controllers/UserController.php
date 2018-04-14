@@ -25,6 +25,17 @@ class UserController extends Controller
         return view('login');
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminuser()
+    {
+        return view('administrar-usuarios');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -68,9 +79,11 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user, $id)
     {
-        //
+        $userEdit = $user->find($id);
+        //dd($userEdit);
+        return response()->json($userEdit);
     }
 
     /**
@@ -80,9 +93,12 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, $id)
     {
-        //
+        $data = $request->all();
+        $userUpdate = $user->findOrFail($id);
+        $userUpdate->update($data);
+        return response()->json($userUpdate);
     }
 
     /**
@@ -144,6 +160,27 @@ class UserController extends Controller
         }
 
         return response()->json($credentials);
+    }
+
+    public function usuarios()
+    {
+        $u = DB::table('usuarios')
+            ->leftJoin('presbiteros', 'usuarios.id_presbitero', '=', 'presbiteros.id')
+            ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
+            ->leftJoin('presbiterios', 'igrejas.id_presbiterio', '=', 'presbiterios.id')
+            ->leftJoin('sinodos', 'presbiterios.id_sinodo', '=', 'sinodos.id')
+            ->select(
+                'usuarios.*',
+                'presbiteros.id as id_presbitero',
+                'igrejas.id as id_igreja',
+                'igrejas.nome as nome_igreja',
+                'presbiterios.id as id_presbiterio',
+                'presbiterios.sigla as sigla_presbiterio',
+                'sinodos.id as id_sinodo',
+                'sinodos.sigla as sigla_sinodo'
+            )->get();
+
+        return response()->json($u);
     }
 
 }

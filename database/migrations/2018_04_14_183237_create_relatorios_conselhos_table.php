@@ -69,9 +69,7 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->integer('pa_alvara')->nullable();
             $table->integer('pa_certificado_digital')->nullable();
             $table->integer('usuario_inclusao')->index('relatorios_conselhos_fk2');
-            $table->string('data_inclusao', 10);
             $table->integer('usuario_alteracao')->nullable()->index('relatorios_conselhos_fk3');
-            $table->string('data_alteracao', 10)->nullable();
             $table->integer('status_relatorio')->nullable();
             $table->integer('tipo_relatorio')->default(1);
         });

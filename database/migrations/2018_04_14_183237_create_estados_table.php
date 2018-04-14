@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePresbiterosCamposTable extends Migration
+class CreateEstadosTable extends Migration
 {
 
     /**
@@ -13,10 +13,13 @@ class CreatePresbiterosCamposTable extends Migration
      */
     public function up()
     {
-        Schema::create('presbiteros_campos', function (Blueprint $table) {
+        Schema::create('estados', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('id_presbitero')->index('presbiteros_campos_fk0');
-            $table->integer('id_igreja')->nullable()->index('presbiteros_campos_fk1');
+            $table->integer('id_pais')->index('estados_fk0');
+            $table->string('uf_codigo', 2);
+            $table->string('nome');
+            $table->string('uf_nome', 2);
+            $table->string('regiao', 100);
         });
     }
 
@@ -28,7 +31,7 @@ class CreatePresbiterosCamposTable extends Migration
      */
     public function down()
     {
-        Schema::drop('presbiteros_campos');
+        Schema::drop('estados');
     }
 
 }

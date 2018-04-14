@@ -18,16 +18,14 @@ class CreateUsuariosTable extends Migration
             $table->integer('id_presbitero')->nullable()->index('usuarios_fk0');
             $table->string('nome');
             $table->string('email');
-            $table->string('senha');
+            $table->string('password');
             $table->string('cpf', 15);
             $table->integer('status')->nullable();
             $table->integer('nivel')->nullable();
             $table->integer('perfil')->nullable();
             $table->text('observacoes')->nullable();
-            $table->integer('usuario_inclusao')->index('usuarios_fk1');
-            $table->string('data_inclusao', 10);
-            $table->integer('usuario_alteracao')->nullable()->index('usuarios_fk2');
-            $table->string('data_alteracao', 10)->nullable();
+            $table->integer('usuario_inclusao')->nullable();
+            $table->integer('usuario_alteracao')->nullable();
         });
     }
 

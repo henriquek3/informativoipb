@@ -20,19 +20,17 @@ class CreateIgrejasCongregacoesTable extends Migration
             $table->integer('id_cidade')->index('igrejas_congregacoes_fk2');
             $table->string('nome')->nullable();
             $table->string('endereco');
-            $table->string('endereco_numero', 10);
+            $table->string('endereco_numero', 10)->nullable();
             $table->string('endereco_complemento')->nullable();
             $table->string('endereco_bairro');
             $table->string('endereco_cep', 20)->nullable();
             $table->string('endereco_cx_postal', 20)->nullable();
             $table->string('data_organizacao', 10)->nullable();
-            $table->string('telefone', 100)->nullable();
+            $table->string('telefone', 20)->nullable();
             $table->string('email', 20)->nullable();
             $table->string('website')->nullable();
             $table->integer('usuario_inclusao')->index('igrejas_congregacoes_fk3');
-            $table->string('data_inclusao', 10);
             $table->integer('usuario_alteracao')->nullable()->index('igrejas_congregacoes_fk4');
-            $table->string('data_alteracao', 10)->nullable();
         });
     }
 

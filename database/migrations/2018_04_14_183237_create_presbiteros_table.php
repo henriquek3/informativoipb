@@ -30,7 +30,7 @@ class CreatePresbiterosTable extends Migration
             $table->string('conjuge_nascimento', 10)->nullable();
             $table->text('nome_filhos')->nullable();
             $table->string('endereco')->nullable();
-            $table->string('endereco_nr', 10)->nullable();
+            $table->string('endereco_numero', 10)->nullable();
             $table->string('endereco_complemento')->nullable();
             $table->string('endereco_bairro')->nullable();
             $table->integer('endereco_id_cidade')->nullable()->index('presbiteros_fk3');
@@ -43,11 +43,9 @@ class CreatePresbiterosTable extends Migration
             $table->string('ordenacao_data', 10)->nullable();
             $table->integer('ordenacao_presbiterio')->nullable()->index('presbiteros_fk4');
             $table->string('ativo', 1)->nullable();
-            $table->integer('tipo');
+            $table->integer('tipo')->nullable();
             $table->integer('usuario_inclusao')->index('presbiteros_fk5');
-            $table->string('data_inclusao', 10);
             $table->integer('usuario_alteracao')->nullable()->index('presbiteros_fk6');
-            $table->string('data_alteracao', 10)->nullable();
         });
     }
 

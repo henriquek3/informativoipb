@@ -20,9 +20,7 @@ class CreatePresbiteriosTable extends Migration
             $table->string('sigla', 10);
             $table->integer('regiao');
             $table->integer('usuario_inclusao')->index('presbiterios_fk1');
-            $table->string('data_inclusao', 10);
             $table->integer('usuario_alteracao')->nullable()->index('presbiterios_fk2');
-            $table->string('data_alteracao', 10)->nullable();
         });
     }
 

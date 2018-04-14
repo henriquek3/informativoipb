@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateOficiaisVencimentoTable extends Migration
+class CreateOficiaisVencimentosTable extends Migration
 {
 
     /**
@@ -13,10 +13,10 @@ class CreateOficiaisVencimentoTable extends Migration
      */
     public function up()
     {
-        Schema::create('oficiais_vencimento', function (Blueprint $table) {
+        Schema::create('oficiais_vencimentos', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('id_presbitero')->index('oficiais_vencimento_fk0');
-            $table->integer('id_relatorio_conselho')->index('oficiais_vencimento_fk1');
+            $table->integer('id_presbitero')->index('oficiais_vencimentos_fk0');
+            $table->integer('id_relatorio_conselho')->index('oficiais_vencimentos_fk1');
         });
     }
 
@@ -28,7 +28,7 @@ class CreateOficiaisVencimentoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('oficiais_vencimento');
+        Schema::drop('oficiais_vencimentos');
     }
 
 }

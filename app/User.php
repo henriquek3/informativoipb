@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'cpf', 'observacoes', 'password', 'status'
+        'nome', 'email', 'cpf', 'observacoes', 'password', 'status', 'perfil', 'nivel', 'presbitero_id'
     ];
 
     /**
@@ -59,4 +59,19 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    /**
+     * --------------------------------------------------------
+     * Relacionamentos
+     * --------------------------------------------------------
+     */
+
+    /**
+     *
+     * @return HasMany
+     */
+    /*public function todos()
+    {
+        return $this->hasMany('App\Todo');
+    }*/
 }

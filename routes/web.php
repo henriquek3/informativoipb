@@ -17,10 +17,23 @@ Route::get('/', function () {
 Route::get('/inicio', function () {
     return view('index');
 });
-Route::get('/login', 'UserController@index');
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes UserController
+|--------------------------------------------------------------------------
+*/
 Route::get('/pre-login', 'UserController@prelogin');
-
-
+Route::get('/login', 'UserController@index');
 Route::post('/api/connect', 'UserController@connect');
-Route::get('/teste', 'UserController@teste');
+Route::get('/administrar-usuarios', 'UserController@adminuser');
+Route::get('/api/usuarios', 'UserController@usuarios');
+Route::get('/api/usuarios/{id}/edit', 'UserController@edit');
+Route::put('/api/usuarios/{id}/edit', 'UserController@update');
+
+
+/**
+ * +++++++++++++++++++++++++++++++++
+ */
 Route::get('/teste', 'UserController@teste');

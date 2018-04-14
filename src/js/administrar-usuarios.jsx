@@ -75,7 +75,7 @@ $(document).ready(function () {
         ;
     }
 
-    getDataSinodos();
+    //getDataSinodos();
 
     function getDataPresbiterio() {
         $(formUsuarios.id_sinodo).on('change', function () {
@@ -105,7 +105,7 @@ $(document).ready(function () {
         });
     }
 
-    getDataPresbiterio();
+    //getDataPresbiterio();
 
     function getDataIgreja() {
         $(formUsuarios.id_presbiterio).on('change', function () {
@@ -137,7 +137,7 @@ $(document).ready(function () {
         });
     }
 
-    getDataIgreja();
+    //getDataIgreja();
 
     function getDataPresbitero() {
         $(formUsuarios.id_igreja).on('change', function () {
@@ -169,7 +169,7 @@ $(document).ready(function () {
         });
     }
 
-    getDataPresbitero();
+    //getDataPresbitero();
 
     /**
      * Instancia DataTables() e organiza os eventos do click
@@ -236,6 +236,7 @@ $(document).ready(function () {
     function getDataTable() {
         $.get('/api/usuarios')
             .done(function (response) {
+                console.log(response);
                 for (let key in response) {
                     let tr, row, id, nome, email, perfil, nivel, status;
                     tr = $('<tr/>');
@@ -318,9 +319,9 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/usuarios?id=' + id_row)
+        $.get('api/usuarios/' + id_row + '/edit')
             .done(function (response) {
-                let data = response[0];
+                let data = response;
                 console.log(data);
                 formUsuarios.nome.value = data.nome;
                 formUsuarios.email.value = data.email;
@@ -447,17 +448,18 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
+                $('#formUsuarios').append('<input type="hidden" name="_method" value="put">');
                 let form = $('#formUsuarios').serializeArray();
-                form.unshift({name: 'id', value: id_row});
+                //form.unshift({name: 'id', value: id_row});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_alteracao', value: window.getData});
+                //form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_alteracao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                $.post('api/usuarios/update', form)
+                $.post('api/usuarios/' + id_row + '/edit', form)
                     .done(function (response) {
                         console.log(response);
                         /*tbl_api.row(tr_row).remove();
@@ -532,8 +534,8 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_inclusao', value: window.getData});
+                //form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_inclusao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */

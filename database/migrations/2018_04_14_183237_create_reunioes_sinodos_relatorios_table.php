@@ -17,6 +17,9 @@ class CreateReunioesSinodosRelatoriosTable extends Migration
             $table->integer('id', true);
             $table->integer('id_reuniao_sinodo')->index('reunioes_sinodos_relatorios_fk0');
             $table->integer('id_reuniao_presbiterio')->index('reunioes_sinodos_relatorios_fk1');
+            $table->integer('id_relatorio_conselho')->index('reunioes_sinodos_relatorios_fk2');
+            $table->integer('id_relatorio_estatistica')->index('reunioes_sinodos_relatorios_fk3');
+            $table->integer('	id_relatorio_ministro')->index('reunioes_sinodos_relatorios_fk4');
         });
     }
 

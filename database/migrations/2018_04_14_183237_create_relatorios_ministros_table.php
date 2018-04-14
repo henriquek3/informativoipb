@@ -17,7 +17,7 @@ class CreateRelatoriosMinistrosTable extends Migration
             $table->integer('id', true);
             $table->integer('id_presbitero')->index('relatorios_ministros_fk0');
             $table->string('ano', 10);
-            $table->integer('id_igrej')->index('relatorios_ministros_fk1');
+            $table->integer('id_igreja')->index('relatorios_ministros_fk1');
             $table->integer('nr_dependentes')->nullable();
             $table->integer('condicao_moradia')->nullable();
             $table->integer('ferias')->nullable();
@@ -28,7 +28,8 @@ class CreateRelatoriosMinistrosTable extends Migration
             $table->integer('congruas_contribui_inss')->nullable();
             $table->integer('previdencia_publica_valor')->nullable();
             $table->integer('contribui_prev_privada')->nullable();
-            $table->integer('dedicacao_ministerio')->nullable()->index('relatorios_ministros_fk2');
+            $table->text('campos_igrejas')->nullable();
+            $table->text('campos_congregacoes')->nullable();
             $table->integer('pregacoes')->nullable();
             $table->integer('palestras_prelecoes')->nullable();
             $table->integer('ebd')->nullable();
@@ -65,10 +66,8 @@ class CreateRelatoriosMinistrosTable extends Migration
             $table->text('atividades_para_eclesiasticas')->nullable();
             $table->text('atividades_extras_ministeriais')->nullable();
             $table->text('atividades_outros')->nullable();
-            $table->integer('usuario_inclusao')->index('relatorios_ministros_fk3');
-            $table->string('data_inclusao', 10);
-            $table->integer('usuario_alteracao')->nullable()->index('relatorios_ministros_fk4');
-            $table->string('data_alteracao', 10)->nullable();
+            $table->integer('usuario_inclusao')->index('relatorios_ministros_fk2');
+            $table->integer('usuario_alteracao')->nullable()->index('relatorios_ministros_fk3');
             $table->integer('status_relatorio')->nullable();
             $table->integer('tipo_relatorio')->default(2);
         });
