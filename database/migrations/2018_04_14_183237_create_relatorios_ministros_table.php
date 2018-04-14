@@ -70,6 +70,8 @@ class CreateRelatoriosMinistrosTable extends Migration
             $table->integer('usuario_alteracao')->nullable()->index('relatorios_ministros_fk3');
             $table->integer('status_relatorio')->nullable();
             $table->integer('tipo_relatorio')->default(2);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

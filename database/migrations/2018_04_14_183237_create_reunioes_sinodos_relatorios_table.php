@@ -20,6 +20,8 @@ class CreateReunioesSinodosRelatoriosTable extends Migration
             $table->integer('id_relatorio_conselho')->index('reunioes_sinodos_relatorios_fk2');
             $table->integer('id_relatorio_estatistica')->index('reunioes_sinodos_relatorios_fk3');
             $table->integer('	id_relatorio_ministro')->index('reunioes_sinodos_relatorios_fk4');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

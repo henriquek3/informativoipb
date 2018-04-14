@@ -21,6 +21,8 @@ class CreatePresbiteriosTable extends Migration
             $table->integer('regiao');
             $table->integer('usuario_inclusao')->index('presbiterios_fk1');
             $table->integer('usuario_alteracao')->nullable()->index('presbiterios_fk2');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

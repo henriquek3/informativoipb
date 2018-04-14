@@ -31,6 +31,8 @@ class CreateIgrejasCongregacoesTable extends Migration
             $table->string('website')->nullable();
             $table->integer('usuario_inclusao')->index('igrejas_congregacoes_fk3');
             $table->integer('usuario_alteracao')->nullable()->index('igrejas_congregacoes_fk4');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

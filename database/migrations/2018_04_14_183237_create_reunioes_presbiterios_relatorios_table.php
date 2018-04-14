@@ -19,6 +19,8 @@ class CreateReunioesPresbiteriosRelatoriosTable extends Migration
             $table->integer('id_relatorio_conselho')->index('reunioes_presbiterios_relatorios_fk1');
             $table->integer('id_relatorio_estatistica')->index('reunioes_presbiterios_relatorios_fk2');
             $table->integer('id_relatorio_ministro')->index('reunioes_presbiterios_relatorios_fk3');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

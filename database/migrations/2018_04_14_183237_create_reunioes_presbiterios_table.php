@@ -21,6 +21,8 @@ class CreateReunioesPresbiteriosTable extends Migration
             $table->integer('status')->nullable();
             $table->integer('usuario_inclusao')->index('reunioes_presbiterios_fk1');
             $table->integer('usuario_alteracao')->nullable()->index('reunioes_presbiterios_fk2');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

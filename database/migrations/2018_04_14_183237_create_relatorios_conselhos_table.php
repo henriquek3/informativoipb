@@ -72,6 +72,8 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->integer('usuario_alteracao')->nullable()->index('relatorios_conselhos_fk3');
             $table->integer('status_relatorio')->nullable();
             $table->integer('tipo_relatorio')->default(1);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

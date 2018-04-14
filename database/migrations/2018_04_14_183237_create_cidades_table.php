@@ -20,6 +20,8 @@ class CreateCidadesTable extends Migration
             $table->integer('municipio_codigo');
             $table->string('nome');
             $table->string('uf_estado', 2);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

@@ -90,6 +90,8 @@ class CreateRelatoriosEstatisticasTable extends Migration
             $table->integer('usuario_ultima_alteracao')->index('relatorios_estatisticas_fk3');
             $table->integer('status_relatorio')->nullable();
             $table->integer('tipo_relatorio')->default(3);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

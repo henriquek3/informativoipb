@@ -46,6 +46,8 @@ class CreatePresbiterosTable extends Migration
             $table->integer('tipo')->nullable();
             $table->integer('usuario_inclusao')->index('presbiteros_fk5');
             $table->integer('usuario_alteracao')->nullable()->index('presbiteros_fk6');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

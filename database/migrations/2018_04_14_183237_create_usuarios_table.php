@@ -13,7 +13,7 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('id_presbitero')->nullable()->index('usuarios_fk0');
             $table->string('nome');
@@ -26,6 +26,8 @@ class CreateUsuariosTable extends Migration
             $table->text('observacoes')->nullable();
             $table->integer('usuario_inclusao')->nullable();
             $table->integer('usuario_alteracao')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

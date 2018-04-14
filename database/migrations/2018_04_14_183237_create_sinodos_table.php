@@ -20,6 +20,8 @@ class CreateSinodosTable extends Migration
             $table->integer('regiao');
             $table->integer('usuario_inclusao')->index('sinodos_fk0');
             $table->integer('usuario_alteracao')->nullable()->index('sinodos_fk1');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

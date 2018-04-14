@@ -17,6 +17,8 @@ class CreatePaisesTable extends Migration
             $table->integer('id', true);
             $table->string('nome');
             $table->string('name');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
