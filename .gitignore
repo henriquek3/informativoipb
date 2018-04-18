@@ -73,4 +73,3 @@ templates/
 .vs/
 semantic/
 .env
-src/controllers/

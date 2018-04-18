@@ -95,3 +95,6 @@ Route::get('/relatorios-estatisticas', 'RelEstatisticaController@index');
  * +++++++++++++++++++++++++++++++++
  */
 Route::get('/teste', 'UserController@teste');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
