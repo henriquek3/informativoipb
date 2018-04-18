@@ -169,6 +169,7 @@ class UserController extends Controller
 
     public function users()
     {
+
         $u = DB::table('users')
             ->leftJoin('presbiteros', 'users.id_presbitero', '=', 'presbiteros.id')
             ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
