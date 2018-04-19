@@ -28,11 +28,11 @@ FROM presbiteros p
     $igreja = (int)$request->get('igreja');
     $params = [];
     if ($id > 0) {
-        $query .= " WHERE id = ?";
+        $query .= " WHERE p.id = ?";
         array_push($params, $id);
     }
     if ($igreja > 0) {
-        $query .= " WHERE id_igreja = ?";
+        $query .= " WHERE p.id_igreja = ?";
         array_push($params, $igreja);
     }
     $result = $db->fetchAll($query, $params);
