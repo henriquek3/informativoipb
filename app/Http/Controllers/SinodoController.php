@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class SinodoController extends Controller
 {
+    /**
+     * SinodoController constructor.
+     * @authenticator
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -98,6 +102,9 @@ class SinodoController extends Controller
         return response()->json($resource);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function api()
     {
         return response()->json(Sinodos::all());

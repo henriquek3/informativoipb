@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\RelConselhos;
+use App\RelEstatisticas;
 use Illuminate\Http\Request;
 
 class RelConselhoController extends Controller
 {
+    /**
+     * RelConselhoController constructor.
+     * @authenticator
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +45,8 @@ class RelConselhoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rs = $request->user()->relConselhos()->create($request->all());
+        return response()->json($rs);
     }
 
     /**
@@ -69,7 +80,9 @@ class RelConselhoController extends Controller
      */
     public function update(Request $request, RelConselhos $relConselhos)
     {
-        //
+        $resource = $relConselhos->findOrfail((int)$request->get("id"));
+        $resource->update($request->all());
+        return response()->json($resource);
     }
 
     /**
@@ -78,8 +91,24 @@ class RelConselhoController extends Controller
      * @param  \App\RelConselhos $relConselhos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelConselhos $relConselhos)
+    public function destroy(RelConselhos $relConselhos, Request $request)
     {
-        //
+        $resource = $relConselhos->findOrFail((int)$request->get("id"));
+        try {
+            $resource->delete();
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
+        return response()->json($resource);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function api()
+    {
+        return response()->json(RelConselhos::all());
     }
 }

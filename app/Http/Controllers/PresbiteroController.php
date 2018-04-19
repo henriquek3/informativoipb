@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Presbiterios;
 use App\Presbiteros;
 use Illuminate\Http\Request;
 
 class PresbiteroController extends Controller
 {
+    /**
+     * PresbiteroController constructor.
+     * @authenticator
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +45,8 @@ class PresbiteroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rs = $request->user()->presbiteros()->create($request->all());
+        return response()->json($rs);
     }
 
     /**
@@ -69,7 +80,9 @@ class PresbiteroController extends Controller
      */
     public function update(Request $request, Presbiteros $presbiteros)
     {
-        //
+        $resource = $presbiteros->findOrfail((int)$request->get("id"));
+        $resource->update($request->all());
+        return response()->json($resource);
     }
 
     /**
@@ -78,8 +91,24 @@ class PresbiteroController extends Controller
      * @param  \App\Presbiteros $presbiteros
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Presbiteros $presbiteros)
+    public function destroy(Presbiteros $presbiteros, Request $request)
     {
-        //
+        $resource = $presbiteros->findOrFail((int)$request->get("id"));
+        try {
+            $resource->delete();
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
+        return response()->json($resource);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function api()
+    {
+        return response()->json(Presbiteros::all());
     }
 }

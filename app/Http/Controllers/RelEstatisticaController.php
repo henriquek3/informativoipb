@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 class RelEstatisticaController extends Controller
 {
     /**
+     * RelEstatisticaController constructor.
+     * @authenticator
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -35,7 +43,8 @@ class RelEstatisticaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rs = $request->user()->relEstatisticas()->create($request->all());
+        return response()->json($rs);
     }
 
     /**
@@ -69,7 +78,9 @@ class RelEstatisticaController extends Controller
      */
     public function update(Request $request, RelEstatisticas $relEstatisticas)
     {
-        //
+        $resource = $relEstatisticas->findOrfail((int)$request->get("id"));
+        $resource->update($request->all());
+        return response()->json($resource);
     }
 
     /**
@@ -78,8 +89,24 @@ class RelEstatisticaController extends Controller
      * @param  \App\RelEstatisticas $relEstatisticas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelEstatisticas $relEstatisticas)
+    public function destroy(RelEstatisticas $relEstatisticas, Request $request)
     {
-        //
+        $resource = $relEstatisticas->findOrFail((int)$request->get("id"));
+        try {
+            $resource->delete();
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
+        return response()->json($resource);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function api()
+    {
+        return response()->json(RelEstatisticas::all());
     }
 }
