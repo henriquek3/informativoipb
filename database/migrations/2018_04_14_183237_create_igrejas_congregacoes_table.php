@@ -29,7 +29,7 @@ class CreateIgrejasCongregacoesTable extends Migration
             $table->string('telefone', 20)->nullable();
             $table->string('email', 20)->nullable();
             $table->string('website')->nullable();
-            $table->unsignedInteger('user_id');
+            $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();

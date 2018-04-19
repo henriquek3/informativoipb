@@ -19,7 +19,7 @@ class CreateReunioesSinodosTable extends Migration
             $table->string('data_reuniao', 10)->nullable();
             $table->string('ano', 10)->nullable();
             $table->integer('status')->nullable();
-            $table->unsignedInteger('user_id');
+            $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();

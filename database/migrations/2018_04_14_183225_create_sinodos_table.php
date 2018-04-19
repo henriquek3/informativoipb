@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatePresbiteriosTable extends Migration
+class CreateSinodosTable extends Migration
 {
 
     /**
@@ -13,13 +13,12 @@ class CreatePresbiteriosTable extends Migration
      */
     public function up()
     {
-        Schema::create('presbiterios', function (Blueprint $table) {
+        Schema::create('sinodos', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('id_sinodo')->index('presbiterios_fk0');
             $table->string('nome');
-            $table->string('sigla', 10);
+            $table->string('sigla', 10)->unique('sigla');
             $table->integer('regiao');
-            $table->unsignedInteger('user_id');
+            $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
@@ -34,7 +33,7 @@ class CreatePresbiteriosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('presbiterios');
+        Schema::drop('sinodos');
     }
 
 }
