@@ -118,40 +118,66 @@ class UserController extends Controller
         ]);
     }
 
-    public function prelogin()
-    {
-        return view("pre-login");
-    }
+    /*    public function prelogin()
+        {
+            return view("pre-login");
+        }*/
+    /*
+        public function teste()
+        {
+            $estados = Estados::all();
+            return view("pages.teste", [
+                'estados' => $estados->toJson()
+            ]);
+        }*/
 
-    public function teste()
-    {
-        $estados = Estados::all();
-        return view("pages.teste", [
-            'estados' => $estados->toJson()
-        ]);
-    }
+    /*    public function connect(Request $request)
+        {
+            $credentials = [
+                'email' => $request->input('email'),
+                'password' => $request->input('password'),
+            ];
+            if (Auth::attempt($credentials)) {
+                $id = Auth::user()->getAuthIdentifier();
+                $u = DB::table('users')
+                    ->leftJoin('presbiteros', 'users.id_presbitero', '=', 'presbiteros.id')
+                    ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
+                    ->leftJoin('presbiterios', 'igrejas.id_presbiterio', '=', 'presbiterios.id')
+                    ->leftJoin('sinodos', 'presbiterios.id_sinodo', '=', 'sinodos.id')
+                    ->where('users.id', '=', $id)
+                    ->select(
+                        'users.id',
+                        'users.status',
+                        'users.nivel',
+                        'users.perfil',
+                        'users.nome',
+                        'users.email',
+                        'presbiteros.id as id_presbitero',
+                        'igrejas.id as id_igreja',
+                        'igrejas.nome as nome_igreja',
+                        'presbiterios.id as id_presbiterio',
+                        'presbiterios.sigla as sigla_presbiterio',
+                        'sinodos.id as id_sinodo',
+                        'sinodos.sigla as sigla_sinodo'
+                    )->get();
 
-    public function connect(Request $request)
-    {
-        $credentials = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ];
-        if (Auth::attempt($credentials)) {
-            $id = Auth::user()->getAuthIdentifier();
+                return response()->json($u);
+            }
+
+            return response()->json($credentials);
+        }
+
+        public function users()
+        {
+
             $u = DB::table('users')
                 ->leftJoin('presbiteros', 'users.id_presbitero', '=', 'presbiteros.id')
                 ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
                 ->leftJoin('presbiterios', 'igrejas.id_presbiterio', '=', 'presbiterios.id')
                 ->leftJoin('sinodos', 'presbiterios.id_sinodo', '=', 'sinodos.id')
-                ->where('users.id', '=', $id)
+                ->where('users.deleted_at', "=", null)
                 ->select(
-                    'users.id',
-                    'users.status',
-                    'users.nivel',
-                    'users.perfil',
-                    'users.nome',
-                    'users.email',
+                    'users.*',
                     'presbiteros.id as id_presbitero',
                     'igrejas.id as id_igreja',
                     'igrejas.nome as nome_igreja',
@@ -162,32 +188,6 @@ class UserController extends Controller
                 )->get();
 
             return response()->json($u);
-        }
-
-        return response()->json($credentials);
-    }
-
-    public function users()
-    {
-
-        $u = DB::table('users')
-            ->leftJoin('presbiteros', 'users.id_presbitero', '=', 'presbiteros.id')
-            ->leftJoin('igrejas', 'presbiteros.id_igreja', '=', 'igrejas.id')
-            ->leftJoin('presbiterios', 'igrejas.id_presbiterio', '=', 'presbiterios.id')
-            ->leftJoin('sinodos', 'presbiterios.id_sinodo', '=', 'sinodos.id')
-            ->where('users.deleted_at', "=", null)
-            ->select(
-                'users.*',
-                'presbiteros.id as id_presbitero',
-                'igrejas.id as id_igreja',
-                'igrejas.nome as nome_igreja',
-                'presbiterios.id as id_presbiterio',
-                'presbiterios.sigla as sigla_presbiterio',
-                'sinodos.id as id_sinodo',
-                'sinodos.sigla as sigla_sinodo'
-            )->get();
-
-        return response()->json($u);
-    }
+        }*/
 
 }

@@ -12,12 +12,8 @@
 */
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/inicio', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/inicio', 'HomeController@index')->name('home');
 
 
 /*
@@ -25,9 +21,9 @@ Route::get('/inicio', function () {
 | Web Routes UserController
 |--------------------------------------------------------------------------
 */
-Route::get('/pre-login', 'UserController@prelogin')->name("login");
+/*Route::get('/pre-login', 'UserController@prelogin');
 Route::get('/login', 'UserController@index');
-Route::post('/api/connect', 'UserController@connect');
+Route::post('/api/connect', 'UserController@connect');*/
 
 Route::get('/administrar-usuarios', 'UserController@adminuser');
 Route::post('/api/usuarios', 'UserController@store');
