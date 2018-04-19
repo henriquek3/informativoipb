@@ -69,9 +69,9 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    igreja = $('<td/>').html(row.cep.toUpperCase());
-                    presbiterio = $('<td/>').html(row.cpf.toUpperCase());
-                    sinodo = $('<td/>').html(row.email.toUpperCase());
+                    igreja = $('<td/>').html(row.nome_igreja.toUpperCase());
+                    presbiterio = $('<td/>').html(row.presbiterio.toUpperCase());
+                    sinodo = $('<td/>').html(row.sinodo.toUpperCase());
 
                     /**
                      * Adiciona as células nas linhas
@@ -179,6 +179,7 @@ $(document).ready(function () {
                 cadastros_presbiteros.estado_civil.value = data.estado_civil;
                 cadastros_presbiteros.conjuge_nome.value = data.conjuge_nome;
                 cadastros_presbiteros.conjuge_nascimento.value = data.conjuge_nascimento;
+                cadastros_presbiteros.numero_dep.value = data.numero_dep;
                 cadastros_presbiteros.nome_filhos.value = data.nome_filhos;
                 cadastros_presbiteros.endereco.value = data.endereco;
                 cadastros_presbiteros.endereco_nr.value = data.endereco_nr;

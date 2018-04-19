@@ -13,9 +13,16 @@ $app->get('api/presbiteros', function (Request $request) use ($app) {
     $db = $app['db'];
     $query = "
 SELECT
-  p.*
-FROM
-  presbiteros p
+  p.*,
+  i.nome as nome_igreja,
+  p2.sigla as presbiterio,
+  s.sigla as sinodo
+
+FROM presbiteros p
+  LEFT JOIN igrejas i ON p.id_igreja = i.id
+  LEFT JOIN presbiterios p2 ON i.id_presbiterio = p2.id
+  LEFT JOIN sinodos s ON i.id_sinodo = s.id
+
 ";
     $id = (int)$request->get('id');
     $igreja = (int)$request->get('igreja');
