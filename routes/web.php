@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('index');
 });
@@ -42,6 +43,12 @@ Route::put('/api/usuarios/{id}/edit', 'UserController@update');
 |--------------------------------------------------------------------------
 */
 Route::get('/cadastros-sinodos', 'SinodoController@index');
+Route::get('/api/sinodos', 'SinodoController@api');
+/*Route::get('/cadastros-sinodos/new', 'SinodoController@create');*/
+Route::post('/api/sinodos/store', 'SinodoController@store');
+Route::get('/cadastros-sinodos/{id}/edit', 'SinodoController@edit');
+Route::put('/api/sinodos/update', 'SinodoController@update');
+Route::delete('/api/sinodos/delete', 'SinodoController@destroy');
 
 
 /*
@@ -95,6 +102,3 @@ Route::get('/relatorios-estatisticas', 'RelEstatisticaController@index');
  * +++++++++++++++++++++++++++++++++
  */
 Route::get('/teste', 'UserController@teste');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

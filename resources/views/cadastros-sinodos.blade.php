@@ -75,7 +75,11 @@
                                     class="item" href="administrar-usuarios"><i class="users icon"></i>Administrar
                                 Usuários</a><a class="item in-dev" href="#"><i class="options icon"></i>Parâmetros do
                                 Sistema</a><a class="item in-dev" href="#"><i class="talk icon"></i>Solicitar
-                                Ajuda</a><a class="item" id="logout"><i class="sign out icon"></i>Sair do Sistema</a>
+                                Ajuda</a><a class="item" id="logout" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                                        class="sign out icon"></i>{{ __('Logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">@csrf</form>
                         </div>
                     </div>
                     <span style="margin-top:15px;margin-left: 20px;"><i
@@ -170,7 +174,7 @@
                 </table>
             </div>
             <div class="ui bottom attached tab segment" data-tab="second">
-                <form id="cadastros_sinodos" name="cadastros_sinodos">
+                <form id="cadastros_sinodos" name="cadastros_sinodos">@csrf
                     <div class="ui form">
                         <div class="fields">
                             <div class="eight wide required field"><label>Nome</label> <input type="text" name="nome"

@@ -68,8 +68,8 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->integer('pa_licenca_bombeiros')->nullable();
             $table->integer('pa_alvara')->nullable();
             $table->integer('pa_certificado_digital')->nullable();
-            $table->integer('usuario_inclusao')->index('relatorios_conselhos_fk2');
-            $table->integer('usuario_alteracao')->nullable()->index('relatorios_conselhos_fk3');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('status_relatorio')->nullable();
             $table->integer('tipo_relatorio')->default(1);
             $table->softDeletes();

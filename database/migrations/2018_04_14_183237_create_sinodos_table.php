@@ -18,8 +18,8 @@ class CreateSinodosTable extends Migration
             $table->string('nome');
             $table->string('sigla', 10)->unique('sigla');
             $table->integer('regiao');
-            $table->integer('usuario_inclusao')->index('sinodos_fk0');
-            $table->integer('usuario_alteracao')->nullable()->index('sinodos_fk1');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -19,8 +19,8 @@ class CreateReunioesSinodosTable extends Migration
             $table->string('data_reuniao', 10)->nullable();
             $table->string('ano', 10)->nullable();
             $table->integer('status')->nullable();
-            $table->integer('usuario_inclusao')->index('reunioes_sinodos_fk1');
-            $table->integer('usuario_alteracao')->nullable()->index('reunioes_sinodos_fk2');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -16,8 +16,6 @@ class AddForeignKeysToRelatoriosConselhosTable extends Migration
         Schema::table('relatorios_conselhos', function (Blueprint $table) {
             $table->foreign('id_igreja', 'relatorios_conselhos_fk0')->references('id')->on('igrejas')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('sa_id_oficiais_vencimento', 'relatorios_conselhos_fk1')->references('id')->on('oficiais_vencimentos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_inclusao', 'relatorios_conselhos_fk2')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_alteracao', 'relatorios_conselhos_fk3')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -32,8 +30,6 @@ class AddForeignKeysToRelatoriosConselhosTable extends Migration
         Schema::table('relatorios_conselhos', function (Blueprint $table) {
             $table->dropForeign('relatorios_conselhos_fk0');
             $table->dropForeign('relatorios_conselhos_fk1');
-            $table->dropForeign('relatorios_conselhos_fk2');
-            $table->dropForeign('relatorios_conselhos_fk3');
         });
     }
 

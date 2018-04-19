@@ -12,14 +12,13 @@ class User extends Authenticatable
     use Notifiable;
     use SoftDeletes;
 
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'nome', 'email', 'cpf', 'observacoes', 'password', 'status', 'perfil', 'nivel', 'presbitero_id', 'usuario_alteracao', 'usuario_inclusao'
+    protected $guarded = [
+        'id', 'created_at', 'deleted_at', 'updated_at',
     ];
 
     /**
@@ -71,8 +70,17 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    /*public function todos()
+    public function sinodos()
     {
-        return $this->hasMany('App\Todo');
-    }*/
+        return $this->hasMany('App\Sinodos');
+    }
+
+    /**
+     *
+     * @return HasMany
+     */
+    public function presbiterios()
+    {
+        return $this->hasMany('App\Presbiterios');
+    }
 }

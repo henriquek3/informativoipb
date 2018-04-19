@@ -29,8 +29,8 @@ class CreateIgrejasCongregacoesTable extends Migration
             $table->string('telefone', 20)->nullable();
             $table->string('email', 20)->nullable();
             $table->string('website')->nullable();
-            $table->integer('usuario_inclusao')->index('igrejas_congregacoes_fk3');
-            $table->integer('usuario_alteracao')->nullable()->index('igrejas_congregacoes_fk4');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });

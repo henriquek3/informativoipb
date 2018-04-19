@@ -15,8 +15,6 @@ class AddForeignKeysToPresbiteriosTable extends Migration
     {
         Schema::table('presbiterios', function (Blueprint $table) {
             $table->foreign('id_sinodo', 'presbiterios_fk0')->references('id')->on('sinodos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_inclusao', 'presbiterios_fk1')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_alteracao', 'presbiterios_fk2')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -30,8 +28,6 @@ class AddForeignKeysToPresbiteriosTable extends Migration
     {
         Schema::table('presbiterios', function (Blueprint $table) {
             $table->dropForeign('presbiterios_fk0');
-            $table->dropForeign('presbiterios_fk1');
-            $table->dropForeign('presbiterios_fk2');
         });
     }
 

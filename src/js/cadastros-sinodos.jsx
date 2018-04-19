@@ -239,7 +239,10 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/sinodos/delete', {id: id_row})
+                        $("#cadastros_sinodos").append('<input type="hidden" name="_method" value="delete">');
+                        let form = $('#cadastros_sinodos').serializeArray();
+                        form.unshift({name: 'id', value: id_row});
+                        $.post('/api/sinodos/delete', form)
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -286,14 +289,15 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
+                $("#cadastros_sinodos").append('<input type="hidden" name="_method" value="put">');
                 let form = $('#cadastros_sinodos').serializeArray();
                 form.unshift({name: 'id', value: id_row});
 
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_alteracao', value: window.getData});
+                //form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_alteracao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
@@ -374,8 +378,8 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_inclusao', value: window.getData});
+                //form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_inclusao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */

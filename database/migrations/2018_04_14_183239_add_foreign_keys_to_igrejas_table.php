@@ -16,8 +16,6 @@ class AddForeignKeysToIgrejasTable extends Migration
         Schema::table('igrejas', function (Blueprint $table) {
             $table->foreign('id_presbiterio', 'igrejas_fk0')->references('id')->on('presbiterios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('id_sinodo', 'igrejas_fk1')->references('id')->on('sinodos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_inclusao', 'igrejas_fk2')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('usuario_alteracao', 'igrejas_fk3')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -32,8 +30,6 @@ class AddForeignKeysToIgrejasTable extends Migration
         Schema::table('igrejas', function (Blueprint $table) {
             $table->dropForeign('igrejas_fk0');
             $table->dropForeign('igrejas_fk1');
-            $table->dropForeign('igrejas_fk2');
-            $table->dropForeign('igrejas_fk3');
         });
     }
 

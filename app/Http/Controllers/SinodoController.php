@@ -39,7 +39,8 @@ class SinodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rs = $request->user()->sinodos()->create($request->all());
+        return response()->json($rs);
     }
 
     /**
@@ -73,7 +74,9 @@ class SinodoController extends Controller
      */
     public function update(Request $request, Sinodos $sinodos)
     {
-        //
+        $resource = $sinodos->findOrfail((int)$request->get("id"));
+        $resource->update($request->all());
+        return response()->json($resource);
     }
 
     /**
@@ -82,8 +85,21 @@ class SinodoController extends Controller
      * @param  \App\Sinodos $sinodos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sinodos $sinodos)
+    public function destroy(Sinodos $sinodos, Request $request)
     {
-        //
+        $resource = $sinodos->findOrFail((int)$request->get("id"));
+        try {
+            $resource->delete();
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
+        return response()->json($resource);
+    }
+
+    public function api()
+    {
+        return response()->json(Sinodos::all());
     }
 }

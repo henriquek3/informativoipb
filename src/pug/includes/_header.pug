@@ -101,9 +101,12 @@ header
                             a.item.in-dev(href="#")
                                 i.talk.icon
                                 | Solicitar Ajuda
-                            a.item(id="logout")
+                            a.item(id="logout", href="{{ route('logout') }}",
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();")
                                 i.sign.out.icon
-                                | Sair do Sistema
+                                | {{ __('Logout') }}
+                            form(id="logout-form", action="{{ route('logout') }}", method="POST", style="display: none;")
+                                | @csrf
                                         
                     span(style="margin-top:15px;margin-left: 20px;")
                         i.big.envelope.green.icon.looping
