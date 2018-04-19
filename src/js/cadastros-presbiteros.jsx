@@ -160,10 +160,10 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiteros?id2=' + id_row)
+        $.get('api/presbiteros?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                console.log('getdataForm');
+                console.log('getDataForm');
                 console.log(id_row);
                 console.log(data);
                 cadastros_presbiteros.id_sinodo.value = data.id_sinodo;
@@ -214,10 +214,10 @@ $(document).ready(function () {
                 /**
                  * Atribui o nome do usuario e a data no painel de registro de alterações
                  */
-                $("#user_inc").text(data.user_inclusao);
+                /*$("#user_inc").text(data.user_inclusao);
                 $("#data_inc").text(data.data_inclusao);
                 $("#user_alt").text(data.user_alteracao);
-                $("#data_alt").text(data.data_alteracao);
+                $("#data_alt").text(data.data_alteracao);*/
 
             })
             .fail(function (response) {
