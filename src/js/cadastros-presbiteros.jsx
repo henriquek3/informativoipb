@@ -69,9 +69,9 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    igreja = $('<td/>').html(row.nome_igreja.toUpperCase());
-                    presbiterio = $('<td/>').html(row.sigla_presbiterio.toUpperCase());
-                    sinodo = $('<td/>').html(row.sigla_sinodo.toUpperCase());
+                    igreja = $('<td/>').html(row.cep.toUpperCase());
+                    presbiterio = $('<td/>').html(row.cpf.toUpperCase());
+                    sinodo = $('<td/>').html(row.email.toUpperCase());
 
                     /**
                      * Adiciona as células nas linhas
