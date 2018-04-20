@@ -83,7 +83,7 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    sinodo = $('<td/>').html(row.sinodo.toUpperCase());
+                    sinodo = $('<td/>').html(row.sinodo.nome.toUpperCase());
                     sigla = $('<td/>').html(row.sigla.toUpperCase());
                     switch (row.regiao) {
                         case '1':
@@ -194,7 +194,8 @@ $(document).ready(function () {
     function getDataForm() {
         $.get('api/presbiterios?id=' + id_row)
             .done(function (response) {
-                let data = response[0];
+                let data = response;
+                console.log(data);
                 cadastros_presbiterios.nome.value = data.nome;
                 cadastros_presbiterios.sigla.value = data.sigla;
                 cadastros_presbiterios.regiao.value = data.regiao;
@@ -203,9 +204,9 @@ $(document).ready(function () {
                 /**
                  * Atribui o nome do usuario e a data no painel de registro de alterações
                  */
-                $("#user_inc").text(data.user_inclusao);
-                $("#data_inc").text(data.data_inclusao);
-                $("#user_alt").text(data.user_alteracao);
+                $("#user_inc").text(data.usuario.nome);
+                $("#data_inc").text(data.created_at);
+                $("#user_alt").text(data.updated_at);
                 $("#data_alt").text(data.data_alteracao);
 
                 /**

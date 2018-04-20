@@ -107,8 +107,13 @@ class PresbiterioController extends Controller
      * @return \Illuminate\Http\JsonResponse
      *
      */
-    public function api()
+    public function api(Request $request)
     {
-        return response()->json(Presbiterios::all());
+        $id = (int)$request->get("id");
+        if ($id > 0 ){
+            return response()->json(Presbiterios::with("usuario")->where("id",$id)->get() );
+        } else {
+            return response()->json(Presbiterios::with("sinodo")->get());
+        }
     }
 }

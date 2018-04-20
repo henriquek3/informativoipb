@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `paises`
 --
 
-DROP TABLE IF EXISTS `paises`;
+/*DROP TABLE IF EXISTS `paises`;
 CREATE TABLE IF NOT EXISTS `paises` (
   `id`   int(11)                                 NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `paises` (
   ENGINE = InnoDB
   AUTO_INCREMENT = 253
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_unicode_ci;
+  COLLATE = utf8mb4_unicode_ci;*/
 
 --
 -- Extraindo dados da tabela `paises`
@@ -297,7 +297,7 @@ INSERT INTO `paises` (`id`, `nome`, `name`) VALUES
 -- Estrutura da tabela `estados`
 --
 
-DROP TABLE IF EXISTS `estados`;
+/*DROP TABLE IF EXISTS `estados`;
 CREATE TABLE IF NOT EXISTS `estados` (
   `id`        int(11)                                 NOT NULL AUTO_INCREMENT,
   `id_pais`   int(11)                                 NOT NULL,
@@ -313,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `estados` (
   ENGINE = InnoDB
   AUTO_INCREMENT = 28
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_unicode_ci;
+  COLLATE = utf8mb4_unicode_ci;*/
 
 --
 -- Extraindo dados da tabela `estados`
@@ -354,7 +354,7 @@ INSERT INTO `estados` (`id`, `id_pais`, `uf_codigo`, `nome`, `uf_nome`, `regiao`
 -- Estrutura da tabela `cidades`
 --
 
-DROP TABLE IF EXISTS `cidades`;
+/*DROP TABLE IF EXISTS `cidades`;
 CREATE TABLE IF NOT EXISTS `cidades` (
   `id`               int(11)                                 NOT NULL AUTO_INCREMENT,
   `id_estado`        int(11)                                 NOT NULL,
@@ -370,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `cidades` (
   ENGINE = InnoDB
   AUTO_INCREMENT = 5566
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_unicode_ci;
+  COLLATE = utf8mb4_unicode_ci;*/
 
 --
 -- Extraindo dados da tabela `cidades`

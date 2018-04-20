@@ -180,6 +180,7 @@ $(document).ready(function () {
         $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
+                console.log(data);
                 cadastros_sinodos.nome.value = data.nome;
                 cadastros_sinodos.sigla.value = data.sigla;
                 cadastros_sinodos.regiao.value = data.regiao;
@@ -187,10 +188,11 @@ $(document).ready(function () {
                 /**
                  * Atribui o nome do usuario e a data no painel de registro de alterações
                  */
-                $("#user_inc").text(data.user_inclusao);
-                $("#data_inc").text(data.data_inclusao);
-                $("#user_alt").text(data.user_alteracao);
-                $("#data_alt").text(data.data_alteracao);
+                let dia = new Date(data.updated_at);
+                $("#user_inc").text(data.usuario.nome);
+                $("#data_inc").text(dia.toLocaleString("pt-BR"));
+                //$("#user_alt").text(data.user_alteracao);
+                //$("#data_alt").text(data.data_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
