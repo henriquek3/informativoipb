@@ -201,9 +201,9 @@ $(document).ready(function () {
                 setTimeout(() => {
                     $(cadastros_presbiteros.id_sinodo).trigger("change");
                     $(cadastros_presbiteros.id_presbiterio).trigger("change");
-                    $(cadastros_presbiteros.id_estado).trigger("change");
+                    $(cadastros_presbiteros.endereco_id_estado).trigger("change");
                     setTimeout(() => {
-                        cadastros_presbiteros.id_cidade.value = data.id_cidade;
+                        cadastros_presbiteros.endereco_id_cidade.value = data.endereco_id_cidade;
                         console.log("data.cidade");
                         setTimeout(() => {
                             $(cadastros_presbiteros.id_cidade).trigger("change");
