@@ -111,3 +111,9 @@ Route::get('/api/relestatisticas', 'RelEstatisticaController@api');
 Route::post('/api/relestatisticas/store', 'RelEstatisticaController@store');
 Route::put('/api/relestatisticas/update', 'RelEstatisticaController@update');
 Route::delete('/api/relestatisticas/delete', 'RelEstatisticaController@destroy');
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes EstadoController
+|--------------------------------------------------------------------------
+*/
