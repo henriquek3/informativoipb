@@ -111,9 +111,9 @@ class PresbiterioController extends Controller
     {
         $id = (int)$request->get("id");
         if ($id > 0 ){
-            return response()->json( Presbiterios::findOrFail($id) );
+            return response()->json(Presbiterios::findOrFail($id) );
         } else {
-            return response()->json(Presbiterios::with("sinodos")->get());
+            return response()->json(Presbiterios::with("sinodo")->get());
         }
     }
 }

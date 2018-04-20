@@ -109,7 +109,7 @@ class SinodoController extends Controller
     {
         $id = (int)$request->get("id");
         if ($id > 0 ){
-            return response()->json( Sinodos::findOrFail($id) );
+            return response()->json( Sinodos::with("usuario")->where("id",$id)->get() );
         } else {
             return response()->json(Sinodos::all());
         }

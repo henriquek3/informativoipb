@@ -179,7 +179,7 @@ $(document).ready(function () {
     function getDataForm() {
         $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
-                let data = response;
+                let data = response[0];
                 console.log(data);
                 cadastros_sinodos.nome.value = data.nome;
                 cadastros_sinodos.sigla.value = data.sigla;
@@ -188,7 +188,7 @@ $(document).ready(function () {
                 /**
                  * Atribui o nome do usuario e a data no painel de registro de alterações
                  */
-                $("#user_inc").text(data.user_id);
+                $("#user_inc").text(data.usuario.nome);
                 $("#data_inc").text(data.created_at);
                 $("#user_alt").text(data.user_alteracao);
                 $("#data_alt").text(data.data_alteracao);
