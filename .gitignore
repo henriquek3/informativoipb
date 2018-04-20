@@ -73,3 +73,4 @@ templates/
 .vs/
 semantic/
 .env
+resources/views/*.php
