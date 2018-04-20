@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class PresbiteriosSeeder extends Seeder
 {
@@ -11,6 +12,15 @@ class PresbiteriosSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $faker = Faker::create();
+        foreach (range(1, 50) as $i){
+            \App\Presbiterios::create([
+                'nome' => $faker->name,
+                'id_sinodo' => $i,
+                'sigla' => $faker->currencyCode . $i,
+                'regiao' => $i,
+                'user_id' => 1
+            ]);
+        }
     }
 }

@@ -83,7 +83,7 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    sinodo = $('<td/>').html(row.sinodo.toUpperCase());
+                    sinodo = $('<td/>').html(row.sinodos.nome.toUpperCase());
                     sigla = $('<td/>').html(row.sigla.toUpperCase());
                     switch (row.regiao) {
                         case '1':

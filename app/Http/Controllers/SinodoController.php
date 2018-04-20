@@ -105,8 +105,13 @@ class SinodoController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function api()
+    public function api(Request $request)
     {
-        return response()->json(Sinodos::all());
+        $id = (int)$request->get("id");
+        if ($id > 0 ){
+            return response()->json( Sinodos::findOrFail($id) );
+        } else {
+            return response()->json(Sinodos::all());
+        }
     }
 }

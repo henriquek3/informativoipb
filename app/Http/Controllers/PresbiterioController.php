@@ -109,6 +109,6 @@ class PresbiterioController extends Controller
      */
     public function api()
     {
-        return response()->json(Presbiterios::all());
+        return response()->json(Presbiterios::with("sinodos")->get());
     }
 }
