@@ -117,3 +117,4 @@ Route::delete('/api/relestatisticas/delete', 'RelEstatisticaController@destroy')
 | Web Routes EstadoController
 |--------------------------------------------------------------------------
 */
+Route::get('/api/estados', 'EstadoController@api');
