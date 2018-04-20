@@ -188,10 +188,11 @@ $(document).ready(function () {
                 /**
                  * Atribui o nome do usuario e a data no painel de registro de alterações
                  */
+                let dia = new Date(data.updated_at);
                 $("#user_inc").text(data.usuario.nome);
-                $("#data_inc").text(data.created_at);
-                $("#user_alt").text(data.user_alteracao);
-                $("#data_alt").text(data.data_alteracao);
+                $("#data_inc").text(dia.toLocaleString("pt-BR"));
+                //$("#user_alt").text(data.user_alteracao);
+                //$("#data_alt").text(data.data_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
