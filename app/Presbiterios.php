@@ -20,4 +20,9 @@ class Presbiterios extends Model
     {
         return $this->belongsTo("App\Sinodos","id_sinodo","id");
     }
+
+    public function usuario()
+    {
+        return $this->belongsTo("App\Users","user_id","id");
+    }
 }
