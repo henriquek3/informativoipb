@@ -82,4 +82,14 @@ class CidadeController extends Controller
     {
         //
     }
+
+    public function api(Request $request)
+    {
+        $id = (int)$request->get("uf");
+        if ($id > 0 ){
+            return response()->json( Cidades::with("estado")->where("id_estado",$id)->get() );
+        } else {
+            return response()->json(Cidades::all());
+        }
+    }
 }

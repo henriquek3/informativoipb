@@ -118,3 +118,10 @@ Route::delete('/api/relestatisticas/delete', 'RelEstatisticaController@destroy')
 |--------------------------------------------------------------------------
 */
 Route::get('/api/estados', 'EstadoController@api');
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes CidadeController
+|--------------------------------------------------------------------------
+*/
+Route::get('/api/cidades', 'CidadeController@api');
