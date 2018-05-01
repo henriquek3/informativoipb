@@ -448,7 +448,7 @@ $(document).ready(function () {
         }
     });
 
-    let validator_congregacoes = $("#cadastros_congregacoes").validate({
+    let validator_congregacoes = $("#cadastros_igrejas").validate({
         rules: {
             nome: {
                 required: true,
@@ -507,7 +507,7 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row_cong > 0) {
-                let form = $('#cadastros_congregacoes').serializeArray();
+                let form = $('#cadastros_igrejas').serializeArray();
                 form.unshift({name: 'id', value: id_row_cong});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
@@ -564,7 +564,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_congregacoes.sigla).parent().addClass("error");
+                            $(cadastros_igrejas.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -588,7 +588,7 @@ $(document).ready(function () {
                     })
                 ;
             } else {
-                let form = $('#cadastros_congregacoes').serializeArray();
+                let form = $('#cadastros_igrejas').serializeArray();
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
@@ -643,7 +643,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_congregacoes.sigla).parent().addClass("error");
+                            $(cadastros_igrejas.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -856,8 +856,8 @@ $(document).ready(function () {
     */
     $("input[name='cnpj']").mask('00.000.000/0000-00', {reverse: true});
 
-    $("input[name='cnpj']").focusout(function () {
-        validarCNPJ($("input[name='cnpj']").val())
+    $("input[id='cnpj_igreja']").focusout(function () {
+        validarCNPJ($("input[id='cnpj_igreja']").val())
     });
 
     function validarCNPJ(cnpj) {

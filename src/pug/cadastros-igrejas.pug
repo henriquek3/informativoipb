@@ -68,7 +68,7 @@ block content
 
                         div.four.wide.field
                             label CNPJ
-                            input(type="text" name="cnpj" placeholder="CNPJ")
+                            input(type="text" name="cnpj" id="cnpj_igreja" placeholder="CNPJ")
 
                     div.fields
                         div.thirteen.wide.field
@@ -178,17 +178,18 @@ block content
                                 input(type="text", name="nome" placeholder="Digite seu Nome")
                             div.three.wide.field
                                 label CNPJ
-                                input(type="text" name="cnpj" placeholder="CNPJ")
+                                input(type="text" name="cnpj" id="cnpj_congregacoes" placeholder="CNPJ")
                             div.ui.calendar.bottom.left.three.wide.field
                                 label Organização
-                                input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
+                                //input.datepicker2(type="date" name="data_organizacao" placeholder="Data de Organização")
+                                input(type="date" name="data_organizacao" placeholder="Data de Organização")
                         div.fields
                             div.six.wide.field
                                 label Endereço
                                 input(type="text" name="endereco" placeholder="Endereço")
                             div.two.wide.field
                                 label Número
-                                input(type="text" name="endereco_nr" placeholder="Número")
+                                input(type="text" name="endereco_numero" placeholder="Número")
                             div.four.wide.field
                                 label Complemento
                                 input(type="text" name="endereco_complemento" placeholder="Complemento")

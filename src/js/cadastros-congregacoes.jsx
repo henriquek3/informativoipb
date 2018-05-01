@@ -1,7 +1,8 @@
-let id_row, id_row_cong, tr_row, tbl_congregacoes, tbl_api;
-tbl_congregacoes = $("#tbl_congregacoes");
-
 $(document).ready(function () {
+
+    let id_row, id_row_cong, tr_row, tbl_congregacoes, tbl_api;
+    tbl_congregacoes = $("#tbl_congregacoes");
+
     /**
      * Estilizar o input de pesquisar do
      * @type {{first: first, second: second}}
@@ -160,7 +161,7 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/igrejas?id=' + id_row)
+        $.get('api/congregacoes?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
                 console.log('getdataForm');
@@ -238,7 +239,7 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/igrejas/delete', {id: id_row})
+                        $.post('/api/congregacoes/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -332,7 +333,7 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                $.post('api/igrejas/update', form)
+                $.post('api/congregacoes/update', form)
                     .done(function (response) {
                         response = response[0];
                         console.log(response);
@@ -393,7 +394,7 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                $.post('api/igrejas/store', form)
+                $.post('api/congregacoes/store', form)
                     .done(function (response) {
                         console.log(response);
 
@@ -854,8 +855,8 @@ $(document).ready(function () {
     */
     $("input[name='cnpj']").mask('00.000.000/0000-00', {reverse: true});
 
-    $("input[name='cnpj']").focusout(function () {
-        validarCNPJ($("input[name='cnpj']").val())
+    $("input[id='cnpj_congregacoes']").focusout(function () {
+        validarCNPJ($("input[id='cnpj_congregacoes']").val())
     });
 
     function validarCNPJ(cnpj) {
