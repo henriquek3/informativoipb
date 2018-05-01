@@ -70,8 +70,8 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    presbiterio = $('<td/>').html(row.presbiterio.toUpperCase());
-                    sinodo = $('<td/>').html(row.sinodo.toUpperCase());
+                    presbiterio = $('<td/>').html(row.presbiterio.sigla.toUpperCase());
+                    sinodo = $('<td/>').html(row.presbiterio.sinodo.sigla.toUpperCase());
                     /**
                      * Adiciona as células nas linhas
                      */
