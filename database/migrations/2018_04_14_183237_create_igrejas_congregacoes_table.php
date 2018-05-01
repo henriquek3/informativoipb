@@ -19,6 +19,7 @@ class CreateIgrejasCongregacoesTable extends Migration
             $table->integer('id_estado')->index('igrejas_congregacoes_fk1');
             $table->integer('id_cidade')->index('igrejas_congregacoes_fk2');
             $table->string('nome')->nullable();
+            $table->string('cnpj', 20)->nullable();
             $table->string('endereco');
             $table->string('endereco_numero', 10)->nullable();
             $table->string('endereco_complemento')->nullable();
