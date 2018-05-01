@@ -431,13 +431,15 @@ $(document).ready(function () {
         rules: {
             nome: {
                 required: true,
-                minlength: 4,
-                maxlength: 255
+                minlength: 6,
+                maxlength: 128
             },
-            sigla: {
+            email: {
                 required: true,
-                minlength: 3,
-                maxlength: 5
+                maxlength: 64
+            },
+            cpf: {
+                required: true
             }
         },
         highlight: function (element, errorClass, validClass) {
@@ -450,15 +452,6 @@ $(document).ready(function () {
             if (id_row > 0) {
                 $('#formUsuarios').append('<input type="hidden" name="_method" value="put">');
                 let form = $('#formUsuarios').serializeArray();
-                //form.unshift({name: 'id', value: id_row});
-                /**
-                 * Acrescenta ao array form os dados do usuario e data
-                 */
-                //form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
-                //form.unshift({name: 'data_alteracao', value: window.getData});
-                /**
-                 * Acrescenta ao array form os dados do usuario e data
-                 */
                 $.post('api/usuarios/' + id_row + '/edit', form)
                     .done(function (response) {
                         console.log(response);
@@ -531,14 +524,6 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#formUsuarios').serializeArray();
-                /**
-                 * Acrescenta ao array form os dados do usuario e data
-                 */
-                //form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
-                //form.unshift({name: 'data_inclusao', value: window.getData});
-                /**
-                 * Acrescenta ao array form os dados do usuario e data
-                 */
                 $.post('/api/usuarios', form)
                     .done(function (response) {
                         console.log(response);
@@ -678,6 +663,37 @@ $(document).ready(function () {
         ;
         console.log("id :" + id_row);
         return false;
-    })
+    });
+
+
+    /**
+     * Jquery Mask
+     */
+    $("input[name='cpf']").mask('000.000.000-00', {reverse: true});
+
+    $("input[name='cpf']").focusout(function () {
+        if (CPF.validate($("input[name='cpf']").val())) {
+            iziToast.success({
+                title: 'Verificado!',
+                message: 'O CPF informado é válido!',
+                timeout: 5000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        } else {
+            iziToast.warning({
+                title: 'Atenção! ',
+                message: 'O CPF informado é inválido!',
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        }
+    });
+
 
 });
