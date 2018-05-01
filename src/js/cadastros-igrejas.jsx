@@ -342,7 +342,8 @@ $(document).ready(function () {
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
-                            response.sigla.toUpperCase(),
+                            response.presbiterio.sigla.toUpperCase(),
+                            response.presbiterio.sinodo.sigla.toUpperCase(),
                         ]).draw(false);
 
                         iziToast.success({
