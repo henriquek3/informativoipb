@@ -111,12 +111,21 @@ class IgrejaCongregacaoController extends Controller
     public function api(Request $request)
     {
         $id = (int)$request->get('id');
+        $igreja = (int)$request->get('igreja');
         if ($id > 0) {
             return response()->json(
                 IgrejasCongregacoes::with([
                     'usuario',
                     'igreja',
                 ])->where('id', $id)
+                    ->get()
+            );
+        } elseif ($igreja > 0) {
+            return response()->json(
+                IgrejasCongregacoes::with([
+                    'usuario',
+                    'igreja',
+                ])->where('id_igreja', $igreja)
                     ->get()
             );
         } else {
