@@ -125,7 +125,7 @@ class IgrejaController extends Controller
                         'presbiterio.sinodo'
                     ])->get()
             );
-        } else {
+        } elseif ($id > 0) {
             return response()->json(
                 Igrejas::with([
                     'usuario',
@@ -133,6 +133,14 @@ class IgrejaController extends Controller
                     'presbiterio.sinodo'
                 ])->where('id', $id)
                     ->get()
+            );
+        } else {
+            return response()->json(
+                Igrejas::with([
+                    'usuario',
+                    'presbiterio',
+                    'presbiterio.sinodo'
+                ])->get()
             );
         }
     }
