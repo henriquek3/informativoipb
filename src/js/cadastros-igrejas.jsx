@@ -323,6 +323,7 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
+                $('#cadastros_igrejas').append('<input type="hidden" name="_method" value="put">');
                 let form = $('#cadastros_igrejas').serializeArray();
                 form.unshift({name: 'id', value: id_row});
                 /**
@@ -337,27 +338,7 @@ $(document).ready(function () {
                     .done(function (response) {
                         console.log(response);
                         tbl_api.row(tr_row).remove();
-                        let regiao;
-                        /*switch (response.regiao) {
-                            case '1':
-                                regiao = "CENTRO-OESTE";
-                                break;
-                            case '2':
-                                regiao = "NORDESTE";
-                                break;
-                            case '3':
-                                regiao = "NORTE";
-                                break;
-                            case '4':
-                                regiao = "SUDESTE";
-                                break;
-                            case '5':
-                                regiao = "SUL";
-                                break;
-                            default:
-                                regiao = 'Não identificado';
-                                break;
-                        }*/
+
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
