@@ -27,7 +27,7 @@ class CreateIgrejasCongregacoesTable extends Migration
             $table->string('endereco_cx_postal', 20)->nullable();
             $table->string('data_organizacao', 10)->nullable();
             $table->string('telefone', 20)->nullable();
-            $table->string('email', 20)->nullable();
+            $table->string('email', 75)->nullable();
             $table->string('website')->nullable();
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
