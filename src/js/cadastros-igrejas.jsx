@@ -868,6 +868,36 @@ $(document).ready(function () {
         }
     });
 
+
+    /**
+    * Jquery Mask
+    */
+    $("input[name='cnpj']").mask('00.000.000/0000-00', {reverse: true});
+
+    $("input[name='cnpj']").focusout(function () {
+        if (CPF.validate($("input[name='cnpj']").val())) {
+            iziToast.success({
+                title: 'Verificado!',
+                message: 'O CNPJ informado é válido!',
+                timeout: 5000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        } else {
+            iziToast.warning({
+                title: 'Atenção! ',
+                message: 'O CNPJ informado é inválido!',
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        }
+    });
+
     /**
      * Verifica Sessão do usuário
      *   para ser enviado junto ao array form

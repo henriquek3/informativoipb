@@ -5,11 +5,7 @@
 *   Released under the MIT license
 */
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-    return typeof obj;
-} : function (obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /**
  * CPF Class
@@ -35,8 +31,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     var root = (typeof self === 'undefined' ? 'undefined' : _typeof(self)) === 'object' && self.self === self && self || (typeof global === 'undefined' ? 'undefined' : _typeof(global)) === 'object' && global.global === global && global || this;
 
-    var CPF = function CPF() {
-    };
+    var CPF = function CPF() {};
 
     if (typeof exports !== 'undefined' && !exports.nodeType) {
         if (typeof module !== 'undefined' && !module.nodeType && module.exports) {
