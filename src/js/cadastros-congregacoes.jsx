@@ -59,7 +59,7 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/congregacoes')
+        $.get('/api/congregacoes?igreja='+window.igrejaId)
             .done(function (response) {
                 for (let key in response) {
                     let tr, row, id, nome, bairro;
@@ -94,7 +94,8 @@ $(document).ready(function () {
         ;
     }
 
-    getDataTable();
+
+
 
     /**
      * Instancia DataTables() e organiza os eventos do click
@@ -850,6 +851,17 @@ $(document).ready(function () {
         }
     });
 
+    /**
+     * Função para quando for na aba lista, zerar o id_row
+     */
+    $("a[data-tab='third']").on("click", function () {
+        console.log(window.igrejaId);
+        if (window.igrejaId > 0) {
+
+            getDataTable();
+
+        }
+    });
 
     /**
     * Jquery Mask
