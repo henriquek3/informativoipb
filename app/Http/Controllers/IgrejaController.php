@@ -114,6 +114,7 @@ class IgrejaController extends Controller
      */
     public function api(Request $request)
     {
+        $id = (int)$request->get('id');
         $presbiterio = (int)$request->get('presbiterio');
         if ($presbiterio > 0) {
             return response()->json(
@@ -130,7 +131,8 @@ class IgrejaController extends Controller
                     'usuario',
                     'presbiterio',
                     'presbiterio.sinodo'
-                ])->get()
+                ])->where('id', $id)
+                    ->get()
             );
         }
     }
