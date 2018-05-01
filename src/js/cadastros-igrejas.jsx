@@ -981,6 +981,15 @@ $(document).ready(function () {
             console.log("cnpj invalido");
             return false;
         }
+        iziToast.success({
+            title: 'Verificado!',
+            message: 'O CNPJ informado é válido!',
+            timeout: 5000,
+            pauseOnHover: true,
+            position: 'topRight',
+            transitionIn: 'fadeInDown',
+            transitionOut: 'fadeOutUp'
+        });
         console.log(cnpj);
         return true;
     };
