@@ -338,7 +338,7 @@ $(document).ready(function () {
                         console.log(response);
                         tbl_api.row(tr_row).remove();
                         let regiao;
-                        switch (response.regiao) {
+                        /*switch (response.regiao) {
                             case '1':
                                 regiao = "CENTRO-OESTE";
                                 break;
@@ -357,12 +357,11 @@ $(document).ready(function () {
                             default:
                                 regiao = 'Não identificado';
                                 break;
-                        }
+                        }*/
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            regiao
                         ]).draw(false);
 
                         iziToast.success({
