@@ -44,6 +44,7 @@ class IgrejaCongregacaoController extends Controller
      */
     public function store(Request $request)
     {
+
         $rs = $request->user()->congregacoes()->create($request->all());
         return response()->json($rs);
     }
