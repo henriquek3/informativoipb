@@ -739,7 +739,7 @@ $(document).ready(function () {
             if ($(cadastros_congregacoes.id_estado).val() > 0) {
                 $("#id_cidade_congregacoes").children().remove();
                 $("#div_cidade_congregacoes").find(".search").hide();
-                $("#loader_cidade").show();
+                $("#loader_cidade_congregacoes").show();
                 $.get('api/cidades?uf=' + $(cadastros_congregacoes.id_estado).val())
                     .done(function (response) {
 
@@ -749,7 +749,7 @@ $(document).ready(function () {
                             );
                         });
                         $("#div_cidade_congregacoes").find(".search").show();
-                        $("#loader_cidade").hide()
+                        $("#loader_cidade_congregacoes").hide()
                     })
                     .fail(function (response) {
                         iziToast.error({
