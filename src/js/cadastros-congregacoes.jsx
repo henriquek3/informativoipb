@@ -1,5 +1,5 @@
-let id_row, id_row_cong, tr_row, tbl_igrejas, tbl_api;
-tbl_igrejas = $("#tbl_igrejas");
+let id_row, id_row_cong, tr_row, tbl_congregacoes, tbl_api;
+tbl_congregacoes = $("#tbl_congregacoes");
 
 $(document).ready(function () {
     /**
@@ -61,7 +61,7 @@ $(document).ready(function () {
         $.get('/api/igrejas')
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, nome, presbiterio, sinodo;
+                    let tr, row, id, nome, bairro;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -70,19 +70,17 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    presbiterio = $('<td/>').html(row.presbiterio.sigla.toUpperCase());
-                    sinodo = $('<td/>').html(row.presbiterio.sinodo.sigla.toUpperCase());
+                    bairro = $('<td/>').html(row.endereco_bairro.toUpperCase());
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
                         .append(nome)
-                        .append(presbiterio)
-                        .append(sinodo);
+                        .append(bairro);
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_igrejas').append(tr);
+                    $('#tbody_congregacoes').append(tr);
                 }
             })
             .fail(function (response) {
@@ -102,7 +100,7 @@ $(document).ready(function () {
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_igrejas.DataTable({
+            tbl_api = tbl_congregacoes.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -136,7 +134,7 @@ $(document).ready(function () {
             /**
              * Utilizado para selecionar as linhas da tabela
              */
-            $('#tbody_igrejas').off("click", "**").on('click', 'tr', function () {
+            $('#tbody_congregacoes').off("click", "**").on('click', 'tr', function () {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     id_row = null;

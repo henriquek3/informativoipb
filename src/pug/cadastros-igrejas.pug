@@ -148,21 +148,18 @@ block content
                 a.item(data-tab="second-cong") Cadastro
 
             div.ui.bottom.attached.tab.segment.active(data-tab="first-cong")
-                table.ui.compact.selectable.celled.blue.table()
+                table.ui.compact.selectable.celled.blue.table(id="tbl_congregacoes")
                     thead
                         tr
                             th.one.wide Código
                             th.ten.wide Nome
                             th.five.wide Bairro
 
-                    tbody
-                        tr
-                            td 01
-                            td Congregação luz e vida
-                            td Cidade Alta
+                    tbody(id="tbody_congregacoes")
 
             div.ui.bottom.attached.tab.segment(data-tab="second-cong")
                 form(id="cadastros_congregacoes", name="cadastros_congregacoes")
+                    | @csrf
                     div.ui.form
                         div.fields
                             // Trazer por padrão já selecionado o estado e cidade da igreja, porém permitir alterar.
