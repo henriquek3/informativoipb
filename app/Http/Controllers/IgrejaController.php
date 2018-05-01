@@ -106,12 +106,26 @@ class IgrejaController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function api()
+    public function api(Request $request)
     {
-        return response()->json(
-            Igrejas::with([
-                'presbiterio', 'presbiterio.sinodo'
-            ])->get()
-        );
+        $presbiterio = (int)$request->get('presbiterio');
+        if ($presbiterio > 0) {
+            return response()->json(
+                Igrejas::where('id_presbiterio', $presbiterio)
+                    ->with([
+                        'usuario',
+                        'presbiterio',
+                        'presbiterio.sinodo'
+                    ])->get()
+            );
+        } else {
+            return response()->json(
+                Igrejas::with([
+                    'usuario',
+                    'presbiterio',
+                    'presbiterio.sinodo'
+                ])->get()
+            );
+        }
     }
 }

@@ -15,6 +15,11 @@ class Presbiteros extends Model
         'id', 'created_at', 'deleted_at', 'updated_at',
     ];
 
+    public function usuario()
+    {
+        return $this->belongsTo("App\User", "user_id", "id");
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -110,10 +110,22 @@ class PresbiterioController extends Controller
     public function api(Request $request)
     {
         $id = (int)$request->get("id");
+        $sinodo = (int)$request->get("sinodo");
         if ($id > 0 ){
-            return response()->json(Presbiterios::with("usuario")->where("id",$id)->get() );
+            return response()->json(Presbiterios::with([
+                'sinodo',
+                'usuario',
+            ])->where("id", $id)->get());
+        } elseif ($sinodo > 0) {
+            return response()->json(Presbiterios::with([
+                'sinodo',
+                'usuario',
+            ])->where("id_sinodo", $sinodo)->get());
         } else {
-            return response()->json(Presbiterios::with("sinodo")->get());
+            return response()->json(Presbiterios::with([
+                'sinodo',
+                'usuario',
+            ])->get());
         }
     }
 }

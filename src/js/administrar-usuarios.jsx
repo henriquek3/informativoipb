@@ -75,7 +75,7 @@ $(document).ready(function () {
         ;
     }
 
-    //getDataSinodos();
+    getDataSinodos();
 
     function getDataPresbiterio() {
         $(formUsuarios.id_sinodo).on('change', function () {
@@ -105,7 +105,7 @@ $(document).ready(function () {
         });
     }
 
-    //getDataPresbiterio();
+    getDataPresbiterio();
 
     function getDataIgreja() {
         $(formUsuarios.id_presbiterio).on('change', function () {
@@ -137,7 +137,7 @@ $(document).ready(function () {
         });
     }
 
-    //getDataIgreja();
+    getDataIgreja();
 
     function getDataPresbitero() {
         $(formUsuarios.id_igreja).on('change', function () {
@@ -169,7 +169,7 @@ $(document).ready(function () {
         });
     }
 
-    //getDataPresbitero();
+    getDataPresbitero();
 
     /**
      * Instancia DataTables() e organiza os eventos do click

@@ -110,10 +110,33 @@ class PresbiteroController extends Controller
     public function api(Request $request)
     {
         $id = (int)$request->get("id");
-        if ($id > 0 ){
-            return response()->json( Presbiteros::findOrFail($id) );
+        $igreja = (int)$request->get("igreja");
+        if ($id > 0) {
+            return response()->json(
+                Presbiteros::where('id', $id)->with([
+                    'usuario',
+                    'igreja',
+                    'igreja.presbiterio',
+                    'igreja.presbiterio.sinodo',
+                ])->get()
+            );
+        } elseif ($igreja > 0) {
+            return response()->json(
+                Presbiteros::where('id_igreja', $igreja)->with([
+                    'usuario',
+                    'igreja',
+                    'igreja.presbiterio',
+                    'igreja.presbiterio.sinodo',
+                ])->get()
+            );
         } else {
-            return response()->json(Presbiteros::with("sinodos")->get());
+            return response()->json(
+                Presbiteros::with([
+                    'usuario',
+                    'igreja',
+                    'igreja.presbiterio',
+                    'igreja.presbiterio.sinodo',
+                ])->get());
         }
     }
 }

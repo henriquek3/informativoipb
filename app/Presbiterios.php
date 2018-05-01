@@ -16,13 +16,13 @@ class Presbiterios extends Model
         'id', 'created_at', 'deleted_at', 'updated_at',
     ];
 
-    public function sinodo()
-    {
-        return $this->belongsTo("App\Sinodos","id_sinodo","id");
-    }
-
     public function usuario()
     {
         return $this->belongsTo("App\User","user_id","id");
+    }
+
+    public function sinodo()
+    {
+        return $this->belongsTo("App\Sinodos", "id_sinodo", "id");
     }
 }
