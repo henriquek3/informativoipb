@@ -108,6 +108,10 @@ class IgrejaController extends Controller
      */
     public function api()
     {
-        return response()->json(Igrejas::all());
+        return response()->json(
+            Igrejas::with([
+                'presbiterio', 'presbiterio.sinodo'
+            ])->get()
+        );
     }
 }
