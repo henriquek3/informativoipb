@@ -168,8 +168,8 @@ $(document).ready(function () {
                 console.log('getdataForm');
                 console.log(id_row);
                 console.log(data);
-                cadastros_igrejas.id_sinodo.value = data.id_sinodo;
-                cadastros_igrejas.id_presbiterio.value = data.id_presbiterio;
+                cadastros_igrejas.id_sinodo.value = data.presbiterio.sinodo.id_sinodo;
+                cadastros_igrejas.id_presbiterio.value = data.presbiterio.id_presbiterio;
                 cadastros_igrejas.id_estado.value = data.id_estado;
                 cadastros_igrejas.cnpj.value = data.cnpj;
                 cadastros_igrejas.nome.value = data.nome;
