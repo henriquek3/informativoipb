@@ -161,7 +161,7 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/igrejas?id=' + id_row)
+        $.get('api/congregacoes?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
                 console.log('getdataForm');
@@ -239,7 +239,7 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/igrejas/delete', {id: id_row})
+                        $.post('/api/congregacoes/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -325,6 +325,7 @@ $(document).ready(function () {
                 $('#cadastros_congregacoes').append('<input type="hidden" name="_method" value="put">');
                 let form = $('#cadastros_congregacoes').serializeArray();
                 form.unshift({name: 'id', value: id_row});
+                form.unshift({name: 'id_igreja', value: window.igrejaId});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
@@ -333,7 +334,7 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                $.post('api/igrejas/update', form)
+                $.post('api/congregacoes/update', form)
                     .done(function (response) {
                         response = response[0];
                         console.log(response);
@@ -389,12 +390,13 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
+                form.unshift({name: 'id_igreja', value: window.igrejaId});
                 //form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
                 //form.unshift({name: 'data_inclusao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                $.post('api/igrejas/store', form)
+                $.post('api/congregacoes/store', form)
                     .done(function (response) {
                         console.log(response);
 

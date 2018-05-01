@@ -1,6 +1,8 @@
 let id_row, id_row_cong, tr_row, tbl_igrejas, tbl_api;
 tbl_igrejas = $("#tbl_igrejas");
 
+window.igrejaId = id_row;
+
 $(document).ready(function () {
     /**
      * Estilizar o input de pesquisar do
