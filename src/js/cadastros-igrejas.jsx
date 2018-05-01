@@ -27,7 +27,7 @@ $(document).ready(function () {
      */
     $.validator.setDefaults({
         debug: true,
-        ignore: ".search, .hidden", // ignora validação onde estiver usando essa classe
+        ignore: ".search, .hidden,  *:not([name])", // ignora validação onde estiver usando essa classe
         submitHandler: function () {
             return false;
         }
@@ -328,8 +328,8 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_alteracao', value: window.getData});
+                //form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_alteracao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
@@ -442,7 +442,7 @@ $(document).ready(function () {
                             $(cadastros_igrejas.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
-                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
+                                message: 'Atenção, CNPJ já existe.',
                                 timeout: 10000,
                                 pauseOnHover: true,
                                 position: 'center',
