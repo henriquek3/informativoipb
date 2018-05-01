@@ -855,8 +855,8 @@ $(document).ready(function () {
     */
     $("input[name='cnpj']").mask('00.000.000/0000-00', {reverse: true});
 
-    $("input[name='cnpj']").focusout(function () {
-        validarCNPJ($("input[name='cnpj']").val())
+    $("input[id='cnpj_congregacoes']").focusout(function () {
+        validarCNPJ($("input[id='cnpj_congregacoes']").val())
     });
 
     function validarCNPJ(cnpj) {
