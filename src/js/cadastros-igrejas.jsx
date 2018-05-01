@@ -146,6 +146,7 @@ $(document).ready(function () {
                     tbl_api.$('tr.active').removeClass('active');
                     $(this).addClass('active');
                     id_row = $(this).find('td:first').html();
+                    window.igrejaId = $(this).find('td:first').html();
                     tr_row = $(this);
                 }
                 /**
@@ -153,6 +154,7 @@ $(document).ready(function () {
                  * que vem do banco de dados como o id do registr
                  */
                 console.log(id_row);
+                console.log(window.igrejaId+'igrejaId');
             });
             styleInputSearch.first().second();
         }, 1000);

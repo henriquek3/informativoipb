@@ -167,7 +167,7 @@ $(document).ready(function () {
                 console.log('getdataForm');
                 console.log(id_row);
                 console.log(data);
-                cadastros_congregacoes.id_sinodo.value = data.presbiterio.sinodo.id;
+                //cadastros_congregacoes.id_sinodo.value = data.presbiterio.sinodo.id;
                 cadastros_congregacoes.id_estado.value = data.id_estado;
                 cadastros_congregacoes.cnpj.value = data.cnpj;
                 cadastros_congregacoes.nome.value = data.nome;
@@ -186,7 +186,7 @@ $(document).ready(function () {
                     $(cadastros_congregacoes.id_sinodo).trigger("change");
                     $(cadastros_congregacoes.id_estado).trigger("change");
                     setTimeout(() => {
-                        cadastros_congregacoes.id_presbiterio.value = data.presbiterio.id;
+                        //cadastros_congregacoes.id_presbiterio.value = data.presbiterio.id;
                         cadastros_congregacoes.id_cidade_congregacoes.value = data.id_cidade_congregacoes;
                         setTimeout(() => {
                             $(cadastros_congregacoes.id_cidade_congregacoes).trigger("change");
@@ -343,8 +343,8 @@ $(document).ready(function () {
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
-                            response.presbiterio.sigla.toUpperCase(),
-                            response.presbiterio.sinodo.sigla.toUpperCase(),
+                            response.endereco_bairro.toUpperCase(),
+                            //response.presbiterio.sinodo.sigla.toUpperCase(),
                         ]).draw(false);
 
                         iziToast.success({
@@ -403,8 +403,7 @@ $(document).ready(function () {
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
-                            response.presbiterio.toUpperCase(),
-                            response.sinodo.toUpperCase()
+                            response.endereco_bairro.toUpperCase()
                         ]).draw(false);
 
                         iziToast.success({
@@ -831,7 +830,7 @@ $(document).ready(function () {
     /**
      *  Função para ativar o get
      */
-    $("a[data-tab='second']").on("click", function () {
+    $("a[data-tab='second-cong']").on("click", function () {
         if (id_row > 0) {
             getDataForm();
         } else {
