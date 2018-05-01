@@ -86,7 +86,7 @@ class IgrejaController extends Controller
                 'usuario',
                 'presbiterio',
                 'presbiterio.sinodo'
-            ])->get()
+            ])->where('id',$resource->id)->get()
         );
     }
 
