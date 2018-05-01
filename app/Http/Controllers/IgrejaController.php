@@ -81,7 +81,13 @@ class IgrejaController extends Controller
     {
         $resource = $igrejas->findOrfail((int)$request->get("id"));
         $resource->update($request->all());
-        return response()->json($resource);
+        return response()->json(
+            $resource->with([
+                'usuario',
+                'presbiterio',
+                'presbiterio.sinodo'
+            ])->get()
+        );
     }
 
     /**
