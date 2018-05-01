@@ -83,6 +83,7 @@ $(document).ready(function () {
                      */
                     $('#tbody_congregacoes').append(tr);
                 }
+                instanciaDataTables(); // init function instanciaDataTables() {};
             })
             .fail(function (response) {
                 console.log(response);
@@ -156,7 +157,7 @@ $(document).ready(function () {
         }, 1000);
     }
 
-    instanciaDataTables(); // init function instanciaDataTables() {};
+
 
     /**
      * Traz as informações para edição
