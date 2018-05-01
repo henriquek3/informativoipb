@@ -168,8 +168,7 @@ $(document).ready(function () {
                 console.log('getdataForm');
                 console.log(id_row);
                 console.log(data);
-                cadastros_igrejas.id_sinodo.value = data.presbiterio.sinodo.id_sinodo;
-                cadastros_igrejas.id_presbiterio.value = data.presbiterio.id_presbiterio;
+                cadastros_igrejas.id_sinodo.value = data.presbiterio.sinodo.id;
                 cadastros_igrejas.id_estado.value = data.id_estado;
                 cadastros_igrejas.cnpj.value = data.cnpj;
                 cadastros_igrejas.nome.value = data.nome;
@@ -179,21 +178,20 @@ $(document).ready(function () {
                 cadastros_igrejas.endereco_complemento.value = data.endereco_complemento;
                 cadastros_igrejas.endereco_bairro.value = data.endereco_bairro;
                 cadastros_igrejas.email.value = data.email;
-                cadastros_igrejas.homepage.value = data.homepage;
+                //cadastros_igrejas.homepage.value = data.homepage;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
                     $(cadastros_igrejas.id_sinodo).trigger("change");
-                    $(cadastros_igrejas.id_presbiterio).trigger("change");
                     $(cadastros_igrejas.id_estado).trigger("change");
                     setTimeout(() => {
+                        cadastros_igrejas.id_presbiterio.value = data.presbiterio.id;
                         cadastros_igrejas.id_cidade.value = data.id_cidade;
-                        console.log("data.cidade");
                         setTimeout(() => {
                             $(cadastros_igrejas.id_cidade).trigger("change");
-                            console.log("trigg cidade")
+                            $(cadastros_igrejas.id_presbiterio).trigger("change");
                         }, 500)
                     }, 500)
                 }, 500);
