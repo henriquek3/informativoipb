@@ -178,7 +178,7 @@ $(document).ready(function () {
                 cadastros_igrejas.endereco_complemento.value = data.endereco_complemento;
                 cadastros_igrejas.endereco_bairro.value = data.endereco_bairro;
                 cadastros_igrejas.email.value = data.email;
-                //cadastros_igrejas.homepage.value = data.homepage;
+                cadastros_igrejas.website.value = data.website;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
