@@ -875,17 +875,12 @@ $(document).ready(function () {
     $("input[name='cnpj']").mask('00.000.000/0000-00', {reverse: true});
 
     $("input[name='cnpj']").focusout(function () {
-        if (CPF.validate($("input[name='cnpj']").val())) {
-            iziToast.success({
-                title: 'Verificado!',
-                message: 'O CNPJ informado é válido!',
-                timeout: 5000,
-                pauseOnHover: true,
-                position: 'topRight',
-                transitionIn: 'fadeInDown',
-                transitionOut: 'fadeOutUp'
-            });
-        } else {
+        validarCNPJ($("input[name='cnpj']").val())
+    });
+
+    function validarCNPJ(cnpj) {
+        cnpj = cnpj.replace(/[^\d]+/g, '');
+        if (cnpj == '') {
             iziToast.warning({
                 title: 'Atenção! ',
                 message: 'O CNPJ informado é inválido!',
@@ -895,8 +890,100 @@ $(document).ready(function () {
                 transitionIn: 'fadeInDown',
                 transitionOut: 'fadeOutUp'
             });
+            console.log("cnpj vazio");
+            return false;
         }
-    });
+
+        if (cnpj.length != 14) {
+            iziToast.warning({
+                title: 'Atenção! ',
+                message: 'O CNPJ informado é inválido!',
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+            console.log("cnpj menor que 14");
+            return false;
+        }
+
+        // Elimina CNPJs invalidos conhecidos
+        if (cnpj == "00000000000000" ||
+            cnpj == "11111111111111" ||
+            cnpj == "22222222222222" ||
+            cnpj == "33333333333333" ||
+            cnpj == "44444444444444" ||
+            cnpj == "55555555555555" ||
+            cnpj == "66666666666666" ||
+            cnpj == "77777777777777" ||
+            cnpj == "88888888888888" ||
+            cnpj == "99999999999999") {
+            iziToast.warning({
+                title: 'Atenção! ',
+                message: 'O CNPJ informado é inválido!',
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+            console.log("cnpj num repetidos");
+            return false;
+        }
+
+        // Valida DVs
+        tamanho = cnpj.length - 2;
+        numeros = cnpj.substring(0, tamanho);
+        digitos = cnpj.substring(tamanho);
+        soma = 0;
+        pos = tamanho - 7;
+        for (i = tamanho; i >= 1; i--) {
+            soma += numeros.charAt(tamanho - i) * pos--;
+            if (pos < 2)
+                pos = 9;
+        }
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(0)) {
+            iziToast.warning({
+                title: 'Atenção! ',
+                message: 'O CNPJ informado é inválido!',
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+            console.log("cnpj invalido");
+            return false;
+        }
+
+        tamanho = tamanho + 1;
+        numeros = cnpj.substring(0, tamanho);
+        soma = 0;
+        pos = tamanho - 7;
+        for (i = tamanho; i >= 1; i--) {
+            soma += numeros.charAt(tamanho - i) * pos--;
+            if (pos < 2)
+                pos = 9;
+        }
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(1)) {
+            iziToast.warning({
+                title: 'Atenção! ',
+                message: 'O CNPJ informado é inválido!',
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+            console.log("cnpj invalido");
+            return false;
+        }
+        console.log(cnpj);
+        return true;
+    };
 
     /**
      * Verifica Sessão do usuário
