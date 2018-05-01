@@ -336,7 +336,7 @@ $(document).ready(function () {
                 $.post('api/igrejas/update', form)
                     .done(function (response) {
                         console.log(response);
-                        /*tbl_api.row(tr_row).remove();
+                        tbl_api.row(tr_row).remove();
                         let regiao;
                         switch (response.regiao) {
                             case '1':
@@ -363,7 +363,7 @@ $(document).ready(function () {
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
                             regiao
-                        ]).draw(false);*/
+                        ]).draw(false);
 
                         iziToast.success({
                             title: 'OK',
