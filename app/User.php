@@ -17,8 +17,16 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $guarded = [
-        'id', 'created_at', 'deleted_at', 'updated_at',
+    protected $fillable = [
+        'nome',
+        'email',
+        'cpf',
+        'status',
+        'nivel',
+        'perfil',
+        'observacoes',
+        'user_id',
+        'id_presbitero',
     ];
 
     /**
@@ -91,6 +99,15 @@ class User extends Authenticatable
     public function igrejas()
     {
         return $this->hasMany('App\Igrejas');
+    }
+
+    /**
+     *
+     * @return HasMany
+     */
+    public function congregacoes()
+    {
+        return $this->hasMany('App\IgrejasCongregacoes');
     }
 
     /**

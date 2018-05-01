@@ -67,7 +67,7 @@ Route::delete('/api/igrejas/delete', 'IgrejaController@destroy');
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes IgrejaController
+| Web Routes IgrejaCongregacaoController
 |--------------------------------------------------------------------------
 */
 Route::get('/cadastros-congregacoes', 'IgrejaCongregacaoController@index');

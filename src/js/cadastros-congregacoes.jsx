@@ -1,7 +1,6 @@
-let id_row, id_row_cong, tr_row, tbl_congregacoes, tbl_api;
-tbl_congregacoes = $("#tbl_congregacoes");
-
 $(document).ready(function () {
+    let id_row, id_row_cong, tr_row, tbl_congregacoes, tbl_api;
+    tbl_congregacoes = $("#tbl_congregacoes");
     /**
      * Estilizar o input de pesquisar do
      * @type {{first: first, second: second}}
