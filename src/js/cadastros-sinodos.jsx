@@ -179,7 +179,7 @@ $(document).ready(function () {
     function getDataForm() {
         $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
-                let data = response[0];
+                let data = response;
                 console.log(data);
                 cadastros_sinodos.nome.value = data.nome;
                 cadastros_sinodos.sigla.value = data.sigla;

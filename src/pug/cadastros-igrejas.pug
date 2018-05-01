@@ -37,6 +37,7 @@ block content
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             form(id="cadastros_igrejas", name="cadastros_igrejas")
+                | @csrf
                 div.ui.form
                     div.fields
                         div.six.wide.field
@@ -52,7 +53,7 @@ block content
                         div.four.wide.field
                             div.clearfix
                                 div.ui.checkbox(style="float: left; display: flex; margin-top: 32px; margin-left: 20px;")
-                                    input(type="checkbox")
+                                    input(name="congregacao_presbiterio", type="checkbox")
                                     label Congregação do Presbitério
 
                     div.fields
@@ -98,7 +99,7 @@ block content
                             input(type="email" name="email" placeholder="E-Mail")
                         div.eight.wide.field
                             label Homepage
-                            input(type="url" name="homepage" placeholder="Web Site")
+                            input(type="url" name="website" placeholder="Web Site")
 
                 div.ui.segments
                     div.ui.horizontal.segments
