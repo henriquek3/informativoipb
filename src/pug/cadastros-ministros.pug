@@ -70,8 +70,8 @@ block content
                     div.fields
                         div.ui.calendar.bottom.left.three.wide.field
                             label Data de Nascimento
-                            input.datepicker2(type="date" name="nascimento_data" placeholder="Data de Nascimento")
-                        div.five.wide.field
+                            input(type="date" name="nascimento_data" placeholder="Data de Nascimento")
+                        div.five.wide.field(data-toolip="Estado em que nasceu")
                             label Estado
                             select.ui.fluid.search.dropdown(name="nascimento_id_estado")
 

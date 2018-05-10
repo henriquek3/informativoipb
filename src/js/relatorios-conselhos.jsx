@@ -38,7 +38,7 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/presbiterios')
+            $.get('/api/relconselhos')
             .done(function (response) {
                 for (let key in response) {
                     let tr, row, id, tipo_relatorio, data_lancamento, data_ultima_alteracao, status, ano;
@@ -277,7 +277,7 @@ $(document).ready(function () {
             if (id_row > 0) {
                 let form = $('#relatorios_conselhos').serializeArray();
                 form.unshift({name: 'id', value: id_row});
-                $.post('api/presbiterios/update', form)
+                $.post('api/relconselhos/update', form)
                     .done(function (response) {
                         tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
@@ -300,6 +300,7 @@ $(document).ready(function () {
                     })
                     .fail(function (response) {
                         console.log(response);
+                        console.log(form);
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
@@ -328,7 +329,8 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#relatorios_conselhos').serializeArray();
-                $.post('api/presbiterios/store', form)
+                console.log(form);
+                $.post('api/relconselhos/store', form)
                     .done(function (response) {
                         id_row = response.id;
                         tbl_api.row.add([
@@ -499,7 +501,7 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/presbiterios/delete', {id: id_row})
+                        $.post('/api/relconselhos/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -719,4 +721,17 @@ $(document).ready(function () {
                 tbl_api.$('tr.active').removeClass('active');
             }
         });*/
+    
+    let ceiaGrupo = document.getElementsByName('se_santaceia_grupos')
+    let ceiaIndiv = document.getElementsByName('se_santaceia_individual')
+    let somaCeia = document.getElementsByName('somaCeia')
+
+
+    function somarCeia() {
+        let somaTudo = ceiaGrupo + ceiaIndiv
+
+    }
+
+    somaCeia.addEventListener('click', somarCeia)
+
 });
