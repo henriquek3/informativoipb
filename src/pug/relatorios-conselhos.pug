@@ -52,6 +52,7 @@ block content
                         td 2017
 
         form.ui.bottom.attached.tab.segment.active(data-tab="second" name="relatorios_conselhos" id="relatorios_conselhos")
+            | @csrf
             div.ui.segments
                 div.ui.red.segment(style="text-align: center; background-color: #F9FAFB")
                     p
@@ -396,43 +397,43 @@ block content
                             label 3.2. Conselho:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_conselho")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
 
                         div.four.wide.field
                             label 3.5. Mesa Administrativa da Cong. Presbiterial:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_mesa_administrativa")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
 
                     div.inline.fields
                         div.four.wide.field
                             label 3.3. Junta Diaconal:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_jdiaconal")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
 
                         div.four.wide.field
                             label 3.6. Comissão de Exame de Contas da Tesouraria:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_tesouraria")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
 
                     div.inline.fields
                         div.four.wide.field
                             label 3.4. Assembléia Geral:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_assembleia")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
                 div.ui.form.segment
                     div.inline.fields
                         div.seven.wide.field
