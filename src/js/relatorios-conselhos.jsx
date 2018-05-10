@@ -722,16 +722,6 @@ $(document).ready(function () {
             }
         });*/
     
-    let ceiaGrupo = document.getElementsByName('se_santaceia_grupos')
-    let ceiaIndiv = document.getElementsByName('se_santaceia_individual')
-    let somaCeia = document.getElementsByName('somaCeia')
 
-
-    function somarCeia() {
-        let somaTudo = ceiaGrupo + ceiaIndiv
-
-    }
-
-    somaCeia.addEventListener('click', somarCeia)
 
 });
