@@ -210,7 +210,7 @@ $(document).ready(function () {
                         cadastros_presbiteros.endereco_id_cidade.value = data.endereco_id_cidade;
                         console.log("data.cidade");
                         setTimeout(() => {
-                            $(cadastros_igrejas.id_cidade).trigger("change");
+                            $(cadastros_presbiteros.id_cidade).trigger("change");
                             console.log("trigg cidade")
                         }, 500)
                     }, 500)
@@ -541,7 +541,7 @@ $(document).ready(function () {
              * retorna o select para a primera opção
              * @type {number}
              */
-            validator_presbiterios.resetForm();
+            validator_presbiteros.resetForm();
             $('form').form('reset');
         }
     });
@@ -556,6 +556,56 @@ $(document).ready(function () {
      * Carregar Estados e Cidades
      */
     let estadosLoadAtual;
+
+    /**
+     * Carregar Sínodos e Presbitérios
+     */
+    function loadSinodosPresbiterios() {
+        $.get('api/sinodos')
+            .done(function (response) {
+                $.each(response, function () {
+                    $(cadastros_presbiteros.id_sinodo).append(
+                        $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                    );
+                });
+            })
+            .fail(function (response) {
+                console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
+            })
+        ;
+
+        $(cadastros_presbiteros.id_sinodo).on('change', function () {
+            if ($(cadastros_presbiteros.id_sinodo).val() > 0) {
+                $("#id_presbiterio").children().remove();
+                $("#div_presbiterio").find(".search").hide();
+                $("#loader_presbiterio").show();
+                $.get('api/presbiterios?sinodo=' + $(cadastros_presbiteros.id_sinodo).val())
+                    .done(function (response) {
+
+                        $.each(response, function () {
+                            $(cadastros_presbiteros.id_presbiterio).append(
+                                $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_presbiterio").find(".search").show();
+                        $("#loader_presbiterio").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    loadSinodosPresbiterios();
 
     function popularEstadosCidadesAtual() {
 
