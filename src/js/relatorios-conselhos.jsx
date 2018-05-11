@@ -7,7 +7,7 @@ $(document).ready(function () {
      */
     $.validator.setDefaults({
         debug: true,
-        ignore: ".search", // ignora validação onde estiver usando essa classe
+        ignore: ".search, .hidden,  *:not([name])", // ignora validação onde estiver usando essa classe
         submitHandler: function () {
             return false;
         }
@@ -332,14 +332,15 @@ $(document).ready(function () {
                 console.log(form);
                 $.post('api/relconselhos/store', form)
                     .done(function (response) {
-                        id_row = response.id;
-                        tbl_api.row.add([
+                        console.log(form);
+                        //id_row = response.id;
+                        /*tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
                             sinodo,
                             regiao.toUpperCase()
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
