@@ -27,7 +27,6 @@ class CreateUsuariosTable extends Migration
             $table->unsignedInteger('id_presbitero')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
