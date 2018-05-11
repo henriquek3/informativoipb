@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RelEstatisticas extends Model
 {
     use SoftDeletes;
+    protected $table = "relatorios_estatisticas";
     /**
      * @var array
      */
