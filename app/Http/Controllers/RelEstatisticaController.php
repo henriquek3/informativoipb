@@ -43,7 +43,13 @@ class RelEstatisticaController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $request->user()->relEstatisticas()->create($request->all());
+        try {
+            $rs = $request->user()->relEstatisticas()->create($request->all());
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
         return response()->json($rs);
     }
 
@@ -78,8 +84,14 @@ class RelEstatisticaController extends Controller
      */
     public function update(Request $request, RelEstatisticas $relEstatisticas)
     {
-        $resource = $relEstatisticas->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
+        try {
+            $resource = $relEstatisticas->findOrfail((int)$request->get("id"));
+            $resource->update($request->all());
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
         return response()->json($resource);
     }
 

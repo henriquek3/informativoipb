@@ -16,7 +16,7 @@ class CreateRelatoriosConselhosTable extends Migration
         Schema::create('relatorios_conselhos', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('ano', 10);
-            $table->integer('id_igreja')->index('relatorios_conselhos_fk0');
+            $table->integer('id_igreja');
             $table->integer('or_imovel_documentado')->nullable();
             $table->integer('or_declaracao_ano_anterior')->nullable();
             $table->integer('or_inventario_existe')->nullable();
@@ -52,7 +52,7 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->integer('sa_officiais_venc')->nullable();
             $table->integer('sa_officiais_venc_presbiteros')->nullable();
             $table->integer('sa_officiais_venc_diaconos')->nullable();
-            $table->integer('sa_id_oficiais_vencimento')->nullable()->index('relatorios_conselhos_fk1');
+            $table->integer('sa_id_oficiais_vencimento')->nullable();
             $table->integer('sa_idem_livros_sociedades')->nullable();
             $table->integer('sa_nomeacao')->nullable();
             $table->integer('sa_contribuicao_extra')->nullable();
