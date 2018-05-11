@@ -18,7 +18,7 @@ class CreateSinodosTable extends Migration
             $table->string('nome');
             $table->string('sigla', 10)->unique('sigla');
             $table->integer('regiao');
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();

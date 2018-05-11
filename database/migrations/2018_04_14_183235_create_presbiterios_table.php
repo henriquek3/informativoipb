@@ -19,7 +19,7 @@ class CreatePresbiteriosTable extends Migration
             $table->string('nome');
             $table->string('sigla', 10);
             $table->integer('regiao');
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
