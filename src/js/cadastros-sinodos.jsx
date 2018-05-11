@@ -89,7 +89,7 @@ $(document).ready(function () {
                 }
             });
 
-            tbl_api.page('next').draw(false); // ? Ativa paginação !
+            //tbl_api.page('next').draw(false); // ? Ativa paginação !
 
             /**
              * Utilizado para selecionar as linhas da tabela
@@ -179,7 +179,7 @@ $(document).ready(function () {
     function getDataForm() {
         $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
-                let data = response;
+                let data = response[0];
                 console.log(data);
                 cadastros_sinodos.nome.value = data.nome;
                 cadastros_sinodos.sigla.value = data.sigla;

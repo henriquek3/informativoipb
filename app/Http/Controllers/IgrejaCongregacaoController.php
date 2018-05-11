@@ -44,7 +44,13 @@ class IgrejaCongregacaoController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $request->user()->congregacoes()->create($request->all());
+        try {
+            $rs = $request->user()->congregacoes()->create($request->all());
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
         return response()->json($rs);
     }
 
@@ -79,8 +85,14 @@ class IgrejaCongregacaoController extends Controller
      */
     public function update(Request $request, IgrejasCongregacoes $igrejasCongregacoes)
     {
-        $resource = $igrejasCongregacoes->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
+        try {
+            $resource = $igrejasCongregacoes->findOrfail((int)$request->get("id"));
+            $resource->update($request->all());
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
         return response()->json(
             $resource->with([
                 'usuario',

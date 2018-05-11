@@ -44,7 +44,11 @@ class IgrejaController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $request->user()->igrejas()->create($request->all());
+        try {
+            $rs = $request->user()->igrejas()->create($request->all());
+        } catch (\Exception $exception) {
+            return response()->json($exception);
+        }
         return response()->json($rs);
     }
 
@@ -79,8 +83,12 @@ class IgrejaController extends Controller
      */
     public function update(Request $request, Igrejas $igrejas)
     {
-        $resource = $igrejas->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
+        try {
+            $resource = $igrejas->findOrfail((int)$request->get("id"));
+            $resource->update($request->all());
+        } catch (\Exception $exception) {
+            return response()->json($exception);
+        }
         return response()->json(
             $resource->with([
                 'usuario',

@@ -133,7 +133,7 @@ $(document).ready(function () {
                 }
             });
 
-            tbl_api.page('next').draw(false); // ? Ativa paginação !
+            //tbl_api.page('next').draw(false); // ? Ativa paginação !
 
             /**
              * Utilizado para selecionar as linhas da tabela

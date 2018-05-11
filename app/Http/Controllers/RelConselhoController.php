@@ -45,7 +45,11 @@ class RelConselhoController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $request->user()->relConselhos()->create($request->all());
+        try {
+            $rs = $request->user()->relConselhos()->create($request->all());
+        } catch (\Exception $exception) {
+            return response()->json($exception, 500); // kelewzius
+        }
         return response()->json($rs);
     }
 
@@ -80,8 +84,12 @@ class RelConselhoController extends Controller
      */
     public function update(Request $request, RelConselhos $relConselhos)
     {
-        $resource = $relConselhos->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
+        try {
+            $resource = $relConselhos->findOrfail((int)$request->get("id"));
+            $resource->update($request->all());
+        } catch (\Exception $exception) {
+            return response()->json($exception, 500);
+        }
         return response()->json($resource);
     }
 
