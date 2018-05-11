@@ -13,9 +13,9 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::defaultStringLength(191);
+        //Schema::defaultStringLength(191);
         Schema::create('users', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->increments('id');
             $table->string('nome');
             $table->string('email')->unique();
             $table->string('password')->default(\Illuminate\Support\Facades\Hash::make("ipb@123"));;
@@ -25,8 +25,10 @@ class CreateUsuariosTable extends Migration
             $table->integer('perfil')->nullable();
             $table->text('observacoes')->nullable();
             $table->unsignedInteger('id_presbitero')->nullable();
+
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
@@ -41,7 +43,7 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('usuarios');
+        Schema::drop('users');
     }
 
 }

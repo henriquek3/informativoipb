@@ -66,7 +66,8 @@ class CreateRelatoriosMinistrosTable extends Migration
             $table->text('atividades_para_eclesiasticas')->nullable();
             $table->text('atividades_extras_ministeriais')->nullable();
             $table->text('atividades_outros')->nullable();
-            $table->integer('user_id');
+
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('status_relatorio')->nullable();
             $table->integer('tipo_relatorio')->default(2);

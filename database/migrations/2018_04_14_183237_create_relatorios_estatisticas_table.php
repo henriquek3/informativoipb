@@ -86,7 +86,7 @@ class CreateRelatoriosEstatisticasTable extends Migration
             $table->string('finp_verba_presbiterial', 20)->nullable();
             $table->string('finp_dizimo_supremo', 20)->nullable();
             $table->integer('id_presbitero_conselho')->index('relatorios_estatisticas_fk1');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('status_relatorio')->nullable();
             $table->integer('tipo_relatorio')->default(3);

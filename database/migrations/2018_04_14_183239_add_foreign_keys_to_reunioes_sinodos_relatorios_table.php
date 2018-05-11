@@ -18,7 +18,7 @@ class AddForeignKeysToReunioesSinodosRelatoriosTable extends Migration
             $table->foreign('id_reuniao_presbiterio', 'reunioes_sinodos_relatorios_fk1')->references('id')->on('reunioes_presbiterios')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('id_relatorio_conselho', 'reunioes_sinodos_relatorios_fk2')->references('id')->on('relatorios_conselhos')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('id_relatorio_estatistica', 'reunioes_sinodos_relatorios_fk3')->references('id')->on('relatorios_estatisticas')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('	id_relatorio_ministro', 'reunioes_sinodos_relatorios_fk4')->references('id')->on('relatorios_ministros')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('id_relatorio_ministro', 'reunioes_sinodos_relatorios_fk4')->references('id')->on('relatorios_ministros')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
