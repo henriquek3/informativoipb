@@ -37,6 +37,7 @@ block content
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             form(id="cadastros_igrejas", name="cadastros_igrejas")
+                | @csrf
                 div.ui.form
                     div.fields
                         div.six.wide.field
@@ -52,7 +53,7 @@ block content
                         div.four.wide.field
                             div.clearfix
                                 div.ui.checkbox(style="float: left; display: flex; margin-top: 32px; margin-left: 20px;")
-                                    input(type="checkbox")
+                                    input(name="congregacao_presbiterio", type="checkbox")
                                     label Congregação do Presbitério
 
                     div.fields
@@ -67,7 +68,7 @@ block content
 
                         div.four.wide.field
                             label CNPJ
-                            input(type="text" name="cnpj" placeholder="CNPJ")
+                            input(type="text" name="cnpj" id="cnpj_igreja" placeholder="CNPJ")
 
                     div.fields
                         div.thirteen.wide.field
@@ -98,7 +99,7 @@ block content
                             input(type="email" name="email" placeholder="E-Mail")
                         div.eight.wide.field
                             label Homepage
-                            input(type="url" name="homepage" placeholder="Web Site")
+                            input(type="url" name="website" placeholder="Web Site")
 
                 div.ui.segments
                     div.ui.horizontal.segments
@@ -147,55 +148,48 @@ block content
                 a.item(data-tab="second-cong") Cadastro
 
             div.ui.bottom.attached.tab.segment.active(data-tab="first-cong")
-                table.ui.compact.selectable.celled.blue.table()
+                table.ui.compact.selectable.celled.blue.table(id="tbl_congregacoes")
                     thead
                         tr
                             th.one.wide Código
                             th.ten.wide Nome
                             th.five.wide Bairro
 
-                    tbody
-                        tr
-                            td 01
-                            td Congregação luz e vida
-                            td Cidade Alta
+                    tbody(id="tbody_congregacoes")
 
             div.ui.bottom.attached.tab.segment(data-tab="second-cong")
                 form(id="cadastros_congregacoes", name="cadastros_congregacoes")
+                    | @csrf
                     div.ui.form
                         div.fields
                             // Trazer por padrão já selecionado o estado e cidade da igreja, porém permitir alterar.
                             div.eight.wide.field
                                 label Estado
-                                select.ui.fluid.search.dropdown
-                                    option
-                                    option Estado
-                                    option Estado
-                                    option Estado
-                            div.eight.wide.field
+                                select.ui.fluid.search.dropdown(name="id_estado")
+
+                            div.eight.wide.field(id="div_cidade_congregacoes")
                                 label Cidade
-                                select.ui.fluid.search.dropdown
-                                    option
-                                    option Cidade
-                                    option Cidade
-                                    option Cidade
+                                select.ui.fluid.search.dropdown(name="id_cidade", id="id_cidade_congregacoes")
+                                div.ui.active.inline.small.loader(style="display:none", id="loader_cidade_congregacoes")
+                                    
                         div.fields
                             div.ten.wide.field
                                 label Nome
                                 input(type="text", name="nome" placeholder="Digite seu Nome")
                             div.three.wide.field
                                 label CNPJ
-                                input(type="text" name="cnpj" placeholder="CNPJ")
+                                input(type="text" name="cnpj" id="cnpj_congregacoes" placeholder="CNPJ")
                             div.ui.calendar.bottom.left.three.wide.field
                                 label Organização
-                                input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")
+                                //input.datepicker2(type="date" name="data_organizacao" placeholder="Data de Organização")
+                                input(type="date" name="data_organizacao" placeholder="Data de Organização")
                         div.fields
                             div.six.wide.field
                                 label Endereço
                                 input(type="text" name="endereco" placeholder="Endereço")
                             div.two.wide.field
                                 label Número
-                                input(type="text" name="endereco_nr" placeholder="Número")
+                                input(type="text" name="endereco_numero" placeholder="Número")
                             div.four.wide.field
                                 label Complemento
                                 input(type="text" name="endereco_complemento" placeholder="Complemento")
@@ -257,3 +251,5 @@ block specific-js
     script(src="js/plugins/dataTables.min.js")
     script(src="js/plugins/sweetalert.min.js")
     script(src="js/app/cadastros-igrejas-app.js")
+    script(src="js/app/cadastros-congregacoes-app.js")
+    script(src="js/plugins/jquery.mask.min.js")

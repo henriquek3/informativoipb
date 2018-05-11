@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Igrejas;
+use App\IgrejasCongregacoes;
 use Illuminate\Http\Request;
 
-class IgrejaController extends Controller
+class IgrejaCongregacaoController extends Controller
 {
     /**
      * IgrejaController constructor.
@@ -23,7 +23,7 @@ class IgrejaController extends Controller
      */
     public function index()
     {
-        return view("cadastros-igrejas");
+        //
     }
 
     /**
@@ -44,17 +44,17 @@ class IgrejaController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $request->user()->igrejas()->create($request->all());
+        $rs = $request->user()->congregacoes()->create($request->all());
         return response()->json($rs);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Igrejas $igrejas
+     * @param  \App\IgrejasCongregacoes $igrejasCongregacoes
      * @return \Illuminate\Http\Response
      */
-    public function show(Igrejas $igrejas)
+    public function show(IgrejasCongregacoes $igrejasCongregacoes)
     {
         //
     }
@@ -62,10 +62,10 @@ class IgrejaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Igrejas $igrejas
+     * @param  \App\IgrejasCongregacoes $igrejasCongregacoes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Igrejas $igrejas)
+    public function edit(IgrejasCongregacoes $igrejasCongregacoes)
     {
         //
     }
@@ -74,31 +74,30 @@ class IgrejaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Igrejas $igrejas
+     * @param  \App\IgrejasCongregacoes $igrejasCongregacoes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Igrejas $igrejas)
+    public function update(Request $request, IgrejasCongregacoes $igrejasCongregacoes)
     {
-        $resource = $igrejas->findOrfail((int)$request->get("id"));
+        $resource = $igrejasCongregacoes->findOrfail((int)$request->get("id"));
         $resource->update($request->all());
         return response()->json(
             $resource->with([
                 'usuario',
-                'presbiterio',
-                'presbiterio.sinodo'
-            ])->where('id',$resource->id)->get()
+                'igreja',
+            ])->where('id', $resource->id)->get()
         );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Igrejas $igrejas
+     * @param  \App\IgrejasCongregacoes $igrejasCongregacoes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Igrejas $igrejas, Request $request)
+    public function destroy(IgrejasCongregacoes $igrejasCongregacoes, Request $request)
     {
-        $resource = $igrejas->findOrFail((int)$request->get("id"));
+        $resource = $igrejasCongregacoes->findOrFail((int)$request->get("id"));
         try {
             $resource->delete();
         } catch (\Illuminate\Database\QueryException $queryException) {
@@ -109,37 +108,31 @@ class IgrejaController extends Controller
         return response()->json($resource);
     }
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function api(Request $request)
     {
         $id = (int)$request->get('id');
-        $presbiterio = (int)$request->get('presbiterio');
-        if ($presbiterio > 0) {
+        $igreja = (int)$request->get('igreja');
+        if ($id > 0) {
             return response()->json(
-                Igrejas::where('id_presbiterio', $presbiterio)
-                    ->with([
-                        'usuario',
-                        'presbiterio',
-                        'presbiterio.sinodo'
-                    ])->get()
-            );
-        } elseif ($id > 0) {
-            return response()->json(
-                Igrejas::with([
+                IgrejasCongregacoes::with([
                     'usuario',
-                    'presbiterio',
-                    'presbiterio.sinodo'
+                    'igreja',
                 ])->where('id', $id)
+                    ->get()
+            );
+        } elseif ($igreja > 0) {
+            return response()->json(
+                IgrejasCongregacoes::with([
+                    'usuario',
+                    'igreja',
+                ])->where('id_igreja', $igreja)
                     ->get()
             );
         } else {
             return response()->json(
-                Igrejas::with([
+                IgrejasCongregacoes::with([
                     'usuario',
-                    'presbiterio',
-                    'presbiterio.sinodo'
+                    'igreja',
                 ])->get()
             );
         }

@@ -17,8 +17,16 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $guarded = [
-        'id', 'created_at', 'deleted_at', 'updated_at',
+    protected $fillable = [
+        'nome',
+        'email',
+        'cpf',
+        'status',
+        'nivel',
+        'perfil',
+        'observacoes',
+        'user_id',
+        'id_presbitero',
     ];
 
     /**
@@ -60,88 +68,51 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
-    /**
-     * --------------------------------------------------------
-     * Relacionamentos
-     * --------------------------------------------------------
-     */
-
-    /**
-     *
-     * @return HasMany
-     */
     public function sinodos()
     {
         return $this->hasMany('App\Sinodos');
     }
 
-    /**
-     *
-     * @return HasMany
-     */
     public function presbiterios()
     {
         return $this->hasMany('App\Presbiterios');
     }
 
-    /**
-     *
-     * @return HasMany
-     */
     public function igrejas()
     {
         return $this->hasMany('App\Igrejas');
     }
 
-    /**
-     *
-     * @return HasMany
-     */
+    public function congregacoes()
+    {
+        return $this->hasMany('App\IgrejasCongregacoes');
+    }
+
     public function presbiteros()
     {
         return $this->hasMany('App\Presbiteros');
     }
 
-    /**
-     *
-     * @return HasMany
-     */
     public function plePresbiterios()
     {
         return $this->hasMany('App\PlePresbiterios');
     }
 
-    /**
-     *
-     * @return HasMany
-     */
     public function pleSinodos()
     {
         return $this->hasMany('App\PleSinodos');
     }
 
-    /**
-     *
-     * @return HasMany
-     */
     public function relConselhos()
     {
         return $this->hasMany('App\RelConselhos');
     }
 
-    /**
-     *
-     * @return HasMany
-     */
     public function relEstatisticas()
     {
         return $this->hasMany('App\RelEstatisticas');
     }
 
-    /**
-     *
-     * @return HasMany
-     */
     public function relMinistros()
     {
         return $this->hasMany('App\RelMinistros');

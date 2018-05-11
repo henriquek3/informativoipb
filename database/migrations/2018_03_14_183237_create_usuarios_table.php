@@ -19,13 +19,14 @@ class CreateUsuariosTable extends Migration
             $table->string('nome');
             $table->string('email')->unique();
             $table->string('password')->default(\Illuminate\Support\Facades\Hash::make("ipb@123"));;
-            $table->string('cpf', 15);
+            $table->string('cpf', 15)->unique();
             $table->integer('status')->nullable();
             $table->integer('nivel')->nullable();
             $table->integer('perfil')->nullable();
             $table->text('observacoes')->nullable();
             $table->unsignedInteger('id_presbitero')->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->rememberToken();
             $table->softDeletes();

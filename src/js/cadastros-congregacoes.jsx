@@ -1,9 +1,8 @@
-let id_row, id_row_cong, tr_row, tbl_igrejas, tbl_api;
-tbl_igrejas = $("#tbl_igrejas");
-
-window.igrejaId = id_row;
-
 $(document).ready(function () {
+
+    let id_row, id_row_cong, tr_row, tbl_congregacoes, tbl_api;
+    tbl_congregacoes = $("#tbl_congregacoes");
+
     /**
      * Estilizar o input de pesquisar do
      * @type {{first: first, second: second}}
@@ -60,10 +59,10 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/igrejas')
+        $.get('/api/congregacoes?igreja='+window.igrejaId)
             .done(function (response) {
                 for (let key in response) {
-                    let tr, row, id, nome, presbiterio, sinodo;
+                    let tr, row, id, nome, bairro;
                     tr = $('<tr/>');
                     row = response[key];
                     /**
@@ -72,20 +71,19 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    presbiterio = $('<td/>').html(row.presbiterio.sigla.toUpperCase());
-                    sinodo = $('<td/>').html(row.presbiterio.sinodo.sigla.toUpperCase());
+                    bairro = $('<td/>').html(row.endereco_bairro.toUpperCase());
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
                         .append(nome)
-                        .append(presbiterio)
-                        .append(sinodo);
+                        .append(bairro);
                     /**
                      * Adiciona linhas na tabela
                      */
-                    $('#tbody_igrejas').append(tr);
+                    $('#tbody_congregacoes').append(tr);
                 }
+                instanciaDataTables(); // init function instanciaDataTables() {};
             })
             .fail(function (response) {
                 console.log(response);
@@ -97,14 +95,15 @@ $(document).ready(function () {
         ;
     }
 
-    getDataTable();
+
+
 
     /**
      * Instancia DataTables() e organiza os eventos do click
      */
     function instanciaDataTables() {
         setTimeout(function () {
-            tbl_api = tbl_igrejas.DataTable({
+            tbl_api = tbl_congregacoes.DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -138,7 +137,7 @@ $(document).ready(function () {
             /**
              * Utilizado para selecionar as linhas da tabela
              */
-            $('#tbody_igrejas').off("click", "**").on('click', 'tr', function () {
+            $('#tbody_congregacoes').off("click", "**").on('click', 'tr', function () {
                 if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
                     id_row = null;
@@ -146,7 +145,6 @@ $(document).ready(function () {
                     tbl_api.$('tr.active').removeClass('active');
                     $(this).addClass('active');
                     id_row = $(this).find('td:first').html();
-                    window.igrejaId = $(this).find('td:first').html();
                     tr_row = $(this);
                 }
                 /**
@@ -154,48 +152,47 @@ $(document).ready(function () {
                  * que vem do banco de dados como o id do registr
                  */
                 console.log(id_row);
-                console.log(window.igrejaId+'igrejaId');
             });
             styleInputSearch.first().second();
         }, 1000);
     }
 
-    instanciaDataTables(); // init function instanciaDataTables() {};
+
 
     /**
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/igrejas?id=' + id_row)
+        $.get('api/congregacoes?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
                 console.log('getdataForm');
                 console.log(id_row);
                 console.log(data);
-                cadastros_igrejas.id_sinodo.value = data.presbiterio.sinodo.id;
-                cadastros_igrejas.id_estado.value = data.id_estado;
-                cadastros_igrejas.cnpj.value = data.cnpj;
-                cadastros_igrejas.nome.value = data.nome;
-                cadastros_igrejas.data_organizacao.value = data.data_organizacao;
-                cadastros_igrejas.endereco.value = data.endereco;
-                cadastros_igrejas.endereco_numero.value = data.endereco_numero;
-                cadastros_igrejas.endereco_complemento.value = data.endereco_complemento;
-                cadastros_igrejas.endereco_bairro.value = data.endereco_bairro;
-                cadastros_igrejas.email.value = data.email;
-                cadastros_igrejas.website.value = data.website;
+                //cadastros_congregacoes.id_sinodo.value = data.presbiterio.sinodo.id;
+                cadastros_congregacoes.id_estado.value = data.id_estado;
+                cadastros_congregacoes.cnpj.value = data.cnpj;
+                cadastros_congregacoes.nome.value = data.nome;
+                cadastros_congregacoes.data_organizacao.value = data.data_organizacao;
+                cadastros_congregacoes.endereco.value = data.endereco;
+                cadastros_congregacoes.endereco_numero.value = data.endereco_numero;
+                cadastros_congregacoes.endereco_complemento.value = data.endereco_complemento;
+                cadastros_congregacoes.endereco_bairro.value = data.endereco_bairro;
+                cadastros_congregacoes.email.value = data.email;
+                cadastros_congregacoes.website.value = data.website;
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
                  */
                 setTimeout(() => {
-                    $(cadastros_igrejas.id_sinodo).trigger("change");
-                    $(cadastros_igrejas.id_estado).trigger("change");
+                    $(cadastros_congregacoes.id_sinodo).trigger("change");
+                    $(cadastros_congregacoes.id_estado).trigger("change");
                     setTimeout(() => {
-                        cadastros_igrejas.id_presbiterio.value = data.presbiterio.id;
-                        cadastros_igrejas.id_cidade.value = data.id_cidade;
+                        //cadastros_congregacoes.id_presbiterio.value = data.presbiterio.id;
+                        cadastros_congregacoes.id_cidade_congregacoes.value = data.id_cidade_congregacoes;
                         setTimeout(() => {
-                            $(cadastros_igrejas.id_cidade).trigger("change");
-                            $(cadastros_igrejas.id_presbiterio).trigger("change");
+                            $(cadastros_congregacoes.id_cidade_congregacoes).trigger("change");
+                            $(cadastros_congregacoes.id_presbiterio).trigger("change");
                         }, 500)
                     }, 500)
                 }, 500);
@@ -244,7 +241,7 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/igrejas/delete', {id: id_row})
+                        $.post('/api/congregacoes/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -268,7 +265,7 @@ $(document).ready(function () {
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator_igrejas = $("#cadastros_igrejas").validate({
+    let validator_igrejas = $("#cadastros_congregacoes").validate({
         rules: {
             nome: {
                 required: true,
@@ -327,9 +324,10 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
-                $('#cadastros_igrejas').append('<input type="hidden" name="_method" value="put">');
-                let form = $('#cadastros_igrejas').serializeArray();
+                $('#cadastros_congregacoes').append('<input type="hidden" name="_method" value="put">');
+                let form = $('#cadastros_congregacoes').serializeArray();
                 form.unshift({name: 'id', value: id_row});
+                form.unshift({name: 'id_igreja', value: window.igrejaId});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
@@ -338,7 +336,7 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                $.post('api/igrejas/update', form)
+                $.post('api/congregacoes/update', form)
                     .done(function (response) {
                         response = response[0];
                         console.log(response);
@@ -347,8 +345,8 @@ $(document).ready(function () {
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
-                            response.presbiterio.sigla.toUpperCase(),
-                            response.presbiterio.sinodo.sigla.toUpperCase(),
+                            response.endereco_bairro.toUpperCase(),
+                            //response.presbiterio.sinodo.sigla.toUpperCase(),
                         ]).draw(false);
 
                         iziToast.success({
@@ -366,7 +364,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_igrejas.sigla).parent().addClass("error");
+                            $(cadastros_congregacoes.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -390,24 +388,24 @@ $(document).ready(function () {
                     })
                 ;
             } else {
-                let form = $('#cadastros_igrejas').serializeArray();
+                let form = $('#cadastros_congregacoes').serializeArray();
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
+                form.unshift({name: 'id_igreja', value: window.igrejaId});
                 //form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
                 //form.unshift({name: 'data_inclusao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                $.post('api/igrejas/store', form)
+                $.post('api/congregacoes/store', form)
                     .done(function (response) {
                         console.log(response);
 
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
-                            response.presbiterio.toUpperCase(),
-                            response.sinodo.toUpperCase()
+                            response.endereco_bairro.toUpperCase()
                         ]).draw(false);
 
                         iziToast.success({
@@ -425,7 +423,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_igrejas.sigla).parent().addClass("error");
+                            $(cadastros_congregacoes.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'Atenção, CNPJ já existe.',
@@ -452,7 +450,7 @@ $(document).ready(function () {
         }
     });
 
-    let validator_congregacoes = $("#cadastros_igrejas").validate({
+    let validator_congregacoes = $("#cadastros_congregacoes").validate({
         rules: {
             nome: {
                 required: true,
@@ -511,7 +509,7 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row_cong > 0) {
-                let form = $('#cadastros_igrejas').serializeArray();
+                let form = $('#cadastros_congregacoes').serializeArray();
                 form.unshift({name: 'id', value: id_row_cong});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
@@ -568,7 +566,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_igrejas.sigla).parent().addClass("error");
+                            $(cadastros_congregacoes.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -592,7 +590,7 @@ $(document).ready(function () {
                     })
                 ;
             } else {
-                let form = $('#cadastros_igrejas').serializeArray();
+                let form = $('#cadastros_congregacoes').serializeArray();
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
@@ -647,7 +645,7 @@ $(document).ready(function () {
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
-                            $(cadastros_igrejas.sigla).parent().addClass("error");
+                            $(cadastros_congregacoes.sigla).parent().addClass("error");
                             iziToast.error({
                                 title: 'Erro',
                                 message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
@@ -678,7 +676,7 @@ $(document).ready(function () {
      * Os campos select do semantic não são compativeis com o jquery validation,
      * a msg fica bugada, usar desta forma para select.search.dropdown
      */
-    $("#cadastros_igrejas").form({
+    $("#cadastros_congregacoes").form({
         inline: true,
         on: 'submit',
         fields: {
@@ -718,10 +716,10 @@ $(document).ready(function () {
         if (!estadosLoad) {
             $.get('api/estados')
                 .done(function (response) {
-                    $(cadastros_igrejas.id_estado).append($('<option />').text('- -'));
+                    $(cadastros_congregacoes.id_estado).append($('<option />').text('- -'));
 
                     $.each(response, function () {
-                        $(cadastros_igrejas.id_estado).append(
+                        $(cadastros_congregacoes.id_estado).append(
                             $('<option />').val(this.id).text(this.uf_nome + " / " + this.nome.toUpperCase())
                         );
                     });
@@ -741,21 +739,21 @@ $(document).ready(function () {
         /**
          * @description Popular a Aba Cadastrar, Naturalidade
          */
-        $(cadastros_igrejas.id_estado).on('change', function () {
-            if ($(cadastros_igrejas.id_estado).val() > 0) {
-                $("#id_cidade").children().remove();
-                $("#div_cidade").find(".search").hide();
-                $("#loader_cidade").show();
-                $.get('api/cidades?uf=' + $(cadastros_igrejas.id_estado).val())
+        $(cadastros_congregacoes.id_estado).on('change', function () {
+            if ($(cadastros_congregacoes.id_estado).val() > 0) {
+                $("#id_cidade_congregacoes").children().remove();
+                $("#div_cidade_congregacoes").find(".search").hide();
+                $("#loader_cidade_congregacoes").show();
+                $.get('api/cidades?uf=' + $(cadastros_congregacoes.id_estado).val())
                     .done(function (response) {
 
                         $.each(response, function () {
-                            $(cadastros_igrejas.id_cidade).append(
+                            $(cadastros_congregacoes.id_cidade_congregacoes).append(
                                 $('<option />').val(this.id).text(this.nome.toUpperCase())
                             );
                         });
-                        $("#div_cidade").find(".search").show();
-                        $("#loader_cidade").hide()
+                        $("#div_cidade_congregacoes").find(".search").show();
+                        $("#loader_cidade_congregacoes").hide()
                     })
                     .fail(function (response) {
                         iziToast.error({
@@ -777,7 +775,7 @@ $(document).ready(function () {
         $.get('api/sinodos')
             .done(function (response) {
                 $.each(response, function () {
-                    $(cadastros_igrejas.id_sinodo).append(
+                    $(cadastros_congregacoes.id_sinodo).append(
                         $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
                     );
                 });
@@ -791,16 +789,16 @@ $(document).ready(function () {
             })
         ;
 
-        $(cadastros_igrejas.id_sinodo).on('change', function () {
-            if ($(cadastros_igrejas.id_sinodo).val() > 0) {
+        $(cadastros_congregacoes.id_sinodo).on('change', function () {
+            if ($(cadastros_congregacoes.id_sinodo).val() > 0) {
                 $("#id_presbiterio").children().remove();
                 $("#div_presbiterio").find(".search").hide();
                 $("#loader_presbiterio").show();
-                $.get('api/presbiterios?sinodo=' + $(cadastros_igrejas.id_sinodo).val())
+                $.get('api/presbiterios?sinodo=' + $(cadastros_congregacoes.id_sinodo).val())
                     .done(function (response) {
 
                         $.each(response, function () {
-                            $(cadastros_igrejas.id_presbiterio).append(
+                            $(cadastros_congregacoes.id_presbiterio).append(
                                 $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
                             );
                         });
@@ -834,14 +832,14 @@ $(document).ready(function () {
     /**
      *  Função para ativar o get
      */
-    $("a[data-tab='second']").on("click", function () {
+    $("a[data-tab='second-cong']").on("click", function () {
         if (id_row > 0) {
             getDataForm();
         } else {
             /**
              * reseta os campos do tipo input
              */
-            cadastros_igrejas.reset();
+            cadastros_congregacoes.reset();
             validator_congregacoes.reset();
 
             /**
@@ -854,14 +852,25 @@ $(document).ready(function () {
         }
     });
 
+    /**
+     * Função para quando for na aba lista, zerar o id_row
+     */
+    $("a[data-tab='third']").on("click", function () {
+        console.log(window.igrejaId);
+        if (window.igrejaId > 0) {
+
+            getDataTable();
+
+        }
+    });
 
     /**
     * Jquery Mask
     */
     $("input[name='cnpj']").mask('00.000.000/0000-00', {reverse: true});
 
-    $("input[id='cnpj_igreja']").focusout(function () {
-        validarCNPJ($("input[id='cnpj_igreja']").val())
+    $("input[id='cnpj_congregacoes']").focusout(function () {
+        validarCNPJ($("input[id='cnpj_congregacoes']").val())
     });
 
     function validarCNPJ(cnpj) {

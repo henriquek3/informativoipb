@@ -19,6 +19,7 @@ class CreateIgrejasCongregacoesTable extends Migration
             $table->integer('id_estado')->index('igrejas_congregacoes_fk1');
             $table->integer('id_cidade')->index('igrejas_congregacoes_fk2');
             $table->string('nome')->nullable();
+            $table->string('cnpj', 20)->nullable();
             $table->string('endereco');
             $table->string('endereco_numero', 10)->nullable();
             $table->string('endereco_complemento')->nullable();
@@ -27,7 +28,7 @@ class CreateIgrejasCongregacoesTable extends Migration
             $table->string('endereco_cx_postal', 20)->nullable();
             $table->string('data_organizacao', 10)->nullable();
             $table->string('telefone', 20)->nullable();
-            $table->string('email', 20)->nullable();
+            $table->string('email', 75)->nullable();
             $table->string('website')->nullable();
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
