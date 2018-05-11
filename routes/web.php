@@ -32,6 +32,19 @@ Route::put('/api/usuarios/{id}/edit', 'UserController@update');
 
 /*
 |--------------------------------------------------------------------------
+| Web Routes UserController
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/meu-usuario', 'UserController@adminuser');
+//Route::post('/api/usuarios', 'UserController@store');
+//Route::delete('/api/usuarios/{id}', 'UserController@destroy');
+//Route::get('/api/usuarios', 'UserController@users');
+Route::get('/api/usuarios/{id}/edit', 'UserController@edit');
+Route::put('/api/usuarios/{id}/edit', 'UserController@update');
+
+/*
+|--------------------------------------------------------------------------
 | Web Routes SinodoController
 |--------------------------------------------------------------------------
 */
