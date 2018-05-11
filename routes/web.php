@@ -15,6 +15,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/inicio', 'HomeController@index')->name('home');
 
+Route::get('/send', function () {
+    Mail::send('mail', [], function ($m) {
+        $m->from('hello@app.com', 'YOUR APP');
+        $m->to('henriquek3@live.com', 'Jean Freitas')->subject('Hellooo Worrdll!');
+    });
+});
+
 
 /*
 |--------------------------------------------------------------------------

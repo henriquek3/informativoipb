@@ -48,7 +48,7 @@ class RelConselhoController extends Controller
         try {
             $rs = $request->user()->relConselhos()->create($request->all());
         } catch (\Exception $exception) {
-            return response()->json($exception);
+            return response()->json($exception, 500);
         }
         return response()->json($rs);
     }
