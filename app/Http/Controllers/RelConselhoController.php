@@ -88,7 +88,7 @@ class RelConselhoController extends Controller
             $resource = $relConselhos->findOrfail((int)$request->get("id"));
             $resource->update($request->all());
         } catch (\Exception $exception) {
-            return response()->json($exception);
+            return response()->json($exception, 500);
         }
         return response()->json($resource);
     }
