@@ -32,7 +32,7 @@ class CreateIgrejasTable extends Migration
             $table->string('telefone', 20)->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
