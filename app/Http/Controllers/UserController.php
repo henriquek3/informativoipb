@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -50,7 +51,7 @@ class UserController extends Controller
     {
         $data = $request->all();
         $user = new User();
-        $data['usuario_inclusao'] = $request->user()->id;
+        $data['user_id'] = $request->user()->id;
         $user->fill($data);
         $user->save();
         $retrieve = User::findOrFail((int)$user->id);
@@ -91,9 +92,25 @@ class UserController extends Controller
     public function update(Request $request, User $user, $id)
     {
         $data = $request->all();
-        $userUpdate = $user->findOrFail((int)$id);
-        $data['usuario_alteracao'] = $request->user()->id;
-        $userUpdate->update($data);
+        $data['user_id'] = $request->user()->id;
+        unset($data['email']);
+        unset($data['cpf']);
+
+        try {
+            $userUpdate = $user->findOrFail((int)$id);
+            //$changed = $userUpdate->update($data);
+            $userUpdate->update($data);
+        } catch (\Exception $exception) {
+            return response()->json($exception, 500);
+        }
+
+        /*if ($changed === true) {
+            Mail::send('mail', [], function ($m) {
+                $m->from('hello@app.com', 'YOUR APP');
+                $m->to('henriquek3@live.com', 'Jean Freitas')->subject('Hellooo Worrdll!');
+            });
+        }*/
+
         return response()->json($userUpdate);
     }
 

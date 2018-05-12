@@ -236,7 +236,7 @@ $(document).ready(function () {
     function getDataTable() {
         $.get('/api/usuarios')
             .done(function (response) {
-                console.log(response);
+                //console.log(response);
                 for (let key in response) {
                     let tr, row, id, nome, email, perfil, nivel, status;
                     tr = $('<tr/>');
@@ -322,7 +322,7 @@ $(document).ready(function () {
         $.get('api/usuarios/' + id_row + '/edit')
             .done(function (response) {
                 let data = response;
-                console.log(data);
+                //console.log(data);
                 formUsuarios.nome.value = data.nome;
                 formUsuarios.email.value = data.email;
                 formUsuarios.cpf.value = data.cpf;
@@ -526,6 +526,7 @@ $(document).ready(function () {
                 let form = $('#formUsuarios').serializeArray();
                 $.post('/api/usuarios', form)
                     .done(function (response) {
+                        id_row = response.id;
                         console.log(response);
                         /* let regiao;
                          switch (response.regiao) {
@@ -595,9 +596,12 @@ $(document).ready(function () {
     /**
      * Ao clicar no botão limpar, reseta as classes de erro
      */
-    $(".ui.reset.button").on("click", function () {
+    $("button[type='reset']").on("click", function () {
         validator.resetForm();
+        formUsuarios.reset();
         $('form').form('reset');
+        id_row = null;
+        $(formUsuarios._method).remove();
     });
 
     /**
@@ -653,8 +657,8 @@ $(document).ready(function () {
         let form = $(formDelete).serializeArray();
         $.post('/api/usuarios/' + id_row, form)
             .done(function (r) {
-                console.log("done");
-                console.log(r)
+                /*console.log("done");
+                console.log(r)*/
             })
             .fail(function (r) {
                 console.log("fail");
@@ -694,6 +698,4 @@ $(document).ready(function () {
             });
         }
     });
-
-
 });
