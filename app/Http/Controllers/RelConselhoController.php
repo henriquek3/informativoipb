@@ -85,10 +85,10 @@ class RelConselhoController extends Controller
     public function update(Request $request, RelConselhos $relConselhos)
     {
         try {
-            $resource = $relConselhos->findOrfail((int)$request->get("id"));
+            $resource = $relConselhos->findOrFail((int)$request->get("id"));
             $resource->update($request->all());
-        } catch (\Exception $exception) {
-            return response()->json($exception, 500);
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            return response()->json($queryException, 500);
         }
         return response()->json($resource);
     }
@@ -115,8 +115,13 @@ class RelConselhoController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function api()
+    public function api(Request $request)
     {
-        return response()->json(RelConselhos::all());
+        $id = (int)$request->get("id");
+        if ($id > 0) {
+            return response()->json(RelConselhos::with("usuario")->where("id", $id)->get());
+        } else {
+            return response()->json(RelConselhos::all());
+        }
     }
 }

@@ -16,4 +16,9 @@ class RelConselhos extends Model
     protected $guarded = [
         'id', 'created_at', 'deleted_at', 'updated_at',
     ];
+
+    public function usuario()
+    {
+        return $this->belongsTo("App\User", "user_id", "id");
+    }
 }
