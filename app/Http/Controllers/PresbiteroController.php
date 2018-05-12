@@ -45,7 +45,13 @@ class PresbiteroController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $request->user()->presbiteros()->create($request->all());
+        try {
+            $rs = $request->user()->presbiteros()->create($request->all());
+        } catch (\Illuminate\Database\QueryException $queryException) {
+            $msg = $queryException->getMessage();
+            $erro = $queryException->getCode();
+            return response()->json([$msg => $erro], 500);
+        }
         return response()->json($rs);
     }
 
