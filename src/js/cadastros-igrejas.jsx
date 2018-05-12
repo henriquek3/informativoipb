@@ -344,12 +344,12 @@ $(document).ready(function () {
                         console.log(response);
                         tbl_api.row(tr_row).remove();
 
-                        tbl_api.row.add([
+                        /*tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.presbiterio.sigla.toUpperCase(),
                             response.presbiterio.sinodo.sigla.toUpperCase(),
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -403,12 +403,12 @@ $(document).ready(function () {
                     .done(function (response) {
                         console.log(response);
 
-                        tbl_api.row.add([
+                        /*tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.presbiterio.toUpperCase(),
                             response.sinodo.toUpperCase()
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -990,3 +990,21 @@ $(document).ready(function () {
     user = atob(user);
     user = JSON.parse(user);*/
 });
+
+let form = $('#cadastros_igrejas').serializeArray();
+/**
+ * Acrescenta ao array form os dados do usuario e data
+ */
+//form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+//form.unshift({name: 'data_inclusao', value: window.getData});
+/**
+ * Acrescenta ao array form os dados do usuario e data
+ */
+$.post('api/igrejas/store', form)
+    .done(function (response) {
+        console.log(response);
+    })
+    .fail(function (response) {
+        console.log(response);
+    })
+;
