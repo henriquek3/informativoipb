@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
+use App\Notifications\ConviteNotification;
+
 class UserController extends Controller
 {
     /**
@@ -52,8 +54,22 @@ class UserController extends Controller
         $data = $request->all();
         $user = new User();
         $data['user_id'] = $request->user()->id;
-        $user->fill($data);
-        $user->save();
+
+        try {
+            $user->fill($data);
+            $statment = $user->save();
+        } catch (\Exception $exception) {
+            return response()->json($exception, 500);
+        }
+
+        if ($statment) {
+            /* Mail::send('mail', [], function ($m) use ($data) {
+                 $m->from('mensageiro@informativoipb.com', 'InformativoIPB');
+                 $m->to($data['email'], $data['nome'])->subject('Confirmação de Login');
+             });*/
+            $user->notify(new ConviteNotification($user->nome, $user->email, $user->cpf));
+        }
+
         $retrieve = User::findOrFail((int)$user->id);
         return response()->json($retrieve);
     }
@@ -191,6 +207,13 @@ class UserController extends Controller
             )->get();
 
         return response()->json($u);
+    }
+
+    public function sending()
+    {
+        $user = User::findOrFail(Auth()->user()->id);
+        $user->notify(new ConviteNotification($user->nome, $user->email, $user->cpf));
+        return "Deu certo ?  -  " . $user->email;
     }
 
 }

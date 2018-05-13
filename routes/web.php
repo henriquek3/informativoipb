@@ -15,13 +15,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/inicio', 'HomeController@index')->name('home');
 
-Route::get('/send', function () {
-    Mail::send('mail', [], function ($m) {
+Route::get('/mail', function () {
+    /*Mail::send('mail', [], function ($m) {
         $m->from('hello@app.com', 'YOUR APP');
         $m->to('henriquek3@live.com', 'Jean Freitas')->subject('Hellooo Worrdll!');
-    });
+    });*/
+
+    return view('mail');
+
 });
 
+Route::get('/notify', 'UserController@sending');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,13 +34,13 @@ Route::get('/send', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/administrar-usuarios', 'UserController@adminuser');
-Route::post('/api/usuarios', 'UserController@store');
-Route::delete('/api/usuarios/{id}', 'UserController@destroy');
+Route::get('/administrar-usuarios', 'UserController@adminuser')->middleware('auth');
+Route::post('/api/usuarios', 'UserController@store')->middleware('auth');
+Route::delete('/api/usuarios/{id}', 'UserController@destroy')->middleware('auth');
 
-Route::get('/api/usuarios', 'UserController@users');
-Route::get('/api/usuarios/{id}/edit', 'UserController@edit');
-Route::put('/api/usuarios/{id}/edit', 'UserController@update');
+Route::get('/api/usuarios', 'UserController@users')->middleware('auth');
+Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
+Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -43,12 +48,12 @@ Route::put('/api/usuarios/{id}/edit', 'UserController@update');
 |--------------------------------------------------------------------------
 */
 
-Route::get('/meu-usuario', 'UserController@adminuser');
+Route::get('/meu-usuario', 'UserController@adminuser')->middleware('auth');
 //Route::post('/api/usuarios', 'UserController@store');
 //Route::delete('/api/usuarios/{id}', 'UserController@destroy');
 //Route::get('/api/usuarios', 'UserController@users');
-Route::get('/api/usuarios/{id}/edit', 'UserController@edit');
-Route::put('/api/usuarios/{id}/edit', 'UserController@update');
+Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
+Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------
