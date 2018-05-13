@@ -50,7 +50,7 @@ class ConviteNotification extends Notification
         return (new MailMessage)
             ->subject('Notificação de Cadastro')
             ->greeting($greetings)
-            ->line('Este e-mail foi enviado porque seu e-mail foi registrado para utilização no sistema de planilhas online InformativoIPB.')
+            ->line('Este e-mail foi enviado porque seu e-mail foi registrado para utilização no sistema de planilhas online InformativoIPB da Igreja Presbiteriana do Brasil.')
             ->line("Email: $this->email")
             ->line("CPF: $this->cpf")
             ->line("Senha: ipb@123")
