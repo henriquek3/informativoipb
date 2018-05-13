@@ -90,3 +90,4 @@ resources/views/relatorios-estatisticas.blade.php
 resources/views/relatorios-ministeriais.blade.php
 resources/views/reuniao-presbiterio.blade.php
 src/tests/
+!resources/views/vendor/notifications/email.blade.php
