@@ -89,3 +89,4 @@ resources/views/relatorios-conselhos-bkp.blade.php
 resources/views/relatorios-estatisticas.blade.php
 resources/views/relatorios-ministeriais.blade.php
 resources/views/reuniao-presbiterio.blade.php
+src/tests/
