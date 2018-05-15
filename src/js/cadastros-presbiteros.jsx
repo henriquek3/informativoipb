@@ -341,7 +341,7 @@ $(document).ready(function () {
                  */
                 $.post('api/presbiteros/update', form)
                     .done(function (response) {
-                        console.log(form);
+                        //console.log(form);
                         console.log(response);
                         /*tbl_api.row(tr_row).remove();
                         let regiao;
