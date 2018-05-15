@@ -15,6 +15,9 @@ class PlePresbiterios extends Model
         'id', 'created_at', 'deleted_at', 'updated_at',
     ];
 
+
+    //protected $fillable = [];
+
     public function usuario()
     {
         return $this->belongsTo("App\User", "user_id", "id");

@@ -94,6 +94,8 @@ $(document).ready(function () {
 
     getDataTable();
 
+
+
     /**
      * Instancia DataTables() e organiza os eventos do click
      */
@@ -339,6 +341,7 @@ $(document).ready(function () {
                  */
                 $.post('api/presbiteros/update', form)
                     .done(function (response) {
+                        console.log(form);
                         console.log(response);
                         /*tbl_api.row(tr_row).remove();
                         let regiao;
@@ -606,6 +609,38 @@ $(document).ready(function () {
     }
 
     loadSinodosPresbiterios();
+
+    function getDataIgreja() {
+        $(cadastros_presbiteros.id_sinodo).on('change', function () {
+            if ($(cadastros_presbiteros.id_sinodo).val() > 0) {
+                $("select[name='id_igreja']").children().remove();
+                $("#div_igreja").find(".search").hide();
+                $("#loader_igreja").show();
+                $.get('api/igrejas?presbiterio=' + $(cadastros_presbiteros.id_sinodo).val())
+                    .done(function (response) {
+                        $(cadastros_presbiteros.id_igreja).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(cadastros_presbiteros.id_igreja).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_igreja").find(".search").show();
+                        $("#loader_igreja").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataIgreja();
 
     function popularEstadosCidadesAtual() {
 
