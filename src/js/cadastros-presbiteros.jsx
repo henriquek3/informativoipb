@@ -1,4 +1,4 @@
-let id_row, tr_row, tbl_presbiteros, tbl_api;
+let id_row, tr_row, tbl_presbiteros, tbl_api, validator_presbiteros;
 tbl_presbiteros = $("#tbl_presbiteros");
 
 $(document).ready(function () {
@@ -62,15 +62,16 @@ $(document).ready(function () {
                     let tr, row, id, regiao, nome, igreja, sinodo;
                     tr = $('<tr/>');
                     row = response[key];
+                    console.log(response);
                     /**
                      * Adiciona células com as informações do banco de dados
                      * @type {jQuery}
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    igreja = $('<td/>').html(row.nascimento_id_cidade.toUpperCase());
-                    sinodo = $('<td/>').html(row.nome_pai.toUpperCase());
-                    regiao = $('<td/>').html(row.nome.toUpperCase());
+                    igreja = $('<td/>').html(row.id_igreja.toUpperCase());
+                    sinodo = $('<td/>').html(row.id_sinodo.toUpperCase());
+                    regiao = $('<td/>').html(row.id_presbiterio.toUpperCase());
 
                     /**
                      * Adiciona as células nas linhas
@@ -415,8 +416,8 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_inclusao', value: window.getData});
+                //form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_inclusao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */

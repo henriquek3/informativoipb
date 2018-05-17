@@ -11,9 +11,12 @@ class Presbiteros extends Model
     /**
      * @var array
      */
-    protected $guarded = [
+    /**protected $guarded = [
         'id', 'created_at', 'deleted_at', 'updated_at',
-    ];
+    ];**/
+    protected $fillable = {
+        'id', 'id_sinodo', 'id_presbiterio', 'id_igreja', 'nome', 'nome_pai', 'noma_mae', 'nascimento_data',
+    };
 
     public function usuario()
     {
