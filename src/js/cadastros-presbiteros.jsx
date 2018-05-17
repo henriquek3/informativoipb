@@ -165,8 +165,9 @@ $(document).ready(function () {
         $.get('api/presbiteros?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                cadastros_presbiteros.id_sinodo.value = data.id_sinodo;
+                cadastros_presbiteros.id_sinodo.value = data.igreja.presbiterio.sinodo.id;
                 cadastros_presbiteros.id_presbiterio.value = data.id_presbiterio;
+                cadastros_presbiteros.id_igreja.value = data.id_igreja;
                 cadastros_presbiteros.nome.value = data.nome;
                 cadastros_presbiteros.nome_pai.value = data.nome_pai;
                 cadastros_presbiteros.nome_mae.value = data.nome_mae;
@@ -334,43 +335,21 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_alteracao', value: user.id_usuario});
-                form.unshift({name: 'data_alteracao', value: window.getData});
+                //form.unshift({name: 'usuario_alteracao', value: user.id_usuario});
+                //form.unshift({name: 'data_alteracao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
                 $.post('api/presbiteros/update', form)
                     .done(function (response) {
-                        //console.log(form);
-                        console.log(response);
-                        /*tbl_api.row(tr_row).remove();
-                        let regiao;
-                        switch (response.regiao) {
-                            case '1':
-                                regiao = "CENTRO-OESTE";
-                                break;
-                            case '2':
-                                regiao = "NORDESTE";
-                                break;
-                            case '3':
-                                regiao = "NORTE";
-                                break;
-                            case '4':
-                                regiao = "SUDESTE";
-                                break;
-                            case '5':
-                                regiao = "SUL";
-                                break;
-                            default:
-                                regiao = 'Não identificado';
-                                break;
-                        }
+                        tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
-                            regiao
-                        ]).draw(false);*/
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);
 
                         iziToast.success({
                             title: 'OK',
@@ -606,11 +585,38 @@ $(document).ready(function () {
                 ;
             }
         });
+        $(cadastros_presbiteros.id_sinodo).on('change', function () {
+            if ($(cadastros_presbiteros.id_sinodo).val() > 0) {
+                $("select[name='id_igreja']").children().remove();
+                $("#div_igreja").find(".search").hide();
+                $("#loader_igreja").show();
+                $.get('api/igrejas?presbiterio=' + $(cadastros_presbiteros.id_sinodo).val())
+                    .done(function (response) {
+                        //$(cadastros_presbiteros.id_igreja).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(cadastros_presbiteros.id_igreja).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_igreja").find(".search").show();
+                        $("#loader_igreja").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
     }
 
     loadSinodosPresbiterios();
 
-    function getDataIgreja() {
+    /**function getDataIgreja() {
         $(cadastros_presbiteros.id_sinodo).on('change', function () {
             if ($(cadastros_presbiteros.id_sinodo).val() > 0) {
                 $("select[name='id_igreja']").children().remove();
@@ -640,7 +646,7 @@ $(document).ready(function () {
         });
     }
 
-    getDataIgreja();
+    getDataIgreja();**/
 
     function popularEstadosCidadesAtual() {
 

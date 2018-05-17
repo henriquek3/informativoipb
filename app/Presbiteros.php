@@ -12,7 +12,7 @@ class Presbiteros extends Model
      * @var array
      */
     protected $guarded = [
-        'id', 'created_at', 'deleted_at', 'updated_at', 'num_dependentes', 'telefone_igreja',
+        'id', 'created_at', 'deleted_at', 'updated_at', 'num_dependentes', 'telefone_igreja', 'id_igreja', 'nacionalidade', 'tipo',
     ];
 
 

@@ -195,7 +195,6 @@ $(document).ready(function () {
         $.get('api/presbiterios?id=' + id_row)
             .done(function (response) {
                 let data = response;
-                console.log(data);
                 cadastros_presbiterios.nome.value = data.nome;
                 cadastros_presbiterios.sigla.value = data.sigla;
                 cadastros_presbiterios.regiao.value = data.regiao;
