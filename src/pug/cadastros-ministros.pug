@@ -31,8 +31,8 @@ block content
                         th.one.wide Código
                         th.six.wide Nome
                         th.five.wide Igreja
-                        th.two.wide.center.aligned Presbitério
                         th.two.wide.center.aligned Sínodo
+                        th.two.wide.center.aligned Presbitério
                 tbody(id="tbody_presbiteros")
 
 
@@ -98,15 +98,12 @@ block content
                                 option(value="3") Viúvo
                                 option(value="4") Separado
                     div.fields
-                        div.ten.wide.field
+                        div.twelve.wide.field
                             label Cônjuge
                             input(type="text", name="conjuge_nome" placeholder="Cônjuge")
                         div.ui.calendar.bottom.left.four.wide.field
                             label Data de Nascimento
                             input.datepicker2(type="date" name="conjuge_nascimento" placeholder="Data de Nascimento do Cônjuge")
-                        div.two.wide.field
-                            label Nº de Dependentes
-                            input(type="text", name="num_dependentes", placeholder="Nº de Dependentes")
                     div.fields
                         div.sixteen.wide.field
                             label Nome dos Dependentes
@@ -151,10 +148,7 @@ block content
                         div.three.wide.field
                             label Telefone Fixo
                             input(type="text", name="telefone" placeholder="Telefone Fixo")
-                        div.three.wide.field
-                            label Telefone da Igreja
-                            input(type="text", name="telefone_igreja", placeholder="Telefone da Igreja")
-                        div.seven.wide.field
+                        div.ten.wide.field
                             label E-mail
                             input(type="email" name="email" placeholder="E-Mail")
 

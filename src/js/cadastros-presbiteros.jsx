@@ -69,9 +69,9 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    igreja = $('<td/>').html(row.id_igreja.toUpperCase());
-                    sinodo = $('<td/>').html(row.id_sinodo.toUpperCase());
-                    regiao = $('<td/>').html(row.id_presbiterio.toUpperCase());
+                    igreja = $('<td/>').html(row.igreja.nome.toUpperCase());
+                    sinodo = $('<td/>').html(row.igreja.presbiterio.sinodo.sigla.toUpperCase());
+                    regiao = $('<td/>').html(row.igreja.presbiterio.sigla.toUpperCase());
 
                     /**
                      * Adiciona as células nas linhas
@@ -189,7 +189,6 @@ $(document).ready(function () {
                 cadastros_presbiteros.cx_postal_cep.value = data.cx_postal_cep;
                 cadastros_presbiteros.celular.value = data.celular;
                 cadastros_presbiteros.telefone.value = data.telefone;
-                cadastros_presbiteros.telefone_igreja.value = data.telefone_igreja;
                 cadastros_presbiteros.email.value = data.email;
 
                 /**
