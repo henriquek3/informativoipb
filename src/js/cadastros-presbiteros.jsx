@@ -167,7 +167,7 @@ $(document).ready(function () {
                 let data = response[0];
                 cadastros_presbiteros.id_sinodo.value = data.igreja.presbiterio.sinodo.id;
                 cadastros_presbiteros.id_presbiterio.value = data.id_presbiterio;
-                cadastros_presbiteros.id_igreja.value = data.id_igreja;
+                cadastros_presbiteros.id_igreja.value = data.igreja.id;
                 cadastros_presbiteros.nome.value = data.nome;
                 cadastros_presbiteros.nome_pai.value = data.nome_pai;
                 cadastros_presbiteros.nome_mae.value = data.nome_mae;
@@ -330,7 +330,8 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
-                let form = $('#formUsuarios').serializeArray();
+                $('#cadastros_presbiteros').append('<input type="hidden" name="_method" value="put">');
+                let form = $('#cadastros_presbiteros').serializeArray();
                 form.unshift({name: 'id', value: id_row});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
@@ -342,14 +343,17 @@ $(document).ready(function () {
                  */
                 $.post('api/presbiteros/update', form)
                     .done(function (response) {
+                        response = response[0];
+                        console.log(response);
                         tbl_api.row(tr_row).remove();
+                        /*tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
                             sinodo,
                             regiao.toUpperCase()
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
