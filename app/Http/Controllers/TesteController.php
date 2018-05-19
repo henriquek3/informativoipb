@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Teste;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use function MongoDB\BSON\toJSON;
 
 class TesteController extends Controller
 {
@@ -14,7 +16,9 @@ class TesteController extends Controller
      */
     public function index()
     {
-        //
+        return view("rotas", [
+            'resource' => Route::getRoutes()->getRoutes()
+        ]);
     }
 
     /**

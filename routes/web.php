@@ -25,7 +25,7 @@ Route::get('/mail', function () {
 
 });
 
-Route::get('/notify', 'UserController@sending');
+Route::get('/rotas', 'TesteController@index');
 
 
 /*
