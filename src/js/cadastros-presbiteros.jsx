@@ -1,4 +1,4 @@
-let id_row, tr_row, tbl_presbiteros, tbl_api, validator_presbiteros;
+let id_row, tr_row, tbl_presbiteros, tbl_api, validator;
 tbl_presbiteros = $("#tbl_presbiteros");
 
 $(document).ready(function () {
@@ -258,6 +258,7 @@ $(document).ready(function () {
                                 cadastros_sinodos.reset();
                             })
                             .fail(function (response) {
+                                resetForm
                                 console.log(response.responseText);
                                 swal("Erro!", response.responseText, "error");
                             })
@@ -269,12 +270,11 @@ $(document).ready(function () {
             ;
         }
     }
-
     /**
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
      */
-    let validator = $("#cadastros_presbiteros").validate({
+    validator = $("#cadastros_presbiteros").validate({
         rules: {
             nome: {
                 required: true,
@@ -527,7 +527,7 @@ $(document).ready(function () {
              * retorna o select para a primera opção
              * @type {number}
              */
-            validator_presbiteros.resetForm();
+            validator.resetForm();
             $('form').form('reset');
         }
     });
