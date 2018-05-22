@@ -14,7 +14,7 @@ class RelConselhos extends Model
      * @var array
      */
     protected $guarded = [
-        'id', 'id_sinodo', 'id_presbiterio', 'created_at', 'deleted_at', 'updated_at',
+        'id', 'id_sinodo', 'id_presbiterio', 'created_at', 'deleted_at', 'updated_at', 'sa_id_oficiais_vencimento',
     ];
 
     public function usuario()
