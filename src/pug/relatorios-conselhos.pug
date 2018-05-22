@@ -60,21 +60,20 @@ block content
 
                 div.ui.form.segment
                     div.fields
-                        div.two.wide.field
-                            label Ano
-                            input(type="text" , value="2018", disabled="")
-                        div.two.wide.field
+                        div.six.wide.field
                             label Sínodo
-                            input(type="text" , value="SCA", disabled="")
-                        div.two.wide.field
+                            select.ui.fluid.search.dropdown(name="id_sinodo")
+                                option
+
+                        div.six.wide.field(id="div_presbiterio")
                             label Presbitério
-                            input(type="text" , value="PRON", disabled="")
-                        div.eight.wide.field
+                            select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
+
+                        div.six.wide.field
                             label Igreja
-                            input(type="text" , value="IGREJA PRESBITERIANA LUZ E VIDA", disabled="")
-                        div.two.wide.field
-                            label Sigla
-                            input(type="text" , value="?????", disabled="")
+                            select.ui.fluid.search.dropdown(name="id_igreja")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
             div.ui.segments
                 div.ui.red.segment(style="text-align: center; background-color: #F9FAFB")
@@ -467,7 +466,7 @@ block content
                             label Quais?
                     div.inline.fields
                         div.sixteen.wide.field
-                            textarea(rows="4", value="0", name="sa_id_oficiais_vencimento", placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer")
+                            textarea(rows="4", name="sa_id_oficiais_vencimento", placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer")
                     div.inline.fields
                         div.one.wide.field
                             label FAP?
@@ -527,9 +526,9 @@ block content
                             label 3.14. Reforma e/ou Construção em andamento:
                     div.inline.fields
                         div.eight.wide.field
-                            textarea(rows="4" value="0", name="sa_reforma_construcao_projeto", placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto.")
+                            textarea(rows="4", name="sa_reforma_construcao_projeto", placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto.")
                         div.eight.wide.field
-                            textarea(rows="4" value="0", name="sa_reforma_construcao_andamento", placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento.")
+                            textarea(rows="4", name="sa_reforma_construcao_andamento", placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento.")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 4. PLANEJAMENTO ESTRATÉGICO
@@ -553,9 +552,9 @@ block content
                             label 4.3. Quais os objetivos propostos e NÃO alcançados? Identificar as dificuldades.
                     div.inline.fields
                         div.eight.wide.field
-                            textarea(rows="4", value="0", name="pe_objetivos_sucesso", placeholder="Cite os objetivos que foram propostos e alcançados.")
+                            textarea(rows="4", name="pe_objetivos_sucesso", placeholder="Cite os objetivos que foram propostos e alcançados.")
                         div.eight.wide.field
-                            textarea(rows="4", value="0", name="pe_objetivos_falha_dificuldades", placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados.")
+                            textarea(rows="4", name="pe_objetivos_falha_dificuldades", placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados.")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 5. PATRIMÔNIO

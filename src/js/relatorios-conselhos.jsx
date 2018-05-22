@@ -76,7 +76,8 @@ $(document).ready(function () {
         ;
     }
 
-    //getDataTable();
+    getDataTable();
+
 
     /**
      * Instancia DataTables() e organiza os eventos do click
@@ -332,7 +333,9 @@ $(document).ready(function () {
                 console.log(form);
                 $.post('api/relconselhos/store', form)
                     .done(function (response) {
-                        console.log(form);
+                        response = response[0];
+                        console.log(response);
+                        tbl_api.row(tr_row).remove();
                         //id_row = response.id;
                         /*tbl_api.row.add([
                             response.id,
@@ -391,6 +394,7 @@ $(document).ready(function () {
     function getDataForm() {
         $.get('api/usuarios?id=' + id_row)
             .done(function (response) {
+                console.log(response);
                 let data = response[0];
                 relatorios_conselhos.nome.value = data.nome;
                 relatorios_conselhos.email.value = data.email;
@@ -476,6 +480,59 @@ $(document).ready(function () {
             })
         ;
     }
+
+    getDataForm();
+
+
+    /**
+     * Carregar Sínodos e Presbitérios
+     */
+    function loadSinodosPresbiterios() {
+        $.get('api/usuarios')
+            .done(function (response) {
+                response = response[0];
+                $.each(response, function () {
+                    $(relatorios_conselhos.id_sinodo).append(
+                        $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                    );
+                });
+            })
+            .fail(function (response) {
+                console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
+            })
+        ;
+        $(relatorios_conselhos.id_sinodo).on('change', function () {
+            if ($(relatorios_conselhos.id_sinodo).val() > 0) {
+                $("#id_presbiterio").children().remove();
+                $("#div_presbiterio").find(".search").hide();
+                $("#loader_presbiterio").show();
+                $.get('api/presbiterios?sinodo=' + $(relatorios_conselhos.id_sinodo).val())
+                    .done(function (response) {
+
+                        $.each(response, function () {
+                            $(relatorios_conselhos.id_presbiterio).append(
+                                $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_presbiterio").find(".search").show();
+                        $("#loader_presbiterio").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    loadSinodosPresbiterios();
 
     /**
      * Exclui as informações do banco de dados
