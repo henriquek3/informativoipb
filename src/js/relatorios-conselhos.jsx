@@ -386,7 +386,30 @@ $(document).ready(function () {
             }
         }
     });
-    
+
+    function testeGet() {
+        $.get('api/igrejas?id=' + id_row)
+            .done(function (response) {
+                console.log(response)
+                let data = response[0];
+                relatorios_conselhos.nome_igreja.value = data.nome;
+                relatorios_conselhos.endereco.value = data.endereco;
+                relatorios_conselhos.endereco_numero.value = data.endereco_numero;
+                relatorios_conselhos.endereco_complemento.value = data.endereco_complemento;
+                relatorios_conselhos.endereco_bairro.value = data.endereco_bairro;
+                relatorios_conselhos.estado.value = data.id_estado;
+                relatorios_conselhos.cidade.value = data.id_cidade;
+                relatorios_conselhos.endereco_cep.value = data.endereco_cep;
+                relatorios_conselhos.endereco_cx_postal.value = data.endereco_cx_postal;
+                relatorios_conselhos.endereco_cx_cep.value = data.endereco_cx_cep;
+                relatorios_conselhos.telefone.value = data.telefone;
+                relatorios_conselhos.homepage.value = data.website;
+                relatorios_conselhos.cnpj.value = data.cnpj;
+                relatorios_conselhos.data_organizacao.value = data.data_organizacao;
+            })
+    }
+
+    testeGet();
 
     /**
      * Traz as informações para edição
@@ -396,12 +419,11 @@ $(document).ready(function () {
             .done(function (response) {
                 console.log(response);
                 let data = response[0];
-                relatorios_conselhos.nome_igreja.value = data.nome_igreja;
                 relatorios_conselhos.email.value = data.email;
                 //relatorios_conselhos.cpf.value = data.cpf;
-                relatorios_conselhos.observacoes.value = data.observacoes;
+                //relatorios_conselhos.observacoes.value = data.observacoes;
                 relatorios_conselhos.or_imovel_documentado.value = data.or_imovel_documentado;
-                relatorios_conselhos.ano.value = data.ano;
+                //relatorios_conselhos.ano.value = data.ano;
                 relatorios_conselhos.id_igreja.value = data.id_igreja;
                 relatorios_conselhos.or_imovel_documentado.value = data.or_imovel_documentado;
                 relatorios_conselhos.or_declaracao_ano_anterior.value = data.or_declaracao_ano_anterior;
@@ -484,12 +506,11 @@ $(document).ready(function () {
     getDataForm();
 
 
-    /**
-     * Carregar Sínodos e Presbitérios
-     */
-    function loadSinodosPresbiterios() {
+    function getDataSinodos() {
         $.get('api/sinodos')
             .done(function (response) {
+                $(relatorios_conselhos.id_sinodo).append($('<option />').text('- -'));
+
                 $.each(response, function () {
                     $(relatorios_conselhos.id_sinodo).append(
                         $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
@@ -504,14 +525,19 @@ $(document).ready(function () {
                 });
             })
         ;
+    }
+
+    getDataSinodos();
+
+    function getDataPresbiterio() {
         $(relatorios_conselhos.id_sinodo).on('change', function () {
             if ($(relatorios_conselhos.id_sinodo).val() > 0) {
-                $("#id_presbiterio").children().remove();
+                $("select[name='id_presbiterio']").children().remove();
                 $("#div_presbiterio").find(".search").hide();
                 $("#loader_presbiterio").show();
                 $.get('api/presbiterios?sinodo=' + $(relatorios_conselhos.id_sinodo).val())
                     .done(function (response) {
-
+                        $(relatorios_conselhos.id_presbiterio).append($('<option />').text('- -'));
                         $.each(response, function () {
                             $(relatorios_conselhos.id_presbiterio).append(
                                 $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
@@ -531,7 +557,39 @@ $(document).ready(function () {
         });
     }
 
-    loadSinodosPresbiterios();
+    getDataPresbiterio();
+
+    function getDataIgreja() {
+        $(relatorios_conselhos.id_presbiterio).on('change', function () {
+            if ($(relatorios_conselhos.id_presbiterio).val() > 0) {
+                $("select[name='id_igreja']").children().remove();
+                $("#div_igreja").find(".search").hide();
+                $("#loader_igreja").show();
+                $.get('api/igrejas?presbiterio=' + $(relatorios_conselhos.id_presbiterio).val())
+                    .done(function (response) {
+                        $(relatorios_conselhos.id_igreja).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(relatorios_conselhos.id_igreja).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_igreja").find(".search").show();
+                        $("#loader_igreja").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataIgreja();
 
     /**
      * Exclui as informações do banco de dados
