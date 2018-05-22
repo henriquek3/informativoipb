@@ -1,6 +1,6 @@
 let id_row, tr_row, tbl_relatorios_estatisticas, tbl_api, validator;
 tbl_relatorios_estatisticas = $("#tbl_relatorios_estatisticas");
-let relatorios_estatisticas;
+//let relatorios_estatisticas;
 $(document).ready(function () {
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -797,13 +797,14 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiterios?id=' + id_row)
+        $.get('api/presbiteros?id=' + id_row)
             .done(function (response) {
+                console.log(response);
                 let data = response[0];
-                relatorios_estatisticas.nome.value = data.nome;
-                relatorios_estatisticas.sigla.value = data.sigla;
-                relatorios_estatisticas.regiao.value = data.regiao;
-                relatorios_estatisticas.ano.value = data.ano;
+                relatorios_estatisticas.nome.value = data.igreja.nome;
+                //relatorios_estatisticas.sigla.value = data.sigla;
+                //relatorios_estatisticas.regiao.value = data.regiao;
+                //relatorios_estatisticas.ano.value = data.ano;
                 relatorios_estatisticas.id_igreja.value = data.id_igreja;
                 relatorios_estatisticas.ec_pastores.value = data.ec_pastores;
                 relatorios_estatisticas.ecl_licenciados.value = data.ecl_licenciados;
@@ -900,6 +901,93 @@ $(document).ready(function () {
             })
         ;
     }
+
+    getDataForm();
+
+    function getDataSinodos() {
+        $.get('api/sinodos')
+            .done(function (response) {
+                $(relatorios_estatisticas.id_sinodo).append($('<option />').text('- -'));
+
+                $.each(response, function () {
+                    $(relatorios_estatisticas.id_sinodo).append(
+                        $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                    );
+                });
+            })
+            .fail(function (response) {
+                console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
+            })
+        ;
+    }
+
+    getDataSinodos();
+
+    function getDataPresbiterio() {
+        $(relatorios_estatisticas.id_sinodo).on('change', function () {
+            if ($(relatorios_estatisticas.id_sinodo).val() > 0) {
+                $("select[name='id_presbiterio']").children().remove();
+                $("#div_presbiterio").find(".search").hide();
+                $("#loader_presbiterio").show();
+                $.get('api/presbiterios?sinodo=' + $(relatorios_estatisticas.id_sinodo).val())
+                    .done(function (response) {
+                        $(relatorios_estatisticas.id_presbiterio).append($('<option />').text('- -'));
+                        $.each(response, function () {
+                            $(relatorios_estatisticas.id_presbiterio).append(
+                                $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_presbiterio").find(".search").show();
+                        $("#loader_presbiterio").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataPresbiterio();
+
+    function getDataIgreja() {
+        $(relatorios_estatisticas.id_presbiterio).on('change', function () {
+            if ($(relatorios_estatisticas.id_presbiterio).val() > 0) {
+                $("select[name='id_igreja']").children().remove();
+                $("#div_igreja").find(".search").hide();
+                $("#loader_igreja").show();
+                $.get('api/igrejas?presbiterio=' + $(relatorios_estatisticas.id_presbiterio).val())
+                    .done(function (response) {
+                        $(relatorios_estatisticas.id_igreja).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(relatorios_estatisticas.id_igreja).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_igreja").find(".search").show();
+                        $("#loader_igreja").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataIgreja();
 
     /**
      * Exclui as informações do banco de dados

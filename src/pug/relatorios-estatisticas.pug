@@ -62,19 +62,21 @@ block content
                     div.fields
                         div.two.wide.field
                             label Ano
-                            input(type="text", value="2018", disabled="")
-                        div.two.wide.field
+                            input(type="text", value="2018", name="ano")
+                        div.four.wide.field
                             label Sínodo
-                            input(type="text", value="SCA", disabled="")
-                        div.two.wide.field
+                            select.ui.fluid.search.dropdown(name="id_sinodo")
+                                option
+
+                        div.six.wide.field(id="div_presbiterio")
                             label Presbitério
-                            input(type="text", value="PRON", disabled="")
-                        div.eight.wide.field
+                            select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
+
+                        div.six.wide.field
                             label Igreja
-                            input(type="text", value="IGREJA PRESBITERIANA LUZ E VIDA", disabled="")
-                        div.two.wide.field
-                            label Sigla
-                            input(type="text", value="?????", disabled="")
+                            select.ui.fluid.search.dropdown(name="id_igreja")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
             div.ui.segments
                 div.ui.blue.segment(style="text-align: center; background-color: #F9FAFB")
@@ -85,7 +87,7 @@ block content
                     div.fields
                         div.sixteen.wide.field
                             label Nome (Igreja/Congregação)
-                            input(type="text" value="0", disabled="" name="")
+                            input(type="text" value="0", disabled="" name="nome")
 
                     div.fields
                         div.eight.wide.field
