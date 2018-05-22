@@ -1,6 +1,6 @@
 let id_row, tr_row, tbl_relatorios_ministeriais, tbl_api, validator;
 tbl_relatorios_ministeriais = $("#tbl_relatorios_ministeriais");
-let relatorios_ministeriais;
+//let relatorios_ministeriais;
 $(document).ready(function () {
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -574,6 +574,90 @@ $(document).ready(function () {
         ;
     }
 
+    function getDataSinodos() {
+        $.get('api/sinodos')
+            .done(function (response) {
+                $(relatorios_ministeriais.id_sinodo).append($('<option />').text('- -'));
+
+                $.each(response, function () {
+                    $(relatorios_ministeriais.id_sinodo).append(
+                        $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                    );
+                });
+            })
+            .fail(function (response) {
+                console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
+            })
+        ;
+    }
+
+    getDataSinodos();
+
+    function getDataPresbiterio() {
+        $(relatorios_ministeriais.id_sinodo).on('change', function () {
+            if ($(relatorios_ministeriais.id_sinodo).val() > 0) {
+                $("select[name='id_presbiterio']").children().remove();
+                $("#div_presbiterio").find(".search").hide();
+                $("#loader_presbiterio").show();
+                $.get('api/presbiterios?sinodo=' + $(relatorios_ministeriais.id_sinodo).val())
+                    .done(function (response) {
+                        $(relatorios_ministeriais.id_presbiterio).append($('<option />').text('- -'));
+                        $.each(response, function () {
+                            $(relatorios_ministeriais.id_presbiterio).append(
+                                $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_presbiterio").find(".search").show();
+                        $("#loader_presbiterio").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataPresbiterio();
+
+    function getDataIgreja() {
+        $(relatorios_ministeriais.id_presbiterio).on('change', function () {
+            if ($(relatorios_ministeriais.id_presbiterio).val() > 0) {
+                $("select[name='id_igreja']").children().remove();
+                $("#div_igreja").find(".search").hide();
+                $("#loader_igreja").show();
+                $.get('api/igrejas?presbiterio=' + $(relatorios_ministeriais.id_presbiterio).val())
+                    .done(function (response) {
+                        $(relatorios_ministeriais.id_igreja).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(relatorios_ministeriais.id_igreja).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_igreja").find(".search").show();
+                        $("#loader_igreja").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataIgreja();
 
     /**
      * Exclui as informações do banco de dados
