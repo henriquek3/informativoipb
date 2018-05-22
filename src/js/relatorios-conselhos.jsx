@@ -1,6 +1,6 @@
 let id_row, tr_row, tbl_reletorios_conselhos, tbl_api, validator;
 tbl_reletorios_conselhos = $("#tbl_reletorios_conselhos");
-let relatorios_conselhos;
+//let relatorios_conselhos;
 $(document).ready(function () {
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -396,9 +396,9 @@ $(document).ready(function () {
             .done(function (response) {
                 console.log(response);
                 let data = response[0];
-                relatorios_conselhos.nome.value = data.nome;
+                relatorios_conselhos.nome_igreja.value = data.nome_igreja;
                 relatorios_conselhos.email.value = data.email;
-                relatorios_conselhos.cpf.value = data.cpf;
+                //relatorios_conselhos.cpf.value = data.cpf;
                 relatorios_conselhos.observacoes.value = data.observacoes;
                 relatorios_conselhos.or_imovel_documentado.value = data.or_imovel_documentado;
                 relatorios_conselhos.ano.value = data.ano;
@@ -488,9 +488,8 @@ $(document).ready(function () {
      * Carregar Sínodos e Presbitérios
      */
     function loadSinodosPresbiterios() {
-        $.get('api/usuarios')
+        $.get('api/sinodos')
             .done(function (response) {
-                response = response[0];
                 $.each(response, function () {
                     $(relatorios_conselhos.id_sinodo).append(
                         $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
