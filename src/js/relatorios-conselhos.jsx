@@ -272,8 +272,8 @@ $(document).ready(function () {
              * Estes campos são para popular o dataTable pelo nome e não pelo id do response
              * @type {jQuery}
              */
-            let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
-            let regiao = $("select[name='regiao'] :selected").text();
+            //let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
+            //let regiao = $("select[name='regiao'] :selected").text();
 
             if (id_row > 0) {
                 let form = $('#relatorios_conselhos').serializeArray();
