@@ -100,18 +100,10 @@ block content
                             input.datepicker2(type="text" value="0" name="nascimento_data" placeholder="Data de Nascimento" disabled="")
                         div.five.wide.field
                             label Estado Natal
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
+                            input(type="text", disabled="", name="nascimento_id_estado")
                         div.eight.wide.field
                             label Cidade Natal
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option
-                                option Cidade
-                                option Cidade
-                                option Cidade
+                            input(type="text", disabled="", name="nascimento_id_cidade")
                     div.fields
                         div.four.wide.field
                             label RG
@@ -124,11 +116,7 @@ block content
                             input(type="text" , name="cpf" placeholder="CPF" disabled="")
                         div.five.wide.field
                             label Estado Civil
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option Casado
-                                option Solteiro
-                                option Viúvo
-                                option Separado
+                            input(type="text", disabled="", name="estado_civil")
                     div.fields
                         div.ten.wide.field
                             label Cônjuge
@@ -159,18 +147,10 @@ block content
                     div.fields
                         div.four.wide.field
                             label Estado
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
+                            input(type="text", disabled="", name="endereco_id_estado")
                         div.five.wide.field
                             label Cidade
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option
-                                option Cidade
-                                option Cidade
-                                option Cidade
+                            input(type="text", disabled="", name="endereco_id_cidade")
                         div.two.wide.field
                             label CEP
                             input(type="text" , name="cep" placeholder="CEP" disabled="")
@@ -207,7 +187,7 @@ block content
                                 option(value="7") Moradia alugada Fora do campo
                         div.three.wide.field
                             label Data de Ordenação:
-                            input(type="text" value="0" name="ordenacao_data")
+                            input(type="date", name="ordenacao_data")
                         div.eight.wide.field(data-tooltip="Digite ou Selecione o Presbitério onde foi ordenado.")
                             label Presbitério
                             select.ui.fluid.search.dropdown(name="id_presbiterio")
