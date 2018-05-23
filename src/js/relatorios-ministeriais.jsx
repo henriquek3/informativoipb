@@ -382,7 +382,7 @@ $(document).ready(function () {
             if (id_row > 0) {
                 let form = $('#relatorios_ministeriais').serializeArray();
                 form.unshift({name: 'id', value: id_row});
-                $.post('api/relministros/update', form)
+                $.post('api/relministeriais/update', form)
                     .done(function (response) {
                         tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
@@ -433,8 +433,21 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#relatorios_ministeriais').serializeArray();
-                $.post('api/relministros/store', form)
+                $.post('api/relministeriais/store', form)
                     .done(function (response) {
+                        response = response[0];
+                        console.log(response);
+                        tbl_api.row(tr_row).remove();
+                        //id_row = response.id;
+                        /*tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);*/
+
+                    /*.done(function (response) {
                         id_row = response.id;
                         tbl_api.row.add([
                             response.id,
@@ -442,7 +455,7 @@ $(document).ready(function () {
                             response.sigla.toUpperCase(),
                             sinodo,
                             regiao.toUpperCase()
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',

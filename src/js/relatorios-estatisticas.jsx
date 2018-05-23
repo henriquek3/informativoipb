@@ -678,7 +678,7 @@ $(document).ready(function () {
             if (id_row > 0) {
                 let form = $('#relatorios_estatisticas').serializeArray();
                 form.unshift({name: 'id', value: id_row});
-                $.post('api/presbiterios/update', form)
+                $.post('api/relestatisticas/update', form)
                     .done(function (response) {
                         tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
@@ -731,14 +731,17 @@ $(document).ready(function () {
                 let form = $('#relatorios_estatisticas').serializeArray();
                 $.post('api/relestatisticas/store', form)
                     .done(function (response) {
-                        id_row = response.id;
-                        tbl_api.row.add([
+                        response = response[0];
+                        console.log(response);
+                        tbl_api.row(tr_row).remove();
+                        //id_row = response.id;
+                        /*tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
                             sinodo,
                             regiao.toUpperCase()
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -834,7 +837,7 @@ $(document).ready(function () {
                 //relatorios_estatisticas.sigla.value = data.sigla;
                 //relatorios_estatisticas.regiao.value = data.regiao;
                 //relatorios_estatisticas.ano.value = data.ano;
-                relatorios_estatisticas.id_igreja.value = data.id_igreja;
+                //relatorios_estatisticas.id_igreja.value = data.id_igreja;
                 relatorios_estatisticas.ec_pastores.value = data.ec_pastores;
                 relatorios_estatisticas.ecl_licenciados.value = data.ecl_licenciados;
                 relatorios_estatisticas.ecl_presbiteros.value = data.ecl_presbiteros;
@@ -931,7 +934,7 @@ $(document).ready(function () {
         ;
     }
 
-    getDataForm();
+    //getDataForm();
 
     function getDataSinodos() {
         $.get('api/sinodos')
