@@ -506,6 +506,7 @@ $(document).ready(function () {
             .done(function (response) {
                 console.log(response);
                 let data = response[0];
+                relatorios_ministeriais.id_presbitero.value = data.id;
                 relatorios_ministeriais.nome.value = data.nome;
                 relatorios_ministeriais.nome_pai.value = data.nome_pai;
                 relatorios_ministeriais.nome_mae.value = data.nome_mae;
