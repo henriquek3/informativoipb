@@ -145,8 +145,8 @@ $(document).ready(function () {
     validator = $("#relatorios_ministeriais").validate({
         rules: {
             condicao_moradia: {
-                required: false,
-                minlength: 4,
+                required: true,
+                minlength: 1,
                 maxlength: 255
             },
             ordenacao_data: {
@@ -155,13 +155,13 @@ $(document).ready(function () {
                 maxlength: 20
             },
             dedicacao_ministerio: {
-                required: false,
-                minlength: 4,
+                required: true,
+                minlength: 1,
                 maxlength: 20
             },
             ferias: {
-                required: false,
-                minlength: 4,
+                required: true,
+                minlength: 1,
                 maxlength: 10
             },
             congruas: {
@@ -484,13 +484,11 @@ $(document).ready(function () {
                 ;
             }
         }
-    });    
+    });
 
 
-    /**
-     * Traz as informações para edição
-     */
-    function getDataForm() {
+    /** função para completar automaticamente os input's com os dados do usuário **/
+    function getBdInfo() {
         $.get('api/presbiteros?id=' + id_row)
             .done(function (response) {
                 console.log(response);
@@ -521,11 +519,26 @@ $(document).ready(function () {
                 relatorios_ministeriais.endereco_id_estado.value = data.endereco_id_estado;
                 relatorios_ministeriais.endereco_id_cidade.value = data.endereco_id_cidade;
                 relatorios_ministeriais.telefone_igreja.value = data.igreja.telefone;
+            })
+    }
+
+    getBdInfo();
+
+
+
+    /**
+     * Traz as informações para edição
+     */
+    function getDataForm() {
+        $.get('api/relministeriais?id=' + id_row)
+            .done(function (response) {
+                console.log(response);
+                let data = response[0];
                 //relatorios_ministeriais.sigla.value = data.sigla;
                 //relatorios_ministeriais.regiao.value = data.regiao;
                 //relatorios_ministeriais.id_presbitero.value = data.id_presbitero;
                 //relatorios_ministeriais.ano.value = data.ano;
-                relatorios_ministeriais.id_igreja.value = data.id_igreja;
+                //relatorios_ministeriais.id_igreja.value = data.id_igreja;
                 //relatorios_ministeriais.nr_dependentes.value = data.nr_dependentes;
                 relatorios_ministeriais.condicao_moradia.value = data.condicao_moradia;
                 relatorios_ministeriais.ferias.value = data.ferias;
@@ -600,7 +613,7 @@ $(document).ready(function () {
         ;
     }
 
-    getDataForm();
+    //getDataForm();
 
 
 

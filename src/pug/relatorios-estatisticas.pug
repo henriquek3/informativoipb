@@ -106,10 +106,10 @@ block content
                     div.fields
                         div.four.wide.field
                             label Estado
-                            select.ui.fluid.search.dropdown.disabled(name="")
+                            input(type="text", disabled="", name="estado")
                         div.four.wide.field
                             label Cidade
-                            select.ui.fluid.search.dropdown.disabled(name="")
+                            input(type="text", disabled="", name="cidade")
                         div.three.wide.field
                             label CEP
                             input(type="text" value="0", disabled="" name="endereco_cep")
@@ -290,11 +290,11 @@ block content
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Departamentos")
                                         div.ui.label D.
-                                        input(type="text" value="0")
+                                        label TOTAL
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Membros")
                                         div.ui.label M.
-                                        input(type="text" value="0")
+                                        label TOTAL
 
 
             div.ui.segments
@@ -319,7 +319,7 @@ block content
                                         input(type="text", value="0", name="rma_profissao_fe_fem", id="fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text", value="0", id="resultado")
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -334,7 +334,7 @@ block content
                                         input(type="text" value="0" name="rma_profissao_batismo_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -349,7 +349,7 @@ block content
                                         input(type="text" value="0" name="rma_transf_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -364,7 +364,7 @@ block content
                                         input(type="text" value="0" name="rma_jurisdicao_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -379,7 +379,7 @@ block content
                                         input(type="text" value="0" name="rma_restauracao_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -394,7 +394,7 @@ block content
                                         input(type="text" value="0" name="rma_designacao_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
 
 
@@ -413,7 +413,7 @@ block content
                                         input(type="text" value="0" name="rma_batismo_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -428,7 +428,7 @@ block content
                                         input(type="text" value="0" name="rma_transferencia_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -443,7 +443,7 @@ block content
                                         input(type="text" value="0" name="rma_jurisdicao_ex_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                     div.ui.horizontal.segments
                         div.ui.segment
@@ -461,7 +461,7 @@ block content
                                         input(type="text" value="0" name="rmd_transferencia_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -476,7 +476,7 @@ block content
                                         input(type="text" value="0" name="rmd_falecimento_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -491,7 +491,7 @@ block content
                                         input(type="text" value="0" name="rmd_exclucao_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -506,7 +506,7 @@ block content
                                         input(type="text" value="0" name="rmd_ordenacao_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
 
                         div.ui.segment
@@ -524,7 +524,7 @@ block content
                                         input(type="text" value="0" name="rmd_profissao_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -539,7 +539,7 @@ block content
                                         input(type="text" value="0" name="rmd_transferencia_fem__ncomumg")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -554,7 +554,7 @@ block content
                                         input(type="text" value="0" name="rmd_falecimento_fem_ncomumg")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -569,7 +569,7 @@ block content
                                         input(type="text" value="0" name="rmd_exclusao_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
 
                     div.ui.horizontal.segments
@@ -587,7 +587,7 @@ block content
                                         input(type="text" value="0" name="rmd_separado_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field(data-tooltip="RESULTADO de (admissão - demissão)")
@@ -602,7 +602,7 @@ block content
                                         input(type="text" value="0" name="rmd_diferenca_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0" )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -617,7 +617,7 @@ block content
                                         input(type="text" value="0" name="rmd_comung_anterior_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -632,7 +632,7 @@ block content
                                         input(type="text" value="0" name="rmd_comung_atual_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
 
                         div.ui.segment
@@ -649,7 +649,7 @@ block content
                                         input(type="text" value="0" name="rmd_dif_comung_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -664,7 +664,7 @@ block content
                                         input(type="text" value="0" name="rmd_nao_comung_anterior_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field
@@ -679,7 +679,7 @@ block content
                                         input(type="text" value="0" name="rmd_nao_comung_atual_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0" )
+                                        label TOTAL
 
                             div.inline.fields
                                 div.five.wide.field(data-tooltip="RESULTADO (Comungantes + Não Comungantes)")
@@ -694,7 +694,7 @@ block content
                                         input(type="text" value="0" name="rmd_rol_atual_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
-                                        input(type="text" value="0"  )
+                                        label TOTAL
 
 
             div.ui.segments
@@ -738,14 +738,14 @@ block content
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0")
+                                        label TOTAL
                             div.inline.fields
                                 div.eight.wide.field
                                     label Grande Total
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0")
+                                        label TOTAL
                             div.inline.fields
                                 div.six.wide.field
                                     div.ui.label.blue
@@ -805,21 +805,21 @@ block content
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0")
+                                        label TOTAL
                             div.inline.fields
                                 div.eight.wide.field
                                     label Saldo - Ano Seguinte
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0" )
+                                        label TOTAL
                             div.inline.fields
                                 div.eight.wide.field
                                     label Grande Total
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0")
+                                        label TOTAL
 
                         div.ui.segment
                             div.ui.top.attached.label.blue(style="text-align: center;") PREVISÃO ORÇAMENTÁRIA - PRÓXIMO EXERCÍCIO
@@ -854,14 +854,14 @@ block content
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0" )
+                                        label TOTAL
                             div.inline.fields
                                 div.eight.wide.field
                                     label Grande Total
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0" )
+                                        label TOTAL
                             div.inline.fields
                                 div.six.wide.field
                                     div.ui.label.blue
@@ -928,14 +928,14 @@ block content
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0" )
+                                        label TOTAL
                             div.inline.fields
                                 div.eight.wide.field
                                     label Grande Total
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0" )
+                                        label TOTAL
 
 
 

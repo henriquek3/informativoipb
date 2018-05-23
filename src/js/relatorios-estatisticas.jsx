@@ -729,7 +729,7 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#relatorios_estatisticas').serializeArray();
-                $.post('api/presbiterios/store', form)
+                $.post('api/relestatisticas/store', form)
                     .done(function (response) {
                         id_row = response.id;
                         tbl_api.row.add([
@@ -792,16 +792,45 @@ $(document).ready(function () {
 
 
 
+    /** função para completar automaticamente os input's com os dados do usuário **/
+    function getBdInfo() {
+        $.get('api/igrejas?id=' + id_row)
+            .done(function (response) {
+                console.log(response);
+                let data = response[0];
+                relatorios_estatisticas.nome.value = data.nome;
+                relatorios_estatisticas.endereco.value = data.endereco;
+                relatorios_estatisticas.endereco_numero.value = data.endereco_numero;
+                relatorios_estatisticas.endereco_complemento.value = data.endereco_complemento;
+                relatorios_estatisticas.endereco_bairro.value = data.endereco_bairro;
+                relatorios_estatisticas.estado.value = data.id_estado;
+                relatorios_estatisticas.cidade.value = data.id_cidade;
+                relatorios_estatisticas.endereco_cep.value = data.endereco_cep;
+                relatorios_estatisticas.endereco_cx_postal.value = data.endereco_cx_postal;
+                relatorios_estatisticas.endereco_cx_cep.value = data.endereco_cx_cep;
+                relatorios_estatisticas.telefone.value = data.telefone;
+                relatorios_estatisticas.email.value = data.email;
+                relatorios_estatisticas.homepage.value = data.website;
+                relatorios_estatisticas.cnpj.value = data.cnpj;
+                relatorios_estatisticas.data_organizacao.value = data.data_organizacao;
+
+            })
+    }
+
+    getBdInfo();
+
+
+
+
 
     /**
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiteros?id=' + id_row)
+        $.get('api/relestatisticas?id=' + id_row)
             .done(function (response) {
                 console.log(response);
                 let data = response[0];
-                relatorios_estatisticas.nome.value = data.igreja.nome;
                 //relatorios_estatisticas.sigla.value = data.sigla;
                 //relatorios_estatisticas.regiao.value = data.regiao;
                 //relatorios_estatisticas.ano.value = data.ano;
@@ -1014,7 +1043,7 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/presbiterios/delete', {id: id_row})
+                        $.post('/api/relestatisticas/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -1064,7 +1093,7 @@ $(document).ready(function () {
                 if (id_row > 0) {
                     let form = $('#relatorios_estatisticas').serializeArray();
                     form.unshift({name: 'id', value: id_row});
-                    $.post('api/presbiterios/update', form)
+                    $.post('api/relestatisticas/update', form)
                        .done(function (response) {
                             console.log(response);
                             tbl_api.row(tr_row).remove();
@@ -1115,7 +1144,7 @@ $(document).ready(function () {
                    ;
                 } else {
                     let form = $('#relatorios_estatisticas').serializeArray();
-                    $.post('api/presbiterios/store', form)
+                    $.post('api/relestatisticas/store', form)
                        .done(function (response) {
                             console.log(response);
 
