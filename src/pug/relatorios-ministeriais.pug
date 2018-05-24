@@ -52,18 +52,20 @@ block content
                             input(type="text", value="2018", name="ano")
                         div.four.wide.field
                             label Sínodo
-                            select.ui.fluid.search.dropdown(name="id_sinodo")
+                            input(type="text", name="sinodo", value="", disabled="")
+                            //select.ui.fluid.search.dropdown(name="id_sinodo")
                                 option
 
                         div.six.wide.field(id="div_presbiterio")
                             label Presbitério
-                            select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
-                            div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
+                            input(type="text", name="presbiterio", value="", disabled="")
+                            //select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                            //div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
 
                         div.six.wide.field
                             label Igreja
-                            select.ui.fluid.search.dropdown(name="id_igreja")
-                            div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
+                            //select.ui.fluid.search.dropdown(name="id_igreja")
+                            //div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -72,11 +74,9 @@ block content
 
                 div.ui.form.segment
                     div.fields
-                        div.one.wide.field
-                            label ID
-                            input(type="text", name="id_presbitero", value="")
                         div.ten.wide.field
                             label Nome
+                            input(type="hidden", name="id_presbitero", value="")
                             input(type="text" , name="nome" placeholder="Digite seu Nome" disabled="")
                     div.fields
                         div.eight.wide.field
@@ -524,3 +524,5 @@ block specific-js
     script(src="js/plugins/dataTables.min.js")
     script(src="js/plugins/sweetalert.min.js")
     script(src="js/app/relatorios-ministeriais-app.js")
+    script().
+        var usuario = {!!\App\User::with(['presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo',])->where('id', 1)->get()!!}

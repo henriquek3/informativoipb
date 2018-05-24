@@ -11,8 +11,13 @@
 </head>
 <body>
 <script>
-    let teste = {!!auth()->user()!!}
-        console.log(teste);
+    var usuario = {!!(\App\User::with([
+        'presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo'
+    ])->where('id',1)->get())!!}
+
+
+    {{--@dd(\App\User::with('presbitero')->where('id',1)->get())--}}
+
 </script>
 <div class="container">
     <table class="table table-striped">
@@ -32,5 +37,7 @@
         </tbody>
     </table>
 </div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/teste.js"></script>
 </body>
 </html>
