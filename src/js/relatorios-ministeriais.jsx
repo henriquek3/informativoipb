@@ -38,7 +38,7 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/presbiterios')
+        $.get('/api/relministeriais')
             .done(function (response) {
                 for (let key in response) {
                     let tr, row, id, tipo_relatorio, data_lancamento, data_ultima_alteracao, status, ano;
@@ -49,21 +49,21 @@ $(document).ready(function () {
                      * @type {jQuery}
                      */
                     id = $('<td/>').html(row.id);
-                    data_lancamento = $('<td/>').html(row.data_lancamento);
-                    data_ultima_alteracao = $('<td/>').html(row.data_ultima_alteracao);
-                    tipo_relatorio = $('<td/>').html("Relatório do Conselho");
-                    status = $('<td/>').html(row.status);
+                    data_lancamento = $('<td/>').html(row.created_at);
+                    data_ultima_alteracao = $('<td/>').html(row.updated_at);
+                    tipo_relatorio = $('<td/>').html("RELATÓRIO DO MINISTRO");
+                    status = $('<td/>').html(row.status_relatorio);
                     ano = $('<td/>').html(row.ano);
 
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
+                        .append(tipo_relatorio)
                         .append(data_lancamento)
                         .append(data_ultima_alteracao)
-                        .append(tipo_relatorio)
-                        .append(ano)
-                        .append(status);
+                        .append(status)
+                        .append(ano);
                     /**
                      * Adiciona linhas na tabela
                      */
@@ -76,7 +76,7 @@ $(document).ready(function () {
         ;
     }
 
-    //getDataTable();
+    getDataTable();
 
     /**
      * Instancia DataTables() e organiza os eventos do click

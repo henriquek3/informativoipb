@@ -10,6 +10,10 @@
     <title>Rotas API</title>
 </head>
 <body>
+<script>
+    let teste = {!!auth()->user()!!}
+        console.log(teste);
+</script>
 <div class="container">
     <table class="table table-striped">
         <thead>

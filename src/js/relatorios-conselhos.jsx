@@ -40,36 +40,36 @@ $(document).ready(function () {
     function getDataTable() {
             $.get('/api/relconselhos')
             .done(function (response) {
-                for (let key in response) {
-                    let tr, row, id, tipo_relatorio, data_lancamento, data_ultima_alteracao, status, ano;
-                    tr = $('<tr/>');
-                    row = response[key];
-                    /**
-                     * Adiciona células com as informações do banco de dados
-                     * @type {jQuery}
-                     */
-                    id = $('<td/>').html(row.id);
-                    data_lancamento = $('<td/>').html(row.data_lancamento);
-                    data_ultima_alteracao = $('<td/>').html(row.data_ultima_alteracao);
-                    tipo_relatorio = $('<td/>').html("Relatório do Conselho");
-                    status = $('<td/>').html(row.status);
-                    ano = $('<td/>').html(row.ano);
+                    for (let key in response) {
+                        let tr, row, id, tipo_relatorio, data_lancamento, data_ultima_alteracao, status, ano;
+                        tr = $('<tr/>');
+                        row = response[key];
+                        /**
+                         * Adiciona células com as informações do banco de dados
+                         * @type {jQuery}
+                         */
+                        id = $('<td/>').html(row.id);
+                        data_lancamento = $('<td/>').html(row.created_at);
+                        data_ultima_alteracao = $('<td/>').html(row.updated_at);
+                        tipo_relatorio = $('<td/>').html("RELATÓRIO DO CONSELHO");
+                        status = $('<td/>').html(row.status_relatorio);
+                        ano = $('<td/>').html(row.ano);
 
-                    /**
-                     * Adiciona as células nas linhas
-                     */
-                    tr.append(id)
-                        .append(data_lancamento)
-                        .append(data_ultima_alteracao)
-                        .append(tipo_relatorio)
-                        .append(ano)
-                        .append(status);
-                    /**
-                     * Adiciona linhas na tabela
-                     */
-                    $('#tbody_relatorios_conselhos').append(tr);
-                }
-            })
+                        /**
+                         * Adiciona as células nas linhas
+                         */
+                        tr.append(id)
+                            .append(tipo_relatorio)
+                            .append(data_lancamento)
+                            .append(data_ultima_alteracao)
+                            .append(status)
+                            .append(ano);
+                        /**
+                         * Adiciona linhas na tabela
+                         */
+                        $('#tbl_reletorios_conselhos').append(tr);
+                    }
+                })
             .fail(function (response) {
                 console.log(response);
             })
