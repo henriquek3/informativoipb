@@ -68,6 +68,11 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
+    public function presbitero()
+    {
+        return $this->belongsTo(\App\Presbiteros::class, 'id_presbitero');
+    }
+
     public function sinodos()
     {
         return $this->hasMany('App\Sinodos');
