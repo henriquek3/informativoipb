@@ -13,7 +13,7 @@ class RelMinistros extends Model
      * @var array
      */
     protected $guarded = [
-        'id', 'created_at', 'deleted_at', 'updated_at', 'id_sinodo', 'id_presbiterio', 'id_presbitero', 'ordenacao_data', 'dedicacao_ministerio',
+        'id', 'created_at', 'deleted_at', 'updated_at', 'id_sinodo', 'id_presbiterio', 'ordenacao_data', 'dedicacao_ministerio',
     ];
 
     public function usuario()
