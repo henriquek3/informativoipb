@@ -11,22 +11,6 @@ let mix = require('laravel-mix');
  |
  */
 
-/*mix.js('resources/assets/js/app.js', 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css');*/
-
-const copies = [
-    {
-        //
-        from: 'node_modules/gerador-validador-cpf/dist/js/CPF.js',
-        to: 'public/js',
-    }
-    /*,
-    {
-        from: './node_modules/material-components-web/dist/material-components-web.css',
-        to: 'public/css',
-    },*/
-];
-
-copies.map(asset => (
-    mix.copy(asset.from, asset.to)
-));
+mix.js('resources/assets/js/app.js', 'public/js')
+    .sass('resources/assets/sass/app.scss', 'public/css');
+    

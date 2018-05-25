@@ -91,3 +91,5 @@ resources/views/relatorios-ministeriais.blade.php
 resources/views/reuniao-presbiterio.blade.php
 src/tests/
 !resources/views/vendor/notifications/email.blade.php
+public/js/app.js
+public/css/app.css
