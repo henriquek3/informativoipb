@@ -64,6 +64,29 @@ block content
                         div.two.wide.field
                             label Ano
                             input(type="text", value="2018", name="ano")
+                        div.seven.wide.field
+                            label Sínodo
+                            input(type="text", name="sinodo", value="", disabled="")
+                            //select.ui.fluid.search.dropdown(name="id_sinodo")
+                                option
+
+                        div.seven.wide.field(id="div_presbiterio")
+                            label Presbitério
+                            input(type="text", name="presbiterio", value="", disabled="")
+                            //select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                            //div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
+
+                        //div.six.wide.field
+                            label Igreja
+                            input(type="text", name="igreja", value="", disabled="")
+                            //select.ui.fluid.search.dropdown(name="id_igreja")
+                            //div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
+
+                //div.ui.form.segment
+                    div.fields
+                        div.two.wide.field
+                            label Ano
+                            input(type="text", value="2018", name="ano")
                         div.four.wide.field
                             label Sínodo
                             select.ui.fluid.search.dropdown(name="id_sinodo")
@@ -1058,3 +1081,5 @@ block specific-js
     script(src="js/plugins/dataTables.min.js")
     script(src="js/plugins/sweetalert.min.js")
     script(src="js/app/relatorios-estatisticas-app.js")
+    script().
+        var usuario = {!!\App\User::with(['presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo', 'presbitero.endereco_estado', 'presbitero.endereco_cidade', 'presbitero.nascimento_estado', 'presbitero.nascimento_cidade',])->where('id', 1)->get()!!}

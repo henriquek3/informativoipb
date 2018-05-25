@@ -64,6 +64,7 @@ block content
 
                         div.six.wide.field
                             label Igreja
+                            input(type="text", name="igreja", value="", disabled="")
                             //select.ui.fluid.search.dropdown(name="id_igreja")
                             //div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
@@ -525,4 +526,4 @@ block specific-js
     script(src="js/plugins/sweetalert.min.js")
     script(src="js/app/relatorios-ministeriais-app.js")
     script().
-        var usuario = {!!\App\User::with(['presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo',])->where('id', 1)->get()!!}
+        var usuario = {!!\App\User::with(['presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo', 'presbitero.endereco_estado', 'presbitero.endereco_cidade', 'presbitero.nascimento_estado', 'presbitero.nascimento_cidade',])->where('id', 1)->get()!!}

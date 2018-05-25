@@ -391,21 +391,23 @@ $(document).ready(function () {
         $.get('api/igrejas?id=' + id_row)
             .done(function (response) {
                 console.log(response)
-                let data = response[0];
-                relatorios_conselhos.nome_igreja.value = data.nome;
-                relatorios_conselhos.endereco.value = data.endereco;
-                relatorios_conselhos.endereco_numero.value = data.endereco_numero;
-                relatorios_conselhos.endereco_complemento.value = data.endereco_complemento;
-                relatorios_conselhos.endereco_bairro.value = data.endereco_bairro;
-                relatorios_conselhos.estado.value = data.id_estado;
-                relatorios_conselhos.cidade.value = data.id_cidade;
-                relatorios_conselhos.endereco_cep.value = data.endereco_cep;
-                relatorios_conselhos.endereco_cx_postal.value = data.endereco_cx_postal;
-                relatorios_conselhos.endereco_cx_cep.value = data.endereco_cx_cep;
-                relatorios_conselhos.telefone.value = data.telefone;
-                relatorios_conselhos.homepage.value = data.website;
-                relatorios_conselhos.cnpj.value = data.cnpj;
-                relatorios_conselhos.data_organizacao.value = data.data_organizacao;
+                let data = usuario[0].presbitero;
+                relatorios_conselhos.nome_igreja.value = data.igreja.nome;
+                relatorios_conselhos.sinodo.value = data.igreja.presbiterio.sinodo.nome;
+                relatorios_conselhos.presbiterio.value = data.igreja.presbiterio.nome;
+                relatorios_conselhos.endereco.value = data.igreja.endereco;
+                relatorios_conselhos.endereco_numero.value = data.igreja.endereco_numero;
+                relatorios_conselhos.endereco_complemento.value = data.igreja.endereco_complemento;
+                relatorios_conselhos.endereco_bairro.value = data.igreja.endereco_bairro;
+                relatorios_conselhos.estado.value = data.endereco_estado.nome;
+                relatorios_conselhos.cidade.value = data.endereco_cidade.nome
+                relatorios_conselhos.endereco_cep.value = data.igreja.endereco_cep;
+                relatorios_conselhos.endereco_cx_postal.value = data.igreja.endereco_cx_postal;
+                relatorios_conselhos.endereco_cx_cep.value = data.igreja.endereco_cx_cep;
+                relatorios_conselhos.telefone.value = data.igreja.telefone;
+                relatorios_conselhos.homepage.value = data.igreja.website;
+                relatorios_conselhos.cnpj.value = data.igreja.cnpj;
+                relatorios_conselhos.data_organizacao.value = data.igreja.data_organizacao;
             })
     }
 
@@ -424,7 +426,7 @@ $(document).ready(function () {
                 //relatorios_conselhos.observacoes.value = data.observacoes;
                 relatorios_conselhos.or_imovel_documentado.value = data.or_imovel_documentado;
                 //relatorios_conselhos.ano.value = data.ano;
-                relatorios_conselhos.id_igreja.value = data.id_igreja;
+                //relatorios_conselhos.id_igreja.value = data.id_igreja;
                 relatorios_conselhos.or_imovel_documentado.value = data.or_imovel_documentado;
                 relatorios_conselhos.or_declaracao_ano_anterior.value = data.or_declaracao_ano_anterior;
                 relatorios_conselhos.or_inventario_existe.value = data.or_inventario_existe;

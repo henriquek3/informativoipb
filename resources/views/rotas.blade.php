@@ -12,7 +12,7 @@
 <body>
 <script>
     var usuario = {!!(\App\User::with([
-        'presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo'
+        'presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo', 'presbitero.estado',
     ])->where('id',1)->get())!!}
 
 

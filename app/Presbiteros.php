@@ -28,4 +28,20 @@ class Presbiteros extends Model
     {
         return $this->belongsTo("App\Igrejas",'id_igreja',"id");
     }
+    public function endereco_estado()
+    {
+        return $this->belongsTo("App\Estados", "endereco_id_estado", "id");
+    }
+    public function endereco_cidade()
+    {
+        return $this->belongsTo("App\Cidades", "endereco_id_cidade", "id");
+    }
+    public function nascimento_estado()
+    {
+        return $this->belongsTo("App\Estados", "nascimento_id_estado", "id");
+    }
+    public function nascimento_cidade()
+    {
+        return $this->belongsTo("App\Cidades", "nascimento_id_cidade", "id");
+    }
 }

@@ -542,13 +542,14 @@ $(document).ready(function () {
         let data = usuario[0].presbitero;
         relatorios_ministeriais.sinodo.value = data.igreja.presbiterio.sinodo.nome;
         relatorios_ministeriais.presbiterio.value = data.igreja.presbiterio.nome;
+        relatorios_ministeriais.igreja.value = data.igreja.nome;
         relatorios_ministeriais.id_presbitero.value = data.id;
         relatorios_ministeriais.nome.value = data.nome;
         relatorios_ministeriais.nome_pai.value = data.nome_pai;
         relatorios_ministeriais.nome_mae.value = data.nome_mae;
         relatorios_ministeriais.nascimento_data.value = data.nascimento_data;
-        relatorios_ministeriais.nascimento_id_estado.value = data.nascimento_id_estado;
-        relatorios_ministeriais.nascimento_id_cidade.value = data.nascimento_id_cidade;
+        relatorios_ministeriais.nascimento_id_estado.value = data.nascimento_estado.nome;
+        relatorios_ministeriais.nascimento_id_cidade.value = data.nascimento_cidade.nome;
         relatorios_ministeriais.rg.value = data.rg;
         relatorios_ministeriais.rg_emissor.value = data.rg_emissor;
         relatorios_ministeriais.cpf.value = data.cpf;
@@ -566,8 +567,8 @@ $(document).ready(function () {
         relatorios_ministeriais.cx_postal.value = data.cx_postal;
         relatorios_ministeriais.cx_postal_cep.value = data.cx_postal_cep;
         relatorios_ministeriais.email.value = data.email;
-        relatorios_ministeriais.endereco_id_estado.value = data.endereco_id_estado;
-        relatorios_ministeriais.endereco_id_cidade.value = data.endereco_id_cidade;
+        relatorios_ministeriais.endereco_id_estado.value = data.endereco_estado.nome;
+        relatorios_ministeriais.endereco_id_cidade.value = data.endereco_cidade.nome;
         relatorios_ministeriais.telefone_igreja.value = data.igreja.telefone;
     }
 
