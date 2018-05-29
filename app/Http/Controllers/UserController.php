@@ -142,11 +142,13 @@ class UserController extends Controller
      */
     public function destroy(User $user, $id)
     {
-        $userToDestroy = $user->findOrFail((int)$id);
-        $userToDestroy->delete();
-        return response()->json([
-            'status' => 'com suceddo'
-        ]);
+        try {
+            $resource = $user->findOrFail((int)$id);
+            $resource->delete();
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getCode());
+        }
+        return redirect("/administrar-usuarios")->with('deleted', "success");
     }
 
     /*    public function prelogin()

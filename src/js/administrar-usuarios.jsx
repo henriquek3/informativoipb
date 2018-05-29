@@ -654,19 +654,13 @@ $(document).ready(function () {
     user = JSON.parse(user);*/
 
     $(formDelete).on("submit", function () {
-        let form = $(formDelete).serializeArray();
-        $.post('/api/usuarios/' + id_row, form)
-            .done(function (r) {
-                /*console.log("done");
-                console.log(r)*/
-            })
-            .fail(function (r) {
-                console.log("fail");
-                console.log(r)
-            })
-        ;
-        console.log("id :" + id_row);
-        return false;
+        if (id_row > 0) {
+            $(formDelete).attr({
+                action: '/administrar-usuarios/' + id_row + '/delete'
+            });
+        } else {
+            return false;
+        }
     });
 
 

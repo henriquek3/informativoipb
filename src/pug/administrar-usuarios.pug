@@ -162,3 +162,28 @@ block specific-js
     script(src="js/plugins/jquery.mask.min.js")
     script(src="js/CPF.js")
     script(src="js/app/administrar-usuarios-app.js")
+    | @if(session('deleted'))
+    script(type='text/javascript').
+        iziToast.success({
+            title: 'Sucesso!',
+            message: 'O registro foi excluido com sucesso!',
+            timeout: 5000,
+            pauseOnHover: true,
+            position: 'topRight',
+            transitionIn: 'fadeInDown',
+            transitionOut: 'fadeOutUp'
+        });
+    | @endif
+    | @if($errors->any())
+    script(type='text/javascript').
+        iziToast.warning({
+            title: 'Atenção! ',
+            message: 'Houve um erro durante o processamento, por favor recarregue a página e tente novamente!',
+            timeout: 10000,
+            pauseOnHover: true,
+            position: 'topRight',
+            transitionIn: 'fadeInDown',
+            transitionOut: 'fadeOutUp'
+        });
+    | @endif
+

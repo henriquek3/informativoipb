@@ -36,7 +36,7 @@ Route::get('/rotas', 'TesteController@index');
 
 Route::get('/administrar-usuarios', 'UserController@adminuser')->middleware('auth');
 Route::post('/api/usuarios', 'UserController@store')->middleware('auth');
-Route::delete('/api/usuarios/{id}', 'UserController@destroy')->middleware('auth');
+Route::delete('/administrar-usuarios/{id}/delete', 'UserController@destroy')->middleware('auth');
 
 Route::get('/api/usuarios', 'UserController@users')->middleware('auth');
 Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
