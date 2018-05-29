@@ -1,4 +1,7 @@
 {
+  "name": "InformativoIPB",
+  "version": "0.1.2",
+  "description": "Sistema de planilhas online.",
   "private": true,
   "scripts": {
     "dev": "npm run development",
@@ -7,26 +10,21 @@
     "watch-poll": "npm run watch -- --watch-poll",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "gdev": "grunt build && grunt watch"
   },
   "devDependencies": {
-    "autoprefixer": "^8.2.0",
+    "autoprefixer": "^8.5.1",
     "axios": "^0.18",
     "babel-preset-env": "^1.6.1",
     "bootstrap": "^4.0.0",
-    "cross-env": "^5.1",
+    "browser-sync": "^2.24.4",
+    "browser-sync-webpack-plugin": "^2.0.1",
+    "cross-env": "^5.1.6",
     "grunt": "^1.0.2",
     "grunt-babel": "^7.0.0",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-connect": "^1.0.2",
-    "grunt-contrib-cssmin": "^2.2.1",
-    "grunt-contrib-htmlmin": "^2.4.0",
-    "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-pug": "^1.0.0",
-    "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-uglify": "^3.3.0",
-    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-postcss": "^0.9.0",
     "grunt-sass": "^2.1.0",
     "jquery": "^3.2",
@@ -36,6 +34,7 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
-    "gerador-validador-cpf": "^3.1.1"
+    "gerador-validador-cpf": "^3.1.1",
+    "jquery-mask-plugin": "^1.14.15"
   }
 }
