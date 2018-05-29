@@ -1,3 +1,4 @@
+
 <div class="ui small modal">
     <div class="header"><span>Painel de Alertas</span><span style="margin-left: 10px;position: absolute;"><i
                     class="big teal bullhorn icon"></i></span></div>
