@@ -67,7 +67,11 @@ class UserController extends Controller
                  $m->from('mensageiro@informativoipb.com', 'InformativoIPB');
                  $m->to($data['email'], $data['nome'])->subject('Confirmação de Login');
              });*/
-            $user->notify(new ConviteNotification($user->nome, $user->email, $user->cpf));
+            try {
+                $user->notify(new ConviteNotification($user->nome, $user->email, $user->cpf));
+            } catch (\Exception $exception) {
+                dd($exception);
+            }
         }
 
         $retrieve = User::findOrFail((int)$user->id);
