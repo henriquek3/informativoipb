@@ -1469,65 +1469,65 @@
                 <div class="fields">
                   <div class="sixteen wide field">
                     <label>Secretário do Conselho</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_nome" disabled="">
                   </div>
                 </div>
                 <div class="fields">
                   <div class="eight wide field">
                     <label>Endereço</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_endereco" disabled="">
                   </div>
                   <div class="two wide field">
                     <label>Número</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_endereco_numero" disabled="">
                   </div>
                   <div class="three wide field">
                     <label>Complemento</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_endereco_complemento" disabled="">
                   </div>
                   <div class="three wide field">
                     <label>Bairro</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_endereco_bairro" disabled="">
                   </div>
                 </div>
                 <div class="fields">
                   <div class="four wide field">
                     <label>Estado</label>
-                    <select class="ui fluid search dropdown disabled"></select>
+                    <input type="text" name="relator_estado" disabled="">
                   </div>
                   <div class="four wide field">
                     <label>Cidade</label>
-                    <select class="ui fluid search dropdown disabled"></select>
+                    <input type="text" name="relator_cidade" disabled="">
                   </div>
                   <div class="three wide field">
                     <label>CEP</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_endereco_cep" disabled="">
                   </div>
                   <div class="two wide field">
                     <label>Cx. P</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_cx" disabled="">
                   </div>
                   <div class="three wide field">
                     <label>CEP Cx. P</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_cep_cx" disabled="">
                   </div>
                 </div>
                 <div class="fields">
                   <div class="three wide field">
                     <label>Telefone</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_telefone" disabled="">
                   </div>
                   <div class="three wide field">
                     <label>Celular</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_celular" disabled="">
                   </div>
                   <div class="three wide field">
                     <label>Tel. Igreja</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_igreja_telefone" disabled="">
                   </div>
                   <div class="seven wide field">
                     <label>E-mail</label>
-                    <input type="text" value="0" disabled="">
+                    <input type="text" name="relator_email" disabled="">
                   </div>
                 </div>
               </div>

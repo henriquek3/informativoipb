@@ -823,7 +823,30 @@ $(document).ready(function () {
 
     getBdInfo();
 
+    /** função para completar automaticamente os input's com os dados do usuário **/
+    function getRelator() {
+        $.get('api/igrejas?id=' + id_row)
+            .done(function (response) {
+                let data = usuario[0].presbitero;
+                relatorios_estatisticas.relator_nome.value = data.nome;
+                relatorios_estatisticas.relator_endereco.value = data.endereco;
+                relatorios_estatisticas.relator_endereco_numero.value = data.endereco_nr;
+                relatorios_estatisticas.relator_endereco_complemento.value = data.endereco_complemento;
+                relatorios_estatisticas.relator_endereco_bairro.value = data.endereco_bairro;
+                relatorios_estatisticas.relator_estado.value = data.endereco_estado.nome;
+                relatorios_estatisticas.relator_cidade.value = data.endereco_cidade.nome;
+                relatorios_estatisticas.relator_endereco_cep.value = data.cep;
+                relatorios_estatisticas.relator_cx.value = data.cx_postal;
+                relatorios_estatisticas.relator_cep_cx.value = data.cx_postal_cep;
+                relatorios_estatisticas.relator_telefone.value = data.telefone;
+                relatorios_estatisticas.relator_email.value = data.igreja.email;
+                relatorios_estatisticas.relator_celular.value = data.celular;
+                relatorios_estatisticas.relator_igreja_telefone.value = data.igreja.telefone;
 
+            })
+    }
+
+    getRelator();
 
 
 
