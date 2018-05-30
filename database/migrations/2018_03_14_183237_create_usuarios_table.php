@@ -18,7 +18,7 @@ class CreateUsuariosTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('email')->unique();
-            $table->string('password')->default(\Illuminate\Support\Facades\Hash::make("ipb@123"));;
+            $table->string('password');
             $table->string('cpf', 15)->unique();
             $table->integer('status')->nullable();
             $table->integer('nivel')->nullable();

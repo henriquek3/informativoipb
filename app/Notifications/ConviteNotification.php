@@ -20,11 +20,12 @@ class ConviteNotification extends Notification
      *
      * @return void
      */
-    public function __construct($nome, $email, $cpf)
+    public function __construct($nome, $email, $cpf, $password)
     {
         $this->nome = $nome;
         $this->email = $email;
         $this->cpf = $cpf;
+        $this->password = $password;
     }
 
     /**
@@ -53,7 +54,7 @@ class ConviteNotification extends Notification
             ->line('Este e-mail foi enviado porque seu e-mail foi registrado para utilização no sistema de planilhas online InformativoIPB da Igreja Presbiteriana do Brasil.')
             ->line("Email: $this->email")
             ->line("CPF: $this->cpf")
-            ->line("Senha: ipb@123")
+            ->line("Senha: $this->password")
             ->action('Acessar Sistema', url('/login'))
             ->line('Obrigado por fazer parte da equipe!')
             //->salutation('Atenciosamente,')
