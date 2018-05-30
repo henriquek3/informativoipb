@@ -568,6 +568,12 @@ $(document).ready(function () {
                     .fail(function (response) {
                         let msg = JSON.parse(response.responseText);
                         if (response.status === 422) {
+                            if (msg.errors.cpf !== undefined) {
+                                $('#fcpf').addClass('error');
+                            }
+                            if (msg.errors.email !== undefined) {
+                                $('#femail').addClass('error');
+                            }
                             let text = msg.errors.cpf !== undefined ? msg.errors.cpf + '\n' : '';
                             text += msg.errors.email !== undefined ? msg.errors.email : '';
                             swal(window.userName + ", Atenção!", text, "error");
