@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserForm;
+use App\Http\Requests\UpdateUserForm;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -49,13 +51,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserForm $request)
     {
         $data = $request->all();
         $user = new User();
         $data['user_id'] = $request->user()->id;
 
         try {
+            $data['password'] = 'ipb@' . rand(7777, 9999);
             $user->fill($data);
             $statment = $user->save();
         } catch (\Exception $exception) {
@@ -68,9 +71,9 @@ class UserController extends Controller
                  $m->to($data['email'], $data['nome'])->subject('Confirmação de Login');
              });*/
             try {
-                $user->notify(new ConviteNotification($user->nome, $user->email, $user->cpf));
+                $user->notify(new ConviteNotification($user->nome, $user->email, $user->cpf, $data['password']));
             } catch (\Exception $exception) {
-                dd($exception);
+                return redirect("/administrar-usuarios")->with('email', "error");
             }
         }
 
@@ -109,7 +112,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user, $id)
+    public function update(UpdateUserForm $request, User $user, $id)
     {
         $data = $request->all();
         $data['user_id'] = $request->user()->id;

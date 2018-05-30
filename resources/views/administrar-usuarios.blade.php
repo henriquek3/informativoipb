@@ -209,35 +209,35 @@
                     <label>Nome</label>
                     <input type="text" name="nome">
                   </div>
-                  <div class="six wide field required">
+                  <div class="six wide field required" id="femail">
                     <label>E-Mail</label>
                     <input type="email" name="email">
                   </div>
-                  <div class="three wide field required">
+                  <div class="three wide field required" id="fcpf">
                     <label>CPF</label>
                     <input type="text" name="cpf">
                   </div>
                 </div>
                 <div class="fields">
-                  <div class="four wide field">
-                    <label>Status do Usuário</label>
-                    <select class="ui fluid search dropdown" name="status">
+                  <div class="five wide field">
+                    <label for="sstatus">Status do Usuário</label>
+                    <select class="ui fluid dropdown" name="status" id="sstatus">
                       <option></option>
                       <option value="1">Ativo</option>
                       <option value="0">Inativo</option>
                     </select>
                   </div>
-                  <div class="four wide field">
-                    <label>Nível</label>
-                    <select class="ui fluid search dropdown" name="nivel">
+                  <div class="five wide field">
+                    <label for="snivel">Nível</label>
+                    <select class="ui fluid dropdown" name="nivel" id="snivel">
                       <option></option>
                       <option value="0">Comum</option>
                       <option value="1">Superior</option>
                     </select>
                   </div>
-                  <div class="four wide field">
-                    <label>Perfil</label>
-                    <select class="ui fluid search dropdown" name="perfil">
+                  <div class="six wide field">
+                    <label for="sperfil">Perfil</label>
+                    <select class="ui fluid dropdown" name="perfil" id="sperfil">
                       <option></option>
                       <option value="1">Secretário da Igreja</option>
                       <option value="2">Secretário do Presbitério</option>
@@ -275,8 +275,11 @@
                   <button class="ui blue right labeled icon button" type="reset" style="min-width: 166px"><i
                             class="child icon"></i>Novo
                   </button>
-                  <button class="ui yellow labeled icon button" type="button"><i class="redo icon"></i>Resetar senha
-                  </button>
+                  <!--button.ui.yellow.labeled.icon.button(type="button")
+                  i.redo.icon
+                  | Resetar senha
+                  
+                  -->
                   <button class="ui red right labeled icon button" type="submit" form="formDelete"
                           style="min-width: 166px"><i class="remove icon"></i>Excluir
                   </button>
@@ -371,7 +374,8 @@
 <script src="js/plugins/sweetalert.min.js"></script>
 <script src="js/plugins/jquery.mask.min.js"></script>
 <script src="js/CPF.js"></script>
-<script src="js/app/administrar-usuarios-app.js"></script>@if(session('deleted'))
+<script src="js/app/administrar-usuarios-app.js"></script>
+<script type="text/javascript">window.userName = "{{ ucwords(auth()->user()->nome) }}";</script>@if(session('deleted'))
   <script type="text/javascript">
       iziToast.success({
           title: 'Sucesso!',
@@ -394,6 +398,12 @@
           transitionIn: 'fadeInDown',
           transitionOut: 'fadeOutUp'
       });
+  </script>@endif
+@if(session('email'))
+  <script type="text/javascript">
+      swal("Atenção!", "O usuário foi cadastrado, porém não podemos enviar o e-mail com a confirmação da senha, " +
+          "por favor, peça para o usuário acessar o link de recuperação de senha a partir da tela de login.!",
+          "info");
   </script>@endif
 </body>
 </html>

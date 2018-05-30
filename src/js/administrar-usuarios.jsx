@@ -566,7 +566,22 @@ $(document).ready(function () {
                         });
                     })
                     .fail(function (response) {
-                        console.log(response);
+                        let msg = JSON.parse(response.responseText);
+                        if (response.status === 422) {
+                            let text = msg.errors.cpf !== undefined ? msg.errors.cpf + '\n' : '';
+                            text += msg.errors.email !== undefined ? msg.errors.email : '';
+                            swal(window.userName + ", Atenção!", text, "error");
+                            console.log(text);
+                        }
+                        iziToast.error({
+                            title: 'Atenção! ',
+                            message: 'Houve um erro durante o processamento, por favor recarregue a página e tente novamente!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
                     })
                 ;
             }

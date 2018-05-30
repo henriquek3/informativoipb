@@ -68,32 +68,32 @@ block content
                             label Nome
                             input(type="text", name="nome")
 
-                        div.six.wide.field.required
+                        #femail.six.wide.field.required
                             label E-Mail
                             input(type="email", name="email")
 
-                        div.three.wide.field.required
+                        #fcpf.three.wide.field.required
                             label CPF
                             input(type="text", name="cpf")
 
                     div.fields
-                        div.four.wide.field
-                            label Status do Usuário
-                            select.ui.fluid.search.dropdown(name="status")
+                        div.five.wide.field
+                            label(for="sstatus") Status do Usuário
+                            select.ui.fluid.dropdown(name="status" id="sstatus")
                                 option
                                 option(value="1") Ativo
                                 option(value="0") Inativo
 
-                        div.four.wide.field
-                            label Nível
-                            select.ui.fluid.search.dropdown(name="nivel")
+                        div.five.wide.field
+                            label(for="snivel") Nível
+                            select.ui.fluid.dropdown(name="nivel" id="snivel")
                                 option
                                 option(value="0") Comum
                                 option(value="1") Superior
 
-                        div.four.wide.field
-                            label Perfil
-                            select.ui.fluid.search.dropdown(name="perfil")
+                        div.six.wide.field
+                            label(for="sperfil") Perfil
+                            select.ui.fluid.dropdown(name="perfil" id="sperfil")
                                 option
                                 option(value="1") Secretário da Igreja
                                 option(value="2") Secretário do Presbitério
@@ -141,7 +141,7 @@ block content
                         button.ui.blue.right.labeled.icon.button(type="reset", style="min-width: 166px")
                             i.child.icon
                             | Novo
-                        button.ui.yellow.labeled.icon.button(type="button")
+                        //button.ui.yellow.labeled.icon.button(type="button")
                             i.redo.icon
                             | Resetar senha
 
@@ -162,6 +162,8 @@ block specific-js
     script(src="js/plugins/jquery.mask.min.js")
     script(src="js/CPF.js")
     script(src="js/app/administrar-usuarios-app.js")
+    script(type='text/javascript').
+        window.userName = "{{ ucwords(auth()->user()->nome) }}";
     | @if(session('deleted'))
     script(type='text/javascript').
         iziToast.success({
@@ -185,5 +187,11 @@ block specific-js
             transitionIn: 'fadeInDown',
             transitionOut: 'fadeOutUp'
         });
+    | @endif
+    | @if(session('email'))
+    script(type='text/javascript').
+        swal("Atenção!", "O usuário foi cadastrado, porém não podemos enviar o e-mail com a confirmação da senha, " +
+            "por favor, peça para o usuário acessar o link de recuperação de senha a partir da tela de login.!",
+            "info");
     | @endif
 
