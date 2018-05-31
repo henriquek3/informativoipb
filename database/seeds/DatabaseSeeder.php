@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(SinodosSeeder::class);
         $this->call(PresbiteriosSeeder::class);
+        $this->call(IgrejasTableSeeder::class);
+        $this->call(IgrejasCongregacoesTableSeeder::class);
     }
 }
