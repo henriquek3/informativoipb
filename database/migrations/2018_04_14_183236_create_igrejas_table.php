@@ -16,7 +16,7 @@ class CreateIgrejasTable extends Migration
         Schema::create('igrejas', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('id_presbiterio')->index('igrejas_fk0');
-            $table->integer('id_sinodo')->index('igrejas_fk1');
+            $table->unsignedInteger('id_sinodo')->index('igrejas_fk1');
             $table->integer('id_estado');
             $table->integer('id_cidade');
             $table->integer('congregacao_presbiterio')->nullable();

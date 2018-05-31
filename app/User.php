@@ -27,6 +27,9 @@ class User extends Authenticatable
         'perfil',
         'observacoes',
         'user_id',
+        'id_sinodo',
+        'id_presbiterio',
+        'id_igreja',
         'id_presbitero',
     ];
 

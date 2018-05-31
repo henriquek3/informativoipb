@@ -14,7 +14,7 @@ class CreateSinodosTable extends Migration
     public function up()
     {
         Schema::create('sinodos', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->increments('id');
             $table->string('nome');
             $table->string('sigla', 10)->unique('sigla');
             $table->integer('regiao');

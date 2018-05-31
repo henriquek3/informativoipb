@@ -15,7 +15,7 @@ class CreateReunioesSinodosTable extends Migration
     {
         Schema::create('reunioes_sinodos', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('id_sinodo')->index('reunioes_sinodos_fk0');
+            $table->unsignedInteger('id_sinodo')->index('reunioes_sinodos_fk0');
             $table->string('data_reuniao', 10)->nullable();
             $table->string('ano', 10)->nullable();
             $table->integer('status')->nullable();
