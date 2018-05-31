@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PresbiteriosSeeder::class);
         $this->call(IgrejasTableSeeder::class);
         $this->call(IgrejasCongregacoesTableSeeder::class);
+        $this->call(MinistrosSeeder::class);
     }
 }
