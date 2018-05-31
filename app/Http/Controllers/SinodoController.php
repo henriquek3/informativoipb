@@ -15,6 +15,7 @@ class SinodoController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -108,8 +109,8 @@ class SinodoController extends Controller
     public function api(Request $request)
     {
         $id = (int)$request->get("id");
-        if ($id > 0 ){
-            return response()->json( Sinodos::with("usuario")->where("id",$id)->get() );
+        if ($id > 0) {
+            return response()->json(Sinodos::with("usuario")->where("id", $id)->get());
         } else {
             return response()->json(Sinodos::all());
         }
