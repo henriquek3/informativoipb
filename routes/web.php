@@ -26,6 +26,7 @@ Route::get('/mail', function () {
 });
 
 Route::get('/rotas', 'TesteController@index');
+Route::get('/scopos', 'PresbiterioController@scopos');
 
 
 /*

@@ -128,4 +128,11 @@ class PresbiterioController extends Controller
             ])->get());
         }
     }
+
+    public function scopos(Presbiterios $presbiterios)
+    {
+        return view("scopos", [
+            'resource' => $presbiterios->sinodos()->get()
+        ]);
+    }
 }
