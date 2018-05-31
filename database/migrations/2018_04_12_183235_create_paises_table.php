@@ -13,6 +13,7 @@ class CreatePaisesTable extends Migration
      */
     public function up()
     {
+        Schema::defaultStringLength(255);
         Schema::create('paises', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('nome');
