@@ -62,7 +62,7 @@ $(document).ready(function () {
                     let tr, row, id, regiao, nome, igreja, sinodo;
                     tr = $('<tr/>');
                     row = response[key];
-                    console.log(response);
+                    //console.log(response);
                     /**
                      * Adiciona células com as informações do banco de dados
                      * @type {jQuery}
@@ -150,7 +150,7 @@ $(document).ready(function () {
                  * exibe no console o nr da celula código da linha selecionada,
                  * que vem do banco de dados como o id do registr
                  */
-                console.log(id_row);
+                //console.log(id_row);
             });
             styleInputSearch.first().second();
         }, 1000);
@@ -211,7 +211,7 @@ $(document).ready(function () {
                     setTimeout(() => {
                         cadastros_presbiteros.nascimento_id_cidade.value = data.nascimento_id_cidade;
                         cadastros_presbiteros.endereco_id_cidade.value = data.endereco_id_cidade;
-                        console.log("data.cidade");
+                        //console.log("data.cidade");
                         setTimeout(() => {
                             $(cadastros_presbiteros.id_cidade).trigger("change");
                             console.log("trigg cidade")
@@ -220,7 +220,7 @@ $(document).ready(function () {
                 }, 500);
             })
             .fail(function (response) {
-                console.log(response);
+                //console.log(response);
             })
         ;
     }
@@ -344,7 +344,7 @@ $(document).ready(function () {
                 $.post('api/presbiteros/update', form)
                     .done(function (response) {
                         response = response[0];
-                        console.log(response);
+                        //console.log(response);
                         tbl_api.row(tr_row).remove();
                         /*tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
@@ -366,7 +366,7 @@ $(document).ready(function () {
                         });
                     })
                     .fail(function (response) {
-                        console.log(response);
+                        //console.log(response);
                         let str = response.responseText;
                         let result = str.indexOf("SQLSTATE[23000]");
                         if (result > 0) {
@@ -405,7 +405,7 @@ $(document).ready(function () {
                  */
                 $.post('api/presbiteros/store', form)
                     .done(function (response) {
-                        console.log(response);
+                        //console.log(response);
                         /* let regiao;
                          switch (response.regiao) {
                              case '1':
