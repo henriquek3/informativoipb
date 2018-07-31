@@ -173,6 +173,7 @@ $(document).ready(function () {
                 cadastros_presbiteros.nome_mae.value = data.nome_mae;
                 cadastros_presbiteros.nascimento_data.value = data.nascimento_data;
                 cadastros_presbiteros.nascimento_id_estado.value = data.nascimento_id_estado;
+                cadastros_presbiteros.nacionalidade.value = data.nacionalidade;
                 cadastros_presbiteros.rg.value = data.rg;
                 cadastros_presbiteros.rg_emissor.value = data.rg_emissor;
                 cadastros_presbiteros.cpf.value = data.cpf;

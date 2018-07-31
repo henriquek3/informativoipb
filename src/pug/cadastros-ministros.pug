@@ -71,14 +71,17 @@ block content
                         div.ui.calendar.bottom.left.three.wide.field
                             label Data de Nascimento
                             input(type="date" name="nascimento_data" placeholder="Data de Nascimento")
-                        div.five.wide.field(data-toolip="Estado em que nasceu")
+                        div.four.wide.field(data-toolip="Estado em que nasceu")
                             label Estado
                             select.ui.fluid.search.dropdown(name="nascimento_id_estado")
 
-                        div.eight.wide.field(id="div_cidade")
+                        div.five.wide.field(id="div_cidade")
                             label Cidade
                             select.ui.fluid.search.dropdown(name="nascimento_id_cidade", id="nascimento_id_cidade")
                             div.ui.active.inline.small.loader(style="display:none", id="loader_cidade")
+                        div.four.wide.field
+                            label Nacionalidade
+                            input(type="text", name="nacionalidade" placeholder="Nacionalidade")
 
                     div.fields
                         div.four.wide.field
@@ -153,7 +156,7 @@ block content
                             input(type="email" name="email" placeholder="E-Mail")
 
 
-                    div.fields
+                    //div.fields
                         div.two.wide.field
                             label Teste
                             input(type="text", name="id_igreja", value="1")
