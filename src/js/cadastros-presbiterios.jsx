@@ -7,18 +7,20 @@ $(document).ready(function () {
      * @type {{first: first, second: second}}
      */
     let styleInputSearch = {
-        first: function() {
+        first: function () {
             setTimeout(() => {
                 $("input[type='search']").parent().addClass("ui icon input");
                 $("input[type='search']").css("width", "220px");
                 $("input[type='search']").css("margin-left", "10px");
             }, 500);
-            return styleInputSearch; },
-        second: function() {
+            return styleInputSearch;
+        },
+        second: function () {
             setTimeout(() => {
                 $("input[type='search']").after("<i class='search icon'>");
             }, 1000);
-            return styleInputSearch; }
+            return styleInputSearch;
+        }
     };
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -83,7 +85,7 @@ $(document).ready(function () {
                      */
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
-                    sinodo = $('<td/>').html(row.sinodo.nome.toUpperCase());
+                    sinodo = $('<td/>').html(row.sinodo.sigla.toUpperCase());
                     sigla = $('<td/>').html(row.sigla.toUpperCase());
                     switch (row.regiao) {
                         case '1':
