@@ -7,18 +7,20 @@ $(document).ready(function () {
      * @type {{first: first, second: second}}
      */
     let styleInputSearch = {
-        first: function() {
+        first: function () {
             setTimeout(() => {
                 $("input[type='search']").parent().addClass("ui icon input");
                 $("input[type='search']").css("width", "220px");
                 $("input[type='search']").css("margin-left", "10px");
             }, 500);
-            return styleInputSearch; },
-        second: function() {
+            return styleInputSearch;
+        },
+        second: function () {
             setTimeout(() => {
                 $("input[type='search']").after("<i class='search icon'>");
             }, 1000);
-            return styleInputSearch; }
+            return styleInputSearch;
+        }
     };
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -62,7 +64,7 @@ $(document).ready(function () {
                     let tr, row, id, regiao, nome, igreja, sinodo;
                     tr = $('<tr/>');
                     row = response[key];
-                    //console.log(response);
+                    //console.log(row);
                     /**
                      * Adiciona células com as informações do banco de dados
                      * @type {jQuery}
@@ -94,8 +96,6 @@ $(document).ready(function () {
     }
 
     getDataTable();
-
-
 
     /**
      * Instancia DataTables() e organiza os eventos do click
@@ -272,6 +272,7 @@ $(document).ready(function () {
             ;
         }
     }
+
     /**
      * Validador do Formulario, utilizado para incluir ou editar novos registros
      * @type {*|jQuery}
@@ -478,7 +479,6 @@ $(document).ready(function () {
         }
     });
 
-
     /**
      * Os campos select do semantic não são compativeis com o jquery validation,
      * a msg fica bugada, usar desta forma para select.search.dropdown
@@ -652,7 +652,7 @@ $(document).ready(function () {
         });
     }
 
-    getDataIgreja();**/
+     getDataIgreja();**/
 
     function popularEstadosCidadesAtual() {
 
