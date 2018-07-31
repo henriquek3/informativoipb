@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeNacionalidadeTablePresbiteros extends Migration
+class DropForeignKeysToPresbiteros extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class ChangeNacionalidadeTablePresbiteros extends Migration
     public function up()
     {
         Schema::table('presbiteros', function (Blueprint $table) {
-            $table->string('nacionalidade', 191)->change();
+            $table->dropForeign('presbiteros_fk2')->change();
         });
     }
 
@@ -26,7 +26,7 @@ class ChangeNacionalidadeTablePresbiteros extends Migration
     public function down()
     {
         Schema::table('presbiteros', function (Blueprint $table) {
-            $table->integer('nacionalidade')->change();
+            $table->foreign('nacionalidade', 'presbiteros_fk2')->references('id')->on('paises')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 }
