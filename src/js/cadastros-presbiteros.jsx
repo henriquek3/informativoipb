@@ -216,13 +216,13 @@ $(document).ready(function () {
                         //console.log("data.cidade");
                         setTimeout(() => {
                             $(cadastros_presbiteros.id_cidade).trigger("change");
-                            console.log("trigg cidade")
+                            //console.log("trigg cidade")
                         }, 500)
                     }, 500)
                 }, 500);
             })
             .fail(function (response) {
-                //console.log(response);
+                console.log(response);
             })
         ;
     }
