@@ -15,8 +15,8 @@ class CreateOficiaisVencimentosTable extends Migration
     {
         Schema::create('oficiais_vencimentos', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('id_presbitero')->index('oficiais_vencimentos_fk0');
-            $table->integer('id_relatorio_conselho')->index('oficiais_vencimentos_fk1');
+            $table->integer('id_presbitero');
+            $table->integer('id_relatorio_conselho');
             $table->softDeletes();
             $table->timestamps();
         });

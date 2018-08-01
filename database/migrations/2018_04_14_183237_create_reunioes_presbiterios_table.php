@@ -15,7 +15,7 @@ class CreateReunioesPresbiteriosTable extends Migration
     {
         Schema::create('reunioes_presbiterios', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('id_presbiterio')->index('reunioes_presbiterios_fk0');
+            $table->integer('id_presbiterio');
             $table->string('data_reuniao', 10)->nullable();
             $table->string('ano', 10)->nullable();
             $table->integer('status')->nullable();

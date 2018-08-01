@@ -14,17 +14,20 @@ class CreatePresbiterosTable extends Migration
     public function up()
     {
         Schema::create('presbiteros', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->integer('id_sinodo');
-            $table->integer('id_presbiterio');
-            $table->integer('id_igreja')->index('presbiteros_fk0');
+            $table->increments('id');
+            $table->unsignedInteger('id_sinodo');
+            $table->foreign('id_sinodo')->references('id')->on('sinodos');
+            $table->unsignedInteger('id_presbiterio');
+            $table->foreign('id_presbiterio')->references('id')->on('presbiterios');
+            $table->unsignedInteger('id_igreja');
+            $table->foreign('id_igreja')->references('id')->on('igrejas');
             $table->string('nome');
             $table->string('nome_mae')->nullable();
             $table->string('nome_pai')->nullable();
             $table->string('nascimento_data', 10)->nullable();
-            $table->integer('nascimento_id_cidade')->nullable()->index('presbiteros_fk1');
-            $table->integer('nascimento_id_estado')->nullable();
-            $table->integer('nacionalidade')->index('presbiteros_fk2');
+            $table->unsignedInteger('nascimento_id_cidade')->nullable();
+            $table->unsignedInteger('nascimento_id_estado')->nullable();
+            $table->string('nacionalidade')->nullable();
             $table->string('rg', 20)->nullable();
             $table->string('rg_emissor', 20)->nullable();
             $table->string('cpf', 20)->nullable();
@@ -37,7 +40,7 @@ class CreatePresbiterosTable extends Migration
             $table->string('endereco_complemento')->nullable();
             $table->string('endereco_bairro')->nullable();
             $table->integer('endereco_id_estado')->nullable();
-            $table->integer('endereco_id_cidade')->nullable()->index('presbiteros_fk3');
+            $table->integer('endereco_id_cidade')->nullable();
             $table->string('cep', 20)->nullable();
             $table->string('telefone', 20)->nullable();
             $table->string('celular', 20)->nullable();
@@ -45,7 +48,7 @@ class CreatePresbiterosTable extends Migration
             $table->string('cx_postal', 20)->nullable();
             $table->string('cx_postal_cep', 20)->nullable();
             $table->string('ordenacao_data', 10)->nullable();
-            $table->integer('ordenacao_presbiterio')->nullable()->index('presbiteros_fk4');
+            $table->integer('ordenacao_presbiterio')->nullable();
             $table->string('ativo', 1)->nullable();
             $table->integer('tipo')->nullable();
             $table->unsignedInteger('user_id')->nullable();

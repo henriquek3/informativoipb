@@ -14,10 +14,13 @@ class CreateIgrejasCongregacoesTable extends Migration
     public function up()
     {
         Schema::create('igrejas_congregacoes', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->integer('id_igreja')->index('igrejas_congregacoes_fk0');
-            $table->integer('id_estado')->index('igrejas_congregacoes_fk1');
-            $table->integer('id_cidade')->index('igrejas_congregacoes_fk2');
+            $table->increments('id');
+            $table->unsignedInteger('id_igreja');
+            $table->foreign('id_igreja')->references('id')->on('igrejas');
+            $table->unsignedInteger('id_estado');
+            $table->foreign('id_estado')->references('id')->on('estados');
+            $table->unsignedInteger('id_cidade');
+            $table->foreign('id_cidade')->references('id')->on('cidades');
             $table->string('nome')->nullable();
             $table->string('cnpj', 20)->nullable();
             $table->string('endereco');

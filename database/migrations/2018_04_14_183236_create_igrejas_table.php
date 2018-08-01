@@ -14,12 +14,16 @@ class CreateIgrejasTable extends Migration
     public function up()
     {
         Schema::create('igrejas', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->integer('id_presbiterio')->index('igrejas_fk0');
-            $table->unsignedInteger('id_sinodo')->index('igrejas_fk1');
-            $table->integer('id_estado');
-            $table->integer('id_cidade');
-            $table->integer('congregacao_presbiterio')->nullable();
+            $table->increments('id');
+            $table->unsignedInteger('id_presbiterio');
+            $table->foreign('id_presbiterio')->references('id')->on('presbiterios');
+            $table->unsignedInteger('id_sinodo');
+            $table->foreign('id_sinodo')->references('id')->on('sinodos');
+            $table->unsignedInteger('id_estado');
+            $table->foreign('id_estado')->references('id')->on('estados');
+            $table->unsignedInteger('id_cidade');
+            $table->foreign('id_cidade')->references('id')->on('cidades');
+            $table->unsignedInteger('congregacao_presbiterio')->nullable();
             $table->string('cnpj', 20)->unique('cnpj');
             $table->string('nome');
             $table->string('data_organizacao', 10)->nullable();

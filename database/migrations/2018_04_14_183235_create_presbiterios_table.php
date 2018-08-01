@@ -14,8 +14,8 @@ class CreatePresbiteriosTable extends Migration
     public function up()
     {
         Schema::create('presbiterios', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->unsignedInteger('id_sinodo')->index('presbiterios_fk0');
+            $table->increments('id');
+            $table->unsignedInteger('id_sinodo');
             $table->string('nome');
             $table->string('sigla', 10);
             $table->integer('regiao');

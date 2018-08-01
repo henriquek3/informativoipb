@@ -14,58 +14,76 @@ class CreateRelatoriosMinistrosTable extends Migration
     public function up()
     {
         Schema::create('relatorios_ministros', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->integer('id_presbitero')->index('relatorios_ministros_fk0');
-            $table->string('ano', 10);
-            $table->integer('id_igreja')->index('relatorios_ministros_fk1');
+            $table->increments('id');
+            $table->unsignedInteger('id_presbitero');
+            $table->foreign('id_presbitero')->references('id')->on('presbiteros');
+            $table->string('ano', 4);
+
+            $table->unsignedInteger('id_igreja');
+            $table->foreign('id_igreja')->references('id')->on('igrejas');
+
             $table->integer('nr_dependentes')->nullable();
             $table->integer('condicao_moradia')->nullable();
+            $table->string('data_ordenacao', 10)->nullable();
+            $table->string('presbiterio_ordenacao')->nullable();
+            $table->integer('dedicacao_ministerio')->nullable();
             $table->integer('ferias')->nullable();
             $table->string('congruas', 10)->nullable();
             $table->integer('previdencia_publica')->nullable();
             $table->integer('previdencia_privada')->nullable();
             $table->integer('plano_saude')->nullable();
             $table->integer('congruas_contribui_inss')->nullable();
-            $table->integer('previdencia_publica_valor')->nullable();
+            $table->string('previdencia_publica_valor', 10)->nullable();
             $table->integer('contribui_prev_privada')->nullable();
-            $table->text('campos_igrejas')->nullable();
-            $table->text('campos_congregacoes')->nullable();
+
+            $table->longText('campos_igrejas')->nullable();
+            $table->longText('campos_congregacoes')->nullable();
+
             $table->integer('pregacoes')->nullable();
-            $table->integer('palestras_prelecoes')->nullable();
             $table->integer('ebd')->nullable();
-            $table->integer('msg_radio')->nullable();
             $table->integer('evangelizacao')->nullable();
-            $table->integer('artigos_boletins_revistas')->nullable();
             $table->integer('estudos_biblicos')->nullable();
+            $table->integer('palestras_prelecoes')->nullable();
+            $table->integer('msg_radio')->nullable();
+            $table->integer('artigos_boletins_revistas')->nullable();
             $table->integer('entrevistas')->nullable();
+
             $table->integer('santa_ceia')->nullable();
-            $table->integer('batismos')->nullable();
             $table->integer('bencaos_nupciais')->nullable();
-            $table->integer('profissoes_fe')->nullable();
             $table->integer('funerais')->nullable();
+            $table->integer('batismos')->nullable();
+            $table->integer('profissoes_fe')->nullable();
             $table->integer('profissoes_batismos')->nullable();
+
             $table->integer('aconselhamentos')->nullable();
-            $table->integer('visitas_lares')->nullable();
+            $table->integer('visitas_evangelicos')->nullable();
             $table->integer('visitas_igrejas')->nullable();
             $table->integer('departamentos_internos')->nullable();
-            $table->text('descricao_atividades')->nullable();
+
+            $table->longText('descricao_atividades')->nullable();
+
             $table->integer('reunioes_conselho')->nullable();
-            $table->integer('diaconos_ordenados_investidos')->nullable();
-            $table->integer('presbiteros_ordenados_investidos')->nullable();
             $table->integer('assembleias')->nullable();
             $table->integer('reunioes_presbiterio')->nullable();
             $table->integer('reunioes_sinodo')->nullable();
+            $table->integer('diaconos_ordenados_investidos')->nullable();
+            $table->integer('presbiteros_ordenados_investidos')->nullable();
             $table->integer('reunioes_concilio')->nullable();
-            $table->text('comentarios')->nullable();
-            $table->text('cargos_presbiterio')->nullable();
-            $table->text('cargos_sinodo')->nullable();
-            $table->text('cargos_concilio')->nullable();
-            $table->text('cargos_outros')->nullable();
-            $table->text('texto_complementar')->nullable();
-            $table->text('atualizacao_aperfeicoamento')->nullable();
-            $table->text('atividades_para_eclesiasticas')->nullable();
-            $table->text('atividades_extras_ministeriais')->nullable();
-            $table->text('atividades_outros')->nullable();
+            $table->longText('comentarios')->nullable();
+
+            $table->longText('cargos_presbiterio')->nullable();
+            $table->longText('cargos_sinodo')->nullable();
+            $table->longText('cargos_concilio')->nullable();
+            $table->longText('cargos_outros')->nullable();
+            $table->longText('texto_complementar')->nullable();
+
+            $table->longText('atualizacao_aperfeicoamento')->nullable();
+            $table->longText('atividades_para_eclesiasticas')->nullable();
+            $table->longText('atividades_extras_ministeriais')->nullable();
+            $table->longText('atividades_outros')->nullable();
+
+            $table->string('local')->nullable();
+            $table->string('data', 10)->nullable();
 
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');

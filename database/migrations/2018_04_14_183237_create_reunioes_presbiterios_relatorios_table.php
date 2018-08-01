@@ -15,10 +15,10 @@ class CreateReunioesPresbiteriosRelatoriosTable extends Migration
     {
         Schema::create('reunioes_presbiterios_relatorios', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('id_reuniao_presbiterio')->index('reunioes_presbiterios_relatorios_fk0');
-            $table->integer('id_relatorio_conselho')->index('reunioes_presbiterios_relatorios_fk1');
-            $table->integer('id_relatorio_estatistica')->index('reunioes_presbiterios_relatorios_fk2');
-            $table->integer('id_relatorio_ministro')->index('reunioes_presbiterios_relatorios_fk3');
+            $table->integer('id_reuniao_presbiterio');
+            $table->integer('id_relatorio_conselho');
+            $table->integer('id_relatorio_estatistica');
+            $table->integer('id_relatorio_ministro');
             $table->softDeletes();
             $table->timestamps();
         });
