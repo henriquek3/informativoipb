@@ -75,6 +75,7 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->integer('sa_officiais_venc_diaconos')->nullable();//3.8
             $table->longText('sa_oficiais_vencimento')->nullable();//3.8 -> Quais?
             $table->integer('sa_fap')->nullable();//3.8
+            $table->integer('sa_ipb_prev')->nullable();//3.8
             $table->integer('sa_reforma_construcao_andamento')->nullable();//3.14
 
             //4.1
