@@ -33,6 +33,7 @@ class CreateIgrejasTable extends Migration
             $table->string('endereco_bairro')->nullable();
             $table->string('endereco_cep', 20)->nullable();
             $table->string('endereco_cx_postal', 20)->nullable();
+            $table->string('endereco_cx_postal_cep', 20)->nullable();
             $table->string('telefone', 20)->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
