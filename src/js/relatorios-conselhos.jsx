@@ -428,9 +428,9 @@ $(document).ready(function () {
                 //relatorios_conselhos.ano.value = data.ano;
                 //relatorios_conselhos.id_igreja.value = data.id_igreja;
                 relatorios_conselhos.or_imovel_documentado.value = data.or_imovel_documentado;
-                relatorios_conselhos.or_declaracao_ano_anterior_irenda.value = data.or_declaracao_ano_anterior_irenda;
-                relatorios_conselhos.or_declaracao_ano_anterior_rais.value = data.or_declaracao_ano_anterior_rais;
-                relatorios_conselhos.or_declaracao_ano_anterior_dirf.value = data.or_declaracao_ano_anterior_dirf;
+                //relatorios_conselhos.or_declaracao_ano_anterior_irenda.value = data.or_declaracao_ano_anterior_irenda;
+                //relatorios_conselhos.or_declaracao_ano_anterior_rais.value = data.or_declaracao_ano_anterior_rais;
+                //relatorios_conselhos.or_declaracao_ano_anterior_dirf.value = data.or_declaracao_ano_anterior_dirf;
                 relatorios_conselhos.or_inventario_atualizado.value = data.or_inventario_atualizado;
                 relatorios_conselhos.or_rol_membros_atualizado.value = data.or_rol_membros_atualizado;
                 relatorios_conselhos.or_nr_congregacoes.value = data.or_nr_congregacoes;
@@ -441,10 +441,10 @@ $(document).ready(function () {
                 relatorios_conselhos.se_textos_distribuidos_nt.value = data.se_textos_distribuidos_nt;
                 relatorios_conselhos.se_textos_distribuidos_folhetos.value = data.se_textos_distribuidos_folhetos;
                 relatorios_conselhos.se_textos_distribuidos_outros.value = data.se_textos_distribuidos_outros;
-                relatorios_conselhos.se_trabalho_missionario_jmn.value = data.se_trabalho_missionario_jmn;
-                relatorios_conselhos.se_trabalho_missionario_apmt.value = data.se_trabalho_missionario_apmt;
-                relatorios_conselhos.se_trabalho_missionario_pmc.value = data.se_trabalho_missionario_pmc;
-                relatorios_conselhos.se_trabalho_missionario_plantacao.value = data.se_trabalho_missionario_plantacao;
+                //relatorios_conselhos.se_trabalho_missionario_jmn.value = data.se_trabalho_missionario_jmn;
+                //relatorios_conselhos.se_trabalho_missionario_apmt.value = data.se_trabalho_missionario_apmt;
+                //relatorios_conselhos.se_trabalho_missionario_pmc.value = data.se_trabalho_missionario_pmc;
+                //relatorios_conselhos.se_trabalho_missionario_plantacao.value = data.se_trabalho_missionario_plantacao;
                 relatorios_conselhos.se_professores_ebd.value = data.se_professores_ebd;
                 relatorios_conselhos.se_grupos_corais.value = data.se_grupos_corais;
                 relatorios_conselhos.se_equipes_musicas.value = data.se_equipes_musicas;

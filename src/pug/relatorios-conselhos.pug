@@ -46,9 +46,9 @@ block content
                         strong Relatório do Conselho ou Mesa Administrativa
             div.ui.form.segment
                 div.fields
-                    div.two.wide.field
+                    div.two.wide.field(data-tooltip="Este valor não pode ser alterado.")
                         label Ano
-                        input(type="text", value="2018", name="ano")
+                        input(type="text", readonly="", value="2018", name="ano")
                     div.seven.wide.field
                         label Sínodo
                         input(type="text", name="sinodo", value="", disabled="")
@@ -94,9 +94,9 @@ block content
 
                 div.ui.form.segment
                     div.fields
-                        div.two.wide.field
+                        div.two.wide.field(data-tooltip="Este valor não pode ser alterado.",)
                             label ID
-                            input(type="text", disabled="", name="id_igreja")
+                            input(type="text", readonly="",  name="id_igreja")
                         div.fourteen.wide.field
                             label Nome (Igreja/Congregação)
                             input(type="text" , disabled="" name="nome_igreja")
@@ -295,7 +295,7 @@ block content
                             label 2.2.3. Trabalho missionário com:
                         div.two.wide.field.ui.checkbox
                             label JMN
-                            input(name="se_trabalho_missionario_jmn", type="checkbox", value="1")
+                            input(name="se_trabalho_missionario_jmn",  type="checkbox", value="1")
                         div.two.wide.field.ui.checkbox
                             label APMT
                             input(name="se_trabalho_missionario_apmt", type="checkbox", value="1")
