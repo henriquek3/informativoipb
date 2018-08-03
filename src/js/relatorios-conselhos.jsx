@@ -422,7 +422,7 @@ $(document).ready(function () {
                 console.log(response);
                 let data = response[0];
                 relatorios_conselhos.email.value = data.email;
-                //relatorios_conselhos.cpf.value = data.cpf;
+                relatorios_conselhos.id_igreja.value = data.id_igreja;
                 //relatorios_conselhos.observacoes.value = data.observacoes;
                 relatorios_conselhos.or_imovel_documentado.value = data.or_imovel_documentado;
                 //relatorios_conselhos.ano.value = data.ano;
