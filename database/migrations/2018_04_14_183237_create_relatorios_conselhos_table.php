@@ -23,7 +23,9 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->integer('or_imovel_documentado')->nullable();
             $table->integer('or_inventario_existe')->nullable();
             $table->integer('or_rol_membros_atualizado')->nullable();
-            $table->integer('or_declaracao_ano_anterior')->nullable();
+            $table->integer('or_declaracao_ano_anterior_irenda')->nullable();
+            $table->integer('or_declaracao_ano_anterior_rais')->nullable();
+            $table->integer('or_declaracao_ano_anterior_dirf')->nullable();
             $table->integer('or_inventario_atualizado')->nullable();
             $table->integer('or_nr_congregacoes')->nullable();
 
