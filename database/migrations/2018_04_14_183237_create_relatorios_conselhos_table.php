@@ -72,7 +72,7 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->integer('sa_nomeacao')->nullable();//3.10
             $table->integer('sa_contribuicao_extra')->nullable();//3.11
             $table->integer('sa_contribuicao_previdencia')->nullable();//3.12
-            $table->integer('sa_reforma_construcao_projeto')->nullable();//3.13
+            $table->text('sa_reforma_construcao_projeto')->nullable();//3.13
 
             $table->integer('sa_officiais_venc')->nullable();//3.8
             $table->integer('sa_officiais_venc_presbiteros')->nullable();//3.8
@@ -80,7 +80,7 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->longText('sa_oficiais_vencimento')->nullable();//3.8 -> Quais?
             $table->integer('sa_fap')->nullable();//3.8
             $table->integer('sa_ipb_prev')->nullable();//3.8
-            $table->integer('sa_reforma_construcao_andamento')->nullable();//3.14
+            $table->text('sa_reforma_construcao_andamento')->nullable();//3.14
 
             //4.1
             $table->integer('pe_tem_planejamento_estrategico')->nullable();
