@@ -127,7 +127,7 @@ block content
                             input(type="text" , disabled="" name="endereco_cx_postal")
                         div.three.wide.field
                             label CEP Cx. P
-                            input(type="text" , disabled="" name="endereco_cx_cep")
+                            input(type="text" , disabled="" name="endereco_cx_postal_cep")
 
                     div.fields
                         div.two.wide.field
@@ -175,13 +175,13 @@ block content
                                 label Declarações Anteriores
                             div.eight.wide.field
                                 div.ui.checkbox
-                                    input(name="or_declaracao_ano_anterior", value="IRenda", type="checkbox")
+                                    input(name="or_declaracao_ano_anterior", value="1", type="checkbox")
                                     label IRenda
                                 div.ui.checkbox
-                                    input(name="or_declaracao_ano_anterior", value="RAIS", type="checkbox")
+                                    input(name="or_declaracao_ano_anterior", value="1", type="checkbox")
                                     label RAIS
                                 div.ui.checkbox
-                                    input(name="or_declaracao_ano_anterior", value="DIRF", type="checkbox")
+                                    input(name="or_declaracao_ano_anterior", value="1", type="checkbox")
                                     label DIRF
 
 
@@ -553,10 +553,10 @@ block content
                             label 4.1 A Igreja tem Planejamento Estratégico?
                         div.one.wide.field
                             label Sim
-                            input(name="pe_exite_pe", type="radio", value="1")
+                            input(name="pe_tem_planejamento_estrategico", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pe_exite_pe", type="radio", checked="checked", value="0")
+                            input(name="pe_tem_planejamento_estrategico", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.eight.wide.field
                             label 4.2. Quais os objetivos propostos e alcançados?
@@ -564,9 +564,9 @@ block content
                             label 4.3. Quais os objetivos propostos e NÃO alcançados? Identificar as dificuldades.
                     div.inline.fields
                         div.eight.wide.field
-                            textarea(rows="4", name="pe_objetivos_sucesso", placeholder="Cite os objetivos que foram propostos e alcançados.")
+                            textarea(rows="4", name="pe_objetivos_alcancados", placeholder="Cite os objetivos que foram propostos e alcançados.")
                         div.eight.wide.field
-                            textarea(rows="4", name="pe_objetivos_falha_dificuldades", placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados.")
+                            textarea(rows="4", name="pe_objetivos_falhos", placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados.")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 5. PATRIMÔNIO
@@ -578,35 +578,35 @@ block content
                             label 5.1. A Igreja tem Seguro do bem patrimonial?
                         div.one.wide.field
                             label Sim
-                            input(name="pa_seguro_patrimonial", type="radio", value="1")
+                            input(name="pat_seguro_patrimonial", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pa_seguro_patrimonial", type="radio", checked="checked", value="0")
+                            input(name="pat_seguro_patrimonial", type="radio", checked="checked", value="0")
                         div.six.wide.field
                             label 5.2. Tem Alvará de Funcionamento?
                         div.one.wide.field
                             label Sim
-                            input(name="pa_alvara", type="radio", value="1")
+                            input(name="pat_alvara", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pa_alvara", type="radio", checked="checked", value="0")
+                            input(name="pat_alvara", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.six.wide.field
                             label 5.3. Tem Licença do Corpo de Bombeiros em dia?
                         div.one.wide.field
                             label Sim
-                            input(name="pa_licenca_bombeiros", type="radio", value="1")
+                            input(name="pat_licenca_bombeiros", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pa_licenca_bombeiros", type="radio", checked="checked", value="0")
+                            input(name="pat_licenca_bombeiros", type="radio", checked="checked", value="0")
                         div.six.wide.field
                             label 5.4. Tem Certificado Digital?
                         div.one.wide.field
                             label Sim
-                            input(name="pa_certificado_digital", type="radio", value="1")
+                            input(name="pat_certificado_digital", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pa_certificado_digital", type="radio", checked="checked", value="0")
+                            input(name="pat_certificado_digital", type="radio", checked="checked", value="0")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
