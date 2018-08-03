@@ -181,6 +181,10 @@ $(document).ready(function () {
                 cadastros_igrejas.endereco_numero.value = data.endereco_numero;
                 cadastros_igrejas.endereco_complemento.value = data.endereco_complemento;
                 cadastros_igrejas.endereco_bairro.value = data.endereco_bairro;
+                cadastros_igrejas.endereco_cep.value = data.endereco_cep;
+                cadastros_igrejas.endereco_cx_postal.value = data.endereco_cx_postal;
+                cadastros_igrejas.endereco_cx_postal_cep.value = data.endereco_cx_postal_cep;
+                cadastros_igrejas.telefone.value = data.telefone;
                 cadastros_igrejas.email.value = data.email;
                 cadastros_igrejas.website.value = data.website;
 

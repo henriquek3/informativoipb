@@ -403,7 +403,7 @@ $(document).ready(function () {
                 relatorios_conselhos.cidade.value = data.endereco_cidade.nome
                 relatorios_conselhos.endereco_cep.value = data.igreja.endereco_cep;
                 relatorios_conselhos.endereco_cx_postal.value = data.igreja.endereco_cx_postal;
-                relatorios_conselhos.endereco_cx_cep.value = data.igreja.endereco_cx_cep;
+                relatorios_conselhos.endereco_cx_postal_cep.value = data.igreja.endereco_cx_postal_cep;
                 relatorios_conselhos.telefone.value = data.igreja.telefone;
                 relatorios_conselhos.homepage.value = data.igreja.website;
                 relatorios_conselhos.cnpj.value = data.igreja.cnpj;
@@ -462,7 +462,7 @@ $(document).ready(function () {
                 relatorios_conselhos.sa_officiais_venc.value = data.sa_officiais_venc;
                 relatorios_conselhos.sa_officiais_venc_presbiteros.value = data.sa_officiais_venc_presbiteros;
                 relatorios_conselhos.sa_officiais_venc_diaconos.value = data.sa_officiais_venc_diaconos;
-                relatorios_conselhos.sa_id_oficiais_vencimento.value = data.sa_id_oficiais_vencimento;
+                relatorios_conselhos.sa_oficiais_vencimento.value = data.sa_id_oficiais_vencimento;
                 relatorios_conselhos.sa_idem_livros_sociedades.value = data.sa_idem_livros_sociedades;
                 relatorios_conselhos.sa_nomeacao.value = data.sa_nomeacao;
                 relatorios_conselhos.sa_contribuicao_extra.value = data.sa_contribuicao_extra;
