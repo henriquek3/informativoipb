@@ -39,8 +39,10 @@ class CreateRelatoriosConselhosTable extends Migration
             $table->integer('se_textos_distribuidos_nt')->nullable();
             $table->integer('se_textos_distribuidos_folhetos')->nullable();
             $table->integer('se_textos_distribuidos_outros')->nullable();
-            $table->integer('se_trabalho_missionario')->nullable()->comments('JMN,APMT,PMC');
-            $table->integer('se_plantacao_igrejas')->nullable();
+            $table->integer('se_trabalho_missionario_jmn')->nullable()->comments('jmn,apmt,pmc,plantacao');
+            $table->integer('se_trabalho_missionario_apmt')->nullable()->comments('jmn,apmt,pmc,plantacao');
+            $table->integer('se_trabalho_missionario_pmc')->nullable()->comments('jmn,apmt,pmc,plantacao');
+            $table->integer('se_trabalho_missionario_plantacao')->nullable()->comments('jmn,apmt,pmc,plantacao');
             $table->longText('se_trabalho_misisonario_outros')->nullable();
 
             // 2.3
