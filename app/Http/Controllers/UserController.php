@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserForm;
-use App\Http\Requests\UpdateUserForm;
-use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UsuarioRequest;
 use App\Notifications\ConviteNotification;
 
 class UserController extends Controller
@@ -51,7 +48,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserForm $request)
+    public function store(UsuarioRequest $request)
     {
         $data = $request->all();
         $user = new User();
@@ -112,7 +109,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserForm $request, User $user, $id)
+    public function update(UsuarioRequest $request, User $user, $id)
     {
         $data = $request->all();
         $data['user_id'] = $request->user()->id;
