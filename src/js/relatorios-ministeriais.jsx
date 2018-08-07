@@ -542,6 +542,7 @@ $(document).ready(function () {
         let data = usuario[0].presbitero;
         relatorios_ministeriais.sinodo.value = data.igreja.presbiterio.sinodo.nome;
         relatorios_ministeriais.presbiterio.value = data.igreja.presbiterio.nome;
+        relatorios_ministeriais.id_igreja.value = data.id_igreja;
         relatorios_ministeriais.igreja.value = data.igreja.nome;
         relatorios_ministeriais.id_presbitero.value = data.id;
         relatorios_ministeriais.nome.value = data.nome;
@@ -661,7 +662,7 @@ $(document).ready(function () {
         ;
     }
 
-    getDataForm();
+    //getDataForm();
 
 
 

@@ -21,10 +21,10 @@ block content
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
-            a.item.active(data-tab="first") Relatórios
-            a.item(data-tab="second") Responder
+            a.item(data-tab="first") Relatórios
+            a.item.active(data-tab="second") Responder
 
-        div.ui.bottom.attached.tab.segment.active(data-tab="first")
+        div.ui.bottom.attached.tab.segment(data-tab="first")
             table.ui.compact.selectable.celled.green.table(id="tbl_relatorios_ministeriais")
                 thead
                     tr
@@ -38,7 +38,7 @@ block content
                 tbody(id="tbody_relatorios_ministeriais")
 
 
-        form.ui.bottom.attached.tab.segment(data-tab="second" id="relatorios_ministeriais" name="relatorios_ministeriais")
+        form.ui.bottom.attached.tab.segment.active(data-tab="second" id="relatorios_ministeriais" name="relatorios_ministeriais")
             | @csrf
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -49,20 +49,24 @@ block content
                     div.fields
                         div.two.wide.field
                             label Ano
-                            input(type="text", value="2018", name="ano")
+                            input(type="text", value="2018", name="ano" readonly="")
                         div.four.wide.field
                             label Sínodo
                             input(type="text", name="sinodo", value="", disabled="")
                             //select.ui.fluid.search.dropdown(name="id_sinodo")
                                 option
 
-                        div.six.wide.field(id="div_presbiterio")
+                        div.five.wide.field(id="div_presbiterio")
                             label Presbitério
                             input(type="text", name="presbiterio", value="", disabled="")
                             //select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
                             //div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
 
-                        div.six.wide.field
+                        div.one.wide.field
+                            label ID
+                            input(type="text", name="id_igreja", value="", readonly="")
+
+                        div.five.wide.field
                             label Igreja
                             input(type="text", name="igreja", value="", disabled="")
                             //select.ui.fluid.search.dropdown(name="id_igreja")
@@ -353,7 +357,7 @@ block content
                     div.fields
                         div.seven.wide.field
                             label Evangélicos ou não:(considerar as visitas feitas nos lares como uma visita.)
-                            input(type="text" value="0" name="visitas_lares")
+                            //input(type="text" value="0" name="visitas_lares")
                         div.six.wide.field
                             label Pontos de Pregação, Congregações ou Campos Missionários
                             input(type="text" value="0" name="visitas_igrejas")
