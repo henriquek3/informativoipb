@@ -21,10 +21,10 @@ block content
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
-            a.item.active(data-tab="first") Relatórios
-            a.item(data-tab="second") Responder
+            a.item(data-tab="first") Relatórios
+            a.item.active(data-tab="second") Responder
 
-        div.ui.bottom.attached.tab.segment.active(data-tab="first")
+        div.ui.bottom.attached.tab.segment(data-tab="first")
             table.ui.compact.selectable.celled.blue.table(id="tbl_relatorios_estatisticas")
                 thead
                     tr
@@ -52,7 +52,7 @@ block content
                         td 2017
 
         //form.ui.bottom.attached.tab.segment.active(data-tab="second", id="relatorios_estatisticas", name="relatorios_estatisticas")
-        form.ui.bottom.attached.tab.segment(data-tab="second", id="relatorios_estatisticas")
+        form.ui.bottom.attached.tab.segment.active(data-tab="second", id="relatorios_estatisticas")
             | @csrf
             div.ui.segments
                 div.ui.blue.segment(style="text-align: center; background-color: #F9FAFB")
@@ -63,7 +63,7 @@ block content
                     div.fields
                         div.two.wide.field
                             label Ano
-                            input(type="text", value="2018", name="ano")
+                            input(type="text", value="2018", name="ano" readonly="")
                         div.seven.wide.field
                             label Sínodo
                             input(type="text", name="sinodo", value="", disabled="")
@@ -109,7 +109,10 @@ block content
 
                 div.ui.form.segment
                     div.fields
-                        div.sixteen.wide.field
+                        div.two.wide.field
+                            label ID
+                            input(type="text" value="0", readonly="" name="id_igreja")
+                        div.fourteen.wide.field
                             label Nome (Igreja/Congregação)
                             input(type="text" value="0", disabled="" name="nome")
 
@@ -175,7 +178,7 @@ block content
                                 div.five.wide.field
                                     label Pastores
                                 div.four.wide.field
-                                    input(type="text" value="0" name="ec_pastores")
+                                    input(type="text" value="0" name="ecl_pastores")
                             div.inline.fields
                                 div.five.wide.field
                                     label Licenciados
@@ -233,12 +236,12 @@ block content
                                 div.ten.wide.field
                                     label Alunos EBD (Ano Atual)
                                 div.six.wide.field
-                                    input(type="text" value="0" name="ect_alunos_ebd_atual")
+                                    //input(type="text" value="0" name="ect_alunos_ebd_atual")
                             div.inline.fields
                                 div.ten.wide.field
                                     label Alunos EBD (Ano Anterior)
                                 div.six.wide.field
-                                    input(type="text" value="0" name="ect_alunos_ebd_anterior")
+                                    //input(type="text" value="0" name="ect_alunos_ebd_anterior")
 
                         div.ui.segment(style="width: 40%;")
                             div.ui.top.attached.label.blue(style="text-align: center;") DEPARTAMENTOS INTERNO
@@ -248,66 +251,66 @@ block content
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Departamentos")
                                         div.ui.label D.
-                                        input(type="text" value="0" name="di_ucp_dep")
+                                        input(type="text" value="0" name="ecd_ucp")
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Membros")
                                         div.ui.label M.
-                                        input(type="text" value="0" name="di_ucp_membros")
+                                        input(type="text" value="0" name="ecd_ucp_membros")
                             div.inline.fields
                                 div.four.wide.field
                                     label UPA
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Departamentos")
                                         div.ui.label D.
-                                        input(type="text" value="0" name="di_upa_dep")
+                                        input(type="text" value="0" name="ecd_upa")
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Membros")
                                         div.ui.label M.
-                                        input(type="text" value="0" name="di_upa_membros")
+                                        input(type="text" value="0" name="ecd_upa_membros")
                             div.inline.fields
                                 div.four.wide.field
                                     label UMP
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Departamentos")
                                         div.ui.label D.
-                                        input(type="text" value="0" name="di_ump_dep")
+                                        input(type="text" value="0" name="ecd_ump")
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Membros")
                                         div.ui.label M.
-                                        input(type="text" value="0" name="di_ump_membros")
+                                        input(type="text" value="0" name="ecd_ump_membros")
                             div.inline.fields
                                 div.four.wide.field
                                     label SAF
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Departamentos")
                                         div.ui.label D.
-                                        input(type="text" value="0" name="di_saf_dep")
+                                        input(type="text" value="0" name="ecd_saf")
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Membros")
                                         div.ui.label M.
-                                        input(type="text" value="0" name="di_saf_membros")
+                                        input(type="text" value="0" name="ecd_saf_membros")
                             div.inline.fields
                                 div.four.wide.field
                                     label UPH
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Departamentos")
                                         div.ui.label D.
-                                        input(type="text" value="0" name="di_uph_dep")
+                                        input(type="text" value="0" name="ecd_uph")
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Membros")
                                         div.ui.label M.
-                                        input(type="text" value="0" name="di_uph_membros")
+                                        input(type="text" value="0" name="ecd_uph_membros")
                             div.inline.fields
                                 div.four.wide.field
                                     label Outras
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Departamentos")
                                         div.ui.label D.
-                                        input(type="text" value="0" name="di_outras_dep")
+                                        input(type="text" value="0" name="ecd_outras")
                                 div.six.wide.field
                                     div.ui.labeled.input(data-tooltip="Nº de Membros")
                                         div.ui.label M.
-                                        input(type="text" value="0" name="di_outras_membros")
+                                        input(type="text" value="0" name="ecd_outras_membros")
                             div.inline.fields
                                 div.four.wide.field
                                     label Total
@@ -366,11 +369,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rma_transf_masc")
+                                        //input(type="text" value="0" name="rma_transf_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rma_transf_fem")
+                                        //input(type="text" value="0" name="rma_transf_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -430,11 +433,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rma_batismo_masc")
+                                        input(type="text" value="0" name="rma_batismo_masc_nc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rma_batismo_fem")
+                                        input(type="text" value="0" name="rma_batismo_fem_nc")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -445,11 +448,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rma_transferencia_masc")
+                                        input(type="text" value="0" name="rma_transferencia_masc_nc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rma_transferencia_fem")
+                                        input(type="text" value="0" name="rma_transferencia_fem_nc")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -460,11 +463,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rma_jurisdicao_ex_masc")
+                                        input(type="text" value="0" name="rma_jurisdicao_ex_masc_nc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rma_jurisdicao_ex_fem")
+                                        input(type="text" value="0" name="rma_jurisdicao_ex_fem_nc")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -508,11 +511,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_exclucao_masc")
+                                        input(type="text" value="0" name="rmd_exclusao_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_exclucao_fem")
+                                        input(type="text" value="0" name="rmd_exclusao_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -541,11 +544,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_profissao_masc")
+                                        input(type="text" value="0" name="rmd_profissao_fe_masc_nc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_profissao_fem")
+                                        input(type="text" value="0" name="rmd_profissao_fe_fem_nc")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -556,11 +559,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_transferencia_masc__ncomumg")
+                                        input(type="text" value="0" name="rmd_transferencia_masc_nc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_transferencia_fem__ncomumg")
+                                        input(type="text" value="0" name="rmd_transferencia_fem_nc")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -571,11 +574,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_falecimento_masc_ncomumg")
+                                        input(type="text" value="0" name="rmd_falecimento_masc_nc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_falecimento_fem_ncomumg")
+                                        input(type="text" value="0" name="rmd_falecimento_fem_nc")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -586,11 +589,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_exclusao_masc")
+                                        input(type="text" value="0" name="rmd_exclusao_masc_nc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_exclusao_fem")
+                                        input(type="text" value="0" name="rmd_exclusao_fem_nc")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -604,11 +607,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_separado_masc")
+                                        //input(type="text" value="0" name="rmd_separado_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_separado_fem")
+                                        //input(type="text" value="0" name="rmd_separado_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -619,11 +622,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_diferenca_masc")
+                                        //input(type="text" value="0" name="rmd_diferenca_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_diferenca_fem")
+                                        //input(type="text" value="0" name="rmd_diferenca_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -634,11 +637,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_comung_anterior_masc")
+                                        //input(type="text" value="0" name="rmd_comung_anterior_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_comung_anterior_fem")
+                                        //input(type="text" value="0" name="rmd_comung_anterior_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -649,11 +652,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_comung_atual_masc")
+                                        //input(type="text" value="0" name="rmd_comung_atual_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_comung_atual_fem")
+                                        //input(type="text" value="0" name="rmd_comung_atual_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -666,11 +669,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_dif_comung_masc")
+                                        //input(type="text" value="0" name="rmd_dif_comung_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_dif_comung_fem")
+                                        //input(type="text" value="0" name="rmd_dif_comung_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -681,11 +684,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_nao_comung_anterior_masc")
+                                        //input(type="text" value="0" name="rmd_nao_comung_anterior_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_nao_comung_anterior_fem")
+                                        //input(type="text" value="0" name="rmd_nao_comung_anterior_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -696,11 +699,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_nao_comung_atual_masc")
+                                        //input(type="text" value="0" name="rmd_nao_comung_atual_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_nao_comung_atual_fem")
+                                        //input(type="text" value="0" name="rmd_nao_comung_atual_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -711,11 +714,11 @@ block content
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label M
-                                        input(type="text" value="0" name="rmd_rol_atual_masc")
+                                        //input(type="text" value="0" name="rmd_rol_atual_masc")
                                 div.four.wide.field
                                     div.ui.labeled.input
                                         div.ui.label F
-                                        input(type="text" value="0" name="rmd_rol_atual_fem")
+                                        //input(type="text" value="0" name="rmd_rol_atual_fem")
                                 div.three.wide.field
                                     div.ui.labeled.input.disabled
                                         label TOTAL
@@ -737,7 +740,7 @@ block content
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0" name="if_mf_saldo_anterior")
+                                        //input(type="text" value="0" name="if_mf_saldo_anterior")
                             div.inline.fields
                                 div.six.wide.field
                                     div.ui.label.blue
@@ -853,7 +856,7 @@ block content
                                 div.six.wide.field
                                     div.ui.labeled.input
                                         div.ui.label R$
-                                        input(type="text" value="0" name="if_po_saldo_anterior")
+                                        //input(type="text" value="0" name="if_po_saldo_anterior")
                             div.inline.fields
                                 div.six.wide.field
                                     div.ui.label.blue

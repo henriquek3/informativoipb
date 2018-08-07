@@ -803,6 +803,7 @@ $(document).ready(function () {
                 relatorios_estatisticas.nome.value = data.igreja.nome;
                 relatorios_estatisticas.sinodo.value = data.igreja.presbiterio.sinodo.nome;
                 relatorios_estatisticas.presbiterio.value = data.igreja.presbiterio.nome;
+                relatorios_estatisticas.id_igreja.value = data.id_igreja;
                 relatorios_estatisticas.endereco.value = data.igreja.endereco;
                 relatorios_estatisticas.endereco_numero.value = data.igreja.endereco_numero;
                 relatorios_estatisticas.endereco_complemento.value = data.igreja.endereco_complemento;
