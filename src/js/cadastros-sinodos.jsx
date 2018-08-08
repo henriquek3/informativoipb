@@ -171,7 +171,7 @@ $(document).ready(function () {
         ;
     }
 
-    getDataTable();
+    /*getDataTable();*/
 
     /**
      * Traz as informações para edição

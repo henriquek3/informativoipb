@@ -34,7 +34,7 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     src: ['**/*.pug', '!**/_*.pug'],
-                    dest: "resources/views/",
+                    dest: "resources/views/pages/",
                     ext: ".blade.php",
                     cwd: "src/pug/",
                     expand: true
@@ -95,6 +95,6 @@ module.exports = function (grunt) {
 
     // Set task aliases
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('serve', ['connect', 'watch']);
+    grunt.registerTask('serve', ['watch']);
     grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel']);
 };

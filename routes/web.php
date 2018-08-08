@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/testdb', function(){
-    Artisan::call('migrate');
-});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -60,29 +57,30 @@ Route::get('/meu-usuario', 'UserController@adminuser')->middleware('auth');
 Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
 Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes SinodoController
-|--------------------------------------------------------------------------
-*/
-Route::get('/cadastros-sinodos', 'SinodoController@index');
-Route::get('/api/sinodos', 'SinodoController@api');
-Route::post('/api/sinodos/store', 'SinodoController@store');
-Route::put('/api/sinodos/update', 'SinodoController@update');
-Route::delete('/api/sinodos/delete', 'SinodoController@destroy');
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes PresbiterioController
-|--------------------------------------------------------------------------
-*/
-Route::get('/cadastros-presbiterios', 'PresbiterioController@index');
-Route::get('/api/presbiterios', 'PresbiterioController@api');
-Route::post('/api/presbiterios/store', 'PresbiterioController@store');
-Route::put('/api/presbiterios/update', 'PresbiterioController@update');
-Route::delete('/api/presbiterios/delete', 'PresbiterioController@destroy');
-
+Route::prefix('cadastros')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes SinodoController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/sinodos', 'SinodoController@index');
+    Route::get('/sinodos/novo', 'SinodoController@create');
+    Route::post('/sinodos/novo', 'SinodoController@store');
+    Route::get('/sinodos/{id}/editar', 'SinodoController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/sinodos/{id}/editar', 'SinodoController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/sinodos/{id}/editar', 'SinodoController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes PresbiterioController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/presbiterios', 'PresbiterioController@index');
+    Route::get('/presbiterios/novo', 'PresbiterioController@create');
+    Route::post('/presbiterios/novo', 'PresbiterioController@store');
+    Route::get('/presbiterios/{id}/editar', 'PresbiterioController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/presbiterios/{id}/editar', 'PresbiterioController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/presbiterios/{id}/editar', 'PresbiterioController@destroy')->where(['id' => '[0-9]+']);
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -165,3 +163,5 @@ Route::get('/api/estados', 'EstadoController@api');
 |--------------------------------------------------------------------------
 */
 Route::get('/api/cidades', 'CidadeController@api');
+
+Route::get('/api/sinodos', 'SinodoController@api');

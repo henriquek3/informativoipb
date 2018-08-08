@@ -21,9 +21,9 @@ class PresbiterioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Presbiterios $presbiterios)
     {
-        return view("cadastros-presbiterios");
+        return view("pages.presbiterios.index", ['resources' => $presbiterios->with('sinodos')->simplePaginate(10)]);
     }
 
     /**
@@ -33,7 +33,7 @@ class PresbiterioController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.presbiterios.form");
     }
 
     /**
@@ -42,10 +42,26 @@ class PresbiterioController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Sinodos $sinodos)
     {
-        $rs = $request->user()->presbiterios()->create($request->all());
-        return response()->json($rs);
+        dd($request->all());
+
+        try {
+            $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
+            if (count($sinodo) = !1)
+        } catch (\PDOException $exception) {
+        }
+
+        try {
+            DB::beginTransaction();
+            $resource = $request->user()->presbiterios()->create($request->all());
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            dd($exception->getMessage());
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/presbiterios/$resource->id/editar")->with('saved', "success");
     }
 
     /**

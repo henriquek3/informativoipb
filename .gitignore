@@ -73,8 +73,6 @@ templates/
 .vs/
 semantic/
 .env
-resources/views/*.php
 src/tests/
 public/js/app.js
 public/css/app.css
-!resources/views/vendor/pagination/semantic-ui.blade.php

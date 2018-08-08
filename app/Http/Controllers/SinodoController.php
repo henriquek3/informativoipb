@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Sinodos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\SinodoRequest;
 
 class SinodoController extends Controller
 {
     /**
      * SinodoController constructor.
+     *
      * @authenticator
      */
     public function __construct()
@@ -21,9 +24,9 @@ class SinodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Sinodos $sinodos)
     {
-        return view("cadastros-sinodos");
+        return view("pages.sinodos.index", ['resources' => $sinodos->orderBy('nome', 'asc')->simplePaginate(10)]);
     }
 
     /**
@@ -33,7 +36,7 @@ class SinodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.sinodos.form');
     }
 
     /**
@@ -42,10 +45,18 @@ class SinodoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SinodoRequest $request)
     {
-        $rs = $request->user()->sinodos()->create($request->all());
-        return response()->json($rs);
+        try {
+            DB::beginTransaction();
+            $resource = $request->user()->sinodos()->create($request->all());
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            dd($exception->getMessage());
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/sinodos/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -65,9 +76,9 @@ class SinodoController extends Controller
      * @param  \App\Sinodos $sinodos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sinodos $sinodos)
-    {
-        //
+    public function edit(Sinodos $sinodos, $id)
+    { //dd(Request::method())
+        return view('pages.sinodos.form', ['resource' => $sinodos->findOrFail($id)]);
     }
 
     /**
@@ -77,11 +88,19 @@ class SinodoController extends Controller
      * @param  \App\Sinodos $sinodos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sinodos $sinodos)
+    public function update(SinodoRequest $request, Sinodos $sinodos, $id)
     {
-        $resource = $sinodos->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
-        return response()->json($resource);
+        try {
+            DB::beginTransaction();
+            $resource = $sinodos->findOrfail((int)$id);
+            $resource->update($request->validated());
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            dd($exception->getMessage());
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/sinodos/$resource->id/editar")->with('updated', "success");
     }
 
     /**
@@ -90,17 +109,15 @@ class SinodoController extends Controller
      * @param  \App\Sinodos $sinodos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sinodos $sinodos, Request $request)
+    public function destroy(Sinodos $sinodos, $id)
     {
-        $resource = $sinodos->findOrFail((int)$request->get("id"));
         try {
+            $resource = $sinodos->findOrFail((int)$id);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
+        return redirect("/cadastros/sinodos")->with('deleted', "success");
     }
 
     /**
@@ -108,11 +125,11 @@ class SinodoController extends Controller
      */
     public function api(Request $request)
     {
-        $id = (int)$request->get("id");
-        if ($id > 0) {
-            return response()->json(Sinodos::with("usuario")->where("id", $id)->get());
-        } else {
-            return response()->json(Sinodos::all());
+        $nome = $request->get("nome");
+        if ($nome) {
+            $nome = "%" . $nome . "%";
+            $result['items'] = Sinodos::where("nome", "like", $nome)->get();
+            return response()->json($result);
         }
     }
 }

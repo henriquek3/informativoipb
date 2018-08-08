@@ -16,8 +16,8 @@ class SinodosSeeder extends Seeder
         foreach (range(1,50) as $i ) {
             \App\Sinodos::create([
                 'nome' => $faker->name,
-                'sigla' => $faker->currencyCode . $i,
-                'regiao' => $i,
+                'sigla' => $faker->fileExtension . $faker->randomLetter,
+                'regiao' => rand(1, 5),
                 'user_id' => 1
             ]);
         }
