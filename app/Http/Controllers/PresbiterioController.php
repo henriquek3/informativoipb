@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Presbiterios;
+use App\Sinodos;
 use Illuminate\Http\Request;
 
 class PresbiterioController extends Controller
 {
     /**
      * PresbiterioController constructor.
+     *
      * @authenticator
      */
     public function __construct()
@@ -23,7 +25,7 @@ class PresbiterioController extends Controller
      */
     public function index(Presbiterios $presbiterios)
     {
-        return view("pages.presbiterios.index", ['resources' => $presbiterios->with('sinodos')->simplePaginate(10)]);
+        return view("pages.presbiterios.index", ['resources' => $presbiterios->with('sinodo')->simplePaginate(10)]);
     }
 
     /**
@@ -40,21 +42,28 @@ class PresbiterioController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     * @param  \App\Sinodos $sinodos
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Sinodos $sinodos)
     {
-        dd($request->all());
-
+        //dd($request->all());
+        $sinodo = null;
         try {
             $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
-            if (count($sinodo) = !1)
+            if (count($sinodo) !== 1) {
+                throw new \PDOException('Sínodo não encontrado', 777);
+            }
         } catch (\PDOException $exception) {
+            dd($exception->getMessage());
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-
+        $data = $request->all();
+        unset($data['sinodo']);
+        $data['id_sinodo'] = $sinodo->id;
         try {
             DB::beginTransaction();
-            $resource = $request->user()->presbiterios()->create($request->all());
+            $resource = $request->user()->presbiterios()->create($data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -79,11 +88,13 @@ class PresbiterioController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Presbiterios $presbiterios
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Presbiterios $presbiterios)
+    public function edit(Presbiterios $presbiterios, int $id)
     {
-        //
+        $resource = $presbiterios->where('id', '=', $id)->with('sinodo')->first();
+        return view("pages.presbiterios.form", ['resource' => $resource]);
     }
 
     /**
@@ -94,7 +105,7 @@ class PresbiterioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Presbiterios $presbiterios)
-    {
+    {//ajustar rota editar
         $resource = $presbiterios->findOrfail((int)$request->get("id"));
         $resource->update($request->all());
         return response()->json($resource);
@@ -127,7 +138,7 @@ class PresbiterioController extends Controller
     {
         $id = (int)$request->get("id");
         $sinodo = (int)$request->get("sinodo");
-        if ($id > 0 ){
+        if ($id > 0) {
             return response()->json(Presbiterios::with([
                 'sinodo',
                 'usuario',
@@ -145,10 +156,10 @@ class PresbiterioController extends Controller
         }
     }
 
-    public function scopos(Presbiterios $presbiterios)
-    {
-        return view("scopos", [
-            'resource' => $presbiterios->sinodos()->get()
-        ]);
-    }
+    /*    public function scopos(Presbiterios $presbiterios)
+        {
+            return view("scopos", [
+                'resource' => $presbiterios->sinodos()->get()
+            ]);
+        }*/
 }

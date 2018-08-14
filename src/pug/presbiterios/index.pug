@@ -34,7 +34,7 @@ block content
                     td {{ $rs->sinodo->nome }}
                     td {{ $rs->nome_regiao()}}
                     td.center.aligned(title='Editar Sínodo')
-                        a.ui.icon.primary.button(href!="/cadastros/sinodos/{{$rs->id}}/editar")
+                        a.ui.icon.primary.button(href!="/cadastros/presbiterios/{{$rs->id}}/editar")
                             i.pencil.alternate.icon
                 | @empty
                 tr

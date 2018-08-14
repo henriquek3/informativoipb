@@ -95,10 +95,12 @@ block specific-js
     | @isset($resource)
     script(type='text/javascript' async).
         try {
-            var sinodo = JSON.parse('{!! $resource !!}');
+            //var sinodo = JSON.parse('{!! $resource !!}');
+            var sinodo = @json($resource);
             formResource.nome.value = sinodo.nome !== null ? sinodo.nome : '';
             formResource.sigla.value = sinodo.sigla !== null ? sinodo.sigla : '';
             formResource.regiao.value = sinodo.regiao !== null ? sinodo.regiao : '';
+            formResource.sinodo.value = sinodo.sinodo !== null ? sinodo.sinodo.nome : '';
             $(formResource).append('<input type="hidden" name="_method" value="put">');
         } catch (e) {
             alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');
