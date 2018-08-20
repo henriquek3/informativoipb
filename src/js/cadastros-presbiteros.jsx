@@ -70,8 +70,8 @@ $(document).ready(function () {
                     id = $('<td/>').html(row.id);
                     nome = $('<td/>').html(row.nome.toUpperCase());
                     igreja = $('<td/>').html(row.nome_igreja.toUpperCase());
-                    presbiterio = $('<td/>').html(row.sigla_presbiterio.toUpperCase());
-                    sinodo = $('<td/>').html(row.sigla_sinodo.toUpperCase());
+                    presbiterio = $('<td/>').html(row.presbiterio.toUpperCase());
+                    sinodo = $('<td/>').html(row.sinodo.toUpperCase());
 
                     /**
                      * Adiciona as células nas linhas
@@ -160,10 +160,10 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiteros?id2=' + id_row)
+        $.get('api/presbiteros?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
-                console.log('getdataForm');
+                console.log('getDataForm');
                 console.log(id_row);
                 console.log(data);
                 cadastros_presbiteros.id_sinodo.value = data.id_sinodo;
@@ -179,6 +179,7 @@ $(document).ready(function () {
                 cadastros_presbiteros.estado_civil.value = data.estado_civil;
                 cadastros_presbiteros.conjuge_nome.value = data.conjuge_nome;
                 cadastros_presbiteros.conjuge_nascimento.value = data.conjuge_nascimento;
+                cadastros_presbiteros.numero_dep.value = data.numero_dep;
                 cadastros_presbiteros.nome_filhos.value = data.nome_filhos;
                 cadastros_presbiteros.endereco.value = data.endereco;
                 cadastros_presbiteros.endereco_nr.value = data.endereco_nr;
@@ -200,9 +201,9 @@ $(document).ready(function () {
                 setTimeout(() => {
                     $(cadastros_presbiteros.id_sinodo).trigger("change");
                     $(cadastros_presbiteros.id_presbiterio).trigger("change");
-                    $(cadastros_presbiteros.id_estado).trigger("change");
+                    $(cadastros_presbiteros.endereco_id_estado).trigger("change");
                     setTimeout(() => {
-                        cadastros_presbiteros.id_cidade.value = data.id_cidade;
+                        cadastros_presbiteros.endereco_id_cidade.value = data.endereco_id_cidade;
                         console.log("data.cidade");
                         setTimeout(() => {
                             $(cadastros_presbiteros.id_cidade).trigger("change");
@@ -214,10 +215,10 @@ $(document).ready(function () {
                 /**
                  * Atribui o nome do usuario e a data no painel de registro de alterações
                  */
-                $("#user_inc").text(data.user_inclusao);
+                /*$("#user_inc").text(data.user_inclusao);
                 $("#data_inc").text(data.data_inclusao);
                 $("#user_alt").text(data.user_alteracao);
-                $("#data_alt").text(data.data_alteracao);
+                $("#data_alt").text(data.data_alteracao);*/
 
             })
             .fail(function (response) {

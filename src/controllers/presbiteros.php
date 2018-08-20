@@ -15,31 +15,24 @@ $app->get('api/presbiteros', function (Request $request) use ($app) {
 SELECT
   p.*,
   i.nome as nome_igreja,
-  s2.sigla as sigla_sinodo,
-  p2.sigla as sigla_presbiterio,
-  i2.id as id_sinodo,
-  i3.id as id_presbiterio,
-  u.nome  as user_inclusao,
-  u2.nome as user_alteracao
-FROM
-  presbiteros p
-  left join igrejas i ON p.id_igreja = i.id
-  LEFT JOIN sinodos s2 ON i.id_sinodo
-  LEFT JOIN presbiterios p2 ON id_presbiterio
-  left join usuarios u on i.usuario_inclusao = u.id
-  left join usuarios u2 on i.usuario_alteracao = u2.id
-  LEFT JOIN igrejas i2 ON p.id_igreja = i2.id
-  LEFT JOIN igrejas i3 ON p.id_igreja = i3.id
-  ";
+  p2.sigla as presbiterio,
+  s.sigla as sinodo
+
+FROM presbiteros p
+  LEFT JOIN igrejas i ON p.id_igreja = i.id
+  LEFT JOIN presbiterios p2 ON i.id_presbiterio = p2.id
+  LEFT JOIN sinodos s ON i.id_sinodo = s.id
+
+";
     $id = (int)$request->get('id');
     $igreja = (int)$request->get('igreja');
     $params = [];
     if ($id > 0) {
-        $query .= " WHERE id = ?";
+        $query .= " WHERE p.id = ?";
         array_push($params, $id);
     }
     if ($igreja > 0) {
-        $query .= " WHERE id_igreja = ?";
+        $query .= " WHERE p.id_igreja = ?";
         array_push($params, $igreja);
     }
     $result = $db->fetchAll($query, $params);

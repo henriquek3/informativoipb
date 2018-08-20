@@ -54,7 +54,7 @@ block content
                             label Igreja
                             select.ui.search.dropdown
                                 option
-                                option(value="1", selected="") IGREJA PRESBITERIANA LUZ E VIDA
+                                option(value="") Selecione a igreja
 
                     div.fields
                         div.sixteen.wide.field
@@ -106,7 +106,7 @@ block content
                             input.datepicker2(type="text" name="conjuge_nascimento" placeholder="Data de Nascimento do Cônjuge")
                         div.two.wide.field
                             label Nº de Dependentes
-                            input(type="text", placeholder="Nº de Dependentes")
+                            input(type="text", name="numero_dep", placeholder="Nº de Dependentes")
                     div.fields
                         div.sixteen.wide.field
                             label Nome dos Dependentes
@@ -153,10 +153,10 @@ block content
                             input(type="text", name="telefone" placeholder="Telefone Fixo")
                         div.three.wide.field
                             label Telefone da Igreja
-                            input(type="text", placeholder="Telefone da Igreja")
+                            input(type="text",name="telefone_igreja", placeholder="Telefone da Igreja")
                         div.seven.wide.field
                             label E-mail
-                            input(type="email" name="email" placeholder="E-Mail")
+                            input(type="text", name="email", placeholder="E-Mail")
 
 
                     div.fields
