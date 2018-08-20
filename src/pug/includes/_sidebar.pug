@@ -6,7 +6,7 @@ div.ui.sidebar.vertical.accordion.menu
         span(style="display: flex;margin-top: -40px;margin-left: 93px;font-weight: 400;color: white;") Presbítero Docente
         span(style="display: flex;margin-top: 6px;margin-left: 93px;font-weight: 400;color: white;") IPB Cacoal
 
-    a.item(href="index.html") INÍCIO
+    a.item(href="inicio") INÍCIO
         i.home.icon
 
     div.item
@@ -14,57 +14,56 @@ div.ui.sidebar.vertical.accordion.menu
             i.dropdown.icon
             | CADASTROS
         div.content
-            a.item(href="cadastros-sinodos.html") SÍNODOS
-            a.item(href="cadastros-presbiterios.html") PRESBITÉRIOS
-            a.item(href="cadastros-igrejas.html") IGREJAS
-            a.item(href="cadastros-presbiteros.html") PRESBÍTEROS
+            a.item(href="sinodos") SÍNODOS
+            a.item(href="presbiterios") PRESBITÉRIOS
+            a.item(href="igrejas") IGREJAS
+            a.item(href="ministros") PRESBÍTEROS
 
     div.item
         a.title
             i.dropdown.icon
             | RELATÓRIOS
         div.content
-            a.item(href="relatorio-conselho.html") CONSELHO
-            a.item(href="relatorio-ministerial.html") MINSTÉRIAL
-            a.item(href="relatorio-estatistica.html") ESTATÍSTICA
-            a.item(href="relatorio-financeiro.html") FINANCEIRO
+            a.item(href="relatorios-conselhos") CONSELHO
+            a.item(href="relatorios-ministeriais") MINSTÉRIAL
+            a.item(href="relatorios-estatisticas") ESTATÍSTICA
 
     div.item
         a.title
             i.dropdown.icon
             | PRESBITÉRIOS
         div.content
-            a.item(href="presbiterio-reuniao.html") INCLUIR REUNIÃO
-            a.item(href="presbiterio-estatistica.html") CONSULTAR ESTATÍSTICA
+            a.item.in-dev(href="presbiterio-reuniao") INCLUIR REUNIÃO
+            a.item.in-dev(href="presbiterio-estatistica") CONSULTAR ESTATÍSTICA
 
     div.item
         a.title
             i.dropdown.icon
             | SÍNODOS
         div.content
-            a.item(href="sinodo-reuniao.html") INCLUIR REUNIÃO
-            a.item(href="sinodo-estatistica.html") CONSULTAR ESTATÍSTICA
+            a.item.in-dev(href="sinodo-reuniao") INCLUIR REUNIÃO
+            a.item.in-dev(href="sinodo-estatistica") CONSULTAR ESTATÍSTICA
 
     div.item
         a.title
             i.dropdown.icon
             | CONSULTAS ESTATÍSTICAS
         div.content
-            a.item(href="consultas-ministerial.html") REUNIÕES DE PRESBITÉRIOS
-            a.item(href="consultas-ministerial.html") REUNIÕES DE SÍNODOS
-            a.item(href="consultas-ministerial.html") GERAL DE MEMBROS
-            a.item(href="consultas-ministerial.html") GERAL FINANCEIRA
-            a.item(href="consultas-ministerial.html") CRESCIMENTO EBD
+            a.item.in-dev(href="consultas-ministerial") REUNIÕES DE PRESBITÉRIOS
+            a.item.in-dev(href="consultas-ministerial") REUNIÕES DE SÍNODOS
+            a.item.in-dev(href="consultas-ministerial") GERAL DE MEMBROS
+            a.item.in-dev(href="consultas-ministerial") GERAL FINANCEIRA
+            a.item.in-dev(href="consultas-ministerial") CRESCIMENTO EBD
 
     div.item
         a.title
             i.dropdown.icon
             | CONFIGURAÇÕES
         div.content
-            a.item(href="meu-usuario.html") MEU USUÁRIO
-            a.item(href="administrar-usuarios.html") ADMINISTRAR USUÁRIOS
-            a.item(href="parametros-sistema.html") PARÂMETROS DO SISTEMA
-            a.item(href="ajuda.html") SOLICITAR AJUDA
+            a.item.in-dev(href="meu-usuario") MEU USUÁRIO
+            a.item(href="administrar-usuarios") ADMINISTRAR USUÁRIOS
+            a.item.in-dev(href="parametros-sistema") PARÂMETROS DO SISTEMA
+            a.item.in-dev(href="ajuda") SOLICITAR AJUDA
 
-    a.item(href="login.html") SAIR
+    a.item(id="logout_m") SAIR
         i.sign.out.icon

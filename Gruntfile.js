@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
@@ -26,27 +26,6 @@ module.exports = function(grunt) {
                     interrupt: false
                 }
             },
-            uglify: {
-                files: ['dist/js/app/**/*.js'],
-                tasks: ['uglify'],
-                options: {
-                    interrupt: false
-                }
-            },
-            htmlmin: {
-                files: ['dist/**/*.html'],
-                tasks: ['htmlmin'],
-                options: {
-                    interrupt: false
-                }
-            },
-            cssmin: {
-                files: ['dist/css/main.css'],
-                tasks: ['cssmin'],
-                options: {
-                    interrupt: true
-                }
-            },
         },
         pug: {
             compile: {
@@ -55,8 +34,8 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     src: ['**/*.pug', '!**/_*.pug'],
-                    dest: "dist/",
-                    ext: ".html",
+                    dest: "resources/views/pages/",
+                    ext: ".blade.php",
                     cwd: "src/pug/",
                     expand: true
                 }]
@@ -72,7 +51,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'src/sass/',
                     src: ['*.sass'],
-                    dest: 'dist/css/',
+                    dest: 'public/css/',
                     ext: '.min.css'
                 }]
             }
@@ -85,7 +64,7 @@ module.exports = function(grunt) {
                 ]
             },
             dist: {
-                src: ['dist/css/*.css']
+                src: ['public/css/*.css']
             }
         },
         //Transpiler
@@ -98,66 +77,12 @@ module.exports = function(grunt) {
                     "expand": true,
                     "cwd": "src/js",
                     "src": ["**/*.jsx"],
-                    "dest": "dist/js/app",
+                    "dest": "public/js/app",
                     "ext": "-app.js"
                 }]
             }
         },
-        //CSS min
-        cssmin: {
-            target: {
-                files: [{
-                    expand: true,
-                    cwd: 'dist/css',
-                    src: ['*.css'],
-                    dest: 'public/css'
-                }]
-            }
-        },
-        //grunt son
-        uglify: {
-            options: {
-                mangle: false
-            },
-            file_min_js: {
-                files: [{
-                    expand: true,
-                    cwd: 'dist/js/app',
-                    src: '**/*.js',
-                    dest: 'public/js/app'
-                }]
-            }
-        },
-        concat: {
-            js: {
-                src: 'dist/js/app/*.js',
-                dest: 'public/js/app/app-main.js'
-            }
-        },
-        htmlmin: {
-            dist: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true
-                },
-                files: [{
-                    expand: true,
-                    cwd: 'dist',
-                    src: ['*.html'],
-                    dest: 'templates'
-                }]
-            }
-        },
-        connect:{
-            server:{
-                options:{
-                    port: 9005,
-                    hostname: '*',
-                    base: 'dist/',
-                    livereload: true
-                }
-            }
-        }
+
     });
 
     // Load the Grunt plugins.
@@ -167,18 +92,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     //Transpiler
     grunt.loadNpmTasks('grunt-babel');
-    //CSSMin
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    //son
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-htmlmin');
-    grunt.loadNpmTasks('grunt-contrib-connect');
 
     // Set task aliases
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('css', ['cssmin']);
-    grunt.registerTask('ht', ['htmlmin']);
-    grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel', 'uglify', 'htmlmin', 'cssmin']);
+    grunt.registerTask('serve', ['watch']);
+    grunt.registerTask('build', ['pug', 'sass', 'postcss', 'babel']);
 };

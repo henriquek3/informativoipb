@@ -3,6 +3,27 @@ tbl_sinodos = $("#tbl_sinodos");
 
 $(document).ready(function () {
     /**
+     * Estilizar o input de pesquisar do
+     * @type {{first: first, second: second}}
+     */
+    let styleInputSearch = {
+        first: function () {
+            setTimeout(() => {
+                $("input[type='search']").parent().addClass("ui icon input");
+                $("input[type='search']").css("width", "220px");
+                $("input[type='search']").css("margin-left", "10px");
+            }, 500);
+            return styleInputSearch;
+        },
+        second: function () {
+            setTimeout(() => {
+                $("input[type='search']").after("<i class='search icon'>");
+            }, 1000);
+            return styleInputSearch;
+        }
+    };
+
+    /**
      * Função utilizada devido o select com ui.search.dropdown
      */
     $.validator.setDefaults({
@@ -68,8 +89,7 @@ $(document).ready(function () {
                 }
             });
 
-
-            tbl_api.page('next').draw(false); // ? Ativa paginação !
+            //tbl_api.page('next').draw(false); // ? Ativa paginação !
 
             /**
              * Utilizado para selecionar as linhas da tabela
@@ -90,6 +110,7 @@ $(document).ready(function () {
                  */
                 console.log(id_row);
             });
+            styleInputSearch.first().second();
         }, 1000);
     }
 
@@ -150,7 +171,7 @@ $(document).ready(function () {
         ;
     }
 
-    getDataTable();
+    /*getDataTable();*/
 
     /**
      * Traz as informações para edição
@@ -159,9 +180,19 @@ $(document).ready(function () {
         $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
+                console.log(data);
                 cadastros_sinodos.nome.value = data.nome;
                 cadastros_sinodos.sigla.value = data.sigla;
                 cadastros_sinodos.regiao.value = data.regiao;
+
+                /**
+                 * Atribui o nome do usuario e a data no painel de registro de alterações
+                 */
+                let dia = new Date(data.updated_at);
+                $("#user_inc").text(data.usuario.nome);
+                $("#data_inc").text(dia.toLocaleString("pt-BR"));
+                //$("#user_alt").text(data.user_alteracao);
+                //$("#data_alt").text(data.data_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
@@ -210,7 +241,10 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/sinodos/delete', {id: id_row})
+                        $("#cadastros_sinodos").append('<input type="hidden" name="_method" value="delete">');
+                        let form = $('#cadastros_sinodos').serializeArray();
+                        form.unshift({name: 'id', value: id_row});
+                        $.post('/api/sinodos/delete', form)
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -257,8 +291,19 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
+                $("#cadastros_sinodos").append('<input type="hidden" name="_method" value="put">');
                 let form = $('#cadastros_sinodos').serializeArray();
                 form.unshift({name: 'id', value: id_row});
+
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                //form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_alteracao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+
                 $.post('api/sinodos/update', form)
                     .done(function (response) {
                         console.log(response);
@@ -331,6 +376,16 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#cadastros_sinodos').serializeArray();
+
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+                //form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_inclusao', value: window.getData});
+                /**
+                 * Acrescenta ao array form os dados do usuario e data
+                 */
+
                 $.post('api/sinodos/store', form)
                     .done(function (response) {
                         console.log(response);
@@ -470,4 +525,14 @@ $(document).ready(function () {
             tbl_api.$('tr.active').removeClass('active');
         }
     });
+
+    /**
+     * Verifica Sessão do usuário
+     *   para ser enviado junto ao array form
+     * @type {string}
+     */
+    /*let user = btoa("user-data");
+    user = sessionStorage.getItem(user);
+    user = atob(user);
+    user = JSON.parse(user);*/
 });

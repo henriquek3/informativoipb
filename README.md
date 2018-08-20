@@ -1,2 +1,0 @@
-# informativoIPB
-InformativoIPB
