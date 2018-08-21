@@ -44,6 +44,7 @@ class User extends Authenticatable
 
     /**
      * Altera a tabela de conexão
+     *
      * @var string
      */
     //protected $table = 'usuarios';

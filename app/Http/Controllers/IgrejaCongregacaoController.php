@@ -9,6 +9,7 @@ class IgrejaCongregacaoController extends Controller
 {
     /**
      * IgrejaController constructor.
+     *
      * @authenticator
      */
     public function __construct()

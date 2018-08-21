@@ -10,6 +10,7 @@ class PresbiteroController extends Controller
 {
     /**
      * PresbiteroController constructor.
+     *
      * @authenticator
      */
     public function __construct()

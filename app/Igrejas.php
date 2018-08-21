@@ -22,6 +22,6 @@ class Igrejas extends Model
 
     public function presbiterio()
     {
-        return $this->belongsTo("App\Presbiterios","id_presbiterio","id");
+        return $this->belongsTo("App\Presbiterios", "id_presbiterio", "id");
     }
 }

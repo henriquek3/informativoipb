@@ -9,6 +9,7 @@ class IgrejaController extends Controller
 {
     /**
      * IgrejaController constructor.
+     *
      * @authenticator
      */
     public function __construct()
@@ -94,7 +95,7 @@ class IgrejaController extends Controller
                 'usuario',
                 'presbiterio',
                 'presbiterio.sinodo'
-            ])->where('id',$resource->id)->get()
+            ])->where('id', $resource->id)->get()
         );
     }
 

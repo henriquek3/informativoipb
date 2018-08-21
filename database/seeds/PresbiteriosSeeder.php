@@ -13,7 +13,7 @@ class PresbiteriosSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('pt_BR');
-        foreach (range(1, 50) as $i){
+        foreach (range(1, 50) as $i) {
             \App\Presbiterios::create([
                 'nome' => $faker->name,
                 'id_sinodo' => $i,

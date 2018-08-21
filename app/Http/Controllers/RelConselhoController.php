@@ -10,6 +10,7 @@ class RelConselhoController extends Controller
 {
     /**
      * RelConselhoController constructor.
+     *
      * @authenticator
      */
     public function __construct()

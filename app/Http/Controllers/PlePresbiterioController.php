@@ -9,6 +9,7 @@ class PlePresbiterioController extends Controller
 {
     /**
      * PlePresbiterioController constructor.
+     *
      * @authenticator
      */
     public function __construct()
