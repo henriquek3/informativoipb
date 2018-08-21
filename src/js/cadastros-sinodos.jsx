@@ -89,7 +89,7 @@ $(document).ready(function () {
                 }
             });
 
-            tbl_api.page('next').draw(false); // ? Ativa paginação !
+            //tbl_api.page('next').draw(false); // ? Ativa paginação !
 
             /**
              * Utilizado para selecionar as linhas da tabela
@@ -171,7 +171,7 @@ $(document).ready(function () {
         ;
     }
 
-    getDataTable();
+    /*getDataTable();*/
 
     /**
      * Traz as informações para edição
@@ -180,6 +180,7 @@ $(document).ready(function () {
         $.get('api/sinodos?id=' + id_row)
             .done(function (response) {
                 let data = response[0];
+                console.log(data);
                 cadastros_sinodos.nome.value = data.nome;
                 cadastros_sinodos.sigla.value = data.sigla;
                 cadastros_sinodos.regiao.value = data.regiao;
@@ -187,10 +188,11 @@ $(document).ready(function () {
                 /**
                  * Atribui o nome do usuario e a data no painel de registro de alterações
                  */
-                $("#user_inc").text(data.user_inclusao);
-                $("#data_inc").text(data.data_inclusao);
-                $("#user_alt").text(data.user_alteracao);
-                $("#data_alt").text(data.data_alteracao);
+                let dia = new Date(data.updated_at);
+                $("#user_inc").text(data.usuario.nome);
+                $("#data_inc").text(dia.toLocaleString("pt-BR"));
+                //$("#user_alt").text(data.user_alteracao);
+                //$("#data_alt").text(data.data_alteracao);
 
                 /**
                  * espera um pouco depois de setar o valor para mudar o select para o valor
@@ -239,7 +241,10 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/sinodos/delete', {id: id_row})
+                        $("#cadastros_sinodos").append('<input type="hidden" name="_method" value="delete">');
+                        let form = $('#cadastros_sinodos').serializeArray();
+                        form.unshift({name: 'id', value: id_row});
+                        $.post('/api/sinodos/delete', form)
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -286,14 +291,15 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
+                $("#cadastros_sinodos").append('<input type="hidden" name="_method" value="put">');
                 let form = $('#cadastros_sinodos').serializeArray();
                 form.unshift({name: 'id', value: id_row});
 
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_alteracao', value: window.getData});
+                //form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_alteracao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
@@ -374,8 +380,8 @@ $(document).ready(function () {
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */
-                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_inclusao', value: window.getData});
+                //form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
+                //form.unshift({name: 'data_inclusao', value: window.getData});
                 /**
                  * Acrescenta ao array form os dados do usuario e data
                  */

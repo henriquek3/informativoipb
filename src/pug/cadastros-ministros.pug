@@ -31,13 +31,14 @@ block content
                         th.one.wide Código
                         th.six.wide Nome
                         th.five.wide Igreja
-                        th.two.wide.center.aligned Presbitério
                         th.two.wide.center.aligned Sínodo
+                        th.two.wide.center.aligned Presbitério
                 tbody(id="tbody_presbiteros")
 
 
         div.ui.bottom.attached.tab.segment(data-tab="second")
             form(id="cadastros_presbiteros", name="cadastros_presbiteros")
+                | @csrf
                 div.ui.form
                     div.fields
                         div.six.wide.field
@@ -52,9 +53,8 @@ block content
 
                         div.six.wide.field
                             label Igreja
-                            select.ui.search.dropdown
-                                option
-                                option(value="") Selecione a igreja
+                            select.ui.fluid.search.dropdown(name="id_igreja")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
                     div.fields
                         div.sixteen.wide.field
@@ -70,15 +70,18 @@ block content
                     div.fields
                         div.ui.calendar.bottom.left.three.wide.field
                             label Data de Nascimento
-                            input.datepicker2(type="text" name="nascimento_data" placeholder="Data de Nascimento")
-                        div.five.wide.field
+                            input(type="date" name="nascimento_data" placeholder="Data de Nascimento")
+                        div.four.wide.field(data-toolip="Estado em que nasceu")
                             label Estado
                             select.ui.fluid.search.dropdown(name="nascimento_id_estado")
 
-                        div.eight.wide.field(id="div_cidade")
+                        div.five.wide.field(id="div_cidade")
                             label Cidade
                             select.ui.fluid.search.dropdown(name="nascimento_id_cidade", id="nascimento_id_cidade")
                             div.ui.active.inline.small.loader(style="display:none", id="loader_cidade")
+                        div.four.wide.field
+                            label Nacionalidade
+                            input(type="text", name="nacionalidade" placeholder="Nacionalidade")
 
                     div.fields
                         div.four.wide.field
@@ -98,15 +101,12 @@ block content
                                 option(value="3") Viúvo
                                 option(value="4") Separado
                     div.fields
-                        div.ten.wide.field
+                        div.twelve.wide.field
                             label Cônjuge
                             input(type="text", name="conjuge_nome" placeholder="Cônjuge")
                         div.ui.calendar.bottom.left.four.wide.field
                             label Data de Nascimento
-                            input.datepicker2(type="text" name="conjuge_nascimento" placeholder="Data de Nascimento do Cônjuge")
-                        div.two.wide.field
-                            label Nº de Dependentes
-                            input(type="text", name="numero_dep", placeholder="Nº de Dependentes")
+                            input(type="date" name="conjuge_nascimento" placeholder="Data de Nascimento do Cônjuge")
                     div.fields
                         div.sixteen.wide.field
                             label Nome dos Dependentes
@@ -151,15 +151,12 @@ block content
                         div.three.wide.field
                             label Telefone Fixo
                             input(type="text", name="telefone" placeholder="Telefone Fixo")
-                        div.three.wide.field
-                            label Telefone da Igreja
-                            input(type="text",name="telefone_igreja", placeholder="Telefone da Igreja")
-                        div.seven.wide.field
+                        div.ten.wide.field
                             label E-mail
-                            input(type="text", name="email", placeholder="E-Mail")
+                            input(type="email" name="email" placeholder="E-Mail")
 
 
-                    div.fields
+                    //div.fields
                         div.two.wide.field
                             label Teste
                             input(type="text", name="id_igreja", value="1")
@@ -177,24 +174,24 @@ block content
                                 strong Usuário inclusão:
                             span(style="color: lightslategray;")
                                 | &nbsp;
-                                | Kallew Pavão
+                                span(id="user_inc")
                                 | &nbsp;
                             span(style="float: right;color: lightslategray;")
                                 strong Data:
                                 | &nbsp;
-                                | 01/01/2018
+                                span(id="data_inc")
 
-                        div.ui.segment
+                        //div.ui.segment
                             span(style="color: lightslategray;")
                                 strong Última alteração:
                             span(style="color: lightslategray;")
                                 | &nbsp;
-                                | Kallew Pavão
+                                span(id="user_alt")
                                 | &nbsp;
                             span(style="float: right;color: lightslategray;")
                                 strong Data:
                                 | &nbsp;
-                                | 01/01/2018
+                                span(id="data_alt")
 
                 div.ui.clearing.divider
 

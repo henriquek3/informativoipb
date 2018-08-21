@@ -21,10 +21,10 @@ block content
         div.ui.clearing.divider
         p
         div.ui.top.attached.tabular.menu
-            a.item.active(data-tab="first") Relatórios
-            a.item(data-tab="second") Responder
+            a.item(data-tab="first") Relatórios
+            a.item.active(data-tab="second") Responder
 
-        div.ui.bottom.attached.tab.segment.active(data-tab="first")
+        div.ui.bottom.attached.tab.segment(data-tab="first")
             table.ui.compact.selectable.celled.green.table(id="tbl_relatorios_ministeriais")
                 thead
                     tr
@@ -36,22 +36,10 @@ block content
                         th.two.wide.center.aligned Ano
 
                 tbody(id="tbody_relatorios_ministeriais")
-                    tr
-                        td 01
-                        td RELATÓRIO MINISTERIAL
-                        td 01/02/2017
-                        td 20/02/2017
-                        td Em Edição
-                        td 2018
-                    tr
-                        td 02
-                        td RELATÓRIO MINISTERIAL
-                        td 01/05/2016
-                        td 20/08/2016
-                        td Importado
-                        td 2017
 
-        form.ui.bottom.attached.tab.segment(data-tab="second" id="relatorios_ministeriais" name="relatorios_ministeriais")
+
+        form.ui.bottom.attached.tab.segment.active(data-tab="second" id="relatorios_ministeriais" name="relatorios_ministeriais")
+            | @csrf
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
                     p
@@ -61,19 +49,28 @@ block content
                     div.fields
                         div.two.wide.field
                             label Ano
-                            input(type="text" , value="2018", disabled="")
-                        div.two.wide.field
+                            input(type="text", value="2018", name="ano" readonly="")
+                        div.four.wide.field
                             label Sínodo
-                            input(type="text" , value="SCA", disabled="")
-                        div.two.wide.field
+                            input(type="text", name="sinodo", value="", disabled="")
+                            //select.ui.fluid.search.dropdown(name="id_sinodo")
+                                option
+
+                        div.five.wide.field(id="div_presbiterio")
                             label Presbitério
-                            input(type="text" , value="PRON", disabled="")
-                        div.eight.wide.field
+                            input(type="text", name="presbiterio", value="", disabled="")
+                            //select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                            //div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
+
+                        div.one.wide.field
+                            label ID
+                            input(type="text", name="id_igreja", value="", readonly="")
+
+                        div.five.wide.field
                             label Igreja
-                            input(type="text" , value="IGREJA PRESBITERIANA LUZ E VIDA", disabled="")
-                        div.two.wide.field
-                            label Sigla
-                            input(type="text" , value="?????", disabled="")
+                            input(type="text", name="igreja", value="", disabled="")
+                            //select.ui.fluid.search.dropdown(name="id_igreja")
+                            //div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -82,8 +79,9 @@ block content
 
                 div.ui.form.segment
                     div.fields
-                        div.sixteen.wide.field
+                        div.ten.wide.field
                             label Nome
+                            input(type="hidden", name="id_presbitero", value="")
                             input(type="text" , name="nome" placeholder="Digite seu Nome" disabled="")
                     div.fields
                         div.eight.wide.field
@@ -98,18 +96,10 @@ block content
                             input.datepicker2(type="text" value="0" name="nascimento_data" placeholder="Data de Nascimento" disabled="")
                         div.five.wide.field
                             label Estado Natal
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
+                            input(type="text", disabled="", name="nascimento_id_estado")
                         div.eight.wide.field
                             label Cidade Natal
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option
-                                option Cidade
-                                option Cidade
-                                option Cidade
+                            input(type="text", disabled="", name="nascimento_id_cidade")
                     div.fields
                         div.four.wide.field
                             label RG
@@ -122,11 +112,7 @@ block content
                             input(type="text" , name="cpf" placeholder="CPF" disabled="")
                         div.five.wide.field
                             label Estado Civil
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option Casado
-                                option Solteiro
-                                option Viúvo
-                                option Separado
+                            input(type="text", disabled="", name="estado_civil")
                     div.fields
                         div.ten.wide.field
                             label Cônjuge
@@ -157,18 +143,10 @@ block content
                     div.fields
                         div.four.wide.field
                             label Estado
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option
-                                option Estado
-                                option Estado
-                                option Estado
+                            input(type="text", disabled="", name="endereco_id_estado")
                         div.five.wide.field
                             label Cidade
-                            select.ui.fluid.search.dropdown(disabled="")
-                                option
-                                option Cidade
-                                option Cidade
-                                option Cidade
+                            input(type="text", disabled="", name="endereco_id_cidade")
                         div.two.wide.field
                             label CEP
                             input(type="text" , name="cep" placeholder="CEP" disabled="")
@@ -195,7 +173,7 @@ block content
                         div.five.wide.field
                             label Condições de Moradia:
                             select.ui.fluid.search.dropdown(name="condicao_moradia")
-                                option(value="")
+                                option(value="0") ----
                                 option(value="1") Casa/Apto Pastoral
                                 option(value="2") Moradia Própria
                                 option(value="3") Financiada
@@ -205,7 +183,7 @@ block content
                                 option(value="7") Moradia alugada Fora do campo
                         div.three.wide.field
                             label Data de Ordenação:
-                            input(type="text" value="0" name="ordenacao_data")
+                            input(type="date", name="ordenacao_data")
                         div.eight.wide.field(data-tooltip="Digite ou Selecione o Presbitério onde foi ordenado.")
                             label Presbitério
                             select.ui.fluid.search.dropdown(name="id_presbiterio")
@@ -216,13 +194,13 @@ block content
                         div.three.wide.field
                             label Dedicação ao Ministério:
                             select.ui.fluid.search.dropdown(name="dedicacao_ministerio")
-                                option(value="0")
+                                option(value="0") ----
                                 option(value="1") Integral
                                 option(value="2") Parcial
                         div.three.wide.field
                             label Férias
                             select.ui.fluid.search.dropdown(name="ferias")
-                                option(value="0")
+                                option(value="0") ----
                                 option(value="1") Regulares
                                 option(value="2") Parciais
                                 option(value="3") Não teve
@@ -230,58 +208,58 @@ block content
                             label Côngruas
                             div.ui.labeled.input
                                 div.ui.label R$
-                                input(type="text" value="0" name="congruas")
+                                input(type="text" value="1000" name="congruas")
                     div.fields.inline
                         div.three.wide.field(data-tooltip="Possui aposentadoria pública?")
                             label Aposentadoria pública?
                         div.three.wide.field
                             div.ui.radio.checkbox
-                                input(name="previdencia_publica" type="radio")
+                                input(name="previdencia_publica", type="radio", value="1")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="previdencia_publica" type="radio" checked="checked")
+                                input(name="previdencia_publica", type="radio", value="0", checked="checked")
                                 label Não
                         div.three.wide.field(data-tooltip="Possui aposentadoria privada?")
                             label Aposentadoria privada?
                         div.three.wide.field
                             div.ui.radio.checkbox
-                                input(name="previdencia_privada" type="radio")
+                                input(name="previdencia_privada", type="radio", value="1")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="previdencia_privada" type="radio" checked="checked")
+                                input(name="previdencia_privada", type="radio", value="0", checked="checked")
                                 label Não
                         div.two.wide.field(data-tooltip="Possui plano de saúde?")
                             label Plano de saúde?
                         div.two.wide.field
                             div.ui.radio.checkbox
-                                input(name="plano_saude" type="radio")
+                                input(name="plano_saude", type="radio", value="1")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="plano_saude" type="radio" checked="checked")
+                                input(name="plano_saude", type="radio", value="0", checked="checked")
                                 label Não
                     div.fields.inline
                         div.five.wide.field
                             label Contribui para o INSS sobre o valor das Côngruas??
                         div.two.wide.field
                             div.ui.radio.checkbox
-                                input(name="congruas_contribui_inss" type="radio")
+                                input(name="congruas_contribui_inss", type="radio", value="1")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="congruas_contribui_inss" type="radio" checked="checked")
+                                input(name="congruas_contribui_inss", type="radio", value="0", checked="checked")
                                 label Não
                         div.five.wide.field(data-tooltip="Qual o valor da contribuição para o INSS?")
                             label Contribuição INSS:
                             div.ui.labeled.input
                                 div.ui.label R$
-                                input(type="text" name="previdencia_publica_valor" value="0")
+                                input(type="text" name="previdencia_publica_valor" value="1000")
                         div.two.wide.field(data-tooltip="Contribui para Previdência Privada?")
                             label Previdência Privada?
                         div.two.wide.field
                             div.ui.radio.checkbox
-                                input(name="contribui_prev_privada" type="radio")
+                                input(name="contribui_prev_privada", type="radio", value="1")
                                 label Sim
                             div.ui.radio.checkbox
-                                input(name="contribui_prev_privada" type="radio" checked="checked")
+                                input(name="contribui_prev_privada", type="radio", value="0", checked="checked")
                                 label Não
 
             div.ui.segments
@@ -293,10 +271,10 @@ block content
                     div.fields
                         div.eight.wide.field
                             label Igreja(s):
-                            textarea(rows="2" value="0" name="ct_igreja")
+                            textarea(rows="2", value="0", name="campos_igrejas")
                         div.eight.wide.field
                             label Congregação(ões):
-                            textarea(rows="2" value="0" name="ct_congregacoes")
+                            textarea(rows="2", value="0", name="campos_congregacoes")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -379,7 +357,7 @@ block content
                     div.fields
                         div.seven.wide.field
                             label Evangélicos ou não:(considerar as visitas feitas nos lares como uma visita.)
-                            input(type="text" value="0" name="visitas_lares")
+                            //input(type="text" value="0" name="visitas_lares")
                         div.six.wide.field
                             label Pontos de Pregação, Congregações ou Campos Missionários
                             input(type="text" value="0" name="visitas_igrejas")
@@ -551,3 +529,5 @@ block specific-js
     script(src="js/plugins/dataTables.min.js")
     script(src="js/plugins/sweetalert.min.js")
     script(src="js/app/relatorios-ministeriais-app.js")
+    script().
+        var usuario = {!!\App\User::with(['presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo', 'presbitero.endereco_estado', 'presbitero.endereco_cidade', 'presbitero.nascimento_estado', 'presbitero.nascimento_cidade',])->where('id', 1)->get()!!}

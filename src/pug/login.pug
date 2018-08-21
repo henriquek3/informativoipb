@@ -25,6 +25,7 @@ html
                     div.content
                         | InformativoIPB
                 form.ui.large.form(name="form_login", id="form_login")
+                    | @csrf
                     div.ui.stacked.segment
                         div.field
                             div.ui.left.icon.input
@@ -56,3 +57,4 @@ html
         script(src='js/semantic.min.js')
         script(type="text/javascript", src="js/plugins/sweetalert.min.js")
         script(type="text/javascript", src="js/app/login-app.js")
+

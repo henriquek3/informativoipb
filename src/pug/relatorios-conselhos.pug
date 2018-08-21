@@ -36,44 +36,56 @@ block content
                         th.two.wide.center.aligned Ano
 
                 tbody(id="tbody_relatorios_conselhos")
-                    tr
-                        td 01
-                        td RELATÓRIO DO CONSELHO
-                        td 01/02/2017
-                        td 20/02/2017
-                        td Em Edição
-                        td 2018
-                    tr
-                        td 02
-                        td RELATÓRIO DO CONSELHO
-                        td 01/05/2016
-                        td 20/08/2016
-                        td Importado
-                        td 2017
+
 
         form.ui.bottom.attached.tab.segment.active(data-tab="second" name="relatorios_conselhos" id="relatorios_conselhos")
+            | @csrf
             div.ui.segments
                 div.ui.red.segment(style="text-align: center; background-color: #F9FAFB")
                     p
                         strong Relatório do Conselho ou Mesa Administrativa
+            div.ui.form.segment
+                div.fields
+                    div.two.wide.field(data-tooltip="Este valor não pode ser alterado.")
+                        label Ano
+                        input(type="text", readonly="", value="2018", name="ano")
+                    div.seven.wide.field
+                        label Sínodo
+                        input(type="text", name="sinodo", value="", disabled="")
+                        //select.ui.fluid.search.dropdown(name="id_sinodo")
+                            option
 
-                div.ui.form.segment
+                    div.seven.wide.field(id="div_presbiterio")
+                        label Presbitério
+                        input(type="text", name="presbiterio", value="", disabled="")
+                        //select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                        //div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
+
+                    //div.six.wide.field
+                        label Igreja
+                        input(type="text", name="igreja", value="", disabled="")
+                        //select.ui.fluid.search.dropdown(name="id_igreja")
+                        //div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
+
+                //div.ui.form.segment
                     div.fields
                         div.two.wide.field
                             label Ano
-                            input(type="text" , value="2018", disabled="")
-                        div.two.wide.field
+                            input(type="text", value="2018", name="ano")
+                        div.four.wide.field
                             label Sínodo
-                            input(type="text" , value="SCA", disabled="")
-                        div.two.wide.field
+                            select.ui.fluid.search.dropdown(name="id_sinodo")
+                                option
+
+                        div.six.wide.field(id="div_presbiterio")
                             label Presbitério
-                            input(type="text" , value="PRON", disabled="")
-                        div.eight.wide.field
+                            select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
+
+                        div.six.wide.field
                             label Igreja
-                            input(type="text" , value="IGREJA PRESBITERIANA LUZ E VIDA", disabled="")
-                        div.two.wide.field
-                            label Sigla
-                            input(type="text" , value="?????", disabled="")
+                            select.ui.fluid.search.dropdown(name="id_igreja")
+                            div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
             div.ui.segments
                 div.ui.red.segment(style="text-align: center; background-color: #F9FAFB")
@@ -82,9 +94,12 @@ block content
 
                 div.ui.form.segment
                     div.fields
-                        div.sixteen.wide.field
+                        div.two.wide.field(data-tooltip="Este valor não pode ser alterado.",)
+                            label ID
+                            input(type="text", readonly="",  name="id_igreja")
+                        div.fourteen.wide.field
                             label Nome (Igreja/Congregação)
-                            input(type="text" , disabled="" name="")
+                            input(type="text" , disabled="" name="nome_igreja")
 
                     div.fields
                         div.eight.wide.field
@@ -103,10 +118,10 @@ block content
                     div.fields
                         div.four.wide.field
                             label Estado
-                            select.ui.fluid.search.dropdown.disabled(name="")
+                            input(type="text", disabled="", name="estado")
                         div.four.wide.field
                             label Cidade
-                            select.ui.fluid.search.dropdown.disabled(name="")
+                            input(type="text", disabled="", name="cidade")
                         div.three.wide.field
                             label CEP
                             input(type="text" , disabled="" name="endereco_cep")
@@ -115,7 +130,7 @@ block content
                             input(type="text" , disabled="" name="endereco_cx_postal")
                         div.three.wide.field
                             label CEP Cx. P
-                            input(type="text" , disabled="" name="endereco_cx_cep")
+                            input(type="text" , disabled="" name="endereco_cx_postal_cep")
 
                     div.fields
                         div.two.wide.field
@@ -151,10 +166,10 @@ block content
                                 label Imóveis Documentados
                             div.six.wide.field
                                 div.ui.radio.checkbox
-                                    input(name="or_imovel_documentado" type="radio")
+                                    input(name="or_imovel_documentado", type="radio" value="1")
                                     label Sim
                                 div.ui.radio.checkbox
-                                    input(name="or_imovel_documentado" type="radio" checked="checked")
+                                    input(name="or_imovel_documentado", type="radio", value="0", checked="checked")
                                     label Não
 
                         div.eight.wide.field(data-tooltip="A igreja apresentou no ano passado quais declarações Fiscais?")
@@ -163,13 +178,13 @@ block content
                                 label Declarações Anteriores
                             div.eight.wide.field
                                 div.ui.checkbox
-                                    input(name="or_declaracao_ano_anterior" type="checkbox")
+                                    input(name="or_declaracao_ano_anterior_irenda", value="1", type="checkbox")
                                     label IRenda
                                 div.ui.checkbox
-                                    input(name="or_declaracao_ano_anterior" type="checkbox")
+                                    input(name="or_declaracao_ano_anterior_rais", value="1", type="checkbox")
                                     label RAIS
                                 div.ui.checkbox
-                                    input(name="or_declaracao_ano_anterior" type="checkbox")
+                                    input(name="or_declaracao_ano_anterior_dirf", value="1", type="checkbox")
                                     label DIRF
 
 
@@ -180,10 +195,10 @@ block content
                                 label Inventário patrimonial
                             div.six.wide.field
                                 div.ui.radio.checkbox
-                                    input(name="or_inventario_existe" type="radio")
+                                    input(name="or_inventario_existe", type="radio", value="1")
                                     label Sim
                                 div.ui.radio.checkbox
-                                    input(name="or_inventario_existe" type="radio" checked="checked")
+                                    input(name="or_inventario_existe", type="radio", value="0", checked="checked")
                                     label Não
 
                         div.eight.wide.field(data-tooltip="Caso a igreja tenha inventário, ele esta devidamente atualizado?")
@@ -192,10 +207,10 @@ block content
                                 label Inventário atualizado
                             div.six.wide.field
                                 div.ui.radio.checkbox
-                                    input(name="or_inventario_atualizado" type="radio")
+                                    input(name="or_inventario_atualizado", type="radio", value="1")
                                     label Sim
                                 div.ui.radio.checkbox
-                                    input(name="or_inventario_atualizado" type="radio" checked="checked")
+                                    input(name="or_inventario_atualizado", type="radio", value="0", checked="checked")
                                     label Não
 
                     div.inline.fields
@@ -205,10 +220,10 @@ block content
                                 label Rol de membros Atualizado
                             div.six.wide.field
                                 div.ui.radio.checkbox
-                                    input(name="or_rol_membros_atualizado" type="radio")
+                                    input(name="or_rol_membros_atualizado", type="radio", value="1")
                                     label Sim
                                 div.ui.radio.checkbox
-                                    input(name="or_rol_membros_atualizado" type="radio" checked="checked")
+                                    input(name="or_rol_membros_atualizado", type="radio", value="0", checked="checked")
                                     label Não
 
                         div.eight.wide.field(data-tooltip="Quantas congregações estão vinculadas a igreja?")
@@ -216,7 +231,7 @@ block content
                                 span.ui.label 1.1.6.
                                 label Quantidade congregações?
                             div.six.wide.field
-                                input(type="text" value="0" name="or_nr_congregacoes")
+                                input(type="text", value="0", name="or_nr_congregacoes")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 2. SUPERVISÃO ESPIRITUAL
@@ -229,16 +244,16 @@ block content
                                 span.ui.label 2.1.1
                                 label Santa Ceia - Grupos
                             div.two.wide.field
-                                input(type="text" value="0" name="se_santaceia_grupos")
+                                input(type="text", value="0", name="se_santaceia_grupos")
                             div.four.wide.field
                                 label Santa Ceia - Individual
                             div.two.wide.field
-                                input(type="text" value="0" name="se_santaceia_individual")
+                                input(type="text", name="se_santaceia_individual", value="0")
 
                             div.four.wide.field.disabled
                                 div.ui.labeled.input
                                     div.ui.label Total
-                                    input(type="text", value="18")
+                                    input(type="text," id="somaCeia")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 2. SUPERVISÃO ESPIRITUAL
@@ -249,7 +264,7 @@ block content
                         div.five.wide.field(data-tooltip="Qual o número de atividades evangelísticas realizadas?")
                             label 2.2.1. Nº de atividades  evangelísticas:*
                         div.two.wide.field
-                            input(type="text" value="0" name="se_atividades_evangelisticas")
+                            input(type="text", value="0", name="se_atividades_evangelisticas")
                         div.ui.tiny.message
                             label * em templos e residências; recintos públicos ou ar livre; imprensa escrita, rádio e TV, etc.
                     div.inline.fields
@@ -262,39 +277,39 @@ block content
                         div.one.wide.field(data-tooltip="Novo Testamento")
                             label N.T.
                         div.one.wide.field
-                            input(type="text" value="0" name="se_textos_distribuidos_nt")
+                            input(type="text" value="0", name="se_textos_distribuidos_nt")
                         div.one.wide.field
                             label Folhetos
                         div.one.wide.field
-                            input(type="text" value="0" name="se_textos_distribuidos_folhetos")
+                            input(type="text" value="0", name="se_textos_distribuidos_folhetos")
                         div.one.wide.field
                             label Outros
                         div.one.wide.field
-                            input(type="text" value="0" name="se_textos_distribuidos_outros")
+                            input(type="text" value="0", name="se_textos_distribuidos_outros")
                         div.one.wide.field
                             label Total
                         div.two.wide.field
-                            input(type="text" value="0")
+                            input(type="text", id="somaTextos")
                     div.inline.fields
                         div.five.wide.field(data-tooltip="Qual trabalho missionário realizado?")
                             label 2.2.3. Trabalho missionário com:
                         div.two.wide.field.ui.checkbox
                             label JMN
-                            input(name="se_trabalho_missionario" type="checkbox")
+                            input(name="se_trabalho_missionario_jmn",  type="checkbox", value="1")
                         div.two.wide.field.ui.checkbox
                             label APMT
-                            input(name="se_trabalho_missionario" type="checkbox")
+                            input(name="se_trabalho_missionario_apmt", type="checkbox", value="1")
                         div.three.wide.field.ui.checkbox
                             label Parceria com o PMC
-                            input(name="se_trabalho_missionario" type="checkbox")
+                            input(name="se_trabalho_missionario_pmc", type="checkbox", value="1")
                         div.three.wide.field.ui.checkbox
                             label Plantação de Igrejas
-                            input(name="se_trabalho_missionario" type="checkbox")
+                            input(name="se_trabalho_missionario_plantacao", type="checkbox", value="1")
                     div.inline.fields
                         div.five.wide.field
                             label 2.2.4.Outra participação missionária:
                         div.eleven.wide.field
-                            input(type="text" value="0" name="se_trabalho_misisonario_outros")
+                            input(type="text", value="0", name="se_trabalho_misisonario_outros")
 
 
                 div.ui.segment
@@ -307,40 +322,40 @@ block content
                             label 2.3.1. Para professores de Escola Dominical:
                         div.two.wide.field
                             label Sim
-                            input(name="se_professores_ebd" type="radio")
+                            input(name="se_professores_ebd", type="radio", value="1")
                             label Não
-                            input(name="se_professores_ebd" type="radio" checked="checked")
+                            input(name="se_professores_ebd", type="radio", checked="checked", value="0")
                         div.three.wide.field(data-tooltip="Houve aperfeiçoamento para Liderança da Igreja?")
                             label 2.3.4. Para Liderança:
                         div.two.wide.field
                             label Sim
-                            input(name="se_lideranca" type="radio")
+                            input(name="se_lideranca", type="radio", value="1")
                             label Não
-                            input(name="se_lideranca" type="radio" checked="checked")
+                            input(name="se_lideranca", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.four.wide.field(data-tooltip="Houve aperfeiçoamento para Equipe Musical?")
                             label 2.3.2. Para Equipe de Música:
                         div.two.wide.field
                             label Sim
-                            input(name="se_equipes_musicas" type="radio")
+                            input(name="se_equipes_musicas", type="radio", value="1")
                             label Não
-                            input(name="se_equipes_musicas" type="radio" checked="checked")
+                            input(name="se_equipes_musicas", type="radio" checked="checked", value="0")
                         div.three.wide.field(data-tooltip="Número de Corais na Igreja")
                             label 2.3.5. Nº de Grupos Corais:
                         div.two.wide.field
-                            input(type="text" value="0" name="se_grupos_corais")
+                            input(type="text", value="0", name="se_grupos_corais")
                     div.inline.fields
                         div.four.wide.field(data-tooltip="Houve aperfeiçoamento para Presbíteros e Diáconos?")
                             label 2.3.3. Para Oficiais (Presbíteros e Diáconos)
                         div.two.wide.field
                             label Sim
-                            input(name="se_oficiais" type="radio")
+                            input(name="se_oficiais", type="radio", value="1")
                             label Não
-                            input(name="se_oficiais" type="radio" checked="checked")
+                            input(name="se_oficiais", type="radio", checked="checked", value="1")
                         div.three.wide.field(data-tooltip="Quantas equipes musicais há na Igreja?")
                             label 2.3.6. Nº de Conjuntos Musicais:
                         div.two.wide.field
-                            input(type="text" value="0" name="se_conjuntos_musicas")
+                            input(type="text", value="0", name="se_conjuntos_musicas")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 2. SUPERVISÃO ESPIRITUAL
@@ -351,28 +366,28 @@ block content
                         div.six.wide.field(data-tooltip="Nº de atos benificientes realizados pela Junta Diaconal.")
                             label 2.4.1.Nº de atos beneficentes realizados pela Junta Diaconal:
                         div.two.wide.field
-                            input(type="text" value="0" name="se_beneficientes_jdiaconal")
+                            input(type="text", value="0", name="se_beneficientes_jdiaconal")
                         div.three.wide.field(data-tooltip="Nº de atos benificientes realizados por outro Departamento.")
                             label Por outros departamentos:
                         div.two.wide.field
-                            input(type="text" value="0" name="se_beneficientes_outros")
+                            input(type="text", value="0", name="se_beneficientes_outros")
                         div.one.wide.field
                             label Total
                         div.two.wide.field
-                            input(type="text" value="0")
+                            input(type="text", id="somaBeneficientes")
                     div.inline.fields
                         div.six.wide.field(data-tooltip="Nº de visitas realizadas por Presbíteros e Diáconos.")
                             label 2.4.2.Nº de visitas feitas por presbíteros e diáconos:
                         div.two.wide.field
-                            input(type="text" value="0" name="se_visitas_presbiteros_diaconos")
+                            input(type="text", value="0", name="se_visitas_presbiteros_diaconos")
                         div.three.wide.field(data-tooltip="Nº de visitas realizadas por outro Departamento.")
                             label Por outros departamentos:
                         div.two.wide.field
-                            input(type="text" value="0" name="e_visitas_outros")
+                            input(type="text", value="0", name="se_visitas_outros")
                         div.one.wide.field
                             label Total
                         div.two.wide.field
-                            input(type="text" value="0")
+                            input(type="text", id="somaVisitas")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 3. SUPERVISÃO ADMINISTRATIVA
@@ -384,10 +399,10 @@ block content
                             label 3.1. A Igreja enviou fielmente os Dízimos dos Dízimos à Tesouraria IPB:
                         div.one.wide.field
                             label Sim
-                            input(name="sa_dizimo_fidelidade" type="radio")
+                            input(name="sa_dizimo_fidelidade", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_dizimo_fidelidade" type="radio" checked="checked")
+                            input(name="sa_dizimo_fidelidade", type="radio", checked="checked", value="0")
 
                 div.ui.form.segment
                     div.ui.top.left.attached.label REUNIÕES
@@ -396,129 +411,129 @@ block content
                             label 3.2. Conselho:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_conselho")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
 
                         div.four.wide.field
                             label 3.5. Mesa Administrativa da Cong. Presbiterial:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_mesa_administrativa")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
 
                     div.inline.fields
                         div.four.wide.field
                             label 3.3. Junta Diaconal:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_jdiaconal")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
 
                         div.four.wide.field
                             label 3.6. Comissão de Exame de Contas da Tesouraria:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_tesouraria")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
 
                     div.inline.fields
                         div.four.wide.field
                             label 3.4. Assembléia Geral:
                         div.four.wide.field
                             select.ui.fluid.search.dropdown(name="sa_reunioes_assembleia")
-                                option(value="") Igreja
-                                option(value="1") Congregação Presbiterial
-                                option(value="2") Ambas
+                                option(value="1") Igreja
+                                option(value="2") Congregação Presbiterial
+                                option(value="3") Ambas
                 div.ui.form.segment
                     div.inline.fields
                         div.seven.wide.field
                             label 3.7. Houve exame/aprovação balancetes da tesouraria?
                         div.one.wide.field
                             label Sim
-                            input(name="sa_balancete_tesouraria" type="radio")
+                            input(name="sa_balancete_tesouraria", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_balancete_tesouraria" type="radio" checked="checked")
+                            input(name="sa_balancete_tesouraria", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.seven.wide.field
                             label 3.8. Há oficiais com mandato a vencer no ano a seguir?
                         div.one.wide.field
                             label Sim
-                            input(name="sa_officiais_venc" type="radio")
+                            input(name="sa_officiais_venc", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_officiais_venc" type="radio" checked="checked")
+                            input(name="sa_officiais_venc", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.two.wide.field(data-tooltip="Nº Presbíteros com mandato a vencer no próximo ano.")
                             label Nº Presbíteros:
                         div.two.wide.field
-                            input(type="text" value="0" name="sa_officiais_venc_presbiteros")
+                            input(type="text", value="0", name="sa_officiais_venc_presbiteros")
                         div.two.wide.field(data-tooltip="Nº Diáconos com mandato a vencer no próximo ano.")
                             label Nº Diáconos
                         div.two.wide.field
-                            input(type="text" value="0" name="sa_officiais_venc_diaconos")
+                            input(type="text", value="0", name="sa_officiais_venc_diaconos")
                     div.inline.fields
                         div.three.wide.field
                             label Quais?
                     div.inline.fields
                         div.sixteen.wide.field
-                            textarea(rows="4" value="0" name="sa_id_oficiais_vencimento" placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer")
+                            textarea(rows="4", name="sa_oficiais_vencimento", placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer")
                     div.inline.fields
                         div.one.wide.field
                             label FAP?
                         div.one.wide.field
                             label Sim
-                            input(name="sa_fap" type="radio")
+                            input(name="sa_fap", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_fap" type="radio" checked="checked")
+                            input(name="sa_fap", type="radio", checked="checked", value="0")
                         div.one.wide.field
                         div.two.wide.field
                             label IPB-PREV?
                         div.one.wide.field
                             label Sim
-                            input(name="sa_ipb_prev" type="radio")
+                            input(name="sa_ipb_prev", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_ipb_prev" type="radio" checked="checked")
+                            input(name="sa_ipb_prev", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.six.wide.field
                             label 3.9. Idem, dos livros e relatórios das sociedades?
                         div.one.wide.field
                             label Sim
-                            input(name="sa_idem_livros_sociedades" type="radio")
+                            input(name="sa_idem_livros_sociedades", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_idem_livros_sociedades" type="radio" checked="checked")
+                            input(name="sa_idem_livros_sociedades", type="radio", checked="checked", value="0")
                         div.six.wide.field
                             label 3.11. Houve contribuição para causas extra-locais?
                         div.one.wide.field
                             label Sim
-                            input(name="sa_contribuicao_extra" type="radio")
+                            input(name="sa_contribuicao_extra", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_contribuicao_extra" type="radio" checked="checked")
+                            input(name="sa_contribuicao_extra", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.six.wide.field
                             label 3.10. Houve nomeação de conselheiros às Sociedades?
                         div.one.wide.field
                             label Sim
-                            input(name="sa_nomeacao" type="radio")
+                            input(name="sa_nomeacao", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_nomeacao" type="radio" checked="checked")
+                            input(name="sa_nomeacao", type="radio", checked="checked", value="0")
                         div.six.wide.field
                             label 3.12. Contribuiu com Previdência Social pastor(es)?
                         div.one.wide.field
                             label Sim
-                            input(name="sa_contribuicao_previdencia" type="radio")
+                            input(name="sa_contribuicao_previdencia", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="sa_contribuicao_previdencia" type="radio" checked="checked")
+                            input(name="sa_contribuicao_previdencia", type="radio", checked="checked", value="1")
                     div.inline.fields
                         div.eight.wide.field
                             label 3.13. Reforma e/ou Construção em projeto:
@@ -526,9 +541,9 @@ block content
                             label 3.14. Reforma e/ou Construção em andamento:
                     div.inline.fields
                         div.eight.wide.field
-                            textarea(rows="4" value="0", name="sa_reforma_construcao_projeto" placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto.")
+                            textarea(rows="4", name="sa_reforma_construcao_projeto", placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto.")
                         div.eight.wide.field
-                            textarea(rows="4" value="0", name="sa_reforma_construcao_andamento" placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento.")
+                            textarea(rows="4", name="sa_reforma_construcao_andamento", placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento.")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 4. PLANEJAMENTO ESTRATÉGICO
@@ -541,10 +556,10 @@ block content
                             label 4.1 A Igreja tem Planejamento Estratégico?
                         div.one.wide.field
                             label Sim
-                            input(name="pe_exite_pe" type="radio")
+                            input(name="pe_tem_planejamento_estrategico", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pe_exite_pe" type="radio" checked="checked")
+                            input(name="pe_tem_planejamento_estrategico", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.eight.wide.field
                             label 4.2. Quais os objetivos propostos e alcançados?
@@ -552,9 +567,9 @@ block content
                             label 4.3. Quais os objetivos propostos e NÃO alcançados? Identificar as dificuldades.
                     div.inline.fields
                         div.eight.wide.field
-                            textarea(rows="4" value="0", name="pe_objetivos_sucesso" placeholder="Cite os objetivos que foram propostos e alcançados.")
+                            textarea(rows="4", name="pe_objetivos_alcancados", placeholder="Cite os objetivos que foram propostos e alcançados.")
                         div.eight.wide.field
-                            textarea(rows="4" value="0", name="pe_objetivos_falha_dificuldades" placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados.")
+                            textarea(rows="4", name="pe_objetivos_falhos", placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados.")
 
                 div.ui.segment
                     div.ui.red.ribbon.label(style="font-size:0.92857143em;") 5. PATRIMÔNIO
@@ -566,35 +581,35 @@ block content
                             label 5.1. A Igreja tem Seguro do bem patrimonial?
                         div.one.wide.field
                             label Sim
-                            input(name="pa_seguro_patrimonial" type="radio")
+                            input(name="pat_seguro_patrimonial", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pa_seguro_patrimonial" type="radio" checked="checked")
+                            input(name="pat_seguro_patrimonial", type="radio", checked="checked", value="0")
                         div.six.wide.field
                             label 5.2. Tem Alvará de Funcionamento?
                         div.one.wide.field
                             label Sim
-                            input(name="pa_alvara" type="radio")
+                            input(name="pat_alvara", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pa_alvara" type="radio" checked="checked")
+                            input(name="pat_alvara", type="radio", checked="checked", value="0")
                     div.inline.fields
                         div.six.wide.field
                             label 5.3. Tem Licença do Corpo de Bombeiros em dia?
                         div.one.wide.field
                             label Sim
-                            input(name="pa_licenca_bombeiros" type="radio")
+                            input(name="pat_licenca_bombeiros", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pa_licenca_bombeiros" type="radio" checked="checked")
+                            input(name="pat_licenca_bombeiros", type="radio", checked="checked", value="0")
                         div.six.wide.field
                             label 5.4. Tem Certificado Digital?
                         div.one.wide.field
                             label Sim
-                            input(name="pa_certificado_digital" type="radio")
+                            input(name="pat_certificado_digital", type="radio", value="1")
                         div.one.wide.field
                             label Não
-                            input(name="pa_certificado_digital" type="radio" checked="checked")
+                            input(name="pat_certificado_digital", type="radio", checked="checked", value="0")
 
             div.ui.segments
                 div.ui.green.segment(style="text-align: center; background-color: #F9FAFB")
@@ -655,3 +670,5 @@ block specific-js
     script(src="js/plugins/dataTables.min.js")
     script(src="js/plugins/sweetalert.min.js")
     script(src="js/app/relatorios-conselhos-app.js")
+    script().
+            var usuario = {!!\App\User::with(['presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo', 'presbitero.endereco_estado', 'presbitero.endereco_cidade', 'presbitero.nascimento_estado', 'presbitero.nascimento_cidade',])->where('id', 1)->get()!!}

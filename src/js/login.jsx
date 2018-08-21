@@ -31,26 +31,21 @@ $(document)
                     }
                 },
                 onSuccess: function () {
-                    let pass = form_login.password.value;
-                    let hashpass = btoa(pass);
-                    let form = [
-                        {name: 'email', value: form_login.email.value},
-                        {name: 'password', value: hashpass}
-                    ];
-                    $.post('api/connect', form)
+                    let form = $(form_login).serializeArray();
+                    $.post('/api/connect', form)
                         .done(function (response) {
-                            console.log(response[0]);
+                            console.log(response);
                             let data = JSON.stringify(response[0]);
                             sessionStorage.setItem(btoa("user-data"), btoa(data));
                             //let json = JSON.parse(sessionStorage.getItem("user-data"))
                             document.location.href = '/inicio';
                         })
                         .fail(function () {
+                            console.log(response);
                             $("#msg_error").text("E-mail ou Senha incorretos!");
                             $("#msg_login_error").show();
                         })
                     ;
-
                     return false;
                 }
             })

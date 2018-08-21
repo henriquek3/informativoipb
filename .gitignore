@@ -48,9 +48,7 @@ node_modules/
 
 # interface api
 composer.lock
-# Composer packages
 vendor/
-teste/
 *.log
 *.tmp
 *.tmp.*
@@ -67,16 +65,14 @@ package-lock.json
 .versions/
 $RECYCLE.BIN/
 .vscode/
-
-# Arquivos do Front-end
-dist/*.html
-dist/js/app/
 public/js/app/
 public/css/main.min.css
-public/css/main.min.css.map
-dist/css/
-dist/modals/
+dist/
 templates/
 .phpintel/
 .vs/
 semantic/
+.env
+src/tests/
+public/js/app.js
+public/css/app.css

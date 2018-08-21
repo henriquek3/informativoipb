@@ -1,6 +1,6 @@
 let id_row, tr_row, tbl_relatorios_ministeriais, tbl_api, validator;
 tbl_relatorios_ministeriais = $("#tbl_relatorios_ministeriais");
-let relatorios_ministeriais;
+//let relatorios_ministeriais;
 $(document).ready(function () {
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -38,7 +38,7 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/presbiterios')
+        $.get('/api/relministeriais')
             .done(function (response) {
                 for (let key in response) {
                     let tr, row, id, tipo_relatorio, data_lancamento, data_ultima_alteracao, status, ano;
@@ -49,21 +49,21 @@ $(document).ready(function () {
                      * @type {jQuery}
                      */
                     id = $('<td/>').html(row.id);
-                    data_lancamento = $('<td/>').html(row.data_lancamento);
-                    data_ultima_alteracao = $('<td/>').html(row.data_ultima_alteracao);
-                    tipo_relatorio = $('<td/>').html("Relatório do Conselho");
-                    status = $('<td/>').html(row.status);
+                    data_lancamento = $('<td/>').html(row.created_at);
+                    data_ultima_alteracao = $('<td/>').html(row.updated_at);
+                    tipo_relatorio = $('<td/>').html("RELATÓRIO DO MINISTRO");
+                    status = $('<td/>').html(row.status_relatorio);
                     ano = $('<td/>').html(row.ano);
 
                     /**
                      * Adiciona as células nas linhas
                      */
                     tr.append(id)
+                        .append(tipo_relatorio)
                         .append(data_lancamento)
                         .append(data_ultima_alteracao)
-                        .append(tipo_relatorio)
-                        .append(ano)
-                        .append(status);
+                        .append(status)
+                        .append(ano);
                     /**
                      * Adiciona linhas na tabela
                      */
@@ -76,7 +76,7 @@ $(document).ready(function () {
         ;
     }
 
-    //getDataTable();
+    getDataTable();
 
     /**
      * Instancia DataTables() e organiza os eventos do click
@@ -136,7 +136,7 @@ $(document).ready(function () {
         }, 1000);
     }
 
-    //instanciaDataTables(); // init function instanciaDataTables() {};
+    instanciaDataTables(); // init function instanciaDataTables() {};
 
     /**
      * Validador do Formulario, utilizado para incluir ou editar novos registros
@@ -146,7 +146,7 @@ $(document).ready(function () {
         rules: {
             condicao_moradia: {
                 required: true,
-                minlength: 4,
+                minlength: 1,
                 maxlength: 255
             },
             ordenacao_data: {
@@ -156,12 +156,12 @@ $(document).ready(function () {
             },
             dedicacao_ministerio: {
                 required: true,
-                minlength: 4,
+                minlength: 1,
                 maxlength: 20
             },
             ferias: {
                 required: true,
-                minlength: 4,
+                minlength: 1,
                 maxlength: 10
             },
             congruas: {
@@ -376,13 +376,13 @@ $(document).ready(function () {
              * Estes campos são para popular o dataTable pelo nome e não pelo id do response
              * @type {jQuery}
              */
-            let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
-            let regiao = $("select[name='regiao'] :selected").text();
+            //let sinodo = $("select[name='id_sinodo'] :selected").text().slice(0, 4);
+            //let regiao = $("select[name='regiao'] :selected").text();
 
             if (id_row > 0) {
                 let form = $('#relatorios_ministeriais').serializeArray();
                 form.unshift({name: 'id', value: id_row});
-                $.post('api/presbiterios/update', form)
+                $.post('api/relministeriais/update', form)
                     .done(function (response) {
                         tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
@@ -433,8 +433,21 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#relatorios_ministeriais').serializeArray();
-                $.post('api/presbiterios/store', form)
+                $.post('api/relministeriais/store', form)
                     .done(function (response) {
+                        response = response[0];
+                        console.log(response);
+                        tbl_api.row(tr_row).remove();
+                        //id_row = response.id;
+                        /*tbl_api.row.add([
+                            response.id,
+                            response.nome.toUpperCase(),
+                            response.sigla.toUpperCase(),
+                            sinodo,
+                            regiao.toUpperCase()
+                        ]).draw(false);*/
+
+                    /*.done(function (response) {
                         id_row = response.id;
                         tbl_api.row.add([
                             response.id,
@@ -442,7 +455,7 @@ $(document).ready(function () {
                             response.sigla.toUpperCase(),
                             sinodo,
                             regiao.toUpperCase()
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -484,23 +497,98 @@ $(document).ready(function () {
                 ;
             }
         }
-    });    
+    });
 
+
+    /** função para completar automaticamente os input's com os dados do usuário **/
+    function getBdInfo() {
+        $.get('api/presbiteros?id=' + id_row)
+            .done(function (response) {
+                console.log(response);
+                let data = response[0];
+                relatorios_ministeriais.id_presbitero.value = data.id;
+                relatorios_ministeriais.nome.value = data.nome;
+                relatorios_ministeriais.nome_pai.value = data.nome_pai;
+                relatorios_ministeriais.nome_mae.value = data.nome_mae;
+                relatorios_ministeriais.nascimento_data.value = data.nascimento_data;
+                relatorios_ministeriais.nascimento_id_estado.value = data.nascimento_id_estado;
+                relatorios_ministeriais.nascimento_id_cidade.value = data.nascimento_id_cidade;
+                relatorios_ministeriais.rg.value = data.rg;
+                relatorios_ministeriais.rg_emissor.value = data.rg_emissor;
+                relatorios_ministeriais.cpf.value = data.cpf;
+                relatorios_ministeriais.estado_civil.value = data.estado_civil;
+                relatorios_ministeriais.conjuge_nome.value = data.conjuge_nome;
+                relatorios_ministeriais.conjuge_nascimento.value = data.conjuge_nascimento;
+                relatorios_ministeriais.nome_filhos.value = data.nome_filhos;
+                relatorios_ministeriais.endereco.value = data.endereco;
+                relatorios_ministeriais.endereco_nr.value = data.endereco_nr;
+                relatorios_ministeriais.endereco_complemento.value = data.endereco_complemento;
+                relatorios_ministeriais.endereco_bairro.value = data.endereco_bairro;
+                relatorios_ministeriais.telefone.value = data.telefone;
+                relatorios_ministeriais.celular.value = data.celular;
+                relatorios_ministeriais.cep.value = data.cep;
+                relatorios_ministeriais.cx_postal.value = data.cx_postal;
+                relatorios_ministeriais.cx_postal_cep.value = data.cx_postal_cep;
+                relatorios_ministeriais.email.value = data.email;
+                relatorios_ministeriais.endereco_id_estado.value = data.endereco_id_estado;
+                relatorios_ministeriais.endereco_id_cidade.value = data.endereco_id_cidade;
+                relatorios_ministeriais.telefone_igreja.value = data.igreja.telefone;
+            })
+    }
+
+    //getBdInfo();
+
+    function GetTest() {
+        let data = usuario[0].presbitero;
+        relatorios_ministeriais.sinodo.value = data.igreja.presbiterio.sinodo.nome;
+        relatorios_ministeriais.presbiterio.value = data.igreja.presbiterio.nome;
+        relatorios_ministeriais.id_igreja.value = data.id_igreja;
+        relatorios_ministeriais.igreja.value = data.igreja.nome;
+        relatorios_ministeriais.id_presbitero.value = data.id;
+        relatorios_ministeriais.nome.value = data.nome;
+        relatorios_ministeriais.nome_pai.value = data.nome_pai;
+        relatorios_ministeriais.nome_mae.value = data.nome_mae;
+        relatorios_ministeriais.nascimento_data.value = data.nascimento_data;
+        relatorios_ministeriais.nascimento_id_estado.value = data.nascimento_estado.nome;
+        relatorios_ministeriais.nascimento_id_cidade.value = data.nascimento_cidade.nome;
+        relatorios_ministeriais.rg.value = data.rg;
+        relatorios_ministeriais.rg_emissor.value = data.rg_emissor;
+        relatorios_ministeriais.cpf.value = data.cpf;
+        relatorios_ministeriais.estado_civil.value = data.estado_civil;
+        relatorios_ministeriais.conjuge_nome.value = data.conjuge_nome;
+        relatorios_ministeriais.conjuge_nascimento.value = data.conjuge_nascimento;
+        relatorios_ministeriais.nome_filhos.value = data.nome_filhos;
+        relatorios_ministeriais.endereco.value = data.endereco;
+        relatorios_ministeriais.endereco_nr.value = data.endereco_nr;
+        relatorios_ministeriais.endereco_complemento.value = data.endereco_complemento;
+        relatorios_ministeriais.endereco_bairro.value = data.endereco_bairro;
+        relatorios_ministeriais.telefone.value = data.telefone;
+        relatorios_ministeriais.celular.value = data.celular;
+        relatorios_ministeriais.cep.value = data.cep;
+        relatorios_ministeriais.cx_postal.value = data.cx_postal;
+        relatorios_ministeriais.cx_postal_cep.value = data.cx_postal_cep;
+        relatorios_ministeriais.email.value = data.email;
+        relatorios_ministeriais.endereco_id_estado.value = data.endereco_estado.nome;
+        relatorios_ministeriais.endereco_id_cidade.value = data.endereco_cidade.nome;
+        relatorios_ministeriais.telefone_igreja.value = data.igreja.telefone;
+    }
+
+    GetTest();
 
     /**
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiterios?id=' + id_row)
+        $.get('api/relministeriais?id=' + id_row)
             .done(function (response) {
+                console.log(response);
                 let data = response[0];
-                relatorios_ministeriais.nome.value = data.nome;
-                relatorios_ministeriais.sigla.value = data.sigla;
-                relatorios_ministeriais.regiao.value = data.regiao;
-                relatorios_ministeriais.id_presbitero.value = data.id_presbitero;
-                relatorios_ministeriais.ano.value = data.ano;
-                relatorios_ministeriais.id_igrej.value = data.id_igrej;
-                relatorios_ministeriais.nr_dependentes.value = data.nr_dependentes;
+                //relatorios_ministeriais.sigla.value = data.sigla;
+                //relatorios_ministeriais.regiao.value = data.regiao;
+                //relatorios_ministeriais.id_presbitero.value = data.id_presbitero;
+                //relatorios_ministeriais.ano.value = data.ano;
+                //relatorios_ministeriais.id_igreja.value = data.id_igreja;
+                //relatorios_ministeriais.nr_dependentes.value = data.nr_dependentes;
                 relatorios_ministeriais.condicao_moradia.value = data.condicao_moradia;
                 relatorios_ministeriais.ferias.value = data.ferias;
                 relatorios_ministeriais.congruas.value = data.congruas;
@@ -574,6 +662,94 @@ $(document).ready(function () {
         ;
     }
 
+    //getDataForm();
+
+
+
+    function getDataSinodos() {
+        $.get('api/sinodos')
+            .done(function (response) {
+                $(relatorios_ministeriais.id_sinodo).append($('<option />').text('- -'));
+
+                $.each(response, function () {
+                    $(relatorios_ministeriais.id_sinodo).append(
+                        $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                    );
+                });
+            })
+            .fail(function (response) {
+                console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
+            })
+        ;
+    }
+
+    getDataSinodos();
+
+    function getDataPresbiterio() {
+        $(relatorios_ministeriais.id_sinodo).on('change', function () {
+            if ($(relatorios_ministeriais.id_sinodo).val() > 0) {
+                $("select[name='id_presbiterio']").children().remove();
+                $("#div_presbiterio").find(".search").hide();
+                $("#loader_presbiterio").show();
+                $.get('api/presbiterios?sinodo=' + $(relatorios_ministeriais.id_sinodo).val())
+                    .done(function (response) {
+                        $(relatorios_ministeriais.id_presbiterio).append($('<option />').text('- -'));
+                        $.each(response, function () {
+                            $(relatorios_ministeriais.id_presbiterio).append(
+                                $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_presbiterio").find(".search").show();
+                        $("#loader_presbiterio").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataPresbiterio();
+
+    function getDataIgreja() {
+        $(relatorios_ministeriais.id_presbiterio).on('change', function () {
+            if ($(relatorios_ministeriais.id_presbiterio).val() > 0) {
+                $("select[name='id_igreja']").children().remove();
+                $("#div_igreja").find(".search").hide();
+                $("#loader_igreja").show();
+                $.get('api/igrejas?presbiterio=' + $(relatorios_ministeriais.id_presbiterio).val())
+                    .done(function (response) {
+                        $(relatorios_ministeriais.id_igreja).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(relatorios_ministeriais.id_igreja).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_igreja").find(".search").show();
+                        $("#loader_igreja").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataIgreja();
 
     /**
      * Exclui as informações do banco de dados

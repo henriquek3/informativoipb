@@ -11,16 +11,16 @@ header
                         i.dropdown.icon
 
                         div.menu
-                            a.item(href="cadastros-sinodos")
+                            a.item(href="/cadastros/sinodos")
                                 i.radio.icon
                                 | Sinodos
-                            a.item(href="cadastros-presbiterios")
+                            a.item(href="/cadastros/presbiterios")
                                 i.radio.icon
                                 | Presbitérios
-                            a.item(href="cadastros-igrejas")
+                            a.item(href="/cadastros/igrejas")
                                 i.radio.icon
                                 | Igrejas
-                            a.item(href="cadastros-ministros")
+                            a.item(href="/cadastros/ministros")
                                 i.radio.icon
                                 | Ministros
 
@@ -38,9 +38,6 @@ header
                             a.item(href="relatorios-estatisticas")
                                 i.radio.icon
                                 | Estatistica
-                            a.item(href="#")
-                                i.radio.icon
-                                | Financeiro
 
                     div.ui.simple.dropdown.item
                         i.big.cubes.icon
@@ -104,9 +101,12 @@ header
                             a.item.in-dev(href="#")
                                 i.talk.icon
                                 | Solicitar Ajuda
-                            a.item(id="logout")
+                            a.item(href="{{ route('logout') }}",
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();")
                                 i.sign.out.icon
-                                | Sair do Sistema
+                                | {{ __('Desconectar') }}
+                            form(id="logout-form", action="{{ route('logout') }}", method="POST", style="display: none;")
+                                | @csrf
                                         
                     span(style="margin-top:15px;margin-left: 20px;")
                         i.big.envelope.green.icon.looping

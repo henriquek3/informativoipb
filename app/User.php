@@ -1,0 +1,123 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+    use SoftDeletes;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'nome',
+        'password',
+        'email',
+        'cpf',
+        'status',
+        'nivel',
+        'perfil',
+        'observacoes',
+        'user_id',
+        'id_sinodo',
+        'id_presbiterio',
+        'id_igreja',
+        'id_presbitero',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * Altera a tabela de conexão
+     * @var string
+     */
+    //protected $table = 'usuarios';
+
+    /**
+     * --------------------------------------------------------
+     * Mutators
+     * --------------------------------------------------------
+     */
+
+    /**
+     *
+     * @return void
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function presbitero()
+    {
+        return $this->belongsTo(\App\Presbiteros::class, 'id_presbitero');
+    }
+
+    public function sinodos()
+    {
+        return $this->hasMany('App\Sinodos');
+    }
+
+    public function presbiterios()
+    {
+        return $this->hasMany('App\Presbiterios');
+    }
+
+    public function igrejas()
+    {
+        return $this->hasMany('App\Igrejas');
+    }
+
+    public function congregacoes()
+    {
+        return $this->hasMany('App\IgrejasCongregacoes');
+    }
+
+    public function presbiteros()
+    {
+        return $this->hasMany('App\Presbiteros');
+    }
+
+    public function plePresbiterios()
+    {
+        return $this->hasMany('App\PlePresbiterios');
+    }
+
+    public function pleSinodos()
+    {
+        return $this->hasMany('App\PleSinodos');
+    }
+
+    public function relConselhos()
+    {
+        return $this->hasMany('App\RelConselhos');
+    }
+
+    public function relEstatisticas()
+    {
+        return $this->hasMany('App\RelEstatisticas');
+    }
+
+    public function relMinistros()
+    {
+        return $this->hasMany('App\RelMinistros');
+    }
+}

@@ -1,6 +1,6 @@
 let id_row, tr_row, tbl_relatorios_estatisticas, tbl_api, validator;
 tbl_relatorios_estatisticas = $("#tbl_relatorios_estatisticas");
-let relatorios_estatisticas;
+//let relatorios_estatisticas;
 $(document).ready(function () {
     /**
      * Função utilizada devido o select com ui.search.dropdown
@@ -678,7 +678,7 @@ $(document).ready(function () {
             if (id_row > 0) {
                 let form = $('#relatorios_estatisticas').serializeArray();
                 form.unshift({name: 'id', value: id_row});
-                $.post('api/presbiterios/update', form)
+                $.post('api/relestatisticas/update', form)
                     .done(function (response) {
                         tbl_api.row(tr_row).remove();
                         tbl_api.row.add([
@@ -729,16 +729,19 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#relatorios_estatisticas').serializeArray();
-                $.post('api/presbiterios/store', form)
+                $.post('api/relestatisticas/store', form)
                     .done(function (response) {
-                        id_row = response.id;
-                        tbl_api.row.add([
+                        response = response[0];
+                        console.log(response);
+                        tbl_api.row(tr_row).remove();
+                        //id_row = response.id;
+                        /*tbl_api.row.add([
                             response.id,
                             response.nome.toUpperCase(),
                             response.sigla.toUpperCase(),
                             sinodo,
                             regiao.toUpperCase()
-                        ]).draw(false);
+                        ]).draw(false);*/
 
                         iziToast.success({
                             title: 'OK',
@@ -792,19 +795,74 @@ $(document).ready(function () {
 
 
 
+    /** função para completar automaticamente os input's com os dados do usuário **/
+    function getBdInfo() {
+        $.get('api/igrejas?id=' + id_row)
+            .done(function (response) {
+                let data = usuario[0].presbitero;
+                relatorios_estatisticas.nome.value = data.igreja.nome;
+                relatorios_estatisticas.sinodo.value = data.igreja.presbiterio.sinodo.nome;
+                relatorios_estatisticas.presbiterio.value = data.igreja.presbiterio.nome;
+                relatorios_estatisticas.id_igreja.value = data.id_igreja;
+                relatorios_estatisticas.endereco.value = data.igreja.endereco;
+                relatorios_estatisticas.endereco_numero.value = data.igreja.endereco_numero;
+                relatorios_estatisticas.endereco_complemento.value = data.igreja.endereco_complemento;
+                relatorios_estatisticas.endereco_bairro.value = data.igreja.endereco_bairro;
+                relatorios_estatisticas.estado.value = data.endereco_estado.nome;
+                relatorios_estatisticas.cidade.value = data.endereco_cidade.nome;
+                relatorios_estatisticas.endereco_cep.value = data.igreja.endereco_cep;
+                relatorios_estatisticas.endereco_cx_postal.value = data.igreja.endereco_cx_postal;
+                relatorios_estatisticas.endereco_cx_cep.value = data.igreja.endereco_cep;
+                relatorios_estatisticas.telefone.value = data.igreja.telefone;
+                relatorios_estatisticas.email.value = data.igreja.email;
+                relatorios_estatisticas.homepage.value = data.igreja.website;
+                relatorios_estatisticas.cnpj.value = data.igreja.cnpj;
+                relatorios_estatisticas.data_organizacao.value = data.igreja.data_organizacao;
+
+            })
+    }
+
+    getBdInfo();
+
+    /** função para completar automaticamente os input's com os dados do usuário **/
+    function getRelator() {
+        $.get('api/igrejas?id=' + id_row)
+            .done(function (response) {
+                let data = usuario[0].presbitero;
+                relatorios_estatisticas.relator_nome.value = data.nome;
+                relatorios_estatisticas.relator_endereco.value = data.endereco;
+                relatorios_estatisticas.relator_endereco_numero.value = data.endereco_nr;
+                relatorios_estatisticas.relator_endereco_complemento.value = data.endereco_complemento;
+                relatorios_estatisticas.relator_endereco_bairro.value = data.endereco_bairro;
+                relatorios_estatisticas.relator_estado.value = data.endereco_estado.nome;
+                relatorios_estatisticas.relator_cidade.value = data.endereco_cidade.nome;
+                relatorios_estatisticas.relator_endereco_cep.value = data.cep;
+                relatorios_estatisticas.relator_cx.value = data.cx_postal;
+                relatorios_estatisticas.relator_cep_cx.value = data.cx_postal_cep;
+                relatorios_estatisticas.relator_telefone.value = data.telefone;
+                relatorios_estatisticas.relator_email.value = data.igreja.email;
+                relatorios_estatisticas.relator_celular.value = data.celular;
+                relatorios_estatisticas.relator_igreja_telefone.value = data.igreja.telefone;
+
+            })
+    }
+
+    getRelator();
+
+
 
     /**
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/presbiterios?id=' + id_row)
+        $.get('api/relestatisticas?id=' + id_row)
             .done(function (response) {
+                console.log(response);
                 let data = response[0];
-                relatorios_estatisticas.nome.value = data.nome;
-                relatorios_estatisticas.sigla.value = data.sigla;
-                relatorios_estatisticas.regiao.value = data.regiao;
-                relatorios_estatisticas.ano.value = data.ano;
-                relatorios_estatisticas.id_igreja.value = data.id_igreja;
+                //relatorios_estatisticas.sigla.value = data.sigla;
+                //relatorios_estatisticas.regiao.value = data.regiao;
+                //relatorios_estatisticas.ano.value = data.ano;
+                //relatorios_estatisticas.id_igreja.value = data.id_igreja;
                 relatorios_estatisticas.ec_pastores.value = data.ec_pastores;
                 relatorios_estatisticas.ecl_licenciados.value = data.ecl_licenciados;
                 relatorios_estatisticas.ecl_presbiteros.value = data.ecl_presbiteros;
@@ -901,6 +959,93 @@ $(document).ready(function () {
         ;
     }
 
+    //getDataForm();
+
+    /*function getDataSinodos() {
+        $.get('api/sinodos')
+            .done(function (response) {
+                $(relatorios_estatisticas.id_sinodo).append($('<option />').text('- -'));
+
+                $.each(response, function () {
+                    $(relatorios_estatisticas.id_sinodo).append(
+                        $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                    );
+                });
+            })
+            .fail(function (response) {
+                console.log(response);
+                iziToast.warning({
+                    title: 'Erro',
+                    message: 'Consulta não realizada, verifique sua conexão!',
+                });
+            })
+        ;
+    }
+
+    getDataSinodos();
+
+    function getDataPresbiterio() {
+        $(relatorios_estatisticas.id_sinodo).on('change', function () {
+            if ($(relatorios_estatisticas.id_sinodo).val() > 0) {
+                $("select[name='id_presbiterio']").children().remove();
+                $("#div_presbiterio").find(".search").hide();
+                $("#loader_presbiterio").show();
+                $.get('api/presbiterios?sinodo=' + $(relatorios_estatisticas.id_sinodo).val())
+                    .done(function (response) {
+                        $(relatorios_estatisticas.id_presbiterio).append($('<option />').text('- -'));
+                        $.each(response, function () {
+                            $(relatorios_estatisticas.id_presbiterio).append(
+                                $('<option />').val(this.id).text(this.sigla.toUpperCase() + " / " + this.nome.toUpperCase())
+                            );
+                        });
+                        $("#div_presbiterio").find(".search").show();
+                        $("#loader_presbiterio").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataPresbiterio();
+
+    function getDataIgreja() {
+        $(relatorios_estatisticas.id_presbiterio).on('change', function () {
+            if ($(relatorios_estatisticas.id_presbiterio).val() > 0) {
+                $("select[name='id_igreja']").children().remove();
+                $("#div_igreja").find(".search").hide();
+                $("#loader_igreja").show();
+                $.get('api/igrejas?presbiterio=' + $(relatorios_estatisticas.id_presbiterio).val())
+                    .done(function (response) {
+                        $(relatorios_estatisticas.id_igreja).append($('<option />').text('- -'));
+
+                        $.each(response, function () {
+                            $(relatorios_estatisticas.id_igreja).append(
+                                $('<option />').val(this.id).text(this.nome.toUpperCase())
+                            );
+                        });
+
+                        $("#div_igreja").find(".search").show();
+                        $("#loader_igreja").hide()
+                    })
+                    .fail(function (response) {
+                        iziToast.error({
+                            title: 'Erro',
+                            message: 'Consulta não realizada, verifique sua conexão',
+                        });
+                    })
+                ;
+            }
+        });
+    }
+
+    getDataIgreja();*/
+
     /**
      * Exclui as informações do banco de dados
      * @returns {boolean}
@@ -926,7 +1071,7 @@ $(document).ready(function () {
             })
                 .then((resolve) => {
                     if (resolve) {
-                        $.post('/api/presbiterios/delete', {id: id_row})
+                        $.post('/api/relestatisticas/delete', {id: id_row})
                             .done(function () {
                                 tbl_api.row('.active').remove().draw(false);
                                 swal("Deletado!", "Seu registro foi deletado.", "success");
@@ -976,7 +1121,7 @@ $(document).ready(function () {
                 if (id_row > 0) {
                     let form = $('#relatorios_estatisticas').serializeArray();
                     form.unshift({name: 'id', value: id_row});
-                    $.post('api/presbiterios/update', form)
+                    $.post('api/relestatisticas/update', form)
                        .done(function (response) {
                             console.log(response);
                             tbl_api.row(tr_row).remove();
@@ -1027,7 +1172,7 @@ $(document).ready(function () {
                    ;
                 } else {
                     let form = $('#relatorios_estatisticas').serializeArray();
-                    $.post('api/presbiterios/store', form)
+                    $.post('api/relestatisticas/store', form)
                        .done(function (response) {
                             console.log(response);
 

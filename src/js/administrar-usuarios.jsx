@@ -205,7 +205,7 @@ $(document).ready(function () {
                 }
             });
 
-            tbl_api.page('next').draw(false); // ? Ativa paginação !
+            //tbl_api.page('next').draw(false); // ? Ativa paginação !
 
             /**
              * Utilizado para selecionar as linhas da tabela
@@ -236,6 +236,7 @@ $(document).ready(function () {
     function getDataTable() {
         $.get('/api/usuarios')
             .done(function (response) {
+                //console.log(response);
                 for (let key in response) {
                     let tr, row, id, nome, email, perfil, nivel, status;
                     tr = $('<tr/>');
@@ -248,19 +249,19 @@ $(document).ready(function () {
                     nome = $('<td/>').html(row.nome.toUpperCase());
                     email = $('<td/>').html(row.email.toUpperCase());
                     switch (row.perfil) {
-                        case '1':
+                        case 1:
                             perfil = $('<td/>').html("SEC. IGREJA");
                             break;
-                        case '2':
+                        case 2:
                             perfil = $('<td/>').html("SEC. PRESBITÉRIO");
                             break;
-                        case '3':
+                        case 3:
                             perfil = $('<td/>').html("SEC. SÍNODO");
                             break;
-                        case '4':
+                        case 4:
                             perfil = $('<td/>').html("SEC. SUPREMO");
                             break;
-                        case '5':
+                        case 5:
                             perfil = $('<td/>').html("SUPERV. GERAL");
                             break;
                         default:
@@ -268,10 +269,10 @@ $(document).ready(function () {
                             break;
                     }
                     switch (row.nivel) {
-                        case '0':
+                        case 0:
                             nivel = $('<td/>').html("COMUM");
                             break;
-                        case '1':
+                        case 1:
                             nivel = $('<td/>').html("SUPERIOR");
                             break;
                         default:
@@ -279,10 +280,10 @@ $(document).ready(function () {
                             break;
                     }
                     switch (row.status) {
-                        case '0':
+                        case 0:
                             status = $('<td/>', {'class': 'center aligned'}).append($("<i/>", {'class': 'ban icon red '}));
                             break;
-                        case '1':
+                        case 1:
                             status = $('<td/>', {'class': 'center aligned'}).append($("<i/>", {'class': 'check icon green '}));
                             break;
                         default:
@@ -318,10 +319,10 @@ $(document).ready(function () {
      * Traz as informações para edição
      */
     function getDataForm() {
-        $.get('api/usuarios?id=' + id_row)
+        $.get('api/usuarios/' + id_row + '/edit')
             .done(function (response) {
-                let data = response[0];
-                console.log(data);
+                let data = response;
+                //console.log(data);
                 formUsuarios.nome.value = data.nome;
                 formUsuarios.email.value = data.email;
                 formUsuarios.cpf.value = data.cpf;
@@ -430,13 +431,15 @@ $(document).ready(function () {
         rules: {
             nome: {
                 required: true,
-                minlength: 4,
-                maxlength: 255
+                minlength: 6,
+                maxlength: 128
             },
-            sigla: {
+            email: {
                 required: true,
-                minlength: 3,
-                maxlength: 5
+                maxlength: 64
+            },
+            cpf: {
+                required: true
             }
         },
         highlight: function (element, errorClass, validClass) {
@@ -447,17 +450,9 @@ $(document).ready(function () {
         },
         submitHandler: function () {
             if (id_row > 0) {
+                $('#formUsuarios').append('<input type="hidden" name="_method" value="put">');
                 let form = $('#formUsuarios').serializeArray();
-                form.unshift({name: 'id', value: id_row});
-                /**
-                 * Acrescenta ao array form os dados do usuario e data
-                 */
-                form.unshift({name: 'usuario_alteracao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_alteracao', value: window.getData});
-                /**
-                 * Acrescenta ao array form os dados do usuario e data
-                 */
-                $.post('api/usuarios/update', form)
+                $.post('api/usuarios/' + id_row + '/edit', form)
                     .done(function (response) {
                         console.log(response);
                         /*tbl_api.row(tr_row).remove();
@@ -529,16 +524,9 @@ $(document).ready(function () {
                 ;
             } else {
                 let form = $('#formUsuarios').serializeArray();
-                /**
-                 * Acrescenta ao array form os dados do usuario e data
-                 */
-                form.unshift({name: 'usuario_inclusao', value: user.ID_USUARIO});
-                form.unshift({name: 'data_inclusao', value: window.getData});
-                /**
-                 * Acrescenta ao array form os dados do usuario e data
-                 */
-                $.post('api/usuarios/store', form)
+                $.post('/api/usuarios', form)
                     .done(function (response) {
+                        id_row = response.id;
                         console.log(response);
                         /* let regiao;
                          switch (response.regiao) {
@@ -567,7 +555,6 @@ $(document).ready(function () {
                              response.sigla.toUpperCase(),
                              regiao
                          ]).draw(false);*/
-
                         iziToast.success({
                             title: 'OK',
                             message: 'Registro inserido com sucesso!',
@@ -579,31 +566,28 @@ $(document).ready(function () {
                         });
                     })
                     .fail(function (response) {
-                        console.log(response);
-                        let str = response.responseText;
-                        let result = str.indexOf("SQLSTATE[23000]");
-                        if (result > 0) {
-                            $(formUsuarios.sigla).parent().addClass("error");
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'A sigla já existe, verifique se este sínodo já foi cadastrado.',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'center',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
-                        } else {
-                            iziToast.error({
-                                title: 'Erro',
-                                message: 'Operação não realizada!',
-                                timeout: 10000,
-                                pauseOnHover: true,
-                                position: 'topRight',
-                                transitionIn: 'fadeInDown',
-                                transitionOut: 'fadeOutUp'
-                            });
+                        let msg = JSON.parse(response.responseText);
+                        if (response.status === 422) {
+                            if (msg.errors.cpf !== undefined) {
+                                $('#fcpf').addClass('error');
+                            }
+                            if (msg.errors.email !== undefined) {
+                                $('#femail').addClass('error');
+                            }
+                            let text = msg.errors.cpf !== undefined ? msg.errors.cpf + '\n' : '';
+                            text += msg.errors.email !== undefined ? msg.errors.email : '';
+                            swal(window.userName + ", Atenção!", text, "error");
+                            console.log(text);
                         }
+                        iziToast.error({
+                            title: 'Atenção! ',
+                            message: 'Houve um erro durante o processamento, por favor recarregue a página e tente novamente!',
+                            timeout: 10000,
+                            pauseOnHover: true,
+                            position: 'topRight',
+                            transitionIn: 'fadeInDown',
+                            transitionOut: 'fadeOutUp'
+                        });
                     })
                 ;
             }
@@ -633,9 +617,12 @@ $(document).ready(function () {
     /**
      * Ao clicar no botão limpar, reseta as classes de erro
      */
-    $(".ui.reset.button").on("click", function () {
+    $("button[type='reset']").on("click", function () {
         validator.resetForm();
+        formUsuarios.reset();
         $('form').form('reset');
+        id_row = null;
+        $(formUsuarios._method).remove();
     });
 
     /**
@@ -686,4 +673,44 @@ $(document).ready(function () {
     user = sessionStorage.getItem(user);
     user = atob(user);
     user = JSON.parse(user);*/
+
+    $(formDelete).on("submit", function () {
+        if (id_row > 0) {
+            $(formDelete).attr({
+                action: '/administrar-usuarios/' + id_row + '/delete'
+            });
+        } else {
+            return false;
+        }
+    });
+
+
+    /**
+     * Jquery Mask
+     */
+    $("input[name='cpf']").mask('000.000.000-00', {reverse: true});
+
+    $("input[name='cpf']").focusout(function () {
+        if (CPF.validate($("input[name='cpf']").val())) {
+            iziToast.success({
+                title: 'Verificado!',
+                message: 'O CPF informado é válido!',
+                timeout: 5000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        } else {
+            iziToast.warning({
+                title: 'Atenção! ',
+                message: 'O CPF informado é inválido!',
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        }
+    });
 });
