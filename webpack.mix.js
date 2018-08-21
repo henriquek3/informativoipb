@@ -28,6 +28,3 @@ mix.copy('node_modules/gerador-validador-cpf/dist/js/CPF.js',
  *   BrowserSync
  */
 mix.browserSync('http://localhost:8000');
-mix.browserSync({
-    proxy: 'http://localhost:8000'
-});
