@@ -50,5 +50,21 @@
 @endsection
 <!-- Page specific javascripts-->
 @section('javascript')
-    <script src="{{asset('js/app/index-app.js')}}"></script>
+    <script>
+        window.username = '{{auth()->user()->nome}}';
+    </script>
+    <script src="{{asset('js/app/index.js')}}"></script>
+    @if(session('welcome'))
+        <script>
+            iziToast.info({
+                title: 'Olá',
+                message: 'Seja bem vindo ' + username,
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        </script>
+    @endif
 @endsection

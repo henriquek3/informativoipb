@@ -15,17 +15,13 @@
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description"
           content="InformativoIPB é um micro S.A.D. desenvolvido para Igreja Presbiteriana do Brasil">
-    <style>
-        .envelope {
-            cursor: pointer;
-        }
-    </style>
+    <style> .envelope { cursor: pointer; } </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{asset('images/favicon.ico')}}">
     <!-- The javascript plugin to display page loading on top -->
-    <script src="{{asset('js/app/pace-app.js')}}"></script>
+    <script src="{{asset('js/pace.min.js')}}"></script>
     <title>InformativoIPB</title>
     <!-- Main CSS -->
 @include('includes.head')
