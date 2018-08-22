@@ -72,3 +72,4 @@ public/css/main.min.css
 .env
 public/js/app.js
 public/css/app.css
+!resources/views/vendor/pagination/semantic-ui.blade.php
