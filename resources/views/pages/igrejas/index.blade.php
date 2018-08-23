@@ -2,12 +2,14 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui segment"><a class="ui right floated green tiny button" href="/cadastros/igrejas/novo"><i
-                    class="plus icon"></i>Novo</a>
+    <div class="ui raised segment">
+        <a class="ui right floated green tiny button" href="/cadastros/igrejas/novo">
+            <i class="plus icon"></i>Novo
+        </a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
-        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Presbitérios
-            <div class="sub header" style="margin-left: -40px;">Visualize todos os presbitérios que estão
+        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Igrejas
+            <div class="sub header" style="margin-left: -40px;">Visualize todos os igrejas que estão
                 cadastrados.
             </div>
         </h1>

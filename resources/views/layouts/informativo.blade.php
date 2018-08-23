@@ -19,7 +19,7 @@
     @include('includes.header-mobile')
 
     <div class="ui container" style="margin-top: 100px; margin-bottom: 20px; display:none;" id="windows">
-        @include('pages.components.messages-crud')
+        @include('pages.components.messages')
         @yield('content')
     </div>
 </main>

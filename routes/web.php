@@ -151,3 +151,4 @@ Route::get('/api/estados', 'EstadoController@api');
 Route::get('/api/cidades', 'CidadeController@api');
 
 Route::get('/api/sinodos', 'SinodoController@api');
+Route::get('/api/presbiterios', 'PresbiterioController@api');

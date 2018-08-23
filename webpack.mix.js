@@ -20,7 +20,10 @@ mix.js('resources/assets/js/app.js', 'public/js')
 mix.copy('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
     'public/js/plugins/')
     .copy('node_modules/gerador-validador-cpf/dist/js/CPF.js',
-    'public/js/plugins/');
+        'public/js/plugins/')
+    .copy('node_modules/jquery-tablesort/jquery.tablesort.min.js',
+        'public/js/plugins/')
+;
 
 /*mix.js([
     'resources/assets/js/app/administrar-usuarios.js',

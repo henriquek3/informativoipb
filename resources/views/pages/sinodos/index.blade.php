@@ -2,7 +2,7 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui segment">
+    <div class="ui raised segment">
         <a class="ui right floated green tiny button" href="/cadastros/sinodos/novo"><i
                     class="plus icon"></i>Novo</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
@@ -46,5 +46,9 @@
     </div>
 @endsection
 @section('javascript')
-    <script type="text/javascript">$('table').tablesort();</script>
+    <script>
+        window.addEventListener("load", function () {
+            $('table').tablesort();
+        })
+    </script>
 @endsection

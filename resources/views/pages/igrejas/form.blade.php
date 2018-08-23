@@ -2,17 +2,21 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui segment"><a class="ui right floated blue tiny button" href="/cadastros/igrejas"><i
-                    class="reply icon"></i>Voltar</a>
+    <div class="ui raised segment">
+        <a class="ui right floated blue tiny button" href="/cadastros/igrejas">
+            <i class="reply icon"></i>
+            Voltar
+        </a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
-        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Igejas
-            <div class="sub header" style="margin-left: -40px;">Visualize todos os igrejas que estão cadastradas.
+        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Igrejas
+            <div class="sub header" style="margin-left: -40px;">Informações cadastrais de igrejas e suas congregações.
             </div>
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>
-        <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
+        {{--SE EXISTIR CONGREGAÇÃO NÃO LIBERAR BOTÃO EXCLUIR--}}
+        <form id="formDelete" name="formDelete" {{--action="{{ url()->current() }}" --}} method="post">
             @csrf
             @method("delete")
         </form>
@@ -23,17 +27,18 @@
                         <label>Sínodo</label>
                         <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search">
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo"><i
-                                        class="search icon"></i>
+                                <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo">
+                                <i class="search icon"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="six wide field" id="presbiterio_search">
+                    <div class="six wide field">
                         <label>Presbitério</label>
-                        <div class="ui search" title="Digite o nome do sínodo">
+                        <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search">
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar Presbitério" name="presbiterio"><i
-                                        class="search icon"></i>
+                                <input class="prompt" type="text" placeholder="Procurar Presbitério"
+                                       name="presbiterio">
+                                <i class="search icon"></i>
                             </div>
                         </div>
                     </div>
@@ -50,7 +55,13 @@
                 <div class="fields">
                     <div class="six wide field">
                         <label>Estado</label>
-                        <select class="ui fluid search dropdown" name="id_estado"></select>
+                        <select class="ui fluid search dropdown" name="id_estado">
+                            <option value="">--</option>
+                            @forelse($estados as $estado)
+                                <option value="{{$estado->id}}">{{$estado->nome}}</option>
+                            @empty
+                            @endforelse
+                        </select>
                     </div>
                     <div class="six wide field" id="div_cidade">
                         <label>Cidade</label>
@@ -70,7 +81,6 @@
                     </div>
                     <div class="ui calendar bottom left three wide field">
                         <label>Organização</label>
-                        <!--input.datepicker2(type="text" name="data_organizacao" placeholder="Data de Organização")-->
                         <input type="date" name="data_organizacao" placeholder="Data de Organização">
                     </div>
                 </div>
@@ -139,6 +149,10 @@
             </div>
         </form>
     </div>
+
+    @includeWhen(true,'pages.congregacoes.index')
+
+
 @endsection
 @section('javascript')
     <script src="{{asset('js/app/cadastros-igrejas.js')}}"></script>

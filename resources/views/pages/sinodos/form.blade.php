@@ -2,7 +2,7 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui segment"><a class="ui right floated blue tiny button" href="/cadastros/sinodos"><i
+    <div class="ui raised segment"><a class="ui right floated blue tiny button" href="/cadastros/sinodos"><i
                     class="reply icon"></i>Voltar</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>

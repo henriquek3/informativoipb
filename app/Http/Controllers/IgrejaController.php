@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Estados;
 use App\Igrejas;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class IgrejaController extends Controller
     {
         return view("pages.igrejas.index", [
             'resources' => $igrejas->with('presbiterio','presbiterio.sinodo')
-                ->simplePaginate(10)
+                ->simplePaginate(10),
         ]);
     }
 
@@ -34,9 +35,11 @@ class IgrejaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Estados $estados)
     {
-        return view('pages.igrejas.form');
+        return view('pages.igrejas.form', [
+            'estados' => $estados->all()
+        ]);
     }
 
     /**
