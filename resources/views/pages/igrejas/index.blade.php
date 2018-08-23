@@ -2,7 +2,7 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui segment"><a class="ui right floated green tiny button" href="/cadastros/presbiterios/novo"><i
+    <div class="ui segment"><a class="ui right floated green tiny button" href="/cadastros/igrejas/novo"><i
                     class="plus icon"></i>Novo</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
@@ -16,26 +16,27 @@
         <table class="ui compact selectable celled green unstackable sortable table">
             <thead>
             <tr>
-                <th class="eight wide center aligned">Nome</th>
-                <th class="two wide center aligned">Sigla</th>
+                <th class="ten wide">Nome</th>
+                <th class="two wide center aligned">Presbitério</th>
                 <th class="two wide center aligned">Sínodo</th>
-                <th class="three wide center aligned">Região</th>
-                <th class="one wide"></th>
+                <th></th>
             </tr>
             </thead>
-            <tbody>@forelse($resources as $rs)
+            <tbody>
+            @forelse($resources as $rs)
                 <tr>
                     <td>{{ $rs->nome }}</td>
-                    <td>{{ $rs->sigla }}</td>
-                    <td>{{ $rs->sinodo->nome }}</td>
-                    <td>{{ $rs->nome_regiao()}}</td>
+                    <td>{{ $rs->presbiterio->nome }}</td>
+                    <td>{{ $rs->presbiterio->sinodo->nome }}</td>
                     <td class="center aligned" title="Editar Sínodo"><a class="ui icon primary button"
                                                                         href="/cadastros/presbiterios/{{$rs->id}}/editar"><i
                                     class="pencil alternate icon"></i></a></td>
-                </tr>@empty
+                </tr>
+            @empty
                 <tr>
-                    <td colspan="5">Nenhum registro encontrado.</td>
-                </tr>@endforelse
+                    <td colspan="4">Nenhum registro encontrado.</td>
+                </tr>
+            @endforelse
             </tbody>
             <tfoot>
             <tr>
@@ -48,6 +49,5 @@
     </div>
 @endsection
 @section('javascript')
-    <!-- Page specific javascripts-->
     <script type="text/javascript">$('table').tablesort();</script>
 @endsection
