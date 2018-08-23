@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Presbiterios;
 use App\Sinodos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PresbiterioController extends Controller
 {
@@ -51,7 +52,7 @@ class PresbiterioController extends Controller
         $sinodo = null;
         try {
             $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
-            if (count($sinodo) !== 1) {
+            if ($sinodo->nome !== $request->get('sinodo')) {
                 throw new \PDOException('Sínodo não encontrado', 777);
             }
         } catch (\PDOException $exception) {

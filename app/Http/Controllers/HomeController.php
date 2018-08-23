@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('pages.index');
     }
+
+    public function welcome()
+    {
+        return view('pages.index')->with('welcome','success');
+    }
+
 }

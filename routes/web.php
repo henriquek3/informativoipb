@@ -12,23 +12,9 @@
 */
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/inicio', 'HomeController@index')->name('home');
 
-Route::get('/mail', function () {
-    /*Mail::send('mail', [], function ($m) {
-        $m->from('hello@app.com', 'YOUR APP');
-        $m->to('henriquek3@live.com', 'Jean Freitas')->subject('Hellooo Worrdll!');
-    });*/
-
-    return view('mail');
-
-});
-
-Route::get('/rotas', 'TesteController@index');
-Route::get('/scopos', 'PresbiterioController@scopos');
-
+Route::get('/welcome', 'HomeController@welcome')->name('welcome');
+Route::get('/', 'HomeController@index');
 
 /*
 |--------------------------------------------------------------------------
@@ -80,18 +66,18 @@ Route::prefix('cadastros')->group(function () {
     Route::get('/presbiterios/{id}/editar', 'PresbiterioController@edit')->where(['id' => '[0-9]+']);
     Route::put('/presbiterios/{id}/editar', 'PresbiterioController@update')->where(['id' => '[0-9]+']);
     Route::delete('/presbiterios/{id}/editar', 'PresbiterioController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes IgrejaController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/igrejas', 'IgrejaController@index');
+    Route::get('/igrejas/novo', 'IgrejaController@create');
+    Route::get('/api/igrejas', 'IgrejaController@api');
+    Route::post('/api/igrejas/store', 'IgrejaController@store');
+    Route::put('/api/igrejas/update', 'IgrejaController@update');
+    Route::delete('/api/igrejas/delete', 'IgrejaController@destroy');
 });
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes IgrejaController
-|--------------------------------------------------------------------------
-*/
-Route::get('/cadastros-igrejas', 'IgrejaController@index');
-Route::get('/api/igrejas', 'IgrejaController@api');
-Route::post('/api/igrejas/store', 'IgrejaController@store');
-Route::put('/api/igrejas/update', 'IgrejaController@update');
-Route::delete('/api/igrejas/delete', 'IgrejaController@destroy');
 
 /*
 |--------------------------------------------------------------------------

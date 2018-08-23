@@ -21,9 +21,12 @@ class IgrejaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Igrejas $igrejas)
     {
-        return view("cadastros-igrejas");
+        return view("pages.igrejas.index", [
+            'resources' => $igrejas->with('presbiterio','presbiterio.sinodo')
+                ->simplePaginate(10)
+        ]);
     }
 
     /**
@@ -33,7 +36,7 @@ class IgrejaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.igrejas.form');
     }
 
     /**

@@ -67,12 +67,9 @@ $RECYCLE.BIN/
 .vscode/
 public/js/app/
 public/css/main.min.css
-dist/
-templates/
 .phpintel/
 .vs/
-semantic/
 .env
-src/tests/
 public/js/app.js
 public/css/app.css
+!resources/views/vendor/pagination/semantic-ui.blade.php

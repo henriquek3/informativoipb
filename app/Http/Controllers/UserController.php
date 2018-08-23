@@ -164,7 +164,7 @@ class UserController extends Controller
             ]);
         }*/
 
-    public function connect(Request $request)
+    /*public function connect(Request $request)
     {
         $id = Auth::user()->getAuthIdentifier();
         $u = DB::table('users')
@@ -190,9 +190,9 @@ class UserController extends Controller
             )->get();
 
         return response()->json($u);
-    }
+    }*/
 
-    public function users()
+    /*public function users()
     {
 
         $u = DB::table('users')
@@ -213,7 +213,7 @@ class UserController extends Controller
             )->get();
 
         return response()->json($u);
-    }
+    }*/
 
     public function sending()
     {
