@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Estados;
 use App\Igrejas;
+use App\Presbiterios;
+use App\Sinodos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IgrejaController extends Controller
 {
     /**
      * IgrejaController constructor.
+     *
      * @authenticator
      */
     public function __construct()
@@ -25,7 +29,7 @@ class IgrejaController extends Controller
     public function index(Igrejas $igrejas)
     {
         return view("pages.igrejas.index", [
-            'resources' => $igrejas->with('presbiterio','presbiterio.sinodo')
+            'resources' => $igrejas->with('presbiterio', 'presbiterio.sinodo')
                 ->simplePaginate(10),
         ]);
     }
@@ -48,14 +52,42 @@ class IgrejaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Sinodos $sinodos, Presbiterios $presbiterios)
     {
+        $sinodo = null;
         try {
-            $rs = $request->user()->igrejas()->create($request->all());
-        } catch (\Exception $exception) {
-            return response()->json($exception);
+            $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
+            if ($sinodo->nome !== $request->get('sinodo')) {
+                throw new \PDOException('Sínodo não encontrado', 777);
+            }
+        } catch (\PDOException $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($rs);
+
+        $presbiterio = null;
+        try {
+            $presbiterio = $presbiterios->where('nome', 'like', $request->get('presbiterio'))->first();
+            if ($presbiterio->nome !== $request->get('presbiterio')) {
+                throw new \PDOException('Presbitério não encontrado', 777);
+            }
+        } catch (\PDOException $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+
+        $data = $request->all();
+        unset($data['sinodo']);
+        unset($data['presbiterio']);
+        $data['id_sinodo'] = $sinodo->id;
+        $data['id_presbiterio'] = $presbiterio->id;
+        try {
+            DB::beginTransaction();
+            $resource = $request->user()->igrejas()->create($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/igrejas/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -75,9 +107,12 @@ class IgrejaController extends Controller
      * @param  \App\Igrejas $igrejas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Igrejas $igrejas)
+    public function edit(Igrejas $igrejas, Estados $estados, $id)
     {
-        //
+        return view('pages.igrejas.form', [
+            'resource' => $igrejas->where('id', '=', $id)->with('presbiterio', 'sinodo')->first(),
+            'estados' => $estados->all()
+        ]);
     }
 
     /**
@@ -87,40 +122,59 @@ class IgrejaController extends Controller
      * @param  \App\Igrejas $igrejas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Igrejas $igrejas)
+    public function update(Request $request, Igrejas $igrejas, $id)
     {
+        $sinodo = null;
         try {
-            $resource = $igrejas->findOrfail((int)$request->get("id"));
-            $resource->update($request->all());
-        } catch (\Exception $exception) {
-            return response()->json($exception);
+            $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
+            if ($sinodo->nome !== $request->get('sinodo')) {
+                throw new \PDOException('Sínodo não encontrado', 777);
+            }
+        } catch (\PDOException $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json(
-            $resource->with([
-                'usuario',
-                'presbiterio',
-                'presbiterio.sinodo'
-            ])->where('id',$resource->id)->get()
-        );
+
+        $presbiterio = null;
+        try {
+            $presbiterio = $presbiterios->where('nome', 'like', $request->get('presbiterio'))->first();
+            if ($presbiterio->nome !== $request->get('presbiterio')) {
+                throw new \PDOException('Presbitério não encontrado', 777);
+            }
+        } catch (\PDOException $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+
+        $data = $request->all();
+        unset($data['sinodo']);
+        unset($data['presbiterio']);
+        $data['id_sinodo'] = $sinodo->id;
+        $data['id_presbiterio'] = $presbiterio->id;
+
+        try {
+            $resource = $igrejas->findOrfail((int)$id);
+            $resource->update($data);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/igrejas/$resource->id/editar")->with('updated', "success");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Igrejas $igrejas
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Igrejas $igrejas, Request $request)
+    public function destroy(Igrejas $igrejas, $id)
     {
-        $resource = $igrejas->findOrFail((int)$request->get("id"));
         try {
+            $resource = $igrejas->findOrFail((int)$id);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
+        return redirect("/cadastros/igrejas")->with('deleted', "success");
     }
 
     /**

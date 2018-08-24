@@ -27,7 +27,8 @@
                         <label>Sínodo</label>
                         <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search">
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo">
+                                <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo" required
+                                value="{{$resource->sinodo->nome ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
                         </div>
@@ -36,8 +37,8 @@
                         <label>Presbitério</label>
                         <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search">
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar Presbitério"
-                                       name="presbiterio">
+                                <input class="prompt" type="text" placeholder="Procurar Presbitério" required
+                                       name="presbiterio" value="{{$resource->presbiterio->nome ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
                         </div>
@@ -55,77 +56,79 @@
                 <div class="fields">
                     <div class="six wide field">
                         <label>Estado</label>
-                        <select class="ui fluid search dropdown" name="id_estado">
+                        <select class="ui fluid search dropdown" name="id_estado" required>
                             <option value="">--</option>
                             @forelse($estados as $estado)
-                                <option value="{{$estado->id}}">{{$estado->nome}}</option>
+                                <option value="{{$estado->id}}" {{$estado->id == $resource->id_estado ? ' selected' : ''}}>{{$estado->nome}}</option>
                             @empty
                             @endforelse
                         </select>
                     </div>
                     <div class="six wide field" id="div_cidade">
                         <label>Cidade</label>
-                        <select class="ui fluid search dropdown" name="id_cidade" id="id_cidade"></select>
+                        <select class="ui fluid search dropdown" name="id_cidade" id="id_cidade" required></select>
                         <div class="ui active inline small loader" style="display:none"
                              id="loader_cidade"></div>
                     </div>
                     <div class="four wide field">
                         <label>CNPJ</label>
-                        <input type="text" name="cnpj" id="cnpj_igreja" placeholder="CNPJ">
+                        <input type="text" name="cnpj" id="cnpj_igreja" placeholder="CNPJ" required
+                               value="{{$resource->cnpj ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="thirteen wide field">
                         <label>Nome</label>
-                        <input type="text" name="nome" placeholder="Digite o Nome">
+                        <input type="text" name="nome" placeholder="Digite o Nome" required value="{{$resource->nome ?? ''}}">
                     </div>
                     <div class="ui calendar bottom left three wide field">
                         <label>Organização</label>
-                        <input type="date" name="data_organizacao" placeholder="Data de Organização">
+                        <input type="date" name="data_organizacao" placeholder="Data de Organização" required
+                               value="{{$resource->data_organizacao ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="six wide field">
                         <label>Endereço</label>
-                        <input type="text" name="endereco" placeholder="Endereço">
+                        <input type="text" name="endereco" placeholder="Endereço" required value="{{$resource->endereco ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Número</label>
-                        <input type="text" name="endereco_numero" placeholder="Número">
+                        <input type="text" name="endereco_numero" placeholder="Número" required value="{{$resource->endereco_numero ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>Complemento</label>
-                        <input type="text" name="endereco_complemento" placeholder="Complemento">
+                        <input type="text" name="endereco_complemento" placeholder="Complemento" required value="{{$resource->endereco_complemento ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>Bairro</label>
-                        <input type="text" name="endereco_bairro" placeholder="Bairro">
+                        <input type="text" name="endereco_bairro" placeholder="Bairro" required value="{{$resource->endereco_bairro ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="two wide field">
                         <label>CEP</label>
-                        <input type="text" name="endereco_cep" placeholder="CEP">
+                        <input type="text" name="endereco_cep" placeholder="CEP" value="{{$resource->endereco_cep ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Cx. Postal</label>
-                        <input type="text" name="endereco_cx_postal" placeholder="Caixa Postal">
+                        <input type="text" name="endereco_cx_postal" placeholder="Caixa Postal" value="{{$resource->endereco_cx_postal ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>CEP Cx. Postal</label>
-                        <input type="text" name="endereco_cx_postal_cep" placeholder="CEP Caixa Postal">
+                        <input type="text" name="endereco_cx_postal_cep" placeholder="CEP Caixa Postal" value="{{$resource->endereco_cx_postal_cep ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone">
+                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>E-mail</label>
-                        <input type="email" name="email" placeholder="E-Mail">
+                        <input type="email" name="email" placeholder="E-Mail" value="{{$resource->email ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>Homepage</label>
-                        <input type="text" name="website" placeholder="Web Site">
+                        <input type="text" name="website" placeholder="Web Site" value="{{$resource->website ?? ''}}">
                     </div>
                 </div>
             </div>
@@ -149,10 +152,7 @@
             </div>
         </form>
     </div>
-
     @includeWhen(true,'pages.congregacoes.index')
-
-
 @endsection
 @section('javascript')
     <script src="{{asset('js/app/cadastros-igrejas.js')}}"></script>

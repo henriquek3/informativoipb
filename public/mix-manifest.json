@@ -2,6 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/plugins/jquery.mask.min.js": "/js/plugins/jquery.mask.min.js",
-  "/js/plugins/CPF.js": "/js/plugins/CPF.js",
-  "/js/plugins/jquery.tablesort.min.js": "/js/plugins/jquery.tablesort.min.js"
+    "/js/plugins/CPF.js": "/js/plugins/CPF.js",
+    "/js/plugins/jquery.tablesort.min.js": "/js/plugins/jquery.tablesort.min.js"
 }

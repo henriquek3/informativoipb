@@ -30,9 +30,11 @@
                     <td>{{ $rs->nome }}</td>
                     <td>{{ $rs->presbiterio->nome }}</td>
                     <td>{{ $rs->presbiterio->sinodo->nome }}</td>
-                    <td class="center aligned" title="Editar Sínodo"><a class="ui icon primary button"
-                                                                        href="/cadastros/presbiterios/{{$rs->id}}/editar"><i
-                                    class="pencil alternate icon"></i></a></td>
+                    <td class="center aligned" title="Editar Sínodo">
+                        <a class="ui icon primary button" href="/cadastros/igrejas/{{$rs->id}}/editar">
+                            <i class="pencil alternate icon"></i>
+                        </a>
+                    </td>
                 </tr>
             @empty
                 <tr>

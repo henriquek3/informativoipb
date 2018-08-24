@@ -73,10 +73,11 @@ Route::prefix('cadastros')->group(function () {
     */
     Route::get('/igrejas', 'IgrejaController@index');
     Route::get('/igrejas/novo', 'IgrejaController@create');
-    Route::get('/api/igrejas', 'IgrejaController@api');
-    Route::post('/api/igrejas/store', 'IgrejaController@store');
-    Route::put('/api/igrejas/update', 'IgrejaController@update');
-    Route::delete('/api/igrejas/delete', 'IgrejaController@destroy');
+    Route::post('/igrejas/novo', 'IgrejaController@store');
+    Route::get('/igrejas/{id}/editar', 'IgrejaController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/igrejas/{id}/editar', 'IgrejaController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/igrejas/{id}/editar', 'IgrejaController@destroy')->where(['id' => '[0-9]+']);
+    //Route::get('/api/igrejas', 'IgrejaController@api');
 });
 
 /*

@@ -48,7 +48,6 @@ class PresbiterioController extends Controller
      */
     public function store(Request $request, Sinodos $sinodos)
     {
-        //dd($request->all());
         $sinodo = null;
         try {
             $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
@@ -68,7 +67,6 @@ class PresbiterioController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
-            dd($exception->getMessage());
             return redirect()->back()->withErrors($exception->getMessage());
         }
         return redirect("/cadastros/presbiterios/$resource->id/editar")->with('saved', "success");
@@ -105,30 +103,45 @@ class PresbiterioController extends Controller
      * @param  \App\Presbiterios $presbiterios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Presbiterios $presbiterios)
-    {//ajustar rota editar
-        $resource = $presbiterios->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
-        return response()->json($resource);
+    public function update(Request $request, Presbiterios $presbiterios, Sinodos $sinodos, $id)
+    {
+        $sinodo = null;
+        try {
+            $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
+            if ($sinodo->nome !== $request->get('sinodo')) {
+                throw new \PDOException('Sínodo não encontrado', 777);
+            }
+        } catch (\PDOException $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        $data = $request->all();
+        unset($data['sinodo']);
+        $data['id_sinodo'] = $sinodo->id;
+        try {
+            $resource = $presbiterios->findOrfail((int)$id);
+            $resource->update($data);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/presbiterios/$resource->id/editar")->with('updated', "success");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Presbiterios $presbiterios
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Presbiterios $presbiterios, Request $request)
+    public function destroy(Presbiterios $presbiterios, $id)
     {
-        $resource = $presbiterios->findOrFail((int)$request->get("id"));
         try {
+            $resource = $presbiterios->findOrFail((int)$id);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
+        return redirect("/cadastros/presbiterios")->with('deleted', "success");
     }
 
 
