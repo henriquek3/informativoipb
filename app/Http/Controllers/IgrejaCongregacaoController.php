@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Estados;
 use App\IgrejasCongregacoes;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,7 @@ class IgrejaCongregacaoController extends Controller
 {
     /**
      * IgrejaController constructor.
+     *
      * @authenticator
      */
     public function __construct()
@@ -31,9 +33,13 @@ class IgrejaCongregacaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(IgrejasCongregacoes $congregacoes, Estados $estados, $id)
     {
-        //
+        return view('pages.congregacoes.form', [
+            'estados' => $estados->all(),
+            'id_igreja' => $id,
+            'nome_igreja' => $congregacoes->findOrFail($id)->igreja->nome,
+        ]);
     }
 
     /**
@@ -71,9 +77,14 @@ class IgrejaCongregacaoController extends Controller
      * @param  \App\IgrejasCongregacoes $igrejasCongregacoes
      * @return \Illuminate\Http\Response
      */
-    public function edit(IgrejasCongregacoes $igrejasCongregacoes)
+    public function edit(IgrejasCongregacoes $congregacoes, Estados $estados, $id)
     {
-        //
+        return view('pages.congregacoes.form', [
+            'estados' => $estados->all(),
+            'resource' => $congregacoes->findOrFail($id),
+            'id_igreja' => $congregacoes->findOrFail($id)->id_igreja,
+            'nome_igreja' => $congregacoes->findOrFail($id)->igreja->nome,
+        ]);
     }
 
     /**

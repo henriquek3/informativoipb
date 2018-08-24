@@ -17,7 +17,7 @@ class Igrejas extends Model
 
     public function usuario()
     {
-        return $this->belongsTo("App\User", "user_id", "id");
+        return $this->belongsTo("App\User", "user_id");
     }
 
     public function presbiterio()
@@ -28,5 +28,10 @@ class Igrejas extends Model
     public function sinodo()
     {
         return $this->belongsTo("App\Sinodos","id_sinodo");
+    }
+
+    public function congregacoes()
+    {
+        return $this->hasMany(\App\IgrejasCongregacoes::class, 'id_igreja');
     }
 }

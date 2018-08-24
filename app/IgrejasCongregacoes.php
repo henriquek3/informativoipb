@@ -15,11 +15,11 @@ class IgrejasCongregacoes extends Model
 
     public function usuario()
     {
-        return $this->belongsTo("App\User", "user_id", "id");
+        return $this->belongsTo("App\User", "user_id");
     }
 
     public function igreja()
     {
-        return $this->belongsTo("App\Igrejas", 'id_igreja', "id");
+        return $this->belongsTo("App\Igrejas", 'id_igreja');
     }
 }

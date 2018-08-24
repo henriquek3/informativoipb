@@ -77,7 +77,15 @@ Route::prefix('cadastros')->group(function () {
     Route::get('/igrejas/{id}/editar', 'IgrejaController@edit')->where(['id' => '[0-9]+']);
     Route::put('/igrejas/{id}/editar', 'IgrejaController@update')->where(['id' => '[0-9]+']);
     Route::delete('/igrejas/{id}/editar', 'IgrejaController@destroy')->where(['id' => '[0-9]+']);
-    //Route::get('/api/igrejas', 'IgrejaController@api');
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes IgrejaCongregacaoController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/igrejas/{id}/congregacoes/novo', 'IgrejaCongregacaoController@create')->where(['id' => '[0-9]+']);
+    Route::get('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@destroy')->where(['id' => '[0-9]+']);
 });
 
 /*
@@ -85,11 +93,11 @@ Route::prefix('cadastros')->group(function () {
 | Web Routes IgrejaCongregacaoController
 |--------------------------------------------------------------------------
 */
-Route::get('/cadastros-congregacoes', 'IgrejaCongregacaoController@index');
+/*Route::get('/cadastros-congregacoes', 'IgrejaCongregacaoController@index');
 Route::get('/api/congregacoes', 'IgrejaCongregacaoController@api');
 Route::post('/api/congregacoes/store', 'IgrejaCongregacaoController@store');
 Route::put('/api/congregacoes/update', 'IgrejaCongregacaoController@update');
-Route::delete('/api/congregacoes/delete', 'IgrejaCongregacaoController@destroy');
+Route::delete('/api/congregacoes/delete', 'IgrejaCongregacaoController@destroy');*/
 
 /*
 |--------------------------------------------------------------------------

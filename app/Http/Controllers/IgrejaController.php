@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Estados;
 use App\Igrejas;
+use App\IgrejasCongregacoes;
 use App\Presbiterios;
 use App\Sinodos;
 use Illuminate\Http\Request;
@@ -107,11 +108,12 @@ class IgrejaController extends Controller
      * @param  \App\Igrejas $igrejas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Igrejas $igrejas, Estados $estados, $id)
+    public function edit(Igrejas $igrejas, Estados $estados, IgrejasCongregacoes $congregacoes, $id)
     {
         return view('pages.igrejas.form', [
-            'resource' => $igrejas->where('id', '=', $id)->with('presbiterio', 'sinodo')->first(),
-            'estados' => $estados->all()
+            'resource' => $igrejas->where('id', '=', $id)->with('presbiterio', 'sinodo', 'usuario')->first(),
+            'estados' => $estados->all(),
+            'congregacoes' => $congregacoes->where('id_igreja', '=', $id)->simplePaginate(5)
         ]);
     }
 
