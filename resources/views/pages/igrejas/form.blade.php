@@ -157,7 +157,7 @@
                 </button>
                 <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
                 <button class="ui red right labeled icon button"
-                        title="{{isset($resource) ? $resource->congregacoes->count() < 1 ? '' : 'Não é possível excluir o Igrejas enquanto houver congregações vinculadas' : ''}}"
+                        title="{{isset($resource) ? $resource->congregacoes->count() < 1 ? '' : 'Não é possível excluir Igrejas enquanto houver congregações vinculadas' : ''}}"
                         type="submit" {{isset($resource) ? $resource->congregacoes->count() < 1 ? '' : ' disabled' : ''}} {{isset($resource) ? '' : ' disabled'}}>
                     <i class="remove icon"></i>Excluir
                 </button>
