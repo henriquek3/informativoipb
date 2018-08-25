@@ -26,7 +26,9 @@ class SinodoController extends Controller
      */
     public function index(Sinodos $sinodos)
     {
-        return view("pages.sinodos.index", ['resources' => $sinodos->orderBy('nome', 'asc')->simplePaginate(10)]);
+        return view("pages.sinodos.index", [
+            'resources' => $sinodos->orderBy('nome', 'asc')->paginate(10)
+        ]);
     }
 
     /**
@@ -125,11 +127,7 @@ class SinodoController extends Controller
      */
     public function api(Request $request)
     {
-        $nome = $request->get("nome");
-        if ($nome) {
-            $nome = "%" . $nome . "%";
-            $result['items'] = Sinodos::where("nome", "like", $nome)->get();
-            return response()->json($result);
-        }
+        $result['items'] = Sinodos::where("nome", "like", "%{$request->get("nome")}%")->get();
+        return response()->json($result);
     }
 }

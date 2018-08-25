@@ -13,6 +13,13 @@
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>
+        <!-- Pesquisar Recurso -->
+        <div class="ui search" title="Digite o nome do presbitério">
+            <div class="ui fluid right icon input">
+                <input class="prompt" type="text" placeholder="Pesquisar...">
+                <i class="search icon"></i>
+            </div>
+        </div>
         <table class="ui compact selectable celled green unstackable sortable table">
             <thead>
             <tr>
@@ -20,7 +27,7 @@
                 <th class="two wide center aligned">Sigla</th>
                 <th class="two wide center aligned">Sínodo</th>
                 <th class="three wide center aligned">Região</th>
-                <th class="one wide"></th>
+                <th class="one wide center aligned">Editar</th>
             </tr>
             </thead>
             <tbody>@forelse($resources as $rs)
@@ -48,6 +55,6 @@
     </div>
 @endsection
 @section('javascript')
-    <!-- Page specific javascripts-->
+    <script src="{{asset('js/app/pesquisar-presbiterio.js')}}"></script>
     <script type="text/javascript">$('table').tablesort();</script>
 @endsection

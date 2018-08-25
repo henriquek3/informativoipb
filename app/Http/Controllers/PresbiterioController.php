@@ -27,7 +27,9 @@ class PresbiterioController extends Controller
      */
     public function index(Presbiterios $presbiterios)
     {
-        return view("pages.presbiterios.index", ['resources' => $presbiterios->with('sinodo')->simplePaginate(10)]);
+        return view("pages.presbiterios.index", [
+            'resources' => $presbiterios->with('sinodo')->paginate(10)
+        ]);
     }
 
     /**
@@ -134,18 +136,13 @@ class PresbiterioController extends Controller
         return redirect("/cadastros/presbiterios")->with('deleted', "success");
     }
 
-
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function api(Request $request)
     {
-        $nome = $request->get("nome");
-        if ($nome) {
-            $nome = "%" . $nome . "%";
-            $result['items'] = Presbiterios::where("nome", "like", $nome)->get();
-            return response()->json($result);
-        }
+        $result['items'] = Presbiterios::where("nome", "like", "%{$request->get("nome")}%")->get();
+        return response()->json($result);
     }
 }

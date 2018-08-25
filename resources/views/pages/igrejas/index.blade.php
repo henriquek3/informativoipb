@@ -15,13 +15,20 @@
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>
+        <!-- Pesquisar Recurso -->
+        <div class="ui search" title="Digite o nome da igreja">
+            <div class="ui fluid right icon input">
+                <input class="prompt" type="text" placeholder="Pesquisar...">
+                <i class="search icon"></i>
+            </div>
+        </div>
         <table class="ui compact selectable celled green unstackable sortable table">
             <thead>
             <tr>
                 <th class="ten wide">Nome</th>
                 <th class="two wide center aligned">Presbitério</th>
                 <th class="two wide center aligned">Sínodo</th>
-                <th></th>
+                <th class="one wide center aligned">Editar</th>
             </tr>
             </thead>
             <tbody>
@@ -53,5 +60,6 @@
     </div>
 @endsection
 @section('javascript')
+    <script src="{{asset('js/app/pesquisar-igreja.js')}}"></script>
     <script type="text/javascript">$('table').tablesort();</script>
 @endsection

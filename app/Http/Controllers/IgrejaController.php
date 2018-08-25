@@ -31,7 +31,8 @@ class IgrejaController extends Controller
     {
         return view("pages.igrejas.index", [
             'resources' => $igrejas->with('presbiterio', 'presbiterio.sinodo')
-                ->simplePaginate(10),
+                //->simplePaginate(10),
+                ->paginate(10),
         ]);
     }
 
@@ -126,7 +127,8 @@ class IgrejaController extends Controller
      */
     public function update(Request $request, Igrejas $igrejas, $id)
     {
-        $sinodo = null;
+        dd($request->all()); // ver sobre o id no form busca
+        /*/*$sinodo = null;
         try {
             $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
             if ($sinodo->nome !== $request->get('sinodo')) {
@@ -150,15 +152,15 @@ class IgrejaController extends Controller
         unset($data['sinodo']);
         unset($data['presbiterio']);
         $data['id_sinodo'] = $sinodo->id;
-        $data['id_presbiterio'] = $presbiterio->id;
+        $data['id_presbiterio'] = $presbiterio->id;*/
 
-        try {
+        /*try {
             $resource = $igrejas->findOrfail((int)$id);
             $resource->update($data);
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());
-        }
-        return redirect("/cadastros/igrejas/$resource->id/editar")->with('updated', "success");
+        }*/
+        //return redirect("/cadastros/igrejas/$resource->id/editar")->with('updated', "success");
     }
 
     /**
@@ -184,34 +186,7 @@ class IgrejaController extends Controller
      */
     public function api(Request $request)
     {
-        $id = (int)$request->get('id');
-        $presbiterio = (int)$request->get('presbiterio');
-        if ($presbiterio > 0) {
-            return response()->json(
-                Igrejas::where('id_presbiterio', $presbiterio)
-                    ->with([
-                        'usuario',
-                        'presbiterio',
-                        'presbiterio.sinodo'
-                    ])->get()
-            );
-        } elseif ($id > 0) {
-            return response()->json(
-                Igrejas::with([
-                    'usuario',
-                    'presbiterio',
-                    'presbiterio.sinodo'
-                ])->where('id', $id)
-                    ->get()
-            );
-        } else {
-            return response()->json(
-                Igrejas::with([
-                    'usuario',
-                    'presbiterio',
-                    'presbiterio.sinodo'
-                ])->get()
-            );
-        }
+        $result['items'] = Igrejas::where("nome", "like", "%{$request->get("nome")}%")->get();
+        return response()->json($result);
     }
 }

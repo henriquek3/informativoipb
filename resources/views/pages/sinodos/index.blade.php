@@ -13,13 +13,22 @@
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>
+
+        <!-- Pesquisar Recurso -->
+        <div class="ui search" title="Digite o nome do sínodo">
+            <div class="ui fluid right icon input">
+                <input class="prompt" type="text" placeholder="Pesquisar...">
+                <i class="search icon"></i>
+            </div>
+        </div>
+
         <table class="ui celled unstackable sortable green table">
             <thead>
             <tr>
                 <th class="ten wide">Nome</th>
                 <th class="two wide center aligned">Sigla</th>
                 <th class="two wide center aligned">Região</th>
-                <th class="one wide"></th>
+                <th class="one wide center aligned">Editar</th>
             </tr>
             </thead>
             <tbody>@forelse($resources as $sinodo)
@@ -46,6 +55,7 @@
     </div>
 @endsection
 @section('javascript')
+    <script src="{{asset('js/app/pesquisar-sinodo.js')}}"></script>
     <script>
         window.addEventListener("load", function () {
             $('table').tablesort();

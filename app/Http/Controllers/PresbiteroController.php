@@ -26,7 +26,9 @@ class PresbiteroController extends Controller
     public function index(Presbiteros $presbiteros)
     {
         return view("pages.presbiteros.index", [
-            'resources' => $presbiteros->with('usuario')->get(),
+            'resources' => $presbiteros->with(
+                'usuario', 'igreja', 'igreja.presbiterio', 'igreja.presbiterio.sinodo'
+            )->paginate(10),
         ]);
     }
 
@@ -114,38 +116,12 @@ class PresbiteroController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function api(Request $request)
     {
-        $id = (int)$request->get("id");
-        $igreja = (int)$request->get("igreja");
-        if ($id > 0) {
-            return response()->json(
-                Presbiteros::where('id', $id)->with([
-                    'usuario',
-                    'igreja',
-                    'igreja.presbiterio',
-                    'igreja.presbiterio.sinodo',
-                ])->get()
-            );
-        } elseif ($igreja > 0) {
-            return response()->json(
-                Presbiteros::where('id_igreja', $igreja)->with([
-                    'usuario',
-                    'igreja',
-                    'igreja.presbiterio',
-                    'igreja.presbiterio.sinodo',
-                ])->get()
-            );
-        } else {
-            return response()->json(
-                Presbiteros::with([
-                    'usuario',
-                    'igreja',
-                    'igreja.presbiterio',
-                    'igreja.presbiterio.sinodo',
-                ])->get());
-        }
+        $result['items'] = Presbiteros::where("nome", "like", "%{$request->get("nome")}%")->get();
+        return response()->json($result);
     }
 }

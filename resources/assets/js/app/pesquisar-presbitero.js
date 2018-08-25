@@ -21,15 +21,13 @@ $(document).ready(function () {
     $('.ui.search')
         .search({
             apiSettings: {
-                //url: '//api.github.com/search/repositories?q={query}'
-                url: '/api/sinodos?nome={query}'
+                url: '/api/ministros?nome={query}'
             },
             searchDelay: 900,
             fields: {
                 results: 'items',
                 title: 'nome',
                 url: 'html_url',
-                id: 'id'
             },
             minCharacters: 3,
             error: {
@@ -41,8 +39,9 @@ $(document).ready(function () {
                 maxResults: 'Results must be an array to use maxResults setting',
                 method: 'The method you called is not defined.'
             },
-            onSelect: function(result){
-                $('[name="id_sinodo"]').val(result.id);
+            onSelect: function (result) {
+                //$('[name="id_sinodo"]').val(result.id);
+                document.location.href = `/cadastros/presbiteros/${result.id}/editar`
             }
         })
     ;

@@ -86,29 +86,19 @@ Route::prefix('cadastros')->group(function () {
     Route::get('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@edit')->where(['id' => '[0-9]+']);
     Route::put('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@update')->where(['id' => '[0-9]+']);
     Route::delete('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@destroy')->where(['id' => '[0-9]+']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes PresbiteroController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/ministros', 'PresbiteroController@index');
+    Route::get('/ministros/novo', 'PresbiteroController@create');
+    Route::post('/ministros/novo', 'PresbiteroController@store');
+    Route::get('/ministros/{id}/editar', 'PresbiteroController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/ministros/{id}/editar', 'PresbiteroController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/ministros/{id}/editar', 'PresbiteroController@destroy')->where(['id' => '[0-9]+']);
 });
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes IgrejaCongregacaoController
-|--------------------------------------------------------------------------
-*/
-/*Route::get('/cadastros-congregacoes', 'IgrejaCongregacaoController@index');
-Route::get('/api/congregacoes', 'IgrejaCongregacaoController@api');
-Route::post('/api/congregacoes/store', 'IgrejaCongregacaoController@store');
-Route::put('/api/congregacoes/update', 'IgrejaCongregacaoController@update');
-Route::delete('/api/congregacoes/delete', 'IgrejaCongregacaoController@destroy');*/
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes PresbiteroController
-|--------------------------------------------------------------------------
-*/
-Route::get('/cadastros-ministros', 'PresbiteroController@index');
-Route::get('/api/presbiteros', 'PresbiteroController@api');
-Route::post('/api/presbiteros/store', 'PresbiteroController@store');
-Route::put('/api/presbiteros/update', 'PresbiteroController@update');
-Route::delete('/api/presbiteros/delete', 'PresbiteroController@destroy');
 
 
 /*
@@ -161,3 +151,5 @@ Route::get('/api/cidades', 'CidadeController@api');
 
 Route::get('/api/sinodos', 'SinodoController@api');
 Route::get('/api/presbiterios', 'PresbiterioController@api');
+Route::get('/api/igrejas', 'IgrejaController@api');
+Route::get('/api/ministros', 'PresbiteroController@api');
