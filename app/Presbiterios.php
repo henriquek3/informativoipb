@@ -33,6 +33,11 @@ class Presbiterios extends Model
         return $this->belongsTo("App\Sinodos", "id_sinodo", "id");
     }
 
+    public function igrejas()
+    {
+        return $this->hasMany(\App\Igrejas::class, 'id_presbiterio');
+    }
+
     /**
      * @param $query
      * @return mixed
