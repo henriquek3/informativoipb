@@ -67,7 +67,7 @@ class IgrejaController extends Controller
 
         $presbiterio = null;
         try {
-            $presbiterio = $presbiterios->where('nome', 'like', $request->get('presbiterio'))->first();
+            $presbiterio = $presbiterios->where('nome', 'like', "%{$request->get('presbiterio')}%")->first();
             if ($presbiterio->nome !== $request->get('presbiterio')) {
                 throw new \PDOException('Presbitério não encontrado', 777);
             }
