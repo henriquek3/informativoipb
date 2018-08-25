@@ -14,8 +14,7 @@
         <div class="ui clearing divider"></div>
         <p></p>
         <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
-            @csrf
-            @method("delete")
+            @csrf @method("delete")
         </form>
         <form id="formResource" name="formResource" method="POST" action="{{url()->current()}}">@csrf
             <div class="ui form">
@@ -31,7 +30,7 @@
                     </div>
                     <div class="six wide required field">
                         <label>Região</label>
-                        <select class="ui search dropdown" name="regiao" required="">
+                        <select class="ui fluid dropdown" name="regiao" required="">
                             <option value="">Região</option>
                             <option value="1">NORTE</option>
                             <option value="2">NORDESTE</option>
@@ -56,8 +55,9 @@
             <div style="text-align: center">
                 <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar</button>
                 <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
-                <button class="ui red right labeled icon button" type="submit" form="formDelete"><i
-                            class="remove icon"></i>Excluir
+                <button class="ui red right labeled icon button" type="submit" form="formDelete"
+                        {{isset($resource) ? $resource->presbiterios->count() < 1 ? '' : ' disabled' : 'disabled'}}>
+                    <i class="remove icon"></i>Excluir
                 </button>
             </div>
         </form>
@@ -66,6 +66,7 @@
 @section('javascript')
     <script type="text/javascript" async>
         $(document).ready(function () {
+            $('.ui.dropdown').dropdown();
         });
     </script>
     @isset($resource)
