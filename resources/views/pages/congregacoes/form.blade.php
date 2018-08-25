@@ -16,9 +16,8 @@
         <div class="ui clearing divider"></div>
         <p></p>
         {{--SE EXISTIR CONGREGAÇÃO NÃO LIBERAR BOTÃO EXCLUIR--}}
-        <form id="formDelete" name="formDelete" {{--action="{{ url()->current() }}" --}} method="post">
-            @csrf
-            @method("delete")
+        <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
+            @csrf @method("delete")
         </form>
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf
             <div class="ui form">
@@ -131,7 +130,7 @@
                 <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar
                 </button>
                 <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
-                <button class="ui red right labeled icon button"
+                <button class="ui red right labeled icon button" form="formDelete"
                         type="submit" {{isset($resource) ? '' : ' disabled'}}>
                     <i class="remove icon"></i>Excluir
                 </button>
