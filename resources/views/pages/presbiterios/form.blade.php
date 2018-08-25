@@ -24,8 +24,9 @@
                         <label>Sínodos</label>
                         <div class="ui search" title="Digite o nome do sínodo">
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar" name="sinodo"><i
-                                        class="search icon"></i>
+                                <input class="prompt" type="text" placeholder="Procurar" name="sinodo">
+                                <i class="search icon"></i>
+                                <input type="hidden" name="id_sinodo">
                             </div>
                         </div>
                     </div>

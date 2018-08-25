@@ -48,7 +48,8 @@ class PresbiterioController extends Controller
      */
     public function store(Request $request, Sinodos $sinodos)
     {
-        $sinodo = null;
+        dd($request->all());
+        /*$sinodo = null;
         try {
             $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
             if ($sinodo->nome !== $request->get('sinodo')) {
@@ -58,9 +59,10 @@ class PresbiterioController extends Controller
             dd($exception->getMessage());
             return redirect()->back()->withErrors($exception->getMessage());
         }
+        $data['id_sinodo'] = $sinodo->id;*/
+
         $data = $request->all();
         unset($data['sinodo']);
-        $data['id_sinodo'] = $sinodo->id;
         try {
             DB::beginTransaction();
             $resource = $request->user()->presbiterios()->create($data);

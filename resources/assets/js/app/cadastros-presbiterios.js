@@ -22,13 +22,14 @@ $(document).ready(function () {
         .search({
             apiSettings: {
                 //url: '//api.github.com/search/repositories?q={query}'
-                url: 'http://localhost:3000/api/sinodos?nome={query}'
+                url: '/api/sinodos?nome={query}'
             },
             searchDelay: 900,
             fields: {
                 results: 'items',
                 title: 'nome',
-                url: 'html_url'
+                url: 'html_url',
+                id: 'id'
             },
             minCharacters: 3,
             error: {
@@ -40,6 +41,9 @@ $(document).ready(function () {
                 maxResults: 'Results must be an array to use maxResults setting',
                 method: 'The method you called is not defined.'
             },
+            onSelect: function(result){
+                $('[name="id_sinodo"]').val(result.id);
+            }
         })
     ;
 });
