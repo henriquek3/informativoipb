@@ -14,8 +14,7 @@
         <div class="ui clearing divider"></div>
         <p></p>
         <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
-            @csrf
-            @method("delete")
+            @csrf @method("delete")
         </form>
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf
             <div class="ui form">
@@ -55,19 +54,22 @@
             </div>
             <div class="ui segments">
                 <div class="ui horizontal segments">
-                    <div class="ui segment"><span
-                                style="color: lightslategray;"><strong>Usuário inclusão:</strong></span><span
-                                style="color: lightslategray;">&nbsp;<span id="user_inc"></span>&nbsp;</span><span
-                                style="float: right;color: lightslategray;"><strong>Data:</strong>&nbsp;<span
-                                    id="data_inc"></span></span></div>
+                    <div class="ui segment">
+                        <span style="color: lightslategray;">
+                            <strong>Usuário inclusão:</strong>
+                        </span>
+                        <span style="color: lightslategray;">&nbsp;{{isset($resource) === true ? $resource->usuario->nome : ''}}</span>
+                        <span style="float: right;color: lightslategray;"><strong>Data:</strong>&nbsp;{{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}</span>
+                    </div>
                 </div>
             </div>
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
                 <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar</button>
                 <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
-                <button class="ui red right labeled icon button" type="submit" form="formDelete"><i
-                            class="remove icon"></i>Excluir
+                <button class="ui red right labeled icon button" type="submit"
+                        form="formDelete" {{isset($resource) ? $resource->igrejas->count() < 1 ? '' : ' disabled' : 'disabled'}}>
+                    <i class="remove icon"></i>Excluir
                 </button>
             </div>
         </form>
@@ -78,7 +80,7 @@
     <script src="{{asset('js/app/cadastros-presbiterios.js')}}"></script>
     <script type="text/javascript" async>
         $(document).ready(function () {
-            //$('.ui.dropdown').dropdown();
+            $('.ui.dropdown').dropdown();
         });
     </script>
     @isset($resource)
