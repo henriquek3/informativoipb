@@ -10,6 +10,7 @@ class PresbiteroController extends Controller
 {
     /**
      * PresbiteroController constructor.
+     *
      * @authenticator
      */
     public function __construct()
@@ -22,9 +23,11 @@ class PresbiteroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Presbiteros $presbiteros)
     {
-        return view("cadastros-ministros");
+        return view("pages.presbiteros.index", [
+            'resources' => $presbiteros->with('usuario')->get(),
+        ]);
     }
 
     /**

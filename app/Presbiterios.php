@@ -43,6 +43,8 @@ class Presbiterios extends Model
     }*/
 
     /**
+     * Caso tiver que invocar uma função, transformar em atributo
+     *
      * @return string
      */
     public function nome_regiao()
