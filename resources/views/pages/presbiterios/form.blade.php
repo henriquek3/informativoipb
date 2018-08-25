@@ -23,7 +23,7 @@
                         <label>Sínodos</label>
                         <div class="ui search" title="Digite o nome do sínodo">
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar" name="sinodo">
+                                <input class="prompt" type="text" placeholder="Procurar" name="sinodo" required>
                                 <i class="search icon"></i>
                                 <input type="hidden" name="id_sinodo">
                             </div>
@@ -33,15 +33,17 @@
                 <div class="fields">
                     <div class="eight wide required field">
                         <label>Nome</label>
-                        <input type="text" name="nome" placeholder="Digite o Nome" required>
+                        <input type="text" name="nome" placeholder="Digite o Nome"
+                               value="{{old('nome', $resource->nome ?? '')}}" required>
                     </div>
                     <div class="three wide required field">
                         <label>Sigla</label>
-                        <input type="text" name="sigla" placeholder="Digite a Sigla" required>
+                        <input type="text" name="sigla" placeholder="Digite a Sigla"
+                               value="{{old('sigla', $resource->sigla ?? '')}}" required>
                     </div>
                     <div class="six wide required field">
                         <label>Região</label>
-                        <select class="ui search dropdown" name="regiao" required>
+                        <select class="ui fluid dropdown" name="regiao" required>
                             <option value="">Região</option>
                             <option value="1">NORTE</option>
                             <option value="2">NORDESTE</option>

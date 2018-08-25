@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PresbiterioRequest;
 use App\Presbiterios;
 use App\Sinodos;
 use Illuminate\Http\Request;
@@ -46,21 +47,8 @@ class PresbiterioController extends Controller
      * @param  \App\Sinodos $sinodos
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Sinodos $sinodos)
+    public function store(PresbiterioRequest $request)
     {
-        dd($request->all());
-        /*$sinodo = null;
-        try {
-            $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
-            if ($sinodo->nome !== $request->get('sinodo')) {
-                throw new \PDOException('Sínodo não encontrado', 777);
-            }
-        } catch (\PDOException $exception) {
-            dd($exception->getMessage());
-            return redirect()->back()->withErrors($exception->getMessage());
-        }
-        $data['id_sinodo'] = $sinodo->id;*/
-
         $data = $request->all();
         unset($data['sinodo']);
         try {
