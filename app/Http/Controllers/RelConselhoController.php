@@ -24,7 +24,7 @@ class RelConselhoController extends Controller
      */
     public function index()
     {
-        return view("relatorios-conselhos");
+        return view("pages.relatorios-conselhos");
     }
 
     /**

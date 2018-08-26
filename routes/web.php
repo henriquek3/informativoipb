@@ -100,55 +100,49 @@ Route::prefix('cadastros')->group(function () {
     Route::delete('/ministros/{id}/editar', 'PresbiteroController@destroy')->where(['id' => '[0-9]+']);
 });
 
+Route::prefix('relatorios')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelConselhoController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/conselho', 'RelConselhoController@index');
+    Route::get('/conselho/novo', 'RelConselhoController@create');
+    Route::post('/conselho/novo', 'RelConselhoController@store');
+    Route::get('/conselho/{id}/editar', 'RelConselhoController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/conselho/{id}/editar', 'RelConselhoController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/conselho/{id}/editar', 'RelConselhoController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelMinistroController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/ministro', 'RelMinistroController@index');
+    Route::get('/ministro/novo', 'RelMinistroController@create');
+    Route::post('/ministro/novo', 'RelMinistroController@store');
+    Route::get('/ministro/{id}/editar', 'RelMinistroController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/ministro/{id}/editar', 'RelMinistroController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/ministro/{id}/editar', 'RelMinistroController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelEstatisticaController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/estatistica', 'RelEstatisticaController@index');
+    Route::get('/estatistica/novo', 'RelEstatisticaController@create');
+    Route::post('/estatistica/novo', 'RelEstatisticaController@store');
+    Route::get('/estatistica/{id}/editar', 'RelEstatisticaController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/estatistica/{id}/editar', 'RelEstatisticaController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/estatistica/{id}/editar', 'RelEstatisticaController@destroy')->where(['id' => '[0-9]+']);
+});
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes RelConselhoController
-|--------------------------------------------------------------------------
-*/
-Route::get('/relatorios-conselhos', 'RelConselhoController@index');
-Route::get('/api/relconselhos', 'RelConselhoController@api');
-Route::post('/api/relconselhos/store', 'RelConselhoController@store');
-Route::put('/api/relconselhos/update', 'RelConselhoController@update');
-Route::delete('/api/relconselhos/delete', 'RelConselhoController@destroy');
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes RelMinistroController
-|--------------------------------------------------------------------------
-*/
-Route::get('/relatorios-ministeriais', 'RelMinistroController@index');
-Route::get('/api/relministeriais', 'RelMinistroController@api');
-Route::post('/api/relministeriais/store', 'RelMinistroController@store');
-Route::put('/api/relministeriais/update', 'RelMinistroController@update');
-Route::delete('/api/relministeriais/delete', 'RelMinistroController@destroy');
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes RelEstatisticaController
-|--------------------------------------------------------------------------
-*/
-Route::get('/relatorios-estatisticas', 'RelEstatisticaController@index');
-Route::get('/api/relestatisticas', 'RelEstatisticaController@api');
-Route::post('/api/relestatisticas/store', 'RelEstatisticaController@store');
-Route::put('/api/relestatisticas/update', 'RelEstatisticaController@update');
-Route::delete('/api/relestatisticas/delete', 'RelEstatisticaController@destroy');
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes EstadoController
+| Web Routes API ROUTES
 |--------------------------------------------------------------------------
 */
 Route::get('/api/estados', 'EstadoController@api');
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes CidadeController
-|--------------------------------------------------------------------------
-*/
 Route::get('/api/cidades', 'CidadeController@api');
-
 Route::get('/api/sinodos', 'SinodoController@api');
 Route::get('/api/presbiterios', 'PresbiterioController@api');
 Route::get('/api/igrejas', 'IgrejaController@api');
