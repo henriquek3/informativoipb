@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Estados;
 use App\Igrejas;
 use App\IgrejasCongregacoes;
-use App\Presbiterios;
-use App\Sinodos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +29,6 @@ class IgrejaController extends Controller
     {
         return view("pages.igrejas.index", [
             'resources' => $igrejas->with('presbiterio', 'presbiterio.sinodo')
-                //->simplePaginate(10),
                 ->paginate(10),
         ]);
     }
@@ -54,33 +51,14 @@ class IgrejaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Sinodos $sinodos, Presbiterios $presbiterios)
+    public function store(Request $request)
     {
-        $sinodo = null;
-        try {
-            $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
-            if ($sinodo->nome !== $request->get('sinodo')) {
-                throw new \PDOException('Sínodo não encontrado', 777);
-            }
-        } catch (\PDOException $exception) {
-            return redirect()->back()->withErrors($exception->getMessage());
-        }
-
-        $presbiterio = null;
-        try {
-            $presbiterio = $presbiterios->where('nome', 'like', "%{$request->get('presbiterio')}%")->first();
-            if ($presbiterio->nome !== $request->get('presbiterio')) {
-                throw new \PDOException('Presbitério não encontrado', 777);
-            }
-        } catch (\PDOException $exception) {
-            return redirect()->back()->withErrors($exception->getMessage());
-        }
-
         $data = $request->all();
+        if (is_null($request->get('congregacao_presbiterio'))) {
+            $data['congregacao_presbiterio'] = 0;
+        }
         unset($data['sinodo']);
         unset($data['presbiterio']);
-        $data['id_sinodo'] = $sinodo->id;
-        $data['id_presbiterio'] = $presbiterio->id;
         try {
             DB::beginTransaction();
             $resource = $request->user()->igrejas()->create($data);
@@ -123,11 +101,12 @@ class IgrejaController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Igrejas $igrejas
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Igrejas $igrejas, $id)
     {
-        //dd($request->get('congregacao_presbiterio')); // ver sobre o id no form busca
+        //dd($request->get('congregacao_presbiterio'));
         $data = $request->all();
         if (is_null($request->get('congregacao_presbiterio'))) {
             $data['congregacao_presbiterio'] = 0;
