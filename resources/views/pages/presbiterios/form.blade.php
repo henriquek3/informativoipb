@@ -85,4 +85,10 @@
 @section('javascript')
     <!-- Page specific javascripts-->
     <script src="{{asset('js/app/cadastros-presbiterios.js')}}"></script>
+    @isset($resource)
+        <script>
+            var data = @json($resource);
+            formResource.regiao.value = data.regiao !== null ? data.regiao : '';
+        </script>
+    @endisset
 @endsection
