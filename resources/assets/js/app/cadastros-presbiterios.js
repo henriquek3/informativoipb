@@ -1,9 +1,11 @@
 $(document).ready(function () {
+    $('.ui.dropdown').dropdown();
+
     var newHeader = function (message, type) {
         var
             html = '';
         if (message !== undefined && type !== undefined) {
-            html += '' + '<div class="ui big message ' + type + '">';
+            html += '' + '<div class="message ' + type + '">';
             // message type
             if (type == 'empty') {
                 html += '' + '<div class="header">Nenhum resultado!</div class="header">' + '<div class="description">' + message + '</div class="description">';
@@ -21,7 +23,6 @@ $(document).ready(function () {
     $('.ui.search')
         .search({
             apiSettings: {
-                //url: '//api.github.com/search/repositories?q={query}'
                 url: '/api/sinodos?nome={query}'
             },
             searchDelay: 900,
@@ -43,6 +44,7 @@ $(document).ready(function () {
             },
             onSelect: function(result){
                 $('[name="id_sinodo"]').val(result.id);
+                $('[name="sinodo_sigla"]').val(result.sigla);
             }
         })
     ;

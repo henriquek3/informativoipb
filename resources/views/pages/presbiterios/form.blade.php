@@ -19,13 +19,18 @@
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf
             <div class="ui form">
                 <div class="fields">
-                    <div class="sixteen wide required field">
+                    <div class="two wide field">
+                        <label>Sigla</label>
+                        <input type="text" value="{{$resource->sinodo->sigla ?? ''}}" name="sinodo_sigla" disabled>
+                    </div>
+                    <div class="fourteen wide required field">
                         <label>Sínodos</label>
                         <div class="ui search" title="Digite o nome do sínodo">
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar" name="sinodo" required>
+                                <input class="prompt" type="text" placeholder="Procurar" name="sinodo" required
+                                       value="{{$resource->sinodo->nome ?? ''}}">
                                 <i class="search icon"></i>
-                                <input type="hidden" name="id_sinodo">
+                                <input type="hidden" name="id_sinodo" value="{{$resource->id_sinodo ?? ''}}">
                             </div>
                         </div>
                     </div>
@@ -80,24 +85,4 @@
 @section('javascript')
     <!-- Page specific javascripts-->
     <script src="{{asset('js/app/cadastros-presbiterios.js')}}"></script>
-    <script type="text/javascript" async>
-        $(document).ready(function () {
-            $('.ui.dropdown').dropdown();
-        });
-    </script>
-    @isset($resource)
-        <script type="text/javascript" async>
-            try {
-                //var sinodo = JSON.parse('{!! $resource !!}');
-                var sinodo = @json($resource);
-                formResource.nome.value = sinodo.nome !== null ? sinodo.nome : '';
-                formResource.sigla.value = sinodo.sigla !== null ? sinodo.sigla : '';
-                formResource.regiao.value = sinodo.regiao !== null ? sinodo.regiao : '';
-                formResource.sinodo.value = sinodo.sinodo !== null ? sinodo.sinodo.nome : '';
-                $(formResource).append('<input type="hidden" name="_method" value="put">');
-            } catch (e) {
-                alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');
-            }
-        </script>
-    @endisset
 @endsection

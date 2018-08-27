@@ -3,7 +3,7 @@ $(document).ready(function () {
         var
             html = '';
         if (message !== undefined && type !== undefined) {
-            html += '' + '<div class="ui big message ' + type + '">';
+            html += '' + '<div class="message ' + type + '">';
             // message type
             if (type == 'empty') {
                 html += '' + '<div class="header">Nenhum resultado!</div class="header">' + '<div class="description">' + message + '</div class="description">';

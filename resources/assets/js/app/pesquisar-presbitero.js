@@ -3,7 +3,7 @@ $(document).ready(function () {
         var
             html = '';
         if (message !== undefined && type !== undefined) {
-            html += '' + '<div class="ui big message ' + type + '">';
+            html += '' + '<div class="message ' + type + '">';
             // message type
             if (type == 'empty') {
                 html += '' + '<div class="header">Nenhum resultado!</div class="header">' + '<div class="description">' + message + '</div class="description">';
@@ -40,7 +40,6 @@ $(document).ready(function () {
                 method: 'The method you called is not defined.'
             },
             onSelect: function (result) {
-                //$('[name="id_sinodo"]').val(result.id);
                 document.location.href = `/cadastros/presbiteros/${result.id}/editar`
             }
         })
