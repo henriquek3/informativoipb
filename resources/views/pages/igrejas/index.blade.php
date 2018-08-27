@@ -35,8 +35,8 @@
             @forelse($resources as $rs)
                 <tr>
                     <td>{{ $rs->nome }}</td>
-                    <td>{{ $rs->presbiterio->nome }}</td>
-                    <td>{{ $rs->presbiterio->sinodo->nome }}</td>
+                    <td>{{ $rs->presbiterio->sigla }}</td>
+                    <td>{{ $rs->presbiterio->sinodo->sigla }}</td>
                     <td class="center aligned" title="Editar Sínodo">
                         <a class="ui icon primary button" href="/cadastros/igrejas/{{$rs->id}}/editar">
                             <i class="pencil alternate icon"></i>

@@ -7,7 +7,7 @@
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
         <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Ministros
-            <div class="sub header" style="margin-left: -40px;">Visualize todos os presbíteros que estão cadastrados.
+            <div class="sub header" style="margin-left: -40px;">Visualize todos os ministros que estão cadastrados.
             </div>
         </h1>
         <div class="ui clearing divider"></div>
@@ -60,16 +60,20 @@
                         <label>Data de Nascimento</label>
                         <input type="date" name="nascimento_data" placeholder="Data de Nascimento">
                     </div>
-                    <div class="four wide field" data-toolip="Estado em que nasceu">
+                    <div class="four wide field" data-tooltip="Estado de nascimento">
                         <label>Estado</label>
-                        <select class="ui fluid search dropdown" name="nascimento_id_estado"></select>
+                        <select class="ui fluid search dropdown" name="nascimento_id_estado" required>
+                            <option value="">--</option>
+                            @forelse($estados as $estado)
+                                <option value="{{$estado->id}}" {{isset($resource) ? $estado->id == $resource->id_estado ? ' selected' : '' : ''}}>{{$estado->nome}}</option>
+                            @empty
+                            @endforelse
+                        </select>
                     </div>
-                    <div class="five wide field" id="div_cidade">
+                    <div class="five wide field" id="div_cidade" data-tooltip="Cidade de nascimento">
                         <label>Cidade</label>
-                        <select class="ui fluid search dropdown" name="nascimento_id_cidade"
-                                id="nascimento_id_cidade"></select>
-                        <div class="ui active inline small loader" style="display:none"
-                             id="loader_cidade"></div>
+                        <select class="ui fluid search dropdown" name="nascimento_id_cidade"></select>
+                        <div class="ui active inline small loader" style="display:none" id="loader_cidade"></div>
                     </div>
                     <div class="four wide field">
                         <label>Nacionalidade</label>
@@ -138,14 +142,18 @@
                 <div class="fields">
                     <div class="four wide field">
                         <label>Estado</label>
-                        <select class="ui fluid search dropdown" name="endereco_id_estado"></select>
+                        <select class="ui fluid search dropdown" name="endereco_id_estado" required>
+                            <option value="">--</option>
+                            @forelse($estados as $estado)
+                                <option value="{{$estado->id}}" {{isset($resource) ? $estado->id == $resource->id_estado ? ' selected' : '' : ''}}>{{$estado->nome}}</option>
+                            @empty
+                            @endforelse
+                        </select>
                     </div>
-                    <div class="five wide field" id="div_cidade">
+                    <div class="five wide field" id="div_cidade_end">
                         <label>Cidade</label>
-                        <select class="ui fluid search dropdown" name="endereco_id_cidade"
-                                id="endereco_id_cidade"></select>
-                        <div class="ui active inline small loader" style="display:none"
-                             id="loader_cidade"></div>
+                        <select class="ui fluid search dropdown" name="endereco_id_cidade"></select>
+                        <div class="ui active inline small loader" style="display:none" id="loader_cidade_end"></div>
                     </div>
                     <div class="two wide field">
                         <label>CEP</label>
@@ -174,20 +182,7 @@
                         <input type="email" name="email" placeholder="E-Mail">
                     </div>
                 </div>
-                <!--div.fields
-                div.two.wide.field
-                    label Teste
-                    input(type="text", name="id_igreja", value="1")
-                div.two.wide.field
-                    label Teste
-                    input(type="text", name="nacionalidade", value="1")
-                div.two.wide.field
-                    label Teste
-                    input(type="text", name="tipo", value="2")
-
-                -->
             </div>
-
             <div class="ui segments">
                 <div class="ui horizontal segments">
                     <div class="ui segment"><span
@@ -210,21 +205,137 @@
     </div>
 @endsection
 @section('javascript')
-    <script type="text/javascript" async>
+    <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
+            $('.ui.dropdown').dropdown();
         });
     </script>
-    @isset($resource)
+    @if(isset($resource))
         <script type="text/javascript" async>
             try {
-                var sinodo = JSON.parse('{!! $resource !!}');
-                formResource.nome.value = sinodo.nome !== null ? sinodo.nome : '';
-                formResource.sigla.value = sinodo.sigla !== null ? sinodo.sigla : '';
-                formResource.regiao.value = sinodo.regiao !== null ? sinodo.regiao : '';
-                $(formResource).append('<input type="hidden" name="_method" value="put">');
+                window.addEventListener("load", function () {
+                    /**
+                     * Function para o select Estado de NASCIMENTO
+                     */
+                    $('[name="nascimento_id_estado"]').on('change', function () {
+                        if ($('[name="nascimento_id_estado"]').val() > 0) {
+                            $('[name="nascimento_id_cidade"]').children().remove();
+                            $("#div_cidade").find(".search").hide();
+                            $("#loader_cidade").show();
+                            $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
+                                .done(function (response) {
+                                    $.each(response, function () {
+                                        $('[name="nascimento_id_cidade"]').append(
+                                            $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                        );
+                                    });
+                                    $("#div_cidade").find(".search").show();
+                                    $("#loader_cidade").hide();
+                                    $('[name="nascimento_id_cidade"]').val('{{$resource->nascimento_id_cidade}}');
+                                })
+                                .fail(function () {
+                                    iziToast.error({
+                                        title: 'Erro',
+                                        message: 'Consulta não realizada, verifique sua conexão',
+                                    });
+                                })
+                            ;
+                        }
+                    });
+
+                    /**
+                     * Function para o select Estado ENDEREÇO
+                     */
+                    $('[name="endereco_id_estado"]').on('change', function () {
+                        if ($('[name="endereco_id_estado"]').val() > 0) {
+                            $('[name="endereco_id_cidade"]').children().remove();
+                            $("#div_cidade_end").find(".search").hide();
+                            $("#loader_cidade_end").show();
+                            $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
+                                .done(function (response) {
+                                    $.each(response, function () {
+                                        $('[name="endereco_id_cidade"]').append(
+                                            $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                        );
+                                    });
+                                    $("#div_cidade_end").find(".search").show();
+                                    $("#loader_cidade_end").hide();
+                                    $('[name="endereco_id_cidade"]').val('{{$resource->endereco_id_cidade}}');
+                                })
+                                .fail(function () {
+                                    iziToast.error({
+                                        title: 'Erro',
+                                        message: 'Consulta não realizada, verifique sua conexão',
+                                    });
+                                })
+                            ;
+                        }
+                    });
+                })
             } catch (e) {
                 alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');
             }
         </script>
-    @endisset
+    @else
+        <script>
+            window.addEventListener("load", function () {
+                /**
+                 * Function para o select Estado de NASCIMENTO
+                 */
+                $('[name="nascimento_id_estado"]').on('change', function () {
+                    if ($('[name="nascimento_id_estado"]').val() > 0) {
+                        $('[name="nascimento_id_cidade"]').children().remove();
+                        $("#div_cidade").find(".search").hide();
+                        $("#loader_cidade").show();
+                        $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="nascimento_id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade").find(".search").show();
+                                $("#loader_cidade").hide()
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
+                });
+
+                /**
+                 * Function para o select Estado ENDEREÇO
+                 */
+                $('[name="endereco_id_estado"]').on('change', function () {
+                    if ($('[name="endereco_id_estado"]').val() > 0) {
+                        $('[name="endereco_id_cidade"]').children().remove();
+                        $("#div_cidade_end").find(".search").hide();
+                        $("#loader_cidade_end").show();
+                        $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="endereco_id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade_end").find(".search").show();
+                                $("#loader_cidade_end").hide()
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
+                });
+            });
+        </script>
+    @endif
 @endsection

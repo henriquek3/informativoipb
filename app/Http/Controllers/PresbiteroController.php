@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Estados;
 use App\Presbiterios;
 use App\Presbiteros;
 use Illuminate\Http\Request;
@@ -37,9 +38,11 @@ class PresbiteroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Estados $estados)
     {
-        //
+        return view('pages.presbiteros.form', [
+            'estados' => $estados->all()
+        ]);
     }
 
     /**

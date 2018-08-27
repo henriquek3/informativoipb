@@ -67,8 +67,7 @@
                     <div class="six wide field" id="div_cidade">
                         <label>Cidade</label>
                         <select class="ui fluid search dropdown" name="id_cidade" id="id_cidade" required></select>
-                        <div class="ui active inline small loader" style="display:none"
-                             id="loader_cidade"></div>
+                        <div class="ui active inline small loader" style="display:none" id="loader_cidade"></div>
                     </div>
                     <div class="four wide field">
                         <label>CNPJ</label>

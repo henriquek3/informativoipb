@@ -3,13 +3,13 @@
 @section('content')
     <div class="ui clearing"></div>
     <div class="ui raised segment">
-        <a class="ui right floated green tiny button" href="/cadastros/sinodos/novo">
+        <a class="ui right floated green tiny button" href="/cadastros/ministros/novo">
             <i class="plus icon"></i>Novo
         </a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
-        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Presbíteros
-            <div class="sub header" style="margin-left: -40px;">Visualize todos os presbíteros que estão cadastrados.
+        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Ministros
+            <div class="sub header" style="margin-left: -40px;">Visualize todos os ministros que estão cadastrados.
             </div>
         </h1>
         <div class="ui clearing divider"></div>
@@ -40,8 +40,8 @@
                     <td>{{ $rs->igreja->nome }}</td>
                     <td>{{ $rs->igreja->presbiterio->sigla }}</td>
                     <td>{{ $rs->igreja->presbiterio->sinodo->sigla }}</td>
-                    <td class="center aligned" title="Editar Presbítero">
-                        <a class="ui icon primary button" href="/cadastros/presbiteros/{{$rs->id}}/editar">
+                    <td class="center aligned" title="Editar Ministro">
+                        <a class="ui icon primary button" href="/cadastros/ministros/{{$rs->id}}/editar">
                             <i class="pencil alternate icon"></i>
                         </a>
                     </td>
