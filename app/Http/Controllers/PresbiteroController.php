@@ -78,11 +78,15 @@ class PresbiteroController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Presbiteros $presbiteros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Presbiteros $presbiteros)
+    public function edit(Estados $estados, Presbiteros $presbiteros, $id)
     {
-        //
+        return view('pages.presbiteros.form', [
+            'resource' => $presbiteros->findOrFail($id),
+            'estados' => $estados->all()
+        ]);
     }
 
     /**

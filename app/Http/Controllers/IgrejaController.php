@@ -146,6 +146,13 @@ class IgrejaController extends Controller
     public function api(Request $request)
     {
         $result['items'] = Igrejas::where("nome", "like", "%{$request->get("nome")}%")->get();
+
+        // Caso vier o sinodo no get, o request partiu do form ministros
+        if (!is_null($request->get('presbiterio'))) {
+            $result['items'] = Igrejas::where('id_sinodo', '=', $request->get('presbiterio'))
+                ->where("nome", "like", "%{$request->get("nome")}%")
+                ->get();
+        }
         return response()->json($result);
     }
 }

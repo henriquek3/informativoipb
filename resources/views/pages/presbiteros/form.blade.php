@@ -16,21 +16,31 @@
             @csrf
             @method("delete")
         </form>
-        <form id="formResource" name="formResource" method="POST" action="{{url()->current()}}">@csrf
+        <form id="formResource" name="formResource" method="POST" action="{{url()->current()}}">
+            @csrf @isset($resource) @method('put') @endisset
             <div class="ui form">
                 <div class="fields">
                     <div class="six wide field">
                         <label>Sínodo</label>
-                        <select class="ui fluid search dropdown" name="id_sinodo">
-                            <option></option>
-                        </select>
+                        <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search">
+                            <div class="ui left icon input">
+                                <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo" required
+                                       value="{{$resource->sinodo->nome ?? ''}}">
+                                <input type="hidden" name="id_sinodo" value="{{$resource->id_sinodo ?? ''}}">
+                                <i class="search icon"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="six wide field" id="div_presbiterio">
                         <label>Presbitério</label>
-                        <select class="ui fluid search dropdown" name="id_presbiterio"
-                                id="id_presbiterio"></select>
-                        <div class="ui active inline small loader" style="display:none"
-                             id="loader_presbiterio"></div>
+                        <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search">
+                            <div class="ui left icon input">
+                                <input class="prompt" type="text" placeholder="Procurar Presbitério" required
+                                       name="presbiterio" value="{{$resource->presbiterio->nome ?? ''}}">
+                                <input type="hidden" name="id_presbiterio" value="{{$resource->id_presbiterio ?? ''}}">
+                                <i class="search icon"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="six wide field">
                         <label>Igreja</label>
@@ -206,11 +216,6 @@
 @endsection
 @section('javascript')
     <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.ui.dropdown').dropdown();
-        });
-    </script>
     @if(isset($resource))
         <script type="text/javascript" async>
             try {
