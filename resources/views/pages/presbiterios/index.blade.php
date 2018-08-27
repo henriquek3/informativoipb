@@ -34,7 +34,7 @@
                 <tr>
                     <td>{{ $rs->nome }}</td>
                     <td>{{ $rs->sigla }}</td>
-                    <td>{{ $rs->sinodo->nome }}</td>
+                    <td>{{ $rs->sinodo->sigla }}</td>
                     <td>{{ $rs->nome_regiao()}}</td>
                     <td class="center aligned" title="Editar Sínodo"><a class="ui icon primary button"
                                                                         href="/cadastros/presbiterios/{{$rs->id}}/editar"><i
