@@ -79,13 +79,20 @@ window.addEventListener("load", function () {
                 maxResults: 'Results must be an array to use maxResults setting',
                 method: 'The method you called is not defined.'
             },
+            onSelect: function (result) {
+                $('[name="id_sinodo"]').val(result.id);
+            }
         })
     ;
 
     $('#presbiterio_search')
         .search({
             apiSettings: {
-                url: '/api/presbiterios?nome={query}'
+                url: '/api/presbiterios?nome={query}&sinodo={sinodo}',
+                beforeSend: function (settings) {
+                    settings.urlData.sinodo = $('[name="id_sinodo"]').val();
+                    return settings;
+                }
             },
             searchDelay: 900,
             fields: {
@@ -103,6 +110,9 @@ window.addEventListener("load", function () {
                 maxResults: 'Results must be an array to use maxResults setting',
                 method: 'The method you called is not defined.'
             },
+            onSelect: function (result) {
+                $('[name="id_presbiterio"]').val(result.id);
+            }
         })
     ;
 });

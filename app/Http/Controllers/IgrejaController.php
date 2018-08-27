@@ -127,40 +127,20 @@ class IgrejaController extends Controller
      */
     public function update(Request $request, Igrejas $igrejas, $id)
     {
-        dd($request->all()); // ver sobre o id no form busca
-        /*/*$sinodo = null;
-        try {
-            $sinodo = $sinodos->where('nome', 'like', $request->get('sinodo'))->first();
-            if ($sinodo->nome !== $request->get('sinodo')) {
-                throw new \PDOException('Sínodo não encontrado', 777);
-            }
-        } catch (\PDOException $exception) {
-            return redirect()->back()->withErrors($exception->getMessage());
-        }
-
-        $presbiterio = null;
-        try {
-            $presbiterio = $presbiterios->where('nome', 'like', $request->get('presbiterio'))->first();
-            if ($presbiterio->nome !== $request->get('presbiterio')) {
-                throw new \PDOException('Presbitério não encontrado', 777);
-            }
-        } catch (\PDOException $exception) {
-            return redirect()->back()->withErrors($exception->getMessage());
-        }
-
+        //dd($request->get('congregacao_presbiterio')); // ver sobre o id no form busca
         $data = $request->all();
+        if (is_null($request->get('congregacao_presbiterio'))) {
+            $data['congregacao_presbiterio'] = 0;
+        }
         unset($data['sinodo']);
         unset($data['presbiterio']);
-        $data['id_sinodo'] = $sinodo->id;
-        $data['id_presbiterio'] = $presbiterio->id;*/
-
-        /*try {
+        try {
             $resource = $igrejas->findOrfail((int)$id);
             $resource->update($data);
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());
-        }*/
-        //return redirect("/cadastros/igrejas/$resource->id/editar")->with('updated', "success");
+        }
+        return redirect("/cadastros/igrejas/$resource->id/editar")->with('updated', "success");
     }
 
     /**

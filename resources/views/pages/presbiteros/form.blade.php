@@ -218,60 +218,56 @@
                     /**
                      * Function para o select Estado de NASCIMENTO
                      */
-                    $('[name="nascimento_id_estado"]').on('change', function () {
-                        if ($('[name="nascimento_id_estado"]').val() > 0) {
-                            $('[name="nascimento_id_cidade"]').children().remove();
-                            $("#div_cidade").find(".search").hide();
-                            $("#loader_cidade").show();
-                            $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
-                                .done(function (response) {
-                                    $.each(response, function () {
-                                        $('[name="nascimento_id_cidade"]').append(
-                                            $('<option />').val(this.id).text(this.nome.toUpperCase())
-                                        );
-                                    });
-                                    $("#div_cidade").find(".search").show();
-                                    $("#loader_cidade").hide();
-                                    $('[name="nascimento_id_cidade"]').val('{{$resource->nascimento_id_cidade}}');
-                                })
-                                .fail(function () {
-                                    iziToast.error({
-                                        title: 'Erro',
-                                        message: 'Consulta não realizada, verifique sua conexão',
-                                    });
-                                })
-                            ;
-                        }
-                    });
+                    if ($('[name="nascimento_id_estado"]').val() > 0) {
+                        $('[name="nascimento_id_cidade"]').children().remove();
+                        $("#div_cidade").find(".search").hide();
+                        $("#loader_cidade").show();
+                        $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="nascimento_id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade").find(".search").show();
+                                $("#loader_cidade").hide();
+                                $('[name="nascimento_id_cidade"]').val('{{$resource->nascimento_id_cidade}}');
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
 
                     /**
                      * Function para o select Estado ENDEREÇO
                      */
-                    $('[name="endereco_id_estado"]').on('change', function () {
-                        if ($('[name="endereco_id_estado"]').val() > 0) {
-                            $('[name="endereco_id_cidade"]').children().remove();
-                            $("#div_cidade_end").find(".search").hide();
-                            $("#loader_cidade_end").show();
-                            $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
-                                .done(function (response) {
-                                    $.each(response, function () {
-                                        $('[name="endereco_id_cidade"]').append(
-                                            $('<option />').val(this.id).text(this.nome.toUpperCase())
-                                        );
-                                    });
-                                    $("#div_cidade_end").find(".search").show();
-                                    $("#loader_cidade_end").hide();
-                                    $('[name="endereco_id_cidade"]').val('{{$resource->endereco_id_cidade}}');
-                                })
-                                .fail(function () {
-                                    iziToast.error({
-                                        title: 'Erro',
-                                        message: 'Consulta não realizada, verifique sua conexão',
-                                    });
-                                })
-                            ;
-                        }
-                    });
+                    if ($('[name="endereco_id_estado"]').val() > 0) {
+                        $('[name="endereco_id_cidade"]').children().remove();
+                        $("#div_cidade_end").find(".search").hide();
+                        $("#loader_cidade_end").show();
+                        $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="endereco_id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade_end").find(".search").show();
+                                $("#loader_cidade_end").hide();
+                                $('[name="endereco_id_cidade"]').val('{{$resource->endereco_id_cidade}}');
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
                 })
             } catch (e) {
                 alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');

@@ -15,12 +15,14 @@
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>
-        {{--SE EXISTIR CONGREGAÇÃO NÃO LIBERAR BOTÃO EXCLUIR--}}
-        <form id="formDelete" name="formDelete" {{--action="{{ url()->current() }}" --}} method="post">
+
+        <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
             @csrf
             @method("delete")
         </form>
-        <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf
+        <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">
+            @csrf
+            @isset($resource) @method('put') @endisset
             <div class="ui form">
                 <div class="fields">
                     <div class="six wide field">
@@ -29,6 +31,7 @@
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo" required
                                        value="{{$resource->sinodo->nome ?? ''}}">
+                                <input type="hidden" name="id_sinodo" value="{{$resource->id_sinodo ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
                         </div>
@@ -39,6 +42,7 @@
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Presbitério" required
                                        name="presbiterio" value="{{$resource->presbiterio->nome ?? ''}}">
+                                <input type="hidden" name="id_presbiterio" value="{{$resource->id_presbiterio ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
                         </div>
@@ -46,8 +50,11 @@
                     <div class="four wide field">
                         <div class="clearfix">
                             <div class="ui checkbox"
+                                 data-tooltip="{{isset($resource) ? $resource->congregacoes->count() < 1 ? 'Congregação pertencente ao presbitério' : 'Igreja não pode ter status de congregação enquanto houver congregações filhas' : ''}}"
                                  style="float: left; display: flex; margin-top: 32px; margin-left: 20px;">
-                                <input name="congregacao_presbiterio" type="checkbox">
+                                <input name="congregacao_presbiterio" type="checkbox"
+                                       {{isset($resource) ? $resource->congregacoes->count() < 1 ? '' : ' disabled' : ''}}
+                                       value="1" {{$resource->congregacao_presbiterio == 1 ? ' checked' : ''}}>
                                 <label>Congregação do Presbitério</label>
                             </div>
                         </div>
@@ -155,15 +162,15 @@
                 <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar
                 </button>
                 <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
-                <button class="ui red right labeled icon button"
+                <button class="ui red right labeled icon button" form="formDelete"
                         title="{{isset($resource) ? $resource->congregacoes->count() < 1 ? '' : 'Não é possível excluir Igrejas enquanto houver congregações vinculadas' : ''}}"
-                        type="submit" {{isset($resource) ? $resource->congregacoes->count() < 1 ? '' : ' disabled' : ''}} {{isset($resource) ? '' : ' disabled'}}>
+                        type="submit" {{isset($resource) ? $resource->congregacoes->count() < 1 ? '' : ' disabled' : ''}}>
                     <i class="remove icon"></i>Excluir
                 </button>
             </div>
         </form>
     </div>
-    @includeWhen(isset($resource),'pages.congregacoes.index')
+    @isset($resource) @includeWhen($resource->congregacao_presbiterio == null,'pages.congregacoes.index') @endisset
 @endsection
 @section('javascript')
     <script src="{{asset('js/app/cadastros-igrejas.js')}}"></script>
