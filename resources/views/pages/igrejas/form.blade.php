@@ -50,11 +50,11 @@
                     <div class="four wide field">
                         <div class="clearfix">
                             <div class="ui checkbox"
-                                 data-tooltip="{{isset($resource) ? $resource->congregacoes->count() < 1 ? 'Congregação pertencente ao presbitério' : 'Igreja não pode ter status de congregação enquanto houver congregações filhas' : ''}}"
+                                 data-tooltip="{{isset($resource) ? $resource->congregacoes->count() < 1 ? 'Congregação pertencente ao presbitério' : 'Igreja não pode ter status de congregação enquanto houver congregações filhas' : 'Congregação pertencente ao presbitério'}}"
                                  style="float: left; display: flex; margin-top: 32px; margin-left: 20px;">
                                 <input name="congregacao_presbiterio" type="checkbox"
                                        {{isset($resource) ? $resource->congregacoes->count() < 1 ? '' : ' disabled' : ''}}
-                                       value="1" {{$resource->congregacao_presbiterio == 1 ? ' checked' : ''}}>
+                                       value="1" {{isset($resource) ? $resource->congregacao_presbiterio == 1 ? ' checked' : '' : ''}}>
                                 <label>Congregação do Presbitério</label>
                             </div>
                         </div>
