@@ -25,7 +25,7 @@
                         <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search">
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo" required
-                                       value="{{$resource->sinodo->nome ?? ''}}">
+                                       value="{{$resource->igreja->presbiterio->sinodo->nome ?? ''}}">
                                 <input type="hidden" name="id_sinodo" value="{{$resource->id_sinodo ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
@@ -36,7 +36,7 @@
                         <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search">
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Presbitério" required
-                                       name="presbiterio" value="{{$resource->presbiterio->nome ?? ''}}">
+                                       name="presbiterio" value="{{$resource->igreja->presbiterio->nome ?? ''}}">
                                 <input type="hidden" name="id_presbiterio" value="{{$resource->id_presbiterio ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
@@ -52,23 +52,23 @@
                 <div class="fields">
                     <div class="sixteen wide field">
                         <label>Nome</label>
-                        <input type="text" name="nome" placeholder="Digite seu Nome">
+                        <input type="text" name="nome" placeholder="Digite seu Nome" value="{{$resource->nome ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="eight wide field">
                         <label>Nome do Pai</label>
-                        <input type="text" name="nome_pai" placeholder="Nome do Pai">
+                        <input type="text" name="nome_pai" placeholder="Nome do Pai" value="{{$resource->nome_pai ?? ''}}">
                     </div>
                     <div class="eight wide field">
                         <label>Nome da Mãe</label>
-                        <input type="text" name="nome_mae" placeholder="Nome da Mãe">
+                        <input type="text" name="nome_mae" placeholder="Nome da Mãe" value="{{$resource->nome_mae ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="ui calendar bottom left three wide field">
                         <label>Data de Nascimento</label>
-                        <input type="date" name="nascimento_data" placeholder="Data de Nascimento">
+                        <input type="date" name="nascimento_data" placeholder="Data de Nascimento" value="{{$resource->nascimento_data ?? ''}}">
                     </div>
                     <div class="four wide field" data-tooltip="Estado de nascimento">
                         <label>Estado</label>
@@ -87,21 +87,21 @@
                     </div>
                     <div class="four wide field">
                         <label>Nacionalidade</label>
-                        <input type="text" name="nacionalidade" placeholder="Nacionalidade">
+                        <input type="text" name="nacionalidade" placeholder="Nacionalidade" value="{{$resource->nacionalidade ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="four wide field">
                         <label>RG</label>
-                        <input type="text" name="rg" placeholder="RG">
+                        <input type="text" name="rg" placeholder="RG" value="{{$resource->rg ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>Orgão Emissor</label>
-                        <input type="text" name="rg_emissor" placeholder="Orgão Emissor">
+                        <input type="text" name="rg_emissor" placeholder="Orgão Emissor" value="{{$resource->rg_emissor ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>CPF</label>
-                        <input type="text" name="cpf" placeholder="CPF">
+                        <input type="text" name="cpf" placeholder="CPF" value="{{$resource->cpf ?? ''}}">
                     </div>
                     <div class="five wide field">
                         <label>Estado Civil</label>
@@ -116,37 +116,37 @@
                 <div class="fields">
                     <div class="twelve wide field">
                         <label>Cônjuge</label>
-                        <input type="text" name="conjuge_nome" placeholder="Cônjuge">
+                        <input type="text" name="conjuge_nome" placeholder="Cônjuge" value="{{$resource->conjuge_nome ?? ''}}">
                     </div>
                     <div class="ui calendar bottom left four wide field">
                         <label>Data de Nascimento</label>
-                        <input type="date" name="conjuge_nascimento"
+                        <input type="date" name="conjuge_nascimento"  value="{{$resource->conjuge_nascimento ?? ''}}"
                                placeholder="Data de Nascimento do Cônjuge">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="sixteen wide field">
                         <label>Nome dos Dependentes</label>
-                        <input type="text" name="nome_filhos"
+                        <input type="text" name="nome_filhos" value="{{$resource->nome_filhos ?? ''}}"
                                placeholder="Nome dos Dependentes. OSB. use ; para separar os nomes">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="six wide field">
                         <label>Endereço</label>
-                        <input type="text" name="endereco" placeholder="Endereço">
+                        <input type="text" name="endereco" placeholder="Endereço" value="{{$resource->endereco ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Número</label>
-                        <input type="text" name="endereco_nr" placeholder="Número">
+                        <input type="text" name="endereco_nr" placeholder="Número" value="{{$resource->endereco_nr ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>Complemento</label>
-                        <input type="text" name="endereco_complemento" placeholder="Complemento">
+                        <input type="text" name="endereco_complemento" placeholder="Complemento" value="{{$resource->endereco_complemento ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>Bairro</label>
-                        <input type="text" name="endereco_bairro" placeholder="Bairro">
+                        <input type="text" name="endereco_bairro" placeholder="Bairro" value="{{$resource->endereco_bairro ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
@@ -167,29 +167,29 @@
                     </div>
                     <div class="two wide field">
                         <label>CEP</label>
-                        <input type="text" name="cep" placeholder="CEP">
+                        <input type="text" name="cep" placeholder="CEP" value="{{$resource->cep ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Cx. Postal</label>
-                        <input type="text" name="cx_postal" placeholder="Caixa Postal">
+                        <input type="text" name="cx_postal" placeholder="Caixa Postal" value="{{$resource->cx_postal ?? ''}}">
                     </div>
                     <div class="three wide field">
                         <label>CEP Cx. Postal</label>
-                        <input type="text" name="cx_postal_cep" placeholder="CEP Cx. Postal">
+                        <input type="text" name="cx_postal_cep" placeholder="CEP Cx. Postal" value="{{$resource->cx_postal_cep ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="three wide field">
                         <label>Celular</label>
-                        <input type="text" name="celular" placeholder="Celular">
+                        <input type="text" name="celular" placeholder="Celular" value="{{$resource->celular ?? ''}}">
                     </div>
                     <div class="three wide field">
                         <label>Telefone Fixo</label>
-                        <input type="text" name="telefone" placeholder="Telefone Fixo">
+                        <input type="text" name="telefone" placeholder="Telefone Fixo" value="{{$resource->telefone ?? ''}}">
                     </div>
                     <div class="ten wide field">
                         <label>E-mail</label>
-                        <input type="email" name="email" placeholder="E-Mail">
+                        <input type="email" name="email" placeholder="E-Mail" value="{{$resource->email ?? ''}}">
                     </div>
                 </div>
             </div>
@@ -197,7 +197,7 @@
                 <div class="ui horizontal segments">
                     <div class="ui segment"><span
                                 style="color: lightslategray;"><strong>Usuário:</strong></span><span
-                                style="color: lightslategray;">&nbsp; {{ isset($resource) === true ? $resource->user->nome : ''}}
+                                style="color: lightslategray;">&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}
                             <span id="user_inc"></span>&nbsp;</span><span
                                 style="float: right;color: lightslategray;"><strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}
                             <span id="data_inc"></span></span></div>

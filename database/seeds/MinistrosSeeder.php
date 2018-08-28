@@ -51,6 +51,7 @@ class MinistrosSeeder extends Seeder
                     'ordenacao_data' => '1992-10-11',
                     'ativo' => 1,
                     'tipo' => 1,
+                    'user_id' => 1
                 ]);
             }
         }

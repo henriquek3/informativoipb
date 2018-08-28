@@ -84,7 +84,9 @@ class PresbiteroController extends Controller
     public function edit(Estados $estados, Presbiteros $presbiteros, $id)
     {
         return view('pages.presbiteros.form', [
-            'resource' => $presbiteros->findOrFail($id),
+            'resource' => $presbiteros->where('id', '=', $id)
+                ->with('usuario','igreja','igreja.presbiterio','igreja.presbiterio.sinodo')
+                ->first(),
             'estados' => $estados->all()
         ]);
     }
