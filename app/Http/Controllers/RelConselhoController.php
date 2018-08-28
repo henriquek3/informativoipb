@@ -22,9 +22,11 @@ class RelConselhoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RelConselhos $relConselhos)
     {
-        return view("pages.relatorios-conselhos");
+        return view("pages.relatorios-conselhos.index",[
+            "resources" => $relConselhos->paginate(10)
+        ]);
     }
 
     /**
@@ -34,7 +36,7 @@ class RelConselhoController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.relatorios-conselhos.form");
     }
 
     /**

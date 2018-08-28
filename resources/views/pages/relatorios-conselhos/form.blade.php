@@ -1,47 +1,25 @@
 @extends('layouts.informativo')
 @section('css')@endsection
 @section('content')
-    <div class="ui segment">
-        <div style="position: absolute;right: 20px;">
-            <div class="ui breadcrumb"><a class="section" href="inicio"><i class="home icon"></i></a>
-                <div class="divider">/</div>
-                <a class="section">Relatórios</a>
-                <div class="divider">/</div>
-                <div class="active section">Conselho</div>
+    <div class="ui clearing"></div>
+    <div class="ui raised segment"><a class="ui right floated blue tiny button" href="/cadastros/sinodos"><i
+                    class="reply icon"></i>Voltar</a>
+        <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
+        </h3>
+        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Ministros
+            <div class="sub header" style="margin-left: -40px;">Visualize todos os ministros que estão cadastrados.
             </div>
-        </div>
-        <div class="ui clearing"></div>
-        <h2 class="ui floated header">Relatórios do Conselho
-            <div class="sub header">Relatórios do conselho. -> breve explicação da tela</div>
-        </h2>
+        </h1>
         <div class="ui clearing divider"></div>
         <p></p>
-        <div class="ui top attached tabular menu"><a class="item" data-tab="first">Relatórios</a><a
-                    class="item active" data-tab="second">Responder</a></div>
-        <div class="ui bottom attached tab segment" data-tab="first">
-            <table class="ui compact selectable celled green table" id="tbl_reletorios_conselhos">
-                <thead>
-                <tr>
-                    <th class="one wide">Código</th>
-                    <th class="ten wide">Tipo Relatório</th>
-                    <th class="two wide center aligned">Data Inclusão</th>
-                    <th class="two wide center aligned">Ultima Alteração</th>
-                    <th class="two wide center aligned">Status</th>
-                    <th class="two wide center aligned">Ano</th>
-                </tr>
-                </thead>
-                <tbody id="tbody_relatorios_conselhos"></tbody>
-            </table>
-        </div>
-        <form class="ui bottom attached tab segment active" data-tab="second" name="relatorios_conselhos"
-              id="relatorios_conselhos">@csrf
-            <div class="ui segments">
-                <div class="ui red segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>Relatório do Conselho ou Mesa Administrativa</strong></p>
-                </div>
-            </div>
+        <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
+            @csrf
+            @method("delete")
+        </form>
+        <form id="formResource" name="formResource" method="POST" action="{{url()->current()}}">
+            @csrf @isset($resource) @method('put') @endisset
             <div class="ui form segment">
-                <div class="fields">/*
+                <div class="fields">
                     <div class="two wide field" data-tooltip="Este valor não pode ser alterado.">
                         <label>Ano</label>
                         <input type="text" readonly="" value="2018" name="ano">
@@ -49,50 +27,16 @@
                     <div class="seven wide field">
                         <label>Sínodo</label>
                         <input type="text" name="sinodo" value="" disabled="">
-                        <!--select.ui.fluid.search.dropdown(name="id_sinodo")
-                        option
 
-                        -->
+
                     </div>
                     <div class="seven wide field" id="div_presbiterio">
                         <label>Presbitério</label>
                         <input type="text" name="presbiterio" value="" disabled="">
-                        <!--select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")-->
-                        <!--div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")-->
                     </div>
-                    <!--div.six.wide.field
-                    label Igreja
-                    input(type="text", name="igreja", value="", disabled="")
-                    //select.ui.fluid.search.dropdown(name="id_igreja")
-                    //div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
 
-                    -->
                 </div>
-                <!--div.ui.form.segment
-                div.fields
-                    div.two.wide.field
-                        label Ano
-                        input(type="text", value="2018", name="ano")
-                    div.four.wide.field
-                        label Sínodo
-                        select.ui.fluid.search.dropdown(name="id_sinodo")
-                            option
 
-                    div.six.wide.field(id="div_presbiterio")
-                        label Presbitério
-                        select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")
-                        div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")
-
-                    div.six.wide.field
-                        label Igreja
-                        select.ui.fluid.search.dropdown(name="id_i/*
-|--------------------------------------------------------------------------
-| Web Routes CidadeController
-|--------------------------------------------------------------------------
-*/greja")
-                        div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")
-
-                -->
             </div>
             <div class="ui segments">
                 <div class="ui red segment" style="text-align: center; background-color: #F9FAFB">
@@ -824,56 +768,149 @@
                 </div>
             </div>
             <div class="ui segments">
-                <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>INFORMAÇÕES SOBRE O PREENCHIMENTO</strong></p>
-                </div>
                 <div class="ui horizontal segments">
-                    <div class="ui segment"><span><strong>Usuário inclusão:</strong></span><span>
-                    &nbsp;
-                    Kallew Pavão
-                    &nbsp;</span><span style="float: right;"><strong>Data:</strong>&nbsp;
-                    01/01/2018</span></div>
-                    <div class="ui segment"><span><strong>Última alteração:</strong></span><span>
-                    &nbsp;
-                    Kallew Pavão
-                    &nbsp;</span><span style="float: right;"><strong>Data:</strong>&nbsp;
-                    01/01/2018</span></div>
-                </div>
-                <div class="ui segment">
-                    <div class="ui toggle checkbox" data-tooltip="Deixe AZUL caso tenha FINALIZADO este relatório.">
-                        <label>Relatório Finalizado</label>
-                        <input type="checkbox" name="relatorio_finalizado">
-                    </div>
+                    <div class="ui segment"><span
+                                style="color: lightslategray;"><strong>Usuário:</strong></span><span
+                                style="color: lightslategray;">&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}
+                            <span id="user_inc"></span>&nbsp;</span><span
+                                style="float: right;color: lightslategray;"><strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}
+                            <span id="data_inc"></span></span></div>
                 </div>
             </div>
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
                 <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar</button>
                 <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
-                <button class="ui red right labeled icon button" type="button"><i class="remove icon"></i>Excluir
+                <button class="ui red right labeled icon button" type="submit" form="formDelete"><i
+                            class="remove icon"></i>Excluir
                 </button>
             </div>
         </form>
     </div>
 @endsection
 @section('javascript')
-    <!-- Page specific javascripts-->
-    <script src="{{asset('js/app/jquery-validate.js')}}"></script>
-    <script src="{{asset('js/plugins/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('js/plugins/bootstrap-datepicker.pt-BR.min.js')}}"></script>
-    <script src="{{asset('js/plugins/datatables.min.js')}}"></script>
-    <script src="{{asset('js/plugins/sweetalert.min.js')}}"></script>
-    <script src="{{asset('js/app/relatorios-conselhos.js')}}"></script>
-    <script>
-        var usuario = {!!\App\User::with([
-        'presbitero',
-         'presbitero.igreja',
-          'presbitero.igreja.presbiterio',
-           'presbitero.igreja.presbiterio.sinodo',
-            'presbitero.endereco_estado',
-             'presbitero.endereco_cidade',
-              'presbitero.nascimento_estado',
-               'presbitero.nascimento_cidade',
-               ])->where('id', 1)->get()!!}
-    </script>
+    <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>
+    @if(isset($resource))
+        <script type="text/javascript" async>
+            try {
+                window.addEventListener("load", function () {
+                    /**
+                     * Function para o select Estado de NASCIMENTO
+                     */
+                    if ($('[name="nascimento_id_estado"]').val() > 0) {
+                        $('[name="nascimento_id_cidade"]').children().remove();
+                        $("#div_cidade").find(".search").hide();
+                        $("#loader_cidade").show();
+                        $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="nascimento_id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade").find(".search").show();
+                                $("#loader_cidade").hide();
+                                $('[name="nascimento_id_cidade"]').val('{{$resource->nascimento_id_cidade}}');
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
+
+                    /**
+                     * Function para o select Estado ENDEREÇO
+                     */
+                    if ($('[name="endereco_id_estado"]').val() > 0) {
+                        $('[name="endereco_id_cidade"]').children().remove();
+                        $("#div_cidade_end").find(".search").hide();
+                        $("#loader_cidade_end").show();
+                        $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="endereco_id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade_end").find(".search").show();
+                                $("#loader_cidade_end").hide();
+                                $('[name="endereco_id_cidade"]').val('{{$resource->endereco_id_cidade}}');
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
+                })
+            } catch (e) {
+                alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');
+            }
+        </script>
+    @else
+        <script>
+            window.addEventListener("load", function () {
+                /**
+                 * Function para o select Estado de NASCIMENTO
+                 */
+                $('[name="nascimento_id_estado"]').on('change', function () {
+                    if ($('[name="nascimento_id_estado"]').val() > 0) {
+                        $('[name="nascimento_id_cidade"]').children().remove();
+                        $("#div_cidade").find(".search").hide();
+                        $("#loader_cidade").show();
+                        $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="nascimento_id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade").find(".search").show();
+                                $("#loader_cidade").hide()
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
+                });
+
+                /**
+                 * Function para o select Estado ENDEREÇO
+                 */
+                $('[name="endereco_id_estado"]').on('change', function () {
+                    if ($('[name="endereco_id_estado"]').val() > 0) {
+                        $('[name="endereco_id_cidade"]').children().remove();
+                        $("#div_cidade_end").find(".search").hide();
+                        $("#loader_cidade_end").show();
+                        $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="endereco_id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade_end").find(".search").show();
+                                $("#loader_cidade_end").hide()
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
+                });
+            });
+        </script>
+    @endif
 @endsection
