@@ -109,12 +109,11 @@ window.addEventListener("load", function () {
     });
 
     $(formResource.id_presbiterio).on('change', function () {
-        alert('jean');
         if ($(formResource.id_presbiterio).val() > 0) {
             //$("#id_cidade").children().remove();
             //$("#div_cidade").find(".search").hide();
             //$("#loader_cidade").show();
-            $.get('/api/igrejas?presbiterio=' + $(formResource.id_estado).val())
+            $.get('/api/igrejas?presbiterio=' + $(formResource.id_presbiterio).val())
                 .done(function (response) {
                     $.each(response, function () {
                         $(formResource.id_igreja).append(
@@ -123,7 +122,6 @@ window.addEventListener("load", function () {
                     });
                     //$("#div_cidade").find(".search").show();
                     //$("#loader_cidade").hide()
-                    alert('finish igrej');
                 })
                 .fail(function (response) {
                     iziToast.error({
