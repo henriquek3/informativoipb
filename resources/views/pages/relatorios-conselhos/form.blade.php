@@ -131,7 +131,7 @@
                             </div>
                             <div class="six wide field">
                                 <div class="ui radio checkbox">
-                                    <input name="or_imovel_documentado" type="radio" value="1">
+                                    <input name="or_imovel_documentado" type="radio" value="1" {{isset($resource) ? $resource->or_imovel_documentado === 1 ? 'checked' : '' : ''}}>
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui radio checkbox">
