@@ -71,11 +71,11 @@
                     <div class="fields">
                         <div class="four wide field">
                             <label>Estado</label>
-                            <input type="text" disabled="" name="estado"  value="{{auth() ->user() ->presbitero->igreja->id_estado}}">
+                            <input type="text" disabled="" name="estado"  value="{{auth() ->user() ->presbitero->igreja->cidade->estado->nome}}">
                         </div>
                         <div class="four wide field">
                             <label>Cidade</label>
-                            <input type="text" disabled="" name="cidade">
+                            <input type="text" disabled="" name="cidade"  value="{{auth() ->user() ->presbitero->igreja->cidade->nome}}">
                         </div>
                         <div class="three wide field">
                             <label>CEP</label>

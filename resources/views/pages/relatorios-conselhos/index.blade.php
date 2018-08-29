@@ -37,9 +37,9 @@
                 <tr>
                     <td>{{ $rs->tipo_relatorio }}</td>
                     <td>{{ $rs->created_at }}</td>
-                    <td>{{ $rs->updated_at()}}</td>
-                    <td>{{ $rs->status_relatorio()}}</td>
-                    <td>{{ $rs->ano()}}</td>
+                    <td>{{ $rs->updated_at }}</td>
+                    <td>{{ $rs->status_relatorio }}</td>
+                    <td>{{ $rs->ano }}</td>
                     <td class="center aligned" title="Editar Relatório"><a class="ui icon primary button"
                                                                         href="/relatorios/conselho/{{$rs->id}}/editar"><i
                                     class="pencil alternate icon"></i></a></td>
