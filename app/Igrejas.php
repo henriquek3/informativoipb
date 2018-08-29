@@ -34,4 +34,9 @@ class Igrejas extends Model
     {
         return $this->hasMany(\App\IgrejasCongregacoes::class, 'id_igreja');
     }
+
+    public function cidade()
+    {
+        return $this->belongsTo(\App\Cidades::class, 'id_cidade');
+    }
 }
