@@ -111,7 +111,7 @@
                                 <i class="user icon"></i>
                                 Meu Usuário
                             </a>
-                            <a class="item" href="/administrar-usuarios">
+                            <a class="item" href="/configuracoes/usuarios">
                                 <i class="users icon"></i>
                                 Administrar Usuários
                             </a>
