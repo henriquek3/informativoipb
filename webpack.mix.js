@@ -52,4 +52,4 @@ mix.copyDirectory('resources/assets/js/app', 'public/js/app');
 /*
  *   BrowserSync
  */
-mix.browserSync('http://localhost:8001');
+mix.browserSync('http://localhost:8000');
