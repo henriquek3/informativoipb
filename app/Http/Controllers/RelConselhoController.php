@@ -49,9 +49,14 @@ class RelConselhoController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
+        if (is_null($request->get('congregacao_presbiterio'))) {
+            $data['congregacao_presbiterio'] = 0;
+        }
         try {
             DB::beginTransaction();
-            $resource = $request->user()->relConselhos()->create($request->all());
+            $resource = $request->user()->relConselhos()->create($data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
