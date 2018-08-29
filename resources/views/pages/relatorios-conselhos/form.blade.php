@@ -25,11 +25,11 @@
                     </div>
                     <div class="seven wide field">
                         <label>Sínodo</label>
-                        <input type="text" name="sinodo" value="" disabled="">
+                        <input type="text" name="sinodo" value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->nome}}" disabled="">
                     </div>
                     <div class="seven wide field" id="div_presbiterio">
                         <label>Presbitério</label>
-                        <input type="text" name="presbiterio" value="" disabled="">
+                        <input type="text" name="presbiterio" value="{{auth()->user()->presbitero->igreja->presbiterio->nome}}" disabled="">
                     </div>
 
                 </div>
@@ -43,35 +43,35 @@
                     <div class="fields">
                         <div class="two wide field" data-tooltip="Este valor não pode ser alterado.">
                             <label>ID</label>
-                            <input type="text" readonly="" name="id_igreja">
+                            <input type="text" readonly="" name="id_igreja" value="{{auth()->user()->presbitero->id}}">
                         </div>
                         <div class="fourteen wide field">
                             <label>Nome (Igreja/Congregação)</label>
-                            <input type="text" disabled="" name="nome_igreja">
+                            <input type="text" disabled="" name="nome_igreja" value="{{auth()->user()->presbitero->igreja->nome}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Endereço</label>
-                            <input type="text" disabled="" name="endereco">
+                            <input type="text" disabled="" name="endereco" value="{{auth() ->user() ->presbitero->igreja->endereco}}">
                         </div>
                         <div class="two wide field">
                             <label>Número</label>
-                            <input type="text" disabled="" name="endereco_numero">
+                            <input type="text" disabled="" name="endereco_numero" value="{{auth() ->user() ->presbitero->igreja->endereco_numero}}">
                         </div>
                         <div class="three wide field">
                             <label>Complemento</label>
-                            <input type="text" disabled="" name="endereco_complemento">
+                            <input type="text" disabled="" name="endereco_complemento" value="{{auth() ->user() ->presbitero->igreja->endereco_complemento}}">
                         </div>
                         <div class="three wide field">
                             <label>Bairro</label>
-                            <input type="text" disabled="" name="endereco_bairro">
+                            <input type="text" disabled="" name="endereco_bairro"  value="{{auth() ->user() ->presbitero->igreja->endereco_bairro}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>Estado</label>
-                            <input type="text" disabled="" name="estado">
+                            <input type="text" disabled="" name="estado"  value="{{auth() ->user() ->presbitero->igreja->id_estado}}">
                         </div>
                         <div class="four wide field">
                             <label>Cidade</label>
@@ -79,37 +79,37 @@
                         </div>
                         <div class="three wide field">
                             <label>CEP</label>
-                            <input type="text" disabled="" name="endereco_cep">
+                            <input type="text" disabled="" name="endereco_cep"  value="{{auth() ->user() ->presbitero->igreja->endereco_cep}}">
                         </div>
                         <div class="two wide field">
                             <label>Cx. P</label>
-                            <input type="text" disabled="" name="endereco_cx_postal">
+                            <input type="text" disabled="" name="endereco_cx_postal"  value="{{auth() ->user() ->presbitero->igreja->endereco_cx_postal}}">
                         </div>
                         <div class="three wide field">
                             <label>CEP Cx. P</label>
-                            <input type="text" disabled="" name="endereco_cx_postal_cep">
+                            <input type="text" disabled="" name="endereco_cx_postal_cep"  value="{{auth() ->user() ->presbitero->igreja->endereco_cx_postal_cep}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="two wide field">
                             <label>Telefone</label>
-                            <input type="text" disabled="" name="telefone">
+                            <input type="text" disabled="" name="telefone"  value="{{auth() ->user() ->presbitero->igreja->telefone}}">
                         </div>
                         <div class="four wide field">
                             <label>E-Mail</label>
-                            <input type="text" disabled="" name="email">
+                            <input type="text" disabled="" name="email"  value="{{auth() ->user() ->presbitero->igreja->email}}">
                         </div>
                         <div class="four wide field">
                             <label>HomePage</label>
-                            <input type="text" disabled="" name="homepage">
+                            <input type="text" disabled="" name="homepage"  value="{{auth() ->user() ->presbitero->igreja->website}}">
                         </div>
                         <div class="three wide field">
                             <label>CNPJ</label>
-                            <input type="text" disabled="" name="cnpj">
+                            <input type="text" disabled="" name="cnpj"  value="{{auth() ->user() ->presbitero->igreja->cnpj}}">
                         </div>
                         <div class="three wide field">
                             <label>Data Organização</label>
-                            <input type="text" disabled="" name="data_organizacao">
+                            <input type="text" disabled="" name="data_organizacao"  value="{{auth() ->user() ->presbitero->igreja->data_organizacao}}">
                         </div>
                     </div>
                 </div>
