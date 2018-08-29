@@ -83,22 +83,22 @@ window.addEventListener("load", function () {
         })
     ;
 
-    $(formResource.id_estado).on('change', function () {
-        if ($(formResource.id_estado).val() > 0) {
-            $("#id_cidade").children().remove();
-            $("#div_cidade").find(".search").hide();
-            $("#loader_cidade").show();
-            $.get('/api/cidades?uf=' + $(formResource.id_estado).val())
+    $(formResource.id_presbiterio).on('change', function () {
+        if ($(formResource.id_presbiterio).val() > 0) {
+            $("#div_igreja").find(".search").hide();
+            $("#loader_igreja").show();
+            $.get('/api/igrejas?presbiterio=' + $(formResource.id_presbiterio).val())
                 .done(function (response) {
-                    $.each(response, function () {
-                        $(formResource.id_cidade).append(
+                    $.each(response['items'], function () {
+                        $(formResource.id_igreja).append(
                             $('<option />').val(this.id).text(this.nome.toUpperCase())
                         );
                     });
-                    $("#div_cidade").find(".search").show();
-                    $("#loader_cidade").hide()
+                    $(formResource.id_igreja).val(window.id_igreja);
+                    $("#div_igreja").find(".search").show();
+                    $("#loader_igreja").hide()
                 })
-                .fail(function (response) {
+                .fail(function () {
                     iziToast.error({
                         title: 'Erro',
                         message: 'Consulta não realizada, verifique sua conexão',
@@ -108,22 +108,53 @@ window.addEventListener("load", function () {
         }
     });
 
-    $(formResource.id_presbiterio).on('change', function () {
-        if ($(formResource.id_presbiterio).val() > 0) {
-            //$("#id_cidade").children().remove();
-            //$("#div_cidade").find(".search").hide();
-            //$("#loader_cidade").show();
-            $.get('/api/igrejas?presbiterio=' + $(formResource.id_presbiterio).val())
+    /**
+     * Function para o select Estado de NASCIMENTO
+     */
+    $('[name="nascimento_id_estado"]').on('change', function () {
+        if ($('[name="nascimento_id_estado"]').val() > 0) {
+            $('[name="nascimento_id_cidade"]').children().remove();
+            $("#div_cidade").find(".search").hide();
+            $("#loader_cidade").show();
+            $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
                 .done(function (response) {
                     $.each(response, function () {
-                        $(formResource.id_igreja).append(
+                        $('[name="nascimento_id_cidade"]').append(
                             $('<option />').val(this.id).text(this.nome.toUpperCase())
                         );
                     });
-                    //$("#div_cidade").find(".search").show();
-                    //$("#loader_cidade").hide()
+                    $("#div_cidade").find(".search").show();
+                    $("#loader_cidade").hide()
                 })
-                .fail(function (response) {
+                .fail(function () {
+                    iziToast.error({
+                        title: 'Erro',
+                        message: 'Consulta não realizada, verifique sua conexão',
+                    });
+                })
+            ;
+        }
+    });
+
+    /**
+     * Function para o select Estado ENDEREÇO
+     */
+    $('[name="endereco_id_estado"]').on('change', function () {
+        if ($('[name="endereco_id_estado"]').val() > 0) {
+            $('[name="endereco_id_cidade"]').children().remove();
+            $("#div_cidade_end").find(".search").hide();
+            $("#loader_cidade_end").show();
+            $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
+                .done(function (response) {
+                    $.each(response, function () {
+                        $('[name="endereco_id_cidade"]').append(
+                            $('<option />').val(this.id).text(this.nome.toUpperCase())
+                        );
+                    });
+                    $("#div_cidade_end").find(".search").show();
+                    $("#loader_cidade_end").hide()
+                })
+                .fail(function () {
                     iziToast.error({
                         title: 'Erro',
                         message: 'Consulta não realizada, verifique sua conexão',

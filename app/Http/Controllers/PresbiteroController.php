@@ -6,6 +6,7 @@ use App\Estados;
 use App\Presbiterios;
 use App\Presbiteros;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PresbiteroController extends Controller
 {
@@ -54,13 +55,18 @@ class PresbiteroController extends Controller
     public function store(Request $request)
     {
         try {
-            $rs = $request->user()->presbiteros()->create($request->all());
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+            $data = $request->all();
+            unset($data['sinodo']);
+            unset($data['presbiterio']);
+            DB::beginTransaction();
+            $resource = $request->user()->presbiteros()->create($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            dd($exception->getMessage());
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($rs);
+        return redirect("/cadastros/ministros/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -96,13 +102,24 @@ class PresbiteroController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Presbiteros $presbiteros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Presbiteros $presbiteros)
+    public function update(Request $request, Presbiteros $presbiteros, $id)
     {
-        $resource = $presbiteros->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
-        return response()->json($resource);
+        try {
+            $data = $request->all();
+            unset($data['sinodo']);
+            unset($data['presbiterio']);
+            DB::beginTransaction();
+            $resource = $presbiteros->findOrfail((int)$id);
+            $resource->update($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/ministros/$resource->id/editar")->with('updated', "success");
     }
 
     /**

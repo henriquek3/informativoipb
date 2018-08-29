@@ -40,7 +40,7 @@ $(document).ready(function () {
                 method: 'The method you called is not defined.'
             },
             onSelect: function (result) {
-                document.location.href = `/cadastros/presbiteros/${result.id}/editar`
+                document.location.href = `/cadastros/ministros/${result.id}/editar`
             }
         })
     ;
