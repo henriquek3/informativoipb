@@ -134,7 +134,7 @@
                     <div class="sixteen wide field">
                         <label>Nome dos Dependentes</label>
                         <input type="text" name="nome_filhos" value="{{$resource->nome_filhos ?? ''}}"
-                               placeholder="Nome dos Dependentes. OSB. use ; para separar os nomes">
+                               placeholder="Nome dos Dependentes. OBS. use ; para separar os nomes">
                     </div>
                 </div>
                 <div class="fields">
