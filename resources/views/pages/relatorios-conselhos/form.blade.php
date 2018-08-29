@@ -135,7 +135,7 @@
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui radio checkbox">
-                                    <input name="or_imovel_documentado" type="radio" value="0" checked="checked">
+                                    <input name="or_imovel_documentado" type="radio" value="0">
                                     <label>Não</label>
                                 </div>
                             </div>
