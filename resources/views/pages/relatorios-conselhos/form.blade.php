@@ -135,7 +135,7 @@
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui radio checkbox">
-                                    <input name="or_imovel_documentado" type="radio" value="0">
+                                    <input name="or_imovel_documentado" type="radio" value="0" {{isset($resource) ? $resource->or_imovel_documentado === 0 ? 'checked' : '' : ''}}>
                                     <label>Não</label>
                                 </div>
                             </div>
@@ -169,11 +169,11 @@
                             </div>
                             <div class="six wide field">
                                 <div class="ui radio checkbox">
-                                    <input name="or_inventario_existe" type="radio" value="1">
+                                    <input name="or_inventario_existe" type="radio" value="1" {{isset($resource) ? $resource->or_inventario_existe === 1 ? 'checked' : '' : ''}}>
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui radio checkbox">
-                                    <input name="or_inventario_existe" type="radio" value="0" checked="checked">
+                                    <input name="or_inventario_existe" type="radio" value="0" {{isset($resource) ? $resource->or_inventario_existe === 0 ? 'checked' : '' : ''}}>
                                     <label>Não</label>
                                 </div>
                             </div>
@@ -185,11 +185,11 @@
                             </div>
                             <div class="six wide field">
                                 <div class="ui radio checkbox">
-                                    <input name="or_inventario_atualizado" type="radio" value="1">
+                                    <input name="or_inventario_atualizado" type="radio" value="1" {{isset($resource) ? $resource->or_inventario_atualizado === 1 ? 'checked' : '' : ''}}>
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui radio checkbox">
-                                    <input name="or_inventario_atualizado" type="radio" value="0" checked="checked">
+                                    <input name="or_inventario_atualizado" type="radio" value="0" {{isset($resource) ? $resource->or_inventario_atualizado === 0 ? 'checked' : '' : ''}}>
                                     <label>Não</label>
                                 </div>
                             </div>
@@ -202,12 +202,11 @@
                             </div>
                             <div class="six wide field">
                                 <div class="ui radio checkbox">
-                                    <input name="or_rol_membros_atualizado" type="radio" value="1">
+                                    <input name="or_rol_membros_atualizado" type="radio" value="1" {{isset($resource) ? $resource->or_rol_membros_atualizado === 1 ? 'checked' : '' : ''}}>
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui radio checkbox">
-                                    <input name="or_rol_membros_atualizado" type="radio" value="0"
-                                           checked="checked">
+                                    <input name="or_rol_membros_atualizado" type="radio" value="0" {{isset($resource) ? $resource->or_rol_membros_atualizado === 0 ? 'checked' : '' : ''}}>
                                     <label>Não</label>
                                 </div>
                             </div>
@@ -345,9 +344,9 @@
                         </div>
                         <div class="two wide field">
                             <label>Sim</label>
-                            <input name="se_professores_ebd" type="radio" value="1">
+                            <input name="se_professores_ebd" type="radio" value="1" {{isset($resource) ? $resource->se_professores_ebd === 1 ? 'checked' : '' : ''}}>
                             <label>Não</label>
-                            <input name="se_professores_ebd" type="radio" checked="checked" value="0">
+                            <input name="se_professores_ebd" type="radio" value="0" {{isset($resource) ? $resource->se_professores_ebd === 0 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="three wide field"
                              data-tooltip="Houve aperfeiçoamento para Liderança da Igreja?">
@@ -355,9 +354,9 @@
                         </div>
                         <div class="two wide field">
                             <label>Sim</label>
-                            <input name="se_lideranca" type="radio" value="1">
+                            <input name="se_lideranca" type="radio" value="1" {{isset($resource) ? $resource->se_lideranca === 1 ? 'checked' : '' : ''}}>
                             <label>Não</label>
-                            <input name="se_lideranca" type="radio" checked="checked" value="0">
+                            <input name="se_lideranca" type="radio" value="0" {{isset($resource) ? $resource->se_lideranca === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -366,9 +365,9 @@
                         </div>
                         <div class="two wide field">
                             <label>Sim</label>
-                            <input name="se_equipes_musicas" type="radio" value="1">
+                            <input name="se_equipes_musicas" type="radio" value="1" {{isset($resource) ? $resource->se_equipes_musicas === 1 ? 'checked' : '' : ''}}>
                             <label>Não</label>
-                            <input name="se_equipes_musicas" type="radio" checked="checked" value="0">
+                            <input name="se_equipes_musicas" type="radio" value="0" {{isset($resource) ? $resource->se_equipes_musicas === 0 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="three wide field" data-tooltip="Número de Corais na Igreja">
                             <label>2.3.5. Nº de Grupos Corais:</label>
@@ -384,9 +383,9 @@
                         </div>
                         <div class="two wide field">
                             <label>Sim</label>
-                            <input name="se_oficiais" type="radio" value="1">
+                            <input name="se_oficiais" type="radio" value="1" {{isset($resource) ? $resource->se_oficiais === 1 ? 'checked' : '' : ''}}>
                             <label>Não</label>
-                            <input name="se_oficiais" type="radio" checked="checked" value="1">
+                            <input name="se_oficiais" type="radio" value="0" {{isset($resource) ? $resource->se_oficiais === 0 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="three wide field" data-tooltip="Quantas equipes musicais há na Igreja?">
                             <label>2.3.6. Nº de Conjuntos Musicais:</label>
@@ -458,11 +457,11 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_dizimo_fidelidade" type="radio" value="1">
+                            <input name="sa_dizimo_fidelidade" type="radio" value="1" {{isset($resource) ? $resource->sa_dizimo_fidelidade === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_dizimo_fidelidade" type="radio" checked="checked" value="0">
+                            <input name="sa_dizimo_fidelidade" type="radio" value="0" {{isset($resource) ? $resource->sa_dizimo_fidelidade === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                 </div>
@@ -532,11 +531,11 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_balancete_tesouraria" type="radio" value="1">
+                            <input name="sa_balancete_tesouraria" type="radio" value="1" {{isset($resource) ? $resource->sa_balancete_tesouraria === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_balancete_tesouraria" type="radio" checked="checked" value="0">
+                            <input name="sa_balancete_tesouraria" type="radio" value="0" {{isset($resource) ? $resource->sa_balancete_tesouraria === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -545,11 +544,11 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_officiais_venc" type="radio" value="1">
+                            <input name="sa_officiais_venc" type="radio" value="1" {{isset($resource) ? $resource->sa_officiais_venc === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_officiais_venc" type="radio" checked="checked" value="0">
+                            <input name="sa_officiais_venc" type="radio" value="0" {{isset($resource) ? $resource->sa_officiais_venc === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -584,11 +583,11 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_fap" type="radio" value="1">
+                            <input name="sa_fap" type="radio" value="1" {{isset($resource) ? $resource->sa_fap === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_fap" type="radio" checked="checked" value="0">
+                            <input name="sa_fap" type="radio" value="0" {{isset($resource) ? $resource->sa_fap === 0 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field"></div>
                         <div class="two wide field">
@@ -596,11 +595,11 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_ipb_prev" type="radio" value="1">
+                            <input name="sa_ipb_prev" type="radio" value="1" {{isset($resource) ? $resource->sa_ipb_prev === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_ipb_prev" type="radio" checked="checked" value="0">
+                            <input name="sa_ipb_prev" type="radio" value="0" {{isset($resource) ? $resource->sa_ipb_prev === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -609,22 +608,22 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_idem_livros_sociedades" type="radio" value="1">
+                            <input name="sa_idem_livros_sociedades" type="radio" value="1" {{isset($resource) ? $resource->sa_idem_livros_sociedades === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_idem_livros_sociedades" type="radio" checked="checked" value="0">
+                            <input name="sa_idem_livros_sociedades" type="radio" value="0" {{isset($resource) ? $resource->sa_idem_livros_sociedades === 0 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="six wide field">
                             <label>3.11. Houve contribuição para causas extra-locais?</label>
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_contribuicao_extra" type="radio" value="1">
+                            <input name="sa_contribuicao_extra" type="radio" value="1" {{isset($resource) ? $resource->sa_contribuicao_extra === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_contribuicao_extra" type="radio" checked="checked" value="0">
+                            <input name="sa_contribuicao_extra" type="radio" value="0" {{isset($resource) ? $resource->sa_contribuicao_extra === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -633,22 +632,22 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_nomeacao" type="radio" value="1">
+                            <input name="sa_nomeacao" type="radio" value="1" {{isset($resource) ? $resource->sa_nomeacao === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_nomeacao" type="radio" checked="checked" value="0">
+                            <input name="sa_nomeacao" type="radio" value="0" {{isset($resource) ? $resource->sa_nomeacao === 0 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="six wide field">
                             <label>3.12. Contribuiu com Previdência Social pastor(es)?</label>
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="sa_contribuicao_previdencia" type="radio" value="1">
+                            <input name="sa_contribuicao_previdencia" type="radio" value="1" {{isset($resource) ? $resource->sa_contribuicao_previdencia === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="sa_contribuicao_previdencia" type="radio" checked="checked" value="1">
+                            <input name="sa_contribuicao_previdencia" type="radio" value="0" {{isset($resource) ? $resource->sa_contribuicao_previdencia === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -682,11 +681,11 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="pe_tem_planejamento_estrategico" type="radio" value="1">
+                            <input name="pe_tem_planejamento_estrategico" type="radio" value="1" {{isset($resource) ? $resource->pe_tem_planejamento_estrategico === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="pe_tem_planejamento_estrategico" type="radio" checked="checked" value="0">
+                            <input name="pe_tem_planejamento_estrategico" type="radio" value="0" {{isset($resource) ? $resource->pe_tem_planejamento_estrategico === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -720,22 +719,22 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="pat_seguro_patrimonial" type="radio" value="1">
+                            <input name="pat_seguro_patrimonial" type="radio" value="1" {{isset($resource) ? $resource->pat_seguro_patrimonial === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="pat_seguro_patrimonial" type="radio" checked="checked" value="0">
+                            <input name="pat_seguro_patrimonial" type="radio" value="0" {{isset($resource) ? $resource->pat_seguro_patrimonial === 0 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="six wide field">
                             <label>5.2. Tem Alvará de Funcionamento?</label>
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="pat_alvara" type="radio" value="1">
+                            <input name="pat_alvara" type="radio" value="1" {{isset($resource) ? $resource->pat_alvara === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="pat_alvara" type="radio" checked="checked" value="0">
+                            <input name="pat_alvara" type="radio" value="0" {{isset($resource) ? $resource->pat_alvara === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -744,22 +743,22 @@
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="pat_licenca_bombeiros" type="radio" value="1">
+                            <input name="pat_licenca_bombeiros" type="radio" value="1" {{isset($resource) ? $resource->pat_licenca_bombeiros === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="pat_licenca_bombeiros" type="radio" checked="checked" value="0">
+                            <input name="pat_licenca_bombeiros" type="radio" value="0" {{isset($resource) ? $resource->pat_licenca_bombeiros === 0 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="six wide field">
                             <label>5.4. Tem Certificado Digital?</label>
                         </div>
                         <div class="one wide field">
                             <label>Sim</label>
-                            <input name="pat_certificado_digital" type="radio" value="1">
+                            <input name="pat_certificado_digital" type="radio" value="1" {{isset($resource) ? $resource->pat_certificado_digital === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="one wide field">
                             <label>Não</label>
-                            <input name="pat_certificado_digital" type="radio" checked="checked" value="0">
+                            <input name="pat_certificado_digital" type="radio" value="0" {{isset($resource) ? $resource->pat_certificado_digital === 0 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                 </div>

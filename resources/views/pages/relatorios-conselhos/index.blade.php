@@ -25,9 +25,9 @@
         <table class="ui celled unstackable sortable green table">
             <thead>
             <tr>
-                <th class="seven wide">Tipo Relatório</th>
-                <th class="two wide center aligned">Data Inclusão</th>
-                <th class="two wide center aligned">Ultima Alteração</th>
+                <th class="five wide">Tipo Relatório</th>
+                <th class="three wide center aligned">Data Inclusão</th>
+                <th class="three wide center aligned">Ultima Alteração</th>
                 <th class="two wide center aligned">Status</th>
                 <th class="two wide center aligned">Ano</th>
                 <th class="one wide">Editar</th>
