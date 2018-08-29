@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\RelConselhos;
 use App\RelEstatisticas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RelConselhoController extends Controller
 {
     /**
      * RelConselhoController constructor.
+     *
      * @authenticator
      */
     public function __construct()
@@ -24,7 +26,7 @@ class RelConselhoController extends Controller
      */
     public function index(RelConselhos $relConselhos)
     {
-        return view("pages.relatorios-conselhos.index",[
+        return view("pages.relatorios-conselhos.index", [
             "resources" => $relConselhos->paginate(10)
         ]);
     }
@@ -48,11 +50,14 @@ class RelConselhoController extends Controller
     public function store(Request $request)
     {
         try {
-            $rs = $request->user()->relConselhos()->create($request->all());
+            DB::beginTransaction();
+            $resource = $request->user()->relConselhos()->create($request->all());
+            DB::commit();
         } catch (\Exception $exception) {
-            return response()->json($exception, 500); // kelewzius
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($rs);
+        return redirect("/relatorios/conselho/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -70,11 +75,16 @@ class RelConselhoController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\RelConselhos $relConselhos
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(RelConselhos $relConselhos)
+    public function edit(RelConselhos $relConselhos, $id)
     {
-        //
+        return view('pages.relatorios-conselhos.form', [
+            'resource' => $relConselhos->where('id', '=', $id)
+                ->with('usuario', 'usuario.presbitero.igreja', 'usuario.presbitero.igreja.presbiterio', 'usuario.presbitero.igreja.presbiterio.sinodo')
+                ->first()
+        ]);
     }
 
     /**
@@ -82,17 +92,21 @@ class RelConselhoController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\RelConselhos $relConselhos
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelConselhos $relConselhos)
+    public function update(Request $request, RelConselhos $relConselhos, $id)
     {
         try {
-            $resource = $relConselhos->findOrFail((int)$request->get("id"));
+            DB::beginTransaction();
+            $resource = $relConselhos->findOrfail((int)$id);
             $resource->update($request->all());
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            return response()->json($queryException, 500);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
+        return redirect("/relatorios/conselho/$resource->id/editar")->with('updated', "success");
     }
 
     /**

@@ -11,14 +11,21 @@ use App\Notifications\ConviteNotification;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        return view('login');
+        return view('pages.usuarios.index', [
+            'resources' => $user->paginate(10)
+        ]);
     }
 
 
@@ -29,7 +36,7 @@ class UserController extends Controller
      */
     public function adminuser()
     {
-        return view('administrar-usuarios');
+        return view('usuarios.index');
     }
 
     /**

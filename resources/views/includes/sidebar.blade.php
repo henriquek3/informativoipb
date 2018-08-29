@@ -73,7 +73,7 @@
         </a>
         <div class="content">
             <a class="item in-dev" href="/meu-usuario">MEU USUÁRIO</a>
-            <a class="item" href="/administrar-usuarios">ADMINISTRAR USUÁRIOS</a>
+            <a class="item" href="/configuracoes/usuarios">ADMINISTRAR USUÁRIOS</a>
             <a class="item in-dev" href="/parametros-sistema">PARÂMETROS DO SISTEMA</a>
             <a class="item in-dev" href="/ajuda">SOLICITAR AJUDA</a>
         </div>

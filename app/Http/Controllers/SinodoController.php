@@ -55,7 +55,6 @@ class SinodoController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
-            dd($exception->getMessage());
             return redirect()->back()->withErrors($exception->getMessage());
         }
         return redirect("/cadastros/sinodos/$resource->id/editar")->with('saved', "success");
@@ -99,7 +98,6 @@ class SinodoController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
-            dd($exception->getMessage());
             return redirect()->back()->withErrors($exception->getMessage());
         }
         return redirect("/cadastros/sinodos/$resource->id/editar")->with('updated', "success");

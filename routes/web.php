@@ -22,7 +22,7 @@ Route::get('/', 'HomeController@index');
 |--------------------------------------------------------------------------
 */
 
-Route::get('/administrar-usuarios', 'UserController@adminuser')->middleware('auth');
+//Route::get('/administrar-usuarios', 'UserController@adminuser')->middleware('auth');
 Route::post('/api/usuarios', 'UserController@store')->middleware('auth');
 Route::delete('/administrar-usuarios/{id}/delete', 'UserController@destroy')->middleware('auth');
 
@@ -134,6 +134,10 @@ Route::prefix('relatorios')->group(function () {
     Route::get('/estatistica/{id}/editar', 'RelEstatisticaController@edit')->where(['id' => '[0-9]+']);
     Route::put('/estatistica/{id}/editar', 'RelEstatisticaController@update')->where(['id' => '[0-9]+']);
     Route::delete('/estatistica/{id}/editar', 'RelEstatisticaController@destroy')->where(['id' => '[0-9]+']);
+});
+
+Route::prefix('configuracoes')->group(function () {
+    Route::get('/usuarios', 'UserController@index');
 });
 
 /*

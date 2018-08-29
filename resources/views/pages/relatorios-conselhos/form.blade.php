@@ -13,8 +13,7 @@
         <div class="ui clearing divider"></div>
         <p></p>
         <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
-            @csrf
-            @method("delete")
+            @csrf @method("delete")
         </form>
         <form id="formResource" name="formResource" method="POST" action="{{url()->current()}}">
             @csrf @isset($resource) @method('put') @endisset
@@ -22,13 +21,11 @@
                 <div class="fields">
                     <div class="two wide field" data-tooltip="Este valor não pode ser alterado.">
                         <label>Ano</label>
-                        <input type="text" readonly="" value="2018" name="ano">
+                        <input type="text" readonly="" value="{{Date('Y')}}" name="ano">
                     </div>
                     <div class="seven wide field">
                         <label>Sínodo</label>
                         <input type="text" name="sinodo" value="" disabled="">
-
-
                     </div>
                     <div class="seven wide field" id="div_presbiterio">
                         <label>Presbitério</label>
