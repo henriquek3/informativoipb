@@ -217,7 +217,7 @@
                                 <label>Quantidade congregações?</label>
                             </div>
                             <div class="six wide field">
-                                <input type="text" value="0" name="or_nr_congregacoes">
+                                <input type="text" value="{{ $resource->or_nr_congregacoes ?? "" }}" name="or_nr_congregacoes">
                             </div>
                         </div>
                     </div>
@@ -233,13 +233,13 @@
                                 <label>Santa Ceia - Grupos</label>
                             </div>
                             <div class="two wide field">
-                                <input type="text" value="0" name="se_santaceia_grupos">
+                                <input type="text" value="{{ $resource->se_santaceia_grupos ?? "" }}" name="se_santaceia_grupos">
                             </div>
                             <div class="four wide field">
                                 <label>Santa Ceia - Individual</label>
                             </div>
                             <div class="two wide field">
-                                <input type="text" name="se_santaceia_individual" value="0">
+                                <input type="text" name="se_santaceia_individual" value="{{ $resource->se_santaceia_individual ?? "" }}">
                             </div>
                             <div class="four wide field disabled">
                                 <div class="ui labeled input">
@@ -261,7 +261,7 @@
                             <label>2.2.1. Nº de atividades evangelísticas:*</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="se_atividades_evangelisticas">
+                            <input type="text" value="{{ $resource->se_atividades_evangelisticas ?? "" }}" name="se_atividades_evangelisticas">
                         </div>
                         <div class="ui tiny message">
                             <label>* em templos e residências; recintos públicos ou ar livre; imprensa escrita,
@@ -276,25 +276,25 @@
                             <label>Bíblias</label>
                         </div>
                         <div class="one wide field">
-                            <input type="text" value="0" name="se_textos_distribuidos_biblia">
+                            <input type="text" value="{{ $resource->se_textos_distribuidos_biblia ?? "" }}" name="se_textos_distribuidos_biblia">
                         </div>
                         <div class="one wide field" data-tooltip="Novo Testamento">
                             <label>N.T.</label>
                         </div>
                         <div class="one wide field">
-                            <input type="text" value="0" name="se_textos_distribuidos_nt">
+                            <input type="text" value="{{ $resource->se_textos_distribuidos_nt ?? "" }}" name="se_textos_distribuidos_nt">
                         </div>
                         <div class="one wide field">
                             <label>Folhetos</label>
                         </div>
                         <div class="one wide field">
-                            <input type="text" value="0" name="se_textos_distribuidos_folhetos">
+                            <input type="text" value="{{ $resource->se_textos_distribuidos_folhetos ?? "" }}" name="se_textos_distribuidos_folhetos">
                         </div>
                         <div class="one wide field">
                             <label>Outros</label>
                         </div>
                         <div class="one wide field">
-                            <input type="text" value="0" name="se_textos_distribuidos_outros">
+                            <input type="text" value="{{ $resource->se_textos_distribuidos_outros ?? "" }}" name="se_textos_distribuidos_outros">
                         </div>
                         <div class="one wide field">
                             <label>Total</label>
@@ -329,7 +329,7 @@
                             <label>2.2.4.Outra participação missionária:</label>
                         </div>
                         <div class="eleven wide field">
-                            <input type="text" value="0" name="se_trabalho_misisonario_outros">
+                            <input type="text" value="{{ $resource->se_trabalho_misisonario_outros ?? "" }}" name="se_trabalho_misisonario_outros">
                         </div>
                     </div>
                 </div>
@@ -373,7 +373,7 @@
                             <label>2.3.5. Nº de Grupos Corais:</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="se_grupos_corais">
+                            <input type="text" value="{{ $resource->se_grupos_corais ?? "" }}" name="se_grupos_corais">
                         </div>
                     </div>
                     <div class="inline fields">
@@ -391,7 +391,7 @@
                             <label>2.3.6. Nº de Conjuntos Musicais:</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="se_conjuntos_musicas">
+                            <input type="text" value="{{ $resource->se_conjuntos_musicas ?? "" }}" name="se_conjuntos_musicas">
                         </div>
                     </div>
                 </div>
@@ -406,14 +406,14 @@
                             <label>2.4.1.Nº de atos beneficentes realizados pela Junta Diaconal:</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="se_beneficientes_jdiaconal">
+                            <input type="text" value="{{ $resource->se_beneficientes_jdiaconal ?? "" }}" name="se_beneficientes_jdiaconal">
                         </div>
                         <div class="three wide field"
                              data-tooltip="Nº de atos benificientes realizados por outro Departamento.">
                             <label>Por outros departamentos:</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="se_beneficientes_outros">
+                            <input type="text" value="{{ $resource->se_beneficientes_outros ?? "" }}" name="se_beneficientes_outros">
                         </div>
                         <div class="one wide field">
                             <label>Total</label>
@@ -428,14 +428,14 @@
                             <label>2.4.2.Nº de visitas feitas por presbíteros e diáconos:</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="se_visitas_presbiteros_diaconos">
+                            <input type="text" value="{{ $resource->se_visitas_presbiteros_diaconos ?? "" }}" name="se_visitas_presbiteros_diaconos">
                         </div>
                         <div class="three wide field"
                              data-tooltip="Nº de visitas realizadas por outro Departamento.">
                             <label>Por outros departamentos:</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="se_visitas_outros">
+                            <input type="text" value="{{ $resource->se_visitas_outros ?? "" }}" name="se_visitas_outros">
                         </div>
                         <div class="one wide field">
                             <label>Total</label>
@@ -557,13 +557,13 @@
                             <label>Nº Presbíteros:</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="sa_officiais_venc_presbiteros">
+                            <input type="text" value="{{ $resource->sa_officiais_venc_presbiteros ?? "" }}" name="sa_officiais_venc_presbiteros">
                         </div>
                         <div class="two wide field" data-tooltip="Nº Diáconos com mandato a vencer no próximo ano.">
                             <label>Nº Diáconos</label>
                         </div>
                         <div class="two wide field">
-                            <input type="text" value="0" name="sa_officiais_venc_diaconos">
+                            <input type="text" value="{{ $resource->sa_officiais_venc_diaconos ?? "" }}" name="sa_officiais_venc_diaconos">
                         </div>
                     </div>
                     <div class="inline fields">
@@ -574,7 +574,7 @@
                     <div class="inline fields">
                         <div class="sixteen wide field">
                                 <textarea rows="4" name="sa_oficiais_vencimento"
-                                          placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer"></textarea>
+                                          placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer">{{ $resource->sa_oficiais_vencimento ?? "" }}</textarea>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -661,11 +661,11 @@
                     <div class="inline fields">
                         <div class="eight wide field">
                                 <textarea rows="4" name="sa_reforma_construcao_projeto"
-                                          placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto."></textarea>
+                                          placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto.">{{ $resource->sa_reforma_construcao_projeto ?? "" }}</textarea>
                         </div>
                         <div class="eight wide field">
                                 <textarea rows="4" name="sa_reforma_construcao_andamento"
-                                          placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento."></textarea>
+                                          placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento.">{{ $resource->sa_reforma_construcao_andamento ?? "" }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -700,11 +700,11 @@
                     <div class="inline fields">
                         <div class="eight wide field">
                                 <textarea rows="4" name="pe_objetivos_alcancados"
-                                          placeholder="Cite os objetivos que foram propostos e alcançados."></textarea>
+                                          placeholder="Cite os objetivos que foram propostos e alcançados.">{{ $resource->pe_objetivos_alcancados ?? "" }}</textarea>
                         </div>
                         <div class="eight wide field">
                                 <textarea rows="4" name="pe_objetivos_falhos"
-                                          placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados."></textarea>
+                                          placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados."> {{ $resource->pe_objetivos_falhos ?? "" }}</textarea>
                         </div>
                     </div>
                 </div>
