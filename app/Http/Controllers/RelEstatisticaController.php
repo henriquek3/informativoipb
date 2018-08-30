@@ -55,7 +55,7 @@ class RelEstatisticaController extends Controller
         }
         try {
             DB::beginTransaction();
-            $resource = $request->user()->relConselhos()->create($data);
+            $resource = $request->user()->relEstatisticas()->create($data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();

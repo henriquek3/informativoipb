@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RelMinistros;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RelMinistroController extends Controller
 {
@@ -20,9 +21,11 @@ class RelMinistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RelMinistros $relMinistros)
     {
-        return view("relatorios-ministeriais");
+        return view("pages.relatorios-ministros.index", [
+            "resources" => $relMinistros->paginate(10)
+        ]);
     }
 
     /**
@@ -32,7 +35,7 @@ class RelMinistroController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.relatorios-ministros.form");
     }
 
     /**
@@ -43,8 +46,20 @@ class RelMinistroController extends Controller
      */
     public function store(Request $request)
     {
-        $rs = $request->user()->relMinistros()->create($request->all());
-        return response()->json($rs);
+        $data = $request->all();
+        // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
+        if (is_null($request->get('congregacao_presbiterio'))) {
+            $data['congregacao_presbiterio'] = 0;
+        }
+        try {
+            DB::beginTransaction();
+            $resource = $request->user()->relMinistros()->create($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/relatorios/ministro/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -62,11 +77,16 @@ class RelMinistroController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\RelMinistros $relMinistros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(RelMinistros $relMinistros)
+    public function edit(RelMinistros $relMinistros, $id)
     {
-        //
+        return view('pages.relatorios-conselhos.form', [
+            'resource' => $relMinistros->where('id', '=', $id)
+                ->with('usuario', 'usuario.presbitero.igreja', 'usuario.presbitero.igreja.presbiterio', 'usuario.presbitero.igreja.presbiterio.sinodo')
+                ->first()
+        ]);
     }
 
     /**
@@ -74,39 +94,38 @@ class RelMinistroController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\RelMinistros $relMinistros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelMinistros $relMinistros)
+    public function update(Request $request, RelMinistros $relMinistros, $id)
     {
-        $resource = $relMinistros->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
-        return response()->json($resource);
+        try {
+            DB::beginTransaction();
+            $resource = $relMinistros->findOrfail((int)$id);
+            $resource->update($request->all());
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/relatorios/ministro/$resource->id/editar")->with('updated', "success");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\RelMinistros $relMinistros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelMinistros $relMinistros, Request $request)
+    public function destroy(RelMinistros $relMinistros, $id)
     {
-        $resource = $relMinistros->findOrFail((int)$request->get("id"));
         try {
+            $resource = $relMinistros->findOrFail((int)$id);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function api()
-    {
-        return response()->json(RelMinistros::all());
+        return redirect("/cadastros/ministro")->with('deleted', "success");
     }
 }
