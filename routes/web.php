@@ -16,32 +16,6 @@ Auth::routes();
 Route::get('/welcome', 'HomeController@welcome')->name('welcome');
 Route::get('/', 'HomeController@index');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes UserController
-|--------------------------------------------------------------------------
-*/
-
-//Route::get('/administrar-usuarios', 'UserController@adminuser')->middleware('auth');
-Route::post('/api/usuarios', 'UserController@store')->middleware('auth');
-Route::delete('/administrar-usuarios/{id}/delete', 'UserController@destroy')->middleware('auth');
-
-Route::get('/api/usuarios', 'UserController@users')->middleware('auth');
-Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
-Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes UserController
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/meu-usuario', 'UserController@adminuser')->middleware('auth');
-//Route::post('/api/usuarios', 'UserController@store');
-//Route::delete('/api/usuarios/{id}', 'UserController@destroy');
-//Route::get('/api/usuarios', 'UserController@users');
-Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
-Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
 
 Route::prefix('cadastros')->group(function () {
     /*
@@ -148,16 +122,29 @@ Route::prefix('configuracoes')->group(function () {
     Route::get('/usuarios/{id}/editar', 'UserController@edit')->where(['id' => '[0-9]+']);
     Route::put('/usuarios/{id}/editar', 'UserController@update')->where(['id' => '[0-9]+']);
     Route::delete('/usuarios/{id}/editar', 'UserController@destroy')->where(['id' => '[0-9]+']);
+    //Route::get('/meu-usuario', 'UserController@adminuser')->middleware('auth');
+    //Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
+    //Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes
+    |--------------------------------------------------------------------------
+    */
+
 });
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes API ROUTES
-|--------------------------------------------------------------------------
-*/
-Route::get('/api/estados', 'EstadoController@api');
-Route::get('/api/cidades', 'CidadeController@api');
-Route::get('/api/sinodos', 'SinodoController@api');
-Route::get('/api/presbiterios', 'PresbiterioController@api');
-Route::get('/api/igrejas', 'IgrejaController@api');
-Route::get('/api/ministros', 'PresbiteroController@api');
+Route::prefix('api')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes API ROUTES
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/estados', 'EstadoController@api');
+    Route::get('/cidades', 'CidadeController@api');
+    Route::get('/sinodos', 'SinodoController@api');
+    Route::get('/presbiterios', 'PresbiterioController@api');
+    Route::get('/igrejas', 'IgrejaController@api');
+    Route::get('/ministros', 'PresbiteroController@api');
+});

@@ -4,25 +4,30 @@ namespace App\Http\Controllers;
 
 use App\RelEstatisticas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RelEstatisticaController extends Controller
 {
     /**
      * RelEstatisticaController constructor.
+     *
      * @authenticator
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RelEstatisticas $relEstatisticas)
     {
-        return view("relatorios-estatisticas");
+        return view("pages.relatorios-estatisticas.index", [
+            "resources" => $relEstatisticas->paginate(10)
+        ]);
     }
 
     /**
@@ -32,7 +37,7 @@ class RelEstatisticaController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.relatorios-estatisticas.form");
     }
 
     /**
@@ -43,14 +48,20 @@ class RelEstatisticaController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $rs = $request->user()->relEstatisticas()->create($request->all());
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        $data = $request->all();
+        // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
+        if (is_null($request->get('congregacao_presbiterio'))) {
+            $data['congregacao_presbiterio'] = 0;
         }
-        return response()->json($rs);
+        try {
+            DB::beginTransaction();
+            $resource = $request->user()->relConselhos()->create($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/relatorios/estatistica/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -68,11 +79,16 @@ class RelEstatisticaController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\RelEstatisticas $relEstatisticas
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(RelEstatisticas $relEstatisticas)
+    public function edit(RelEstatisticas $relEstatisticas, $id)
     {
-        //
+        return view('pages.relatorios-conselhos.form', [
+            'resource' => $relEstatisticas->where('id', '=', $id)
+                ->with('usuario', 'usuario.presbitero.igreja', 'usuario.presbitero.igreja.presbiterio', 'usuario.presbitero.igreja.presbiterio.sinodo')
+                ->first()
+        ]);
     }
 
     /**
@@ -80,45 +96,38 @@ class RelEstatisticaController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\RelEstatisticas $relEstatisticas
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelEstatisticas $relEstatisticas)
+    public function update(Request $request, RelEstatisticas $relEstatisticas, $id)
     {
         try {
-            $resource = $relEstatisticas->findOrfail((int)$request->get("id"));
+            DB::beginTransaction();
+            $resource = $relEstatisticas->findOrfail((int)$id);
             $resource->update($request->all());
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
+        return redirect("/relatorios/estatistica/$resource->id/editar")->with('updated', "success");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\RelEstatisticas $relEstatisticas
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelEstatisticas $relEstatisticas, Request $request)
+    public function destroy(RelEstatisticas $relEstatisticas, $id)
     {
-        $resource = $relEstatisticas->findOrFail((int)$request->get("id"));
         try {
+            $resource = $relEstatisticas->findOrFail((int)$id);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function api()
-    {
-        return response()->json(RelEstatisticas::all());
+        return redirect("/cadastros/estatistica")->with('deleted', "success");
     }
 }

@@ -118,31 +118,17 @@ class RelConselhoController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\RelConselhos $relConselhos
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelConselhos $relConselhos, Request $request)
+    public function destroy(RelConselhos $relConselhos, $id)
     {
-        $resource = $relConselhos->findOrFail((int)$request->get("id"));
         try {
+            $resource = $relConselhos->findOrFail((int)$id);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function api(Request $request)
-    {
-        $id = (int)$request->get("id");
-        if ($id > 0) {
-            return response()->json(RelConselhos::with("usuario")->where("id", $id)->get());
-        } else {
-            return response()->json(RelConselhos::all());
-        }
+        return redirect("/cadastros/conselho")->with('deleted', "success");
     }
 }
