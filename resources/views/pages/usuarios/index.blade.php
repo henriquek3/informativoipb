@@ -24,34 +24,46 @@
         <table class="ui celled unstackable sortable green table">
             <thead>
             <tr>
-                <th class="ten wide">Nome</th>
-                <th class="four wide">E-Mail</th>
-                <th class="four wide">Igreja</th>
-                <th class="four wide">Presbitério</th>
-                <th class="four wide">Sínodo</th>
+                <th class="six wide">Nome</th>
+                <th class="one wide">E-Mail</th>
+                <th class="one wide">Igreja</th>
+                <th class="one wide">Presbitério</th>
+                <th class="one wide">Sínodo</th>
+                <th class="one wide">Perfil</th>
+                <th class="one wide">Nível</th>
+                <th class="one wide" style="text-align: center;"
+                    data-tooltip="Representa se o usuário esta Ativo ou Inativo">Status
+                </th>
                 <th class="one wide center aligned">Editar</th>
             </tr>
             </thead>
             <tbody>
-            {{--@forelse($resources as $rs)
+            @forelse($resources as $rs)
                 <tr>
                     <td>{{ $rs->nome }}</td>
-                    <td>{{ $rs->sigla }}</td>
-                    <td>{{ $rs->nome_regiao()}}</td>
-                    <td class="center aligned" title="Editar Sínodo"><a class="ui icon primary button"
-                                                                        href="/configuracoes/usuarios/{{$rs->id}}/editar"><i
-                                    class="pencil alternate icon"></i></a></td>
+                    <td>{{ $rs->email }}</td>
+                    <td>{{ $rs->presbitero ? $rs->presbitero->igreja->nome : '--'}}</td>
+                    <td>{{ $rs->presbitero ? $rs->presbitero->igreja->presbiterio->sigla : '--'}}</td>
+                    <td>{{ $rs->presbitero ? $rs->presbitero->igreja->presbiterio->sinodo->sigla : '--'}}</td>
+                    <td>{{ $rs->usuario_nivel }}</td>
+                    <td>{{ $rs->usuario_perfil }}</td>
+                    <td>{{ $rs->usuario_status }}</td>
+                    <td class="center aligned" title="Editar Usuário">
+                        <a class="ui icon primary button" href="/configuracoes/usuarios/{{$rs->id}}/editar">
+                            <i class="pencil alternate icon"></i>
+                        </a>
+                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">Nenhum registro encontrado.</td>
+                    <td colspan="9">Nenhum registro encontrado.</td>
                 </tr>
-            @endforelse--}}
+            @endforelse
             </tbody>
             <tfoot>
             <tr>
-                <th colspan="4">
-                    {{--<div class="ui right floated pagination menu">{{ $resources->links('pagination::semantic-ui') }}</div>--}}
+                <th colspan="9">
+                    <div class="ui right floated pagination menu">{{ $resources->links('pagination::semantic-ui') }}</div>
                 </th>
             </tr>
             </tfoot>
@@ -60,9 +72,7 @@
 @endsection
 @section('javascript')
     <script src="{{asset('js/app/pesquisar-sinodo.js')}}"></script>
-    <script>
-        window.addEventListener("load", function () {
+    <script>window.addEventListener("load", function () {
             $('table').tablesort();
-        })
-    </script>
+        })</script>
 @endsection

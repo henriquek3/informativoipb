@@ -137,7 +137,17 @@ Route::prefix('relatorios')->group(function () {
 });
 
 Route::prefix('configuracoes')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes UserController
+    |--------------------------------------------------------------------------
+    */
     Route::get('/usuarios', 'UserController@index');
+    Route::get('/usuarios/novo', 'UserController@create');
+    Route::post('/usuarios/novo', 'UserController@store');
+    Route::get('/usuarios/{id}/editar', 'UserController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/usuarios/{id}/editar', 'UserController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/usuarios/{id}/editar', 'UserController@destroy')->where(['id' => '[0-9]+']);
 });
 
 /*
