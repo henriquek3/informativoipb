@@ -63,7 +63,6 @@ class PresbiteroController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
-            dd($exception->getMessage());
             return redirect()->back()->withErrors($exception->getMessage());
         }
         return redirect("/cadastros/ministros/$resource->id/editar")->with('saved', "success");
@@ -91,7 +90,7 @@ class PresbiteroController extends Controller
     {
         return view('pages.presbiteros.form', [
             'resource' => $presbiteros->where('id', '=', $id)
-                ->with('usuario','igreja','igreja.presbiterio','igreja.presbiterio.sinodo')
+                ->with('usuario', 'igreja', 'igreja.presbiterio', 'igreja.presbiterio.sinodo')
                 ->first(),
             'estados' => $estados->all()
         ]);
@@ -148,6 +147,11 @@ class PresbiteroController extends Controller
     public function api(Request $request)
     {
         $result['items'] = Presbiteros::where("nome", "like", "%{$request->get("nome")}%")->get();
+        // Caso vier o sinodo no get, o request partiu do form ministros
+        if (!is_null($request->get('igreja'))) {
+            $result['items'] = Presbiteros::where('id_igreja', '=', $request->get('igreja'))
+                ->get();
+        }
         return response()->json($result);
     }
 }

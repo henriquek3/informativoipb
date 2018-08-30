@@ -23,6 +23,8 @@ mix.copy('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
         'public/js/plugins/')
     .copy('node_modules/jquery-tablesort/jquery.tablesort.min.js',
         'public/js/plugins/')
+    .copy('resources/assets/js/app/*.js',
+        'public/js/app')
 ;
 
 /*mix.js([
@@ -47,7 +49,7 @@ mix.copy('node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
     'resources/assets/js/app/reuniao-presbiterio.js'
     ],'public/js/app/all.js');*/
 
-mix.copyDirectory('resources/assets/js/app', 'public/js/app');
+//mix.copyDirectory('resources/assets/js/app', 'public/js/app');
 
 /*
  *   BrowserSync

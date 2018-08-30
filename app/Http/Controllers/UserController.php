@@ -19,6 +19,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
     public function index(User $user)
@@ -30,23 +31,13 @@ class UserController extends Controller
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function adminuser()
-    {
-        return view('usuarios.index');
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('pages.usuarios.form');
     }
 
     /**
@@ -55,21 +46,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UsuarioRequest $request)
+    public function store(UsuarioRequest $request, User $user)
     {
         $data = $request->all();
-        $user = new User();
-        $data['user_id'] = $request->user()->id;
-
+        unset($data['sinodo']);
+        unset($data['presbiterio']);
+        $data['user_id'] = \auth()->user()->id;
         try {
             $data['password'] = 'ipb@' . rand(7777, 9999);
-            $user->fill($data);
-            $statment = $user->save();
+            DB::beginTransaction();
+            $resource = $user->create($data);
+            DB::commit();
         } catch (\Exception $exception) {
-            return response()->json($exception, 500);
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
         }
 
-        if ($statment) {
+        if ($resource) {
             /* Mail::send('mail', [], function ($m) use ($data) {
                  $m->from('mensageiro@informativoipb.com', 'InformativoIPB');
                  $m->to($data['email'], $data['nome'])->subject('Confirmação de Login');
@@ -77,12 +70,10 @@ class UserController extends Controller
             try {
                 $user->notify(new ConviteNotification($user->nome, $user->email, $user->cpf, $data['password']));
             } catch (\Exception $exception) {
-                return redirect("/administrar-usuarios")->with('email', "error");
+                return redirect()->back()->withErrors($exception->getMessage());
             }
         }
-
-        $retrieve = User::findOrFail((int)$user->id);
-        return response()->json($retrieve);
+        return redirect("/configuracoes/usuarios/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -104,9 +95,11 @@ class UserController extends Controller
      */
     public function edit(User $user, $id)
     {
-        $userEdit = $user->find((int)$id);
-
-        return response()->json($userEdit);
+        return view('pages.usuarios.form', [
+            'resource' => $user->where('id', '=', $id)
+                ->with('usuario', 'presbitero', 'presbitero.igreja', 'presbitero.igreja.presbiterio', 'presbitero.igreja.presbiterio.sinodo')
+                ->first()
+        ]);
     }
 
     /**

@@ -291,11 +291,6 @@
                             <button class="ui blue right labeled icon button" type="reset" style="min-width: 166px"><i
                                         class="child icon"></i>Novo
                             </button>
-                            <!--button.ui.yellow.labeled.icon.button(type="button")
-                            i.redo.icon
-                            | Resetar senha
-
-                            -->
                             <button class="ui red right labeled icon button" type="submit" form="formDelete"
                                     style="min-width: 166px"><i class="remove icon"></i>Excluir
                             </button>
@@ -421,6 +416,7 @@
         swal("Atenção!", "O usuário foi cadastrado, porém não podemos enviar o e-mail com a confirmação da senha, " +
             "por favor, peça para o usuário acessar o link de recuperação de senha a partir da tela de login.!",
             "info");
-    </script>@endif
+    </script>
+@endif
 </body>
 </html>
