@@ -91,12 +91,12 @@ Route::prefix('relatorios')->group(function () {
     | Web Routes RelMinistroController
     |--------------------------------------------------------------------------
     */
-    Route::get('/ministro', 'RelMinistroController@index');
-    Route::get('/ministro/novo', 'RelMinistroController@create');
-    Route::post('/ministro/novo', 'RelMinistroController@store');
-    Route::get('/ministro/{id}/editar', 'RelMinistroController@edit')->where(['id' => '[0-9]+']);
-    Route::put('/ministro/{id}/editar', 'RelMinistroController@update')->where(['id' => '[0-9]+']);
-    Route::delete('/ministro/{id}/editar', 'RelMinistroController@destroy')->where(['id' => '[0-9]+']);
+    Route::get('/ministerial', 'RelMinistroController@index');
+    Route::get('/ministerial/novo', 'RelMinistroController@create');
+    Route::post('/ministerial/novo', 'RelMinistroController@store');
+    Route::get('/ministerial/{id}/editar', 'RelMinistroController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/ministerial/{id}/editar', 'RelMinistroController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/ministerial/{id}/editar', 'RelMinistroController@destroy')->where(['id' => '[0-9]+']);
     /*
     |--------------------------------------------------------------------------
     | Web Routes RelEstatisticaController
