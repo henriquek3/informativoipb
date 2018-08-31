@@ -48,9 +48,9 @@ class RelMinistroController extends Controller
     {
         $data = $request->all();
         // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
-        if (is_null($request->get('congregacao_presbiterio'))) {
+        /*if (is_null($request->get('congregacao_presbiterio'))) {
             $data['congregacao_presbiterio'] = 0;
-        }
+        }*/
         try {
             DB::beginTransaction();
             $resource = $request->user()->relMinistros()->create($data);
@@ -59,7 +59,7 @@ class RelMinistroController extends Controller
             DB::rollBack();
             return redirect()->back()->withErrors($exception->getMessage());
         }
-        return redirect("/relatorios/ministro/$resource->id/editar")->with('saved', "success");
+        return redirect("/relatorios/ministerial/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -82,7 +82,7 @@ class RelMinistroController extends Controller
      */
     public function edit(RelMinistros $relMinistros, $id)
     {
-        return view('pages.relatorios-conselhos.form', [
+        return view('pages.relatorios-ministros.form', [
             'resource' => $relMinistros->where('id', '=', $id)
                 ->with('usuario', 'usuario.presbitero.igreja', 'usuario.presbitero.igreja.presbiterio', 'usuario.presbitero.igreja.presbiterio.sinodo')
                 ->first()
@@ -108,7 +108,7 @@ class RelMinistroController extends Controller
             DB::rollBack();
             return redirect()->back()->withErrors($exception->getMessage());
         }
-        return redirect("/relatorios/ministro/$resource->id/editar")->with('updated', "success");
+        return redirect("/relatorios/ministerial/$resource->id/editar")->with('updated', "success");
     }
 
     /**
