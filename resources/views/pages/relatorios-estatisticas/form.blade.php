@@ -1330,7 +1330,11 @@
             </div>
             <div class="ui form segment">
                 <div class="fields">
-                    <div class="sixteen wide field">
+                    <div class="two wide field" data-tooltip="Este valor não pode ser alterado.">
+                        <label>ID</label>
+                        <input type="text" readonly="" name="id_presbitero_conselho" value="{{auth()->user()->presbitero->id}}">
+                    </div>
+                    <div class="fourteen wide field">
                         <label>Secretário do Conselho</label>
                         <input type="text" name="relator_nome" disabled="" value="{{auth()->user()->presbitero->nome}}">
                     </div>
