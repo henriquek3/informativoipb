@@ -218,7 +218,7 @@
             </div>
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
-                <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar</button>
+                <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Salvar</button>
                 <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
                 <button class="ui red right labeled icon button" type="submit" form="formDelete"><i
                             class="remove icon"></i>Excluir
