@@ -85,7 +85,7 @@ class RelEstatisticaController extends Controller
      */
     public function edit(RelEstatisticas $relEstatisticas, $id)
     {
-        return view('pages.relatorios-conselhos.form', [
+        return view('pages.relatorios-estatisticas.form', [
             'resource' => $relEstatisticas->where('id', '=', $id)
                 ->with('usuario', 'usuario.presbitero.igreja', 'usuario.presbitero.igreja.presbiterio', 'usuario.presbitero.igreja.presbiterio.sinodo')
                 ->first()
