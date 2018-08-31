@@ -2,31 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Estados;
-use App\PlePresbiterios;
+use App\ImportRelPlePresbiterio;
 use Illuminate\Http\Request;
 
-class PlePresbiterioController extends Controller
+class ImportRelPlePresbiterioController extends Controller
 {
-    /**
-     * PlePresbiterioController constructor.
-     * @authenticator
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(PlePresbiterios $plePresbiterios)
+    public function index()
     {
-        return view('pages.reunioes-presbiterio.index', [
-            'resources' => $plePresbiterios->paginate(10)
-        ]);
+        //
     }
 
     /**
@@ -34,10 +22,10 @@ class PlePresbiterioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(PlePresbiterios $plePresbiterios, Estados $estados)
+    public function create(ImportRelPlePresbiterio $importRelPlePresbiterio)
     {
-        return view('pages.reunioes-presbiterio.form', [
-            'estados' => $estados->all()
+        return view('pages.reunioes-presbiterio.relatorios.form', [
+            'resources' => $importRelPlePresbiterio->paginate(15)
         ]);
     }
 
@@ -55,10 +43,10 @@ class PlePresbiterioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PlePresbiterios $plePresbiterios
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(PlePresbiterios $plePresbiterios)
+    public function show($id)
     {
         //
     }
@@ -66,10 +54,10 @@ class PlePresbiterioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PlePresbiterios $plePresbiterios
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PlePresbiterios $plePresbiterios)
+    public function edit($id)
     {
         //
     }
@@ -78,10 +66,10 @@ class PlePresbiterioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\PlePresbiterios $plePresbiterios
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PlePresbiterios $plePresbiterios)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -89,10 +77,10 @@ class PlePresbiterioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PlePresbiterios $plePresbiterios
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlePresbiterios $plePresbiterios)
+    public function destroy($id)
     {
         //
     }

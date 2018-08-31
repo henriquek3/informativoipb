@@ -170,8 +170,10 @@
             </h2>
             <div class="ui clearing divider"></div>
             <p></p>
-            <div class="ui top attached tabular menu"><a class="item active" data-tab="first">Total Geral</a><a
-                        class="item" data-tab="second">IP Cacoal</a></div>
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="first">Total Geral</a>
+                <a class="item" data-tab="second">IP Cacoal</a>
+            </div>
             <div class="ui bottom attached tab segment active" data-tab="first">
                 <div class="ui segments">
                     <div class="ui teal segment" style="text-align: center; background-color: #F9FAFB">

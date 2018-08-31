@@ -110,6 +110,39 @@ Route::prefix('relatorios')->group(function () {
     Route::delete('/estatistica/{id}/editar', 'RelEstatisticaController@destroy')->where(['id' => '[0-9]+']);
 });
 
+Route::prefix('reunioes')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelConselhoController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/presbiterio', 'PlePresbiterioController@index');
+    Route::get('/presbiterio/novo', 'PlePresbiterioController@create');
+    Route::post('/presbiterio/novo', 'PlePresbiterioController@store');
+    Route::get('/presbiterio/{id}/editar', 'PlePresbiterioController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/presbiterio/{id}/editar', 'PlePresbiterioController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/presbiterio/{id}/editar', 'PlePresbiterioController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RELATÓRIOS IMPORTAÇÃO @ImportRelPlePresbiterioController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/presbiterio/{id}/importar/novo', 'ImportRelPlePresbiterioController@create');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelMinistroController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/sinodo', 'PleSinodoController@index');
+    Route::get('/sinodo/novo', 'PleSinodoController@create');
+    Route::post('/sinodo/novo', 'PleSinodoController@store');
+    Route::get('/sinodo/{id}/editar', 'PleSinodoController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/sinodo/{id}/editar', 'PleSinodoController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/sinodo/{id}/editar', 'PleSinodoController@destroy')->where(['id' => '[0-9]+']);
+});
+
 Route::prefix('configuracoes')->group(function () {
     /*
     |--------------------------------------------------------------------------
@@ -125,7 +158,6 @@ Route::prefix('configuracoes')->group(function () {
     //Route::get('/meu-usuario', 'UserController@adminuser')->middleware('auth');
     //Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
     //Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
-
 
     /*
     |--------------------------------------------------------------------------

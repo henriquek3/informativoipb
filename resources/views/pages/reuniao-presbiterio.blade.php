@@ -154,7 +154,6 @@
     </div>
     <div class="ui container" style="margin-top: 100px; margin-bottom: 20px; display:none;" id="windows">
         <div class="ui segment">
-            <!---->
             <div style="position: absolute;right: 20px;">
                 <div class="ui breadcrumb"><a class="section" href="inicio"><i class="home icon"></i></a>
                     <div class="divider">/</div>
@@ -170,8 +169,9 @@
             </h2>
             <div class="ui clearing divider"></div>
             <p></p>
-            <div class="ui top attached tabular menu"><a class="item active" data-tab="first">Lista</a><a class="item"
-                                                                                                          data-tab="second">Cadastrar</a>
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="first">Lista</a>
+                <a class="item" data-tab="second">Cadastrar</a>
             </div>
             <div class="ui bottom attached tab segment active" data-tab="first">
                 <table class="ui compact selectable celled green unstackable table">
@@ -204,19 +204,19 @@
                     <form id="cadastros_sinodos" name="cadastros_sinodos">
                         <div class="ui form">
                             <div class="fields">
-                                <div class="two wide field disabled">
+                                <div class="two wide field">
                                     <label>Ano</label>
                                     <input type="text" value="2018">
                                 </div>
-                                <div class="three wide field disabled">
+                                <div class="three wide field">
                                     <label>Sínodo</label>
                                     <input type="text" value="Sinodo Norte Brasil">
                                 </div>
-                                <div class="six wide field disabled">
+                                <div class="six wide field">
                                     <label>Presbitério</label>
                                     <input type="text" name="pr" value="Presbitério de Rondonia">
                                 </div>
-                                <div class="two wide field disabled">
+                                <div class="two wide field">
                                     <label>Data da Reunião</label>
                                     <input type="text" value="25/02/2018">
                                 </div>
@@ -233,9 +233,9 @@
                     </form>
                 </div>
                 <div class="ui red segment">
-                    <div class="ui top attached tabular menu"><a class="active item"
-                                                                 data-tab="first-reuniao">Lista</a><a class="item"
-                                                                                                      data-tab="second-reuniao">Incluir</a>
+                    <div class="ui top attached tabular menu">
+                        <a class="active item" data-tab="first-reuniao">Lista</a>
+                        <a class="item" data-tab="second-reuniao">Incluir</a>
                     </div>
                     <div class="ui bottom attached active tab segment" data-tab="first-reuniao">
                         <p>Aqui são listadas as igrejas cujos relatórios foram importados para serem contabilizados na
@@ -262,8 +262,10 @@
                     <div class="ui bottom attached tab segment" data-tab="second-reuniao">
                         <p>Nesta aba são listadas as igrejas e seus relatórios para que seja possivel a importação para
                             a reunião.</p>
-                        <div class="ui top attached tabular menu"><a class="active item" data-tab="first-igrejas">Igrejas</a><a
-                                    class="item" data-tab="second-igrejas">Relatórios</a></div>
+                        <div class="ui top attached tabular menu">
+                            <a class="active item" data-tab="first-igrejas">Igrejas</a><a
+                                    class="item" data-tab="second-igrejas">Relatórios</a>
+                        </div>
                         <div class="ui bottom attached active tab segment" data-tab="first-igrejas">
                             <table class="ui compact selectable celled blue unstackable table">
                                 <thead>
@@ -336,70 +338,8 @@
             </div>
         </div>
     </div>
-    <div class="ui small modal">
-        <div class="header"><span>Painel de Alertas</span><span style="margin-left: 10px;position: absolute;"><i
-                        class="big teal bullhorn icon"></i></span></div>
-        <div class="scrolling content">
-            <div class="segment">
-                <div class="ui header">
-                    Relatórios Finalizados
-                </div>
-                <table class="ui basic table">
-                    <thead class="full-width">
-                    <tr>
-                        <th class="center aligned">Visualizado</th>
-                        <th>Igreja</th>
-                        <th>Relatório</th>
-                        <th>Data Finalizado</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="collapsing"><span class="ui checkbox">
-                      <input type="checkbox">
-                      <label><i class="eye icon"></i></label></span></td>
-                        <td>IGREJA PRESBITERIANA LUZ E VIDA</td>
-                        <td>RELATÓRIO FINANCEIRO</td>
-                        <td>21/03/2018</td>
-                    </tr>
-                    <tr>
-                        <td class="collapsing"><span class="ui checkbox">
-                      <input type="checkbox" checked="">
-                      <label><i class="eye icon"></i></label></span></td>
-                        <td>IGREJA PRESBITERIANA LUZ E VIDA</td>
-                        <td>RELATÓRIO FINANCEIRO</td>
-                        <td>21/03/2018</td>
-                    </tr>
-                    <tr>
-                        <td class="collapsing"><span class="ui checkbox">
-                      <input type="checkbox">
-                      <label><i class="eye icon"></i></label></span></td>
-                        <td>IGREJA PRESBITERIANA LUZ E VIDA</td>
-                        <td>RELATÓRIO FINANCEIRO</td>
-                        <td>21/03/2018</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p></p>
-            <div class="ui clearing divider"></div>
-            <p></p>
-            <div class="segment">
-                <div class="ui header">Mensagens do sistema</div>
-                <div class="ui info message">
-                    <div class="header">Calendário de reuniões</div>
-                    <ui class="list">
-                        <li>A reunião do conselho da igreja acontecerá nos dias 16/05/2018 à 22/05/2018.</li>
-                        <li>A reunião do presbitério acontecerá nos dias 16/05/2018 à 22/05/2018.</li>
-                        <li>A reunião do sínodo acontecerá nos dias 22/10/2018 à 25/10/2018.</li>
-                    </ui>
-                </div>
-            </div>
-        </div>
-        <div class="actions">
-            <button class="ui primary labeled icon button approve"><i class="envelope open icon"></i>OK</button>
-        </div>
-    </div>
+
+
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>

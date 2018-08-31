@@ -15,9 +15,14 @@ class PlePresbiterios extends Model
         'id', 'created_at', 'deleted_at', 'updated_at',
     ];
 
+    /**
+     * @var string
+     */
+    protected $table = "reunioes_presbiterios";
 
-    //protected $fillable = [];
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function usuario()
     {
         return $this->belongsTo("App\User", "user_id", "id");

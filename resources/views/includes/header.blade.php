@@ -50,11 +50,11 @@
                         Presbitérios
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a class="item in-dev" href="reuniao-presbiterio">
+                            <a class="item" href="/reunioes/presbiterio">
                                 <i class="radio icon"></i>
                                 Incluir Reunião
                             </a>
-                            <a class="item in-dev" href="/consultar-estatisticas-presbiterio">
+                            <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Consultar Estatística
                             </a>
@@ -65,11 +65,11 @@
                         Sínodos
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a class="item sinodos in-dev" href="#">
+                            <a class="item sinodos" href="/reunioes/sinodo">
                                 <i class="radio icon"></i>
                                 Incluir Reunião
                             </a>
-                            <a class="item sinodos in-dev" href="#">
+                            <a class="item sinodos" href="#">
                                 <i class="radio icon"></i>
                                 Consultar Estatística
                             </a>
@@ -80,23 +80,23 @@
                         Consultas
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a class="item in-dev" href="#">
+                            <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Reuniões de Presbitérios
                             </a>
-                            <a class="item in-dev" href="#">
+                            <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Reuniões de Sínodos
                             </a>
-                            <a class="item in-dev" href="#">
+                            <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Consulta Geral de Membros
                             </a>
-                            <a class="item in-dev" href="#">
+                            <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Consulta Geral Financeira
                             </a>
-                            <a class="item in-dev" href="#">
+                            <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Estatísticas de Membresia
                             </a>
@@ -107,7 +107,7 @@
                         Configurações
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a class="item" href="/meu-usuario">
+                            <a class="item" href="#">
                                 <i class="user icon"></i>
                                 Meu Usuário
                             </a>
@@ -115,11 +115,11 @@
                                 <i class="users icon"></i>
                                 Administrar Usuários
                             </a>
-                            <a class="item in-dev" href="#">
+                            <a class="item" href="#">
                                 <i class="options icon"></i>
                                 Parâmetros do Sistema
                             </a>
-                            <a class="item in-dev" href="#">
+                            <a class="item" href="#">
                                 <i class="talk icon"></i>
                                 Solicitar Ajuda
                             </a>
