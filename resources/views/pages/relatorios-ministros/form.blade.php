@@ -331,11 +331,11 @@
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Igreja(s):</label>
-                            <textarea rows="2" value="0" name="campos_igrejas"></textarea>
+                            <textarea rows="2" value="0" name="campos_igrejas">{{$resource->campos_igrejas ?? ''}}</textarea>
                         </div>
                         <div class="eight wide field">
                             <label>Congregação(ões):</label>
-                            <textarea rows="2" value="0" name="campos_congregacoes"></textarea>
+                            <textarea rows="2" value="0" name="campos_congregacoes">{{$resource->campos_congregacoes ?? ''}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -462,7 +462,7 @@
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>Descrição das atividades:</label>
-                            <textarea rows="5" value="0" name="descricao_atividades"></textarea>
+                            <textarea rows="5" name="descricao_atividades">{{$resource->descricao_atividades ?? ''}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -580,51 +580,39 @@
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>1. Atualização e Aperfeiçoamento:</label>
-                            <textarea rows="3" value="0" name="atualizacao_aperfeicoamento"></textarea>
+                            <textarea rows="3" name="atualizacao_aperfeicoamento">{{ $resource->atualizacao_aperfeicoamento ?? "" }}</textarea>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>2. Atividades em entidades para-eclesiásticas:</label>
-                            <textarea rows="3" value="0" name="atividades_para_eclesiasticas"></textarea>
+                            <textarea rows="3" name="atividades_para_eclesiasticas">{{ $resource->atividades_para_eclesiasticas ?? "" }}</textarea>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>3. Atividades Extra Ministeriais:</label>
-                            <textarea rows="3" value="0" name="atividades_extras_ministeriais"></textarea>
+                            <textarea rows="3" name="atividades_extras_ministeriais">{{ $resource->atividades_extras_ministeriais ?? "" }}</textarea>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>Outras</label>
-                            <textarea rows="3" value="0" name="atividades_outros"></textarea>
+                            <textarea rows="3" name="atividades_outros">{{ $resource->atividades_outros ?? "" }}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="ui segments">
-                <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>INFORMAÇÕES SOBRE O PREENCHIMENTO</strong></p>
-                </div>
                 <div class="ui horizontal segments">
-                    <div class="ui segment"><span><strong>Usuário inclusão:</strong></span><span>
-                    &nbsp;
-                    Kallew Pavão
-                    &nbsp;</span><span style="float: right;"><strong>Data:</strong>&nbsp;
-                    01/01/2018</span></div>
-                    <div class="ui segment"><span><strong>Última alteração:</strong></span><span>
-                    &nbsp;
-                    Kallew Pavão
-                    &nbsp;</span><span style="float: right;"><strong>Data:</strong>&nbsp;
-                    01/01/2018</span></div>
+                    <div class="ui segment"><span
+                                style="color: lightslategray;"><strong>Usuário:</strong></span><span
+                                style="color: lightslategray;">&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}
+                            <span id="user_inc"></span>&nbsp;</span><span
+                                style="float: right;color: lightslategray;"><strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}
+                            <span id="data_inc"></span></span></div>
                 </div>
-                <div class="ui segment">
-                    <div class="ui toggle checkbox" data-tooltip="Deixe AZUL caso tenha FINALIZADO este relatório.">
-                        <label>Relatório Finalizado</label>
-                        <input type="checkbox" name="relatorio_finalizado">
-                    </div>
-                </div>
+            </div>
             </div>
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
