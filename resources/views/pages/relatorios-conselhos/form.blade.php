@@ -6,9 +6,8 @@
                     class="reply icon"></i>Voltar</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
-        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Ministros
-            <div class="sub header" style="margin-left: -40px;">Visualize todos os ministros que estão cadastrados.
-            </div>
+        <h1 class="ui floated header" style="margin-left: -10px;">Relatório do Conselho
+
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>

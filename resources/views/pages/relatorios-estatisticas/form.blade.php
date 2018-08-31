@@ -6,9 +6,8 @@
                     class="reply icon"></i>Voltar</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
-        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Ministros
-            <div class="sub header" style="margin-left: -40px;">Visualize todos os ministros que estão cadastrados.
-            </div>
+        <h1 class="ui floated header" style="margin-left: -10px;">Relatório de Estatísticas
+
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>
@@ -36,733 +35,1366 @@
 
             </div>
             <div class="ui segments">
-                <div class="ui red segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>I - Identificação da Igreja / Congregação Presbiterial</strong></p>
+            <div class="ui blue segment" style="text-align: center; background-color: #F9FAFB">
+                <p><strong>I - Identificação da Igreja / Congregação Presbiterial</strong></p>
+            </div>
+            <div class="ui form segment">
+                <div class="fields">
+                    <div class="two wide field" data-tooltip="Este valor não pode ser alterado.">
+                        <label>ID</label>
+                        <input type="text" readonly="" name="id_igreja" value="{{auth()->user()->presbitero->id}}">
+                    </div>
+                    <div class="fourteen wide field">
+                        <label>Nome (Igreja/Congregação)</label>
+                        <input type="text" disabled="" name="nome_igreja" value="{{auth()->user()->presbitero->igreja->nome}}">
+                    </div>
                 </div>
-                <div class="ui form segment">
-                    <div class="fields">
-                        <div class="two wide field" data-tooltip="Este valor não pode ser alterado.">
-                            <label>ID</label>
-                            <input type="text" readonly="" name="id_igreja" value="{{auth()->user()->presbitero->id}}">
-                        </div>
-                        <div class="fourteen wide field">
-                            <label>Nome (Igreja/Congregação)</label>
-                            <input type="text" disabled="" name="nome_igreja" value="{{auth()->user()->presbitero->igreja->nome}}">
-                        </div>
+                <div class="fields">
+                    <div class="eight wide field">
+                        <label>Endereço</label>
+                        <input type="text" disabled="" name="endereco" value="{{auth() ->user() ->presbitero->igreja->endereco}}">
                     </div>
-                    <div class="fields">
-                        <div class="eight wide field">
-                            <label>Endereço</label>
-                            <input type="text" disabled="" name="endereco" value="{{auth() ->user() ->presbitero->igreja->endereco}}">
-                        </div>
-                        <div class="two wide field">
-                            <label>Número</label>
-                            <input type="text" disabled="" name="endereco_numero" value="{{auth() ->user() ->presbitero->igreja->endereco_numero}}">
-                        </div>
-                        <div class="three wide field">
-                            <label>Complemento</label>
-                            <input type="text" disabled="" name="endereco_complemento" value="{{auth() ->user() ->presbitero->igreja->endereco_complemento}}">
-                        </div>
-                        <div class="three wide field">
-                            <label>Bairro</label>
-                            <input type="text" disabled="" name="endereco_bairro"  value="{{auth() ->user() ->presbitero->igreja->endereco_bairro}}">
-                        </div>
+                    <div class="two wide field">
+                        <label>Número</label>
+                        <input type="text" disabled="" name="endereco_numero" value="{{auth() ->user() ->presbitero->igreja->endereco_numero}}">
                     </div>
-                    <div class="fields">
-                        <div class="four wide field">
-                            <label>Estado</label>
-                            <input type="text" disabled="" name="estado"  value="{{auth() ->user() ->presbitero->igreja->cidade->estado->nome}}">
-                        </div>
-                        <div class="four wide field">
-                            <label>Cidade</label>
-                            <input type="text" disabled="" name="cidade"  value="{{auth() ->user() ->presbitero->igreja->cidade->nome}}">
-                        </div>
-                        <div class="three wide field">
-                            <label>CEP</label>
-                            <input type="text" disabled="" name="endereco_cep"  value="{{auth() ->user() ->presbitero->igreja->endereco_cep}}">
-                        </div>
-                        <div class="two wide field">
-                            <label>Cx. P</label>
-                            <input type="text" disabled="" name="endereco_cx_postal"  value="{{auth() ->user() ->presbitero->igreja->endereco_cx_postal}}">
-                        </div>
-                        <div class="three wide field">
-                            <label>CEP Cx. P</label>
-                            <input type="text" disabled="" name="endereco_cx_postal_cep"  value="{{auth() ->user() ->presbitero->igreja->endereco_cx_postal_cep}}">
-                        </div>
+                    <div class="three wide field">
+                        <label>Complemento</label>
+                        <input type="text" disabled="" name="endereco_complemento" value="{{auth() ->user() ->presbitero->igreja->endereco_complemento}}">
                     </div>
-                    <div class="fields">
-                        <div class="two wide field">
-                            <label>Telefone</label>
-                            <input type="text" disabled="" name="telefone"  value="{{auth() ->user() ->presbitero->igreja->telefone}}">
-                        </div>
-                        <div class="four wide field">
-                            <label>E-Mail</label>
-                            <input type="text" disabled="" name="email"  value="{{auth() ->user() ->presbitero->igreja->email}}">
-                        </div>
-                        <div class="four wide field">
-                            <label>HomePage</label>
-                            <input type="text" disabled="" name="homepage"  value="{{auth() ->user() ->presbitero->igreja->website}}">
-                        </div>
-                        <div class="three wide field">
-                            <label>CNPJ</label>
-                            <input type="text" disabled="" name="cnpj"  value="{{auth() ->user() ->presbitero->igreja->cnpj}}">
-                        </div>
-                        <div class="three wide field">
-                            <label>Data Organização</label>
-                            <input type="text" disabled="" name="data_organizacao"  value="{{auth() ->user() ->presbitero->igreja->data_organizacao}}">
-                        </div>
+                    <div class="three wide field">
+                        <label>Bairro</label>
+                        <input type="text" disabled="" name="endereco_bairro"  value="{{auth() ->user() ->presbitero->igreja->endereco_bairro}}">
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>Estado</label>
+                        <input type="text" disabled="" name="estado"  value="{{auth() ->user() ->presbitero->igreja->cidade->estado->nome}}">
+                    </div>
+                    <div class="four wide field">
+                        <label>Cidade</label>
+                        <input type="text" disabled="" name="cidade"  value="{{auth() ->user() ->presbitero->igreja->cidade->nome}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>CEP</label>
+                        <input type="text" disabled="" name="endereco_cep"  value="{{auth() ->user() ->presbitero->igreja->endereco_cep}}">
+                    </div>
+                    <div class="two wide field">
+                        <label>Cx. P</label>
+                        <input type="text" disabled="" name="endereco_cx_postal"  value="{{auth() ->user() ->presbitero->igreja->endereco_cx_postal}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>CEP Cx. P</label>
+                        <input type="text" disabled="" name="endereco_cx_postal_cep"  value="{{auth() ->user() ->presbitero->igreja->endereco_cx_postal_cep}}">
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="two wide field">
+                        <label>Telefone</label>
+                        <input type="text" disabled="" name="telefone"  value="{{auth() ->user() ->presbitero->igreja->telefone}}">
+                    </div>
+                    <div class="four wide field">
+                        <label>E-Mail</label>
+                        <input type="text" disabled="" name="email"  value="{{auth() ->user() ->presbitero->igreja->email}}">
+                    </div>
+                    <div class="four wide field">
+                        <label>HomePage</label>
+                        <input type="text" disabled="" name="homepage"  value="{{auth() ->user() ->presbitero->igreja->website}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>CNPJ</label>
+                        <input type="text" disabled="" name="cnpj"  value="{{auth() ->user() ->presbitero->igreja->cnpj}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>Data Organização</label>
+                        <input type="text" disabled="" name="data_organizacao"  value="{{auth() ->user() ->presbitero->igreja->data_organizacao}}">
                     </div>
                 </div>
             </div>
-            <div class="ui segments">
-                <div class="ui red segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>II - INFORMAÇÕES DO TRABALHO</strong></p>
-                </div>
-                <div class="ui form segment">
-                    <div class="ui red ribbon label" style="font-size:0.92857143em;">1. ORGANIZAÇÃO</div>
-                    <strong style="color:#FF695E;">1.1. ORGANIZAÇÃO</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="eight wide field"
-                             data-tooltip="Os imóveis que pertencem a igreja estão devidamente documentados?">
-                            <div class="ten wide field"><span class="ui label">1.1.1</span>
-                                <label>Imóveis Documentados</label>
-                            </div>
-                            <div class="six wide field">
-                                <div class="ui radio checkbox">
-                                    <input name="or_imovel_documentado" type="radio" value="1" {{isset($resource) ? $resource->or_imovel_documentado === 1 ? 'checked' : '' : ''}}>
-                                    <label>Sim</label>
-                                </div>
-                                <div class="ui radio checkbox">
-                                    <input name="or_imovel_documentado" type="radio" value="0" {{isset($resource) ? $resource->or_imovel_documentado === 0 ? 'checked' : '' : ''}}>
-                                    <label>Não</label>
-                                </div>
-                            </div>
+        </div>
+        <div class="ui segments">
+            <div class="ui blue segment" style="text-align: center; background-color: #F9FAFB">
+                <p><strong>II - Estrutura da Comunidade Presbiteriana</strong></p>
+            </div>
+            <div class="ui form segment">
+                <div class="ui horizontal segments">
+                    <div class="ui segment" style="width: 30%;">
+                        <div class="ui top attached label blue" style="text-align: center;">LIDERANÇA FORMAL
                         </div>
-                        <div class="eight wide field"
-                             data-tooltip="A igreja apresentou no ano passado quais declarações Fiscais?">
-                            <div class="eight wide field"><span class="ui label">1.1.4</span>
-                                <label>Declarações Anteriores</label>
-                            </div>
-                            <div class="eight wide field">
-                                <div class="ui checkbox">
-                                    <input name="or_declaracao_ano_anterior_irenda" value="1" type="checkbox">
-                                    <label>IRenda</label>
-                                </div>
-                                <div class="ui checkbox">
-                                    <input name="or_declaracao_ano_anterior_rais" value="1" type="checkbox">
-                                    <label>RAIS</label>
-                                </div>
-                                <div class="ui checkbox">
-                                    <input name="or_declaracao_ano_anterior_dirf" value="1" type="checkbox">
-                                    <label>DIRF</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="eight wide field"
-                             data-tooltip="A igreja organizou o inventário dos imóveis e utensílios?">
-                            <div class="ten wide field"><span class="ui label">1.1.2.</span>
-                                <label>Inventário patrimonial</label>
-                            </div>
-                            <div class="six wide field">
-                                <div class="ui radio checkbox">
-                                    <input name="or_inventario_existe" type="radio" value="1" {{isset($resource) ? $resource->or_inventario_existe === 1 ? 'checked' : '' : ''}}>
-                                    <label>Sim</label>
-                                </div>
-                                <div class="ui radio checkbox">
-                                    <input name="or_inventario_existe" type="radio" value="0" {{isset($resource) ? $resource->or_inventario_existe === 0 ? 'checked' : '' : ''}}>
-                                    <label>Não</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="eight wide field"
-                             data-tooltip="Caso a igreja tenha inventário, ele esta devidamente atualizado?">
-                            <div class="ten wide field"><span class="ui label">1.1.5.</span>
-                                <label>Inventário atualizado</label>
-                            </div>
-                            <div class="six wide field">
-                                <div class="ui radio checkbox">
-                                    <input name="or_inventario_atualizado" type="radio" value="1" {{isset($resource) ? $resource->or_inventario_atualizado === 1 ? 'checked' : '' : ''}}>
-                                    <label>Sim</label>
-                                </div>
-                                <div class="ui radio checkbox">
-                                    <input name="or_inventario_atualizado" type="radio" value="0" {{isset($resource) ? $resource->or_inventario_atualizado === 0 ? 'checked' : '' : ''}}>
-                                    <label>Não</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="eight wide field" data-tooltip="A igreja conta com o rol de membro atualizado?">
-                            <div class="ten wide field"><span class="ui label">1.1.3.</span>
-                                <label>Rol de membros Atualizado</label>
-                            </div>
-                            <div class="six wide field">
-                                <div class="ui radio checkbox">
-                                    <input name="or_rol_membros_atualizado" type="radio" value="1" {{isset($resource) ? $resource->or_rol_membros_atualizado === 1 ? 'checked' : '' : ''}}>
-                                    <label>Sim</label>
-                                </div>
-                                <div class="ui radio checkbox">
-                                    <input name="or_rol_membros_atualizado" type="radio" value="0" {{isset($resource) ? $resource->or_rol_membros_atualizado === 0 ? 'checked' : '' : ''}}>
-                                    <label>Não</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="eight wide field"
-                             data-tooltip="Quantas congregações estão vinculadas a igreja?">
-                            <div class="ten wide field"><span class="ui label">1.1.6.</span>
-                                <label>Quantidade congregações?</label>
-                            </div>
-                            <div class="six wide field">
-                                <input type="text" value="{{ $resource->or_nr_congregacoes ?? "" }}" name="or_nr_congregacoes">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui segment">
-                    <div class="ui red ribbon label" style="font-size:0.92857143em;">2. SUPERVISÃO ESPIRITUAL</div>
-                    <strong style="color:#FF695E;">2.1. ADORAÇÃO E COMUNHÃO</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="sixteen wide field" data-tooltip="Quantidade de cerimônias realizadas">
-                            <div class="four wide field"><span class="ui label">2.1.1</span>
-                                <label>Santa Ceia - Grupos</label>
-                            </div>
-                            <div class="two wide field">
-                                <input type="text" value="{{ $resource->se_santaceia_grupos ?? "" }}" name="se_santaceia_grupos">
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Pastores</label>
                             </div>
                             <div class="four wide field">
-                                <label>Santa Ceia - Individual</label>
+                                <input type="text" value="0" name="ecl_pastores">
                             </div>
-                            <div class="two wide field">
-                                <input type="text" name="se_santaceia_individual" value="{{ $resource->se_santaceia_individual ?? "" }}">
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Licenciados</label>
                             </div>
-                            <div class="four wide field disabled">
-                                <div class="ui labeled input">
-                                    <div class="ui label">Total</div>
-                                    <input type="text," id="somaCeia">
+                            <div class="four wide field">
+                                <input type="text" value="0" name="ecl_licenciados">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Presbíteros</label>
+                            </div>
+                            <div class="four wide field">
+                                <input type="text" value="0" name="ecl_presbiteros">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Diáconos</label>
+                            </div>
+                            <div class="four wide field">
+                                <input type="text" value="0" name="ecl_diaconos">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Evangelistas</label>
+                            </div>
+                            <div class="four wide field">
+                                <input type="text" value="0" name="ecl_evangelistas">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Missionários</label>
+                            </div>
+                            <div class="four wide field">
+                                <input type="text" value="0" name="ecl_missionarios">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Candidatos</label>
+                            </div>
+                            <div class="four wide field">
+                                <input type="text" value="0" name="ecl_candidatos">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment" style="width: 30%;">
+                        <div class="ui top attached label blue" style="text-align: center;">ESTRUTURA DO
+                            TRABALHO
+                        </div>
+                        <div class="inline fields">
+                            <div class="ten wide field">
+                                <label>Congregações da Igreja</label>
+                            </div>
+                            <div class="six wide field">
+                                <input type="text" value="0" name="ect_congregacoes">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="ten wide field">
+                                <label>Pontos de Pregação</label>
+                            </div>
+                            <div class="six wide field">
+                                <input type="text" value="0" name="ect_pontos_pregacao">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="ten wide field">
+                                <label>Escolas Dominicais</label>
+                            </div>
+                            <div class="six wide field">
+                                <input type="text" value="0" name="ect_ebd">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="ten wide field">
+                                <label>Professores da EBD</label>
+                            </div>
+                            <div class="six wide field">
+                                <input type="text" value="0" name="ect_professores">
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="ten wide field">
+                                <label>Alunos EBD (Ano Atual)</label>
+                            </div>
+                            <div class="six wide field">
+                                <!--input(type="text" value="0" name="ect_alunos_ebd_atual")-->
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="ten wide field">
+                                <label>Alunos EBD (Ano Anterior)</label>
+                            </div>
+                            <div class="six wide field">
+                                <!--input(type="text" value="0" name="ect_alunos_ebd_anterior")-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment" style="width: 40%;">
+                        <div class="ui top attached label blue" style="text-align: center;">DEPARTAMENTOS
+                            INTERNO
+                        </div>
+                        <div class="inline fields">
+                            <div class="four wide field">
+                                <label>UCP</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Departamentos">
+                                    <div class="ui label">D.</div>
+                                    <input type="text" value="0" name="ecd_ucp">
+                                </div>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Membros">
+                                    <div class="ui label">M.</div>
+                                    <input type="text" value="0" name="ecd_ucp_membros">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="four wide field">
+                                <label>UPA</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Departamentos">
+                                    <div class="ui label">D.</div>
+                                    <input type="text" value="0" name="ecd_upa">
+                                </div>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Membros">
+                                    <div class="ui label">M.</div>
+                                    <input type="text" value="0" name="ecd_upa_membros">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="four wide field">
+                                <label>UMP</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Departamentos">
+                                    <div class="ui label">D.</div>
+                                    <input type="text" value="0" name="ecd_ump">
+                                </div>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Membros">
+                                    <div class="ui label">M.</div>
+                                    <input type="text" value="0" name="ecd_ump_membros">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="four wide field">
+                                <label>SAF</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Departamentos">
+                                    <div class="ui label">D.</div>
+                                    <input type="text" value="0" name="ecd_saf">
+                                </div>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Membros">
+                                    <div class="ui label">M.</div>
+                                    <input type="text" value="0" name="ecd_saf_membros">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="four wide field">
+                                <label>UPH</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Departamentos">
+                                    <div class="ui label">D.</div>
+                                    <input type="text" value="0" name="ecd_uph">
+                                </div>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Membros">
+                                    <div class="ui label">M.</div>
+                                    <input type="text" value="0" name="ecd_uph_membros">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="four wide field">
+                                <label>Outras</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Departamentos">
+                                    <div class="ui label">D.</div>
+                                    <input type="text" value="0" name="ecd_outras">
+                                </div>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Membros">
+                                    <div class="ui label">M.</div>
+                                    <input type="text" value="0" name="ecd_outras_membros">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="four wide field">
+                                <label>Total</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Departamentos">
+                                    <div class="ui label">D.</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input" data-tooltip="Nº de Membros">
+                                    <div class="ui label">M.</div>
+                                    <label>TOTAL</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="ui segment">
-                    <div class="ui red ribbon label" style="font-size:0.92857143em;">2. SUPERVISÃO ESPIRITUAL</div>
-                    <strong style="color:#FF695E;">2.2. EVANGELIZAÇÃO E MISSÕES</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="five wide field"
-                             data-tooltip="Qual o número de atividades evangelísticas realizadas?">
-                            <label>2.2.1. Nº de atividades evangelísticas:*</label>
+            </div>
+        </div>
+        <div class="ui segments">
+            <div class="ui blue segment" style="text-align: center; background-color: #F9FAFB">
+                <p><strong>IV - Rol de Membros</strong></p>
+            </div>
+            <div class="ui form segment">
+                <div class="ui horizontal segments">
+                    <div class="ui segment">
+                        <div class="ui top attached label blue" style="text-align: center;">ADMISSÃO -
+                            COMUNGANTES
                         </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->se_atividades_evangelisticas ?? "" }}" name="se_atividades_evangelisticas">
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Profissão de Fé</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rma_profissao_fe_masc" id="masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rma_profissao_fe_fem" id="fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="ui tiny message">
-                            <label>* em templos e residências; recintos públicos ou ar livre; imprensa escrita,
-                                rádio e TV, etc.</label>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Profissão de Fé e Batismo</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rma_profissao_batismo_masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rma_profissao_batismo_fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="five wide field" data-tooltip="Quantas literaturas foram distribuídas?">
-                            <label>2.2.2. Textos distribuídos:</label>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Transferência</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rma_transf_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rma_transf_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field">
-                            <label>Bíblias</label>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Jurisdição</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rma_jurisdicao_masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rma_jurisdicao_fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field">
-                            <input type="text" value="{{ $resource->se_textos_distribuidos_biblia ?? "" }}" name="se_textos_distribuidos_biblia">
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Restauração</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rma_restauracao_masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rma_restauracao_fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field" data-tooltip="Novo Testamento">
-                            <label>N.T.</label>
-                        </div>
-                        <div class="one wide field">
-                            <input type="text" value="{{ $resource->se_textos_distribuidos_nt ?? "" }}" name="se_textos_distribuidos_nt">
-                        </div>
-                        <div class="one wide field">
-                            <label>Folhetos</label>
-                        </div>
-                        <div class="one wide field">
-                            <input type="text" value="{{ $resource->se_textos_distribuidos_folhetos ?? "" }}" name="se_textos_distribuidos_folhetos">
-                        </div>
-                        <div class="one wide field">
-                            <label>Outros</label>
-                        </div>
-                        <div class="one wide field">
-                            <input type="text" value="{{ $resource->se_textos_distribuidos_outros ?? "" }}" name="se_textos_distribuidos_outros">
-                        </div>
-                        <div class="one wide field">
-                            <label>Total</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" id="somaTextos">
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="five wide field" data-tooltip="Qual trabalho missionário realizado?">
-                            <label>2.2.3. Trabalho missionário com:</label>
-                        </div>
-                        <div class="two wide field ui checkbox">
-                            <label>JMN</label>
-                            <input name="se_trabalho_missionario_jmn" type="checkbox" value="1">
-                        </div>
-                        <div class="two wide field ui checkbox">
-                            <label>APMT</label>
-                            <input name="se_trabalho_missionario_apmt" type="checkbox" value="1">
-                        </div>
-                        <div class="three wide field ui checkbox">
-                            <label>Parceria com o PMC</label>
-                            <input name="se_trabalho_missionario_pmc" type="checkbox" value="1">
-                        </div>
-                        <div class="three wide field ui checkbox">
-                            <label>Plantação de Igrejas</label>
-                            <input name="se_trabalho_missionario_plantacao" type="checkbox" value="1">
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="five wide field">
-                            <label>2.2.4.Outra participação missionária:</label>
-                        </div>
-                        <div class="eleven wide field">
-                            <input type="text" value="{{ $resource->se_trabalho_misisonario_outros ?? "" }}" name="se_trabalho_misisonario_outros">
-                        </div>
-                    </div>
-                </div>
-                <div class="ui segment">
-                    <div class="ui red ribbon label" style="font-size:0.92857143em;">2. SUPERVISÃO ESPIRITUAL</div>
-                    <strong style="color:#FF695E;">2.3 EDUCAÇÃO E APERFEIÇOAMENTO</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="four wide field" data-tooltip="Houve aperfeiçoamento para Professores EBD?">
-                            <label>2.3.1. Para professores de Escola Dominical:</label>
-                        </div>
-                        <div class="two wide field">
-                            <label>Sim</label>
-                            <input name="se_professores_ebd" type="radio" value="1" {{isset($resource) ? $resource->se_professores_ebd === 1 ? 'checked' : '' : ''}}>
-                            <label>Não</label>
-                            <input name="se_professores_ebd" type="radio" value="0" {{isset($resource) ? $resource->se_professores_ebd === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="three wide field"
-                             data-tooltip="Houve aperfeiçoamento para Liderança da Igreja?">
-                            <label>2.3.4. Para Liderança:</label>
-                        </div>
-                        <div class="two wide field">
-                            <label>Sim</label>
-                            <input name="se_lideranca" type="radio" value="1" {{isset($resource) ? $resource->se_lideranca === 1 ? 'checked' : '' : ''}}>
-                            <label>Não</label>
-                            <input name="se_lideranca" type="radio" value="0" {{isset($resource) ? $resource->se_lideranca === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="four wide field" data-tooltip="Houve aperfeiçoamento para Equipe Musical?">
-                            <label>2.3.2. Para Equipe de Música:</label>
-                        </div>
-                        <div class="two wide field">
-                            <label>Sim</label>
-                            <input name="se_equipes_musicas" type="radio" value="1" {{isset($resource) ? $resource->se_equipes_musicas === 1 ? 'checked' : '' : ''}}>
-                            <label>Não</label>
-                            <input name="se_equipes_musicas" type="radio" value="0" {{isset($resource) ? $resource->se_equipes_musicas === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="three wide field" data-tooltip="Número de Corais na Igreja">
-                            <label>2.3.5. Nº de Grupos Corais:</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->se_grupos_corais ?? "" }}" name="se_grupos_corais">
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="four wide field"
-                             data-tooltip="Houve aperfeiçoamento para Presbíteros e Diáconos?">
-                            <label>2.3.3. Para Oficiais (Presbíteros e Diáconos)</label>
-                        </div>
-                        <div class="two wide field">
-                            <label>Sim</label>
-                            <input name="se_oficiais" type="radio" value="1" {{isset($resource) ? $resource->se_oficiais === 1 ? 'checked' : '' : ''}}>
-                            <label>Não</label>
-                            <input name="se_oficiais" type="radio" value="0" {{isset($resource) ? $resource->se_oficiais === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="three wide field" data-tooltip="Quantas equipes musicais há na Igreja?">
-                            <label>2.3.6. Nº de Conjuntos Musicais:</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->se_conjuntos_musicas ?? "" }}" name="se_conjuntos_musicas">
-                        </div>
-                    </div>
-                </div>
-                <div class="ui segment">
-                    <div class="ui red ribbon label" style="font-size:0.92857143em;">2. SUPERVISÃO ESPIRITUAL</div>
-                    <strong style="color:#FF695E;">2.4 AÇÃO SOCIAL E VISITAÇÃO</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="six wide field"
-                             data-tooltip="Nº de atos benificientes realizados pela Junta Diaconal.">
-                            <label>2.4.1.Nº de atos beneficentes realizados pela Junta Diaconal:</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->se_beneficientes_jdiaconal ?? "" }}" name="se_beneficientes_jdiaconal">
-                        </div>
-                        <div class="three wide field"
-                             data-tooltip="Nº de atos benificientes realizados por outro Departamento.">
-                            <label>Por outros departamentos:</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->se_beneficientes_outros ?? "" }}" name="se_beneficientes_outros">
-                        </div>
-                        <div class="one wide field">
-                            <label>Total</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" id="somaBeneficientes">
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Designação do Presbitério</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rma_designacao_masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rma_designacao_fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="inline fields">
-                        <div class="six wide field"
-                             data-tooltip="Nº de visitas realizadas por Presbíteros e Diáconos.">
-                            <label>2.4.2.Nº de visitas feitas por presbíteros e diáconos:</label>
+                    <div class="ui segment">
+                        <div class="ui top attached label blue" style="text-align: center;">ADMISSÃO -
+                            NÃO-COMUNGANTES
                         </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->se_visitas_presbiteros_diaconos ?? "" }}" name="se_visitas_presbiteros_diaconos">
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Batismo</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rma_batismo_masc_nc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rma_batismo_fem_nc">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="three wide field"
-                             data-tooltip="Nº de visitas realizadas por outro Departamento.">
-                            <label>Por outros departamentos:</label>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Transferência</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rma_transferencia_masc_nc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rma_transferencia_fem_nc">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->se_visitas_outros ?? "" }}" name="se_visitas_outros">
-                        </div>
-                        <div class="one wide field">
-                            <label>Total</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" id="somaVisitas">
-                        </div>
-                    </div>
-                </div>
-                <div class="ui segment">
-                    <div class="ui red ribbon label" style="font-size:0.92857143em;">3. SUPERVISÃO ADMINISTRATIVA
-                    </div>
-                    <strong style="color:#FF695E;">3.1. SUPERVISÃO ADMINISTRATIVA</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="eight wide field">
-                            <label>3.1. A Igreja enviou fielmente os Dízimos dos Dízimos à Tesouraria IPB:</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_dizimo_fidelidade" type="radio" value="1" {{isset($resource) ? $resource->sa_dizimo_fidelidade === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_dizimo_fidelidade" type="radio" value="0" {{isset($resource) ? $resource->sa_dizimo_fidelidade === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui form segment">
-                    <div class="ui top left attached label">REUNIÕES</div>
-                    <div class="inline fields">
-                        <div class="four wide field">
-                            <label>3.2. Conselho:</label>
-                        </div>
-                        <div class="four wide field">
-                            <select class="ui fluid search dropdown" name="sa_reunioes_conselho">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
-                            </select>
-                        </div>
-                        <div class="four wide field">
-                            <label>3.5. Mesa Administrativa da Cong. Presbiterial:</label>
-                        </div>
-                        <div class="four wide field">
-                            <select class="ui fluid search dropdown" name="sa_reunioes_mesa_administrativa">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="four wide field">
-                            <label>3.3. Junta Diaconal:</label>
-                        </div>
-                        <div class="four wide field">
-                            <select class="ui fluid search dropdown" name="sa_reunioes_jdiaconal">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
-                            </select>
-                        </div>
-                        <div class="four wide field">
-                            <label>3.6. Comissão de Exame de Contas da Tesouraria:</label>
-                        </div>
-                        <div class="four wide field">
-                            <select class="ui fluid search dropdown" name="sa_reunioes_tesouraria">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="four wide field">
-                            <label>3.4. Assembléia Geral:</label>
-                        </div>
-                        <div class="four wide field">
-                            <select class="ui fluid search dropdown" name="sa_reunioes_assembleia">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
-                            </select>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Jurisdição Ex-Officio</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rma_jurisdicao_ex_masc_nc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rma_jurisdicao_ex_fem_nc">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="seven wide field">
-                            <label>3.7. Houve exame/aprovação balancetes da tesouraria?</label>
+                <div class="ui horizontal segments">
+                    <div class="ui segment">
+                        <div class="ui top attached label blue" style="text-align: center;">DEMISSÃO -
+                            COMUNGANTES
                         </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_balancete_tesouraria" type="radio" value="1" {{isset($resource) ? $resource->sa_balancete_tesouraria === 1 ? 'checked' : '' : ''}}>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Transferência</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rmd_transferencia_masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rmd_transferencia_fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_balancete_tesouraria" type="radio" value="0" {{isset($resource) ? $resource->sa_balancete_tesouraria === 0 ? 'checked' : '' : ''}}>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Falecimento</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rmd_falecimento_masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rmd_falecimento_fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="seven wide field">
-                            <label>3.8. Há oficiais com mandato a vencer no ano a seguir?</label>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Exclusão</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rmd_exclusao_masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rmd_exclusao_fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_officiais_venc" type="radio" value="1" {{isset($resource) ? $resource->sa_officiais_venc === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_officiais_venc" type="radio" value="0" {{isset($resource) ? $resource->sa_officiais_venc === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="two wide field"
-                             data-tooltip="Nº Presbíteros com mandato a vencer no próximo ano.">
-                            <label>Nº Presbíteros:</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->sa_officiais_venc_presbiteros ?? "" }}" name="sa_officiais_venc_presbiteros">
-                        </div>
-                        <div class="two wide field" data-tooltip="Nº Diáconos com mandato a vencer no próximo ano.">
-                            <label>Nº Diáconos</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" value="{{ $resource->sa_officiais_venc_diaconos ?? "" }}" name="sa_officiais_venc_diaconos">
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="three wide field">
-                            <label>Quais?</label>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="sixteen wide field">
-                                <textarea rows="4" name="sa_oficiais_vencimento"
-                                          placeholder="Escreva os nomes dos Presbíteros/Diáconos que estão com mandatos a vencer">{{ $resource->sa_oficiais_vencimento ?? "" }}</textarea>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="one wide field">
-                            <label>FAP?</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_fap" type="radio" value="1" {{isset($resource) ? $resource->sa_fap === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_fap" type="radio" value="0" {{isset($resource) ? $resource->sa_fap === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field"></div>
-                        <div class="two wide field">
-                            <label>IPB-PREV?</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_ipb_prev" type="radio" value="1" {{isset($resource) ? $resource->sa_ipb_prev === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_ipb_prev" type="radio" value="0" {{isset($resource) ? $resource->sa_ipb_prev === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="six wide field">
-                            <label>3.9. Idem, dos livros e relatórios das sociedades?</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_idem_livros_sociedades" type="radio" value="1" {{isset($resource) ? $resource->sa_idem_livros_sociedades === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_idem_livros_sociedades" type="radio" value="0" {{isset($resource) ? $resource->sa_idem_livros_sociedades === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="six wide field">
-                            <label>3.11. Houve contribuição para causas extra-locais?</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_contribuicao_extra" type="radio" value="1" {{isset($resource) ? $resource->sa_contribuicao_extra === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_contribuicao_extra" type="radio" value="0" {{isset($resource) ? $resource->sa_contribuicao_extra === 0 ? 'checked' : '' : ''}}>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Ordenação</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rmd_ordenacao_masc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rmd_ordenacao_fem">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="inline fields">
-                        <div class="six wide field">
-                            <label>3.10. Houve nomeação de conselheiros às Sociedades?</label>
+                    <div class="ui segment">
+                        <div class="ui top attached label blue" style="text-align: center;">DEMISSÃO -
+                            NÃO-COMUNGANTES
                         </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_nomeacao" type="radio" value="1" {{isset($resource) ? $resource->sa_nomeacao === 1 ? 'checked' : '' : ''}}>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Profissão de Fé</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rmd_profissao_fe_masc_nc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rmd_profissao_fe_fem_nc">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_nomeacao" type="radio" value="0" {{isset($resource) ? $resource->sa_nomeacao === 0 ? 'checked' : '' : ''}}>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Transferência</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rmd_transferencia_masc_nc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rmd_transferencia_fem_nc">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="six wide field">
-                            <label>3.12. Contribuiu com Previdência Social pastor(es)?</label>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Falecimento</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rmd_falecimento_masc_nc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rmd_falecimento_fem_nc">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="sa_contribuicao_previdencia" type="radio" value="1" {{isset($resource) ? $resource->sa_contribuicao_previdencia === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="sa_contribuicao_previdencia" type="radio" value="0" {{isset($resource) ? $resource->sa_contribuicao_previdencia === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="eight wide field">
-                            <label>3.13. Reforma e/ou Construção em projeto:</label>
-                        </div>
-                        <div class="eight wide field">
-                            <label>3.14. Reforma e/ou Construção em andamento:</label>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="eight wide field">
-                                <textarea rows="4" name="sa_reforma_construcao_projeto"
-                                          placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão no projeto.">{{ $resource->sa_reforma_construcao_projeto ?? "" }}</textarea>
-                        </div>
-                        <div class="eight wide field">
-                                <textarea rows="4" name="sa_reforma_construcao_andamento"
-                                          placeholder="Cite a(s) reforma(s) ou contrução(ões) que estão em andamento.">{{ $resource->sa_reforma_construcao_andamento ?? "" }}</textarea>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Exclusão</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <input type="text" value="0" name="rmd_exclusao_masc_nc">
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <input type="text" value="0" name="rmd_exclusao_fem_nc">
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="ui segment">
-                    <div class="ui red ribbon label" style="font-size:0.92857143em;">4. PLANEJAMENTO ESTRATÉGICO
+                <div class="ui horizontal segments">
+                    <div class="ui segment">
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Rol Separado</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rmd_separado_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rmd_separado_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field" data-tooltip="RESULTADO de (admissão - demissão)">
+                                <label>DIFERENÇA</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rmd_diferenca_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rmd_diferenca_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Comungates (Ano Anterior)</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rmd_comung_anterior_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rmd_comung_anterior_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Comungantes (Ano Atual)</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rmd_comung_atual_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rmd_comung_atual_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <strong style="color:#FF695E;">4.1. PLANEJAMENTO ESTRATÉGICO</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="six wide field">
-                            <label>4.1 A Igreja tem Planejamento Estratégico?</label>
+                    <div class="ui segment">
+                        <div class="inline fields">
+                            <div class="five wide field" data-tooltip="RESULTADO de (admissão - demissão)">
+                                <label>DIFERENÇA</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rmd_dif_comung_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rmd_dif_comung_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="pe_tem_planejamento_estrategico" type="radio" value="1" {{isset($resource) ? $resource->pe_tem_planejamento_estrategico === 1 ? 'checked' : '' : ''}}>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Não Comungante (Ano Anterior)</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rmd_nao_comung_anterior_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rmd_nao_comung_anterior_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="pe_tem_planejamento_estrategico" type="radio" value="0" {{isset($resource) ? $resource->pe_tem_planejamento_estrategico === 0 ? 'checked' : '' : ''}}>
+                        <div class="inline fields">
+                            <div class="five wide field">
+                                <label>Não Comungante (Ano Atual)</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rmd_nao_comung_atual_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rmd_nao_comung_atual_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="eight wide field">
-                            <label>4.2. Quais os objetivos propostos e alcançados?</label>
-                        </div>
-                        <div class="eight wide field">
-                            <label>4.3. Quais os objetivos propostos e NÃO alcançados? Identificar as
-                                dificuldades.</label>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="eight wide field">
-                                <textarea rows="4" name="pe_objetivos_alcancados"
-                                          placeholder="Cite os objetivos que foram propostos e alcançados.">{{ $resource->pe_objetivos_alcancados ?? "" }}</textarea>
-                        </div>
-                        <div class="eight wide field">
-                                <textarea rows="4" name="pe_objetivos_falhos"
-                                          placeholder="Cite os objetivos que foram propostos mas NÃO foram alcançados."> {{ $resource->pe_objetivos_falhos ?? "" }}</textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui segment">
-                    <div class="ui red ribbon label" style="font-size:0.92857143em;">5. PATRIMÔNIO</div>
-                    <strong style="color:#FF695E;">5.1 PATRIMÔNIO</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="inline fields">
-                        <div class="six wide field">
-                            <label>5.1. A Igreja tem Seguro do bem patrimonial?</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="pat_seguro_patrimonial" type="radio" value="1" {{isset($resource) ? $resource->pat_seguro_patrimonial === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="pat_seguro_patrimonial" type="radio" value="0" {{isset($resource) ? $resource->pat_seguro_patrimonial === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="six wide field">
-                            <label>5.2. Tem Alvará de Funcionamento?</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="pat_alvara" type="radio" value="1" {{isset($resource) ? $resource->pat_alvara === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="pat_alvara" type="radio" value="0" {{isset($resource) ? $resource->pat_alvara === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                    </div>
-                    <div class="inline fields">
-                        <div class="six wide field">
-                            <label>5.3. Tem Licença do Corpo de Bombeiros em dia?</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="pat_licenca_bombeiros" type="radio" value="1" {{isset($resource) ? $resource->pat_licenca_bombeiros === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="pat_licenca_bombeiros" type="radio" value="0" {{isset($resource) ? $resource->pat_licenca_bombeiros === 0 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="six wide field">
-                            <label>5.4. Tem Certificado Digital?</label>
-                        </div>
-                        <div class="one wide field">
-                            <label>Sim</label>
-                            <input name="pat_certificado_digital" type="radio" value="1" {{isset($resource) ? $resource->pat_certificado_digital === 1 ? 'checked' : '' : ''}}>
-                        </div>
-                        <div class="one wide field">
-                            <label>Não</label>
-                            <input name="pat_certificado_digital" type="radio" value="0" {{isset($resource) ? $resource->pat_certificado_digital === 0 ? 'checked' : '' : ''}}>
+                        <div class="inline fields">
+                            <div class="five wide field"
+                                 data-tooltip="RESULTADO (Comungantes + Não Comungantes)">
+                                <label>Rol Atual</label>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">M</div>
+                                    <!--input(type="text" value="0" name="rmd_rol_atual_masc")-->
+                                </div>
+                            </div>
+                            <div class="four wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">F</div>
+                                    <!--input(type="text" value="0" name="rmd_rol_atual_fem")-->
+                                </div>
+                            </div>
+                            <div class="three wide field">
+                                <div class="ui labeled input disabled">
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="ui segments">
+            <div class="ui blue segment" style="text-align: center; background-color: #F9FAFB">
+                <p><strong>V - Informações Financeiras</strong></p>
+            </div>
+            <div class="ui form segment">
+                <div class="ui horizontal segments">
+                    <div class="ui segment">
+                        <div class="ui top attached label blue" style="text-align: center;">MOVIMENTO FINANCEIRO
+                            - ANO ANTERIOR
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Saldo - Ano Anterior</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <!--input(type="text" value="0" name="if_mf_saldo_anterior")-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="six wide field">
+                                <div class="ui label blue">
+                                    <label>RECEITAS</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Dízimos e Ofertas</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_dizimos">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Ofertas Especiais</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_ofertas_especificas">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Total de Receita Anual</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Grande Total</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="six wide field">
+                                <div class="ui label blue">
+                                    <label>DESPESAS</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Patrimônio</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_patrimonio">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Causas Locais</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_causas">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Evangelismo Local</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_evangelismo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Missões</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_missoes">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Sustento Pastoral</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_sustento_pastoral">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Verba Presbiterial</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_verba_presbiterial">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Dízimos ao Supremo Concílio</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="fina_dizimo_supremo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Total Despesa Anual</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Saldo - Ano Seguinte</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Grande Total</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui top attached label blue" style="text-align: center;">PREVISÃO
+                            ORÇAMENTÁRIA - PRÓXIMO EXERCÍCIO
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Saldo - Ano Anterior</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <!--input(type="text" value="0" name="if_po_saldo_anterior")-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="six wide field">
+                                <div class="ui label blue">
+                                    <label>RECEITAS</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Dízimos e Ofertas</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_dizimos">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Ofertas Especiais</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_ofertas_especificas">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Total de Receita Anual</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Grande Total</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="six wide field">
+                                <div class="ui label blue">
+                                    <label>DESPESAS</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Patrimônio</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_patrimonio">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Causas Locais</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_causas">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Evangelismo Local</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_evangelismo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Missões</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_missoes">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Sustento Pastoral</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_sustento_pastoral">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Verba Presbiterial</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_verba_presbiterial">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Dízimos ao Supremo Concílio</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="finp_dizimo_supremo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Total Despesa Anual</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <input type="text" value="0" name="id_presbitero_conselho">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Saldo - Ano Seguinte</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <label>Grande Total</label>
+                            </div>
+                            <div class="six wide field">
+                                <div class="ui labeled input">
+                                    <div class="ui label">R$</div>
+                                    <label>TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui segments">
+            <div class="ui blue segment" style="text-align: center; background-color: #F9FAFB">
+                <p><strong>VI - Informações Finais</strong></p>
+            </div>
+            <div class="ui form segment">
+                <div class="fields">
+                    <div class="sixteen wide field">
+                        <label>Secretário do Conselho</label>
+                        <input type="text" name="relator_nome" disabled="" value="{{auth()->user()->presbitero->nome}}">
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="eight wide field">
+                        <label>Endereço</label>
+                        <input type="text" name="relator_endereco" disabled="" value="{{auth()->user()->presbitero->endereco}}">
+                    </div>
+                    <div class="two wide field">
+                        <label>Número</label>
+                        <input type="text" name="relator_endereco_numero" disabled="" value="{{auth()->user()->presbitero->endereco_nr}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>Complemento</label>
+                        <input type="text" name="relator_endereco_complemento" disabled="" value="{{auth()->user()->presbitero->endereco_complemento}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>Bairro</label>
+                        <input type="text" name="relator_endereco_bairro" disabled="" value="{{auth()->user()->presbitero->endereco_bairro}}">
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>Estado</label>
+                        <input type="text" name="relator_estado" disabled="" value="{{auth()->user()->presbitero->endereco_id_estado}}">
+                    </div>
+                    <div class="four wide field">
+                        <label>Cidade</label>
+                        <input type="text" name="relator_cidade" disabled="" value="{{auth()->user()->presbitero->endereco_id_cidade}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>CEP</label>
+                        <input type="text" name="relator_endereco_cep" disabled="" value="{{auth()->user()->presbitero->cep}}">
+                    </div>
+                    <div class="two wide field">
+                        <label>Cx. P</label>
+                        <input type="text" name="relator_cx" disabled="" value="{{auth()->user()->presbitero->cx_postal}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>CEP Cx. P</label>
+                        <input type="text" name="relator_cep_cx" disabled="" value="{{auth()->user()->presbitero->cx_postal_cep}}">
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="three wide field">
+                        <label>Telefone</label>
+                        <input type="text" name="relator_telefone" disabled="" value="{{auth()->user()->presbitero->telefone}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>Celular</label>
+                        <input type="text" name="relator_celular" disabled="" value="{{auth()->user()->presbitero->celular}}">
+                    </div>
+                    <div class="three wide field">
+                        <label>Tel. Igreja</label>
+                        <input type="text" name="relator_igreja_telefone" disabled="" value="{{auth()->user()->presbitero->igreja->telefone}}">
+                    </div>
+                    <div class="seven wide field">
+                        <label>E-mail</label>
+                        <input type="text" name="relator_email" disabled="" value="{{auth()->user()->presbitero->email}}">
+                    </div>
+                </div>
+            </div>
+        </div>
             <div class="ui segments">
                 <div class="ui horizontal segments">
                     <div class="ui segment"><span
@@ -781,8 +1413,7 @@
                             class="remove icon"></i>Excluir
                 </button>
             </div>
-        </form>
-    </div>
+    </form>
 @endsection
 @section('javascript')
     <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>

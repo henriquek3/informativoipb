@@ -7,8 +7,8 @@
                     class="plus icon"></i>Novo</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
-        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Sínodos
-            <div class="sub header" style="margin-left: -40px;">Visualize todos os sínodos que estão cadastrados.
+        <h1 class="ui floated header" style="margin-left: -10px;">Relatório do Conselho
+            <div class="sub header" style="margin-left: -40px;">Visualize todos os relatórios cadastrados.
             </div>
         </h1>
         <div class="ui clearing divider"></div>
