@@ -38,7 +38,17 @@
 <div class="ui negative message"><i class="close icon"></i>
     <div class="header">Falhou!</div>
     <p>Houve algum problema com a solicitação efetuada, tente novamente ou procure o suporte!</p>
-    <p>{{ $errors->first() }}</p>
+    <ul>
+        <li>{{ $errors->first() }}</li>
+    </ul>
+</div>
+@elseif(session('config_message')) {{-- Primeira Mensagem de erro --}}
+<div class="ui warning message"><i class="close icon"></i>
+    <div class="header">Alerta de Configuração!</div>
+    <p>Leia os avisos abaixo para entender sobre as regras de funcionamento do sistema!</p>
+    <ul>
+        <li>{{session('config_message')}}</li>
+    </ul>
 </div>
 @endif
 {{--Javascript para fechar o div.message--}}

@@ -10,12 +10,14 @@ class RelMinistroController extends Controller
 {
     /**
      * RelMinistroController constructor.
+     *
      * @authenticator
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,8 +35,18 @@ class RelMinistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(RelMinistros $relMinistros)
     {
+        try {
+            $resource = $relMinistros->where('ano', '=', Date("Y"))->count();
+            if ($resource === 1) {
+                //throw new \Exception("Não é possível inserir mais de um relatório por ano, edite o que já existe");
+                return redirect()->back()->with('config_message', 'Não é possível inserir mais de um relatório por ano, edite o relatório que já existe.');
+            }
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
         return view("pages.relatorios-ministros.form");
     }
 

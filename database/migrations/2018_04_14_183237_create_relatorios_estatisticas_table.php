@@ -15,6 +15,7 @@ class CreateRelatoriosEstatisticasTable extends Migration
     {
         Schema::create('relatorios_estatisticas', function (Blueprint $table) {
             $table->integer('id', true);
+            $table->integer('importado')->nullable();
             $table->string('ano', 4);
             $table->unsignedInteger('id_igreja');
             $table->foreign('id_igreja')->references('id')->on('igrejas');

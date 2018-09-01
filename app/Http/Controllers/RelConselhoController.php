@@ -36,8 +36,17 @@ class RelConselhoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(RelConselhos $relConselhos)
     {
+        try {
+            $resource = $relConselhos->where('ano', '=', Date("Y"))->count();
+            if ($resource === 1) {
+                //throw new \Exception("Não é possível inserir mais de um relatório por ano, edite o que já existe");
+                return redirect()->back()->with('config_message', 'Não é possível inserir mais de um relatório por ano, edite o relatório que já existe.');
+            }
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
         return view("pages.relatorios-conselhos.form");
     }
 

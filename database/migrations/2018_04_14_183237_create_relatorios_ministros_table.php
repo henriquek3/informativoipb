@@ -15,6 +15,7 @@ class CreateRelatoriosMinistrosTable extends Migration
     {
         Schema::create('relatorios_ministros', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('importado')->nullable();
             $table->unsignedInteger('id_presbitero');
             $table->foreign('id_presbitero')->references('id')->on('presbiteros');
             $table->string('ano', 4);

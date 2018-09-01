@@ -15,6 +15,7 @@ class CreateRelatoriosConselhosTable extends Migration
     {
         Schema::create('relatorios_conselhos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('importado')->nullable();
             $table->string('ano', 4);
             $table->unsignedInteger('id_igreja');
             $table->foreign('id_igreja')->references('id')->on('igrejas');

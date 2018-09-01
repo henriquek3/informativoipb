@@ -74,7 +74,7 @@
                     <div class="fields">
                         <div class="ui calendar bottom left three wide field">
                             <label>Data de Nascimento</label>
-                            <input type="text" value="{{auth()->user()->pastor()->nascimento_data}}" readonly="">
+                            <input type="date" value="{{auth()->user()->pastor()->nascimento_data}}" readonly="">
                         </div>
                         <div class="five wide field">
                             <label>Estado Natal</label>
@@ -227,7 +227,7 @@
                             <label>Côngruas</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
-                                <input type="text" value="1000" name="congruas" required>
+                                <input type="text" class="money" placeholder="0,00" name="congruas" required>
                             </div>
                         </div>
                     </div>
@@ -635,7 +635,7 @@
                 <div class="ui right aligned segment" style="width: 30px;">
                     <span class="ui toggle checkbox"
                           data-tooltip="Bloqueia edição e altera o status para finalizado">
-                    <input type="checkbox" name="relatorio_finalizado">
+                    <input type="checkbox" name="status_relatorio" value="1">
                     <label>Relatório Finalizado</label>
                 </span>
                 </div>
@@ -643,17 +643,16 @@
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
                 <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar</button>
-                <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
-                <button class="ui red right labeled icon button" type="submit" form="formDelete"><i
-                            class="remove icon"></i>Excluir
-                </button>
+                <button class="ui right labeled icon button" type="reset"><i class="minus icon"></i>Limpar</button>
             </div>
         </form>
     </div>
 @endsection
 @section('javascript')
+    <script src="{{asset('js/plugins/jquery.mask.min.js')}}"></script>
     <script>
         window.addEventListener("load", function () {
+            $('.money').mask("#.##0,00", {reverse: true});
             $('.ui.dropdown').dropdown();
             $('[name="relatorio_finalizado"]').change(function () {
                 if (this.checked) {
