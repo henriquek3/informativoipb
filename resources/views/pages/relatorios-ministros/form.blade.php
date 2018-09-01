@@ -5,10 +5,10 @@
     <div class="ui raised segment">
         <a class="ui right floated blue tiny button" href="/cadastros/sinodos">
             <i class="reply icon"></i>Voltar</a>
-        <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
+        <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="big browser icon"></i>
         </h3>
-        <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Ministros
-            <div class="sub header" style="margin-left: -40px;">Visualize todos os ministros que estão cadastrados.
+        <h1 class="ui floated header" style="margin-left: -10px;">Relatório Ministerial
+            <div class="sub header" style="margin-left: -40px;">Informações referentes aos ministros presbiterianos.
             </div>
         </h1>
         <div class="ui clearing divider"></div>
@@ -20,7 +20,7 @@
             @csrf @isset($resource) @method('put') @endisset
             <div class="ui segments">
                 <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>Relatório do Ministro Presbiteriano</strong></p>
+                    <h3>Relatório do Ministro Presbiteriano</h3>
                 </div>
                 <div class="ui form segment">
                     <div class="fields">
@@ -46,10 +46,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- Header -->
+
             <div class="ui segments">
                 <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>I - Identificação do Ministro</strong></p>
+                    <h3>I - Identificação do Ministro</h3>
                 </div>
                 <div class="ui form segment">
                     <div class="fields">
@@ -307,10 +308,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- Info Ministro -->
+
             <div class="ui segments">
                 <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>II - Campo de Trabalho</strong></p>
+                    <h3>II - Campo de Trabalho</h3>
                 </div>
                 <div class="ui form segment">
                     <div class="fields">
@@ -325,10 +327,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- II - Campo de Trabalho -->
+
             <div class="ui segments">
                 <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>III - Atuação Ministerial</strong></p>
+                    <h3>III - Atuação Ministerial</h3>
                 </div>
                 <div class="ui form segment">
                     <div class="ui green ribbon label" style="font-size:0.92857143em;">1. DOUTRINAÇÃO</div>
@@ -338,7 +341,7 @@
                     <div class="fields">
                         <div class="four wide field">
                             <label>Pregações</label>
-                            <input type="text"  value="{{$resource->pregacoes ?? ''}}" name="pregacoes">
+                            <input type="text" value="{{$resource->pregacoes ?? ''}}" name="pregacoes">
                         </div>
                         <div class="four wide field">
                             <label>Aulas de Escola Dominical:</label>
@@ -356,7 +359,8 @@
                     <div class="fields">
                         <div class="four wide field">
                             <label>Palestras, preleções especiais:</label>
-                            <input type="text" value="{{$resource->palestras_prelecoes ?? ''}}" name="palestras_prelecoes">
+                            <input type="text" value="{{$resource->palestras_prelecoes ?? ''}}"
+                                   name="palestras_prelecoes">
                         </div>
                         <div class="four wide field">
                             <label>Mensagens - Rádio/TV:</label>
@@ -364,7 +368,8 @@
                         </div>
                         <div class="four wide field">
                             <label>Artigos-jornais, boletins, revistas:</label>
-                            <input type="text" value="{{$resource->artigos_boletins_revistas ?? ''}}" name="artigos_boletins_revistas">
+                            <input type="text" value="{{$resource->artigos_boletins_revistas ?? ''}}"
+                                   name="artigos_boletins_revistas">
                         </div>
                         <div class="four wide field">
                             <label>Entrevistas:</label>
@@ -402,7 +407,8 @@
                         </div>
                         <div class="five wide field">
                             <label>Profissões de Fé & Batismos:</label>
-                            <input type="text" value="{{$resource->profissoes_batismos ?? ''}}" name="profissoes_batismos">
+                            <input type="text" value="{{$resource->profissoes_batismos ?? ''}}"
+                                   name="profissoes_batismos">
                         </div>
                     </div>
                 </div>
@@ -435,7 +441,8 @@
                         </div>
                         <div class="three wide field">
                             <label>Departamentos Internos</label>
-                            <input type="text" value="{{$resource->departamentos_internos ?? ''}}" name="departamentos_internos">
+                            <input type="text" value="{{$resource->departamentos_internos ?? ''}}"
+                                   name="departamentos_internos">
                         </div>
                     </div>
                 </div>
@@ -448,14 +455,16 @@
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>Descrição das atividades:</label>
-                            <textarea rows="5" name="descricao_atividades">{{$resource->descricao_atividades ?? ''}}</textarea>
+                            <textarea rows="5"
+                                      name="descricao_atividades">{{$resource->descricao_atividades ?? ''}}</textarea>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- III - Atuação Ministerial -->
+
             <div class="ui segments">
                 <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>IV - Atuação Conciliar</strong></p>
+                    <h3>IV - Atuação Conciliar</h3>
                 </div>
                 <div class="ui form segment">
                     <div class="ui green ribbon label" style="font-size:0.92857143em;">1. CONCÍLIOS DA IPB</div>
@@ -473,17 +482,20 @@
                         </div>
                         <div class="four wide field">
                             <label>Diáconos Ordenados e/ou Investidos:</label>
-                            <input type="text" value="{{$resource->diaconos_ordenados_investidos ?? ''}}" name="diaconos_ordenados_investidos">
+                            <input type="text" value="{{$resource->diaconos_ordenados_investidos ?? ''}}"
+                                   name="diaconos_ordenados_investidos">
                         </div>
                         <div class="four wide field">
                             <label>Presbíteros Ordenados e/ou Investidos:</label>
-                            <input type="text" value="{{$resource->presbiteros_ordenados_investidos ?? ''}}" name="presbiteros_ordenados_investidos">
+                            <input type="text" value="{{$resource->presbiteros_ordenados_investidos ?? ''}}"
+                                   name="presbiteros_ordenados_investidos">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="three wide field">
                             <label>Reuniões do Presbitério:</label>
-                            <input type="text" value="{{$resource->reunioes_presbiterio ?? ''}}" name="reunioes_presbiterio">
+                            <input type="text" value="{{$resource->reunioes_presbiterio ?? ''}}"
+                                   name="reunioes_presbiterio">
                         </div>
                         <div class="three wide field">
                             <label>Reuniões do Sínodo:</label>
@@ -509,16 +521,24 @@
                 <div class="ui form segment">
                     <div class="fields">
                         <div class="sixteen wide field">
-                            <div class="ui tiny message">
-                                <label>OBS. mencionar as funções exercidas nos diversos níveis conciliares da IPB e
-                                    o número de reuniões durante o ano.</label>
+                            <div class="ui info message">
+                                <i class="close icon"></i>
+                                <div class="header">
+                                    Observações Importantes
+                                </div>
+                                <ul class="list">
+                                    <li>Mencionar as funções exercidas nos diversos níveis conciliares da IPB e
+                                        o número de reuniões durante o ano.
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>No Presbitério:</label>
-                            <textarea rows="3" name="cargos_presbiterio">{{ $resource->cargos_presbiterio ?? "" }}</textarea>
+                            <textarea rows="3"
+                                      name="cargos_presbiterio">{{ $resource->cargos_presbiterio ?? "" }}</textarea>
                         </div>
                     </div>
                     <div class="fields">
@@ -542,68 +562,80 @@
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>Texto complementar::</label>
-                            <textarea rows="4" name="texto_complementar">{{ $resource->texto_complementar ?? "" }}</textarea>
+                            <textarea rows="4"
+                                      name="texto_complementar">{{ $resource->texto_complementar ?? "" }}</textarea>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- IV - Atuação Conciliar -->
+
             <div class="ui segments">
                 <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">
-                    <p><strong>V. Outras Atividades</strong></p>
+                    <h3>V - Outras Atividades</h3>
                 </div>
                 <div class="ui form segment">
                     <div class="fields">
                         <div class="sixteen wide field">
-                            <div class="ui tiny message">
-                                <label>
-                                    OBS. Mencionar, estatisticamente, realizações no ano não previstas nos campos
-                                    precedentes, dadas ou recebidas (cursos, leituras, encontros de estudos,
-                                    congressos, etc.), bem como outras atividadesparalelas ao ministério pastoral
-                                    (ex.: advocacia, jornalismo, magistério, etc.).</label>
+                            <div class="ui info message">
+                                <i class="close icon"></i>
+                                <div class="header">
+                                    Observações Importantes
+                                </div>
+                                <ul class="list">
+                                    <li> Mencionar quantitativamente realizações no ano não previstas nos campos
+                                        precedentes, dadas ou recebidas (cursos, leituras, encontros de estudos,
+                                        congressos, etc.), bem como outras atividades paralelas ao ministério pastoral
+                                        (ex.: advocacia, jornalismo, magistério, etc.).
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>1. Atualização e Aperfeiçoamento:</label>
-                            <textarea rows="3" name="atualizacao_aperfeicoamento">{{ $resource->atualizacao_aperfeicoamento ?? "" }}</textarea>
+                            <textarea rows="3"
+                                      name="atualizacao_aperfeicoamento">{{ $resource->atualizacao_aperfeicoamento ?? "" }}</textarea>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>2. Atividades em entidades para-eclesiásticas:</label>
-                            <textarea rows="3" name="atividades_para_eclesiasticas">{{ $resource->atividades_para_eclesiasticas ?? "" }}</textarea>
+                            <textarea rows="3"
+                                      name="atividades_para_eclesiasticas">{{ $resource->atividades_para_eclesiasticas ?? "" }}</textarea>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>3. Atividades Extra Ministeriais:</label>
-                            <textarea rows="3" name="atividades_extras_ministeriais">{{ $resource->atividades_extras_ministeriais ?? "" }}</textarea>
+                            <textarea rows="3"
+                                      name="atividades_extras_ministeriais">{{ $resource->atividades_extras_ministeriais ?? "" }}</textarea>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>Outras</label>
-                            <textarea rows="3" name="atividades_outros">{{ $resource->atividades_outros ?? "" }}</textarea>
+                            <textarea rows="3"
+                                      name="atividades_outros">{{ $resource->atividades_outros ?? "" }}</textarea>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="ui segments">
-                <div class="ui horizontal segment">
-                    <span style="color: lightslategray;"><strong>Usuário:</strong></span>
-                    <span style="color: lightslategray;">&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}
-                        <span id="user_inc"></span>&nbsp;</span>
-                    <span style="float: right;color: lightslategray;">
-                            <strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}
-                        <span id="data_inc"></span>
-                        </span>
+            </div> <!-- V - Outras Atividades -->
+
+            <div class="ui horizontal segments">
+                <div class="ui segment">
+                    <span><strong>Usuário:</strong></span>
+                    <span>&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}</span>
                 </div>
                 <div class="ui segment">
-                    <div class="ui toggle checkbox" data-tooltip="Deixe AZUL caso tenha FINALIZADO este relatório.">
-                        <label>Relatório Finalizado</label>
-                        <input type="checkbox" name="relatorio_finalizado">
-                    </div>
+                    <span><strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}</span>
+                </div>
+                <div class="ui right aligned segment" style="width: 30px;">
+                    <span class="ui toggle checkbox"
+                          data-tooltip="Bloqueia edição e altera o status para finalizado">
+                    <input type="checkbox" name="relatorio_finalizado">
+                    <label>Relatório Finalizado</label>
+                </span>
                 </div>
             </div>
             <div class="ui clearing divider"></div>
@@ -621,6 +653,20 @@
     <script>
         window.addEventListener("load", function () {
             $('.ui.dropdown').dropdown();
+            $('[name="relatorio_finalizado"]').change(function () {
+                if (this.checked) {
+                    $('input').attr('disabled', true);
+                    $('select').attr('disabled', true);
+                    $('textarea').attr('disabled', true);
+                    $('.selection').addClass('disabled');
+                    this.disabled = false;
+                } else {
+                    $('input').attr('disabled', false);
+                    $('select').attr('disabled', false);
+                    $('textarea').attr('disabled', false);
+                    $('.selection').removeClass('disabled');
+                }
+            }).trigger('change');
         });
     </script>
 @endsection
