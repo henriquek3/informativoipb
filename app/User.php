@@ -129,6 +129,9 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function usuario()
     {
         return $this->belongsTo(\App\User::class, 'user_id', 'id');
@@ -222,9 +225,12 @@ class User extends Authenticatable
         return $this->hasMany('App\RelMinistros');
     }
 
+    /**
+     * @return mixed
+     */
     public function pastor()
     {
-        return Presbiteros::where('id_igreja', '=', $this->id)
+        return Presbiteros::where('id_igreja', '=', $this->id_igreja)
             ->where('pastor_titular', '=', '1')->first();
     }
 }
