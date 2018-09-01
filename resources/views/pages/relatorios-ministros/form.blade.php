@@ -55,15 +55,15 @@
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>Nome</label>
-                            <input type="text" value="{{auth()->user()->presbitero->nome}}" readonly="">
+                            <input type="text" value="{{auth()->user()->pastor()->nome}}" readonly="">
                             <input type="hidden" readonly="" name="id_presbitero"
-                                   value="{{auth()->user()->presbitero->id}}">
+                                   value="{{auth()->user()->pastor()->id}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Nome do Pai</label>
-                            <input type="text" value="{{auth()->user()->presbitero->nome_pai}}" readonly="">
+                            <input type="text" value="{{auth()->user()->pastor()->nome_pai}}" readonly="">
                         </div>
                         <div class="eight wide field">
                             <label>Nome da Mãe</label>
@@ -316,11 +316,12 @@
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Igreja(s):</label>
-                            <textarea rows="2" value="0" name="campos_igrejas">{{$resource->campos_igrejas ?? ''}}</textarea>
+                            <textarea rows="2" name="campos_igrejas">{{$resource->campos_igrejas ?? ''}}</textarea>
                         </div>
                         <div class="eight wide field">
                             <label>Congregação(ões):</label>
-                            <textarea rows="2" value="0" name="campos_congregacoes">{{$resource->campos_congregacoes ?? ''}}</textarea>
+                            <textarea rows="2"
+                                      name="campos_congregacoes">{{$resource->campos_congregacoes ?? ''}}</textarea>
                         </div>
                     </div>
                 </div>

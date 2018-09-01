@@ -221,4 +221,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\RelMinistros');
     }
+
+    public function pastor()
+    {
+        return Presbiteros::where('id_igreja', '=', $this->id)
+            ->where('pastor_titular', '=', '1')->first();
+    }
 }
