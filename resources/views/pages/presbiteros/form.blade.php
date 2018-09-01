@@ -50,9 +50,19 @@
                     </div>
                 </div>
                 <div class="fields">
-                    <div class="sixteen wide field">
+                    <div class="thirteen wide field">
                         <label>Nome</label>
                         <input type="text" name="nome" placeholder="Nome" value="{{$resource->nome ?? ''}}" required>
+                    </div>
+                    <div class="three wide field" data-tooltip="Ministro responsável pela igreja">
+                        <div class="clearfix">
+                            <div class="ui checkbox"
+                                 style="float: left; display: flex; margin-top: 32px; margin-left: 20px;">
+                                <input name="pastor_titular" type="checkbox"
+                                       value="1" {{$resource->pastor_titular === 1 ? ' checked' : ''}}>
+                                <label>Pastor Títular</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="fields">
@@ -110,7 +120,7 @@
                     </div>
                     <div class="five wide field">
                         <label>Estado Civil</label>
-                        <select class="ui fluid search dropdown" name="estado_civil" required>
+                        <select class="ui fluid dropdown" name="estado_civil" required>
                             <option value="1">Casado</option>
                             <option value="2">Solteiro</option>
                             <option value="3">Viúvo</option>
