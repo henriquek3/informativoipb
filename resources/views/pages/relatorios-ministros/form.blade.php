@@ -590,13 +590,20 @@
                 </div>
             </div>
             <div class="ui segments">
-                <div class="ui horizontal segments">
-                    <div class="ui segment"><span
-                                style="color: lightslategray;"><strong>Usuário:</strong></span><span
-                                style="color: lightslategray;">&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}
-                            <span id="user_inc"></span>&nbsp;</span><span
-                                style="float: right;color: lightslategray;"><strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}
-                            <span id="data_inc"></span></span></div>
+                <div class="ui horizontal segment">
+                    <span style="color: lightslategray;"><strong>Usuário:</strong></span>
+                    <span style="color: lightslategray;">&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}
+                        <span id="user_inc"></span>&nbsp;</span>
+                    <span style="float: right;color: lightslategray;">
+                            <strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}
+                        <span id="data_inc"></span>
+                        </span>
+                </div>
+                <div class="ui segment">
+                    <div class="ui toggle checkbox" data-tooltip="Deixe AZUL caso tenha FINALIZADO este relatório.">
+                        <label>Relatório Finalizado</label>
+                        <input type="checkbox" name="relatorio_finalizado">
+                    </div>
                 </div>
             </div>
             <div class="ui clearing divider"></div>
