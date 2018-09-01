@@ -13,16 +13,7 @@
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>
-
-        <!-- Pesquisar Recurso -->
-        {{--<div class="ui search" title="Digite o nome do sínodo">
-            <div class="ui fluid right icon input">
-                <input class="prompt" type="text" placeholder="Pesquisar...">
-                <i class="search icon"></i>
-            </div>
-        </div>--}}
-
-        <table class="ui celled unstackable sortable green table">
+        <table class="ui celled unstackable sortable red table">
             <thead>
             <tr>
                 <th class="five wide">Tipo Relatório</th>

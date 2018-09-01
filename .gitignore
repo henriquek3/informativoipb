@@ -59,6 +59,8 @@ log.txt
 Thumbs.db
 .DS_Store
 package-lock.json
+public/mix-manifest.json
+mix-manifest.json
 .sourcemaps/
 .sass-cache/
 .tmp/
