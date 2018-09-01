@@ -21,6 +21,13 @@ class UsersTableSeeder extends Seeder
             'status' => '1',
             'nivel' => '1',
             'perfil' => '5',
+            'id_presbitero' => 1,
+            'id_igreja' => 1,
+            'id_presbiterio' => 1,
+            'id_sinodo' => 1,
+            'user_id' => 1,
+            'created_at' => Date("Y-m-d h:m:s"),
+            'updated_at' => Date("Y-m-d h:m:s"),
             'observacoes' => 'Não alterar este usuário.',
         ]);
     }

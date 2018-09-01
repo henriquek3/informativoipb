@@ -106,32 +106,24 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     * @param  \App\User $user
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(UsuarioRequest $request, User $user, $id)
     {
-        $data = $request->all();
-        $data['user_id'] = $request->user()->id;
-        unset($data['email']);
-        unset($data['cpf']);
-
         try {
-            $userUpdate = $user->findOrFail((int)$id);
-            //$changed = $userUpdate->update($data);
-            $userUpdate->update($data);
+            $data = $request->all();
+            $data['user_id'] = auth()->user()->id;
+            DB::beginTransaction();
+            $resource = $user->findOrFail((int)$id);
+            $resource->update($data);
+            DB::commit();
         } catch (\Exception $exception) {
-            return response()->json($exception, 500);
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-
-        /*if ($changed === true) {
-            Mail::send('mail', [], function ($m) {
-                $m->from('hello@app.com', 'YOUR APP');
-                $m->to('henriquek3@live.com', 'Jean Freitas')->subject('Hellooo Worrdll!');
-            });
-        }*/
-
-        return response()->json($userUpdate);
+        return redirect("/configuracoes/usuarios/$resource->id/editar")->with('updated', "success");
     }
 
     /**

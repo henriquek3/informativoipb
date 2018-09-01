@@ -22,6 +22,7 @@ class CreatePresbiterosTable extends Migration
             $table->unsignedInteger('id_igreja');
             $table->foreign('id_igreja')->references('id')->on('igrejas');
             $table->string('nome');
+            $table->integer('pastor_titular')->nullable();
             $table->string('nome_mae')->nullable();
             $table->string('nome_pai')->nullable();
             $table->string('nascimento_data', 10)->nullable();
