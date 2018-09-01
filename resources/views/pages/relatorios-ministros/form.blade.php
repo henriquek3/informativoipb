@@ -318,12 +318,14 @@
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Igreja(s):</label>
-                            <textarea rows="2" name="campos_igrejas">{{$resource->campos_igrejas ?? ''}}</textarea>
+                            <textarea rows="2"
+                                      name="campos_igrejas">{{$resource->campos_igrejas ?? trim(auth()->user()->pastor()->igreja->nome)}}</textarea>
                         </div>
                         <div class="eight wide field">
                             <label>Congregação(ões):</label>
                             <textarea rows="2"
-                                      name="campos_congregacoes">{{$resource->campos_congregacoes ?? ''}}</textarea>
+                                      name="campos_congregacoes">@isset($resource) {{$resource->campos_congregacoes ?? ''}} @else @forelse(auth()->user()->pastor()->igreja->congregacoes as $rs){{$rs->nome}} {!! " / " !!} @empty @endforelse @endisset
+                            </textarea>
                         </div>
                     </div>
                 </div>
