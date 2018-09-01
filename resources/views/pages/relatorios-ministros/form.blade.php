@@ -598,7 +598,6 @@
                             <span id="data_inc"></span></span></div>
                 </div>
             </div>
-            </div>
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
                 <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar</button>
