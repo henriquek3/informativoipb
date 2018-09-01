@@ -26,7 +26,7 @@
                     <div class="fields">
                         <div class="two wide field">
                             <label>Ano</label>
-                            <input type="text" readonly="" value="{{Date('Y')}}">
+                            <input name="ano" type="text" readonly="" value="{{Date('Y')}}">
                         </div>
                         <div class="four wide field">
                             <label>Sínodo</label>
