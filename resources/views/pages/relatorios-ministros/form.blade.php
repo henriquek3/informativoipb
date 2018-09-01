@@ -67,7 +67,7 @@
                         </div>
                         <div class="eight wide field">
                             <label>Nome da Mãe</label>
-                            <input type="text" value="{{auth()->user()->presbitero->nome_mae}}" readonly="">
+                            <input type="text" value="{{auth()->user()->pastor()->nome_mae}}" readonly="">
                         </div>
                     </div>
                     <div class="fields">
@@ -77,39 +77,39 @@
                         </div>
                         <div class="five wide field">
                             <label>Estado Natal</label>
-                            <input type="text" value="{{auth()->user()->presbitero->nascimento_estado->nome}}" readonly>
+                            <input type="text" value="{{auth()->user()->pastor()->nascimento_estado->nome}}" readonly>
                         </div>
                         <div class="eight wide field">
                             <label>Cidade Natal</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->nascimento_cidade->nome}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->nascimento_cidade->nome}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>RG</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->rg}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->rg}}">
                         </div>
                         <div class="four wide field">
                             <label>Orgão Emissor</label>
-                            <input type="text" readonly="" value="{{auth()->user()->presbitero->rg_emissor}}">
+                            <input type="text" readonly="" value="{{auth()->user()->pastor()->rg_emissor}}">
                         </div>
                         <div class="four wide field">
                             <label>CPF</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->cpf}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->cpf}}">
                         </div>
                         <div class="five wide field">
                             <label>Estado Civil</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->estado_civil}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->estado_civil}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="ten wide field">
                             <label>Cônjuge</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->conjuge_nome}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->conjuge_nome}}">
                         </div>
                         <div class="three wide field">
                             <label>Data de Nascimento</label>
-                            <input type="date" readonly value="{{auth()->user()->presbitero->conjuge_nascimento}}">
+                            <input type="date" readonly value="{{auth()->user()->pastor()->conjuge_nascimento}}">
                         </div>
                         <div class="three wide field required">
                             <label>Nº de Dependentes</label>
@@ -126,59 +126,59 @@
                     <div class="fields">
                         <div class="six wide field">
                             <label>Endereço</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco}}">
                         </div>
                         <div class="two wide field">
                             <label>Número</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_nr}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_nr}}">
                         </div>
                         <div class="four wide field">
                             <label>Complemento</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_complemento}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_complemento}}">
                         </div>
                         <div class="four wide field">
                             <label>Bairro</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_bairro}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_bairro}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>Estado</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_estado->nome}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_estado->nome}}">
                         </div>
                         <div class="five wide field">
                             <label>Cidade</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_cidade->nome}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_cidade->nome}}">
                         </div>
                         <div class="two wide field">
                             <label>CEP</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->cep}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->cep}}">
                         </div>
                         <div class="two wide field">
                             <label>Cx. Postal</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->cx_postal}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->cx_postal}}">
                         </div>
                         <div class="three wide field">
                             <label>CEP Cx. Postal</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->cx_postal_cep}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->cx_postal_cep}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="three wide field">
                             <label>Celular</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->celular}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->celular}}">
                         </div>
                         <div class="three wide field">
                             <label>Telefone Fixo</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->telefone}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->telefone}}">
                         </div>
                         <div class="three wide field">
                             <label>Telefone da Igreja</label>
-                            <input type="text" readonly value="{{auth()->user()->presbitero->igreja->telefone}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->igreja->telefone}}">
                         </div>
                         <div class="seven wide field">
                             <label>E-mail</label>
-                            <input type="email" readonly value="{{auth()->user()->presbitero->email}}">
+                            <input type="email" readonly value="{{auth()->user()->pastor()->email}}">
                         </div>
                     </div>
                     <div class="fields">
