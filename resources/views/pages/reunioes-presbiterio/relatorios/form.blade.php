@@ -12,9 +12,7 @@
         <div class="ui clearing divider"></div>
         <p></p>
         <table class="ui very basic table">
-            {{--<thead><tr><td></td><td></td></tr></thead>--}}
             <tbody>
-            {{--<tr><td></td><td></td></tr>--}}
             <tr>
                 <td colspan="2">
                     <div class="ui styled fluid accordion">

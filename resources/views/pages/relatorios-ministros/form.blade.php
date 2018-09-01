@@ -2,8 +2,9 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui raised segment"><a class="ui right floated blue tiny button" href="/cadastros/sinodos"><i
-                    class="reply icon"></i>Voltar</a>
+    <div class="ui raised segment">
+        <a class="ui right floated blue tiny button" href="/cadastros/sinodos">
+            <i class="reply icon"></i>Voltar</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
         <h1 class="ui floated header" style="margin-left: -10px;">Cadastro de Ministros
@@ -25,31 +26,23 @@
                     <div class="fields">
                         <div class="two wide field">
                             <label>Ano</label>
-                            <input type="text" name="ano" readonly="" value="{{Date('Y')}}" name="ano">
+                            <input type="text" readonly="" value="{{Date('Y')}}">
                         </div>
                         <div class="four wide field">
                             <label>Sínodo</label>
-                            <input type="text" name="sinodo" disabled="" value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->nome}}">
-                            <!--select.ui.fluid.search.dropdown(name="id_sinodo")
-                            option
-
-                            -->
+                            <input type="text" readonly=""
+                                   value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->presbitero->igreja->presbiterio->sinodo->nome}}">
                         </div>
                         <div class="five wide field" id="div_presbiterio">
                             <label>Presbitério</label>
-                            <input type="text" name="presbiterio" value="{{auth()->user()->presbitero->igreja->presbiterio->nome}}" disabled="">
-                            <!--select.ui.fluid.search.dropdown(name="id_presbiterio", id="id_presbiterio")-->
-                            <!--div.ui.active.inline.small.loader(style="display:none", id="loader_presbiterio")-->
-                        </div>
-                        <div class="one wide field">
-                            <label>ID</label>
-                            <input type="text" name="id_igreja" value="{{auth()->user()->presbitero->igreja->id}}" readonly="">
+                            <input type="text"
+                                   value="{{ auth()->user()->presbitero->igreja->presbiterio->sigla . ' / ' . auth()->user()->presbitero->igreja->presbiterio->nome}}"
+                                   readonly="">
                         </div>
                         <div class="five wide field">
                             <label>Igreja</label>
-                            <input type="text" name="igreja"  value="{{auth()->user()->presbitero->igreja->nome}} "disabled="">
-                            <!--select.ui.fluid.search.dropdown(name="id_igreja")-->
-                            <!--div.ui.active.inline.small.loader(style="display:none", id="loader_igreja")-->
+                            <input type="text" value="{{auth()->user()->presbitero->igreja->nome}} " readonly="">
+                            <input type="hidden" name="id_igreja" value="{{auth()->user()->presbitero->igreja->id}}">
                         </div>
                     </div>
                 </div>
@@ -60,142 +53,139 @@
                 </div>
                 <div class="ui form segment">
                     <div class="fields">
-                        <div class="one wide field">
-                            <label>ID</label>
-                            <input type="text" readonly="" name="id_presbitero" value="{{auth()->user()->presbitero->id}}">
-                        </div>
-                        <div class="fifteen wide field">
+                        <div class="sixteen wide field">
                             <label>Nome</label>
-                            <input type="text" name="nome" value="{{auth()->user()->presbitero->nome}}" disabled="">
+                            <input type="text" value="{{auth()->user()->presbitero->nome}}" readonly="">
+                            <input type="hidden" readonly="" name="id_presbitero"
+                                   value="{{auth()->user()->presbitero->id}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Nome do Pai</label>
-                            <input type="text" name="nome_pai" value="{{auth()->user()->presbitero->nome_pai}}" disabled="">
+                            <input type="text" value="{{auth()->user()->presbitero->nome_pai}}" readonly="">
                         </div>
                         <div class="eight wide field">
                             <label>Nome da Mãe</label>
-                            <input type="text" name="nome_mae" value="{{auth()->user()->presbitero->nome_mae}}" disabled="">
+                            <input type="text" value="{{auth()->user()->presbitero->nome_mae}}" readonly="">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="ui calendar bottom left three wide field">
                             <label>Data de Nascimento</label>
-                            <input class="datepicker2" type="text" name="nascimento_data" value="{{auth()->user()->presbitero->nascimento_data}}" disabled="">
+                            <input type="text" value="{{auth()->user()->presbitero->nascimento_data}}" readonly="">
                         </div>
                         <div class="five wide field">
                             <label>Estado Natal</label>
-                            <input type="text" disabled="" name="nascimento_id_estado" value="{{auth()->user()->presbitero->nascimento_id_estado}}">
+                            <input type="text" value="{{auth()->user()->presbitero->nascimento_estado->nome}}" readonly>
                         </div>
                         <div class="eight wide field">
                             <label>Cidade Natal</label>
-                            <input type="text" disabled="" name="nascimento_id_cidade" value="{{auth()->user()->presbitero->nascimento_id_cidade}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->nascimento_cidade->nome}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>RG</label>
-                            <input type="text" name="rg" placeholder="RG" disabled="" value="{{auth()->user()->presbitero->rg}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->rg}}">
                         </div>
                         <div class="four wide field">
                             <label>Orgão Emissor</label>
-                            <input type="text" name="rg_emissor" placeholder="Orgão Emissor" disabled="" value="{{auth()->user()->presbitero->rg_emissor}}">
+                            <input type="text" readonly="" value="{{auth()->user()->presbitero->rg_emissor}}">
                         </div>
                         <div class="four wide field">
                             <label>CPF</label>
-                            <input type="text" name="cpf" placeholder="CPF" disabled="" value="{{auth()->user()->presbitero->cpf}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->cpf}}">
                         </div>
                         <div class="five wide field">
                             <label>Estado Civil</label>
-                            <input type="text" disabled="" name="estado_civil" value="{{auth()->user()->presbitero->estado_civil}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->estado_civil}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="ten wide field">
                             <label>Cônjuge</label>
-                            <input type="text" name="conjuge_nome" placeholder="Cônjuge" disabled="" value="{{auth()->user()->presbitero->conjuge_nome}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->conjuge_nome}}">
                         </div>
-                        <div class="ui calendar bottom left four wide field">
+                        <div class="three wide field">
                             <label>Data de Nascimento</label>
-                            <input class="datepicker2" type="text" name="conjuge_nascimento"
-                                   value="{{auth()->user()->presbitero->conjuge_nascimento}}" disabled="">
+                            <input type="date" readonly value="{{auth()->user()->presbitero->conjuge_nascimento}}">
                         </div>
-                        <div class="two wide field">
+                        <div class="three wide field required">
                             <label>Nº de Dependentes</label>
-                            <input type="text" name="dependentes" placeholder="Nº de Dependentes" disabled="">
+                            <input type="number" min="0" max="99" name="nr_dependentes" placeholder="Nº de Dependentes"
+                                   required>
                         </div>
                     </div>
                     <div class="fields">
-                        <div class="sixteen wide field">
+                        <div class="sixteen wide field required">
                             <label>Nome dos Dependentes</label>
-                            <input type="text" name="nome_filhos"
-                                   value="{{auth()->user()->presbitero->nome_filhos}}" disabled="">
+                            <input type="text" name="nome_filhos" placeholder="Nome dos Filhos" required>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="six wide field">
                             <label>Endereço</label>
-                            <input type="text" name="endereco" placeholder="Endereço" disabled="" value="{{auth()->user()->presbitero->endereco}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco}}">
                         </div>
                         <div class="two wide field">
                             <label>Número</label>
-                            <input type="text" name="endereco_nr" placeholder="Número" disabled="" value="{{auth()->user()->presbitero->endereco_nr}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_nr}}">
                         </div>
                         <div class="four wide field">
                             <label>Complemento</label>
-                            <input type="text" name="endereco_complemento" placeholder="Complemento" disabled="" value="{{auth()->user()->presbitero->endereco_complemento}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_complemento}}">
                         </div>
                         <div class="four wide field">
                             <label>Bairro</label>
-                            <input type="text" name="endereco_bairro" placeholder="Bairro" disabled="" value="{{auth()->user()->presbitero->endereco_bairro}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_bairro}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>Estado</label>
-                            <input type="text" disabled="" name="endereco_id_estado" value="{{auth()->user()->presbitero->endereco_id_estado}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_estado->nome}}">
                         </div>
                         <div class="five wide field">
                             <label>Cidade</label>
-                            <input type="text" disabled="" name="endereco_id_cidade" value="{{auth()->user()->presbitero->endereco_id_cidade}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->endereco_cidade->nome}}">
                         </div>
                         <div class="two wide field">
                             <label>CEP</label>
-                            <input type="text" name="cep" placeholder="CEP" disabled="" value="{{auth()->user()->presbitero->cep}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->cep}}">
                         </div>
                         <div class="two wide field">
                             <label>Cx. Postal</label>
-                            <input type="text" name="cx_postal" placeholder="Caixa Postal" disabled="" value="{{auth()->user()->presbitero->cx_postal}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->cx_postal}}">
                         </div>
                         <div class="three wide field">
                             <label>CEP Cx. Postal</label>
-                            <input type="text" name="cx_postal_cep" placeholder="CEP Cx. Postal" disabled="" value="{{auth()->user()->presbitero->cx_postal_cep}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->cx_postal_cep}}">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="three wide field">
                             <label>Celular</label>
-                            <input type="text" name="celular" placeholder="Celular" disabled="" value="{{auth()->user()->presbitero->celular}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->celular}}">
                         </div>
                         <div class="three wide field">
                             <label>Telefone Fixo</label>
-                            <input type="text" name="telefone" placeholder="Telefone Fixo" disabled="" value="{{auth()->user()->presbitero->telefone}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->telefone}}">
                         </div>
                         <div class="three wide field">
                             <label>Telefone da Igreja</label>
-                            <input type="text" name="telefone_igreja" placeholder="Telefone da Igreja" disabled="" value="{{auth()->user()->presbitero->igreja->telefone}}">
+                            <input type="text" readonly value="{{auth()->user()->presbitero->igreja->telefone}}">
                         </div>
                         <div class="seven wide field">
                             <label>E-mail</label>
-                            <input type="email" name="email" placeholder="E-Mail" disabled="" value="{{auth()->user()->presbitero->email}}">
+                            <input type="email" readonly value="{{auth()->user()->presbitero->email}}">
                         </div>
                     </div>
                     <div class="fields">
-                        <div class="five wide field">
+                        <div class="five wide field required">
                             <label>Condições de Moradia:</label>
-                            <select class="ui fluid search dropdown" name="condicao_moradia">
-                                <option value="0">----</option>
+                            <select class="ui fluid dropdown" name="condicao_moradia" required>
+                                <option value="">----</option>
                                 <option value="1">Casa/Apto Pastoral</option>
                                 <option value="2">Moradia Própria</option>
                                 <option value="3">Financiada</option>
@@ -207,41 +197,36 @@
                         </div>
                         <div class="three wide field">
                             <label>Data de Ordenação:</label>
-                            <input type="date" name="ordenacao_data">
+                            <input type="date">
                         </div>
-                        <div class="eight wide field"
-                             data-tooltip="Digite ou Selecione o Presbitério onde foi ordenado.">
+                        <div class="eight wide field">
                             <label>Presbitério</label>
-                            <select class="ui fluid search dropdown" name="id_presbiterio">
-                                <option></option>
-                                <option>Sul de Rondônia</option>
-                                <option>Vale do Rio Machado</option>
-                            </select>
+                            <input type="text" value="{{auth()->user()->presbitero->nome}}" readonly>
                         </div>
                     </div>
                     <div class="fields">
-                        <div class="three wide field">
+                        <div class="three wide field required">
                             <label>Dedicação ao Ministério:</label>
-                            <select class="ui fluid search dropdown" name="dedicacao_ministerio">
-                                <option value="0">----</option>
+                            <select class="ui fluid dropdown" name="dedicacao_ministerio" required>
+                                <option value="">----</option>
                                 <option value="1">Integral</option>
                                 <option value="2">Parcial</option>
                             </select>
                         </div>
-                        <div class="three wide field">
+                        <div class="three wide field required">
                             <label>Férias</label>
-                            <select class="ui fluid search dropdown" name="ferias">
-                                <option value="0">----</option>
+                            <select class="ui fluid dropdown" name="ferias" required>
+                                <option value="">----</option>
                                 <option value="1">Regulares</option>
                                 <option value="2">Parciais</option>
                                 <option value="3">Não teve</option>
                             </select>
                         </div>
-                        <div class="five wide field">
+                        <div class="five wide field required">
                             <label>Côngruas</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
-                                <input type="text" value="1000" name="congruas">
+                                <input type="text" value="1000" name="congruas" required>
                             </div>
                         </div>
                     </div>
@@ -255,7 +240,7 @@
                                 <label>Sim</label>
                             </div>
                             <div class="ui radio checkbox">
-                                <input name="previdencia_publica" type="radio" value="0" checked="checked">
+                                <input name="previdencia_publica" type="radio" value="0" checked="">
                                 <label>Não</label>
                             </div>
                         </div>
@@ -268,7 +253,7 @@
                                 <label>Sim</label>
                             </div>
                             <div class="ui radio checkbox">
-                                <input name="previdencia_privada" type="radio" value="0" checked="checked">
+                                <input name="previdencia_privada" type="radio" value="0" checked="">
                                 <label>Não</label>
                             </div>
                         </div>
@@ -626,128 +611,9 @@
     </div>
 @endsection
 @section('javascript')
-    <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>
-    @if(isset($resource))
-        <script type="text/javascript" async>
-            try {
-                window.addEventListener("load", function () {
-                    /**
-                     * Function para o select Estado de NASCIMENTO
-                     */
-                    if ($('[name="nascimento_id_estado"]').val() > 0) {
-                        $('[name="nascimento_id_cidade"]').children().remove();
-                        $("#div_cidade").find(".search").hide();
-                        $("#loader_cidade").show();
-                        $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
-                            .done(function (response) {
-                                $.each(response, function () {
-                                    $('[name="nascimento_id_cidade"]').append(
-                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
-                                    );
-                                });
-                                $("#div_cidade").find(".search").show();
-                                $("#loader_cidade").hide();
-                                $('[name="nascimento_id_cidade"]').val('{{$resource->nascimento_id_cidade}}');
-                            })
-                            .fail(function () {
-                                iziToast.error({
-                                    title: 'Erro',
-                                    message: 'Consulta não realizada, verifique sua conexão',
-                                });
-                            })
-                        ;
-                    }
-
-                    /**
-                     * Function para o select Estado ENDEREÇO
-                     */
-                    if ($('[name="endereco_id_estado"]').val() > 0) {
-                        $('[name="endereco_id_cidade"]').children().remove();
-                        $("#div_cidade_end").find(".search").hide();
-                        $("#loader_cidade_end").show();
-                        $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
-                            .done(function (response) {
-                                $.each(response, function () {
-                                    $('[name="endereco_id_cidade"]').append(
-                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
-                                    );
-                                });
-                                $("#div_cidade_end").find(".search").show();
-                                $("#loader_cidade_end").hide();
-                                $('[name="endereco_id_cidade"]').val('{{$resource->endereco_id_cidade}}');
-                            })
-                            .fail(function () {
-                                iziToast.error({
-                                    title: 'Erro',
-                                    message: 'Consulta não realizada, verifique sua conexão',
-                                });
-                            })
-                        ;
-                    }
-                })
-            } catch (e) {
-                alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');
-            }
-        </script>
-    @else
-        <script>
-            window.addEventListener("load", function () {
-                /**
-                 * Function para o select Estado de NASCIMENTO
-                 */
-                $('[name="nascimento_id_estado"]').on('change', function () {
-                    if ($('[name="nascimento_id_estado"]').val() > 0) {
-                        $('[name="nascimento_id_cidade"]').children().remove();
-                        $("#div_cidade").find(".search").hide();
-                        $("#loader_cidade").show();
-                        $.get('/api/cidades?uf=' + $('[name="nascimento_id_estado"]').val())
-                            .done(function (response) {
-                                $.each(response, function () {
-                                    $('[name="nascimento_id_cidade"]').append(
-                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
-                                    );
-                                });
-                                $("#div_cidade").find(".search").show();
-                                $("#loader_cidade").hide()
-                            })
-                            .fail(function () {
-                                iziToast.error({
-                                    title: 'Erro',
-                                    message: 'Consulta não realizada, verifique sua conexão',
-                                });
-                            })
-                        ;
-                    }
-                });
-
-                /**
-                 * Function para o select Estado ENDEREÇO
-                 */
-                $('[name="endereco_id_estado"]').on('change', function () {
-                    if ($('[name="endereco_id_estado"]').val() > 0) {
-                        $('[name="endereco_id_cidade"]').children().remove();
-                        $("#div_cidade_end").find(".search").hide();
-                        $("#loader_cidade_end").show();
-                        $.get('/api/cidades?uf=' + $('[name="endereco_id_estado"]').val())
-                            .done(function (response) {
-                                $.each(response, function () {
-                                    $('[name="endereco_id_cidade"]').append(
-                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
-                                    );
-                                });
-                                $("#div_cidade_end").find(".search").show();
-                                $("#loader_cidade_end").hide()
-                            })
-                            .fail(function () {
-                                iziToast.error({
-                                    title: 'Erro',
-                                    message: 'Consulta não realizada, verifique sua conexão',
-                                });
-                            })
-                        ;
-                    }
-                });
-            });
-        </script>
-    @endif
+    <script>
+        window.addEventListener("load", function () {
+            $('.ui.dropdown').dropdown();
+        });
+    </script>
 @endsection

@@ -23,6 +23,7 @@ class CreateRelatoriosMinistrosTable extends Migration
             $table->foreign('id_igreja')->references('id')->on('igrejas');
 
             $table->integer('nr_dependentes')->nullable();
+            $table->longText('nome_filhos')->nullable();
             $table->integer('condicao_moradia')->nullable();
             $table->string('data_ordenacao', 10)->nullable();
             $table->string('presbiterio_ordenacao')->nullable();
