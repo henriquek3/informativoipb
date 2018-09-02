@@ -187,13 +187,27 @@
                             <label>Condições de Moradia:</label>
                             <select class="ui fluid dropdown" name="condicao_moradia" required>
                                 <option value="">----</option>
-                                <option value="1">Casa/Apto Pastoral</option>
-                                <option value="2">Moradia Própria</option>
-                                <option value="3">Financiada</option>
-                                <option value="4">Moradia alugada paga pela Igreja</option>
-                                <option value="5">Moradia alugada e paga pelo Ministro</option>
-                                <option value="6">Moradia alugada Nos limites do campo</option>
-                                <option value="7">Moradia alugada Fora do campo</option>
+                                <option value="1"@isset($resource) {{$resource->condicao_moradia === 1 ? ' selected' : ''}} @endisset>
+                                    Casa/Apto Pastoral
+                                </option>
+                                <option value="2"@isset($resource) {{$resource->condicao_moradia === 2 ? ' selected' : ''}} @endisset>
+                                    Própria
+                                </option>
+                                <option value="3"@isset($resource) {{$resource->condicao_moradia === 3 ? ' selected' : ''}} @endisset>
+                                    Financiada
+                                </option>
+                                <option value="4"@isset($resource) {{$resource->condicao_moradia === 4 ? ' selected' : ''}} @endisset>
+                                    Alugada e paga pela igreja
+                                </option>
+                                <option value="5"@isset($resource) {{$resource->condicao_moradia === 5 ? ' selected' : ''}} @endisset>
+                                    Alugada e paga pelo ministro
+                                </option>
+                                <option value="6"@isset($resource) {{$resource->condicao_moradia === 6 ? ' selected' : ''}} @endisset>
+                                    Alugada nos limites do campo
+                                </option>
+                                <option value="7"@isset($resource) {{$resource->condicao_moradia === 7 ? ' selected' : ''}} @endisset>
+                                    Alugada fora do campo
+                                </option>
                             </select>
                         </div>
                         <div class="three wide field">
@@ -210,51 +224,66 @@
                             <label>Dedicação ao Ministério:</label>
                             <select class="ui fluid dropdown" name="dedicacao_ministerio" required>
                                 <option value="">----</option>
-                                <option value="1">Integral</option>
-                                <option value="2">Parcial</option>
+                                <option value="1"@isset($resource) {{$resource->dedicacao_ministerio === 1 ? ' selected' : ''}} @endisset>
+                                    Integral
+                                </option>
+                                <option value="2"@isset($resource) {{$resource->dedicacao_ministerio === 2 ? ' selected' : ''}} @endisset>
+                                    Parcial
+                                </option>
                             </select>
                         </div>
                         <div class="three wide field required">
                             <label>Férias</label>
                             <select class="ui fluid dropdown" name="ferias" required>
                                 <option value="">----</option>
-                                <option value="1">Regulares</option>
-                                <option value="2">Parciais</option>
-                                <option value="3">Não teve</option>
+                                <option value="1"@isset($resource) {{$resource->ferias === 1 ? ' selected' : ''}} @endisset>
+                                    Regulares
+                                </option>
+                                <option value="2"@isset($resource) {{$resource->ferias === 2 ? ' selected' : ''}} @endisset>
+                                    Parciais
+                                </option>
+                                <option value="3"@isset($resource) {{$resource->ferias === 3 ? ' selected' : ''}} @endisset>
+                                    Não teve
+                                </option>
                             </select>
                         </div>
-                        <div class="five wide field required">
+                        <div class="four wide field required">
                             <label>Côngruas</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
                                 <input type="text" class="money" placeholder="0,00" name="congruas" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="fields inline">
                         <div class="three wide field" data-tooltip="Possui aposentadoria pública?">
                             <label>Aposentadoria pública?</label>
                         </div>
                         <div class="three wide field">
                             <div class="ui radio checkbox">
-                                <input name="previdencia_publica" type="radio" value="1">
+                                <input name="previdencia_publica" type="radio"
+                                       value="1" @isset($resource) {{$resource->previdencia_publica === 1 ? 'checked' : ''}} @endisset>
                                 <label>Sim</label>
                             </div>
                             <div class="ui radio checkbox">
-                                <input name="previdencia_publica" type="radio" value="0" checked="">
+                                <input name="previdencia_publica" type="radio" value="0" checked=""
+                                       @isset($resource) {{$resource->previdencia_publica === 0 ? 'checked' : ''}} @else checked @endisset>
                                 <label>Não</label>
                             </div>
                         </div>
+                    </div>
+                    <div class="fields inline">
+
                         <div class="three wide field" data-tooltip="Possui aposentadoria privada?">
                             <label>Aposentadoria privada?</label>
                         </div>
                         <div class="three wide field">
                             <div class="ui radio checkbox">
-                                <input name="previdencia_privada" type="radio" value="1">
+                                <input name="previdencia_privada" type="radio"
+                                       value="1" @isset($resource) {{$resource->previdencia_privada === 1 ? 'checked' : ''}} @endisset>
                                 <label>Sim</label>
                             </div>
                             <div class="ui radio checkbox">
-                                <input name="previdencia_privada" type="radio" value="0" checked="">
+                                <input name="previdencia_privada" type="radio" value="0"
+                                       @isset($resource) {{$resource->previdencia_privada === 0 ? 'checked' : ''}} @else checked @endisset>
                                 <label>Não</label>
                             </div>
                         </div>
@@ -263,11 +292,13 @@
                         </div>
                         <div class="two wide field">
                             <div class="ui radio checkbox">
-                                <input name="plano_saude" type="radio" value="1">
+                                <input name="plano_saude" type="radio"
+                                       value="1" @isset($resource) {{$resource->plano_saude === 1 ? 'checked' : ''}} @endisset>
                                 <label>Sim</label>
                             </div>
                             <div class="ui radio checkbox">
-                                <input name="plano_saude" type="radio" value="0" checked="checked">
+                                <input name="plano_saude" type="radio" value="0"
+                                       @isset($resource) {{$resource->plano_saude === 0 ? 'checked' : ''}} @else checked @endisset>
                                 <label>Não</label>
                             </div>
                         </div>
@@ -278,11 +309,13 @@
                         </div>
                         <div class="two wide field">
                             <div class="ui radio checkbox">
-                                <input name="congruas_contribui_inss" type="radio" value="1">
+                                <input name="congruas_contribui_inss" type="radio"
+                                       value="1" @isset($resource) {{$resource->congruas_contribui_inss === 1 ? 'checked' : ''}} @endisset>
                                 <label>Sim</label>
                             </div>
                             <div class="ui radio checkbox">
-                                <input name="congruas_contribui_inss" type="radio" value="0" checked="checked">
+                                <input name="congruas_contribui_inss" type="radio" value="0"
+                                       @isset($resource) {{$resource->congruas_contribui_inss === 0 ? 'checked' : ''}} @else checked @endisset>
                                 <label>Não</label>
                             </div>
                         </div>
@@ -290,7 +323,7 @@
                             <label>Contribuição INSS:</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
-                                <input type="text" name="previdencia_publica_valor" value="1000">
+                                <input type="text" class="money" name="previdencia_publica_valor" placeholder="0,00">
                             </div>
                         </div>
                         <div class="two wide field" data-tooltip="Contribui para Previdência Privada?">
@@ -298,11 +331,13 @@
                         </div>
                         <div class="two wide field">
                             <div class="ui radio checkbox">
-                                <input name="contribui_prev_privada" type="radio" value="1">
+                                <input name="contribui_prev_privada" type="radio"
+                                       value="1" @isset($resource) {{$resource->contribui_prev_privada === 1 ? 'checked' : ''}} @endisset>
                                 <label>Sim</label>
                             </div>
                             <div class="ui radio checkbox">
-                                <input name="contribui_prev_privada" type="radio" value="0" checked="checked">
+                                <input name="contribui_prev_privada" type="radio" value="0"
+                                       @isset($resource) {{$resource->contribui_prev_privada === 0 ? 'checked' : ''}} @else checked @endisset>
                                 <label>Não</label>
                             </div>
                         </div>

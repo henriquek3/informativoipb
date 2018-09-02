@@ -58,10 +58,38 @@ class RelConselhoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
         // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
-        if (is_null($request->get('congregacao_presbiterio'))) {
-            $data['congregacao_presbiterio'] = 0;
+        //or_declaracao_ano_anterior_irenda
+        //or_declaracao_ano_anterior_rais
+        //or_declaracao_ano_anterior_dirf
+        //se_trabalho_missionario_jmn
+        //se_trabalho_missionario_apmt
+        //se_trabalho_missionario_pmc
+        //se_trabalho_missionario_plantacao
+        $data = $request->all();
+        if (is_null($request->get('status_relatorio'))) {
+            $data['status_relatorio'] = 0;
+        }
+        if (is_null($request->get('or_declaracao_ano_anterior_irenda'))) {
+            $data['or_declaracao_ano_anterior_irenda'] = 0;
+        }
+        if (is_null($request->get('or_declaracao_ano_anterior_rais'))) {
+            $data['or_declaracao_ano_anterior_rais'] = 0;
+        }
+        if (is_null($request->get('or_declaracao_ano_anterior_dirf'))) {
+            $data['or_declaracao_ano_anterior_dirf'] = 0;
+        }
+        if (is_null($request->get('se_trabalho_missionario_jmn'))) {
+            $data['se_trabalho_missionario_jmn'] = 0;
+        }
+        if (is_null($request->get('se_trabalho_missionario_apmt'))) {
+            $data['se_trabalho_missionario_apmt'] = 0;
+        }
+        if (is_null($request->get('se_trabalho_missionario_pmc'))) {
+            $data['se_trabalho_missionario_pmc'] = 0;
+        }
+        if (is_null($request->get('se_trabalho_missionario_plantacao'))) {
+            $data['se_trabalho_missionario_plantacao'] = 0;
         }
         try {
             DB::beginTransaction();
@@ -112,9 +140,34 @@ class RelConselhoController extends Controller
     public function update(Request $request, RelConselhos $relConselhos, $id)
     {
         try {
+            $data = $request->all();
+            if (is_null($request->get('status_relatorio'))) {
+                $data['status_relatorio'] = 0;
+            }
+            if (is_null($request->get('or_declaracao_ano_anterior_irenda'))) {
+                $data['or_declaracao_ano_anterior_irenda'] = 0;
+            }
+            if (is_null($request->get('or_declaracao_ano_anterior_rais'))) {
+                $data['or_declaracao_ano_anterior_rais'] = 0;
+            }
+            if (is_null($request->get('or_declaracao_ano_anterior_dirf'))) {
+                $data['or_declaracao_ano_anterior_dirf'] = 0;
+            }
+            if (is_null($request->get('se_trabalho_missionario_jmn'))) {
+                $data['se_trabalho_missionario_jmn'] = 0;
+            }
+            if (is_null($request->get('se_trabalho_missionario_apmt'))) {
+                $data['se_trabalho_missionario_apmt'] = 0;
+            }
+            if (is_null($request->get('se_trabalho_missionario_pmc'))) {
+                $data['se_trabalho_missionario_pmc'] = 0;
+            }
+            if (is_null($request->get('se_trabalho_missionario_plantacao'))) {
+                $data['se_trabalho_missionario_plantacao'] = 0;
+            }
             DB::beginTransaction();
             $resource = $relConselhos->findOrfail((int)$id);
-            $resource->update($request->all());
+            $resource->update($data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -138,6 +191,6 @@ class RelConselhoController extends Controller
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());
         }
-        return redirect("/cadastros/conselho")->with('deleted', "success");
+        return redirect("/relatorios/conselho")->with('deleted', "success");
     }
 }

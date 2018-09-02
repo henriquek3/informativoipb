@@ -168,11 +168,13 @@
                             </div>
                             <div class="six wide field">
                                 <div class="ui radio checkbox">
-                                    <input name="or_inventario_existe" type="radio" value="1" {{isset($resource) ? $resource->or_inventario_existe === 1 ? 'checked' : '' : ''}}>
+                                    <input name="or_inventario_existe" type="radio"
+                                           value="1" @isset($resource) {{$resource === 1 ? 'checked' : ''}} @endisset>
                                     <label>Sim</label>
                                 </div>
                                 <div class="ui radio checkbox">
-                                    <input name="or_inventario_existe" type="radio" value="0" {{isset($resource) ? $resource->or_inventario_existe === 0 ? 'checked' : '' : ''}}>
+                                    <input name="or_inventario_existe" type="radio" value="0"
+                                           @isset($resource) {{$resource === 1 ? 'checked' : ''}} @else checked @endisset>
                                     <label>Não</label>
                                 </div>
                             </div>
@@ -243,7 +245,7 @@
                             <div class="four wide field disabled">
                                 <div class="ui labeled input">
                                     <div class="ui label">Total</div>
-                                    <input type="text," id="somaCeia">
+                                    <input type="text" id="somaCeia">
                                 </div>
                             </div>
                         </div>

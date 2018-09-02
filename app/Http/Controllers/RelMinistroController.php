@@ -58,11 +58,11 @@ class RelMinistroController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
         // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
-        /*if (is_null($request->get('congregacao_presbiterio'))) {
-            $data['congregacao_presbiterio'] = 0;
-        }*/
+        $data = $request->all();
+        if (is_null($request->get('status_relatorio'))) {
+            $data['status_relatorio'] = 0;
+        }
         try {
             DB::beginTransaction();
             $resource = $request->user()->relMinistros()->create($data);
@@ -111,6 +111,9 @@ class RelMinistroController extends Controller
      */
     public function update(Request $request, RelMinistros $relMinistros, $id)
     {
+        if (is_null($request->get('status_relatorio'))) {
+            $data['status_relatorio'] = 0;
+        }
         try {
             DB::beginTransaction();
             $resource = $relMinistros->findOrfail((int)$id);
@@ -138,6 +141,6 @@ class RelMinistroController extends Controller
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());
         }
-        return redirect("/cadastros/ministro")->with('deleted', "success");
+        return redirect("/relatorios/ministerial")->with('deleted', "success");
     }
 }

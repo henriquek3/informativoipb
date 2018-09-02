@@ -57,12 +57,11 @@ class RelEstatisticaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
         // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
-        // congregacao_presbiterio
-        /*if (is_null($request->get('congregacao_presbiterio'))) {
-            $data['congregacao_presbiterio'] = 0;
-        }*/
+        $data = $request->all();
+        if (is_null($request->get('status_relatorio'))) {
+            $data['status_relatorio'] = 0;
+        }
         try {
             DB::beginTransaction();
             $resource = $request->user()->relEstatisticas()->create($data);
@@ -138,6 +137,6 @@ class RelEstatisticaController extends Controller
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());
         }
-        return redirect("/cadastros/estatistica")->with('deleted', "success");
+        return redirect("/relatorios/estatistica")->with('deleted', "success");
     }
 }
