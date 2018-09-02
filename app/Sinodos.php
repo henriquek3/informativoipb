@@ -59,6 +59,9 @@ class Sinodos extends Model
         return \App\User::find($this->user_id)->nome;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function presbiterios()
     {
         return $this->hasMany(\App\Presbiterios::class, 'id_sinodo');

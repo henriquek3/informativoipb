@@ -15,26 +15,41 @@ class Igrejas extends Model
         'id', 'created_at', 'deleted_at', 'updated_at',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function usuario()
     {
         return $this->belongsTo("App\User", "user_id");
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function presbiterio()
     {
-        return $this->belongsTo("App\Presbiterios","id_presbiterio");
+        return $this->belongsTo("App\Presbiterios", "id_presbiterio");
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function sinodo()
     {
-        return $this->belongsTo("App\Sinodos","id_sinodo");
+        return $this->belongsTo("App\Sinodos", "id_sinodo");
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function congregacoes()
     {
         return $this->hasMany(\App\IgrejasCongregacoes::class, 'id_igreja');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function cidade()
     {
         return $this->belongsTo(\App\Cidades::class, 'id_cidade');

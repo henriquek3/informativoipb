@@ -100,7 +100,7 @@
                         </div>
                         <div class="five wide field">
                             <label>Estado Civil</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->estado_civil}}">
+                            <input type="text" readonly value="{{auth()->user()->pastor()->status_civil()}}">
                         </div>
                     </div>
                     <div class="fields">
