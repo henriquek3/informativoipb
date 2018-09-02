@@ -55,14 +55,14 @@
                     </div>
                     <div class="six wide field">
                         <label>Local da Plenária</label>
-                        <input type="text" name="cnpj" id="cnpj_igreja" placeholder="Local da Plenária" required
-                               value="{{$resource->cnpj ?? ''}}">
+                        <input type="text" name="local" placeholder="Local" required value="{{$resource->local ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="sixteen wide field">
                         <label>Observações</label>
-                        <textarea rows="3" name="observacoes"> {{$resource->observacoes ?? ''}}</textarea>
+                        <textarea rows="3" name="observacoes"
+                                  placeholder="Observações"> {{$resource->observacoes ?? ''}}</textarea>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
     @include('pages.reunioes-presbiterio.relatorios.index')
 @endsection
 @section('javascript')
-    <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>
+    <script src="{{asset('js/app/reuniao-presbiterio.js')}}"></script>
     @if(isset($resource))
         <script type="text/javascript" async>
             try {
