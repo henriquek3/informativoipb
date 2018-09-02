@@ -220,7 +220,7 @@
                         </div>
                     </div>
                     <div class="fields">
-                        <div class="three wide field required">
+                        <div class="four wide field required">
                             <label>Dedicação ao Ministério:</label>
                             <select class="ui fluid dropdown" name="dedicacao_ministerio" required>
                                 <option value="">----</option>
@@ -232,7 +232,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="three wide field required">
+                        <div class="four wide field required">
                             <label>Férias</label>
                             <select class="ui fluid dropdown" name="ferias" required>
                                 <option value="">----</option>
@@ -247,35 +247,34 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="four wide field required">
+                        <div class="three wide field required">
                             <label>Côngruas</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
                                 <input type="text" class="money" placeholder="0,00" name="congruas" required>
                             </div>
                         </div>
-                        <div class="three wide field" data-tooltip="Possui aposentadoria pública?">
-                            <label>Aposentadoria pública?</label>
-                        </div>
-                        <div class="three wide field">
-                            <div class="ui radio checkbox">
-                                <input name="previdencia_publica" type="radio"
-                                       value="1" @isset($resource) {{$resource->previdencia_publica === 1 ? 'checked' : ''}} @endisset>
-                                <label>Sim</label>
-                            </div>
-                            <div class="ui radio checkbox">
-                                <input name="previdencia_publica" type="radio" value="0" checked=""
-                                       @isset($resource) {{$resource->previdencia_publica === 0 ? 'checked' : ''}} @else checked @endisset>
-                                <label>Não</label>
+                        <div class="five wide field" data-tooltip="Possui aposentadoria pública?">
+                            <div style="float: left; display: flex; margin-top: 32px; margin-left: 20px;">
+                                <label><strong>Aposentadoria pública?</strong></label>
+                                <div class="ui radio checkbox" style="padding-left: 10px;">
+                                    <input name="previdencia_publica" type="radio"
+                                           value="1" @isset($resource) {{$resource->previdencia_publica === 1 ? 'checked' : ''}} @endisset>
+                                    <label>Sim</label>
+                                </div>
+                                <div class="ui radio checkbox" style="padding-left: 10px;">
+                                    <input name="previdencia_publica" type="radio" value="0" checked=""
+                                           @isset($resource) {{$resource->previdencia_publica === 0 ? 'checked' : ''}} @else checked @endisset>
+                                    <label>Não</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="fields inline">
-
-                        <div class="three wide field" data-tooltip="Possui aposentadoria privada?">
+                    <div class="fields inline" style="padding-top: 5px;padding-bottom: 5px;">
+                        <div class="four wide field" data-tooltip="Possui aposentadoria privada?">
                             <label>Aposentadoria privada?</label>
                         </div>
-                        <div class="three wide field">
+                        <div class="four wide field">
                             <div class="ui radio checkbox">
                                 <input name="previdencia_privada" type="radio"
                                        value="1" @isset($resource) {{$resource->previdencia_privada === 1 ? 'checked' : ''}} @endisset>
@@ -285,6 +284,46 @@
                                 <input name="previdencia_privada" type="radio" value="0"
                                        @isset($resource) {{$resource->previdencia_privada === 0 ? 'checked' : ''}} @else checked @endisset>
                                 <label>Não</label>
+                            </div>
+                        </div>
+                        <div class="four wide field" data-tooltip="Contribui para Previdência Privada?">
+                            <label>Previdência Privada?</label>
+                        </div>
+                        <div class="four wide field">
+                            <div class="ui radio checkbox">
+                                <input name="contribui_prev_privada" type="radio"
+                                       value="1" @isset($resource) {{$resource->contribui_prev_privada === 1 ? 'checked' : ''}} @endisset>
+                                <label>Sim</label>
+                            </div>
+                            <div class="ui radio checkbox">
+                                <input name="contribui_prev_privada" type="radio" value="0"
+                                       @isset($resource) {{$resource->contribui_prev_privada === 0 ? 'checked' : ''}} @else checked @endisset>
+                                <label>Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fields inline">
+                        <div class="three wide field">
+                            <label>INSS sobre Côngruas?</label>
+                        </div>
+                        <div class="three wide field">
+                            <div class="ui radio checkbox">
+                                <input name="congruas_contribui_inss" type="radio"
+                                       value="1" @isset($resource) {{$resource->congruas_contribui_inss === 1 ? 'checked' : ''}} @endisset>
+                                <label>Sim</label>
+                            </div>
+                            <div class="ui radio checkbox">
+                                <input name="congruas_contribui_inss" type="radio" value="0"
+                                       @isset($resource) {{$resource->congruas_contribui_inss === 0 ? 'checked' : ''}} @else checked @endisset>
+                                <label>Não</label>
+                            </div>
+                        </div>
+                        <div class="six wide field" data-tooltip="Qual o valor da contribuição para o INSS?">
+                            <label style="white-space: nowrap">Valor INSS:</label>
+                            <div class="ui labeled input">
+                                <div class="ui label">R$</div>
+                                <input type="text" class="money" name="previdencia_publica_valor" placeholder="0,00"
+                                       style="max-width: 150px;">
                             </div>
                         </div>
                         <div class="two wide field" data-tooltip="Possui plano de saúde?">
@@ -303,45 +342,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="fields inline">
-                        <div class="five wide field">
-                            <label>Contribui para o INSS sobre o valor das Côngruas??</label>
-                        </div>
-                        <div class="two wide field">
-                            <div class="ui radio checkbox">
-                                <input name="congruas_contribui_inss" type="radio"
-                                       value="1" @isset($resource) {{$resource->congruas_contribui_inss === 1 ? 'checked' : ''}} @endisset>
-                                <label>Sim</label>
-                            </div>
-                            <div class="ui radio checkbox">
-                                <input name="congruas_contribui_inss" type="radio" value="0"
-                                       @isset($resource) {{$resource->congruas_contribui_inss === 0 ? 'checked' : ''}} @else checked @endisset>
-                                <label>Não</label>
-                            </div>
-                        </div>
-                        <div class="five wide field" data-tooltip="Qual o valor da contribuição para o INSS?">
-                            <label>Contribuição INSS:</label>
-                            <div class="ui labeled input">
-                                <div class="ui label">R$</div>
-                                <input type="text" class="money" name="previdencia_publica_valor" placeholder="0,00">
-                            </div>
-                        </div>
-                        <div class="two wide field" data-tooltip="Contribui para Previdência Privada?">
-                            <label>Previdência Privada?</label>
-                        </div>
-                        <div class="two wide field">
-                            <div class="ui radio checkbox">
-                                <input name="contribui_prev_privada" type="radio"
-                                       value="1" @isset($resource) {{$resource->contribui_prev_privada === 1 ? 'checked' : ''}} @endisset>
-                                <label>Sim</label>
-                            </div>
-                            <div class="ui radio checkbox">
-                                <input name="contribui_prev_privada" type="radio" value="0"
-                                       @isset($resource) {{$resource->contribui_prev_privada === 0 ? 'checked' : ''}} @else checked @endisset>
-                                <label>Não</label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div> <!-- Info Ministro -->
 
@@ -353,13 +353,13 @@
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Igreja(s):</label>
-                            <textarea rows="2"
+                            <textarea rows="3"
                                       name="campos_igrejas">{{$resource->campos_igrejas ?? trim(auth()->user()->pastor()->igreja->nome)}}</textarea>
                         </div>
                         <div class="eight wide field">
                             <label>Congregação(ões):</label>
-                            <textarea rows="2"
-                                      name="campos_congregacoes">@isset($resource) {{$resource->campos_congregacoes ?? ''}} @else @forelse(auth()->user()->pastor()->igreja->congregacoes as $rs){{$rs->nome}} {!! " / " !!} @empty @endforelse @endisset
+                            <textarea rows="3"
+                                      name="campos_congregacoes">@isset($resource) {{$resource->campos_congregacoes ?? ''}} @else @forelse(auth()->user()->pastor()->igreja->congregacoes as $rs){{$rs->nome}} {!! ", " !!} @empty @endforelse @endisset
                             </textarea>
                         </div>
                     </div>
