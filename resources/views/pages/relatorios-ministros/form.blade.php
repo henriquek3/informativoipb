@@ -496,7 +496,7 @@
                 </div>
                 <div class="ui form segment">
                     <div class="fields">
-                        <div class="four wide field">
+                        <div class="five wide field">
                             <label>Aconselhamentos/Orientações:</label>
                             <input type="text" value="{{$resource->aconselhamentos ?? ''}}" name="aconselhamentos">
                         </div>
@@ -570,12 +570,12 @@
                         </div>
                     </div>
                     <div class="fields">
-                        <div class="three wide field">
+                        <div class="four wide field">
                             <label>Reuniões do Presbitério:</label>
                             <input type="text" value="{{$resource->reunioes_presbiterio ?? ''}}"
                                    name="reunioes_presbiterio">
                         </div>
-                        <div class="three wide field">
+                        <div class="four wide field">
                             <label>Reuniões do Sínodo:</label>
                             <input type="text" value="{{$resource->reunioes_sinodo ?? ''}}" name="reunioes_sinodo">
                         </div>
