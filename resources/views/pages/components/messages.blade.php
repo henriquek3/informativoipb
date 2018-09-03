@@ -50,6 +50,14 @@
         <li>{{session('config_message')}}</li>
     </ul>
 </div>
+@elseif(is_null(auth()->user()->pastor()))
+    <div class="ui warning message"><i class="close icon"></i>
+        <div class="header">Alerta de Configuração!</div>
+        <p>Leia os avisos abaixo para entender sobre as regras de funcionamento do sistema!</p>
+        <ul>
+            <li>Configure o cadastro de sua igreja informando qual é o pastor titular.</li>
+        </ul>
+    </div>
 @endif
 {{--Javascript para fechar o div.message--}}
 <script>
