@@ -453,7 +453,7 @@
                 </div>
                 <div class="ui form segment">
                     <div class="fields">
-                        <div class="four wide field">
+                        <div class="five wide field">
                             <label>Aconselhamentos/Orientações:</label>
                             <input type="text" value="{{$resource->aconselhamentos ?? ''}}" name="aconselhamentos">
                         </div>
