@@ -114,14 +114,13 @@
                         </div>
                         <div class="three wide field required">
                             <label>Nº de Dependentes</label>
-                            <input type="number" min="0" max="99" name="nr_dependentes" placeholder="Nº de Dependentes"
-                                   required>
+                            <input type="number" min="0" max="99" name="nr_dependentes" placeholder="Nº de Dependentes" value="{{$resource->nr_dependentes ?? ''}}" required>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field required">
                             <label>Nome dos Dependentes</label>
-                            <input type="text" name="nome_filhos" placeholder="Nome dos Filhos" required>
+                            <input type="text" name="nome_filhos" placeholder="Nome dos Filhos" value="{{$resource->nome_filhos ?? ''}}" required>
                         </div>
                     </div>
                     <div class="fields">
@@ -224,10 +223,10 @@
                             <label>Dedicação ao Ministério:</label>
                             <select class="ui fluid dropdown" name="dedicacao_ministerio" required>
                                 <option value="">----</option>
-                                <option value="1"@isset($resource) {{$resource->dedicacao_ministerio === 1 ? ' selected' : ''}} @endisset>
+                                <option value="1" @isset($resource) {{$resource->dedicacao_ministerio === 1 ? ' selected' : ''}} @endisset>
                                     Integral
                                 </option>
-                                <option value="2"@isset($resource) {{$resource->dedicacao_ministerio === 2 ? ' selected' : ''}} @endisset>
+                                <option value="2" @isset($resource) {{$resource->dedicacao_ministerio === 2 ? ' selected' : ''}} @endisset>
                                     Parcial
                                 </option>
                             </select>
@@ -251,7 +250,7 @@
                             <label>Côngruas</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
-                                <input type="text" class="money" placeholder="0,00" name="congruas" required>
+                                <input type="text" class="money" placeholder="0,00" name="congruas" required="" value="{{$resource->congruas ?? ''}}">
                             </div>
                         </div>
                         <div class="five wide field" data-tooltip="Possui aposentadoria pública?">
@@ -322,8 +321,7 @@
                             <label style="white-space: nowrap">Valor INSS:</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
-                                <input type="text" class="money" name="previdencia_publica_valor" placeholder="0,00"
-                                       style="max-width: 150px;">
+                                <input type="text" class="money" name="previdencia_publica_valor" placeholder="0,00" value="{{$resource->previdencia_publica_valor ?? ''}}" style="max-width: 150px;">
                             </div>
                         </div>
                         <div class="two wide field" data-tooltip="Possui plano de saúde?">
