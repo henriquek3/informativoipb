@@ -527,12 +527,12 @@
                         </div>
                     </div>
                     <div class="fields">
-                        <div class="three wide field">
+                        <div class="four wide field">
                             <label>Reuniões do Presbitério:</label>
                             <input type="text" value="{{$resource->reunioes_presbiterio ?? ''}}"
                                    name="reunioes_presbiterio">
                         </div>
-                        <div class="three wide field">
+                        <div class="four wide field">
                             <label>Reuniões do Sínodo:</label>
                             <input type="text" value="{{$resource->reunioes_sinodo ?? ''}}" name="reunioes_sinodo">
                         </div>
