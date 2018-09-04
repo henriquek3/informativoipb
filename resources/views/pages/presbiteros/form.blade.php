@@ -161,7 +161,7 @@
                     </div>
                     <div class="four wide field">
                         <label>Data de Ordenação</label>
-                        <input type="date" name="ordenacao_data">
+                        <input type="date" name="ordenacao_data" value="{{$resource->ordenacao_data ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">

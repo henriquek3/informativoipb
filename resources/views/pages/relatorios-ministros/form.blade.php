@@ -499,7 +499,7 @@
                         <div class="seven wide field">
                             <label>Evangélicos ou não:(considerar as visitas feitas nos lares como uma
                                 visita.)</label>
-                            <!--input(type="text" value="0" name="visitas_lares")-->
+                            <input type="number" value="0" name="visitas_evangelicos">
                         </div>
                         <div class="six wide field">
                             <label>Pontos de Pregação, Congregações ou Campos Missionários</label>
