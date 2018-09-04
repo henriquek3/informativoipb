@@ -148,6 +148,23 @@
                     </div>
                 </div>
                 <div class="fields">
+                    <div class="twelve wide field">
+                        <label>Presbitério de Ordenação</label>
+                        <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search">
+                            <div class="ui left icon input">
+                                <input class="prompt" type="text" placeholder="Procurar Presbitério" required
+                                       name="presbiterio" value="{{$resource->igreja->presbiterio->nome ?? ''}}">
+                                <input type="hidden" name="ordenacao_presbiterio" value="{{$resource->id_presbiterio ?? ''}}">
+                                <i class="search icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="four wide field">
+                        <label>Data de Ordenação</label>
+                        <input type="date" name="ordenacao_data">
+                    </div>
+                </div>
+                <div class="fields">
                     <div class="six wide field">
                         <label>Endereço</label>
                         <input type="text" name="endereco" placeholder="Endereço" value="{{$resource->endereco ?? ''}}"
