@@ -39,7 +39,7 @@
     <div class="header">Falhou!</div>
     <p>Houve algum problema com a solicitação efetuada, tente novamente ou procure o suporte!</p>
     <ul>
-        <li>{{ $errors->first() }}</li>
+        <li>{!! $errors->first() !!}</li>
     </ul>
 </div>
 @elseif(session('config_message')) {{-- Primeira Mensagem de erro --}}

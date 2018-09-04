@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RelatoriosRequest;
 use App\RelEstatisticas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,7 +56,7 @@ class RelEstatisticaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RelatoriosRequest $request)
     {
         // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
         $data = $request->all();
@@ -108,7 +109,7 @@ class RelEstatisticaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelEstatisticas $relEstatisticas, $id)
+    public function update(RelatoriosRequest $request, RelEstatisticas $relEstatisticas, $id)
     {
         try {
             DB::beginTransaction();

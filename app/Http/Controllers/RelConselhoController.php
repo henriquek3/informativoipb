@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RelatoriosRequest;
 use App\RelConselhos;
 use App\RelEstatisticas;
 use Illuminate\Http\Request;
@@ -56,7 +57,7 @@ class RelConselhoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RelatoriosRequest $request)
     {
         // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
         //or_declaracao_ano_anterior_irenda
@@ -137,7 +138,7 @@ class RelConselhoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelConselhos $relConselhos, $id)
+    public function update(RelatoriosRequest $request, RelConselhos $relConselhos, $id)
     {
         try {
             $data = $request->all();

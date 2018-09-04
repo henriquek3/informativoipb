@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RelatoriosRequest;
 use App\RelMinistros;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,7 +57,7 @@ class RelMinistroController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RelatoriosRequest $request)
     {
         // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
         $data = $request->all();
@@ -109,7 +110,7 @@ class RelMinistroController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelMinistros $relMinistros, $id)
+    public function update(RelatoriosRequest $request, RelMinistros $relMinistros, $id)
     {
         if (is_null($request->get('status_relatorio'))) {
             $data['status_relatorio'] = 0;
