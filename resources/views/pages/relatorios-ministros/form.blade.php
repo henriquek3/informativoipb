@@ -31,18 +31,21 @@
                         <div class="four wide field">
                             <label>Sínodo</label>
                             <input type="text" readonly=""
-                                   value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->presbitero->igreja->presbiterio->sinodo->nome}}">
+                                   @isset($resource) value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->presbitero->igreja->presbiterio->sinodo->nome}}" @endisset>
                         </div>
                         <div class="five wide field" id="div_presbiterio">
                             <label>Presbitério</label>
                             <input type="text"
-                                   value="{{ auth()->user()->presbitero->igreja->presbiterio->sigla . ' / ' . auth()->user()->presbitero->igreja->presbiterio->nome}}"
+                                   @isset($resource) value="{{ auth()->user()->presbitero->igreja->presbiterio->sigla . ' / ' . auth()->user()->presbitero->igreja->presbiterio->nome}}"
+                                   @endisset
                                    readonly="">
                         </div>
                         <div class="five wide field">
                             <label>Igreja</label>
-                            <input type="text" value="{{auth()->user()->presbitero->igreja->nome}} " readonly="">
-                            <input type="hidden" name="id_igreja" value="{{auth()->user()->presbitero->igreja->id}}">
+                            <input type="text" @isset($resource) value="{{auth()->user()->presbitero->igreja->nome}} "
+                                   @endisset readonly="">
+                            <input type="hidden" name="id_igreja"
+                                   @isset($resource) value="{{auth()->user()->presbitero->igreja->id}}" @endisset>
                         </div>
                     </div>
                 </div>
@@ -56,129 +59,157 @@
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>Nome</label>
-                            <input type="text" value="{{auth()->user()->pastor()->nome}}" readonly="">
+                            <input type="text" @isset($resource) value="{{auth()->user()->pastor()->nome}}"
+                                   @endisset readonly="">
                             <input type="hidden" readonly="" name="id_presbitero"
-                                   value="{{auth()->user()->pastor()->id}}">
+                                   @isset($resource) value="{{auth()->user()->pastor()->id}}" @endisset>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Nome do Pai</label>
-                            <input type="text" value="{{auth()->user()->pastor()->nome_pai}}" readonly="">
+                            <input type="text" @isset($resource) value="{{auth()->user()->pastor()->nome_pai}}"
+                                   @endisset readonly="">
                         </div>
                         <div class="eight wide field">
                             <label>Nome da Mãe</label>
-                            <input type="text" value="{{auth()->user()->pastor()->nome_mae}}" readonly="">
+                            <input type="text" @isset($resource) value="{{auth()->user()->pastor()->nome_mae}}"
+                                   @endisset readonly="">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="ui calendar bottom left three wide field">
                             <label>Data de Nascimento</label>
-                            <input type="date" value="{{auth()->user()->pastor()->nascimento_data}}" readonly="">
+                            <input type="date" @isset($resource) value="{{auth()->user()->pastor()->nascimento_data}}"
+                                   @endisset readonly="">
                         </div>
                         <div class="five wide field">
                             <label>Estado Natal</label>
-                            <input type="text" value="{{auth()->user()->pastor()->nascimento_estado->nome}}" readonly>
+                            <input type="text"
+                                   @isset($resource) value="{{auth()->user()->pastor()->nascimento_estado->nome}}"
+                                   @endisset readonly>
                         </div>
                         <div class="eight wide field">
                             <label>Cidade Natal</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->nascimento_cidade->nome}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->nascimento_cidade->nome}}" @endisset>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>RG</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->rg}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->rg}}" @endisset>
                         </div>
                         <div class="four wide field">
                             <label>Orgão Emissor</label>
-                            <input type="text" readonly="" value="{{auth()->user()->pastor()->rg_emissor}}">
+                            <input type="text" readonly=""
+                                   @isset($resource) value="{{auth()->user()->pastor()->rg_emissor}}" @endisset>
                         </div>
                         <div class="four wide field">
                             <label>CPF</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->cpf}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->cpf}}" @endisset>
                         </div>
                         <div class="five wide field">
                             <label>Estado Civil</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->status_civil()}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->status_civil()}}" @endisset>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="ten wide field">
                             <label>Cônjuge</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->conjuge_nome}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->conjuge_nome}}" @endisset>
                         </div>
                         <div class="three wide field">
                             <label>Data de Nascimento</label>
-                            <input type="date" readonly value="{{auth()->user()->pastor()->conjuge_nascimento}}">
+                            <input type="date" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->conjuge_nascimento}}" @endisset>
                         </div>
                         <div class="three wide field required">
                             <label>Nº de Dependentes</label>
-                            <input type="number" min="0" max="99" name="nr_dependentes" placeholder="Nº de Dependentes" value="{{$resource->nr_dependentes ?? ''}}" required>
+                            <input type="number" min="0" max="99" name="nr_dependentes" placeholder="Nº de Dependentes"
+                                   value="{{$resource->nr_dependentes ?? ''}}" required>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="sixteen wide field required">
                             <label>Nome dos Dependentes</label>
-                            <input type="text" name="nome_filhos" placeholder="Nome dos Filhos" value="{{$resource->nome_filhos ?? ''}}" required>
+                            <input type="text" name="nome_filhos" placeholder="Nome dos Filhos"
+                                   value="{{$resource->nome_filhos ?? ''}}" required>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="six wide field">
                             <label>Endereço</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->endereco}}" @endisset>
                         </div>
                         <div class="two wide field">
                             <label>Número</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_nr}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->endereco_nr}}" @endisset>
                         </div>
                         <div class="four wide field">
                             <label>Complemento</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_complemento}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->endereco_complemento}}" @endisset>
                         </div>
                         <div class="four wide field">
                             <label>Bairro</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_bairro}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->endereco_bairro}}" @endisset>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>Estado</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_estado->nome}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->endereco_estado->nome}}" @endisset>
                         </div>
                         <div class="five wide field">
                             <label>Cidade</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->endereco_cidade->nome}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->endereco_cidade->nome}}" @endisset>
                         </div>
                         <div class="two wide field">
                             <label>CEP</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->cep}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->cep}}" @endisset>
                         </div>
                         <div class="two wide field">
                             <label>Cx. Postal</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->cx_postal}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->cx_postal}}" @endisset>
                         </div>
                         <div class="three wide field">
                             <label>CEP Cx. Postal</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->cx_postal_cep}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->cx_postal_cep}}" @endisset>
                         </div>
                     </div>
                     <div class="fields">
                         <div class="three wide field">
                             <label>Celular</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->celular}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->celular}}" @endisset>
                         </div>
                         <div class="three wide field">
                             <label>Telefone Fixo</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->telefone}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->telefone}}" @endisset>
                         </div>
                         <div class="three wide field">
                             <label>Telefone da Igreja</label>
-                            <input type="text" readonly value="{{auth()->user()->pastor()->igreja->telefone}}">
+                            <input type="text" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->igreja->telefone}}" @endisset>
                         </div>
                         <div class="seven wide field">
                             <label>E-mail</label>
-                            <input type="email" readonly value="{{auth()->user()->pastor()->email}}">
+                            <input type="email" readonly
+                                   @isset($resource) value="{{auth()->user()->pastor()->email}}" @endisset>
                         </div>
                     </div>
                     <div class="fields">
@@ -250,7 +281,8 @@
                             <label>Côngruas</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
-                                <input type="text" class="money" placeholder="0,00" name="congruas" required="" value="{{$resource->congruas ?? ''}}">
+                                <input type="text" class="money" placeholder="0,00" name="congruas" required=""
+                                       value="{{$resource->congruas ?? ''}}">
                             </div>
                         </div>
                         <div class="five wide field" data-tooltip="Possui aposentadoria pública?">
@@ -321,7 +353,8 @@
                             <label style="white-space: nowrap">Valor INSS:</label>
                             <div class="ui labeled input">
                                 <div class="ui label">R$</div>
-                                <input type="text" class="money" name="previdencia_publica_valor" placeholder="0,00" value="{{$resource->previdencia_publica_valor ?? ''}}" style="max-width: 150px;">
+                                <input type="text" class="money" name="previdencia_publica_valor" placeholder="0,00"
+                                       value="{{$resource->previdencia_publica_valor ?? ''}}" style="max-width: 150px;">
                             </div>
                         </div>
                         <div class="two wide field" data-tooltip="Possui plano de saúde?">
@@ -352,12 +385,22 @@
                         <div class="eight wide field">
                             <label>Igreja(s):</label>
                             <textarea rows="3"
-                                      name="campos_igrejas">{{$resource->campos_igrejas ?? trim(auth()->user()->pastor()->igreja->nome)}}</textarea>
+                                      name="campos_igrejas">@isset($resource) {{$resource->campos_igrejas ?? trim(auth()->user()->pastor()->igreja->nome)}} @endisset</textarea>
                         </div>
                         <div class="eight wide field">
                             <label>Congregação(ões):</label>
                             <textarea rows="3"
-                                      name="campos_congregacoes">@isset($resource) {{$resource->campos_congregacoes ?? ''}} @else @forelse(auth()->user()->pastor()->igreja->congregacoes as $rs){{$rs->nome}} {!! ", " !!} @empty @endforelse @endisset
+                                      name="campos_congregacoes">
+                                @isset($resource)
+                                    {{$resource->campos_congregacoes ?? ''}}
+                                @else
+                                    @if(auth()->user()->pastor())
+                                        @forelse(auth()->user()->pastor()->igreja->congregacoes as $rs)
+                                            {{$rs->nome}} {!! ", " !!}
+                                        @empty
+                                        @endforelse
+                                    @endif
+                                @endisset
                             </textarea>
                         </div>
                     </div>
