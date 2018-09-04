@@ -58,6 +58,9 @@ class PresbiteroController extends Controller
             $data = $request->all();
             unset($data['sinodo']);
             unset($data['presbiterio']);
+            if (is_null($request->get('pastor_titular'))) {
+                $data['pastor_titular'] = 0;
+            }
             DB::beginTransaction();
             $resource = $request->user()->presbiteros()->create($data);
             DB::commit();
@@ -110,6 +113,9 @@ class PresbiteroController extends Controller
             $data = $request->all();
             unset($data['sinodo']);
             unset($data['presbiterio']);
+            if (is_null($request->get('pastor_titular'))) {
+                $data['pastor_titular'] = 0;
+            }
             DB::beginTransaction();
             $resource = $presbiteros->findOrfail((int)$id);
             $resource->update($data);
