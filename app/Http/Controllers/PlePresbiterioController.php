@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Estados;
 use App\PlePresbiterios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlePresbiterioController extends Controller
 {
     /**
      * PlePresbiterioController constructor.
+     *
      * @authenticator
      */
     public function __construct()
@@ -47,9 +49,18 @@ class PlePresbiterioController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PlePresbiterios $plePresbiterios)
     {
-        //
+        try {
+            //dd($request->all());
+            DB::beginTransaction();
+            $resource = $plePresbiterios->create($request->all());
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/reunioes/presbiterio/$resource->id/editar")->with('created', "success");
     }
 
     /**
@@ -69,9 +80,12 @@ class PlePresbiterioController extends Controller
      * @param  \App\PlePresbiterios $plePresbiterios
      * @return \Illuminate\Http\Response
      */
-    public function edit(PlePresbiterios $plePresbiterios)
+    public function edit(PlePresbiterios $plePresbiterios, Estados $estados, $id)
     {
-        //
+        return view('pages.reunioes-presbiterio.form', [
+            'estados' => $estados->all(),
+            'resource' => $plePresbiterios->where('id', '=', $id)->with('usuario')->first()
+        ]);
     }
 
     /**

@@ -22,19 +22,22 @@
                 <div class="fields">
                     <div class="two wide field">
                         <label>Ano</label>
-                        <input type="text" value="{{Date('Y')}}" readonly>
+                        <input type="text" value="{{Date('Y')}}" name="ano" readonly>
                     </div>
                     <div class="three wide field">
                         <label>Data da Reunião</label>
-                        <input type="date">
+                        <input type="date" name="data_reuniao">
                     </div>
                     <div class="five wide field">
                         <label>Sínodo</label>
-                        <input type="text" value="Sinodo Norte Brasil" readonly>
+                        <input type="text" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->sinodo->nome}}" @endif readonly>
                     </div>
                     <div class="six wide field">
                         <label>Presbitério</label>
-                        <input type="text" name="pr" value="Presbitério de Rondonia" readonly>
+                        <input @if(!is_null(auth()->user()->pastor())) value="{{ auth()->user()->pastor()->igreja->presbiterio->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->nome}}"
+                               @endif readonly>
+                        <input type="hidden" name="id_presbiterio"
+                               @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->id}}" @endif>
                     </div>
                 </div>
                 <div class="fields">
