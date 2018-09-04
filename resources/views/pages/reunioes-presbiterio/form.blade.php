@@ -26,7 +26,7 @@
                     </div>
                     <div class="three wide field">
                         <label>Data da Reunião</label>
-                        <input type="date" name="data_reuniao">
+                        <input type="date" name="data_reuniao" required>
                     </div>
                     <div class="five wide field">
                         <label>Sínodo</label>

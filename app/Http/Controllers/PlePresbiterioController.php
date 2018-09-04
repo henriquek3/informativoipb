@@ -52,9 +52,10 @@ class PlePresbiterioController extends Controller
     public function store(Request $request, PlePresbiterios $plePresbiterios)
     {
         try {
-            //dd($request->all());
+            $data = $request->all();
+            $data['user_id'] = auth()->user()->id;
             DB::beginTransaction();
-            $resource = $plePresbiterios->create($request->all());
+            $resource = $plePresbiterios->create($data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -95,9 +96,20 @@ class PlePresbiterioController extends Controller
      * @param  \App\PlePresbiterios $plePresbiterios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PlePresbiterios $plePresbiterios)
+    public function update(Request $request, PlePresbiterios $plePresbiterios, $id)
     {
-        //
+        try {
+            $data = $request->all();
+            $data['user_id'] = auth()->user()->id;
+            DB::beginTransaction();
+            $resource = $plePresbiterios->findOrFail($id);
+            $resource->update($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/reunioes/presbiterio/$resource->id/editar")->with('updated', "success");
     }
 
     /**
@@ -106,8 +118,20 @@ class PlePresbiterioController extends Controller
      * @param  \App\PlePresbiterios $plePresbiterios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlePresbiterios $plePresbiterios)
+    public function destroy(PlePresbiterios $plePresbiterios, $id)
     {
-        //
+        try {
+            $data['user_id'] = auth()->user()->id;
+            DB::beginTransaction();
+            $resource = $plePresbiterios->findOrFail($id);
+            $resource->update($data);
+            $resource->save();
+            $resource->delete();
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/reunioes/presbiterio")->with('deleted', "success");
     }
 }
