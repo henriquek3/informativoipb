@@ -132,7 +132,9 @@ class IgrejaController extends Controller
     public function destroy(Igrejas $igrejas, $id)
     {
         try {
+            $data['user_id'] = auth()->user()->id;
             $resource = $igrejas->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());

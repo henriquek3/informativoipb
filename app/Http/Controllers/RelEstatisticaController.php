@@ -133,7 +133,9 @@ class RelEstatisticaController extends Controller
     public function destroy(RelEstatisticas $relEstatisticas, $id)
     {
         try {
+            $data['user_id'] = auth()->user()->id;
             $resource = $relEstatisticas->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());

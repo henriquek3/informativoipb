@@ -137,7 +137,9 @@ class RelMinistroController extends Controller
     public function destroy(RelMinistros $relMinistros, $id)
     {
         try {
+            $data['user_id'] = auth()->user()->id;
             $resource = $relMinistros->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());

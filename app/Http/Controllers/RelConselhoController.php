@@ -187,7 +187,9 @@ class RelConselhoController extends Controller
     public function destroy(RelConselhos $relConselhos, $id)
     {
         try {
+            $data['user_id'] = auth()->user()->id;
             $resource = $relConselhos->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());

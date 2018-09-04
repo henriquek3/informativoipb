@@ -133,17 +133,17 @@ class PresbiteroController extends Controller
      * @param  \App\Presbiteros $presbiteros
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Presbiteros $presbiteros, Request $request)
+    public function destroy(Presbiteros $presbiteros, $id)
     {
-        $resource = $presbiteros->findOrFail((int)$request->get("id"));
         try {
+            $data['user_id'] = auth()->user()->id;
+            $resource = $presbiteros->findOrFail($id);
+            $resource->update($data);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
+        return redirect("/cadastros/ministros")->with('deleted', "success");
     }
 
     /**

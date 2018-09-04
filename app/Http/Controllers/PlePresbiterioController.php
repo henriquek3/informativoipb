@@ -125,7 +125,6 @@ class PlePresbiterioController extends Controller
             DB::beginTransaction();
             $resource = $plePresbiterios->findOrFail($id);
             $resource->update($data);
-            $resource->save();
             $resource->delete();
             DB::commit();
         } catch (\Exception $exception) {

@@ -135,7 +135,9 @@ class UserController extends Controller
     public function destroy(User $user, $id)
     {
         try {
+            $data['user_id'] = auth()->user()->id;
             $resource = $user->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getCode());

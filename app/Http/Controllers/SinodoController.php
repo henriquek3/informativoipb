@@ -112,7 +112,9 @@ class SinodoController extends Controller
     public function destroy(Sinodos $sinodos, $id)
     {
         try {
+            $data['user_id'] = auth()->user()->id;
             $resource = $sinodos->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());

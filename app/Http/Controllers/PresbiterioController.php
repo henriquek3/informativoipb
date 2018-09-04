@@ -128,7 +128,9 @@ class PresbiterioController extends Controller
     public function destroy(Presbiterios $presbiterios, $id)
     {
         try {
+            $data['user_id'] = auth()->user()->id;
             $resource = $presbiterios->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());
