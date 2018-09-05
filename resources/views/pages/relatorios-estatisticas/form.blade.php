@@ -126,56 +126,56 @@
                             <div class="five wide field">
                                 <label>Pastores</label>
                             </div>
-                            <div class="four wide field">
-                                <input type="text" value="{{ $resource->ecl_pastores ?? "" }}" name="ecl_pastores">
+                            <div class="six wide field">
+                                <input type="number" value="{{ $resource->ecl_pastores ?? "" }}" name="ecl_pastores">
                             </div>
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
                                 <label>Licenciados</label>
                             </div>
-                            <div class="four wide field">
-                                <input type="text" value="{{ $resource->ecl_licenciados ?? "" }}" name="ecl_licenciados">
+                            <div class="six wide field">
+                                <input type="number" value="{{ $resource->ecl_licenciados ?? "" }}" name="ecl_licenciados">
                             </div>
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
                                 <label>Presbíteros</label>
                             </div>
-                            <div class="four wide field">
-                                <input type="text" value="{{ $resource->ecl_presbiteros ?? "" }}" name="ecl_presbiteros">
+                            <div class="six wide field">
+                                <input type="number" value="{{ $resource->ecl_presbiteros ?? "" }}" name="ecl_presbiteros">
                             </div>
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
                                 <label>Diáconos</label>
                             </div>
-                            <div class="four wide field">
-                                <input type="text" value="{{ $resource->ecl_diaconos ?? "" }}" name="ecl_diaconos">
+                            <div class="six wide field">
+                                <input type="number" value="{{ $resource->ecl_diaconos ?? "" }}" name="ecl_diaconos">
                             </div>
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
                                 <label>Evangelistas</label>
                             </div>
-                            <div class="four wide field">
-                                <input type="text" value="{{ $resource->ecl_evangelistas ?? "" }}" name="ecl_evangelistas">
+                            <div class="six wide field">
+                                <input type="number" value="{{ $resource->ecl_evangelistas ?? "" }}" name="ecl_evangelistas">
                             </div>
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
                                 <label>Missionários</label>
                             </div>
-                            <div class="four wide field">
-                                <input type="text" value="{{ $resource->ecl_missionarios ?? "" }}" name="ecl_missionarios">
+                            <div class="six wide field">
+                                <input type="number" value="{{ $resource->ecl_missionarios ?? "" }}" name="ecl_missionarios">
                             </div>
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
                                 <label>Candidatos</label>
                             </div>
-                            <div class="four wide field">
-                                <input type="text" value="{{ $resource->ecl_candidatos ?? "" }}" name="ecl_candidatos">
+                            <div class="six wide field">
+                                <input type="number" value="{{ $resource->ecl_candidatos ?? "" }}" name="ecl_candidatos">
                             </div>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
                                 <label>Congregações da Igreja</label>
                             </div>
                             <div class="six wide field">
-                                <input type="text" value="{{ $resource->ect_congregacoes ?? "" }}" name="ect_congregacoes">
+                                <input type="number" value="{{ $resource->ect_congregacoes ?? "" }}" name="ect_congregacoes">
                             </div>
                         </div>
                         <div class="inline fields">
@@ -196,7 +196,7 @@
                                 <label>Pontos de Pregação</label>
                             </div>
                             <div class="six wide field">
-                                <input type="text" value="{{ $resource->ect_pontos_pregacao ?? "" }}" name="ect_pontos_pregacao">
+                                <input type="number" value="{{ $resource->ect_pontos_pregacao ?? "" }}" name="ect_pontos_pregacao">
                             </div>
                         </div>
                         <div class="inline fields">
@@ -204,7 +204,7 @@
                                 <label>Escolas Dominicais</label>
                             </div>
                             <div class="six wide field">
-                                <input type="text" value="{{ $resource->ect_ebd ?? "" }}" name="ect_ebd">
+                                <input type="number" value="{{ $resource->ect_ebd ?? "" }}" name="ect_ebd">
                             </div>
                         </div>
                         <div class="inline fields">
@@ -212,23 +212,7 @@
                                 <label>Professores da EBD</label>
                             </div>
                             <div class="six wide field">
-                                <input type="text" value="{{ $resource->ect_professores ?? "" }}" name="ect_professores">
-                            </div>
-                        </div>
-                        <div class="inline fields">
-                            <div class="ten wide field">
-                                <label>Alunos EBD (Ano Atual)</label>
-                            </div>
-                            <div class="six wide field">
-                                <!--input(type="text" value="{{ $resource->se_visitas_presbiteros_diaconos ?? "" }}" name="ect_alunos_ebd_atual")-->
-                            </div>
-                        </div>
-                        <div class="inline fields">
-                            <div class="ten wide field">
-                                <label>Alunos EBD (Ano Anterior)</label>
-                            </div>
-                            <div class="six wide field">
-                                <!--input(type="text" value="{{ $resource->se_visitas_presbiteros_diaconos ?? "" }}" name="ect_alunos_ebd_anterior")-->
+                                <input type="number" value="{{ $resource->ect_professores ?? "" }}" name="ect_professores">
                             </div>
                         </div>
                     </div>
@@ -243,13 +227,13 @@
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Departamentos">
                                     <div class="ui label">D.</div>
-                                    <input type="text" value="{{ $resource->ecd_ucp ?? "" }}" name="ecd_ucp">
+                                    <input type="number" value="{{ $resource->ecd_ucp ?? "" }}" name="ecd_ucp">
                                 </div>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Membros">
                                     <div class="ui label">M.</div>
-                                    <input type="text" value="{{ $resource->ecd_ucp_membros ?? "" }}" name="ecd_ucp_membros">
+                                    <input type="number" value="{{ $resource->ecd_ucp_membros ?? "" }}" name="ecd_ucp_membros">
                                 </div>
                             </div>
                         </div>
@@ -260,13 +244,13 @@
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Departamentos">
                                     <div class="ui label">D.</div>
-                                    <input type="text" value="{{ $resource->ecd_upa ?? "" }}" name="ecd_upa">
+                                    <input type="number" value="{{ $resource->ecd_upa ?? "" }}" name="ecd_upa">
                                 </div>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Membros">
                                     <div class="ui label">M.</div>
-                                    <input type="text" value="{{ $resource->ecd_upa_membros ?? "" }}" name="ecd_upa_membros">
+                                    <input type="number" value="{{ $resource->ecd_upa_membros ?? "" }}" name="ecd_upa_membros">
                                 </div>
                             </div>
                         </div>
@@ -277,13 +261,13 @@
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Departamentos">
                                     <div class="ui label">D.</div>
-                                    <input type="text" value="{{ $resource->ecd_ump ?? "" }}" name="ecd_ump">
+                                    <input type="number" value="{{ $resource->ecd_ump ?? "" }}" name="ecd_ump">
                                 </div>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Membros">
                                     <div class="ui label">M.</div>
-                                    <input type="text" value="{{ $resource->ecd_ump_membros ?? "" }}" name="ecd_ump_membros">
+                                    <input type="number" value="{{ $resource->ecd_ump_membros ?? "" }}" name="ecd_ump_membros">
                                 </div>
                             </div>
                         </div>
@@ -294,13 +278,13 @@
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Departamentos">
                                     <div class="ui label">D.</div>
-                                    <input type="text" value="{{ $resource->ecd_saf ?? "" }}" name="ecd_saf">
+                                    <input type="number" value="{{ $resource->ecd_saf ?? "" }}" name="ecd_saf">
                                 </div>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Membros">
                                     <div class="ui label">M.</div>
-                                    <input type="text" value="{{ $resource->ecd_saf_membros ?? "" }}" name="ecd_saf_membros">
+                                    <input type="number" value="{{ $resource->ecd_saf_membros ?? "" }}" name="ecd_saf_membros">
                                 </div>
                             </div>
                         </div>
@@ -311,13 +295,13 @@
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Departamentos">
                                     <div class="ui label">D.</div>
-                                    <input type="text" value="{{ $resource->ecd_uph ?? "" }}" name="ecd_uph">
+                                    <input type="number" value="{{ $resource->ecd_uph ?? "" }}" name="ecd_uph">
                                 </div>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Membros">
                                     <div class="ui label">M.</div>
-                                    <input type="text" value="{{ $resource->ecd_uph_membros ?? "" }}" name="ecd_uph_membros">
+                                    <input type="number" value="{{ $resource->ecd_uph_membros ?? "" }}" name="ecd_uph_membros">
                                 </div>
                             </div>
                         </div>
@@ -328,30 +312,13 @@
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Departamentos">
                                     <div class="ui label">D.</div>
-                                    <input type="text" value="{{ $resource->ecd_outras ?? "" }}" name="ecd_outras">
+                                    <input type="number" value="{{ $resource->ecd_outras ?? "" }}" name="ecd_outras">
                                 </div>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input" data-tooltip="Nº de Membros">
                                     <div class="ui label">M.</div>
-                                    <input type="text" value="{{ $resource->ecd_outras_membros ?? "" }}" name="ecd_outras_membros">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="inline fields">
-                            <div class="four wide field">
-                                <label>Total</label>
-                            </div>
-                            <div class="six wide field">
-                                <div class="ui labeled input" data-tooltip="Nº de Departamentos">
-                                    <div class="ui label">D.</div>
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
-                            <div class="six wide field">
-                                <div class="ui labeled input" data-tooltip="Nº de Membros">
-                                    <div class="ui label">M.</div>
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->ecd_outras_membros ?? "" }}" name="ecd_outras_membros">
                                 </div>
                             </div>
                         </div>
@@ -376,18 +343,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rma_profissao_fe_masc ?? "" }}" name="rma_profissao_fe_masc" id="masc">
+                                    <input type="number" value="{{ $resource->rma_profissao_fe_masc ?? "" }}" name="rma_profissao_fe_masc" id="masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rma_profissao_fe_fem ?? "" }}" name="rma_profissao_fe_fem" id="fem">
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->rma_profissao_fe_fem ?? "" }}" name="rma_profissao_fe_fem" id="fem">
                                 </div>
                             </div>
                         </div>
@@ -398,18 +360,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rma_profissao_batismo_masc ?? "" }}" name="rma_profissao_batismo_masc">
+                                    <input type="number" value="{{ $resource->rma_profissao_batismo_masc ?? "" }}" name="rma_profissao_batismo_masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rma_profissao_batismo_fem ?? "" }}" name="rma_profissao_batismo_fem">
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->rma_profissao_batismo_fem ?? "" }}" name="rma_profissao_batismo_fem">
                                 </div>
                             </div>
                         </div>
@@ -420,18 +377,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rma_transf_masc")-->
+                                    <!--input(type="number" value="0" name="rma_transf_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rma_transf_fem")-->
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <!--input(type="number" value="0" name="rma_transf_fem")-->
                                 </div>
                             </div>
                         </div>
@@ -442,18 +394,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rma_jurisdicao_masc ?? "" }}" name="rma_jurisdicao_masc">
+                                    <input type="number" value="{{ $resource->rma_jurisdicao_masc ?? "" }}" name="rma_jurisdicao_masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rma_jurisdicao_fem ?? "" }}" name="rma_jurisdicao_fem">
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->rma_jurisdicao_fem ?? "" }}" name="rma_jurisdicao_fem">
                                 </div>
                             </div>
                         </div>
@@ -464,18 +411,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rma_restauracao_masc ?? "" }}" name="rma_restauracao_masc">
+                                    <input type="number" value="{{ $resource->rma_restauracao_masc ?? "" }}" name="rma_restauracao_masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rma_restauracao_fem ?? "" }}" name="rma_restauracao_fem">
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->rma_restauracao_fem ?? "" }}" name="rma_restauracao_fem">
                                 </div>
                             </div>
                         </div>
@@ -486,18 +428,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rma_designacao_masc ?? "" }}" name="rma_designacao_masc">
+                                    <input type="number" value="{{ $resource->rma_designacao_masc ?? "" }}" name="rma_designacao_masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rma_designacao_fem ?? "" }}" name="rma_designacao_fem">
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->rma_designacao_fem ?? "" }}" name="rma_designacao_fem">
                                 </div>
                             </div>
                         </div>
@@ -513,18 +450,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rma_batismo_masc_nc ?? "" }}" name="rma_batismo_masc_nc">
+                                    <input type="number" value="{{ $resource->rma_batismo_masc_nc ?? "" }}" name="rma_batismo_masc_nc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rma_batismo_fem_nc ?? "" }}" name="rma_batismo_fem_nc">
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->rma_batismo_fem_nc ?? "" }}" name="rma_batismo_fem_nc">
                                 </div>
                             </div>
                         </div>
@@ -535,18 +467,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rma_transferencia_masc_nc ?? "" }}" name="rma_transferencia_masc_nc">
+                                    <input type="number" value="{{ $resource->rma_transferencia_masc_nc ?? "" }}" name="rma_transferencia_masc_nc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rma_transferencia_fem_nc ?? "" }}" name="rma_transferencia_fem_nc">
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->rma_transferencia_fem_nc ?? "" }}" name="rma_transferencia_fem_nc">
                                 </div>
                             </div>
                         </div>
@@ -557,18 +484,13 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rma_jurisdicao_ex_masc_nc ?? "" }}" name="rma_jurisdicao_ex_masc_nc">
+                                    <input type="number" value="{{ $resource->rma_jurisdicao_ex_masc_nc ?? "" }}" name="rma_jurisdicao_ex_masc_nc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rma_jurisdicao_ex_fem_nc ?? "" }}" name="rma_jurisdicao_ex_fem_nc">
-                                </div>
-                            </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
+                                    <input type="number" value="{{ $resource->rma_jurisdicao_ex_fem_nc ?? "" }}" name="rma_jurisdicao_ex_fem_nc">
                                 </div>
                             </div>
                         </div>
@@ -586,20 +508,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rmd_transferencia_masc ?? "" }}" name="rmd_transferencia_masc">
+                                    <input type="number" value="{{ $resource->rmd_transferencia_masc ?? "" }}" name="rmd_transferencia_masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rmd_transferencia_fem ?? "" }}" name="rmd_transferencia_fem">
+                                    <input type="number" value="{{ $resource->rmd_transferencia_fem ?? "" }}" name="rmd_transferencia_fem">
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -608,20 +526,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rmd_falecimento_masc ?? "" }}" name="rmd_falecimento_masc">
+                                    <input type="number" value="{{ $resource->rmd_falecimento_masc ?? "" }}" name="rmd_falecimento_masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rmd_falecimento_fem ?? "" }}" name="rmd_falecimento_fem">
+                                    <input type="number" value="{{ $resource->rmd_falecimento_fem ?? "" }}" name="rmd_falecimento_fem">
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -630,20 +544,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rmd_exclusao_masc ?? "" }}" name="rmd_exclusao_masc">
+                                    <input type="number" value="{{ $resource->rmd_exclusao_masc ?? "" }}" name="rmd_exclusao_masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rmd_exclusao_fem ?? "" }}" name="rmd_exclusao_fem">
+                                    <input type="number" value="{{ $resource->rmd_exclusao_fem ?? "" }}" name="rmd_exclusao_fem">
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -652,20 +562,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rmd_ordenacao_masc ?? "" }}" name="rmd_ordenacao_masc">
+                                    <input type="number" value="{{ $resource->rmd_ordenacao_masc ?? "" }}" name="rmd_ordenacao_masc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rmd_ordenacao_fem ?? "" }}" name="rmd_ordenacao_fem">
+                                    <input type="number" value="{{ $resource->rmd_ordenacao_fem ?? "" }}" name="rmd_ordenacao_fem">
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="ui segment">
@@ -679,20 +585,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rmd_profissao_fe_masc_nc ?? "" }}" name="rmd_profissao_fe_masc_nc">
+                                    <input type="number" value="{{ $resource->rmd_profissao_fe_masc_nc ?? "" }}" name="rmd_profissao_fe_masc_nc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rmd_profissao_fe_fem_nc ?? "" }}" name="rmd_profissao_fe_fem_nc">
+                                    <input type="number" value="{{ $resource->rmd_profissao_fe_fem_nc ?? "" }}" name="rmd_profissao_fe_fem_nc">
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -701,20 +603,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rmd_transferencia_masc_nc ?? "" }}" name="rmd_transferencia_masc_nc">
+                                    <input type="number" value="{{ $resource->rmd_transferencia_masc_nc ?? "" }}" name="rmd_transferencia_masc_nc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rmd_transferencia_fem_nc ?? "" }}" name="rmd_transferencia_fem_nc">
+                                    <input type="number" value="{{ $resource->rmd_transferencia_fem_nc ?? "" }}" name="rmd_transferencia_fem_nc">
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -723,20 +621,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rmd_falecimento_masc_nc ?? "" }}" name="rmd_falecimento_masc_nc">
+                                    <input type="number" value="{{ $resource->rmd_falecimento_masc_nc ?? "" }}" name="rmd_falecimento_masc_nc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rmd_falecimento_fem_nc ?? "" }}" name="rmd_falecimento_fem_nc">
+                                    <input type="number" value="{{ $resource->rmd_falecimento_fem_nc ?? "" }}" name="rmd_falecimento_fem_nc">
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -745,24 +639,20 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <input type="text" value="{{ $resource->rmd_exclusao_masc_nc ?? "" }}" name="rmd_exclusao_masc_nc">
+                                    <input type="number" value="{{ $resource->rmd_exclusao_masc_nc ?? "" }}" name="rmd_exclusao_masc_nc">
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <input type="text" value="{{ $resource->rmd_exclusao_fem_nc ?? "" }}" name="rmd_exclusao_fem_nc">
+                                    <input type="number" value="{{ $resource->rmd_exclusao_fem_nc ?? "" }}" name="rmd_exclusao_fem_nc">
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="ui horizontal segments">
+                {{--<div class="ui horizontal segments">
                     <div class="ui segment">
                         <div class="inline fields">
                             <div class="five wide field">
@@ -771,20 +661,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rmd_separado_masc")-->
+                                    <!--input(type="number" value="0" name="rmd_separado_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rmd_separado_fem")-->
+                                    <!--input(type="number" value="0" name="rmd_separado_fem")-->
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field" data-tooltip="RESULTADO de (admissão - demissão)">
@@ -793,20 +679,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rmd_diferenca_masc")-->
+                                    <!--input(type="number" value="0" name="rmd_diferenca_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rmd_diferenca_fem")-->
+                                    <!--input(type="number" value="0" name="rmd_diferenca_fem")-->
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -815,20 +697,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rmd_comung_anterior_masc")-->
+                                    <!--input(type="number" value="0" name="rmd_comung_anterior_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rmd_comung_anterior_fem")-->
+                                    <!--input(type="number" value="0" name="rmd_comung_anterior_fem")-->
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -837,20 +715,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rmd_comung_atual_masc")-->
+                                    <!--input(type="number" value="0" name="rmd_comung_atual_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rmd_comung_atual_fem")-->
+                                    <!--input(type="number" value="0" name="rmd_comung_atual_fem")-->
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="ui segment">
@@ -861,20 +735,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rmd_dif_comung_masc")-->
+                                    <!--input(type="number" value="0" name="rmd_dif_comung_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rmd_dif_comung_fem")-->
+                                    <!--input(type="number" value="0" name="rmd_dif_comung_fem")-->
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -883,20 +753,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rmd_nao_comung_anterior_masc")-->
+                                    <!--input(type="number" value="0" name="rmd_nao_comung_anterior_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rmd_nao_comung_anterior_fem")-->
+                                    <!--input(type="number" value="0" name="rmd_nao_comung_anterior_fem")-->
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field">
@@ -905,20 +771,16 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rmd_nao_comung_atual_masc")-->
+                                    <!--input(type="number" value="0" name="rmd_nao_comung_atual_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rmd_nao_comung_atual_fem")-->
+                                    <!--input(type="number" value="0" name="rmd_nao_comung_atual_fem")-->
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="inline fields">
                             <div class="five wide field"
@@ -928,23 +790,19 @@
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">M</div>
-                                    <!--input(type="text" value="0" name="rmd_rol_atual_masc")-->
+                                    <!--input(type="number" value="0" name="rmd_rol_atual_masc")-->
                                 </div>
                             </div>
                             <div class="four wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">F</div>
-                                    <!--input(type="text" value="0" name="rmd_rol_atual_fem")-->
+                                    <!--input(type="number" value="0" name="rmd_rol_atual_fem")-->
                                 </div>
                             </div>
-                            <div class="three wide field">
-                                <div class="ui labeled input disabled">
-                                    <label>TOTAL</label>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
         <div class="ui segments">
@@ -957,17 +815,17 @@
                         <div class="ui top attached label blue" style="text-align: center;">MOVIMENTO FINANCEIRO
                             - ANO ANTERIOR
                         </div>
-                        <div class="inline fields">
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Saldo - Ano Anterior</label>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <!--input(type="text" value="0" name="if_mf_saldo_anterior")-->
+                                    <!--input(type="number" value="0" name="if_mf_saldo_anterior")-->
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="inline fields">
                             <div class="six wide field">
                                 <div class="ui label blue">
@@ -982,7 +840,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_dizimos ?? "" }}" name="fina_dizimos">
+                                    <input type="number" value="{{ $resource->fina_dizimos ?? "" }}" name="fina_dizimos">
                                 </div>
                             </div>
                         </div>
@@ -993,11 +851,11 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_ofertas_especificas ?? "" }}" name="fina_ofertas_especificas">
+                                    <input type="number" value="{{ $resource->fina_ofertas_especificas ?? "" }}" name="fina_ofertas_especificas">
                                 </div>
                             </div>
                         </div>
-                        <div class="inline fields">
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Total de Receita Anual</label>
                             </div>
@@ -1007,8 +865,8 @@
                                     <label>TOTAL</label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="inline fields">
+                        </div>--}}
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Grande Total</label>
                             </div>
@@ -1018,7 +876,7 @@
                                     <label>TOTAL</label>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="inline fields">
                             <div class="six wide field">
                                 <div class="ui label blue">
@@ -1033,7 +891,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_patrimonio ?? "" }}" name="fina_patrimonio">
+                                    <input type="number" value="{{ $resource->fina_patrimonio ?? "" }}" name="fina_patrimonio">
                                 </div>
                             </div>
                         </div>
@@ -1044,7 +902,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_causas ?? "" }}" name="fina_causas">
+                                    <input type="number" value="{{ $resource->fina_causas ?? "" }}" name="fina_causas">
                                 </div>
                             </div>
                         </div>
@@ -1055,7 +913,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_evangelismo ?? "" }}" name="fina_evangelismo">
+                                    <input type="number" value="{{ $resource->fina_evangelismo ?? "" }}" name="fina_evangelismo">
                                 </div>
                             </div>
                         </div>
@@ -1066,7 +924,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_missoes ?? "" }}" name="fina_missoes">
+                                    <input type="number" value="{{ $resource->fina_missoes ?? "" }}" name="fina_missoes">
                                 </div>
                             </div>
                         </div>
@@ -1077,7 +935,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_sustento_pastoral ?? "" }}" name="fina_sustento_pastoral">
+                                    <input type="number" value="{{ $resource->fina_sustento_pastoral ?? "" }}" name="fina_sustento_pastoral">
                                 </div>
                             </div>
                         </div>
@@ -1088,7 +946,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_verba_presbiterial ?? "" }}" name="fina_verba_presbiterial">
+                                    <input type="number" value="{{ $resource->fina_verba_presbiterial ?? "" }}" name="fina_verba_presbiterial">
                                 </div>
                             </div>
                         </div>
@@ -1099,11 +957,11 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->fina_dizimo_supremo ?? "" }}" name="fina_dizimo_supremo">
+                                    <input type="number" value="{{ $resource->fina_dizimo_supremo ?? "" }}" name="fina_dizimo_supremo">
                                 </div>
                             </div>
                         </div>
-                        <div class="inline fields">
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Total Despesa Anual</label>
                             </div>
@@ -1124,8 +982,8 @@
                                     <label>TOTAL</label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="inline fields">
+                        </div>--}}
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Grande Total</label>
                             </div>
@@ -1135,23 +993,23 @@
                                     <label>TOTAL</label>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                     <div class="ui segment">
                         <div class="ui top attached label blue" style="text-align: center;">PREVISÃO
                             ORÇAMENTÁRIA - PRÓXIMO EXERCÍCIO
                         </div>
-                        <div class="inline fields">
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Saldo - Ano Anterior</label>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <!--input(type="text" value="0" name="if_po_saldo_anterior")-->
+                                    <!--input(type="number" value="0" name="if_po_saldo_anterior")-->
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="inline fields">
                             <div class="six wide field">
                                 <div class="ui label blue">
@@ -1166,7 +1024,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_dizimos ?? "" }}" name="finp_dizimos">
+                                    <input type="number" value="{{ $resource->finp_dizimos ?? "" }}" name="finp_dizimos">
                                 </div>
                             </div>
                         </div>
@@ -1177,11 +1035,11 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_ofertas_especificas ?? "" }}" name="finp_ofertas_especificas">
+                                    <input type="number" value="{{ $resource->finp_ofertas_especificas ?? "" }}" name="finp_ofertas_especificas">
                                 </div>
                             </div>
                         </div>
-                        <div class="inline fields">
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Total de Receita Anual</label>
                             </div>
@@ -1191,8 +1049,8 @@
                                     <label>TOTAL</label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="inline fields">
+                        </div>--}}
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Grande Total</label>
                             </div>
@@ -1202,7 +1060,7 @@
                                     <label>TOTAL</label>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="inline fields">
                             <div class="six wide field">
                                 <div class="ui label blue">
@@ -1217,7 +1075,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_patrimonio ?? "" }}" name="finp_patrimonio">
+                                    <input type="number" value="{{ $resource->finp_patrimonio ?? "" }}" name="finp_patrimonio">
                                 </div>
                             </div>
                         </div>
@@ -1228,7 +1086,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_causas ?? "" }}" name="finp_causas">
+                                    <input type="number" value="{{ $resource->finp_causas ?? "" }}" name="finp_causas">
                                 </div>
                             </div>
                         </div>
@@ -1239,7 +1097,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_evangelismo ?? "" }}" name="finp_evangelismo">
+                                    <input type="number" value="{{ $resource->finp_evangelismo ?? "" }}" name="finp_evangelismo">
                                 </div>
                             </div>
                         </div>
@@ -1250,7 +1108,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_missoes ?? "" }}" name="finp_missoes">
+                                    <input type="number" value="{{ $resource->finp_missoes ?? "" }}" name="finp_missoes">
                                 </div>
                             </div>
                         </div>
@@ -1261,7 +1119,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_sustento_pastoral ?? "" }}" name="finp_sustento_pastoral">
+                                    <input type="number" value="{{ $resource->finp_sustento_pastoral ?? "" }}" name="finp_sustento_pastoral">
                                 </div>
                             </div>
                         </div>
@@ -1272,7 +1130,7 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_verba_presbiterial ?? "" }}" name="finp_verba_presbiterial">
+                                    <input type="number" value="{{ $resource->finp_verba_presbiterial ?? "" }}" name="finp_verba_presbiterial">
                                 </div>
                             </div>
                         </div>
@@ -1283,18 +1141,18 @@
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    <input type="text" value="{{ $resource->finp_dizimo_supremo ?? "" }}" name="finp_dizimo_supremo">
+                                    <input type="number" value="{{ $resource->finp_dizimo_supremo ?? "" }}" name="finp_dizimo_supremo">
                                 </div>
                             </div>
                         </div>
-                        <div class="inline fields">
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Total Despesa Anual</label>
                             </div>
                             <div class="six wide field">
                                 <div class="ui labeled input">
                                     <div class="ui label">R$</div>
-                                    {{--<input type="text" value="{{ $resource->id_presbitero_conselho ?? "" }}" name="id_presbitero_conselho">--}}
+                                    --}}{{--<input type="number" value="{{ $resource->id_presbitero_conselho ?? "" }}" name="id_presbitero_conselho">--}}{{--
                                 </div>
                             </div>
                         </div>
@@ -1308,8 +1166,8 @@
                                     <label>TOTAL</label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="inline fields">
+                        </div>--}}
+                        {{--<div class="inline fields">
                             <div class="eight wide field">
                                 <label>Grande Total</label>
                             </div>
@@ -1319,7 +1177,7 @@
                                     <label>TOTAL</label>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </div>
