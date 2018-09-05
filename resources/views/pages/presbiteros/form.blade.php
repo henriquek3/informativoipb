@@ -59,7 +59,7 @@
                             <div class="ui checkbox"
                                  style="float: left; display: flex; margin-top: 32px; margin-left: 20px;">
                                 <input name="pastor_titular" type="checkbox"
-                                       value="1" @isset($resource) {{$resource->pastor_titular === 1 ? ' checked' : ''}} @endisset>
+                                       value="1" {{$resource->pastor_titular === 1 ? ' checked' : ''}}>
                                 <label>Pastor Títular</label>
                             </div>
                         </div>
