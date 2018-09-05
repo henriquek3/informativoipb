@@ -32,19 +32,20 @@
                             <label>Sínodo</label>
                             <input type="text" readonly=""
                                    @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->sinodo->nome}}" @endif>
+                            <input type="hidden" name="id_sinodo" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->id}}" @endif>
                         </div>
                         <div class="five wide field" id="div_presbiterio">
                             <label>Presbitério</label>
                             <input type="text"
                                    @if(!is_null(auth()->user()->pastor())) value="{{ auth()->user()->pastor()->igreja->presbiterio->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->nome}}"
                                    @endif readonly="">
+                            <input type="hidden" name="id_presbiterio" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->id}}" @endif>
                         </div>
                         <div class="five wide field">
                             <label>Igreja</label>
                             <input type="text" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->nome}} "
                                    @endif readonly="">
-                            <input type="hidden" name="id_igreja"
-                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->id}}" @endif>
+                            <input type="hidden" name="id_igreja" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->id}}" @endif>
                         </div>
                     </div>
                 </div>
@@ -484,28 +485,20 @@
                 </div>
                 <div class="ui form segment">
                     <div class="fields">
-                        <div class="five wide field">
+                        <div class="four wide field">
                             <label>Aconselhamentos/Orientações:</label>
                             <input type="text" value="{{$resource->aconselhamentos ?? ''}}" name="aconselhamentos">
                         </div>
-                    </div>
-                </div>
-                <div class="ui form segment">
-                    <div class="ui green ribbon label" style="font-size:0.92857143em;">3. ASSISTÊNCIA PASTORAL</div>
-                    <strong style="color:green;">VISITAS</strong>
-                </div>
-                <div class="ui form segment">
-                    <div class="fields">
-                        <div class="seven wide field">
+                        <div class="four wide field">
                             <label>Evangélicos ou não:(considerar as visitas feitas nos lares como uma
                                 visita.)</label>
                             <input type="number" value="0" name="visitas_evangelicos">
                         </div>
-                        <div class="six wide field">
+                        <div class="four wide field">
                             <label>Pontos de Pregação, Congregações ou Campos Missionários</label>
                             <input type="text" value="{{$resource->visitas_igrejas ?? ''}}" name="visitas_igrejas">
                         </div>
-                        <div class="three wide field">
+                        <div class="four wide field">
                             <label>Departamentos Internos</label>
                             <input type="text" value="{{$resource->departamentos_internos ?? ''}}"
                                    name="departamentos_internos">
