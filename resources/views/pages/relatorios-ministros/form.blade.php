@@ -250,7 +250,7 @@
                         </div>
                         <div class="three wide field">
                             <label>Data de Ordenação:</label>
-                            <input type="date">
+                            <input type="date" name="data_ordenacao" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->ordenacao_data}}" @endisset>
                         </div>
                         <div class="eight wide field">
                             <label>Presbitério</label>
@@ -500,7 +500,7 @@
                         <div class="four wide field" data-tooltip="Considerar as visitas feitas nos lares como uma
                                 visita.">
                             <label>Evangélicos ou não</label>
-                            <input type="number" value="0" name="visitas_evangelicos">
+                            <input type="number" value="{{$resource->visitas_evangelicos ?? ''}}" name="visitas_igrejas" name="visitas_evangelicos">
                         </div>
                         <div class="four wide field"
                              data-tooltip="Pontos de Pregação, Congregações ou Campos Missionários">
@@ -703,7 +703,7 @@
                 <div class="ui right aligned segment" style="width: 30px;">
                     <span class="ui toggle checkbox"
                           data-tooltip="Bloqueia edição e altera o status para finalizado">
-                    <input type="checkbox" name="status_relatorio" value="1">
+                    <input type="checkbox" name="status_relatorio" value="1" @isset($resource) {{$resource->status_relatorio === 1 ? ' checked' : ''}} @endisset>
                     <label>Relatório Finalizado</label>
                 </span>
                 </div>
@@ -722,7 +722,7 @@
         window.addEventListener("load", function () {
             $('.money').mask("#.##0,00", {reverse: true});
             $('.ui.dropdown').dropdown();
-            $('[name="relatorio_finalizado"]').change(function () {
+            $('[name="status_relatorio"]').change(function () {
                 if (this.checked) {
                     $('input').attr('disabled', true);
                     $('select').attr('disabled', true);
