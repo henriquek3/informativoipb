@@ -27,7 +27,8 @@
                 <div class="fields">
                     <div class="six wide field">
                         <label>Sínodo</label>
-                        <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search">
+                        <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search"
+                             data-tooltip="Sigla: {{strtoupper($resource->sinodo->sigla) ?? ''}}">
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo" required
                                        value="{{$resource->sinodo->nome ?? ''}}">
@@ -38,7 +39,8 @@
                     </div>
                     <div class="six wide field">
                         <label>Presbitério</label>
-                        <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search">
+                        <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search"
+                             data-tooltip="Sigla: {{strtoupper($resource->presbiterio->sigla) ?? ''}}">
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Presbitério" required
                                        name="presbiterio" value="{{$resource->presbiterio->nome ?? ''}}">

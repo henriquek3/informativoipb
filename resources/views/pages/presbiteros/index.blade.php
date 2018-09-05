@@ -38,8 +38,8 @@
                 <tr>
                     <td>{{ $rs->nome }}</td>
                     <td>{{ $rs->igreja->nome }}</td>
-                    <td>{{ $rs->igreja->presbiterio->sigla }}</td>
-                    <td>{{ $rs->igreja->presbiterio->sinodo->sigla }}</td>
+                    <td>{{ strtoupper($rs->igreja->presbiterio->sigla) }}</td>
+                    <td>{{ strtoupper($rs->igreja->presbiterio->sinodo->sigla) }}</td>
                     <td class="center aligned" title="Editar Ministro">
                         <a class="ui icon primary button" href="/cadastros/ministros/{{$rs->id}}/editar">
                             <i class="pencil alternate icon"></i>

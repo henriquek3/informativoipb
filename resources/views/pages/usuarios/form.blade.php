@@ -20,7 +20,8 @@
                 <div class="fields">
                     <div class="eight wide field">
                         <label>Sínodo</label>
-                        <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search">
+                        <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search"
+                             data-tooltip="Sigla: {{strtoupper($resource->presbitero->igreja->presbiterio->sinodo->sigla) ?? ''}}">
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo" required
                                        value="{{$resource->presbitero->igreja->presbiterio->sinodo->nome ?? ''}}">
@@ -31,7 +32,8 @@
                     </div>
                     <div class="eight wide field" id="div_presbiterio">
                         <label>Presbitério</label>
-                        <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search">
+                        <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search"
+                             data-tooltip="Sigla: {{strtoupper($resource->presbitero->igreja->presbiterio->sigla) ?? ''}}">
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Presbitério" required
                                        name="presbiterio"
