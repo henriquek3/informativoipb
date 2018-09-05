@@ -75,28 +75,45 @@
                         <label for="sstatus">Status do Usuário</label>
                         <select class="ui fluid dropdown" name="status" id="sstatus">
                             <option></option>
-                            <option value="1" {{$resource->status == 1 ? ' selected' : ''}}>Ativo</option>
-                            <option value="0" {{$resource->status == 0 ? ' selected' : ''}}>Inativo</option>
+                            <option value="1" @isset($resource) {{$resource->status == 1 ? ' selected' : ''}} @endisset>
+                                Ativo
+                            </option>
+                            <option value="0" @isset($resource) {{$resource->status == 0 ? ' selected' : ''}} @endisset>
+                                Inativo
+                            </option>
                         </select>
                     </div>
                     <div class="five wide field">
                         <label for="snivel">Nível</label>
                         <select class="ui fluid dropdown" name="nivel" id="snivel">
                             <option></option>
-                            <option value="0" {{$resource->nivel == 0 ? ' selected' : ''}}>Comum</option>
-                            <option value="1" {{$resource->nivel == 1 ? ' selected' : ''}}>Superior</option>
+                            <option value="0" @isset($resource) {{$resource->nivel == 0 ? ' selected' : ''}} @endisset>
+                                Comum
+                            </option>
+                            <option value="1" @isset($resource) {{$resource->nivel == 1 ? ' selected' : ''}} @endisset>
+                                Superior
+                            </option>
                         </select>
                     </div>
                     <div class="six wide field">
                         <label for="sperfil">Perfil</label>
                         <select class="ui fluid dropdown" name="perfil" id="sperfil">
                             <option></option>
-                            <option value="1" {{$resource->perfil == 1 ? ' selected' : ''}}>Secretário Igreja</option>
-                            <option value="2" {{$resource->perfil == 2 ? ' selected' : ''}}>Secretário Presbitério
+                            <option value="1" @isset($resource) {{$resource->perfil == 1 ? ' selected' : ''}} @endisset>
+                                Secretário Igreja
                             </option>
-                            <option value="3" {{$resource->perfil == 3 ? ' selected' : ''}}>Secretário Sínodo</option>
-                            <option value="4" {{$resource->perfil == 4 ? ' selected' : ''}}>Secretário Supremo</option>
-                            <option value="5" {{$resource->perfil == 5 ? ' selected' : ''}}>Supervisão Geral</option>
+                            <option value="2" @isset($resource) {{$resource->perfil == 2 ? ' selected' : ''}} @endisset>
+                                Secretário Presbitério
+                            </option>
+                            <option value="3" @isset($resource) {{$resource->perfil == 3 ? ' selected' : ''}} @endisset>
+                                Secretário Sínodo
+                            </option>
+                            <option value="4" @isset($resource) {{$resource->perfil == 4 ? ' selected' : ''}} @endisset>
+                                Secretário Supremo
+                            </option>
+                            <option value="5" @isset($resource) {{$resource->perfil == 5 ? ' selected' : ''}} @endisset>
+                                Supervisão Geral
+                            </option>
                         </select>
                     </div>
                 </div>
