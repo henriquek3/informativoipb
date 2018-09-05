@@ -150,7 +150,7 @@
                 <div class="fields">
                     <div class="twelve wide field">
                         <label>Presbitério de Ordenação</label>
-                        <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search">
+                        <div class="ui search" title="Digite o nome do presbitério" id="ordenacao_presbiterio_search">
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Presbitério" required
                                        name="presbiterio" value="{{$resource->igreja->presbiterio->nome ?? ''}}">

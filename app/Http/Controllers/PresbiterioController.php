@@ -144,6 +144,12 @@ class PresbiterioController extends Controller
      */
     public function api(Request $request)
     {
+        if ($request->get('sinodo') === 'todos') {
+            dd($request->all());
+            $result['items'] = Presbiterios::where("nome", "like", "%{$request->get("nome")}%")
+                ->get();
+            return response()->json($result);
+        }
         $result['items'] = Presbiterios::where('id_sinodo', '=', $request->get('sinodo'))
             ->where("nome", "like", "%{$request->get("nome")}%")
             ->get();

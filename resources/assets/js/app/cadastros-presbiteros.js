@@ -83,6 +83,37 @@ window.addEventListener("load", function () {
         })
     ;
 
+    $('#ordenacao_presbiterio_search')
+        .search({
+            apiSettings: {
+                url: '/api/presbiterios?nome={query}&sinodo={sinodo}',
+                beforeSend: function (settings) {
+                    settings.urlData.sinodo = 'todos';
+                    return settings;
+                }
+            },
+            searchDelay: 900,
+            fields: {
+                results: 'items',
+                title: 'nome',
+                url: 'html_url'
+            },
+            minCharacters: 3,
+            error: {
+                source: 'Cannot search. No source used, and Semantic API module was not included',
+                noResults: 'A sua consulta não obteve nenhum resultado.',
+                logging: 'Error in debug logging, exiting.',
+                noTemplate: 'A valid template name was not specified.',
+                serverError: 'There was an issue with querying the server.',
+                maxResults: 'Results must be an array to use maxResults setting',
+                method: 'The method you called is not defined.'
+            },
+            onSelect: function (result) {
+                $('[name="ordenacao_presbiterio"]').val(result.id).trigger('change');
+            }
+        })
+    ;
+
     $(formResource.id_presbiterio).on('change', function () {
         if ($(formResource.id_presbiterio).val() > 0) {
             $("#div_igreja").find(".search").hide();
