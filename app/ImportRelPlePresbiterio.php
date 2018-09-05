@@ -4,9 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class ImportRelPlePresbiterio extends Model
+class ImportRelPlePresbiterio extends Model implements Auditable
 {
     use SoftDeletes;
+    use \OwenIt\Auditing\Auditable;
+    /**
+     * @var string
+     */
     protected $table = 'reunioes_presbiterios_relatorios';
 }

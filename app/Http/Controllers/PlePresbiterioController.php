@@ -36,7 +36,7 @@ class PlePresbiterioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(PlePresbiterios $plePresbiterios, Estados $estados)
+    public function create(Estados $estados)
     {
         return view('pages.reunioes-presbiterio.form', [
             'estados' => $estados->all()

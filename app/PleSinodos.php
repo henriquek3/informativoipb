@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class PleSinodos extends Model
+class PleSinodos extends Model implements Auditable
 {
     use SoftDeletes;
+    use \OwenIt\Auditing\Auditable;
     /**
      * @var array
      */
@@ -15,6 +17,9 @@ class PleSinodos extends Model
         'id', 'created_at', 'deleted_at', 'updated_at',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function usuario()
     {
         return $this->belongsTo("App\User", "user_id", "id");

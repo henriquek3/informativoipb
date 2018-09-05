@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class PlePresbiterios extends Model
+class PlePresbiterios extends Model implements Auditable
 {
     use SoftDeletes;
+    use \OwenIt\Auditing\Auditable;
     /**
      * @var array
      */
@@ -26,5 +28,10 @@ class PlePresbiterios extends Model
     public function usuario()
     {
         return $this->belongsTo(\App\User::class, 'user_id');
+    }
+
+    public function presbiterio()
+    {
+        return $this->belongsTo(\App\Presbiterios::class, 'id_presbiterio');
     }
 }

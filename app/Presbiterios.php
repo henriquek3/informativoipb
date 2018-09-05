@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Presbiterios extends Model
+class Presbiterios extends Model implements Auditable
 {
     use SoftDeletes;
+    use \OwenIt\Auditing\Auditable;
 
     /**
      * @var array
@@ -33,6 +35,9 @@ class Presbiterios extends Model
         return $this->belongsTo("App\Sinodos", "id_sinodo", "id");
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function igrejas()
     {
         return $this->hasMany(\App\Igrejas::class, 'id_presbiterio');
