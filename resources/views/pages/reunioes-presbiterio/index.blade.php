@@ -18,33 +18,37 @@
             <thead>
             <tr>
                 <th class="ten wide">Presbitério</th>
-                <th class="two wide center aligned">Ano</th>
-                <th class="two wide center aligned">Data</th>
+                <th class="one wide center aligned">Sigla</th>
+                <th class="one wide center aligned">Sínodo</th>
+                <th class="one wide center aligned">Ano</th>
+                <th class="two wide center aligned">Data Reunião</th>
                 <th class="two wide center aligned">Editar</th>
+
             </tr>
             </thead>
             <tbody>
             @forelse($resources as $rs)
                 <tr>
-                    <td>{{ $rs->nome }}</td>
-                    <td>{{ $rs->sigla }}</td>
-                    <td>{{ $rs->sinodo->sigla }}</td>
-                    <td>{{ $rs->nome_regiao}}</td>
-                    <td class="center aligned" title="Editar Sínodo">
-                        <a class="ui icon primary button" href="/cadastros/presbiterios/{{$rs->id}}/editar">
+                    <td>{{ $rs->presbiterio->nome }}</td>
+                    <td class="center aligned">{{ strtoupper($rs->presbiterio->sigla) }}</td>
+                    <td class="center aligned">{{ strtoupper($rs->presbiterio->sinodo->sigla) }}</td>
+                    <td class="center aligned">{{ $rs->ano }}</td>
+                    <td class="center aligned">{{ $rs->data_reuniao->format('d/m/Y') }}</td>
+                    <td class="center aligned" title="Editar">
+                        <a class="ui icon primary button" href="/reunioes/presbiterio/{{$rs->id}}/editar">
                             <i class="pencil alternate icon"></i>
                         </a>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5">Nenhum registro encontrado.</td>
+                    <td colspan="6">Nenhum registro encontrado.</td>
                 </tr>
             @endforelse
             </tbody>
             <tfoot>
             <tr>
-                <th colspan="5">
+                <th colspan="6">
                     <div class="ui right floated pagination menu">{{ $resources->links('pagination::semantic-ui') }}</div>
                 </th>
             </tr>

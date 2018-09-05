@@ -24,6 +24,22 @@ class ImportRelPlePresbiterioController extends Controller
      */
     public function create(ImportRelPlePresbiterio $importRelPlePresbiterio)
     {
+        $sql = "select upper(s.sigla)                   as sinodo,
+                       upper(p.sigla)                   as presbiterio,
+                       igrejas.nome                     as igreja,
+                       ifnull(rc.status_relatorio, '-') as conselho_status,
+                       ifnull(re.status_relatorio, '-') as estatistica_status,
+                       ifnull(rm.status_relatorio, '-') as ministro_status,
+                       (ifnull(rc.status_relatorio, 0) +
+                        ifnull(re.status_relatorio, 0) +
+                        ifnull(rm.status_relatorio, 0))as  status_geral              
+                from   igrejas
+                       join presbiterios p on igrejas.id_presbiterio = p.id
+                       join sinodos s on p.id_sinodo = s.id
+                       left join relatorios_conselhos rc on igrejas.id = rc.id_igreja
+                       left join relatorios_estatisticas re on igrejas.id = re.id_igreja
+                       left join relatorios_ministros rm on igrejas.id = rm.id_igreja";
+
         return view('pages.reunioes-presbiterio.relatorios.form', [
             'resources' => $importRelPlePresbiterio->paginate(15)
         ]);

@@ -22,6 +22,8 @@ class PlePresbiterios extends Model implements Auditable
      */
     protected $table = "reunioes_presbiterios";
 
+    protected $dates = ['data_reuniao'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

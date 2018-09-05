@@ -3,7 +3,7 @@
 @section('content')
     <div class="ui clearing"></div>
     <div class="ui raised segment">
-        <a class="ui right floated blue tiny button" href="/cadastros/sinodos">
+        <a class="ui right floated blue tiny button" href="/relatorios/ministerial">
             <i class="reply icon"></i>Voltar</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="big browser icon"></i>
         </h3>
@@ -374,7 +374,7 @@
                         </div>
                     </div>
                 </div>
-            </div> <!-- Info Ministro -->
+            </div> <!-- I - Info Ministro -->
 
             <div class="ui segments">
                 <div class="ui green segment" style="text-align: center; background-color: #F9FAFB">

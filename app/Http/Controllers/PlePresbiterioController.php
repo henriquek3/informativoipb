@@ -85,7 +85,7 @@ class PlePresbiterioController extends Controller
     {
         return view('pages.reunioes-presbiterio.form', [
             'estados' => $estados->all(),
-            'resource' => $plePresbiterios->where('id', '=', $id)->with('usuario')->first()
+            'resource' => $plePresbiterios->where('id', '=', $id)->with('usuario')->first(),
         ]);
     }
 

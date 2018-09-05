@@ -2,7 +2,7 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui raised segment"><a class="ui right floated blue tiny button" href="/configuracoes/usuarios"><i
+    <div class="ui raised segment"><a class="ui right floated blue tiny button" href="/reunioes/presbiterio"><i
                     class="reply icon"></i>Voltar</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
@@ -26,7 +26,9 @@
                     </div>
                     <div class="three wide field">
                         <label>Data da Reunião</label>
-                        <input type="date" name="data_reuniao" required>
+                        <input type="date" name="data_reuniao"
+                               @isset($resource) value="{{$resource->data_reuniao->format('Y-m-d')}}"
+                               @endisset required>
                     </div>
                     <div class="five wide field">
                         <label>Sínodo</label>
@@ -83,14 +85,13 @@
             <div style="text-align: center">
                 <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Salvar</button>
                 <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
-                <button class="ui red right labeled icon button" type="submit" form="formDelete"
-                        {{isset($resource) ? $resource->presbiterios->count() < 1 ? '' : ' disabled' : 'disabled'}}>
+                <button class="ui red right labeled icon button" type="submit" form="formDelete">
                     <i class="remove icon"></i>Excluir
                 </button>
             </div>
         </form>
     </div>
-    @include('pages.reunioes-presbiterio.relatorios.index')
+    @includeWhen(isset($resource),'pages.reunioes-presbiterio.relatorios.index')
 @endsection
 @section('javascript')
     <script src="{{asset('js/app/reuniao-presbiterio.js')}}"></script>
@@ -98,8 +99,32 @@
         <script type="text/javascript" async>
             try {
                 window.addEventListener("load", function () {
-
-
+                    /**
+                     * Function para o select Estado de NASCIMENTO
+                     */
+                    if ($('[name="id_estado"]').val() > 0) {
+                        $('[name="id_cidade"]').children().remove();
+                        $("#div_cidade").find(".search").hide();
+                        $("#loader_cidade").show();
+                        $.get('/api/cidades?uf=' + $('[name="id_estado"]').val())
+                            .done(function (response) {
+                                $.each(response, function () {
+                                    $('[name="id_cidade"]').append(
+                                        $('<option />').val(this.id).text(this.nome.toUpperCase())
+                                    );
+                                });
+                                $("#div_cidade").find(".search").show();
+                                $("#loader_cidade").hide();
+                                $('[name="id_cidade"]').val('{{$resource->id_cidade}}');
+                            })
+                            .fail(function () {
+                                iziToast.error({
+                                    title: 'Erro',
+                                    message: 'Consulta não realizada, verifique sua conexão',
+                                });
+                            })
+                        ;
+                    }
                 })
             } catch (e) {
                 alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');

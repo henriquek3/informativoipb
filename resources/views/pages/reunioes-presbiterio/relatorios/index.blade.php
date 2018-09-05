@@ -1,5 +1,5 @@
 <div class="ui segment">
-    <a class="ui right floated green tiny button" href="/reunioes/presbiterio/777/importar/novo">
+    <a class="ui right floated green tiny button" href="/reunioes/presbiterio/{{$resource->id}}/importar/novo">
         <i class="plus icon"></i>Importar
     </a>
     <h1 class="ui floated header">Relatórios
