@@ -25,6 +25,8 @@ class RelatoriosRequest extends FormRequest
     {
         return [
             'id_igreja' => 'required',
+            'id_sinodo' => 'required',
+            'id_presbiterio' => 'required',
             'id_presbitero' => 'required',
         ];
     }
@@ -38,7 +40,9 @@ class RelatoriosRequest extends FormRequest
     {
         return [
             'id_igreja' => 'Igreja',
-            'id_presbitero' => 'Presbitero',
+            'id_sinodo' => 'Sínodo',
+            'id_presbiterio' => 'Presbitério',
+            'id_presbitero' => 'Presbítero',
         ];
     }
 
@@ -50,8 +54,10 @@ class RelatoriosRequest extends FormRequest
     public function messages()
     {
         return [
-            'id_igreja.required' => 'Antes de inserir um relatório é necessário especificar um <strong>pastor titular</strong> ao cadastro de sua igreja.',
-            'id_presbitero.required' => 'Antes de inserir um relatório é necessário especificar um <strong>pastor titular</strong> ao cadastro de sua igreja.',
+            'id_igreja.required' => 'Identificação da igreja em branco, antes de inserir um relatório é necessário especificar um <strong>pastor titular</strong> ao cadastro de sua igreja.',
+            'id_sinodo.required' => 'Identificação do sínodo em branco, antes de inserir um relatório é necessário especificar um <strong>pastor titular</strong> ao cadastro de sua igreja.',
+            'id_presbiterio.required' => 'Identificação do presbitério em branco, antes de inserir um relatório é necessário especificar um <strong>pastor titular</strong> ao cadastro de sua igreja.',
+            'id_presbitero.required' => 'Identificação do presbítero em branco, antes de inserir um relatório é necessário especificar um <strong>pastor titular</strong> ao cadastro de sua igreja.',
         ];
     }
 }
