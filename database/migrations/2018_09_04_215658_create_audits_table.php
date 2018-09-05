@@ -29,14 +29,14 @@ class CreateAuditsTable extends Migration
             $table->increments('id');
             $table->string('user_type', 191)->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('event');
+            $table->string('event', 191);
             $table->morphs('auditable');
             $table->text('old_values')->nullable();
             $table->text('new_values')->nullable();
             $table->text('url')->nullable();
             $table->ipAddress('ip_address')->nullable();
-            $table->string('user_agent')->nullable();
-            $table->string('tags')->nullable();
+            $table->string('user_agent', 191)->nullable();
+            $table->string('tags', 191)->nullable();
             $table->timestamps();
 
             $table->index(['user_id', 'user_type']);
