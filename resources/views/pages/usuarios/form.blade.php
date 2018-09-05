@@ -21,10 +21,10 @@
                     <div class="eight wide field">
                         <label>Sínodo</label>
                         <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search"
-                             data-tooltip="Sigla: {{strtoupper($resource->presbitero->igreja->presbiterio->sinodo->sigla) ?? ''}}">
+                             @isset($resource) data-tooltip="Sigla: {{strtoupper($resource->presbitero->igreja->presbiterio->sinodo->sigla) ?? ''}}" @endisset>
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo" required
-                                       value="{{$resource->presbitero->igreja->presbiterio->sinodo->nome ?? ''}}">
+                                       @isset($resource)  value="{{$resource->presbitero->igreja->presbiterio->sinodo->nome ?? ''}}" @endisset>
                                 <input type="hidden" name="id_sinodo" value="{{$resource->id_sinodo ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
@@ -33,11 +33,11 @@
                     <div class="eight wide field" id="div_presbiterio">
                         <label>Presbitério</label>
                         <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search"
-                             data-tooltip="Sigla: {{strtoupper($resource->presbitero->igreja->presbiterio->sigla) ?? ''}}">
+                             @isset($resource) data-tooltip="Sigla: {{strtoupper($resource->presbitero->igreja->presbiterio->sigla) ?? ''}}" @endisset>
                             <div class="ui left icon input">
                                 <input class="prompt" type="text" placeholder="Procurar Presbitério" required
                                        name="presbiterio"
-                                       value="{{$resource->presbitero->igreja->presbiterio->nome ?? ''}}">
+                                       @isset($resource)  value="{{$resource->presbitero->igreja->presbiterio->nome ?? ''}}" @endisset>
                                 <input type="hidden" name="id_presbiterio" value="{{$resource->id_presbiterio ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
