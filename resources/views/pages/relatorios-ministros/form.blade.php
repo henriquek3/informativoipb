@@ -489,13 +489,13 @@
                             <label>Aconselhamentos/Orientações:</label>
                             <input type="text" value="{{$resource->aconselhamentos ?? ''}}" name="aconselhamentos">
                         </div>
-                        <div class="four wide field">
-                            <label>Evangélicos ou não:(considerar as visitas feitas nos lares como uma
-                                visita.)</label>
+                        <div class="four wide field" data-tooltip="Considerar as visitas feitas nos lares como uma
+                                visita.">
+                            <label>Evangélicos ou não</label>
                             <input type="number" value="0" name="visitas_evangelicos">
                         </div>
-                        <div class="four wide field">
-                            <label>Pontos de Pregação, Congregações ou Campos Missionários</label>
+                        <div class="four wide field" data-tooltip="Pontos de Pregação, Congregações ou Campos Missionários">
+                            <label>Campos de Atuação</label>
                             <input type="text" value="{{$resource->visitas_igrejas ?? ''}}" name="visitas_igrejas">
                         </div>
                         <div class="four wide field">
