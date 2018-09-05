@@ -1405,4 +1405,13 @@
             });
         </script>
     @endif
+            @isset($resource)
+
+            @else
+                <script>
+                    window.addEventListener("load", function () {
+                        $('[type="number"]').val(0)
+                    });
+                </script>
+    @endisset
 @endsection
