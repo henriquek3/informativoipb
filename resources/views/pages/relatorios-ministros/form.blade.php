@@ -32,20 +32,24 @@
                             <label>Sínodo</label>
                             <input type="text" readonly=""
                                    @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->sinodo->nome}}" @endif>
-                            <input type="hidden" name="id_sinodo" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->id}}" @endif>
+                            <input type="hidden" name="id_sinodo"
+                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->id}}" @endif>
                         </div>
                         <div class="five wide field" id="div_presbiterio">
                             <label>Presbitério</label>
                             <input type="text"
                                    @if(!is_null(auth()->user()->pastor())) value="{{ auth()->user()->pastor()->igreja->presbiterio->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->nome}}"
                                    @endif readonly="">
-                            <input type="hidden" name="id_presbiterio" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->id}}" @endif>
+                            <input type="hidden" name="id_presbiterio"
+                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->id}}" @endif>
                         </div>
                         <div class="five wide field">
                             <label>Igreja</label>
-                            <input type="text" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->nome}} "
+                            <input type="text"
+                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->nome}} "
                                    @endif readonly="">
-                            <input type="hidden" name="id_igreja" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->id}}" @endif>
+                            <input type="hidden" name="id_igreja"
+                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->id}}" @endif>
                         </div>
                     </div>
                 </div>
@@ -59,7 +63,8 @@
                     <div class="fields">
                         <div class="sixteen wide field">
                             <label>Nome</label>
-                            <input type="text" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->nome}}"
+                            <input type="text"
+                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->nome}}"
                                    @endif readonly="">
                             <input type="hidden" readonly="" name="id_presbitero"
                                    @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->id}}" @endif>
@@ -68,19 +73,22 @@
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Nome do Pai</label>
-                            <input type="text" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->nome_pai}}"
+                            <input type="text"
+                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->nome_pai}}"
                                    @endif readonly="">
                         </div>
                         <div class="eight wide field">
                             <label>Nome da Mãe</label>
-                            <input type="text" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->nome_mae}}"
+                            <input type="text"
+                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->nome_mae}}"
                                    @endif readonly="">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="ui calendar bottom left three wide field">
                             <label>Data de Nascimento</label>
-                            <input type="date" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->nascimento_data}}"
+                            <input type="date"
+                                   @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->nascimento_data}}"
                                    @endif readonly="">
                         </div>
                         <div class="five wide field">
@@ -408,39 +416,39 @@
                     <div class="fields">
                         <div class="four wide field">
                             <label>Pregações</label>
-                            <input type="text" value="{{$resource->pregacoes ?? ''}}" name="pregacoes">
+                            <input type="number" value="{{$resource->pregacoes ?? ''}}" name="pregacoes">
                         </div>
                         <div class="four wide field">
                             <label>Aulas de Escola Dominical:</label>
-                            <input type="text" value="{{$resource->ebd ?? ''}}" name="ebd">
+                            <input type="number" value="{{$resource->ebd ?? ''}}" name="ebd">
                         </div>
                         <div class="four wide field">
                             <label>Trabalhos de Evangelização:</label>
-                            <input type="text" value="{{$resource->evangelizacao ?? ''}}" name="evangelizacao">
+                            <input type="number" value="{{$resource->evangelizacao ?? ''}}" name="evangelizacao">
                         </div>
                         <div class="four wide field">
                             <label>Estudos Bíblicos:</label>
-                            <input type="text" value="{{$resource->estudos_biblicos ?? ''}}" name="estudos_biblicos">
+                            <input type="number" value="{{$resource->estudos_biblicos ?? ''}}" name="estudos_biblicos">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>Palestras, preleções especiais:</label>
-                            <input type="text" value="{{$resource->palestras_prelecoes ?? ''}}"
+                            <input type="number" value="{{$resource->palestras_prelecoes ?? ''}}"
                                    name="palestras_prelecoes">
                         </div>
                         <div class="four wide field">
                             <label>Mensagens - Rádio/TV:</label>
-                            <input type="text" value="{{$resource->msg_radio ?? ''}}" name="msg_radio">
+                            <input type="number" value="{{$resource->msg_radio ?? ''}}" name="msg_radio">
                         </div>
                         <div class="four wide field">
                             <label>Artigos-jornais, boletins, revistas:</label>
-                            <input type="text" value="{{$resource->artigos_boletins_revistas ?? ''}}"
+                            <input type="number" value="{{$resource->artigos_boletins_revistas ?? ''}}"
                                    name="artigos_boletins_revistas">
                         </div>
                         <div class="four wide field">
                             <label>Entrevistas:</label>
-                            <input type="text" value="{{$resource->entrevistas ?? ''}}" name="entrevistas">
+                            <input type="number" value="{{$resource->entrevistas ?? ''}}" name="entrevistas">
                         </div>
                     </div>
                 </div>
@@ -452,29 +460,29 @@
                     <div class="fields">
                         <div class="five wide field">
                             <label>Santas Ceias:</label>
-                            <input type="text" value="{{$resource->santa_ceia ?? ''}}" name="santa_ceia">
+                            <input type="number" value="{{$resource->santa_ceia ?? ''}}" name="santa_ceia">
                         </div>
                         <div class="six wide field">
                             <label>Bênçãos Nupciais (com ou sem efeito civil):</label>
-                            <input type="text" value="{{$resource->bencaos_nupciais ?? ''}}" name="bencaos_nupciais">
+                            <input type="number" value="{{$resource->bencaos_nupciais ?? ''}}" name="bencaos_nupciais">
                         </div>
                         <div class="five wide field">
                             <label>Funerais:</label>
-                            <input type="text" value="{{$resource->funerais ?? ''}}" name="funerais">
+                            <input type="number" value="{{$resource->funerais ?? ''}}" name="funerais">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="five wide field">
                             <label>Batismos Infantis:</label>
-                            <input type="text" value="{{$resource->batismos ?? ''}}" name="batismos">
+                            <input type="number" value="{{$resource->batismos ?? ''}}" name="batismos">
                         </div>
                         <div class="six wide field">
                             <label>Profissões de Fé:</label>
-                            <input type="text" value="{{$resource->profissoes_fe ?? ''}}" name="profissoes_fe">
+                            <input type="number" value="{{$resource->profissoes_fe ?? ''}}" name="profissoes_fe">
                         </div>
                         <div class="five wide field">
                             <label>Profissões de Fé & Batismos:</label>
-                            <input type="text" value="{{$resource->profissoes_batismos ?? ''}}"
+                            <input type="number" value="{{$resource->profissoes_batismos ?? ''}}"
                                    name="profissoes_batismos">
                         </div>
                     </div>
@@ -487,20 +495,21 @@
                     <div class="fields">
                         <div class="four wide field">
                             <label>Aconselhamentos/Orientações:</label>
-                            <input type="text" value="{{$resource->aconselhamentos ?? ''}}" name="aconselhamentos">
+                            <input type="number" value="{{$resource->aconselhamentos ?? ''}}" name="aconselhamentos">
                         </div>
                         <div class="four wide field" data-tooltip="Considerar as visitas feitas nos lares como uma
                                 visita.">
                             <label>Evangélicos ou não</label>
                             <input type="number" value="0" name="visitas_evangelicos">
                         </div>
-                        <div class="four wide field" data-tooltip="Pontos de Pregação, Congregações ou Campos Missionários">
+                        <div class="four wide field"
+                             data-tooltip="Pontos de Pregação, Congregações ou Campos Missionários">
                             <label>Campos de Atuação</label>
-                            <input type="text" value="{{$resource->visitas_igrejas ?? ''}}" name="visitas_igrejas">
+                            <input type="number" value="{{$resource->visitas_igrejas ?? ''}}" name="visitas_igrejas">
                         </div>
                         <div class="four wide field">
                             <label>Departamentos Internos</label>
-                            <input type="text" value="{{$resource->departamentos_internos ?? ''}}"
+                            <input type="number" value="{{$resource->departamentos_internos ?? ''}}"
                                    name="departamentos_internos">
                         </div>
                     </div>
@@ -533,36 +542,38 @@
                     <div class="fields">
                         <div class="four wide field">
                             <label>Reuniões do Conselho:</label>
-                            <input type="text" value="{{$resource->reunioes_conselho ?? ''}}" name="reunioes_conselho">
+                            <input type="number" value="{{$resource->reunioes_conselho ?? ''}}"
+                                   name="reunioes_conselho">
                         </div>
                         <div class="four wide field">
                             <label>Assembleias Gerais da Igreja:</label>
-                            <input type="text" value="{{$resource->assembleias ?? ''}}" name="assembleias">
+                            <input type="number" value="{{$resource->assembleias ?? ''}}" name="assembleias">
                         </div>
                         <div class="four wide field">
                             <label>Diáconos Ordenados e/ou Investidos:</label>
-                            <input type="text" value="{{$resource->diaconos_ordenados_investidos ?? ''}}"
+                            <input type="number" value="{{$resource->diaconos_ordenados_investidos ?? ''}}"
                                    name="diaconos_ordenados_investidos">
                         </div>
                         <div class="four wide field">
                             <label>Presbíteros Ordenados e/ou Investidos:</label>
-                            <input type="text" value="{{$resource->presbiteros_ordenados_investidos ?? ''}}"
+                            <input type="number" value="{{$resource->presbiteros_ordenados_investidos ?? ''}}"
                                    name="presbiteros_ordenados_investidos">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="four wide field">
                             <label>Reuniões do Presbitério:</label>
-                            <input type="text" value="{{$resource->reunioes_presbiterio ?? ''}}"
+                            <input type="number" value="{{$resource->reunioes_presbiterio ?? ''}}"
                                    name="reunioes_presbiterio">
                         </div>
                         <div class="four wide field">
                             <label>Reuniões do Sínodo:</label>
-                            <input type="text" value="{{$resource->reunioes_sinodo ?? ''}}" name="reunioes_sinodo">
+                            <input type="number" value="{{$resource->reunioes_sinodo ?? ''}}" name="reunioes_sinodo">
                         </div>
                         <div class="four wide field">
                             <label>Reuniões do Supremo Concílio da IPB:</label>
-                            <input type="text" value="{{$resource->reunioes_concilio ?? ''}}" name="reunioes_concilio">
+                            <input type="number" value="{{$resource->reunioes_concilio ?? ''}}"
+                                   name="reunioes_concilio">
                         </div>
                     </div>
                     <div class="fields">
@@ -727,4 +738,13 @@
             }).trigger('change');
         });
     </script>
+    @isset($resource)
+
+    @else
+        <script>
+            window.addEventListener("load", function () {
+                $('[type="number"]').val(0)
+            });
+        </script>
+    @endisset
 @endsection
