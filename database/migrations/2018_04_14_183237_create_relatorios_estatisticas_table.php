@@ -62,6 +62,8 @@ class CreateRelatoriosEstatisticasTable extends Migration
             $table->integer('rma_restauracao_fem')->nullable();
             $table->integer('rma_designacao_masc')->nullable();
             $table->integer('rma_designacao_fem')->nullable();
+            $table->integer('rma_transferencia_masc')->nullable();
+            $table->integer('rma_transferencia_fem')->nullable();
 
             $table->integer('rma_batismo_masc_nc')->nullable();
             $table->integer('rma_batismo_fem_nc')->nullable();
