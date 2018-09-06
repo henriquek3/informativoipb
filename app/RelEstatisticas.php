@@ -19,7 +19,7 @@ class RelEstatisticas extends Model implements Auditable
      * @var array
      */
     protected $guarded = [
-        'id', 'created_at', 'deleted_at', 'updated_at',
+        'id', 'created_at', 'deleted_at', 'updated_at', 'id_presbitero'
     ];
 
     /**
