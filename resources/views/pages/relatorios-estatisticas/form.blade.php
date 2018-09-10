@@ -1344,6 +1344,26 @@
     </div>
 @endsection
 @section('javascript')
+    <script>
+        window.addEventListener("load", function () {
+            /*$('.money').mask("#.##0,00", {reverse: true});
+            $('.ui.dropdown').dropdown();*/
+            $('[name="status_relatorio"]').change(function () {
+                if (this.checked) {
+                    $('input').attr('disabled', true);
+                    $('select').attr('disabled', true);
+                    $('textarea').attr('disabled', true);
+                    $('.selection').addClass('disabled');
+                    this.disabled = false;
+                } else {
+                    $('input').attr('disabled', false);
+                    $('select').attr('disabled', false);
+                    $('textarea').attr('disabled', false);
+                    $('.selection').removeClass('disabled');
+                }
+            }).trigger('change');
+        });
+    </script>
     @isset($resource)
     @else
         <script>
