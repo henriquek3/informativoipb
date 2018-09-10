@@ -728,6 +728,7 @@
                     $('select').attr('disabled', true);
                     $('textarea').attr('disabled', true);
                     $('.selection').addClass('disabled');
+                    $('[type="hidden"]').attr('disabled', false);
                     this.disabled = false;
                 } else {
                     $('input').attr('disabled', false);

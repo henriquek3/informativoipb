@@ -112,13 +112,14 @@ class RelMinistroController extends Controller
      */
     public function update(RelatoriosRequest $request, RelMinistros $relMinistros, $id)
     {
+        $data = $request->all();
         if (is_null($request->get('status_relatorio'))) {
             $data['status_relatorio'] = 0;
         }
         try {
             DB::beginTransaction();
             $resource = $relMinistros->findOrfail((int)$id);
-            $resource->update($request->all());
+            $resource->update($data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();

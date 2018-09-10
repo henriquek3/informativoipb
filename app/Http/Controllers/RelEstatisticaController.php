@@ -111,10 +111,14 @@ class RelEstatisticaController extends Controller
      */
     public function update(RelatoriosRequest $request, RelEstatisticas $relEstatisticas, $id)
     {
+        $data = $request->all();
+        if (is_null($request->get('status_relatorio'))) {
+            $data['status_relatorio'] = 0;
+        }
         try {
             DB::beginTransaction();
             $resource = $relEstatisticas->findOrfail((int)$id);
-            $resource->update($request->all());
+            $resource->update($data);
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
