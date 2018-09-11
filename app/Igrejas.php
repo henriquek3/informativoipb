@@ -17,6 +17,15 @@ class Igrejas extends Model implements Auditable
         'id', 'created_at', 'deleted_at', 'updated_at',
     ];
 
+    public function setCnpjAttribute($value)
+    {
+        if (empty($value)) {
+            $this->attributes['cnpj'] = NULL;
+        } else {
+            $this->attributes['cnpj'] = $value;
+        }
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

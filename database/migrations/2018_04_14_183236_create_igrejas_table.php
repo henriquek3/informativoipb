@@ -19,11 +19,12 @@ class CreateIgrejasTable extends Migration
             $table->foreign('id_presbiterio')->references('id')->on('presbiterios');
             $table->unsignedInteger('id_sinodo');
             $table->foreign('id_sinodo')->references('id')->on('sinodos');
+            $table->unsignedInteger('id_igreja')->nullable()->comments('Usado em caso de ser uma congregação');
             $table->unsignedInteger('id_estado');
             $table->foreign('id_estado')->references('id')->on('estados');
             $table->unsignedInteger('id_cidade');
             $table->foreign('id_cidade')->references('id')->on('cidades');
-            $table->unsignedInteger('congregacao_presbiterio')->nullable();
+            $table->unsignedInteger('congregacao')->nullable()->comments('1-Sinodo, 2-Presbiterio');
             $table->string('cnpj', 20)->unique('cnpj');
             $table->string('nome');
             $table->string('data_organizacao', 10)->nullable();

@@ -56,6 +56,7 @@ Route::prefix('cadastros')->group(function () {
     | Web Routes IgrejaCongregacaoController
     |--------------------------------------------------------------------------
     */
+    Route::get('/congregacoes', 'IgrejaCongregacaoController@index');
     Route::get('/igrejas/{id}/congregacoes/novo', 'IgrejaCongregacaoController@create')->where(['id' => '[0-9]+']);
     Route::get('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@edit')->where(['id' => '[0-9]+']);
     Route::put('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@update')->where(['id' => '[0-9]+']);
