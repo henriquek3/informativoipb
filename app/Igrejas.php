@@ -65,4 +65,30 @@ class Igrejas extends Model implements Auditable
     {
         return $this->belongsTo(\App\Cidades::class, 'id_cidade');
     }
+
+    public function relatorioEstatistica()
+    {
+        return $this->hasMany(\App\RelEstatisticas::class, 'id_igreja')->where('ano', '=', Date('Y'));
+    }
+
+    public function relatorioConselho()
+    {
+        return $this->hasMany(\App\RelConselhos::class, 'id_igreja')->where('ano', '=', Date('Y'));
+    }
+
+    public function relatorioMinistro()
+    {
+        return $this->hasMany(\App\RelMinistros::class, 'id_igreja')->where('ano', '=', Date('Y'));
+    }
+
+    public function statusRelatorio()
+    {
+        $relEstatistica = $this->has('relatorioEstatistica')->exists();
+        $relConselho = $this->has('relatorioConselho')->exists();
+        $relMinistro = $this->has('relatorioMinistro')->exists();
+        $response['estatistica'] = $relEstatistica;
+        $response['conselho'] = $relConselho;
+        $response['ministro'] = $relMinistro;
+        return $response;
+    }
 }

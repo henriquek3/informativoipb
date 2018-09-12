@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Estados;
+use App\Igrejas;
 use App\PlePresbiterios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -81,11 +82,14 @@ class PlePresbiterioController extends Controller
      * @param  \App\PlePresbiterios $plePresbiterios
      * @return \Illuminate\Http\Response
      */
-    public function edit(PlePresbiterios $plePresbiterios, Estados $estados, $id)
+    public function edit(PlePresbiterios $plePresbiterios, Estados $estados, Igrejas $igrejas, $id)
     {
+        $igrejas = $igrejas->where('id_presbiterio', '=', auth()->user()->presbitero->id_presbiterio);
+        $igrejas = $igrejas->has('relatorioMinistro')->orHas('relatorioEstatistica')->orHas('relatorioConselho');
         return view('pages.reunioes-presbiterio.form', [
             'estados' => $estados->all(),
             'resource' => $plePresbiterios->where('id', '=', $id)->with('usuario')->first(),
+            'igrejas' => $igrejas->get()
         ]);
     }
 

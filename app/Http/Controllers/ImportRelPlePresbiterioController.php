@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Igrejas;
 use App\ImportRelPlePresbiterio;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class ImportRelPlePresbiterioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ImportRelPlePresbiterio $importRelPlePresbiterio)
+    public function create(ImportRelPlePresbiterio $importRelPlePresbiterio, Igrejas $igrejas)
     {
         $sql = "select upper(s.sigla)                   as sinodo,
                        upper(p.sigla)                   as presbiterio,
@@ -40,8 +41,11 @@ class ImportRelPlePresbiterioController extends Controller
                        left join relatorios_estatisticas re on igrejas.id = re.id_igreja
                        left join relatorios_ministros rm on igrejas.id = rm.id_igreja";
 
+        $igrejas = $igrejas->where('id_presbiterio', '=', auth()->user()->presbitero->id_presbiterio);
+        $igrejas = $igrejas->has('relatorioMinistro')->orHas('relatorioEstatistica')->orHas('relatorioConselho');
+
         return view('pages.reunioes-presbiterio.relatorios.form', [
-            'resources' => $importRelPlePresbiterio->paginate(15)
+            'resources' => $igrejas->paginate(10)
         ]);
     }
 

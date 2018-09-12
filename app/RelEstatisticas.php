@@ -29,4 +29,9 @@ class RelEstatisticas extends Model implements Auditable
     {
         return $this->belongsTo("App\User", "user_id", "id");
     }
+
+    public function relatorioImportado()
+    {
+        return $this->hasMany(\App\ImportRelPlePresbiterio::class, 'id_relatorio_estatistica');
+    }
 }

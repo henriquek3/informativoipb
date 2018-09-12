@@ -32,7 +32,9 @@
                     </div>
                     <div class="five wide field">
                         <label>Sínodo</label>
-                        <input type="text" @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->sinodo->nome}}" @endif readonly>
+                        <input type="text"
+                               @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->sinodo->nome}}"
+                               @endif readonly>
                     </div>
                     <div class="six wide field">
                         <label>Presbitério</label>
@@ -99,9 +101,6 @@
         <script type="text/javascript" async>
             try {
                 window.addEventListener("load", function () {
-                    /**
-                     * Function para o select Estado de NASCIMENTO
-                     */
                     if ($('[name="id_estado"]').val() > 0) {
                         $('[name="id_cidade"]').children().remove();
                         $("#div_cidade").find(".search").hide();

@@ -27,7 +27,7 @@ class RelEstatisticaController extends Controller
     public function index(RelEstatisticas $relEstatisticas)
     {
         return view("pages.relatorios-estatisticas.index", [
-            "resources" => $relEstatisticas->paginate(10)
+            "resources" => $relEstatisticas->where('id_igreja', '=', auth()->user()->id_igreja)->paginate(10)
         ]);
     }
 
@@ -39,8 +39,10 @@ class RelEstatisticaController extends Controller
     public function create(RelEstatisticas $relEstatisticas)
     {
         try {
-            $resource = $relEstatisticas->where('ano', '=', Date("Y"))->count();
-            if ($resource === 1) {
+            $resource = $relEstatisticas->where('ano', '=', Date("Y"))
+                ->where('id_igreja', '=', auth()->user()->id_igreja)
+                ->exists();
+            if ($resource) {
                 //throw new \Exception("Não é possível inserir mais de um relatório por ano, edite o que já existe");
                 return redirect()->back()->with('config_message', 'Não é possível inserir mais de um relatório por ano, edite o relatório que já existe.');
             }
@@ -96,6 +98,7 @@ class RelEstatisticaController extends Controller
     {
         return view('pages.relatorios-estatisticas.form', [
             'resource' => $relEstatisticas->where('id', '=', $id)
+                ->where('id_igreja', '=', auth()->user()->id_igreja)
                 ->with('usuario', 'usuario.presbitero.igreja', 'usuario.presbitero.igreja.presbiterio', 'usuario.presbitero.igreja.presbiterio.sinodo')
                 ->first()
         ]);

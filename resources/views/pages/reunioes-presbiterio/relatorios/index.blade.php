@@ -19,33 +19,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>IGREJA PRESBITERIANA LUZ E VIDA</td>
-            <td><i class="large file alternate outline yellow icon"></i>Parcial</td>
-            <td class="center aligned" title="Editar Sínodo">
-                <a class="ui icon primary button" href="/cadastros/congregacoes//editar">
-                    <i class="pencil alternate icon"></i>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>IGREJA PRESBITERIANA CACOAL</td>
-            <td><i class="large file green icon"></i>Completa</td>
-            <td class="center aligned" title="Editar Sínodo">
-                <a class="ui icon primary button" href="/cadastros/congregacoes//editar">
-                    <i class="pencil alternate icon"></i>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>IGREJA PRESBITERIANA CACOAL</td>
-            <td><i class="large file outline red icon"></i>Pendente</td>
-            <td class="center aligned" title="Editar Sínodo">
-                <a class="ui icon primary button" href="/cadastros/congregacoes//editar">
-                    <i class="pencil alternate icon"></i>
-                </a>
-            </td>
-        </tr>
+        @forelse($igrejas as $rs)
+            {{--@dd($rs->statusRelatorio())--}}
+            <tr>
+                <td>{{mb_strtoupper($rs->nome, 'utf-8')}}</td>
+                <td><i class="large file alternate outline yellow icon"></i>Parcial</td>
+                <td class="center aligned" title="Editar Sínodo">
+                    <a class="ui icon primary button" href="/cadastros/congregacoes//editar">
+                        <i class="pencil alternate icon"></i>
+                    </a>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="3">Nenhum registro encontrado.</td>
+            </tr>
+        @endforelse
         </tbody>
         <tfoot>
         <tr>
