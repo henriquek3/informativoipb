@@ -37,9 +37,6 @@
                         <input type="hidden" name="id_presbiterio"
                                @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->id}}" @endif>
                     </div>
-                    <input type="hidden" readonly="" name="id_presbitero"
-                           @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->id}}" @endif>
-
                 </div>
 
             </div>
@@ -766,23 +763,26 @@
                     </div>
                 </div>
             </div>
-            <div class="ui segments">
-                <div class="ui horizontal segments">
-                    <div class="ui segment"><span
-                                style="color: lightslategray;"><strong>Usuário:</strong></span><span
-                                style="color: lightslategray;">&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}
-                            <span id="user_inc"></span>&nbsp;</span><span
-                                style="float: right;color: lightslategray;"><strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}
-                            <span id="data_inc"></span></span></div>
+            <div class="ui horizontal segments">
+                <div class="ui segment">
+                    <span><strong>Usuário:</strong></span>
+                    <span>&nbsp; {{ isset($resource) === true ? $resource->usuario->nome : ''}}</span>
+                </div>
+                <div class="ui segment">
+                    <span><strong>Data:</strong>&nbsp; {{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}</span>
+                </div>
+                <div class="ui right aligned segment" style="width: 30px;">
+                    <span class="ui toggle checkbox"
+                          data-tooltip="Bloqueia edição e altera o status para finalizado">
+                    <input type="checkbox" name="status_relatorio" value="1" @isset($resource) {{$resource->status_relatorio === 1 ? ' checked' : ''}} @endisset>
+                    <label>Relatório Finalizado</label>
+                </span>
                 </div>
             </div>
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
-                <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Salvar</button>
-                <button class="ui reset button" type="reset"><i class="minus icon"></i>Limpar</button>
-                <button class="ui red right labeled icon button" type="submit" form="formDelete"><i
-                            class="remove icon"></i>Excluir
-                </button>
+                <button class="ui green labeled icon button" type="submit"><i class="plus icon"></i>Gravar</button>
+                <button class="ui right labeled icon button" type="reset"><i class="minus icon"></i>Limpar</button>
             </div>
         </form>
     </div>
