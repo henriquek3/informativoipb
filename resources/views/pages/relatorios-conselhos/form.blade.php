@@ -2,7 +2,7 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui raised segment"><a class="ui right floated blue tiny button" href="/cadastros/sinodos"><i
+    <div class="ui raised segment"><a class="ui right floated blue tiny button" href="/relatorios/conselho"><i
                     class="reply icon"></i>Voltar</a>
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="edit outline icon"></i>
         </h3>
@@ -48,7 +48,7 @@
                     <div class="fields">
                         <div class="two wide field" data-tooltip="Este valor não pode ser alterado.">
                             <label>ID</label>
-                            <input type="text" readonly="" value="{{auth()->user()->presbitero->id}}">
+                            <input type="text" readonly="" value="{{auth()->user()->presbitero->igreja->id}}">
                         </div>
                         <div class="fourteen wide field">
                             <label>Nome (Igreja/Congregação)</label>
