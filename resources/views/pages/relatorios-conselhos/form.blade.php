@@ -263,7 +263,7 @@
                         <div class="two wide field">
                             <input type="number" value="{{ $resource->se_atividades_evangelisticas ?? "" }}" name="se_atividades_evangelisticas">
                         </div>
-                        <div class="ui tiny message">
+                        <div class="ui span">
                             <label>* em templos e residências; recintos públicos ou ar livre; imprensa escrita,
                                 rádio e TV, etc.</label>
                         </div>
@@ -303,19 +303,19 @@
                         </div>
                         <div class="two wide field ui checkbox">
                             <label>JMN</label>
-                            <input name="se_trabalho_missionario_jmn" type="checkbox" value="1">
+                            <input name="se_trabalho_missionario_jmn" type="checkbox" value="1" {{isset($resource) ? $resource->se_trabalho_missionario_jmn === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="two wide field ui checkbox">
                             <label>APMT</label>
-                            <input name="se_trabalho_missionario_apmt" type="checkbox" value="1">
+                            <input name="se_trabalho_missionario_apmt" type="checkbox" value="1" {{isset($resource) ? $resource->se_trabalho_missionario_apmt === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="three wide field ui checkbox">
                             <label>Parceria com o PMC</label>
-                            <input name="se_trabalho_missionario_pmc" type="checkbox" value="1">
+                            <input name="se_trabalho_missionario_pmc" type="checkbox" value="1" {{isset($resource) ? $resource->se_trabalho_missionario_pmc === 1 ? 'checked' : '' : ''}}>
                         </div>
                         <div class="three wide field ui checkbox">
                             <label>Plantação de Igrejas</label>
-                            <input name="se_trabalho_missionario_plantacao" type="checkbox" value="1">
+                            <input name="se_trabalho_missionario_plantacao" type="checkbox" value="1" {{isset($resource) ? $resource->se_trabalho_missionario_plantacao === 1 ? 'checked' : '' : ''}}>
                         </div>
                     </div>
                     <div class="inline fields">
@@ -455,9 +455,9 @@
                         </div>
                         <div class="four wide field">
                             <select class="ui fluid search dropdown" name="sa_reunioes_conselho">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
+                                <option value="1" @isset($resource) {{$resource->sa_reunioes_conselho === 1 ? ' selected' : ''}} @endisset>Igreja</option>
+                                <option value="2" @isset($resource) {{$resource->sa_reunioes_conselho === 2 ? ' selected' : ''}} @endisset>Congregação Presbiterial</option>
+                                <option value="3" @isset($resource) {{$resource->sa_reunioes_conselho === 3 ? ' selected' : ''}} @endisset>Ambas</option>
                             </select>
                         </div>
                         <div class="four wide field">
@@ -465,9 +465,9 @@
                         </div>
                         <div class="four wide field">
                             <select class="ui fluid search dropdown" name="sa_reunioes_mesa_administrativa">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
+                                <option value="1" @isset($resource) {{$resource->sa_reunioes_mesa_administrativa === 1 ? ' selected' : ''}} @endisset>Igreja</option>
+                                <option value="2" @isset($resource) {{$resource->sa_reunioes_mesa_administrativa === 2 ? ' selected' : ''}} @endisset>Congregação Presbiterial</option>
+                                <option value="3" @isset($resource) {{$resource->sa_reunioes_mesa_administrativa === 3 ? ' selected' : ''}} @endisset>Ambas</option>
                             </select>
                         </div>
                     </div>
@@ -477,9 +477,9 @@
                         </div>
                         <div class="four wide field">
                             <select class="ui fluid search dropdown" name="sa_reunioes_jdiaconal">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
+                                <option value="1" @isset($resource) {{$resource->sa_reunioes_jdiaconal === 1 ? ' selected' : ''}} @endisset>Igreja</option>
+                                <option value="2" @isset($resource) {{$resource->sa_reunioes_jdiaconal === 2 ? ' selected' : ''}} @endisset>Congregação Presbiterial</option>
+                                <option value="3" @isset($resource) {{$resource->sa_reunioes_jdiaconal === 3 ? ' selected' : ''}} @endisset>Ambas</option>
                             </select>
                         </div>
                         <div class="four wide field">
@@ -487,9 +487,9 @@
                         </div>
                         <div class="four wide field">
                             <select class="ui fluid search dropdown" name="sa_reunioes_tesouraria">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
+                                <option value="1" @isset($resource) {{$resource->sa_reunioes_tesouraria === 1 ? ' selected' : ''}} @endisset>Igreja</option>
+                                <option value="2" @isset($resource) {{$resource->sa_reunioes_tesouraria === 2 ? ' selected' : ''}} @endisset>Congregação Presbiterial</option>
+                                <option value="3" @isset($resource) {{$resource->sa_reunioes_tesouraria === 3 ? ' selected' : ''}} @endisset>Ambas</option>
                             </select>
                         </div>
                     </div>
@@ -499,16 +499,16 @@
                         </div>
                         <div class="four wide field">
                             <select class="ui fluid search dropdown" name="sa_reunioes_assembleia">
-                                <option value="1">Igreja</option>
-                                <option value="2">Congregação Presbiterial</option>
-                                <option value="3">Ambas</option>
+                                <option value="1" @isset($resource) {{$resource->sa_reunioes_assembleia === 1 ? ' selected' : ''}} @endisset>Igreja</option>
+                                <option value="2" @isset($resource) {{$resource->sa_reunioes_assembleia === 2 ? ' selected' : ''}} @endisset>Congregação Presbiterial</option>
+                                <option value="3" @isset($resource) {{$resource->sa_reunioes_assembleia === 3 ? ' selected' : ''}} @endisset>Ambas</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="ui form segment">
                     <div class="inline fields">
-                        <div class="seven wide field">
+                        <div class="six wide field">
                             <label>3.7. Houve exame/aprovação balancetes da tesouraria?</label>
                         </div>
                         <div class="one wide field">
@@ -521,7 +521,7 @@
                         </div>
                     </div>
                     <div class="inline fields">
-                        <div class="seven wide field">
+                        <div class="six wide field">
                             <label>3.8. Há oficiais com mandato a vencer no ano a seguir?</label>
                         </div>
                         <div class="one wide field">
