@@ -296,12 +296,6 @@
                         <div class="one wide field">
                             <input type="number" value="{{ $resource->se_textos_distribuidos_outros ?? "" }}" name="se_textos_distribuidos_outros">
                         </div>
-                        <div class="one wide field">
-                            <label>Total</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" id="somaTextos">
-                        </div>
                     </div>
                     <div class="inline fields">
                         <div class="five wide field" data-tooltip="Qual trabalho missionário realizado?">
@@ -415,12 +409,6 @@
                         <div class="two wide field">
                             <input type="number" value="{{ $resource->se_beneficientes_outros ?? "" }}" name="se_beneficientes_outros">
                         </div>
-                        <div class="one wide field">
-                            <label>Total</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" id="somaBeneficientes">
-                        </div>
                     </div>
                     <div class="inline fields">
                         <div class="six wide field"
@@ -436,12 +424,6 @@
                         </div>
                         <div class="two wide field">
                             <input type="number" value="{{ $resource->se_visitas_outros ?? "" }}" name="se_visitas_outros">
-                        </div>
-                        <div class="one wide field">
-                            <label>Total</label>
-                        </div>
-                        <div class="two wide field">
-                            <input type="text" id="somaVisitas">
                         </div>
                     </div>
                 </div>
