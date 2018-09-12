@@ -1344,6 +1344,7 @@
     </div>
 @endsection
 @section('javascript')
+    <script src="{{asset('js/plugins/jquery.mask.min.js')}}"></script>
     <script>
         window.addEventListener("load", function () {
             $('.money').mask("#.##0,00", {reverse: true});
