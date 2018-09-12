@@ -37,6 +37,8 @@
                         <input type="hidden" name="id_presbiterio"
                                @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->id}}" @endif>
                     </div>
+                    <input type="hidden" readonly="" name="id_presbitero"
+                           @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->id}}" @endif>
 
                 </div>
 
@@ -152,15 +154,15 @@
                                 <label>Declarações Anteriores</label>
                             </div>
                             <div class="eight wide field">
-                                <div class="ui checkbox">
+                                <div class="six wide field ui checkbox">
                                     <input name="or_declaracao_ano_anterior_irenda" value="1" type="checkbox">
                                     <label>IRenda</label>
                                 </div>
-                                <div class="ui checkbox">
+                                <div class="six wide field ui checkbox">
                                     <input name="or_declaracao_ano_anterior_rais" value="1" type="checkbox">
                                     <label>RAIS</label>
                                 </div>
-                                <div class="ui checkbox">
+                                <div class="six wide field ui checkbox">
                                     <input name="or_declaracao_ano_anterior_dirf" value="1" type="checkbox">
                                     <label>DIRF</label>
                                 </div>
@@ -170,7 +172,7 @@
                     <div class="inline fields">
                         <div class="eight wide field"
                              data-tooltip="A igreja organizou o inventário dos imóveis e utensílios?">
-                            <div class="ten wide field"><span class="ui label">1.1.2.</span>
+                            <div class="ten wide field"><span class="ui label">1.1.2</span>
                                 <label>Inventário patrimonial</label>
                             </div>
                             <div class="six wide field">
@@ -186,10 +188,10 @@
                         </div>
                         <div class="eight wide field"
                              data-tooltip="Caso a igreja tenha inventário, ele esta devidamente atualizado?">
-                            <div class="ten wide field"><span class="ui label">1.1.5.</span>
+                            <div class="eight wide field"><span class="ui label">1.1.5</span>
                                 <label>Inventário atualizado</label>
                             </div>
-                            <div class="six wide field">
+                            <div class="eight wide field">
                                 <div class="ui radio checkbox">
                                     <input name="or_inventario_atualizado" type="radio" value="1" {{isset($resource) ? $resource->or_inventario_atualizado === 1 ? 'checked' : '' : ''}}>
                                     <label>Sim</label>
@@ -203,7 +205,7 @@
                     </div>
                     <div class="inline fields">
                         <div class="eight wide field" data-tooltip="A igreja conta com o rol de membro atualizado?">
-                            <div class="ten wide field"><span class="ui label">1.1.3.</span>
+                            <div class="ten wide field"><span class="ui label">1.1.3</span>
                                 <label>Rol de membros Atualizado</label>
                             </div>
                             <div class="six wide field">
@@ -219,10 +221,10 @@
                         </div>
                         <div class="eight wide field"
                              data-tooltip="Quantas congregações estão vinculadas a igreja?">
-                            <div class="ten wide field"><span class="ui label">1.1.6.</span>
+                            <div class="eight wide field"><span class="ui label">1.1.6</span>
                                 <label>Quantidade congregações?</label>
                             </div>
-                            <div class="six wide field">
+                            <div class="four wide field">
                                 <input type="text" value="{{ $resource->or_nr_congregacoes ?? "" }}" name="or_nr_congregacoes">
                             </div>
                         </div>
@@ -235,24 +237,19 @@
                 <div class="ui form segment">
                     <div class="inline fields">
                         <div class="sixteen wide field" data-tooltip="Quantidade de cerimônias realizadas">
-                            <div class="four wide field"><span class="ui label">2.1.1</span>
+                            <div class="three wide field"><span class="ui label">2.1.1</span>
                                 <label>Santa Ceia - Grupos</label>
                             </div>
                             <div class="two wide field">
                                 <input type="text" value="{{ $resource->se_santaceia_grupos ?? "" }}" name="se_santaceia_grupos">
                             </div>
-                            <div class="four wide field">
+                            <div class="three wide field">
                                 <label>Santa Ceia - Individual</label>
                             </div>
                             <div class="two wide field">
                                 <input type="text" name="se_santaceia_individual" value="{{ $resource->se_santaceia_individual ?? "" }}">
                             </div>
-                            <div class="four wide field disabled">
-                                <div class="ui labeled input">
-                                    <div class="ui label">Total</div>
-                                    <input type="text" id="somaCeia">
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
