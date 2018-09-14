@@ -2,8 +2,7 @@
 @section('css')@endsection
 @section('content')
     <div class="ui clearing"></div>
-    <div class="ui raised segment"><a class="ui right floated blue tiny button" href="/cadastros/presbiterios"><i
-                    class="reply icon"></i>Voltar</a>
+    <div class="ui raised segment">
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="bar chart icon"></i>
         </h3>
         <h1 class="ui floated header " style="margin-left: -10px;">Consulta Conselho
@@ -66,13 +65,13 @@
             </div>--}}
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
-                <button class="ui green labeled icon button" type="submit"><i class="search icon"></i>Pesquisar</button>
+                <button class="ui red labeled icon button" type="submit"><i class="search icon"></i>Pesquisar</button>
             </div>
         </form>
     </div>
 
     <div class="ui raised segment">
-        <table class="ui celled unstackable sortable green table">
+        <table class="ui celled unstackable sortable red table">
             <thead>
             <tr>
                 <th class="two wide center aligned">Ano</th>
@@ -85,17 +84,17 @@
             </thead>
             <tbody>
                 <tr>
-                    <td title="Último usuário a editar"></td>
-                    <td class="center aligned"></td>
-                    <td class="center aligned"></td>
-                    <td class="center aligned"></td>
-                    <td class="center aligned"></td>
+                    <td class="center aligned">2018</td>
+                    <td class="center aligned">Relatório do Conselho</td>
+                    <td class="center aligned">14/09/2018</td>
+                    <td class="center aligned">14/09/2018</td>
+                    <td class="center aligned">Importado</td>
                     <td class="center aligned" title="Imprimir Relatório"><a class="ui icon primary button" href="/relatorios/conselho/#/editar"><i
                                     class="print icon"></i></a></td>
                 </tr>
-                <tr>
+                {{--<tr>
                     <td colspan="6">Nenhum registro encontrado.</td>
-                </tr>
+                </tr>--}}
             </tbody>
             <tfoot>
             <tr>
