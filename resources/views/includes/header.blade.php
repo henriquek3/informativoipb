@@ -80,6 +80,10 @@
                         Consultas
                         <i class="dropdown icon"></i>
                         <div class="menu">
+                            <a class="item" href="/consultas/igrejas/conselho">
+                                <i class="radio icon"></i>
+                                Consulta Conselho - Teste
+                            </a>
                             <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Reuniões de Presbitérios

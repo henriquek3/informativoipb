@@ -181,3 +181,7 @@ Route::prefix('api')->group(function () {
     Route::get('/igrejas', 'IgrejaController@api');
     Route::get('/ministros', 'PresbiteroController@api');
 });
+
+Route::get('/consultas/igrejas/conselho', function(){
+    return view("pages.consulta-estatistica.index");
+});
