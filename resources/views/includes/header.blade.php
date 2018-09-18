@@ -84,10 +84,6 @@
                                 <i class="radio icon"></i>
                                 Consulta Conselho - Teste
                             </a>
-                            <a class="item" href="/consultas/igrejas/conselho/geral">
-                                <i class="radio icon"></i>
-                                Consulta Conselho - Geral
-                            </a>
                             <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Reuniões de Presbitérios
