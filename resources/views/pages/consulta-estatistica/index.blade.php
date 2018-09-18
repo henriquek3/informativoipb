@@ -15,7 +15,6 @@
         <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
             @csrf @method("delete")
         </form>
-        @dd(auth()->user()->perfil)
         @includeWhen(auth()->user()->perfil > 4, 'supremo')
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf @isset($resource) @method('put') @endisset
             <div class="ui form">
