@@ -15,13 +15,13 @@
         <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
             @csrf @method("delete")
         </form>
-        @includeWhen(auth()->user()->perfil > 4, 'supremo')
+        @includeWhen(auth()->user()->perfil > 5, 'supremo')
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf @isset($resource) @method('put') @endisset
             <div class="ui form">
                 <div class="fields">
                     <div class="two wide field">
                         <label>Ano</label>
-                        <select class="ui fluid dropdown" name="ano" required>
+                        <select class="ui fluid dropdown" name="ano" >
                             <option>2018</option>
                             <option>2017</option>
                         </select>
