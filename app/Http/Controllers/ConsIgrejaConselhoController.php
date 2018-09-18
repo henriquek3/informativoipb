@@ -13,6 +13,16 @@ class ConsIgrejaConselhoController extends Controller
      */
     public function index()
     {
+        return view("pages.consulta-estatistica.index");
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function geral()
+    {
         return view("pages.consulta-estatistica.consulta-geral");
     }
 
