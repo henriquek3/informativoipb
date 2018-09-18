@@ -45,7 +45,7 @@ class ConsultaConselhoController extends Controller
      */
     public function show($id)
     {
-        //
+        dd("teste");
     }
 
     /**

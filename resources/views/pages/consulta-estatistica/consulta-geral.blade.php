@@ -16,7 +16,7 @@
             @csrf @method("delete")
         </form>
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf @isset($resource) @method('put') @endisset
-            <div class="ui form">@if('$resource->presbitero->igreja->id' == '1' )
+            <div class="ui form">
                 <div class="fields">
                     <div class="eight wide field">
                         <label>Sínodo</label>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                </div>@endif
+                </div>
                 <div class="fields">
                     <div class="eight wide field" id="div_igreja">
                         <label>Igreja</label>
