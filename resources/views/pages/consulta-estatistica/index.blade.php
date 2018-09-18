@@ -5,7 +5,7 @@
     <div class="ui raised segment">
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="bar chart icon"></i>
         </h3>
-        <h1 class="ui floated header " style="margin-left: -10px;">Consulta Conselho
+        <h1 class="ui floated header " style="margin-left: -10px;">Consulta Estatística
             <div class="sub header" style="margin-left: -40px;">Visualize todos os relatórios do conselho que estão
                 cadastrados.
             </div>
@@ -17,20 +17,20 @@
         </form>
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf @isset($resource) @method('put') @endisset
 
-            @includeWhen(auth()->user()->perfil >= 4, 'pages.consulta-estatistica.supremo')
-            @includeWhen(auth()->user()->perfil == 3, 'pages.consulta-estatistica.sinodo')
-            @includeWhen(auth()->user()->perfil == 2, 'pages.consulta-estatistica.presbiterio')
-            @includeWhen(auth()->user()->perfil == 1, 'pages.consulta-estatistica.igreja')
+            @includeWhen(auth()->user()->perfil >= 4, 'pages.consulta-conselho.supremo')
+            @includeWhen(auth()->user()->perfil == 3, 'pages.consulta-conselho.sinodo')
+            @includeWhen(auth()->user()->perfil == 2, 'pages.consulta-conselho.presbiterio')
+            @includeWhen(auth()->user()->perfil == 1, 'pages.consulta-conselho.igreja')
 
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
-                <button class="ui red labeled icon button" type="submit"><i class="search icon"></i>Pesquisar</button>
+                <button class="ui green labeled icon button" type="submit"><i class="search icon"></i>Pesquisar</button>
             </div>
         </form>
     </div>
 
     <div class="ui raised segment">
-        <table class="ui celled unstackable sortable red table">
+        <table class="ui celled unstackable sortable green table">
             <thead>
             <tr>
                 <th class="two wide center aligned">Ano</th>

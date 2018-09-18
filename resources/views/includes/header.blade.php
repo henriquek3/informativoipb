@@ -84,6 +84,10 @@
                                 <i class="radio icon"></i>
                                 Consulta Conselho - Teste
                             </a>
+                            <a class="item" href="/consultas/igrejas/estatistica">
+                                <i class="radio icon"></i>
+                                Consulta Estatistica - Teste
+                            </a>
                             <a class="item" href="#">
                                 <i class="radio icon"></i>
                                 Reuniões de Presbitérios

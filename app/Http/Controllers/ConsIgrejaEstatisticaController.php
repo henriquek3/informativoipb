@@ -1,10 +1,16 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: kalle
+ * Date: 18/09/2018
+ * Time: 17:03
+ */
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ConsIgrejaConselhoController extends Controller
+class ConsIgrejaEstatisticaController
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +19,7 @@ class ConsIgrejaConselhoController extends Controller
      */
     public function index()
     {
-        return view("pages.consulta-conselho.index");
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function geral()
-    {
-        return view("pages.consulta-conselho.consulta-geral");
+        return view("pages.consulta-estatistica.index");
     }
 
     /**
