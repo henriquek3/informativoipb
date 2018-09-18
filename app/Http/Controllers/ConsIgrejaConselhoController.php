@@ -45,6 +45,7 @@ class ConsIgrejaConselhoController extends Controller
      */
     public function show(Request $request)
     {
+        // Bora Kalew!
         dd($request->all());
     }
 
