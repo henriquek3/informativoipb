@@ -15,45 +15,12 @@
         <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
             @csrf @method("delete")
         </form>
-        @includeWhen(auth()->user()->perfil > 4, 'pages.consulta-estatistica.supremo')
+        @includeWhen(auth()->user()->perfil >= 4, 'pages.consulta-estatistica.supremo')
+        @includeWhen(auth()->user()->perfil == 3, 'pages.consulta-estatistica.sinodo')
+        @includeWhen(auth()->user()->perfil == 2, 'pages.consulta-estatistica.presbiterio')
+        @includeWhen(auth()->user()->perfil == 1, 'pages.consulta-estatistica.igreja')
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf @isset($resource) @method('put') @endisset
-            <div class="ui form">
-                <div class="fields">
-                    <div class="two wide field">
-                        <label>Ano</label>
-                        <select class="ui fluid dropdown" name="ano" >
-                            <option>2018</option>
-                            <option>2017</option>
-                        </select>
-                    </div>
-                    <div class="six wide field">
-                        <label>Sínodo</label>
-                        <input type="text" readonly="" value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->nome}}" :readonly="">
 
-                        <input type="hidden" name="id_sinodo" value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->id}}">
-
-                    </div>
-                    <div class="eight wide field" id="div_presbiterio">
-                        <label>Presbitério</label>
-                        <input type="text" value="{{auth()->user()->presbitero->igreja->presbiterio->nome}}" readonly="">
-                        <input type="hidden" name="id_presbiterio" value="{{auth()->user()->presbitero->igreja->presbiterio->id}}">
-                    </div>
-                </div>
-                <div class="fields">
-                    <div class="eight wide field">
-                        <label>Nome (Igreja/Congregação)</label>
-                        <input type="text" readonly="" value="{{auth()->user()->presbitero->igreja->nome}} "@isset($resource) {{$resource->perfil == 1 ? '' : ''}} @endisset>
-
-                        <input type="hidden" name="id_igreja" value="{{auth()->user()->presbitero->igreja->id}}">
-                    </div>
-                    <div class="eight wide field">
-                        <label>Nome do Ministro</label>
-                        <input type="text" readonly="" value="{{auth()->user()->presbitero->nome}}">
-
-                        <input type="hidden" name="id_presbitero" value="{{auth()->user()->presbitero->id}}">
-                    </div>
-                </div>
-            </div>
             {{--<div class="ui segments">
                 <div class="ui horizontal segments">
                     <div class="ui segment">
@@ -109,10 +76,28 @@
     </div>
 @endsection
 @section('javascript')
-    <script>
-        window.addEventListener("load", function () {
-            $('.ui.dropdown').dropdown();
-        });
-    </script>
-
+    <script src="{{asset('js/plugins/jquery.mask.min.js')}}" async></script>
+    <script src="{{asset('js/plugins/CPF.js')}}" async></script>
+    <script src="{{asset('js/app/usuarios.js')}}"></script>
+    @isset($resource)
+        <script type="text/javascript">
+            window.addEventListener("load", function () {
+                try {
+                    //Function para o select IGREJA
+                    window.id_igreja = '{{$resource->id_igreja}}';
+                    window.id_presbitero = '{{$resource->id_presbitero}}';
+                    $('[name="id_presbiterio"]').trigger('change');
+                } catch (e) {
+                    alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');
+                }
+            });
+        </script>
+    @endisset
+    @if(session('email'))
+        <script type="text/javascript">
+            swal("Atenção!", "O usuário foi cadastrado, porém não podemos enviar o e-mail com a confirmação da senha, " +
+                "por favor, peça para o usuário acessar o link de recuperação de senha a partir da tela de login.!",
+                "info");
+        </script>
+    @endif
 @endsection
