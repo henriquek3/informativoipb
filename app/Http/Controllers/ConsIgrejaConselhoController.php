@@ -13,7 +13,7 @@ class ConsIgrejaConselhoController extends Controller
      */
     public function index()
     {
-        //
+        return view("pages.consulta-estatistica.index");
     }
 
     /**
