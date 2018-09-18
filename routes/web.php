@@ -182,6 +182,11 @@ Route::prefix('api')->group(function () {
     Route::get('/ministros', 'PresbiteroController@api');
 });
 
-Route::get('/consultas/igrejas/conselho', function(){
-    return view("pages.consulta-estatistica.index");
+Route::prefix('consultas')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes Consulta Conselho
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/igrejas/conselho', 'ConsIgrejaConselhoController@index');
 });
