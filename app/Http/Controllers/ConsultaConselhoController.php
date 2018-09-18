@@ -13,7 +13,7 @@ class ConsultaConselhoController extends Controller
      */
     public function index()
     {
-        return view("pages.consulta-estatistica.index");
+        return view("pages.consulta-estatistica.consulta-geral");
     }
 
     /**
