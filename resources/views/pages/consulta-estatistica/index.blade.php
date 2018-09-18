@@ -27,28 +27,29 @@
                     </div>
                     <div class="six wide field">
                         <label>Sínodo</label>
-                        <input type="text" readonly=""
-                               @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->sinodo->nome}}" @endif>
-                        <input type="hidden" name="id_sinodo"
-                               @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->sinodo->id}}" @endif>
+                        <input type="text" readonly="" value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->nome}}" :readonly="">
+
+                        <input type="hidden" name="id_sinodo" value="{{auth()->user()->presbitero->igreja->presbiterio->sinodo->id}}">
+
                     </div>
                     <div class="eight wide field" id="div_presbiterio">
                         <label>Presbitério</label>
-                        <input type="text"
-                               @if(!is_null(auth()->user()->pastor())) value="{{ auth()->user()->pastor()->igreja->presbiterio->sigla . ' / ' . auth()->user()->pastor()->igreja->presbiterio->nome}}"
-                               @endif readonly="">
-                        <input type="hidden" name="id_presbiterio"
-                               @if(!is_null(auth()->user()->pastor())) value="{{auth()->user()->pastor()->igreja->presbiterio->id}}" @endif>
+                        <input type="text" value="{{auth()->user()->presbitero->igreja->presbiterio->nome}}" readonly="">
+                        <input type="hidden" name="id_presbiterio" value="{{auth()->user()->presbitero->igreja->presbiterio->id}}">
                     </div>
                 </div>
                 <div class="fields">
                     <div class="eight wide field">
                         <label>Nome (Igreja/Congregação)</label>
-                        <input type="text" readonly="" value="{{auth()->user()->presbitero->igreja->nome}}">
+                        <input type="text" readonly="" value="{{auth()->user()->presbitero->igreja->nome}} "@isset($resource) {{$resource->perfil == 1 ? '' : ''}} @endisset>
+
+                        <input type="hidden" name="id_igreja" value="{{auth()->user()->presbitero->igreja->id}}">
                     </div>
                     <div class="eight wide field">
                         <label>Nome do Ministro</label>
                         <input type="text" readonly="" value="{{auth()->user()->presbitero->nome}}">
+
+                        <input type="hidden" name="id_presbitero" value="{{auth()->user()->presbitero->id}}">
                     </div>
                 </div>
             </div>
