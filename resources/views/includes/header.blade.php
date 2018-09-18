@@ -84,6 +84,10 @@
                                 <i class="radio icon"></i>
                                 Consulta Conselho - Teste
                             </a>
+                            <a class="item" href="/consultas/igrejas/ministerial">
+                                <i class="radio icon"></i>
+                                Consulta Ministerial - Teste
+                            </a>
                             <a class="item" href="/consultas/igrejas/estatistica">
                                 <i class="radio icon"></i>
                                 Consulta Estatistica - Teste

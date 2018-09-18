@@ -192,4 +192,6 @@ Route::prefix('consultas')->group(function () {
     Route::post('/igrejas/conselho', 'ConsIgrejaConselhoController@show');
     Route::get('/igrejas/estatistica', 'ConsIgrejaEstatisticaController@index');
     Route::post('/igrejas/estatistica', 'ConsIgrejaEstatisticaController@show');
+    Route::get('/igrejas/ministerial', 'ConsIgrejaMinisterialController@index');
+    Route::post('/igrejas/ministerial', 'ConsIgrejaMinisterialController@show');
 });

@@ -13,7 +13,7 @@
         </h1>
         <div class="ui clearing divider"></div>
         <p></p>
-        <table class="ui celled unstackable sortable green table">
+        <table class="ui celled unstackable sortable blue table">
             <thead>
             <tr>
                 <th class="five wide" title="Último usuário a editar">Usuário</th>

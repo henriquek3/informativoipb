@@ -24,7 +24,7 @@
 
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
-                <button class="ui red labeled icon button" type="submit"><i class="search icon"></i>Pesquisar</button>
+                <button class="ui green labeled icon button" type="submit"><i class="search icon"></i>Pesquisar</button>
             </div>
         </form>
     </div>
