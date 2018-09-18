@@ -15,23 +15,13 @@
         <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
             @csrf @method("delete")
         </form>
-        @includeWhen(auth()->user()->perfil >= 4, 'pages.consulta-estatistica.supremo')
-        @includeWhen(auth()->user()->perfil == 3, 'pages.consulta-estatistica.sinodo')
-        @includeWhen(auth()->user()->perfil == 2, 'pages.consulta-estatistica.presbiterio')
-        @includeWhen(auth()->user()->perfil == 1, 'pages.consulta-estatistica.igreja')
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf @isset($resource) @method('put') @endisset
 
-            {{--<div class="ui segments">
-                <div class="ui horizontal segments">
-                    <div class="ui segment">
-                        <span style="color: lightslategray;">
-                            <strong>Usuário inclusão:</strong>
-                        </span>
-                        <span style="color: lightslategray;">&nbsp;{{isset($resource) === true ? $resource->usuario->nome : ''}}</span>
-                        <span style="float: right;color: lightslategray;"><strong>Data:</strong>&nbsp;{{ isset($resource) === true ? $resource->updated_at->format("d/m/Y h:m") : ''}}</span>
-                    </div>
-                </div>
-            </div>--}}
+            @includeWhen(auth()->user()->perfil >= 4, 'pages.consulta-estatistica.supremo')
+            @includeWhen(auth()->user()->perfil == 3, 'pages.consulta-estatistica.sinodo')
+            @includeWhen(auth()->user()->perfil == 2, 'pages.consulta-estatistica.presbiterio')
+            @includeWhen(auth()->user()->perfil == 1, 'pages.consulta-estatistica.igreja')
+
             <div class="ui clearing divider"></div>
             <div style="text-align: center">
                 <button class="ui red labeled icon button" type="submit"><i class="search icon"></i>Pesquisar</button>
