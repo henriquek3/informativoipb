@@ -5,7 +5,7 @@
     <div class="ui raised segment">
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="bar chart icon"></i>
         </h3>
-        <h1 class="ui floated header " style="margin-left: -10px;">Consulta Conselho 2
+        <h1 class="ui floated header " style="margin-left: -10px;">Consulta Conselho Geral
             <div class="sub header" style="margin-left: -40px;">Visualize todos os relatórios do conselho que estão
                 cadastrados.
             </div>
@@ -16,7 +16,7 @@
             @csrf @method("delete")
         </form>
         <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf @isset($resource) @method('put') @endisset
-            <div class="ui form">
+            <div class="ui form">@if('$resource->presbitero->igreja->id' == '1' )
                 <div class="fields">
                     <div class="eight wide field">
                         <label>Sínodo</label>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>@endif
                 <div class="fields">
                     <div class="eight wide field" id="div_igreja">
                         <label>Igreja</label>
