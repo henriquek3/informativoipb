@@ -45,7 +45,7 @@ class ConsIgrejaConselhoController extends Controller
      */
     public function show($id)
     {
-        dd("teste");
+        //
     }
 
     /**
