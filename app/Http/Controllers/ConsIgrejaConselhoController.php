@@ -56,8 +56,19 @@ class ConsIgrejaConselhoController extends Controller
      */
     public function show(Request $request, RelConselhos $relConselhos)
     {
-        $relConselhos = $relConselhos->orWhere('id_presbiterio', '=', $request->get('id_presbiterio'));
-        dd($relConselhos->get());
+        if (!is_null($request->get('id_sinodo'))) {
+            $relConselhos = $relConselhos->where('id_sinodo', '=', $request->get('id_sinodo'));
+        }
+        if (!is_null($request->get('id_presbiterio'))) {
+            $relConselhos = $relConselhos->where('id_presbiterio', '=', $request->get('id_presbiterio'));
+        }
+        if (!is_null($request->get('id_igreja'))) {
+            $relConselhos = $relConselhos->where('id_igreja', '=', $request->get('id_igreja'));
+        }
+
+        return view('pages.consulta-conselho.index', [
+            'resources' => $relConselhos->paginate(10),
+        ]);
     }
 
     /**
