@@ -32,10 +32,10 @@
         </div>
     </div>
     <div class="fields">
-        <div class="eight wide field" id="div_igreja">
+        <div class="sixteen wide field" id="div_igreja">
             <label>Igreja</label>
             <input type="text" value="{{auth()->user()->presbitero->igreja->nome}}" readonly="">
-            <input type="hidden" name="id_presbiterio" value="{{auth()->user()->presbitero->igreja->id}}">
+            <input type="hidden" name="id_igreja" value="{{auth()->user()->presbitero->igreja->id}}">
             {{--<select class="ui fluid search dropdown" name="id_igreja" ></select>
             <div class="ui active inline small loader" style="display:none" id="loader_igreja"></div>--}}
         </div>
