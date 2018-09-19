@@ -5,7 +5,7 @@
     <div class="ui raised segment">
         <h3 class="ui floated header" style="padding-top: 6px;padding-left: 10px;"><i class="bar chart icon"></i>
         </h3>
-        <h1 class="ui floated header " style="margin-left: -10px;">Consulta Conselho
+        <h1 class="ui floated header " style="margin-left: -10px;">Consulta Relatórios de Conselhos
             <div class="sub header" style="margin-left: -40px;">Visualize todos os relatórios do conselho que estão
                 cadastrados.
             </div>
@@ -15,7 +15,8 @@
         <form id="formDelete" name="formDelete" action="{{ url()->current() }}" method="post">
             @csrf @method("delete")
         </form>
-        <form id="formResource" name="formResource" action="{{ url()->current() }}" method="post">@csrf @isset($resource) @method('put') @endisset
+        <form id="formResource" name="formResource" action="{{ url()->current() }}"
+              method="post">@csrf @isset($resource) @method('put') @endisset
 
             @includeWhen(auth()->user()->perfil >= 4, 'pages.consulta-conselho.supremo')
             @includeWhen(auth()->user()->perfil == 3, 'pages.consulta-conselho.sinodo')
@@ -29,36 +30,40 @@
         </form>
     </div>
 
-    <div class="ui raised segment" id="teste">
-        <table class="ui celled unstackable sortable red table">
+    <div class="ui segment" id="teste">
+        <table class="ui compact celled sortable red table">
             <thead>
             <tr>
-                <th class="two wide center aligned">Ano</th>
-                <th class="four wide" >Nome do Relatório</th>
-                <th class="three wide center aligned">Data Inclusão</th>
-                <th class="three wide center aligned">Ultima Alteração</th>
-                <th class="two wide center aligned">Status</th>
-                <th class="two wide">Imprimir</th>
+                <th class="one wide center aligned">Ano</th>
+                <th class="center aligned">Data Inclusão</th>
+                <th class="center aligned">Ultima Alteração</th>
+                <th class="center aligned">Status</th>
+                <th class="one wide center aligned">Imprimir</th>
             </tr>
             </thead>
             <tbody>
+            @forelse($resources as $rs)
                 <tr>
-                    <td class="center aligned">2018</td>
-                    <td class="center aligned">Relatório do Conselho</td>
-                    <td class="center aligned">14/09/2018</td>
-                    <td class="center aligned">14/09/2018</td>
-                    <td class="center aligned">Importado</td>
-                    <td class="center aligned" title="Imprimir Relatório"><a class="ui icon primary button" href="/relatorios/conselho/#/editar"><i
-                                    class="print icon"></i></a></td>
+                    <td class="center aligned">{{$rs->ano}}</td>
+                    <td class="center aligned">{{$rs->created_at->format('d/m/Y')}}</td>
+                    <td class="center aligned">{{$rs->updated_at->format('d/m/Y')}}</td>
+                    <td class="center aligned">{{$rs->importado ===  1 ? 'Importado' : 'Pendente'}}</td>
+                    <td class="center aligned" title="Imprimir Relatório">
+                        <a class="ui icon primary button" href="/relatorios/conselho/#/editar">
+                            <i class="print icon"></i>
+                        </a>
+                    </td>
                 </tr>
-                {{--<tr>
+            @empty
+                <tr>
                     <td colspan="6">Nenhum registro encontrado.</td>
-                </tr>--}}
+                </tr>
+            @endforelse
             </tbody>
             <tfoot>
             <tr>
                 <th colspan="6">
-                    <div class="ui right floated pagination menu"></div>
+                    <div class="ui right floated pagination menu">{{ $resources->links('pagination::semantic-ui') }}</div>
                 </th>
             </tr>
             </tfoot>
