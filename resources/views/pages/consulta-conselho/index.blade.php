@@ -29,7 +29,7 @@
         </form>
     </div>
 
-    <div class="ui raised segment">
+    <div class="ui raised segment" id="teste">
         <table class="ui celled unstackable sortable red table">
             <thead>
             <tr>
@@ -66,28 +66,5 @@
     </div>
 @endsection
 @section('javascript')
-    <script src="{{asset('js/plugins/jquery.mask.min.js')}}" async></script>
-    <script src="{{asset('js/plugins/CPF.js')}}" async></script>
-    <script src="{{asset('js/app/usuarios.js')}}"></script>
-    @isset($resource)
-        <script type="text/javascript">
-            window.addEventListener("load", function () {
-                try {
-                    //Function para o select IGREJA
-                    window.id_igreja = '{{$resource->id_igreja}}';
-                    window.id_presbitero = '{{$resource->id_presbitero}}';
-                    $('[name="id_presbiterio"]').trigger('change');
-                } catch (e) {
-                    alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');
-                }
-            });
-        </script>
-    @endisset
-    @if(session('email'))
-        <script type="text/javascript">
-            swal("Atenção!", "O usuário foi cadastrado, porém não podemos enviar o e-mail com a confirmação da senha, " +
-                "por favor, peça para o usuário acessar o link de recuperação de senha a partir da tela de login.!",
-                "info");
-        </script>
-    @endif
+    @includeIf(auth()->user()->perfil >= 4, 'js.app.consSupremo')
 @endsection
