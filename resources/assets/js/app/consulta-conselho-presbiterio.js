@@ -1,6 +1,17 @@
 window.addEventListener("load", function () {
     $('.ui.dropdown').dropdown();
     });
+
+window.addEventListener("load", function () {
+        try {
+            //Function para o select IGREJA
+            window.id_igreja = '{{$resource->id_igreja}}';
+            window.id_presbitero = '{{$resource->id_presbitero}}';
+            $('[name="id_presbiterio"]').trigger('change');
+        } catch (e) {
+            alert('As informações não puderam ser carregadas, por favor entre em contato com o suporte.');
+        }
+    });
     /**
      * Função Internationalization do search Semantic-ui
      * @param message

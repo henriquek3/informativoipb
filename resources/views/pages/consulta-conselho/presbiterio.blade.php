@@ -32,15 +32,10 @@
         </div>
     </div>
     <div class="fields">
-        <div class="eight wide field" id="div_igreja">
+        <div class="sixteen wide field" id="div_igreja">
             <label>Igreja</label>
             <select class="ui fluid search dropdown" name="id_igreja" ></select>
             <div class="ui active inline small loader" style="display:none" id="loader_igreja"></div>
-        </div>
-        <div class="eight wide field" id="div_presbitero">
-            <label>Presbítero</label>
-            <select class="ui fluid search dropdown" name="id_presbitero" ></select>
-            <div class="ui active inline small loader" style="display:none" id="loader_presbitero"></div>
         </div>
     </div>
 </div>
