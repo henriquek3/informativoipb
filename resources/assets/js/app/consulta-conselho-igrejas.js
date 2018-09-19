@@ -1,3 +1,3 @@
-document.addEventListener("load", function () {
-    console.log('Hey boy!')
+window.addEventListener("load", function () {
+    $('.ui.dropdown').dropdown();
 });
