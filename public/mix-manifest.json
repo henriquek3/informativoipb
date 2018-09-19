@@ -1,6 +1,5 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
     "/js/plugins/jquery.mask.min.js": "/js/plugins/jquery.mask.min.js",
     "/js/plugins/CPF.js": "/js/plugins/CPF.js",
     "/js/plugins/jquery.tablesort.min.js": "/js/plugins/jquery.tablesort.min.js",
@@ -10,6 +9,11 @@
     "/js/app/cadastros-presbiterios.js": "/js/app/cadastros-presbiterios.js",
     "/js/app/cadastros-presbiteros.js": "/js/app/cadastros-presbiteros.js",
     "/js/app/cadastros-sinodos.js": "/js/app/cadastros-sinodos.js",
+    "/js/app/consIgreja.js": "/js/app/consIgreja.js",
+    "/js/app/consulta-conselho-igrejas.js": "/js/app/consulta-conselho-igrejas.js",
+    "/js/app/consulta-conselho-presbiterio.js": "/js/app/consulta-conselho-presbiterio.js",
+    "/js/app/consulta-conselho-sinodo.js": "/js/app/consulta-conselho-sinodo.js",
+    "/js/app/consulta-conselho-supremo.js": "/js/app/consulta-conselho-supremo.js",
     "/js/app/consultar-estatisticas-presbiterio.js": "/js/app/consultar-estatisticas-presbiterio.js",
     "/js/app/index.js": "/js/app/index.js",
     "/js/app/jquery-validate.js": "/js/app/jquery-validate.js",

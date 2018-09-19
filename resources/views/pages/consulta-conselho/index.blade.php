@@ -69,10 +69,10 @@
     @if(auth()->user()->perfil == 1)
         <script src="{{asset('js/app/consulta-conselho-igrejas.js')}}"></script>
     @elseif(auth()->user()->perfil == 2)
-        <script src="{{asset('js/app/consulta-conselho-igrejas.js')}}"></script>
+        <script src="{{asset('js/app/consulta-conselho-presbiterio.js')}}"></script>
     @elseif(auth()->user()->perfil == 3)
-        <script src="{{asset('js/app/consulta-conselho-igrejas.js')}}"></script>
+        <script src="{{asset('js/app/consulta-conselho-sinodo.js')}}"></script>
     @elseif(auth()->user()->perfil >= 4)
-        <script src="{{asset('js/app/consulta-conselho-igrejas.js')}}"></script>
+        <script src="{{asset('js/app/consulta-conselho-supremo.js')}}"></script>
     @endif
 @endsection

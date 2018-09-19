@@ -1,5 +1,6 @@
-alert("Teste");
-
+window.addEventListener("load", function () {
+    $('.ui.dropdown').dropdown();
+    });
     /**
      * Função Internationalization do search Semantic-ui
      * @param message
@@ -23,34 +24,7 @@ alert("Teste");
     };
 
     // the new message header is applied to all following "search" instances
-    $.fn.search.settings.templates.message = newHeader;
 
-    $('#sinodo_search')
-        .search({
-            apiSettings: {
-                url: '/api/sinodos?nome={query}'
-            },
-            searchDelay: 900,
-            fields: {
-                results: 'items',
-                title: 'nome',
-                url: 'html_url'
-            },
-            minCharacters: 3,
-            error: {
-                source: 'Cannot search. No source used, and Semantic API module was not included',
-                noResults: 'A sua consulta não obteve nenhum resultado.',
-                logging: 'Error in debug logging, exiting.',
-                noTemplate: 'A valid template name was not specified.',
-                serverError: 'There was an issue with querying the server.',
-                maxResults: 'Results must be an array to use maxResults setting',
-                method: 'The method you called is not defined.'
-            },
-            onSelect: function (result) {
-                $('[name="id_sinodo"]').val(result.id);
-            }
-        })
-    ;
 
     $('#presbiterio_search')
         .search({
@@ -134,4 +108,3 @@ alert("Teste");
             ;
         }
     });
-});
