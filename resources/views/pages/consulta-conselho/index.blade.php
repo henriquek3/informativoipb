@@ -66,5 +66,13 @@
     </div>
 @endsection
 @section('javascript')
-    @includeIf(auth()->user()->perfil >= 4, 'js.app.consSupremo')
+    @if(auth()->user()->perfil == 1)
+        <script src="{{asset('js/app/consulta-conselho-igrejas.js')}}"></script>
+    @elseif(auth()->user()->perfil == 2)
+        <script src="{{asset('js/app/consulta-conselho-igrejas.js')}}"></script>
+    @elseif(auth()->user()->perfil == 3)
+        <script src="{{asset('js/app/consulta-conselho-igrejas.js')}}"></script>
+    @elseif(auth()->user()->perfil >= 4)
+        <script src="{{asset('js/app/consulta-conselho-igrejas.js')}}"></script>
+    @endif
 @endsection

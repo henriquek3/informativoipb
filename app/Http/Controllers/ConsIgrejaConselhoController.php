@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\RelConselhos;
 use Illuminate\Http\Request;
 
 class ConsIgrejaConselhoController extends Controller
@@ -53,11 +54,10 @@ class ConsIgrejaConselhoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Request $request, RelConselhos $relConselhos)
     {
-        // Bora Kalew!
-        // lets go
-        dd($request->all());
+        $relConselhos = $relConselhos->orWhere('id_presbiterio', '=', $request->get('id_presbiterio'));
+        dd($relConselhos->get());
     }
 
     /**
