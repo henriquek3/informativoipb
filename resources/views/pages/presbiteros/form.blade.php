@@ -256,8 +256,9 @@
     </div>
 @endsection
 @section('javascript')
-    <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>
+    <script src="{{asset('js/plugins/jquery.mask.min.js')}}" async></script>
     <script src="{{asset('js/plugins/CPF.js')}}" async></script>
+    <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>
     @isset($resource)
         <script type="text/javascript" async>
             try {
