@@ -35,7 +35,16 @@ class CreateIgrejasTable extends Migration
             $table->string('endereco_cep', 20)->nullable();
             $table->string('endereco_cx_postal', 20)->nullable();
             $table->string('endereco_cx_postal_cep', 20)->nullable();
-            $table->string('telefone', 20)->nullable();
+            $table->string('telefone1', 20)->nullable();
+            $table->string('telefone2', 20)->nullable();
+            $table->string('telefone3', 20)->nullable();
+            $table->string('telefone4', 20)->nullable();
+            $table->string('telefone5', 20)->nullable();
+            $table->string('telefone6', 20)->nullable();
+            $table->string('telefone7', 20)->nullable();
+            $table->string('telefone8', 20)->nullable();
+            $table->string('telefone9', 20)->nullable();
+            $table->string('telefone10', 20)->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
             $table->unsignedInteger('user_id')->nullable();
