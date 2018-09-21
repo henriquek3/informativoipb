@@ -148,31 +148,31 @@
                     </div>
                     <div class="two wide field">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
+                        <input type="text" name="telefone" placeholder="Telefone" class="tel_alt" value="{{$resource->telefone ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
+                        <input type="text" name="telefone" placeholder="Telefone" class="tel_alt" value="{{$resource->telefone ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
+                        <input type="text" name="telefone" placeholder="Telefone" class="tel_alt" value="{{$resource->telefone ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
+                        <input type="text" name="telefone" placeholder="Telefone" class="tel_alt" value="{{$resource->telefone ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
+                        <input type="text" name="telefone" placeholder="Telefone" class="tel_alt" value="{{$resource->telefone ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
+                        <input type="text" name="telefone" placeholder="Telefone" class="tel_alt" value="{{$resource->telefone ?? ''}}">
                     </div>
                     <div class="two wide field">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
+                        <input type="text" name="telefone" placeholder="Telefone" class="tel_alt" value="{{$resource->telefone ?? ''}}">
                     </div>
                 </div>
             </div>
