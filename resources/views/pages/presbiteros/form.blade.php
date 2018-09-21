@@ -115,7 +115,7 @@
                         <input type="text" name="rg_emissor" placeholder="Orgão Emissor" required
                                value="{{$resource->rg_emissor ?? ''}}">
                     </div>
-                    <div class="four wide field">
+                    <div class="four wide field" id="fcpf">
                         <label>CPF</label>
                         <input type="text" name="cpf" placeholder="CPF" value="{{$resource->cpf ?? ''}}" required>
                     </div>
@@ -153,7 +153,7 @@
                         <label>Presbitério de Ordenação</label>
                         <div class="ui search" title="Digite o nome do presbitério" id="ordenacao_presbiterio_search">
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar Presbitério" required
+                                <input class="prompt" type="text" placeholder="Procurar Presbitério"
                                        name="presbiterio" value="{{$resource->igreja->presbiterio->nome ?? ''}}">
                                 <input type="hidden" name="ordenacao_presbiterio" value="{{$resource->id_presbiterio ?? ''}}">
                                 <i class="search icon"></i>
@@ -257,6 +257,7 @@
 @endsection
 @section('javascript')
     <script src="{{asset('js/app/cadastros-presbiteros.js')}}"></script>
+    <script src="{{asset('js/plugins/CPF.js')}}" async></script>
     @isset($resource)
         <script type="text/javascript" async>
             try {

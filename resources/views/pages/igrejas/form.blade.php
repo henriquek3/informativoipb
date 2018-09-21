@@ -92,8 +92,7 @@
                     </div>
                     <div class="ui calendar bottom left three wide field">
                         <label>Organização</label>
-                        <input type="date" name="data_organizacao" placeholder="Data de Organização" required
-                               value="{{$resource->data_organizacao ?? ''}}">
+                        <input type="date" name="data_organizacao" placeholder="Data de Organização" value="{{$resource->data_organizacao ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
@@ -109,8 +108,7 @@
                     </div>
                     <div class="four wide field">
                         <label>Complemento</label>
-                        <input type="text" name="endereco_complemento" placeholder="Complemento" required
-                               value="{{$resource->endereco_complemento ?? ''}}">
+                        <input type="text" name="endereco_complemento" placeholder="Complemento" value="{{$resource->endereco_complemento ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>Bairro</label>
