@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::get('/inicio', 'HomeController@prelogin');
 Route::get('/welcome', 'HomeController@welcome')->name('welcome')->middleware('auth');
+Route::get('/welcome', 'HomeController@welcome')->name('home')->middleware('auth');
 Route::get('/', 'HomeController@index')->middleware('auth');
 
 Route::prefix('cadastros')->group(function () {
