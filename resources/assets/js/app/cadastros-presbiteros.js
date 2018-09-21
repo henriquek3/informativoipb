@@ -194,4 +194,27 @@ window.addEventListener("load", function () {
             ;
         }
     });
+    $("input[name='cpf']").focusout(function () {
+        if (CPF.validate($("input[name='cpf']").val())) {
+            iziToast.success({
+                title: 'Verificado!',
+                message: 'O CPF informado é válido!',
+                timeout: 5000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        } else {
+            iziToast.warning({
+                title: 'Atenção! ',
+                message: 'O CPF informado é inválido!',
+                timeout: 10000,
+                pauseOnHover: true,
+                position: 'topRight',
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOutUp'
+            });
+        }
+    });
 });
