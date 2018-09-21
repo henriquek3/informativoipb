@@ -25,24 +25,24 @@
             @isset($resource) @method('put') @endisset
             <div class="ui form">
                 <div class="fields">
-                    <div class="six wide field">
+                    <div class="six wide field required">
                         <label>Sínodo</label>
                         <div class="ui search" title="Digite o nome do sínodo" id="sinodo_search"
                              @isset($resource) data-tooltip="Sigla: {{strtoupper($resource->sinodo->sigla) ?? ''}}" @endisset>
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo" required
+                                <input class="prompt" type="text" placeholder="Procurar Sínodo" name="sinodo"
                                        value="{{$resource->sinodo->nome ?? ''}}">
                                 <input type="hidden" name="id_sinodo" value="{{$resource->id_sinodo ?? ''}}">
                                 <i class="search icon"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="six wide field">
+                    <div class="six wide field required">
                         <label>Presbitério</label>
                         <div class="ui search" title="Digite o nome do presbitério" id="presbiterio_search"
                              @isset($resource) data-tooltip="Sigla: {{strtoupper($resource->presbiterio->sigla) ?? ''}}" @endisset>
                             <div class="ui left icon input">
-                                <input class="prompt" type="text" placeholder="Procurar Presbitério" required
+                                <input class="prompt" type="text" placeholder="Procurar Presbitério"
                                        name="presbiterio" value="{{$resource->presbiterio->nome ?? ''}}">
                                 <input type="hidden" name="id_presbiterio" value="{{$resource->id_presbiterio ?? ''}}">
                                 <i class="search icon"></i>
@@ -63,9 +63,9 @@
                     </div>
                 </div>
                 <div class="fields">
-                    <div class="six wide field">
+                    <div class="six wide field required">
                         <label>Estado</label>
-                        <select class="ui fluid search dropdown" name="id_estado" required>
+                        <select class="ui fluid search dropdown" name="id_estado">
                             <option value="">--</option>
                             @forelse($estados as $estado)
                                 <option value="{{$estado->id}}" {{isset($resource) ? $estado->id == $resource->id_estado ? ' selected' : '' : ''}}>{{$estado->nome}}</option>
@@ -73,21 +73,21 @@
                             @endforelse
                         </select>
                     </div>
-                    <div class="six wide field" id="div_cidade">
+                    <div class="six wide field required" id="div_cidade">
                         <label>Cidade</label>
-                        <select class="ui fluid search dropdown" name="id_cidade" id="id_cidade" required></select>
+                        <select class="ui fluid search dropdown" name="id_cidade" id="id_cidade"></select>
                         <div class="ui active inline small loader" style="display:none" id="loader_cidade"></div>
                     </div>
-                    <div class="four wide field">
+                    <div class="four wide field required">
                         <label>CNPJ</label>
-                        <input type="text" name="cnpj" id="cnpj_igreja" placeholder="CNPJ" required
+                        <input type="text" name="cnpj" id="cnpj_igreja" placeholder="CNPJ"
                                value="{{$resource->cnpj ?? ''}}">
                     </div>
                 </div>
                 <div class="fields">
-                    <div class="thirteen wide field">
+                    <div class="thirteen wide field required">
                         <label>Nome</label>
-                        <input type="text" name="nome" placeholder="Digite o Nome" required
+                        <input type="text" name="nome" placeholder="Digite o Nome"
                                value="{{$resource->nome ?? ''}}">
                     </div>
                     <div class="ui calendar bottom left three wide field">
@@ -96,23 +96,23 @@
                     </div>
                 </div>
                 <div class="fields">
-                    <div class="six wide field">
+                    <div class="six wide field required">
                         <label>Endereço</label>
-                        <input type="text" name="endereco" placeholder="Endereço" required
+                        <input type="text" name="endereco" placeholder="Endereço"
                                value="{{$resource->endereco ?? ''}}">
                     </div>
-                    <div class="two wide field">
+                    <div class="two wide field required">
                         <label>Número</label>
-                        <input type="text" name="endereco_numero" placeholder="Número" required
+                        <input type="text" name="endereco_numero" placeholder="Número"
                                value="{{$resource->endereco_numero ?? ''}}">
                     </div>
                     <div class="four wide field">
                         <label>Complemento</label>
                         <input type="text" name="endereco_complemento" placeholder="Complemento" value="{{$resource->endereco_complemento ?? ''}}">
                     </div>
-                    <div class="four wide field">
+                    <div class="four wide field required">
                         <label>Bairro</label>
-                        <input type="text" name="endereco_bairro" placeholder="Bairro" required
+                        <input type="text" name="endereco_bairro" placeholder="Bairro"
                                value="{{$resource->endereco_bairro ?? ''}}">
                     </div>
                 </div>
@@ -132,15 +132,15 @@
                         <input type="text" name="endereco_cx_postal_cep" placeholder="CEP Caixa Postal"
                                value="{{$resource->endereco_cx_postal_cep ?? ''}}">
                     </div>
-                    <div class="two wide field">
+                    <div class="two wide field required">
                         <label>Telefone</label>
                         <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
                     </div>
-                    <div class="four wide field">
+                    <div class="four wide field required">
                         <label>E-mail</label>
                         <input type="email" name="email" placeholder="E-Mail" value="{{$resource->email ?? ''}}">
                     </div>
-                    <div class="four wide field">
+                    <div class="four wide field required">
                         <label>Homepage</label>
                         <input type="text" name="website" placeholder="Web Site" value="{{$resource->website ?? ''}}">
                     </div>
