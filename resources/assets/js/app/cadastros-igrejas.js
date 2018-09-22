@@ -115,4 +115,17 @@ window.addEventListener("load", function () {
             }
         })
     ;
+
+    /** FUNÇÃO PARA ALTERAR STYLE DOS INPUTS DOS TELEFONES ADIDCIONAIS **/
+    var i;
+    for (i = 0; i < $('.tel_alt').length; i++) {
+        console.log($('.tel_alt')[i].value)
+        if ($('.tel_alt')[i].value !== ''){
+            $('.tel_alt')[i].style.display = 'none'
+
+        }
+    }
+
+
+
 });

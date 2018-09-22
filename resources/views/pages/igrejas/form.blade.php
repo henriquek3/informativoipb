@@ -170,9 +170,8 @@
                         <label>Telefone</label>
                         <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
                     </div>
-                    <div class="two wide field tel_alt">
-                        <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Telefone" value="{{$resource->telefone ?? ''}}">
+                    <div class="one wide field">
+                        <span><a href="#" onclick="TelAlt();">+ Tel</a></span>
                     </div>
                 </div>
             </div>
