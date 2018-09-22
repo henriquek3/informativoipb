@@ -30,7 +30,7 @@ class EstadoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +41,7 @@ class EstadoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Estados  $estados
+     * @param  \App\Estados $estados
      * @return \Illuminate\Http\Response
      */
     public function show(Estados $estados)
@@ -52,7 +52,7 @@ class EstadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Estados  $estados
+     * @param  \App\Estados $estados
      * @return \Illuminate\Http\Response
      */
     public function edit(Estados $estados)
@@ -63,8 +63,8 @@ class EstadoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Estados  $estados
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Estados $estados
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Estados $estados)
@@ -75,7 +75,7 @@ class EstadoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Estados  $estados
+     * @param  \App\Estados $estados
      * @return \Illuminate\Http\Response
      */
     public function destroy(Estados $estados)

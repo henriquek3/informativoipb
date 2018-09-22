@@ -59,7 +59,7 @@ $(document).ready(function () {
      * Popular a Tabela com infos do banco
      */
     function getDataTable() {
-        $.get('/api/congregacoes?igreja='+window.igrejaId)
+        $.get('/api/congregacoes?igreja=' + window.igrejaId)
             .done(function (response) {
                 for (let key in response) {
                     let tr, row, id, nome, bairro;
@@ -94,8 +94,6 @@ $(document).ready(function () {
             })
         ;
     }
-
-
 
 
     /**
@@ -156,7 +154,6 @@ $(document).ready(function () {
             styleInputSearch.first().second();
         }, 1000);
     }
-
 
 
     /**
@@ -865,8 +862,8 @@ $(document).ready(function () {
     });
 
     /**
-    * Jquery Mask
-    */
+     * Jquery Mask
+     */
     $("input[name='cnpj']").mask('00.000.000/0000-00', {reverse: true});
 
     $("input[id='cnpj_congregacoes']").focusout(function () {

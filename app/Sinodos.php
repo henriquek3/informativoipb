@@ -23,7 +23,7 @@ class Sinodos extends Model implements Auditable
      */
     public function usuario()
     {
-        return $this->belongsTo("App\User","user_id","id");
+        return $this->belongsTo("App\User", "user_id", "id");
     }
 
     /**
