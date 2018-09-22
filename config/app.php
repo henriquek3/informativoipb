@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
 
         /*
          * Application Service Providers...

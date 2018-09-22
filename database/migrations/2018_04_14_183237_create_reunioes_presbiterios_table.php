@@ -15,10 +15,15 @@ class CreateReunioesPresbiteriosTable extends Migration
     {
         Schema::create('reunioes_presbiterios', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('id_presbiterio');
-            $table->string('data_reuniao', 10)->nullable();
             $table->string('ano', 10)->nullable();
-            $table->integer('status')->nullable();
+            $table->date('data_reuniao');
+            $table->integer('id_presbiterio');
+            $table->unsignedInteger('id_estado');
+            $table->unsignedInteger('id_cidade');
+            $table->string('local');
+            $table->longText('observacoes');
+            $table->integer('status')->nullable(); // re a reuniao foi finalizada
+            $table->integer('importado')->nullable(); // SE foi importado pela reuniao do sinodo
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();

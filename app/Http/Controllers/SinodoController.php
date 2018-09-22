@@ -26,7 +26,9 @@ class SinodoController extends Controller
      */
     public function index(Sinodos $sinodos)
     {
-        return view("pages.sinodos.index", ['resources' => $sinodos->orderBy('nome', 'asc')->simplePaginate(10)]);
+        return view("pages.sinodos.index", [
+            'resources' => $sinodos->orderBy('nome', 'asc')->paginate(10)
+        ]);
     }
 
     /**
@@ -53,7 +55,6 @@ class SinodoController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
-            dd($exception->getMessage());
             return redirect()->back()->withErrors($exception->getMessage());
         }
         return redirect("/cadastros/sinodos/$resource->id/editar")->with('saved', "success");
@@ -97,7 +98,6 @@ class SinodoController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
-            dd($exception->getMessage());
             return redirect()->back()->withErrors($exception->getMessage());
         }
         return redirect("/cadastros/sinodos/$resource->id/editar")->with('updated', "success");
@@ -112,7 +112,9 @@ class SinodoController extends Controller
     public function destroy(Sinodos $sinodos, $id)
     {
         try {
+            $data['user_id'] = auth()->user()->id;
             $resource = $sinodos->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors($exception->getMessage());
@@ -125,11 +127,7 @@ class SinodoController extends Controller
      */
     public function api(Request $request)
     {
-        $nome = $request->get("nome");
-        if ($nome) {
-            $nome = "%" . $nome . "%";
-            $result['items'] = Sinodos::where("nome", "like", $nome)->get();
-            return response()->json($result);
-        }
+        $result['items'] = Sinodos::where("nome", "like", "%{$request->get("nome")}%")->get();
+        return response()->json($result);
     }
 }

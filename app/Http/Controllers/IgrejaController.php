@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Estados;
 use App\Igrejas;
+use App\IgrejasCongregacoes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IgrejaController extends Controller
 {
@@ -22,9 +25,12 @@ class IgrejaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Igrejas $igrejas)
     {
-        return view("cadastros-igrejas");
+        return view("pages.igrejas.index", [
+            'resources' => $igrejas->with('presbiterio', 'presbiterio.sinodo')
+                ->paginate(10),
+        ]);
     }
 
     /**
@@ -32,9 +38,11 @@ class IgrejaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Estados $estados)
     {
-        //
+        return view('pages.igrejas.form', [
+            'estados' => $estados->all()
+        ]);
     }
 
     /**
@@ -45,12 +53,21 @@ class IgrejaController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $rs = $request->user()->igrejas()->create($request->all());
-        } catch (\Exception $exception) {
-            return response()->json($exception);
+        $data = $request->all();
+        if (is_null($request->get('congregacao_presbiterio'))) {
+            $data['congregacao_presbiterio'] = 0;
         }
-        return response()->json($rs);
+        unset($data['sinodo']);
+        unset($data['presbiterio']);
+        try {
+            DB::beginTransaction();
+            $resource = $request->user()->igrejas()->create($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/igrejas/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -70,9 +87,13 @@ class IgrejaController extends Controller
      * @param  \App\Igrejas $igrejas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Igrejas $igrejas)
+    public function edit(Igrejas $igrejas, Estados $estados, IgrejasCongregacoes $congregacoes, $id)
     {
-        //
+        return view('pages.igrejas.form', [
+            'resource' => $igrejas->where('id', '=', $id)->with('presbiterio', 'sinodo', 'usuario')->first(),
+            'estados' => $estados->all(),
+            'congregacoes' => $congregacoes->where('id_igreja', '=', $id)->simplePaginate(5)
+        ]);
     }
 
     /**
@@ -80,42 +101,45 @@ class IgrejaController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Igrejas $igrejas
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Igrejas $igrejas)
+    public function update(Request $request, Igrejas $igrejas, $id)
     {
-        try {
-            $resource = $igrejas->findOrfail((int)$request->get("id"));
-            $resource->update($request->all());
-        } catch (\Exception $exception) {
-            return response()->json($exception);
+        //dd($request->get('congregacao_presbiterio'));
+        $data = $request->all();
+        if (is_null($request->get('congregacao_presbiterio'))) {
+            $data['congregacao_presbiterio'] = 0;
         }
-        return response()->json(
-            $resource->with([
-                'usuario',
-                'presbiterio',
-                'presbiterio.sinodo'
-            ])->where('id', $resource->id)->get()
-        );
+        unset($data['sinodo']);
+        unset($data['presbiterio']);
+        try {
+            $resource = $igrejas->findOrfail((int)$id);
+            $resource->update($data);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/igrejas/$resource->id/editar")->with('updated', "success");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Igrejas $igrejas
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Igrejas $igrejas, Request $request)
+    public function destroy(Igrejas $igrejas, $id)
     {
-        $resource = $igrejas->findOrFail((int)$request->get("id"));
         try {
+            $data['user_id'] = auth()->user()->id;
+            $resource = $igrejas->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
+        return redirect("/cadastros/igrejas")->with('deleted', "success");
     }
 
     /**
@@ -123,34 +147,14 @@ class IgrejaController extends Controller
      */
     public function api(Request $request)
     {
-        $id = (int)$request->get('id');
-        $presbiterio = (int)$request->get('presbiterio');
-        if ($presbiterio > 0) {
-            return response()->json(
-                Igrejas::where('id_presbiterio', $presbiterio)
-                    ->with([
-                        'usuario',
-                        'presbiterio',
-                        'presbiterio.sinodo'
-                    ])->get()
-            );
-        } elseif ($id > 0) {
-            return response()->json(
-                Igrejas::with([
-                    'usuario',
-                    'presbiterio',
-                    'presbiterio.sinodo'
-                ])->where('id', $id)
-                    ->get()
-            );
-        } else {
-            return response()->json(
-                Igrejas::with([
-                    'usuario',
-                    'presbiterio',
-                    'presbiterio.sinodo'
-                ])->get()
-            );
+        $result['items'] = Igrejas::where("nome", "like", "%{$request->get("nome")}%")->get();
+
+        // Caso vier o sinodo no get, o request partiu do form ministros
+        if (!is_null($request->get('presbiterio'))) {
+            $result['items'] = Igrejas::where('id_sinodo', '=', $request->get('presbiterio'))
+                ->where("nome", "like", "%{$request->get("nome")}%")
+                ->get();
         }
+        return response()->json($result);
     }
 }

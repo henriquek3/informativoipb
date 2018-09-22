@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Estados;
 use App\Presbiterios;
 use App\Presbiteros;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PresbiteroController extends Controller
 {
@@ -23,9 +25,13 @@ class PresbiteroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Presbiteros $presbiteros)
     {
-        return view("cadastros-ministros");
+        return view("pages.presbiteros.index", [
+            'resources' => $presbiteros->with(
+                'usuario', 'igreja', 'igreja.presbiterio', 'igreja.presbiterio.sinodo'
+            )->paginate(10),
+        ]);
     }
 
     /**
@@ -33,9 +39,11 @@ class PresbiteroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Estados $estados)
     {
-        //
+        return view('pages.presbiteros.form', [
+            'estados' => $estados->all()
+        ]);
     }
 
     /**
@@ -47,13 +55,20 @@ class PresbiteroController extends Controller
     public function store(Request $request)
     {
         try {
-            $rs = $request->user()->presbiteros()->create($request->all());
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+            $data = $request->all();
+            unset($data['sinodo']);
+            unset($data['presbiterio']);
+            if (is_null($request->get('pastor_titular'))) {
+                $data['pastor_titular'] = 0;
+            }
+            DB::beginTransaction();
+            $resource = $request->user()->presbiteros()->create($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($rs);
+        return redirect("/cadastros/ministros/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -71,11 +86,17 @@ class PresbiteroController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Presbiteros $presbiteros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Presbiteros $presbiteros)
+    public function edit(Estados $estados, Presbiteros $presbiteros, $id)
     {
-        //
+        return view('pages.presbiteros.form', [
+            'resource' => $presbiteros->where('id', '=', $id)
+                ->with('usuario', 'igreja', 'igreja.presbiterio', 'igreja.presbiterio.sinodo')
+                ->first(),
+            'estados' => $estados->all()
+        ]);
     }
 
     /**
@@ -83,13 +104,27 @@ class PresbiteroController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Presbiteros $presbiteros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Presbiteros $presbiteros)
+    public function update(Request $request, Presbiteros $presbiteros, $id)
     {
-        $resource = $presbiteros->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
-        return response()->json($resource);
+        try {
+            $data = $request->all();
+            unset($data['sinodo']);
+            unset($data['presbiterio']);
+            if (is_null($request->get('pastor_titular'))) {
+                $data['pastor_titular'] = 0;
+            }
+            DB::beginTransaction();
+            $resource = $presbiteros->findOrfail((int)$id);
+            $resource->update($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/cadastros/ministros/$resource->id/editar")->with('updated', "success");
     }
 
     /**
@@ -98,52 +133,31 @@ class PresbiteroController extends Controller
      * @param  \App\Presbiteros $presbiteros
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Presbiteros $presbiteros, Request $request)
+    public function destroy(Presbiteros $presbiteros, $id)
     {
-        $resource = $presbiteros->findOrFail((int)$request->get("id"));
         try {
+            $data['user_id'] = auth()->user()->id;
+            $resource = $presbiteros->findOrFail($id);
+            $resource->update($data);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
+        return redirect("/cadastros/ministros")->with('deleted', "success");
     }
 
     /**
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function api(Request $request)
     {
-        $id = (int)$request->get("id");
-        $igreja = (int)$request->get("igreja");
-        if ($id > 0) {
-            return response()->json(
-                Presbiteros::where('id', $id)->with([
-                    'usuario',
-                    'igreja',
-                    'igreja.presbiterio',
-                    'igreja.presbiterio.sinodo',
-                ])->get()
-            );
-        } elseif ($igreja > 0) {
-            return response()->json(
-                Presbiteros::where('id_igreja', $igreja)->with([
-                    'usuario',
-                    'igreja',
-                    'igreja.presbiterio',
-                    'igreja.presbiterio.sinodo',
-                ])->get()
-            );
-        } else {
-            return response()->json(
-                Presbiteros::with([
-                    'usuario',
-                    'igreja',
-                    'igreja.presbiterio',
-                    'igreja.presbiterio.sinodo',
-                ])->get());
+        $result['items'] = Presbiteros::where("nome", "like", "%{$request->get("nome")}%")->get();
+        // Caso vier o sinodo no get, o request partiu do form ministros
+        if (!is_null($request->get('igreja'))) {
+            $result['items'] = Presbiteros::where('id_igreja', '=', $request->get('igreja'))
+                ->get();
         }
+        return response()->json($result);
     }
 }

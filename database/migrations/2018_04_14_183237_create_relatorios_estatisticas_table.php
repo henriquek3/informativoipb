@@ -15,7 +15,12 @@ class CreateRelatoriosEstatisticasTable extends Migration
     {
         Schema::create('relatorios_estatisticas', function (Blueprint $table) {
             $table->integer('id', true);
+            $table->integer('importado')->nullable();
             $table->string('ano', 4);
+            $table->unsignedInteger('id_sinodo');
+            $table->foreign('id_sinodo')->references('id')->on('sinodos');
+            $table->unsignedInteger('id_presbiterio');
+            $table->foreign('id_presbiterio')->references('id')->on('presbiterios');
             $table->unsignedInteger('id_igreja');
             $table->foreign('id_igreja')->references('id')->on('igrejas');
 
@@ -57,6 +62,8 @@ class CreateRelatoriosEstatisticasTable extends Migration
             $table->integer('rma_restauracao_fem')->nullable();
             $table->integer('rma_designacao_masc')->nullable();
             $table->integer('rma_designacao_fem')->nullable();
+            $table->integer('rma_transferencia_masc')->nullable();
+            $table->integer('rma_transferencia_fem')->nullable();
 
             $table->integer('rma_batismo_masc_nc')->nullable();
             $table->integer('rma_batismo_fem_nc')->nullable();

@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Sinodos extends Model
+class Sinodos extends Model implements Auditable
 {
     use SoftDeletes;
+    use \OwenIt\Auditing\Auditable;
+
     /**
      * @var array
      */
@@ -57,5 +60,13 @@ class Sinodos extends Model
     public function getUsuarioAuditoriaAttribute()
     {
         return \App\User::find($this->user_id)->nome;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function presbiterios()
+    {
+        return $this->hasMany(\App\Presbiterios::class, 'id_sinodo');
     }
 }

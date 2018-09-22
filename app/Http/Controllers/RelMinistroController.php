@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RelatoriosRequest;
 use App\RelMinistros;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RelMinistroController extends Controller
 {
@@ -22,9 +24,11 @@ class RelMinistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RelMinistros $relMinistros)
     {
-        return view("relatorios-ministeriais");
+        return view("pages.relatorios-ministros.index", [
+            "resources" => $relMinistros->paginate(10)
+        ]);
     }
 
     /**
@@ -32,9 +36,19 @@ class RelMinistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(RelMinistros $relMinistros)
     {
-        //
+        try {
+            $resource = $relMinistros->where('ano', '=', Date("Y"))->count();
+            if ($resource === 1) {
+                //throw new \Exception("Não é possível inserir mais de um relatório por ano, edite o que já existe");
+                return redirect()->back()->with('config_message', 'Não é possível inserir mais de um relatório por ano, edite o relatório que já existe.');
+            }
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return view("pages.relatorios-ministros.form");
     }
 
     /**
@@ -43,10 +57,22 @@ class RelMinistroController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RelatoriosRequest $request)
     {
-        $rs = $request->user()->relMinistros()->create($request->all());
-        return response()->json($rs);
+        // INFORMAR AQUI OS CAMPOS QUE SÃO CHECKBOX
+        $data = $request->all();
+        if (is_null($request->get('status_relatorio'))) {
+            $data['status_relatorio'] = 0;
+        }
+        try {
+            DB::beginTransaction();
+            $resource = $request->user()->relMinistros()->create($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/relatorios/ministerial/$resource->id/editar")->with('saved', "success");
     }
 
     /**
@@ -64,11 +90,16 @@ class RelMinistroController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\RelMinistros $relMinistros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(RelMinistros $relMinistros)
+    public function edit(RelMinistros $relMinistros, $id)
     {
-        //
+        return view('pages.relatorios-ministros.form', [
+            'resource' => $relMinistros->where('id', '=', $id)
+                ->with('usuario', 'usuario.presbitero.igreja', 'usuario.presbitero.igreja.presbiterio', 'usuario.presbitero.igreja.presbiterio.sinodo')
+                ->first()
+        ]);
     }
 
     /**
@@ -76,39 +107,44 @@ class RelMinistroController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\RelMinistros $relMinistros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RelMinistros $relMinistros)
+    public function update(RelatoriosRequest $request, RelMinistros $relMinistros, $id)
     {
-        $resource = $relMinistros->findOrfail((int)$request->get("id"));
-        $resource->update($request->all());
-        return response()->json($resource);
+        $data = $request->all();
+        if (is_null($request->get('status_relatorio'))) {
+            $data['status_relatorio'] = 0;
+        }
+        try {
+            DB::beginTransaction();
+            $resource = $relMinistros->findOrfail((int)$id);
+            $resource->update($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+        return redirect("/relatorios/ministerial/$resource->id/editar")->with('updated', "success");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\RelMinistros $relMinistros
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelMinistros $relMinistros, Request $request)
+    public function destroy(RelMinistros $relMinistros, $id)
     {
-        $resource = $relMinistros->findOrFail((int)$request->get("id"));
         try {
+            $data['user_id'] = auth()->user()->id;
+            $resource = $relMinistros->findOrFail((int)$id);
+            $resource->update($data);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function api()
-    {
-        return response()->json(RelMinistros::all());
+        return redirect("/relatorios/ministerial")->with('deleted', "success");
     }
 }

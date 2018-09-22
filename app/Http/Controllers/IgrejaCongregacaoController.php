@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Estados;
 use App\IgrejasCongregacoes;
 use Illuminate\Http\Request;
 
@@ -32,9 +33,13 @@ class IgrejaCongregacaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(IgrejasCongregacoes $congregacoes, Estados $estados, $id)
     {
-        //
+        return view('pages.congregacoes.form', [
+            'estados' => $estados->all(),
+            'id_igreja' => $id,
+            'nome_igreja' => $congregacoes->findOrFail($id)->igreja->nome,
+        ]);
     }
 
     /**
@@ -72,9 +77,14 @@ class IgrejaCongregacaoController extends Controller
      * @param  \App\IgrejasCongregacoes $igrejasCongregacoes
      * @return \Illuminate\Http\Response
      */
-    public function edit(IgrejasCongregacoes $igrejasCongregacoes)
+    public function edit(IgrejasCongregacoes $congregacoes, Estados $estados, $id)
     {
-        //
+        return view('pages.congregacoes.form', [
+            'estados' => $estados->all(),
+            'resource' => $congregacoes->findOrFail($id),
+            'id_igreja' => $congregacoes->findOrFail($id)->id_igreja,
+            'nome_igreja' => $congregacoes->findOrFail($id)->igreja->nome,
+        ]);
     }
 
     /**
@@ -108,46 +118,16 @@ class IgrejaCongregacaoController extends Controller
      * @param  \App\IgrejasCongregacoes $igrejasCongregacoes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(IgrejasCongregacoes $igrejasCongregacoes, Request $request)
+    public function destroy(IgrejasCongregacoes $igrejasCongregacoes, $id)
     {
-        $resource = $igrejasCongregacoes->findOrFail((int)$request->get("id"));
         try {
+            $data['user_id'] = auth()->user()->id;
+            $resource = $igrejasCongregacoes->findOrFail($id);
+            $resource->update($data);
             $resource->delete();
-        } catch (\Illuminate\Database\QueryException $queryException) {
-            $msg = $queryException->getMessage();
-            $erro = $queryException->getCode();
-            return response()->json([$msg => $erro], 500);
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors($exception->getMessage());
         }
-        return response()->json($resource);
-    }
-
-    public function api(Request $request)
-    {
-        $id = (int)$request->get('id');
-        $igreja = (int)$request->get('igreja');
-        if ($id > 0) {
-            return response()->json(
-                IgrejasCongregacoes::with([
-                    'usuario',
-                    'igreja',
-                ])->where('id', $id)
-                    ->get()
-            );
-        } elseif ($igreja > 0) {
-            return response()->json(
-                IgrejasCongregacoes::with([
-                    'usuario',
-                    'igreja',
-                ])->where('id_igreja', $igreja)
-                    ->get()
-            );
-        } else {
-            return response()->json(
-                IgrejasCongregacoes::with([
-                    'usuario',
-                    'igreja',
-                ])->get()
-            );
-        }
+        return redirect("/cadastros/sinodos")->with('deleted', "success");
     }
 }

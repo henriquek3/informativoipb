@@ -12,50 +12,11 @@
 */
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/inicio', 'HomeController@index')->name('home');
 
-Route::get('/mail', function () {
-    /*Mail::send('mail', [], function ($m) {
-        $m->from('hello@app.com', 'YOUR APP');
-        $m->to('henriquek3@live.com', 'Jean Freitas')->subject('Hellooo Worrdll!');
-    });*/
-
-    return view('mail');
-
-});
-
-Route::get('/rotas', 'TesteController@index');
-Route::get('/scopos', 'PresbiterioController@scopos');
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes UserController
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/administrar-usuarios', 'UserController@adminuser')->middleware('auth');
-Route::post('/api/usuarios', 'UserController@store')->middleware('auth');
-Route::delete('/administrar-usuarios/{id}/delete', 'UserController@destroy')->middleware('auth');
-
-Route::get('/api/usuarios', 'UserController@users')->middleware('auth');
-Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
-Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes UserController
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/meu-usuario', 'UserController@adminuser')->middleware('auth');
-//Route::post('/api/usuarios', 'UserController@store');
-//Route::delete('/api/usuarios/{id}', 'UserController@destroy');
-//Route::get('/api/usuarios', 'UserController@users');
-Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
-Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
+Route::get('/inicio', 'HomeController@prelogin');
+Route::get('/welcome', 'HomeController@welcome')->name('welcome')->middleware('auth');
+Route::get('/home', 'HomeController@welcome')->middleware('auth');
+Route::get('/', 'HomeController@index')->middleware('auth');
 
 Route::prefix('cadastros')->group(function () {
     /*
@@ -80,88 +41,158 @@ Route::prefix('cadastros')->group(function () {
     Route::get('/presbiterios/{id}/editar', 'PresbiterioController@edit')->where(['id' => '[0-9]+']);
     Route::put('/presbiterios/{id}/editar', 'PresbiterioController@update')->where(['id' => '[0-9]+']);
     Route::delete('/presbiterios/{id}/editar', 'PresbiterioController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes IgrejaController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/igrejas', 'IgrejaController@index');
+    Route::get('/igrejas/novo', 'IgrejaController@create');
+    Route::post('/igrejas/novo', 'IgrejaController@store');
+    Route::get('/igrejas/{id}/editar', 'IgrejaController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/igrejas/{id}/editar', 'IgrejaController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/igrejas/{id}/editar', 'IgrejaController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes IgrejaCongregacaoController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/congregacoes', 'IgrejaCongregacaoController@index');
+    Route::get('/igrejas/{id}/congregacoes/novo', 'IgrejaCongregacaoController@create')->where(['id' => '[0-9]+']);
+    Route::get('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/congregacoes/{id}/editar', 'IgrejaCongregacaoController@destroy')->where(['id' => '[0-9]+']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes PresbiteroController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/ministros', 'PresbiteroController@index');
+    Route::get('/ministros/novo', 'PresbiteroController@create');
+    Route::post('/ministros/novo', 'PresbiteroController@store');
+    Route::get('/ministros/{id}/editar', 'PresbiteroController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/ministros/{id}/editar', 'PresbiteroController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/ministros/{id}/editar', 'PresbiteroController@destroy')->where(['id' => '[0-9]+']);
 });
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes IgrejaController
-|--------------------------------------------------------------------------
-*/
-Route::get('/cadastros-igrejas', 'IgrejaController@index');
-Route::get('/api/igrejas', 'IgrejaController@api');
-Route::post('/api/igrejas/store', 'IgrejaController@store');
-Route::put('/api/igrejas/update', 'IgrejaController@update');
-Route::delete('/api/igrejas/delete', 'IgrejaController@destroy');
+Route::prefix('relatorios')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelConselhoController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/conselho', 'RelConselhoController@index');
+    Route::get('/conselho/novo', 'RelConselhoController@create');
+    Route::post('/conselho/novo', 'RelConselhoController@store');
+    Route::get('/conselho/{id}/editar', 'RelConselhoController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/conselho/{id}/editar', 'RelConselhoController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/conselho/{id}/editar', 'RelConselhoController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelMinistroController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/ministerial', 'RelMinistroController@index');
+    Route::get('/ministerial/novo', 'RelMinistroController@create');
+    Route::post('/ministerial/novo', 'RelMinistroController@store');
+    Route::get('/ministerial/{id}/editar', 'RelMinistroController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/ministerial/{id}/editar', 'RelMinistroController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/ministerial/{id}/editar', 'RelMinistroController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelEstatisticaController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/estatistica', 'RelEstatisticaController@index');
+    Route::get('/estatistica/novo', 'RelEstatisticaController@create');
+    Route::post('/estatistica/novo', 'RelEstatisticaController@store');
+    Route::get('/estatistica/{id}/editar', 'RelEstatisticaController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/estatistica/{id}/editar', 'RelEstatisticaController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/estatistica/{id}/editar', 'RelEstatisticaController@destroy')->where(['id' => '[0-9]+']);
+});
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes IgrejaCongregacaoController
-|--------------------------------------------------------------------------
-*/
-Route::get('/cadastros-congregacoes', 'IgrejaCongregacaoController@index');
-Route::get('/api/congregacoes', 'IgrejaCongregacaoController@api');
-Route::post('/api/congregacoes/store', 'IgrejaCongregacaoController@store');
-Route::put('/api/congregacoes/update', 'IgrejaCongregacaoController@update');
-Route::delete('/api/congregacoes/delete', 'IgrejaCongregacaoController@destroy');
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes PresbiteroController
-|--------------------------------------------------------------------------
-*/
-Route::get('/cadastros-ministros', 'PresbiteroController@index');
-Route::get('/api/presbiteros', 'PresbiteroController@api');
-Route::post('/api/presbiteros/store', 'PresbiteroController@store');
-Route::put('/api/presbiteros/update', 'PresbiteroController@update');
-Route::delete('/api/presbiteros/delete', 'PresbiteroController@destroy');
+Route::prefix('reunioes')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelConselhoController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/presbiterio', 'PlePresbiterioController@index');
+    Route::get('/presbiterio/novo', 'PlePresbiterioController@create');
+    Route::post('/presbiterio/novo', 'PlePresbiterioController@store');
+    Route::get('/presbiterio/{id}/editar', 'PlePresbiterioController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/presbiterio/{id}/editar', 'PlePresbiterioController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/presbiterio/{id}/editar', 'PlePresbiterioController@destroy')->where(['id' => '[0-9]+']);
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RELATÓRIOS IMPORTAÇÃO @ImportRelPlePresbiterioController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/presbiterio/{id}/importar/novo', 'ImportRelPlePresbiterioController@create');
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes RelConselhoController
-|--------------------------------------------------------------------------
-*/
-Route::get('/relatorios-conselhos', 'RelConselhoController@index');
-Route::get('/api/relconselhos', 'RelConselhoController@api');
-Route::post('/api/relconselhos/store', 'RelConselhoController@store');
-Route::put('/api/relconselhos/update', 'RelConselhoController@update');
-Route::delete('/api/relconselhos/delete', 'RelConselhoController@destroy');
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes RelMinistroController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/sinodo', 'PleSinodoController@index');
+    Route::get('/sinodo/novo', 'PleSinodoController@create');
+    Route::post('/sinodo/novo', 'PleSinodoController@store');
+    Route::get('/sinodo/{id}/editar', 'PleSinodoController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/sinodo/{id}/editar', 'PleSinodoController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/sinodo/{id}/editar', 'PleSinodoController@destroy')->where(['id' => '[0-9]+']);
+});
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes RelMinistroController
-|--------------------------------------------------------------------------
-*/
-Route::get('/relatorios-ministeriais', 'RelMinistroController@index');
-Route::get('/api/relministeriais', 'RelMinistroController@api');
-Route::post('/api/relministeriais/store', 'RelMinistroController@store');
-Route::put('/api/relministeriais/update', 'RelMinistroController@update');
-Route::delete('/api/relministeriais/delete', 'RelMinistroController@destroy');
+Route::prefix('configuracoes')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes UserController
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/usuarios', 'UserController@index');
+    Route::get('/usuarios/novo', 'UserController@create');
+    Route::post('/usuarios/novo', 'UserController@store');
+    Route::get('/usuarios/{id}/editar', 'UserController@edit')->where(['id' => '[0-9]+']);
+    Route::put('/usuarios/{id}/editar', 'UserController@update')->where(['id' => '[0-9]+']);
+    Route::delete('/usuarios/{id}/editar', 'UserController@destroy')->where(['id' => '[0-9]+']);
+    //Route::get('/meu-usuario', 'UserController@adminuser')->middleware('auth');
+    //Route::get('/api/usuarios/{id}/edit', 'UserController@edit')->middleware('auth');
+    //Route::put('/api/usuarios/{id}/edit', 'UserController@update')->middleware('auth');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes
+    |--------------------------------------------------------------------------
+    */
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes RelEstatisticaController
-|--------------------------------------------------------------------------
-*/
-Route::get('/relatorios-estatisticas', 'RelEstatisticaController@index');
-Route::get('/api/relestatisticas', 'RelEstatisticaController@api');
-Route::post('/api/relestatisticas/store', 'RelEstatisticaController@store');
-Route::put('/api/relestatisticas/update', 'RelEstatisticaController@update');
-Route::delete('/api/relestatisticas/delete', 'RelEstatisticaController@destroy');
+});
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes EstadoController
-|--------------------------------------------------------------------------
-*/
-Route::get('/api/estados', 'EstadoController@api');
+Route::prefix('api')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes API ROUTES
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/estados', 'EstadoController@api');
+    Route::get('/cidades', 'CidadeController@api');
+    Route::get('/sinodos', 'SinodoController@api');
+    Route::get('/presbiterios', 'PresbiterioController@api');
+    Route::get('/igrejas', 'IgrejaController@api');
+    Route::get('/ministros', 'PresbiteroController@api');
+});
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes CidadeController
-|--------------------------------------------------------------------------
-*/
-Route::get('/api/cidades', 'CidadeController@api');
-
-Route::get('/api/sinodos', 'SinodoController@api');
+Route::prefix('consultas')->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes Consulta Conselho
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/igrejas/conselho', 'ConsIgrejaConselhoController@index');
+    Route::post('/igrejas/conselho', 'ConsIgrejaConselhoController@show');
+    Route::get('/igrejas/estatistica', 'ConsIgrejaEstatisticaController@index');
+    Route::post('/igrejas/estatistica', 'ConsIgrejaEstatisticaController@show');
+    Route::get('/igrejas/ministerial', 'ConsIgrejaMinisterialController@index');
+    Route::post('/igrejas/ministerial', 'ConsIgrejaMinisterialController@show');
+});
